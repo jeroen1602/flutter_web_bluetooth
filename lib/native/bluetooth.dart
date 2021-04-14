@@ -3,7 +3,7 @@ part of native_web_bluetooth;
 ///
 /// https://developer.mozilla.org/en-US/docs/Web/API/Bluetooth
 ///
-@JS('bluetooth')
+@JS('navigator.bluetooth')
 class _NativeBluetooth {
   external static Object getAvailability();
 
@@ -16,6 +16,32 @@ class _NativeBluetooth {
 
   external static void removeEventListener(
       String type, void Function(dynamic) listener);
+}
+
+@visibleForTesting
+class NativeBluetooth {
+  Object getAvailability() {
+    return _NativeBluetooth.getAvailability();
+  }
+
+  Object getDevices() {
+    return _NativeBluetooth.getDevices();
+  }
+
+  void addEventListener(String type, void Function(dynamic) listener) {
+    _NativeBluetooth.addEventListener(type, listener);
+  }
+
+  void removeEventListener(String type, void Function(dynamic) listener) {
+    _NativeBluetooth.removeEventListener(type, listener);
+  }
+}
+
+NativeBluetooth _nativeBluetooth = NativeBluetooth();
+
+@visibleForTesting
+void setNativeBluetooth(NativeBluetooth nativeBluetooth) {
+  _nativeBluetooth = nativeBluetooth;
 }
 
 @JS()
@@ -46,10 +72,34 @@ class RequestOptions {
       bool acceptAllDevices});
 }
 
+@JS('navigator')
+external Object _navigator;
+
+Object? _navigatorTesting;
+
+@visibleForTesting
+void setNavigator(Object navigatorObject) {
+  _navigatorTesting = navigatorObject;
+}
+
+Object _getNavigator() {
+  return _navigatorTesting ?? _navigator;
+}
+
 class Bluetooth {
+  static bool isBluetoothSupported() {
+    final hasProperty = _JSUtil.hasProperty(_getNavigator(), 'bluetooth');
+    print(hasProperty);
+
+    return true;
+  }
+
   static Future<bool> getAvailability() async {
-    final promise = _NativeBluetooth.getAvailability();
-    final result = await JSUtil.promiseToFuture(promise);
+    if (!isBluetoothSupported()) {
+      return false;
+    }
+    final promise = _nativeBluetooth.getAvailability();
+    final result = await _JSUtil.promiseToFuture(promise);
     if (result is bool) {
       return result;
     }
@@ -58,7 +108,7 @@ class Bluetooth {
 
   static Future<List<NativeBluetoothDevice>> getDevices() async {
     final promise = _NativeBluetooth.getDevices();
-    final result = await JSUtil.promiseToFuture(promise);
+    final result = await _JSUtil.promiseToFuture(promise);
     if (result is List) {
       final items = <NativeBluetoothDevice>[];
       for (final item in result) {
@@ -76,7 +126,7 @@ class Bluetooth {
   static Future<NativeBluetoothDevice> requestDevice(
       RequestOptions? options) async {
     final promise = _NativeBluetooth.requestDevice(options);
-    final result = await JSUtil.promiseToFuture(promise);
+    final result = await _JSUtil.promiseToFuture(promise);
     final device = NativeBluetoothDevice._fromJSObject(result);
     return device;
   }

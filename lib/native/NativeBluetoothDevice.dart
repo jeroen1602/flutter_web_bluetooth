@@ -13,7 +13,7 @@ class NativeBluetoothDevice {
     if (id != null) {
       return id;
     }
-    id = JSUtil.getProperty(this._jsObject, 'id') as String;
+    id = _JSUtil.getProperty(this._jsObject, 'id') as String;
     _id = id;
     return id;
   }
@@ -25,10 +25,10 @@ class NativeBluetoothDevice {
     if (name != null) {
       return name;
     }
-    if (!JSUtil.hasProperty(this._jsObject, 'name')) {
+    if (!_JSUtil.hasProperty(this._jsObject, 'name')) {
       return null;
     }
-    name = JSUtil.getProperty(this._jsObject, 'name') as String;
+    name = _JSUtil.getProperty(this._jsObject, 'name') as String;
     _name = name;
     return name;
   }
@@ -40,10 +40,10 @@ class NativeBluetoothDevice {
     if (gatt != null) {
       return gatt;
     }
-    if (!JSUtil.hasProperty(this._jsObject, 'gatt')) {
+    if (!_JSUtil.hasProperty(this._jsObject, 'gatt')) {
       return null;
     }
-    final newGatt = JSUtil.getProperty(this._jsObject, 'gatt');
+    final newGatt = _JSUtil.getProperty(this._jsObject, 'gatt');
     if (newGatt != null) {
       try {
         _gatt = NativeBluetoothRemoteGATTServer._fromJSObject(newGatt, this);
@@ -56,7 +56,7 @@ class NativeBluetoothDevice {
 
   @deprecated
   List<dynamic> get uuid {
-    return JSUtil.getProperty(this._jsObject, 'uuid');
+    return _JSUtil.getProperty(this._jsObject, 'uuid');
   }
 
   @deprecated
@@ -74,7 +74,7 @@ class NativeBluetoothDevice {
   //     {String id, String? name, Object? gatt, @deprecated List<dynamic> uuid});
 
   NativeBluetoothDevice._fromJSObject(this._jsObject) {
-    if (!JSUtil.hasProperty(_jsObject, 'id')) {
+    if (!_JSUtil.hasProperty(_jsObject, 'id')) {
       throw UnsupportedError('JSObject does not have an id.');
     }
   }

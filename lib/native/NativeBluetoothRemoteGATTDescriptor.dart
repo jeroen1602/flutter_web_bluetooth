@@ -15,7 +15,7 @@ class NativeBluetoothRemoteGATTDescriptor {
       return uuid;
     }
 
-    uuid = JSUtil.getProperty(this._jsObject, 'uuid');
+    uuid = _JSUtil.getProperty(this._jsObject, 'uuid');
     if (uuid != null && uuid is String) {
       _uuid = uuid;
       return uuid;
@@ -24,27 +24,27 @@ class NativeBluetoothRemoteGATTDescriptor {
   }
 
   dynamic get value {
-    if (!JSUtil.hasProperty(this._jsObject, 'value')) {
+    if (!_JSUtil.hasProperty(this._jsObject, 'value')) {
       return null;
     }
-    return JSUtil.getProperty(this._jsObject, 'value');
+    return _JSUtil.getProperty(this._jsObject, 'value');
   }
 
   Future<dynamic> readValue() async {
-    final promise = JSUtil.callMethod(this._jsObject, 'readValue', []);
-    final result = await JSUtil.promiseToFuture(promise);
+    final promise = _JSUtil.callMethod(this._jsObject, 'readValue', []);
+    final result = await _JSUtil.promiseToFuture(promise);
     // TODO: convert result to a DataView.
     return result;
   }
 
   Future<void> writeValue(Object value) async {
-    final promise = JSUtil.callMethod(this._jsObject, 'writeValue', [value]);
-    await JSUtil.promiseToFuture(promise);
+    final promise = _JSUtil.callMethod(this._jsObject, 'writeValue', [value]);
+    await _JSUtil.promiseToFuture(promise);
   }
 
   NativeBluetoothRemoteGATTDescriptor._fromJSObject(
       this._jsObject, this.characteristic) {
-    if (!JSUtil.hasProperty(_jsObject, 'characteristic')) {
+    if (!_JSUtil.hasProperty(_jsObject, 'characteristic')) {
       throw UnsupportedError('JSObject does not have characteristic');
     }
   }

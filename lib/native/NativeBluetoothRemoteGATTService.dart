@@ -8,7 +8,7 @@ class NativeBluetoothRemoteGATTService {
   final NativeBluetoothDevice device;
 
   bool hasIsPrimary() {
-    return JSUtil.hasProperty(this._jsObject, 'isPrimary');
+    return _JSUtil.hasProperty(this._jsObject, 'isPrimary');
   }
 
   bool? _isPrimary;
@@ -23,7 +23,7 @@ class NativeBluetoothRemoteGATTService {
           'BluetoothRemoteGATTService.isPrimary');
     }
 
-    isPrimary = JSUtil.getProperty(this._jsObject, 'isPrimary');
+    isPrimary = _JSUtil.getProperty(this._jsObject, 'isPrimary');
     if (isPrimary != null && isPrimary is bool) {
       _isPrimary = isPrimary;
       return isPrimary;
@@ -39,7 +39,7 @@ class NativeBluetoothRemoteGATTService {
       return uuid;
     }
 
-    uuid = JSUtil.getProperty(this._jsObject, 'uuid');
+    uuid = _JSUtil.getProperty(this._jsObject, 'uuid');
     if (uuid != null && uuid is String) {
       _uuid = uuid;
       return uuid;
@@ -49,14 +49,14 @@ class NativeBluetoothRemoteGATTService {
 
   Future<NativeBluetoothRemoteGATTCharacteristic> getCharacteristic(
       String characteristicUUID) async {
-    final promise = JSUtil.callMethod(
+    final promise = _JSUtil.callMethod(
         this._jsObject, 'getCharacteristic', [characteristicUUID]);
-    final result = await JSUtil.promiseToFuture(promise);
+    final result = await _JSUtil.promiseToFuture(promise);
     return NativeBluetoothRemoteGATTCharacteristic._fromJSObject(result, this);
   }
 
   bool hasGetCharacteristicsFunction() {
-    return JSUtil.hasProperty(this._jsObject, 'getCharacteristics');
+    return _JSUtil.hasProperty(this._jsObject, 'getCharacteristics');
   }
 
   Future<List<NativeBluetoothRemoteGATTCharacteristic>> getCharacteristics(
@@ -65,15 +65,15 @@ class NativeBluetoothRemoteGATTService {
       throw NativeAPINotImplementedError(
           'BluetoothRemoteGATTService.getCharacteristics');
     }
-    final promise = JSUtil.callMethod(
+    final promise = _JSUtil.callMethod(
         this._jsObject, 'getCharacteristics', [characteristicUUID]);
-    final result = await JSUtil.promiseToFuture(promise);
+    final result = await _JSUtil.promiseToFuture(promise);
     if (result is List) {
       final items = <NativeBluetoothRemoteGATTCharacteristic>[];
       for (final item in result) {
         try {
-          items
-              .add(NativeBluetoothRemoteGATTCharacteristic._fromJSObject(item, this));
+          items.add(NativeBluetoothRemoteGATTCharacteristic._fromJSObject(
+              item, this));
         } on UnsupportedError {
           debugPrint(
               'Could not convert known device to BluetoothRemoteGATTCharacteristic');
@@ -85,7 +85,7 @@ class NativeBluetoothRemoteGATTService {
   }
 
   bool hasGetIncludedServiceFunction() {
-    return JSUtil.hasProperty(this._jsObject, 'getIncludedService');
+    return _JSUtil.hasProperty(this._jsObject, 'getIncludedService');
   }
 
   Future<NativeBluetoothRemoteGATTService> getIncludedService(
@@ -94,22 +94,22 @@ class NativeBluetoothRemoteGATTService {
       throw NativeAPINotImplementedError('getIncludedService');
     }
     final promise =
-        JSUtil.callMethod(this._jsObject, 'getIncludedService', [serviceUUID]);
-    final result = await JSUtil.promiseToFuture(promise);
+        _JSUtil.callMethod(this._jsObject, 'getIncludedService', [serviceUUID]);
+    final result = await _JSUtil.promiseToFuture(promise);
     return NativeBluetoothRemoteGATTService._fromJSObject(result, this.device);
   }
 
   Future<List<NativeBluetoothRemoteGATTService>> getIncludedServices(
       Object? serviceUUID) async {
-    final promise =
-        JSUtil.callMethod(this._jsObject, 'getIncludedServices', [serviceUUID]);
-    final result = await JSUtil.promiseToFuture(promise);
+    final promise = _JSUtil.callMethod(
+        this._jsObject, 'getIncludedServices', [serviceUUID]);
+    final result = await _JSUtil.promiseToFuture(promise);
     if (result is List) {
       final items = <NativeBluetoothRemoteGATTService>[];
       for (final item in result) {
         try {
-          items
-              .add(NativeBluetoothRemoteGATTService._fromJSObject(item, this.device));
+          items.add(NativeBluetoothRemoteGATTService._fromJSObject(
+              item, this.device));
         } on UnsupportedError {
           debugPrint(
               'Could not convert known device to BluetoothRemoteGATTService');
@@ -121,13 +121,13 @@ class NativeBluetoothRemoteGATTService {
   }
 
   NativeBluetoothRemoteGATTService._fromJSObject(this._jsObject, this.device) {
-    if (!JSUtil.hasProperty(_jsObject, 'uuid')) {
+    if (!_JSUtil.hasProperty(_jsObject, 'uuid')) {
       throw UnsupportedError('JSObject does not have uuid');
     }
-    if (!JSUtil.hasProperty(_jsObject, 'getCharacteristic')) {
+    if (!_JSUtil.hasProperty(_jsObject, 'getCharacteristic')) {
       throw UnsupportedError('JSObject does not have getCharacteristic');
     }
-    if (!JSUtil.hasProperty(_jsObject, 'getIncludedServices')) {
+    if (!_JSUtil.hasProperty(_jsObject, 'getIncludedServices')) {
       throw UnsupportedError('JSObject does not have getIncludedServices');
     }
   }

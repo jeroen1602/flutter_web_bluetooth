@@ -1,5 +1,4 @@
-import 'package:flutter_web_bluetooth/native_web_bluetooth.dart';
-
+import '../native_web_bluetooth.dart';
 import 'flutter_web_bluetooth_interface.dart';
 
 class FlutterWebBluetooth extends FlutterWebBluetoothInterface {
@@ -26,6 +25,6 @@ class FlutterWebBluetooth extends FlutterWebBluetoothInterface {
 
   @override
   Future<NativeBluetoothDevice> requestDevice(RequestOptions options) {
-    throw UnimplementedError();
+    throw StateError('Web Bluetooth is not available for this device!');
   }
 }

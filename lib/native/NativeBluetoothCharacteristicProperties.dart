@@ -7,7 +7,7 @@ class NativeBluetoothCharacteristicProperties {
   final Object _jsObject;
 
   bool get broadcast {
-    final result = JSUtil.getProperty(_jsObject, 'broadcast');
+    final result = _JSUtil.getProperty(_jsObject, 'broadcast');
     if (result is bool) {
       return result;
     }
@@ -15,7 +15,7 @@ class NativeBluetoothCharacteristicProperties {
   }
 
   bool get read {
-    final result = JSUtil.getProperty(_jsObject, 'read');
+    final result = _JSUtil.getProperty(_jsObject, 'read');
     if (result is bool) {
       return result;
     }
@@ -23,7 +23,7 @@ class NativeBluetoothCharacteristicProperties {
   }
 
   bool get writeWithoutResponse {
-    final result = JSUtil.getProperty(_jsObject, 'writeWithoutResponse');
+    final result = _JSUtil.getProperty(_jsObject, 'writeWithoutResponse');
     if (result is bool) {
       return result;
     }
@@ -31,7 +31,7 @@ class NativeBluetoothCharacteristicProperties {
   }
 
   bool get write {
-    final result = JSUtil.getProperty(_jsObject, 'write');
+    final result = _JSUtil.getProperty(_jsObject, 'write');
     if (result is bool) {
       return result;
     }
@@ -39,7 +39,7 @@ class NativeBluetoothCharacteristicProperties {
   }
 
   bool get notify {
-    final result = JSUtil.getProperty(_jsObject, 'notify');
+    final result = _JSUtil.getProperty(_jsObject, 'notify');
     if (result is bool) {
       return result;
     }
@@ -47,7 +47,7 @@ class NativeBluetoothCharacteristicProperties {
   }
 
   bool get indicate {
-    final result = JSUtil.getProperty(_jsObject, 'indicate');
+    final result = _JSUtil.getProperty(_jsObject, 'indicate');
     if (result is bool) {
       return result;
     }
@@ -55,7 +55,7 @@ class NativeBluetoothCharacteristicProperties {
   }
 
   bool get authenticatedSignedWrites {
-    final result = JSUtil.getProperty(_jsObject, 'authenticatedSignedWrites');
+    final result = _JSUtil.getProperty(_jsObject, 'authenticatedSignedWrites');
     if (result is bool) {
       return result;
     }
@@ -63,7 +63,7 @@ class NativeBluetoothCharacteristicProperties {
   }
 
   bool get reliableWrite {
-    final result = JSUtil.getProperty(_jsObject, 'reliableWrite');
+    final result = _JSUtil.getProperty(_jsObject, 'reliableWrite');
     if (result is bool) {
       return result;
     }
@@ -71,7 +71,7 @@ class NativeBluetoothCharacteristicProperties {
   }
 
   bool get writableAuxiliaries {
-    final result = JSUtil.getProperty(_jsObject, 'writableAuxiliaries');
+    final result = _JSUtil.getProperty(_jsObject, 'writableAuxiliaries');
     if (result is bool) {
       return result;
     }
@@ -79,32 +79,32 @@ class NativeBluetoothCharacteristicProperties {
   }
 
   NativeBluetoothCharacteristicProperties._fromJSObject(this._jsObject) {
-    if (!JSUtil.hasProperty(_jsObject, 'broadcast')) {
+    if (!_JSUtil.hasProperty(_jsObject, 'broadcast')) {
       throw UnsupportedError('JSObject does not have broadcast');
     }
-    if (!JSUtil.hasProperty(_jsObject, 'read')) {
+    if (!_JSUtil.hasProperty(_jsObject, 'read')) {
       throw UnsupportedError('JSObject does not have read');
     }
-    if (!JSUtil.hasProperty(_jsObject, 'writeWithoutResponse')) {
+    if (!_JSUtil.hasProperty(_jsObject, 'writeWithoutResponse')) {
       throw UnsupportedError('JSObject does not have writeWithoutResponse');
     }
-    if (!JSUtil.hasProperty(_jsObject, 'write')) {
+    if (!_JSUtil.hasProperty(_jsObject, 'write')) {
       throw UnsupportedError('JSObject does not have write');
     }
-    if (!JSUtil.hasProperty(_jsObject, 'notify')) {
+    if (!_JSUtil.hasProperty(_jsObject, 'notify')) {
       throw UnsupportedError('JSObject does not have notify');
     }
-    if (!JSUtil.hasProperty(_jsObject, 'indicate')) {
+    if (!_JSUtil.hasProperty(_jsObject, 'indicate')) {
       throw UnsupportedError('JSObject does not have indicate');
     }
-    if (!JSUtil.hasProperty(_jsObject, 'authenticatedSignedWrites')) {
+    if (!_JSUtil.hasProperty(_jsObject, 'authenticatedSignedWrites')) {
       throw UnsupportedError(
           'JSObject does not have authenticatedSignedWrites');
     }
-    if (!JSUtil.hasProperty(_jsObject, 'reliableWrite')) {
+    if (!_JSUtil.hasProperty(_jsObject, 'reliableWrite')) {
       throw UnsupportedError('JSObject does not have reliableWrite');
     }
-    if (!JSUtil.hasProperty(_jsObject, 'writableAuxiliaries')) {
+    if (!_JSUtil.hasProperty(_jsObject, 'writableAuxiliaries')) {
       throw UnsupportedError('JSObject does not have writableAuxiliaries');
     }
   }

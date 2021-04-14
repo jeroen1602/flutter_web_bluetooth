@@ -1,4 +1,4 @@
-import 'native_web_bluetooth.dart';
+import '../native_web_bluetooth.dart';
 
 abstract class FlutterWebBluetoothInterface {
   bool get isBluetoothSupported;
