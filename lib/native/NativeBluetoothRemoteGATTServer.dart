@@ -54,7 +54,8 @@ class NativeBluetoothRemoteGATTServer {
     return [];
   }
 
-  NativeBluetoothRemoteGATTServer._fromJSObject(this._jsObject, this.device) {
+  @visibleForTesting
+  NativeBluetoothRemoteGATTServer.fromJSObject(this._jsObject, this.device) {
     if (!_JSUtil.hasProperty(_jsObject, 'connected')) {
       throw UnsupportedError('JSObject does not have connected');
     }

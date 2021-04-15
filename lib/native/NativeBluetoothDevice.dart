@@ -46,22 +46,12 @@ class NativeBluetoothDevice {
     final newGatt = _JSUtil.getProperty(this._jsObject, 'gatt');
     if (newGatt != null) {
       try {
-        _gatt = NativeBluetoothRemoteGATTServer._fromJSObject(newGatt, this);
+        _gatt = NativeBluetoothRemoteGATTServer.fromJSObject(newGatt, this);
       } on UnsupportedError {
         debugPrint('Could not convert JSObject to BluetoothRemoteGattServer');
       }
     }
     return _gatt;
-  }
-
-  @deprecated
-  List<dynamic> get uuid {
-    return _JSUtil.getProperty(this._jsObject, 'uuid');
-  }
-
-  @deprecated
-  Object connectGATT() {
-    return Object();
   }
 
   // external static void addEventListener(
@@ -70,7 +60,8 @@ class NativeBluetoothDevice {
   // external static void removeEventListener(
   //     String type, void Function(dynamic) listener);
 
-  NativeBluetoothDevice._fromJSObject(this._jsObject) {
+  @visibleForTesting
+  NativeBluetoothDevice.fromJSObject(this._jsObject) {
     if (!_JSUtil.hasProperty(_jsObject, 'id')) {
       throw UnsupportedError('JSObject does not have an id.');
     }

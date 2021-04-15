@@ -125,7 +125,7 @@ class Bluetooth {
       final items = <NativeBluetoothDevice>[];
       for (final item in result) {
         try {
-          items.add(NativeBluetoothDevice._fromJSObject(item));
+          items.add(NativeBluetoothDevice.fromJSObject(item));
         } on UnsupportedError {
           debugPrint('Could not convert known device to BluetoothDevice');
         }
@@ -139,7 +139,7 @@ class Bluetooth {
       RequestOptions? options) async {
     final promise = _nativeBluetooth.requestDevice(options);
     final result = await _JSUtil.promiseToFuture(promise);
-    final device = NativeBluetoothDevice._fromJSObject(result);
+    final device = NativeBluetoothDevice.fromJSObject(result);
     return device;
   }
 }

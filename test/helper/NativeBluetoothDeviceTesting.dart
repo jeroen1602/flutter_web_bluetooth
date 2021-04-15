@@ -1,6 +1,11 @@
-
 abstract class NativeBluetoothDeviceTesting {
-  static Map<String, dynamic> createJSObject({required String id, String? name, Map<String, dynamic>? gatt, required List<dynamic> uuid}) {
+  NativeBluetoothDeviceTesting._();
+
+  static Map<String, dynamic> createJSObject(
+      {required String id,
+      String? name,
+      Map<String, dynamic>? gatt,
+      required List<dynamic> uuid}) {
     return {
       'id': id,
       'name': name,
