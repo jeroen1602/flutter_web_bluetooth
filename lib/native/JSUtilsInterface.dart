@@ -1,3 +1,6 @@
+import 'package:flutter/foundation.dart';
+
+@visibleForTesting
 abstract class JSUtilsInterface {
   dynamic newObject();
 

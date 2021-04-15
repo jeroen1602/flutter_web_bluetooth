@@ -6,12 +6,11 @@ import '../helper/JSUtilsTesting.dart';
 import '../helper/NativeBluetoothTesting.dart';
 
 void main() {
-//  Setup the env.
+  JSUtilsInterface utils = JSUtilsTesting();
+  setJSUtils(utils);
 
   test('Available should be true', () async {
-    JSUtilsInterface utils = JSUtilsTesting();
 
-    setJSUtils(utils);
 
     NativeBluetooth nativeBluetooth = NativeBluetoothTesting(available: true);
     setNativeBluetooth(nativeBluetooth);
@@ -25,9 +24,6 @@ void main() {
   });
 
   test ('Available should be false', () async {
-    JSUtilsInterface utils = JSUtilsTesting();
-
-    setJSUtils(utils);
 
     NativeBluetooth nativeBluetooth = NativeBluetoothTesting(available: false);
     setNativeBluetooth(nativeBluetooth);
@@ -41,11 +37,8 @@ void main() {
   });
 
   test ('Available should be false, no bluetooth object', () async {
-    JSUtilsInterface utils = JSUtilsTesting();
 
-    setJSUtils(utils);
-
-    NativeBluetooth nativeBluetooth = NativeBluetoothTesting(available: false);
+    NativeBluetooth nativeBluetooth = NativeBluetoothTesting(available: true);
     setNativeBluetooth(nativeBluetooth);
 
     Object object = {

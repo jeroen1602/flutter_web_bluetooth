@@ -16,11 +16,6 @@ void main() {
     expect(supported, false);
   });
 
-  test('Instance on io bluetooth not supported', () async {
-    final supported = FlutterWebBluetooth.instance.isBluetoothSupported;
-    expect(supported, false);
-  });
-
   test('Instance on io can\'t get device', () async {
     expect(
         () async => await FlutterWebBluetooth.instance

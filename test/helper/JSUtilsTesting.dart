@@ -15,8 +15,10 @@ class JSUtilsTesting extends JSUtilsInterface {
 
   @override
   getProperty(Object o, Object name) {
-    // TODO: implement getProperty
-    throw UnimplementedError();
+    if (o is Map<dynamic, dynamic>) {
+      return o[name];
+    }
+    throw UnimplementedError("You should use a map for testing");
   }
 
   @override

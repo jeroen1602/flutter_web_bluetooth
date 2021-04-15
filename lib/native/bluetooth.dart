@@ -28,6 +28,10 @@ class NativeBluetooth {
     return _NativeBluetooth.getDevices();
   }
 
+  Object requestDevice(RequestOptions? options) {
+    return _NativeBluetooth.requestDevice(options);
+  }
+
   void addEventListener(String type, void Function(dynamic) listener) {
     _NativeBluetooth.addEventListener(type, listener);
   }
@@ -89,11 +93,19 @@ Object _getNavigator() {
 class Bluetooth {
   static bool isBluetoothSupported() {
     final hasProperty = _JSUtil.hasProperty(_getNavigator(), 'bluetooth');
-    print(hasProperty);
-
-    return true;
+    return hasProperty;
   }
 
+  /// Check if bluetooth web is support in this browser.
+  /// If called in a browser that doesn't support this feature it will resolve
+  /// into false.
+  ///
+  /// Will check if `bluetooth in navigator` if this is not the case then the
+  /// api is not available in the browser.
+  /// After this it will call `navigator.bluetooth.getAvailability()` to check
+  /// if the libray is also ready.
+  ///
+  /// This will return false if the website is not run in a secure context.
   static Future<bool> getAvailability() async {
     if (!isBluetoothSupported()) {
       return false;
@@ -107,7 +119,7 @@ class Bluetooth {
   }
 
   static Future<List<NativeBluetoothDevice>> getDevices() async {
-    final promise = _NativeBluetooth.getDevices();
+    final promise = _nativeBluetooth.getDevices();
     final result = await _JSUtil.promiseToFuture(promise);
     if (result is List) {
       final items = <NativeBluetoothDevice>[];
@@ -125,7 +137,7 @@ class Bluetooth {
 
   static Future<NativeBluetoothDevice> requestDevice(
       RequestOptions? options) async {
-    final promise = _NativeBluetooth.requestDevice(options);
+    final promise = _nativeBluetooth.requestDevice(options);
     final result = await _JSUtil.promiseToFuture(promise);
     final device = NativeBluetoothDevice._fromJSObject(result);
     return device;

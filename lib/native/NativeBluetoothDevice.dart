@@ -70,9 +70,6 @@ class NativeBluetoothDevice {
   // external static void removeEventListener(
   //     String type, void Function(dynamic) listener);
 
-  // external factory BluetoothDevice(
-  //     {String id, String? name, Object? gatt, @deprecated List<dynamic> uuid});
-
   NativeBluetoothDevice._fromJSObject(this._jsObject) {
     if (!_JSUtil.hasProperty(_jsObject, 'id')) {
       throw UnsupportedError('JSObject does not have an id.');
