@@ -91,31 +91,73 @@ Object _getNavigator() {
 }
 
 class Bluetooth {
-  static bool isBluetoothSupported() {
+  Bluetooth._();
+
+  static bool isBluetoothAPISupported() {
     final hasProperty = _JSUtil.hasProperty(_getNavigator(), 'bluetooth');
     return hasProperty;
   }
 
-  /// Check if bluetooth web is support in this browser.
-  /// If called in a browser that doesn't support this feature it will resolve
-  /// into false.
+  ///
+  /// Check if a bluetooth adapter is available for the borwser (user agent)
+  /// If no bluetooth adapters are available to the browser it will
+  /// resolve into false. This may return true even if the acapter is disabled
+  /// by the user.
   ///
   /// Will check if `bluetooth in navigator` if this is not the case then the
   /// api is not available in the browser.
   /// After this it will call `navigator.bluetooth.getAvailability()` to check
-  /// if the libray is also ready.
+  /// if there is an adapter available.
   ///
   /// This will return false if the website is not run in a secure context.
   static Future<bool> getAvailability() async {
-    if (!isBluetoothSupported()) {
+    if (!isBluetoothAPISupported()) {
       return false;
     }
     final promise = _nativeBluetooth.getAvailability();
     final result = await _JSUtil.promiseToFuture(promise);
+    if (!kReleaseMode) {
+      debugPrint('flutter_web_bluetooth: Result getAvailability $result');
+    }
     if (result is bool) {
       return result;
     }
     return false;
+  }
+
+  @visibleForTesting
+  static BehaviorSubject<bool>? availabilityStream;
+
+  ///
+  /// Get a [Stream] for the availability of a Bluetooth adapter.
+  /// If a user inserts or removes a bluetooth adapter from their devices this
+  /// stream will update.
+  /// It will not necicerly update if the user enables/ disables a bleutooth
+  /// adapter.
+  ///
+  static Stream<bool> onAvailabilitychanged() {
+    if (!isBluetoothAPISupported()) {
+      if (!kReleaseMode) {
+        debugPrint('flutter_web_bluetooth: Bluetooth api not supported');
+      }
+      return Stream.value(false);
+    }
+    if (availabilityStream != null) {
+      return availabilityStream!.stream;
+    }
+    availabilityStream = BehaviorSubject.seeded(false);
+    _nativeBluetooth.addEventListener('availabilitychanged',
+        _JSUtil.allowInterop((event) {
+      final value = _JSUtil.getProperty(event, 'value');
+      if (!kReleaseMode) {
+        debugPrint('flutter_web_bluetooth: Availability changed $value');
+      }
+      if (value is bool) {
+        availabilityStream?.add(value);
+      }
+    }));
+    return MergeStream(
+        [Stream.fromFuture(getAvailability()), availabilityStream!.stream]);
   }
 
   static Future<List<NativeBluetoothDevice>> getDevices() async {
@@ -127,7 +169,8 @@ class Bluetooth {
         try {
           items.add(NativeBluetoothDevice.fromJSObject(item));
         } on UnsupportedError {
-          debugPrint('Could not convert known device to BluetoothDevice');
+          debugPrint(
+              'flutter_web_bluetooth: Could not convert known device to BluetoothDevice');
         }
       }
       return items;

@@ -40,4 +40,9 @@ class JSUtils extends JSUtilsInterface {
   setProperty(Object o, Object name, Object? value) {
     throw UnimplementedError();
   }
+
+  @override
+  F allowInterop<F extends Function>(F f) {
+    throw UnimplementedError();
+  }
 }

@@ -1,4 +1,5 @@
 import 'dart:js_util' as JSUtil;
+import 'dart:js' as JS;
 
 import 'JSUtilsInterface.dart';
 
@@ -30,4 +31,8 @@ class JSUtils extends JSUtilsInterface {
   @override
   dynamic setProperty(Object o, Object name, Object? value) =>
       JSUtil.setProperty(o, name, value);
+
+  F allowInterop<F extends Function>(F f) {
+    return JS.allowInterop(f);
+  }
 }

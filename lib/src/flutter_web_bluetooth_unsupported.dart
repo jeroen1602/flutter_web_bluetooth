@@ -10,21 +10,18 @@ class FlutterWebBluetooth extends FlutterWebBluetoothInterface {
   static FlutterWebBluetooth? _instance;
 
   static FlutterWebBluetoothInterface get instance {
-    final instance = _instance ?? FlutterWebBluetooth._();
-    if (_instance == null) {
-      _instance = instance;
-    }
-    return instance;
+    _instance ??= FlutterWebBluetooth._();
+    return _instance!;
   }
 
   @override
-  Future<bool> get isAvailable => Future.value(false);
+  bool get isBluetoothApiSupported => false;
 
   @override
-  bool get isBluetoothSupported => false;
+  Stream<bool> get isAvailable => Stream.value(false);
 
   @override
-  Future<NativeBluetoothDevice> requestDevice(RequestOptions options) {
+  Future<WebBluetoothDevice> requestDevice(RequestOptions options) {
     throw StateError('Web Bluetooth is not available for this device!');
   }
 }

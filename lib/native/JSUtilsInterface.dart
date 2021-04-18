@@ -17,4 +17,6 @@ abstract class JSUtilsInterface {
   dynamic callConstructor(Object constr, List<Object?>? arguments);
 
   Future<T> promiseToFuture<T>(Object jsPromise);
+
+  F allowInterop<F extends Function>(F f);
 }

@@ -3,6 +3,7 @@ library native_web_bluetooth;
 
 import 'package:flutter/foundation.dart';
 import 'package:flutter_web_bluetooth/errors/NativeAPINotImplementedError.dart';
+import 'package:rxdart/rxdart.dart';
 
 import 'native/JSUtils.dart';
 import 'native/JSUtilsInterface.dart';
