@@ -1,0 +1,25 @@
+diff --git a/packages/flutter_tools/lib/src/web/chrome.dart b/packages/flutter_tools/lib/src/web/chrome.dart
+index b0e75ecb6b..2541b355c6 100644
+--- a/packages/flutter_tools/lib/src/web/chrome.dart
++++ b/packages/flutter_tools/lib/src/web/chrome.dart
+@@ -195,6 +195,20 @@ class ChromiumLauncher {
+     }
+ 
+     final int port = debugPort ?? await _operatingSystemUtils.findFreePort();
++
++    // Enable experimental web platform features for the new browser instance.
++    final String json = jsonEncode(<String, dynamic>{
++      'browser': <String, dynamic>{
++        'enabled_labs_experiments': <String>[
++          'enable-experimental-web-platform-features'
++        ]
++      }
++    });
++
++    final File file = _fileSystem.file('${userDataDir.path}/Local State');
++    await file.create(recursive: true);
++    await file.writeAsString(json);
++
+     final List<String> args = <String>[
+       chromeExecutable,
+       // Using a tmp directory ensures that a new instance of chrome launches
