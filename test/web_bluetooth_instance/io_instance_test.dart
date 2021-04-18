@@ -7,12 +7,12 @@ class FakeRequestOptions extends Fake implements RequestOptions {}
 
 void main() {
   test('Instance on io not available', () async {
-    final available = await FlutterWebBluetooth.instance.isAvailable;
+    final available = await FlutterWebBluetooth.instance.isAvailable.first;
     expect(available, false);
   });
 
   test('Instance on io bluetooth not supported', () async {
-    final supported = FlutterWebBluetooth.instance.isBluetoothSupported;
+    final supported = FlutterWebBluetooth.instance.isBluetoothApiSupported;
     expect(supported, false);
   });
 

@@ -57,4 +57,9 @@ class JSUtilsTesting extends JSUtilsInterface {
     // TODO: implement setProperty
     throw UnimplementedError();
   }
+
+  @override
+  F allowInterop<F extends Function>(F f) {
+    return f;
+  }
 }
