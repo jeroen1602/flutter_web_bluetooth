@@ -2,7 +2,6 @@
 library native_web_bluetooth;
 
 import 'package:flutter/foundation.dart';
-import 'package:flutter_web_bluetooth/errors/NativeAPINotImplementedError.dart';
 import 'package:rxdart/rxdart.dart';
 
 import 'native/js/JSUtils.dart';
@@ -21,6 +20,12 @@ part 'native/NativeBluetoothRemoteGATTServer.dart';
 part 'native/NativeBluetoothRemoteGATTService.dart';
 
 part 'native/bluetooth.dart';
+
+part 'native/errors/DeviceNotFoundError.dart';
+
+part 'native/errors/NativeAPINotImplementedError.dart';
+
+part 'native/errors/UserCancelledDialogError.dart';
 
 JSUtilsInterface _JSUtil = JSUtils();
 

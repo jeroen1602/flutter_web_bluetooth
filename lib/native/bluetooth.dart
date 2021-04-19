@@ -51,14 +51,14 @@ void setNativeBluetooth(NativeBluetooth nativeBluetooth) {
 @JS()
 @anonymous
 class BluetoothScanFilter {
-  external List<dynamic> get services;
+  external List<dynamic>? get services;
 
-  external String get name;
+  external String? get name;
 
-  external String get namePrefix;
+  external String? get namePrefix;
 
   external factory BluetoothScanFilter(
-      {List<dynamic> services, String name, String namePrefix});
+      {List<dynamic>? services, String? name, String? namePrefix});
 }
 
 @JS()
@@ -182,8 +182,23 @@ class Bluetooth {
   static Future<NativeBluetoothDevice> requestDevice(
       RequestOptions? options) async {
     final promise = _nativeBluetooth.requestDevice(options);
-    final result = await _JSUtil.promiseToFuture(promise);
-    final device = NativeBluetoothDevice.fromJSObject(result);
-    return device;
+    try {
+      final result = await _JSUtil.promiseToFuture(promise);
+      final device = NativeBluetoothDevice.fromJSObject(result);
+      return device;
+    } catch (e) {
+      final error = e.toString();
+      if (error.startsWith('NotFoundError')) {
+        // No devices found or cancelled by the user.
+        if (error.toLowerCase().contains('user cancelled')) {
+          // TODO: check if this is also the message on other browsers!
+          throw UserCancelledDialogError(
+              error.replaceFirst('NotFoundError', '').replaceFirst(': ', ''));
+        }
+        throw DeviceNotFoundError(
+            error.replaceFirst('NotFoundError', '').replaceFirst(': ', ''));
+      }
+      throw e;
+    }
   }
 }

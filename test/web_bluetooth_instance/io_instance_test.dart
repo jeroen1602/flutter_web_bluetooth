@@ -1,9 +1,8 @@
 import 'package:flutter_test/flutter_test.dart';
 import 'package:flutter_web_bluetooth/flutter_web_bluetooth.dart';
-import 'package:flutter_web_bluetooth/native_web_bluetooth.dart';
 import 'package:test/test.dart' as dartTest;
 
-class FakeRequestOptions extends Fake implements RequestOptions {}
+class FakeRequestOptions extends Fake implements RequestOptionsBuilder {}
 
 void main() {
   test('Instance on io not available', () async {

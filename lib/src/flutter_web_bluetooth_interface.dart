@@ -1,4 +1,4 @@
-import '../native_web_bluetooth.dart';
+part of flutter_web_bluetooth;
 
 abstract class FlutterWebBluetoothInterface {
   ///
@@ -24,7 +24,6 @@ abstract class FlutterWebBluetoothInterface {
   ///
   Stream<bool> get isAvailable;
 
-  Future<WebBluetoothDevice> requestDevice(RequestOptions options);
+  Future<WebBluetoothDevice> requestDevice(RequestOptionsBuilder options);
 }
 
-class WebBluetoothDevice {}

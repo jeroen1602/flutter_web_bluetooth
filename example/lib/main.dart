@@ -1,6 +1,5 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_web_bluetooth/flutter_web_bluetooth.dart';
-import 'package:flutter_web_bluetooth/native_web_bluetooth.dart';
 
 void main() {
   runApp(MyApp());
@@ -35,9 +34,9 @@ class _MyAppState extends State<MyApp> {
             floatingActionButton: ElevatedButton(
                 onPressed: () {
                   FlutterWebBluetooth.instance
-                      .requestDevice(RequestOptions(acceptAllDevices: true))
+                      .requestDevice(RequestOptionsBuilder.acceptAllDevices())
                       .then((device) {
-                    // debugPrint("Device got! ${device.name}, ${device.id}");
+                    debugPrint("Device got! ${device.name}, ${device.id}");
                   });
                 },
                 child: Icon(Icons.search)),

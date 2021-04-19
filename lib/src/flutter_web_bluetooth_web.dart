@@ -1,9 +1,18 @@
+library flutter_web_bluetooth;
+
 import 'dart:async';
 
+import 'package:flutter/foundation.dart';
+import 'package:flutter_web_bluetooth/native_web_bluetooth.dart';
 import 'package:flutter_web_plugins/flutter_web_plugins.dart';
 
-import '../native_web_bluetooth.dart';
-import 'flutter_web_bluetooth_interface.dart';
+part 'bluetooth_device.dart';
+
+part 'errors/BluetoothAdapterNotAvailable.dart';
+
+part 'flutter_web_bluetooth_interface.dart';
+
+part 'request_options_builder.dart';
 
 class FlutterWebBluetooth extends FlutterWebBluetoothInterface {
   FlutterWebBluetooth._();
@@ -38,9 +47,33 @@ class FlutterWebBluetooth extends FlutterWebBluetoothInterface {
     return Bluetooth.onAvailabilitychanged();
   }
 
-  Future<WebBluetoothDevice> requestDevice(RequestOptions options) async {
-    // return Bluetooth.requestDevice(options);
-    return null as WebBluetoothDevice;
+  ///
+  /// Request a [WebBluetoothDevice] from the browser (user). This will resolve
+  /// into a single device even if the filter [options] (and enviornment) have
+  /// multiple devices that fit that could be found.
+  ///
+  /// If you want multiple devices you will need to call this method multiple
+  /// times, the user however can still click the already connected device twice.
+  ///
+  /// May throw [NativeAPINotImplementedError] if the native api is not
+  /// implemented for this user agent (browser).
+  /// May throw [BluetoothAdapterNotAvailable] if there is not bluetooth device
+  /// available.
+  /// May throw [UserCancelledDialogError] if the user cancels the pairing dialog.
+  /// May throw [DeviceNotFoundError] if the device could not be found with the
+  /// current request filters.
+  ///
+  Future<WebBluetoothDevice> requestDevice(
+      RequestOptionsBuilder options) async {
+    if (!this.isBluetoothApiSupported) {
+      throw NativeAPINotImplementedError('requestDevice');
+    }
+    if (!(await Bluetooth.getAvailability())) {
+      throw BluetoothAdapterNotAvailable('requestDevice');
+    }
+    final device = await Bluetooth.requestDevice(options.toRequestOptions());
+
+    return WebBluetoothDevice(device);
   }
 
   static void registerWith(Registrar registrar) {
