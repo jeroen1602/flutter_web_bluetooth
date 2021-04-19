@@ -120,6 +120,7 @@ class Bluetooth {
       debugPrint('flutter_web_bluetooth: Result getAvailability $result');
     }
     if (result is bool) {
+      availabilityStream?.add(result);
       return result;
     }
     return false;
@@ -145,7 +146,7 @@ class Bluetooth {
     if (availabilityStream != null) {
       return availabilityStream!.stream;
     }
-    availabilityStream = BehaviorSubject.seeded(false);
+    availabilityStream = BehaviorSubject();
     _nativeBluetooth.addEventListener('availabilitychanged',
         _JSUtil.allowInterop((event) {
       final value = _JSUtil.getProperty(event, 'value');
