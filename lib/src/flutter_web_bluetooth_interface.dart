@@ -4,6 +4,8 @@ abstract class FlutterWebBluetoothInterface {
   ///
   /// Get if the bluetooth api is available in this browser. This will only
   /// check if the api is in the `navigator`. Not if anything is available.
+  /// This will sometimes return false if the website is not loaded in a
+  /// [secure context](https://developer.mozilla.org/docs/Web/Security/Secure_Contexts).
   ///
   /// For non web platfors it will always return `false`
   ///
