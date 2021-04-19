@@ -1,4 +1,5 @@
-import 'package:flutter/foundation.dart';
+
+part of bluetooth_web_js_utils;
 
 @visibleForTesting
 abstract class JSUtilsInterface {

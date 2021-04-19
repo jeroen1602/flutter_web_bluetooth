@@ -1,4 +1,4 @@
-import 'package:flutter_web_bluetooth/native/JSUtilsInterface.dart';
+import 'package:flutter_web_bluetooth/native/js/JSUtils.dart';
 
 class JSUtilsTesting extends JSUtilsInterface {
   @override

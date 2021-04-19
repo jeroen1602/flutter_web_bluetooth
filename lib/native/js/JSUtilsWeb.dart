@@ -1,7 +1,11 @@
-import 'dart:js_util' as JSUtil;
-import 'dart:js' as JS;
+library bluetooth_web_js_utils;
 
-import 'JSUtilsInterface.dart';
+import 'dart:js' as JS;
+import 'dart:js_util' as JSUtil;
+
+import 'package:flutter/foundation.dart';
+
+part 'JSUtilsInterface.dart';
 
 class JSUtils extends JSUtilsInterface {
   @override
