@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_web_bluetooth/flutter_web_bluetooth.dart';
+import 'package:flutter_web_bluetooth_example/widgets/BluetoothDeviceWidget.dart';
 
 void main() {
   runApp(MyApp());
@@ -50,8 +51,10 @@ class _MyAppState extends State<MyApp> {
 class MainPage extends StatefulWidget {
   final bool isBluetoothAvailable;
 
-  const MainPage({Key? key, required this.isBluetoothAvailable})
-      : super(key: key);
+  const MainPage({
+    Key? key,
+    required this.isBluetoothAvailable,
+  }) : super(key: key);
 
   @override
   State<StatefulWidget> createState() {
@@ -67,6 +70,23 @@ class MainPageState extends State<MainPage> {
         isBluetoothAvailable: widget.isBluetoothAvailable,
       ),
       Divider(),
+      Expanded(
+        child: StreamBuilder(
+          stream: FlutterWebBluetooth.instance.devices,
+          initialData: Set<WebBluetoothDevice>(),
+          builder: (BuildContext context, AsyncSnapshot<Set<WebBluetoothDevice>> snapshot) {
+            final devices = snapshot.requireData;
+            return ListView.builder(
+              itemCount: devices.length,
+              itemBuilder: (BuildContext context, int index) {
+                return BluetoothDeviceWidget(
+                    bluetoothDevice: devices.toList()[index]);
+              },
+            );
+          },
+        ),
+
+      ),
     ]);
   }
 }

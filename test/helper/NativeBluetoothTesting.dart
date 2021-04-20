@@ -1,4 +1,4 @@
-import 'package:flutter_web_bluetooth/native_web_bluetooth.dart';
+import 'package:flutter_web_bluetooth/js_web_bluetooth.dart';
 
 class NativeBluetoothTesting extends NativeBluetooth {
   NativeBluetoothTesting({this.available = true});

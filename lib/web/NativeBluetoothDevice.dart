@@ -1,4 +1,4 @@
-part of native_web_bluetooth;
+part of js_web_bluetooth;
 
 ///
 /// https://webbluetoothcg.github.io/web-bluetooth/#bluetoothdevice-interface

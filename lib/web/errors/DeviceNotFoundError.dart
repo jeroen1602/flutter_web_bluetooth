@@ -1,4 +1,4 @@
-part of native_web_bluetooth;
+part of js_web_bluetooth;
 
 class DeviceNotFoundError extends Error {
   final String message;

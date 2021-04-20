@@ -24,6 +24,17 @@ abstract class FlutterWebBluetoothInterface {
   ///
   Stream<bool> get isAvailable;
 
+  ///
+  /// Get a Set of devices already known to the browser.
+  /// According to the doc this should return a list of devices that the user
+  /// has granted access to, but it sometimes it doesn't return known devices
+  /// after a page reload.
+  ///
+  /// Will return a [Stream] of an empty [Set] if [isAvailable] is false.
+  ///
+  /// For non web platforms it will always return a [Stream] with an empty [Set].
+  ///
+  Stream<Set<WebBluetoothDevice>> get devices;
+
   Future<WebBluetoothDevice> requestDevice(RequestOptionsBuilder options);
 }
-

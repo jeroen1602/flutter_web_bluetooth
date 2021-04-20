@@ -1,7 +1,7 @@
 library flutter_web_bluetooth;
 
 import 'package:flutter/foundation.dart';
-import 'package:flutter_web_bluetooth/native_web_bluetooth.dart';
+import 'package:flutter_web_bluetooth/js_web_bluetooth.dart';
 
 part 'bluetooth_device.dart';
 
@@ -34,4 +34,7 @@ class FlutterWebBluetooth extends FlutterWebBluetoothInterface {
   Future<WebBluetoothDevice> requestDevice(RequestOptionsBuilder options) {
     throw StateError('Web Bluetooth is not available for this device!');
   }
+
+  @override
+  Stream<Set<WebBluetoothDevice>> get devices => Stream.value(Set());
 }

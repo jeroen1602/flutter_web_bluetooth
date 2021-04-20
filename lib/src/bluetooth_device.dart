@@ -25,4 +25,15 @@ class WebBluetoothDevice {
   @Deprecated('This is here for debugging and will be removed once web '
       'bluetooth is actually released.')
   NativeBluetoothDevice get nativeDevice => _bluetoothDevice;
+
+  @override
+  bool operator ==(Object other) {
+    if (!(other is WebBluetoothDevice)) {
+      return false;
+    }
+    return this.id == other.id;
+  }
+
+  @override
+  int get hashCode => this.id.hashCode;
 }

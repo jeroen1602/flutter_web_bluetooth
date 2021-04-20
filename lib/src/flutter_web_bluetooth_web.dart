@@ -3,8 +3,9 @@ library flutter_web_bluetooth;
 import 'dart:async';
 
 import 'package:flutter/foundation.dart';
-import 'package:flutter_web_bluetooth/native_web_bluetooth.dart';
+import 'package:flutter_web_bluetooth/js_web_bluetooth.dart';
 import 'package:flutter_web_plugins/flutter_web_plugins.dart';
+import 'package:rxdart/rxdart.dart';
 
 part 'bluetooth_device.dart';
 
@@ -22,6 +23,16 @@ class FlutterWebBluetooth extends FlutterWebBluetoothInterface {
   static FlutterWebBluetoothInterface get instance {
     _instance ??= FlutterWebBluetooth._();
     return _instance!;
+  }
+
+  final Set<WebBluetoothDevice> _knownDevices = Set();
+  final BehaviorSubject<Set<WebBluetoothDevice>> _knownDevicesStream =
+      BehaviorSubject.seeded(Set());
+  bool _checkedDevices = false;
+
+  void _addKnownDevice(WebBluetoothDevice device) {
+    _knownDevices.add(device);
+    _knownDevicesStream.add(_knownDevices);
   }
 
   ///
@@ -45,6 +56,35 @@ class FlutterWebBluetooth extends FlutterWebBluetoothInterface {
   @override
   Stream<bool> get isAvailable {
     return Bluetooth.onAvailabilitychanged();
+  }
+
+  @override
+  Stream<Set<WebBluetoothDevice>> get devices {
+    if (!_checkedDevices) {
+      _getKnownDevices();
+    }
+    return _knownDevicesStream.stream;
+  }
+
+  ///
+  /// Get the already known devices from the browser
+  ///
+  Future<void> _getKnownDevices({bool shouldCheck = true}) async {
+    _checkedDevices = true;
+    if (shouldCheck && !(await Bluetooth.getAvailability())) {
+      if (!kReleaseMode) {
+        debugPrint('flutter_web_bluetooth: could not get known devices because '
+            'it\'s not available in this browser/ for this devices.');
+      }
+      _knownDevices.clear();
+      _knownDevicesStream.add(_knownDevices);
+      return;
+    }
+    final devices = await Bluetooth.getDevices();
+    final devicesSet =
+        Set<WebBluetoothDevice>.from(devices.map((e) => WebBluetoothDevice(e)));
+    this._knownDevices.addAll(devicesSet);
+    this._knownDevicesStream.add(this._knownDevices);
   }
 
   ///
@@ -72,8 +112,9 @@ class FlutterWebBluetooth extends FlutterWebBluetoothInterface {
       throw BluetoothAdapterNotAvailable('requestDevice');
     }
     final device = await Bluetooth.requestDevice(options.toRequestOptions());
-
-    return WebBluetoothDevice(device);
+    final webDevice = WebBluetoothDevice(device);
+    _addKnownDevice(webDevice);
+    return webDevice;
   }
 
   static void registerWith(Registrar registrar) {
