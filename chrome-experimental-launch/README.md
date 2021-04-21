@@ -37,7 +37,14 @@ effect.
 
 to do this delete the `bin/cache/flutter_tools.snapshot` file.
 
-## Running as a webserver
+## Versions:
+
+This patch was originally written for Flutter 2.0.4.
+
+Also works with:
+ - 2.0.5
+
+# Running as a webserver
 
 Another option is using `flutter run -d web-server --web-port 8080`. And then opening your normal chrome browser where
 you have already enabled the exerimental flag.
