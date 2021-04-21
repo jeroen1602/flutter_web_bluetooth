@@ -25,12 +25,12 @@ class FlutterWebBluetooth extends FlutterWebBluetoothInterface {
     return _instance!;
   }
 
-  final Set<WebBluetoothDevice> _knownDevices = Set();
-  final BehaviorSubject<Set<WebBluetoothDevice>> _knownDevicesStream =
+  final Set<BluetoothDevice> _knownDevices = Set();
+  final BehaviorSubject<Set<BluetoothDevice>> _knownDevicesStream =
       BehaviorSubject.seeded(Set());
   bool _checkedDevices = false;
 
-  void _addKnownDevice(WebBluetoothDevice device) {
+  void _addKnownDevice(BluetoothDevice device) {
     _knownDevices.add(device);
     _knownDevicesStream.add(_knownDevices);
   }
@@ -59,7 +59,7 @@ class FlutterWebBluetooth extends FlutterWebBluetoothInterface {
   }
 
   @override
-  Stream<Set<WebBluetoothDevice>> get devices {
+  Stream<Set<BluetoothDevice>> get devices {
     if (!_checkedDevices) {
       _getKnownDevices();
     }
@@ -82,14 +82,14 @@ class FlutterWebBluetooth extends FlutterWebBluetoothInterface {
     }
     final devices = await Bluetooth.getDevices();
     final devicesSet =
-        Set<WebBluetoothDevice>.from(devices.map((e) => WebBluetoothDevice(e)));
+        Set<BluetoothDevice>.from(devices.map((e) => BluetoothDevice(e)));
     this._knownDevices.addAll(devicesSet);
     this._knownDevicesStream.add(this._knownDevices);
   }
 
   ///
   /// Request a [WebBluetoothDevice] from the browser (user). This will resolve
-  /// into a single device even if the filter [options] (and enviornment) have
+  /// into a single device even if the filter [options] (and environment) have
   /// multiple devices that fit that could be found.
   ///
   /// If you want multiple devices you will need to call this method multiple
@@ -103,8 +103,7 @@ class FlutterWebBluetooth extends FlutterWebBluetoothInterface {
   /// May throw [DeviceNotFoundError] if the device could not be found with the
   /// current request filters.
   ///
-  Future<WebBluetoothDevice> requestDevice(
-      RequestOptionsBuilder options) async {
+  Future<BluetoothDevice> requestDevice(RequestOptionsBuilder options) async {
     if (!this.isBluetoothApiSupported) {
       throw NativeAPINotImplementedError('requestDevice');
     }
@@ -112,7 +111,7 @@ class FlutterWebBluetooth extends FlutterWebBluetoothInterface {
       throw BluetoothAdapterNotAvailable('requestDevice');
     }
     final device = await Bluetooth.requestDevice(options.toRequestOptions());
-    final webDevice = WebBluetoothDevice(device);
+    final webDevice = BluetoothDevice(device);
     _addKnownDevice(webDevice);
     return webDevice;
   }

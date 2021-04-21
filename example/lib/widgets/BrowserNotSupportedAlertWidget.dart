@@ -24,7 +24,7 @@ class BrowserNotSupportedAlertWidget extends StatelessWidget {
         TextSpan(
             text: 'Your browser (${browser?.browser ?? 'NOT DETECTED'}) does '
                 'not support Bluetooth yet.\n'),
-        if (kIsWeb && WebHelpers.isSecureContext) ...[
+        if (kIsWeb && !WebHelpers.isSecureContext) ...[
           TextSpan(
               text: 'The website isn\'t loaded via a secure context!\n',
               style: boldStyle),

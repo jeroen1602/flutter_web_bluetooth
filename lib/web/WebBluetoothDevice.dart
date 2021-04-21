@@ -3,7 +3,7 @@ part of js_web_bluetooth;
 ///
 /// https://webbluetoothcg.github.io/web-bluetooth/#bluetoothdevice-interface
 /// https://developer.mozilla.org/en-US/docs/Web/API/BluetoothDevice
-class NativeBluetoothDevice {
+class WebBluetoothDevice {
   final Object _jsObject;
 
   String? _id;
@@ -54,14 +54,17 @@ class NativeBluetoothDevice {
     return _gatt;
   }
 
-  // external static void addEventListener(
-  //     String type, void Function(dynamic) listener);
+  void addEventListener(String type, void Function(dynamic) listener) {
+    _JSUtil.callMethod(
+        _jsObject, 'addEventListener', [type, _JSUtil.allowInterop(listener)]);
+  }
+
   //
   // external static void removeEventListener(
   //     String type, void Function(dynamic) listener);
 
   @visibleForTesting
-  NativeBluetoothDevice.fromJSObject(this._jsObject) {
+  WebBluetoothDevice.fromJSObject(this._jsObject) {
     if (!_JSUtil.hasProperty(_jsObject, 'id')) {
       throw UnsupportedError('JSObject does not have an id.');
     }

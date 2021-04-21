@@ -161,14 +161,14 @@ class Bluetooth {
         [Stream.fromFuture(getAvailability()), availabilityStream!.stream]);
   }
 
-  static Future<List<NativeBluetoothDevice>> getDevices() async {
+  static Future<List<WebBluetoothDevice>> getDevices() async {
     final promise = _nativeBluetooth.getDevices();
     final result = await _JSUtil.promiseToFuture(promise);
     if (result is List) {
-      final items = <NativeBluetoothDevice>[];
+      final items = <WebBluetoothDevice>[];
       for (final item in result) {
         try {
-          items.add(NativeBluetoothDevice.fromJSObject(item));
+          items.add(WebBluetoothDevice.fromJSObject(item));
         } on UnsupportedError {
           debugPrint(
               'flutter_web_bluetooth: Could not convert known device to BluetoothDevice');
@@ -179,12 +179,12 @@ class Bluetooth {
     return [];
   }
 
-  static Future<NativeBluetoothDevice> requestDevice(
+  static Future<WebBluetoothDevice> requestDevice(
       RequestOptions? options) async {
     final promise = _nativeBluetooth.requestDevice(options);
     try {
       final result = await _JSUtil.promiseToFuture(promise);
-      final device = NativeBluetoothDevice.fromJSObject(result);
+      final device = WebBluetoothDevice.fromJSObject(result);
       return device;
     } catch (e) {
       final error = e.toString();

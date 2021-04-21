@@ -34,7 +34,25 @@ abstract class FlutterWebBluetoothInterface {
   ///
   /// For non web platforms it will always return a [Stream] with an empty [Set].
   ///
-  Stream<Set<WebBluetoothDevice>> get devices;
+  Stream<Set<BluetoothDevice>> get devices;
 
-  Future<WebBluetoothDevice> requestDevice(RequestOptionsBuilder options);
+  ///
+  /// Request a [WebBluetoothDevice] from the browser (user). This will resolve
+  /// into a single device even if the filter [options] (and environment) have
+  /// multiple devices that fit that could be found.
+  ///
+  /// If you want multiple devices you will need to call this method multiple
+  /// times, the user however can still click the already connected device twice.
+  ///
+  /// May throw [NativeAPINotImplementedError] if the native api is not
+  /// implemented for this user agent (browser).
+  /// May throw [BluetoothAdapterNotAvailable] if there is not bluetooth device
+  /// available.
+  /// May throw [UserCancelledDialogError] if the user cancels the pairing dialog.
+  /// May throw [DeviceNotFoundError] if the device could not be found with the
+  /// current request filters.
+  /// Will always throw a [NativeAPINotImplementedError] if called on a non
+  /// web platform.
+  ///
+  Future<BluetoothDevice> requestDevice(RequestOptionsBuilder options);
 }

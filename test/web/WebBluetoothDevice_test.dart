@@ -15,7 +15,7 @@ void main() {
     Map<String, dynamic> jsObject = {'id': 'SOME-ID'};
 
     expect(() {
-      return NativeBluetoothDevice.fromJSObject(jsObject);
+      return WebBluetoothDevice.fromJSObject(jsObject);
     }, returnsNormally);
   });
 
@@ -23,7 +23,7 @@ void main() {
     Map<String, dynamic> jsObject = {};
 
     expect(() {
-      return NativeBluetoothDevice.fromJSObject(jsObject);
+      return WebBluetoothDevice.fromJSObject(jsObject);
     }, throwsA(const dartTest.TypeMatcher<UnsupportedError>()));
   });
 
@@ -31,13 +31,13 @@ void main() {
       id: 'TEST-ID', uuid: [], name: 'SOME-NAME');
 
   test('Should get id', () {
-    final device = NativeBluetoothDevice.fromJSObject(deviceJSObject);
+    final device = WebBluetoothDevice.fromJSObject(deviceJSObject);
 
     expect(device.id, deviceJSObject['id'], reason: 'Id should match');
   });
 
   test('Should get name', () {
-    final device = NativeBluetoothDevice.fromJSObject(deviceJSObject);
+    final device = WebBluetoothDevice.fromJSObject(deviceJSObject);
 
     expect(device.name, deviceJSObject['name'], reason: 'Name should match');
   });
@@ -45,14 +45,14 @@ void main() {
   test('Should not get name', () {
     final jsObject = Map.fromEntries(deviceJSObject.entries);
     jsObject.remove('name');
-    final device = NativeBluetoothDevice.fromJSObject(jsObject);
+    final device = WebBluetoothDevice.fromJSObject(jsObject);
 
     expect(device.name, null, reason: 'Should not get name');
   });
 
   test('Should get gatt', () {
     final jsObject = Map.fromEntries(deviceJSObject.entries);
-    final device = NativeBluetoothDevice.fromJSObject(jsObject);
+    final device = WebBluetoothDevice.fromJSObject(jsObject);
 
     jsObject['gatt'] =
         NativeBluetoothRemoteGATTServerTesting.createStubJSOBject();
@@ -62,7 +62,7 @@ void main() {
   });
 
   test('Should not get gatt', () {
-    final device = NativeBluetoothDevice.fromJSObject(deviceJSObject);
+    final device = WebBluetoothDevice.fromJSObject(deviceJSObject);
 
     expect(device.gatt, null, reason: 'Should not get gatt');
   });

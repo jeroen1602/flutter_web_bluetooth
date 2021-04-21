@@ -4,9 +4,9 @@ part of js_web_bluetooth;
 /// Does not support "WebView Android"
 /// https://webbluetoothcg.github.io/web-bluetooth/#bluetoothgattcharacteristic-interface
 /// https://developer.mozilla.org/en-US/docs/Web/API/BluetoothRemoteGATTCharacteristic
-class NativeBluetoothRemoteGATTCharacteristic {
+class WebBluetoothRemoteGATTCharacteristic {
   final Object _jsObject;
-  final NativeBluetoothRemoteGATTService service;
+  final WebBluetoothRemoteGATTService service;
 
   String? _uuid;
 
@@ -24,9 +24,9 @@ class NativeBluetoothRemoteGATTCharacteristic {
     return 'UNKNOWN';
   }
 
-  NativeBluetoothCharacteristicProperties? _properties;
+  WebBluetoothCharacteristicProperties? _properties;
 
-  NativeBluetoothCharacteristicProperties get properties {
+  WebBluetoothCharacteristicProperties get properties {
     final properties = _properties;
     if (properties != null) {
       return properties;
@@ -34,7 +34,7 @@ class NativeBluetoothRemoteGATTCharacteristic {
 
     final newProperties = _JSUtil.getProperty(this._jsObject, 'gatt');
     _properties =
-        NativeBluetoothCharacteristicProperties._fromJSObject(newProperties);
+        WebBluetoothCharacteristicProperties._fromJSObject(newProperties);
     return _properties!;
   }
 
@@ -45,25 +45,25 @@ class NativeBluetoothRemoteGATTCharacteristic {
     return _JSUtil.getProperty(this._jsObject, 'value');
   }
 
-  Future<NativeBluetoothRemoteGATTDescriptor> getDescriptor(
+  Future<WebBluetoothRemoteGATTDescriptor> getDescriptor(
       String descriptorUUID) async {
     final promise =
         _JSUtil.callMethod(this._jsObject, 'getDescriptor', [descriptorUUID]);
     final result = await _JSUtil.promiseToFuture(promise);
-    return NativeBluetoothRemoteGATTDescriptor._fromJSObject(result, this);
+    return WebBluetoothRemoteGATTDescriptor._fromJSObject(result, this);
   }
 
-  Future<List<NativeBluetoothRemoteGATTDescriptor>> getDescriptors(
+  Future<List<WebBluetoothRemoteGATTDescriptor>> getDescriptors(
       String? descriptorUUID) async {
     final promise =
         _JSUtil.callMethod(this._jsObject, 'getDescriptors', [descriptorUUID]);
     final result = await _JSUtil.promiseToFuture(promise);
     if (result is List) {
-      final items = <NativeBluetoothRemoteGATTDescriptor>[];
+      final items = <WebBluetoothRemoteGATTDescriptor>[];
       for (final item in result) {
         try {
           items.add(
-              NativeBluetoothRemoteGATTDescriptor._fromJSObject(item, this));
+              WebBluetoothRemoteGATTDescriptor._fromJSObject(item, this));
         } on UnsupportedError {
           debugPrint(
               'Could not convert known device to BluetoothRemoteGATTDescriptor');
@@ -125,7 +125,7 @@ class NativeBluetoothRemoteGATTCharacteristic {
     await _JSUtil.promiseToFuture(promise);
   }
 
-  NativeBluetoothRemoteGATTCharacteristic._fromJSObject(
+  WebBluetoothRemoteGATTCharacteristic._fromJSObject(
       this._jsObject, this.service) {
     if (!_JSUtil.hasProperty(_jsObject, 'service')) {
       throw UnsupportedError('JSObject does not have service');

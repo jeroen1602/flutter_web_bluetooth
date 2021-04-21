@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_web_bluetooth/flutter_web_bluetooth.dart';
 import 'package:flutter_web_bluetooth/js_web_bluetooth.dart';
+import 'package:flutter_web_bluetooth_example/pages/DeviceServicesPage.dart';
 import 'package:flutter_web_bluetooth_example/webHelpers/WebHelpers.dart';
 import 'package:flutter_web_bluetooth_example/widgets/BluetoothDeviceWidget.dart';
 import 'package:flutter_web_bluetooth_example/widgets/BrowserNotSupportedAlertWidget.dart';
@@ -109,15 +110,23 @@ class MainPageState extends State<MainPage> {
       Expanded(
         child: StreamBuilder(
           stream: FlutterWebBluetooth.instance.devices,
-          initialData: Set<WebBluetoothDevice>(),
+          initialData: Set<BluetoothDevice>(),
           builder: (BuildContext context,
-              AsyncSnapshot<Set<WebBluetoothDevice>> snapshot) {
+              AsyncSnapshot<Set<BluetoothDevice>> snapshot) {
             final devices = snapshot.requireData;
             return ListView.builder(
               itemCount: devices.length,
               itemBuilder: (BuildContext context, int index) {
+                final device = devices.toList()[index];
                 return BluetoothDeviceWidget(
-                    bluetoothDevice: devices.toList()[index]);
+                  bluetoothDevice: device,
+                  onTap: () async {
+                    Navigator.push(context,
+                        MaterialPageRoute(builder: (BuildContext context) {
+                      return DeviceServicesPage(bluetoothDevice: device);
+                    }));
+                  },
+                );
               },
             );
           },
@@ -144,7 +153,7 @@ class MainPageHeader extends StatelessWidget {
       Container(
           width: phoneSize ? screenWidth : screenWidth * 0.5,
           child: ListTile(
-            title: SelectableText('Bluetooth api avialable'),
+            title: SelectableText('Bluetooth api available'),
             subtitle: SelectableText(
                 FlutterWebBluetooth.instance.isBluetoothApiSupported
                     ? 'true'

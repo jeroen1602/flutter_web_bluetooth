@@ -1,7 +1,10 @@
 library flutter_web_bluetooth;
 
+import 'dart:async';
+
 import 'package:flutter/foundation.dart';
 import 'package:flutter_web_bluetooth/js_web_bluetooth.dart';
+import 'package:rxdart/rxdart.dart';
 
 part 'bluetooth_device.dart';
 
@@ -30,11 +33,17 @@ class FlutterWebBluetooth extends FlutterWebBluetoothInterface {
   @override
   Stream<bool> get isAvailable => Stream.value(false);
 
+  ///
+  /// Will always return a [Stream] with an empty [Set].
+  ///
   @override
-  Future<WebBluetoothDevice> requestDevice(RequestOptionsBuilder options) {
-    throw StateError('Web Bluetooth is not available for this device!');
-  }
+  Stream<Set<BluetoothDevice>> get devices => Stream.value(Set());
 
+  ///
+  /// Will always throw a [NativeAPINotImplementedError].
+  ///
   @override
-  Stream<Set<WebBluetoothDevice>> get devices => Stream.value(Set());
+  Future<BluetoothDevice> requestDevice(RequestOptionsBuilder options) {
+    throw NativeAPINotImplementedError('requestDevice');
+  }
 }

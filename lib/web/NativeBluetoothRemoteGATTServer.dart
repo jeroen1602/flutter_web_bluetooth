@@ -5,7 +5,7 @@ part of js_web_bluetooth;
 /// https://developer.mozilla.org/en-US/docs/Web/API/BluetoothRemoteGATTServer
 class NativeBluetoothRemoteGATTServer {
   final Object _jsObject;
-  final NativeBluetoothDevice device;
+  final WebBluetoothDevice device;
 
   bool get connected {
     final value = _JSUtil.getProperty(this._jsObject, 'connected');
@@ -25,24 +25,24 @@ class NativeBluetoothRemoteGATTServer {
     _JSUtil.callMethod(this._jsObject, 'disconnect', []);
   }
 
-  Future<NativeBluetoothRemoteGATTService> getPrimaryService(
+  Future<WebBluetoothRemoteGATTService> getPrimaryService(
       Object serviceUUID) async {
     final promise =
         _JSUtil.callMethod(this._jsObject, 'getPrimaryService', [serviceUUID]);
     final result = await _JSUtil.promiseToFuture(promise);
-    return NativeBluetoothRemoteGATTService._fromJSObject(result, this.device);
+    return WebBluetoothRemoteGATTService._fromJSObject(result, this.device);
   }
 
-  Future<List<NativeBluetoothRemoteGATTService>> getPrimaryServices(
+  Future<List<WebBluetoothRemoteGATTService>> getPrimaryServices(
       Object? serviceUUID) async {
     final promise =
         _JSUtil.callMethod(this._jsObject, 'getPrimaryServices', [serviceUUID]);
     final result = await _JSUtil.promiseToFuture(promise);
     if (result is List) {
-      final items = <NativeBluetoothRemoteGATTService>[];
+      final items = <WebBluetoothRemoteGATTService>[];
       for (final item in result) {
         try {
-          items.add(NativeBluetoothRemoteGATTService._fromJSObject(
+          items.add(WebBluetoothRemoteGATTService._fromJSObject(
               item, this.device));
         } on UnsupportedError {
           debugPrint(

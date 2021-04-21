@@ -3,7 +3,7 @@ part of js_web_bluetooth;
 ///
 /// https://webbluetoothcg.github.io/web-bluetooth/#characteristicproperties-interface
 /// https://developer.mozilla.org/en-US/docs/Web/API/BluetoothCharacteristicProperties
-class NativeBluetoothCharacteristicProperties {
+class WebBluetoothCharacteristicProperties {
   final Object _jsObject;
 
   bool get broadcast {
@@ -78,7 +78,7 @@ class NativeBluetoothCharacteristicProperties {
     return false;
   }
 
-  NativeBluetoothCharacteristicProperties._fromJSObject(this._jsObject) {
+  WebBluetoothCharacteristicProperties._fromJSObject(this._jsObject) {
     if (!_JSUtil.hasProperty(_jsObject, 'broadcast')) {
       throw UnsupportedError('JSObject does not have broadcast');
     }

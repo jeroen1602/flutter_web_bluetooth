@@ -2,7 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_web_bluetooth/flutter_web_bluetooth.dart';
 
 class BluetoothDeviceWidget extends StatelessWidget {
-  final WebBluetoothDevice bluetoothDevice;
+  final BluetoothDevice bluetoothDevice;
   final VoidCallback? onTap;
 
   BluetoothDeviceWidget({
@@ -23,8 +23,21 @@ class BluetoothDeviceWidget extends StatelessWidget {
         Container(
             child: ListTile(
           onTap: this.onTap,
-          title: SelectableText(this.bluetoothDevice.name ?? 'null',
-              style: this.bluetoothDevice.name == null ? cursive : null),
+          title: Row(
+            children: [
+              StreamBuilder(
+                  stream: this.bluetoothDevice.connected,
+                  initialData: false,
+                  builder:
+                      (BuildContext context, AsyncSnapshot<bool> snapshot) {
+                    return Icon(Icons.circle,
+                        color:
+                            snapshot.requireData ? Colors.green : Colors.red);
+                  }),
+              SelectableText(this.bluetoothDevice.name ?? 'null',
+                  style: this.bluetoothDevice.name == null ? cursive : null),
+            ],
+          ),
           subtitle: SelectableText(this.bluetoothDevice.id),
           trailing: this.onTap != null ? Icon(Icons.arrow_forward_ios) : null,
         )),

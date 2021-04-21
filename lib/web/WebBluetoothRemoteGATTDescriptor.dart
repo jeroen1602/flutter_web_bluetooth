@@ -3,9 +3,9 @@ part of js_web_bluetooth;
 ///
 /// https://webbluetoothcg.github.io/web-bluetooth/#bluetoothgattdescriptor-interface
 /// https://developer.mozilla.org/en-US/docs/Web/API/BluetoothRemoteGATTDescriptor
-class NativeBluetoothRemoteGATTDescriptor {
+class WebBluetoothRemoteGATTDescriptor {
   final Object _jsObject;
-  final NativeBluetoothRemoteGATTCharacteristic characteristic;
+  final WebBluetoothRemoteGATTCharacteristic characteristic;
 
   String? _uuid;
 
@@ -42,7 +42,7 @@ class NativeBluetoothRemoteGATTDescriptor {
     await _JSUtil.promiseToFuture(promise);
   }
 
-  NativeBluetoothRemoteGATTDescriptor._fromJSObject(
+  WebBluetoothRemoteGATTDescriptor._fromJSObject(
       this._jsObject, this.characteristic) {
     if (!_JSUtil.hasProperty(_jsObject, 'characteristic')) {
       throw UnsupportedError('JSObject does not have characteristic');
