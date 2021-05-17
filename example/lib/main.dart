@@ -53,7 +53,11 @@ class _MyAppState extends State<MyApp> {
                       try {
                         final device = await FlutterWebBluetooth.instance
                             .requestDevice(
-                                RequestOptionsBuilder.acceptAllDevices());
+                                RequestOptionsBuilder.acceptAllDevices(
+                                    optionalServices:
+                                        BluetoothDefaultServiceUUIDS.VALUES
+                                            .map((e) => e.uuid)
+                                            .toList()));
                         debugPrint("Device got! ${device.name}, ${device.id}");
                       } on BluetoothAdapterNotAvailable {
                         ScaffoldMessenger.maybeOf(context)

@@ -7,9 +7,19 @@ import 'package:flutter_web_bluetooth/js_web_bluetooth.dart';
 import 'package:flutter_web_plugins/flutter_web_plugins.dart';
 import 'package:rxdart/rxdart.dart';
 
+part 'bluetooth_characteristic.dart';
+
+part 'bluetooth_default_uuids.dart';
+
 part 'bluetooth_device.dart';
 
+part 'bluetooth_service.dart';
+
 part 'errors/BluetoothAdapterNotAvailable.dart';
+
+part 'errors/NotFoundError.dart';
+
+part 'errors/SecurityError.dart';
 
 part 'flutter_web_bluetooth_interface.dart';
 
@@ -25,14 +35,16 @@ class FlutterWebBluetooth extends FlutterWebBluetoothInterface {
     return _instance!;
   }
 
-  final Set<BluetoothDevice> _knownDevices = Set();
   final BehaviorSubject<Set<BluetoothDevice>> _knownDevicesStream =
       BehaviorSubject.seeded(Set());
   bool _checkedDevices = false;
 
   void _addKnownDevice(BluetoothDevice device) {
-    _knownDevices.add(device);
-    _knownDevicesStream.add(_knownDevices);
+    final set = _knownDevicesStream.hasValue
+        ? _knownDevicesStream.requireValue
+        : Set<BluetoothDevice>();
+    set.add(device);
+    _knownDevicesStream.add(set);
   }
 
   ///
@@ -48,7 +60,7 @@ class FlutterWebBluetooth extends FlutterWebBluetoothInterface {
   /// Get a [Stream] for the availability of a Bluetooth adapter.
   /// If a user inserts or removes a bluetooth adapter from their devices this
   /// stream will update.
-  /// It will not necicerly update if the user enables/ disables a bleutooth
+  /// It will not necessarily update if the user enables/ disables a bluetooth
   /// adapter.
   ///
   /// Will return `Stream.value(false)` if [isBluetoothApiSupported] is false.
@@ -76,15 +88,21 @@ class FlutterWebBluetooth extends FlutterWebBluetoothInterface {
         debugPrint('flutter_web_bluetooth: could not get known devices because '
             'it\'s not available in this browser/ for this devices.');
       }
-      _knownDevices.clear();
-      _knownDevicesStream.add(_knownDevices);
+      final set = _knownDevicesStream.hasValue
+          ? _knownDevicesStream.requireValue
+          : Set<BluetoothDevice>();
+      set.clear();
+      _knownDevicesStream.add(set);
       return;
     }
     final devices = await Bluetooth.getDevices();
     final devicesSet =
         Set<BluetoothDevice>.from(devices.map((e) => BluetoothDevice(e)));
-    this._knownDevices.addAll(devicesSet);
-    this._knownDevicesStream.add(this._knownDevices);
+    final set = _knownDevicesStream.hasValue
+        ? _knownDevicesStream.requireValue
+        : Set<BluetoothDevice>();
+    set.addAll(devicesSet);
+    this._knownDevicesStream.add(set);
   }
 
   ///

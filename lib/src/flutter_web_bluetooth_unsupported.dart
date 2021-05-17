@@ -6,9 +6,19 @@ import 'package:flutter/foundation.dart';
 import 'package:flutter_web_bluetooth/js_web_bluetooth.dart';
 import 'package:rxdart/rxdart.dart';
 
+part 'bluetooth_characteristic.dart';
+
+part 'bluetooth_default_uuids.dart';
+
 part 'bluetooth_device.dart';
 
+part 'bluetooth_service.dart';
+
 part 'errors/BluetoothAdapterNotAvailable.dart';
+
+part 'errors/NotFoundError.dart';
+
+part 'errors/SecurityError.dart';
 
 part 'flutter_web_bluetooth_interface.dart';
 

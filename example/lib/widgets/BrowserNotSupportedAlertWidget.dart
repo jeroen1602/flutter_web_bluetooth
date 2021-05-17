@@ -62,7 +62,7 @@ class BrowserNotSupportedAlertWidget extends StatelessWidget {
       ])),
       actions: [
         SimpleDialogOption(
-          child: SelectableText('OK'),
+          child: Text('OK'),
           onPressed: () {
             Navigator.pop(context);
           },

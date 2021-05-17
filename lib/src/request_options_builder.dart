@@ -3,28 +3,44 @@ part of flutter_web_bluetooth;
 class RequestOptionsBuilder {
   final bool _acceptAllDevices;
   final List<RequestFilterBuilder> _requestFilters;
+  final List<dynamic>? _optionalServices;
 
   ///
   /// May throw [StateError] if no filters are set, consider using
   /// [RequestOptionsBuilder.acceptAllDevices].
-  RequestOptionsBuilder(this._requestFilters) : _acceptAllDevices = false {
+  RequestOptionsBuilder(this._requestFilters, {List<dynamic>? optionalServices})
+      : this._acceptAllDevices = false,
+        this._optionalServices = optionalServices {
     if (this._requestFilters.isEmpty) {
       throw StateError('No filters have been set, consider using '
           '[RequestOptionsBuilder.acceptAllDevices()] instead.');
     }
   }
 
-  RequestOptionsBuilder.acceptAllDevices()
-      : _acceptAllDevices = true,
-        this._requestFilters = [];
+  RequestOptionsBuilder.acceptAllDevices({List<dynamic>? optionalServices})
+      : this._acceptAllDevices = true,
+        this._requestFilters = [],
+        this._optionalServices = optionalServices;
 
   @visibleForTesting
   RequestOptions toRequestOptions() {
+    final optionalService = this._optionalServices;
     if (_acceptAllDevices) {
-      return RequestOptions(acceptAllDevices: true);
+      if (optionalService == null) {
+        return RequestOptions(acceptAllDevices: true);
+      } else {
+        return RequestOptions(
+            acceptAllDevices: true, optionalServices: optionalService);
+      }
     } else {
-      return RequestOptions(
-          filters: _requestFilters.map((e) => e.toScanFilter()).toList());
+      if (optionalService == null) {
+        return RequestOptions(
+            filters: _requestFilters.map((e) => e.toScanFilter()).toList());
+      } else {
+        return RequestOptions(
+            filters: _requestFilters.map((e) => e.toScanFilter()).toList(),
+            optionalServices: optionalService);
+      }
     }
   }
 }

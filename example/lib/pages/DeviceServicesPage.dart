@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_web_bluetooth/flutter_web_bluetooth.dart';
+import 'package:flutter_web_bluetooth_example/widgets/serviceWidget.dart';
 
 class DeviceServicesPage extends StatefulWidget {
   DeviceServicesPage({Key? key, required this.bluetoothDevice})
@@ -24,37 +25,70 @@ class DeviceServicesState extends State<DeviceServicesPage> {
         final theme = Theme.of(context);
 
         return Scaffold(
-          appBar: AppBar(
-            title: SelectableText(widget.bluetoothDevice.name ?? 'No name set'),
-            actions: [
-              Builder(
-                builder: (BuildContext context) {
-                  return ElevatedButton(
-                    onPressed: () async {
-                      if (!widget.bluetoothDevice.hasGATT) {
-                        ScaffoldMessenger.maybeOf(context)
-                            ?.showSnackBar(SnackBar(
-                          content: Text('This device has no gatt'),
-                          backgroundColor: theme.errorColor,
-                        ));
-                        return;
-                      }
-                      if (connected) {
-                        widget.bluetoothDevice.disconnect();
-                      } else {
-                        await widget.bluetoothDevice.connect();
-                      }
-                    },
-                    child: Text(connected ? 'Disconnect' : 'Connect'),
-                  );
-                },
-              ),
-            ],
-          ),
-          body: Center(
-            child: Text('Center!'),
-          ),
-        );
+            appBar: AppBar(
+              title:
+                  SelectableText(widget.bluetoothDevice.name ?? 'No name set'),
+              actions: [
+                Builder(
+                  builder: (BuildContext context) {
+                    return ElevatedButton(
+                      onPressed: () async {
+                        if (!widget.bluetoothDevice.hasGATT) {
+                          ScaffoldMessenger.maybeOf(context)
+                              ?.showSnackBar(SnackBar(
+                            content: Text('This device has no gatt'),
+                            backgroundColor: theme.errorColor,
+                          ));
+                          return;
+                        }
+                        if (connected) {
+                          widget.bluetoothDevice.disconnect();
+                        } else {
+                          await widget.bluetoothDevice.connect();
+                        }
+                      },
+                      child: Text(connected ? 'Disconnect' : 'Connect'),
+                    );
+                  },
+                ),
+              ],
+            ),
+            body: Builder(builder: (BuildContext context) {
+              if (connected) {
+                return StreamBuilder<List<BluetoothService>>(
+                  stream: widget.bluetoothDevice.services,
+                  initialData: [],
+                  builder: (BuildContext context,
+                      AsyncSnapshot<List<BluetoothService>> serviceSnapshot) {
+                    if (serviceSnapshot.hasError) {
+                      final error = serviceSnapshot.error.toString();
+                      debugPrint('Error!: $error');
+                      return Center(
+                        child: Text(error),
+                      );
+                    }
+                    final services = serviceSnapshot.requireData;
+                    if (services.isEmpty) {
+                      return Center(
+                        child: Text('No services found!'),
+                      );
+                    }
+                    return Container(
+                      child: ListView.builder(
+                        itemCount: services.length,
+                        itemBuilder: (BuildContext context, int index) {
+                          return Expanded(child: ServiceWidget(service: services[index]));
+                        },
+                      ),
+                    );
+                  },
+                );
+              } else {
+                return Center(
+                  child: Text('Click connect first'),
+                );
+              }
+            }));
       },
     );
   }

@@ -59,6 +59,8 @@ class WebBluetoothRemoteGATTService {
     return _JSUtil.hasProperty(this._jsObject, 'getCharacteristics');
   }
 
+  @Deprecated(
+      'Not really deprecated, just not implemented in any browser (yet).')
   Future<List<WebBluetoothRemoteGATTCharacteristic>> getCharacteristics(
       String characteristicUUID) async {
     if (!hasGetCharacteristicsFunction()) {
@@ -72,8 +74,8 @@ class WebBluetoothRemoteGATTService {
       final items = <WebBluetoothRemoteGATTCharacteristic>[];
       for (final item in result) {
         try {
-          items.add(WebBluetoothRemoteGATTCharacteristic._fromJSObject(
-              item, this));
+          items.add(
+              WebBluetoothRemoteGATTCharacteristic._fromJSObject(item, this));
         } on UnsupportedError {
           debugPrint(
               'Could not convert known device to BluetoothRemoteGATTCharacteristic');
@@ -88,6 +90,7 @@ class WebBluetoothRemoteGATTService {
     return _JSUtil.hasProperty(this._jsObject, 'getIncludedService');
   }
 
+  // Will not exist if there are no includedServices.
   Future<WebBluetoothRemoteGATTService> getIncludedService(
       Object serviceUUID) async {
     if (!hasGetIncludedServiceFunction()) {
@@ -96,11 +99,20 @@ class WebBluetoothRemoteGATTService {
     final promise =
         _JSUtil.callMethod(this._jsObject, 'getIncludedService', [serviceUUID]);
     final result = await _JSUtil.promiseToFuture(promise);
-    return WebBluetoothRemoteGATTService._fromJSObject(result, this.device);
+    return WebBluetoothRemoteGATTService.fromJSObject(result, this.device);
   }
 
+  bool hasGetIncludedServicesFunction() {
+    return _JSUtil.hasProperty(this._jsObject, 'getIncludedServices');
+  }
+
+  @Deprecated(
+      'Not really deprecated, just not implemented in any browser (yet).')
   Future<List<WebBluetoothRemoteGATTService>> getIncludedServices(
       Object? serviceUUID) async {
+    if (!hasGetIncludedServicesFunction()) {
+      throw NativeAPINotImplementedError('getIncludedServices');
+    }
     final promise = _JSUtil.callMethod(
         this._jsObject, 'getIncludedServices', [serviceUUID]);
     final result = await _JSUtil.promiseToFuture(promise);
@@ -108,8 +120,8 @@ class WebBluetoothRemoteGATTService {
       final items = <WebBluetoothRemoteGATTService>[];
       for (final item in result) {
         try {
-          items.add(WebBluetoothRemoteGATTService._fromJSObject(
-              item, this.device));
+          items.add(
+              WebBluetoothRemoteGATTService.fromJSObject(item, this.device));
         } on UnsupportedError {
           debugPrint(
               'Could not convert known device to BluetoothRemoteGATTService');
@@ -120,15 +132,13 @@ class WebBluetoothRemoteGATTService {
     return [];
   }
 
-  WebBluetoothRemoteGATTService._fromJSObject(this._jsObject, this.device) {
+  @visibleForTesting
+  WebBluetoothRemoteGATTService.fromJSObject(this._jsObject, this.device) {
     if (!_JSUtil.hasProperty(_jsObject, 'uuid')) {
       throw UnsupportedError('JSObject does not have uuid');
     }
     if (!_JSUtil.hasProperty(_jsObject, 'getCharacteristic')) {
       throw UnsupportedError('JSObject does not have getCharacteristic');
-    }
-    if (!_JSUtil.hasProperty(_jsObject, 'getIncludedServices')) {
-      throw UnsupportedError('JSObject does not have getIncludedServices');
     }
   }
 }

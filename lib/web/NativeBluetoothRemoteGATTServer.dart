@@ -30,23 +30,28 @@ class NativeBluetoothRemoteGATTServer {
     final promise =
         _JSUtil.callMethod(this._jsObject, 'getPrimaryService', [serviceUUID]);
     final result = await _JSUtil.promiseToFuture(promise);
-    return WebBluetoothRemoteGATTService._fromJSObject(result, this.device);
+    return WebBluetoothRemoteGATTService.fromJSObject(result, this.device);
   }
 
   Future<List<WebBluetoothRemoteGATTService>> getPrimaryServices(
-      Object? serviceUUID) async {
+      String? serviceUUID) async {
+    final arguments = serviceUUID == null ? [] : [serviceUUID];
     final promise =
-        _JSUtil.callMethod(this._jsObject, 'getPrimaryServices', [serviceUUID]);
+        _JSUtil.callMethod(this._jsObject, 'getPrimaryServices', arguments);
     final result = await _JSUtil.promiseToFuture(promise);
     if (result is List) {
       final items = <WebBluetoothRemoteGATTService>[];
       for (final item in result) {
         try {
-          items.add(WebBluetoothRemoteGATTService._fromJSObject(
-              item, this.device));
-        } on UnsupportedError {
-          debugPrint(
-              'Could not convert known device to BluetoothRemoteGATTService');
+          items.add(
+              WebBluetoothRemoteGATTService.fromJSObject(item, this.device));
+        } catch (e) {
+          if (e is UnsupportedError) {
+            debugPrint(
+                'Could not convert known device to BluetoothRemoteGATTService. Error: "${e.message}"');
+          } else {
+            throw e;
+          }
         }
       }
       return items;
