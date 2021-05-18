@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_web_bluetooth/flutter_web_bluetooth.dart';
+import 'package:flutter_web_bluetooth_example/widgets/CharacteristicWidget.dart';
 
 class _ServiceAndCharacteristic {
   final List<BluetoothService> services;
@@ -80,7 +81,7 @@ class ServiceWidget extends StatelessWidget {
           final characteristics = <Widget>[];
           for (final characteristic in data.characteristics) {
             characteristics.addAll([
-              Text('Characteristic with uuid: ${characteristic.uuid}'),
+              CharacteristicWidget(characteristic: characteristic),
               Divider(),
             ]);
           }

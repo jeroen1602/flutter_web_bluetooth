@@ -1,6 +1,7 @@
 library flutter_web_bluetooth;
 
 import 'dart:async';
+import 'dart:typed_data';
 
 import 'package:flutter/foundation.dart';
 import 'package:flutter_web_bluetooth/js_web_bluetooth.dart';
@@ -18,6 +19,8 @@ part 'bluetooth_service.dart';
 part 'errors/BluetoothAdapterNotAvailable.dart';
 
 part 'errors/NotFoundError.dart';
+
+part 'errors/NotSupportedError.dart';
 
 part 'errors/SecurityError.dart';
 

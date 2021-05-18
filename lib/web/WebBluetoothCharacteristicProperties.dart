@@ -78,7 +78,8 @@ class WebBluetoothCharacteristicProperties {
     return false;
   }
 
-  WebBluetoothCharacteristicProperties._fromJSObject(this._jsObject) {
+  @visibleForTesting
+  WebBluetoothCharacteristicProperties.fromJSObject(this._jsObject) {
     if (!_JSUtil.hasProperty(_jsObject, 'broadcast')) {
       throw UnsupportedError('JSObject does not have broadcast');
     }

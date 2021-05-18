@@ -16,6 +16,7 @@ dependencies:
   web_browser_detect: ^2.0.2
   url_launcher: ^6.0.3
   flutter_linkify: ^5.0.2
+  convert: ^3.0.0
 
   flutter_web_bluetooth:
     # When depending on this package from a real application you should use:

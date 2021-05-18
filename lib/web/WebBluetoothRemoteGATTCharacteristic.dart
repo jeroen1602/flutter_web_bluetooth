@@ -32,17 +32,21 @@ class WebBluetoothRemoteGATTCharacteristic {
       return properties;
     }
 
-    final newProperties = _JSUtil.getProperty(this._jsObject, 'gatt');
+    final newProperties = _JSUtil.getProperty(this._jsObject, 'properties');
     _properties =
-        WebBluetoothCharacteristicProperties._fromJSObject(newProperties);
+        WebBluetoothCharacteristicProperties.fromJSObject(newProperties);
     return _properties!;
   }
 
-  dynamic get value {
+  ByteData? get value {
     if (!_JSUtil.hasProperty(this._jsObject, 'value')) {
       return null;
     }
-    return _JSUtil.getProperty(this._jsObject, 'value');
+    final data = _JSUtil.getProperty(this._jsObject, 'value');
+    if (data == null) {
+      return null;
+    }
+    return WebBluetoothConverters.convertJSDataViewToByteData(data);
   }
 
   Future<WebBluetoothRemoteGATTDescriptor> getDescriptor(
@@ -50,20 +54,20 @@ class WebBluetoothRemoteGATTCharacteristic {
     final promise =
         _JSUtil.callMethod(this._jsObject, 'getDescriptor', [descriptorUUID]);
     final result = await _JSUtil.promiseToFuture(promise);
-    return WebBluetoothRemoteGATTDescriptor._fromJSObject(result, this);
+    return WebBluetoothRemoteGATTDescriptor.fromJSObject(result, this);
   }
 
   Future<List<WebBluetoothRemoteGATTDescriptor>> getDescriptors(
       String? descriptorUUID) async {
+    final arguments = descriptorUUID == null ? [] : [descriptorUUID];
     final promise =
-        _JSUtil.callMethod(this._jsObject, 'getDescriptors', [descriptorUUID]);
+        _JSUtil.callMethod(this._jsObject, 'getDescriptors', arguments);
     final result = await _JSUtil.promiseToFuture(promise);
     if (result is List) {
       final items = <WebBluetoothRemoteGATTDescriptor>[];
       for (final item in result) {
         try {
-          items.add(
-              WebBluetoothRemoteGATTDescriptor._fromJSObject(item, this));
+          items.add(WebBluetoothRemoteGATTDescriptor.fromJSObject(item, this));
         } on UnsupportedError {
           debugPrint(
               'Could not convert known device to BluetoothRemoteGATTDescriptor');
@@ -74,17 +78,20 @@ class WebBluetoothRemoteGATTCharacteristic {
     return [];
   }
 
-  Future<dynamic> readValue() async {
+  Future<ByteData> readValue() async {
     final promise = _JSUtil.callMethod(this._jsObject, 'readValue', []);
     final result = await _JSUtil.promiseToFuture(promise);
-    // TODO: convert result to a DataView.
-    return result;
+    final data = WebBluetoothConverters.convertJSDataViewToByteData(result);
+    return data;
   }
 
   @Deprecated(
-      'This method is technically deprecated in the Web Bluetooth spec, but not every browser supports the new `writeValueWithResponse` and `writeValueWithoutResponse` yet.')
-  Future<void> writeValue(dynamic value) async {
-    final promise = _JSUtil.callMethod(this._jsObject, 'writeValue', [value]);
+      'This method is technically deprecated in the Web Bluetooth spec, '
+      'but not every browser supports the new `writeValueWithResponse` '
+      'and `writeValueWithoutResponse` yet.')
+  Future<void> writeValue(Uint8List value) async {
+    final data = List.generate(value.length, (index) => value[index]);
+    final promise = _JSUtil.callMethod(this._jsObject, 'writeValue', [data]);
     await _JSUtil.promiseToFuture(promise);
   }
 
@@ -96,21 +103,23 @@ class WebBluetoothRemoteGATTCharacteristic {
     return _JSUtil.hasProperty(this._jsObject, 'writeValueWithoutResponse');
   }
 
-  Future<void> writeValueWithResponse(dynamic value) async {
+  Future<void> writeValueWithResponse(Uint8List value) async {
     if (!hasWriteValueWithResponse()) {
       throw NativeAPINotImplementedError('writeValueWithResponse');
     }
+    final data = List.generate(value.length, (index) => value[index]);
     final promise =
-        _JSUtil.callMethod(this._jsObject, 'writeValueWithResponse', [value]);
+        _JSUtil.callMethod(this._jsObject, 'writeValueWithResponse', [data]);
     await _JSUtil.promiseToFuture(promise);
   }
 
-  Future<void> writeValueWithoutResponse(dynamic value) async {
+  Future<void> writeValueWithoutResponse(Uint8List value) async {
     if (!hasWriteValueWithoutResponse()) {
       throw NativeAPINotImplementedError('writeValueWithoutResponse');
     }
-    final promise = _JSUtil.callMethod(
-        this._jsObject, 'writeValueWithoutResponse', [value]);
+    final data = List.generate(value.length, (index) => value[index]);
+    final promise =
+        _JSUtil.callMethod(this._jsObject, 'writeValueWithoutResponse', [data]);
     await _JSUtil.promiseToFuture(promise);
   }
 
@@ -125,7 +134,13 @@ class WebBluetoothRemoteGATTCharacteristic {
     await _JSUtil.promiseToFuture(promise);
   }
 
-  WebBluetoothRemoteGATTCharacteristic._fromJSObject(
+  void addEventListener(String type, void Function(dynamic) listener) {
+    _JSUtil.callMethod(
+        _jsObject, 'addEventListener', [type, _JSUtil.allowInterop(listener)]);
+  }
+
+  @visibleForTesting
+  WebBluetoothRemoteGATTCharacteristic.fromJSObject(
       this._jsObject, this.service) {
     if (!_JSUtil.hasProperty(_jsObject, 'service')) {
       throw UnsupportedError('JSObject does not have service');
@@ -153,6 +168,9 @@ class WebBluetoothRemoteGATTCharacteristic {
     }
     if (!_JSUtil.hasProperty(_jsObject, 'stopNotifications')) {
       throw UnsupportedError('JSObject does not have stopNotifications');
+    }
+    if (!_JSUtil.hasProperty(_jsObject, 'addEventListener')) {
+      throw UnsupportedError('JSObject does not have addEventListener');
     }
   }
 }

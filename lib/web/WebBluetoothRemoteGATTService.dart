@@ -52,7 +52,7 @@ class WebBluetoothRemoteGATTService {
     final promise = _JSUtil.callMethod(
         this._jsObject, 'getCharacteristic', [characteristicUUID]);
     final result = await _JSUtil.promiseToFuture(promise);
-    return WebBluetoothRemoteGATTCharacteristic._fromJSObject(result, this);
+    return WebBluetoothRemoteGATTCharacteristic.fromJSObject(result, this);
   }
 
   bool hasGetCharacteristicsFunction() {
@@ -75,7 +75,7 @@ class WebBluetoothRemoteGATTService {
       for (final item in result) {
         try {
           items.add(
-              WebBluetoothRemoteGATTCharacteristic._fromJSObject(item, this));
+              WebBluetoothRemoteGATTCharacteristic.fromJSObject(item, this));
         } on UnsupportedError {
           debugPrint(
               'Could not convert known device to BluetoothRemoteGATTCharacteristic');

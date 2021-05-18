@@ -30,11 +30,10 @@ class WebBluetoothRemoteGATTDescriptor {
     return _JSUtil.getProperty(this._jsObject, 'value');
   }
 
-  Future<dynamic> readValue() async {
+  Future<ByteData> readValue() async {
     final promise = _JSUtil.callMethod(this._jsObject, 'readValue', []);
     final result = await _JSUtil.promiseToFuture(promise);
-    // TODO: convert result to a DataView.
-    return result;
+    return WebBluetoothConverters.convertJSDataViewToByteData(result);
   }
 
   Future<void> writeValue(Object value) async {
@@ -42,7 +41,8 @@ class WebBluetoothRemoteGATTDescriptor {
     await _JSUtil.promiseToFuture(promise);
   }
 
-  WebBluetoothRemoteGATTDescriptor._fromJSObject(
+  @visibleForTesting
+  WebBluetoothRemoteGATTDescriptor.fromJSObject(
       this._jsObject, this.characteristic) {
     if (!_JSUtil.hasProperty(_jsObject, 'characteristic')) {
       throw UnsupportedError('JSObject does not have characteristic');

@@ -73,14 +73,10 @@ class DeviceServicesState extends State<DeviceServicesPage> {
                         child: Text('No services found!'),
                       );
                     }
-                    return Container(
-                      child: ListView.builder(
-                        itemCount: services.length,
-                        itemBuilder: (BuildContext context, int index) {
-                          return Expanded(child: ServiceWidget(service: services[index]));
-                        },
-                      ),
-                    );
+
+                    final serviceWidgets = List.generate(services.length, (index) => ServiceWidget(service: services[index]));
+
+                    return Container(child: ListView(children: serviceWidgets,));
                   },
                 );
               } else {

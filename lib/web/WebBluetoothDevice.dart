@@ -60,7 +60,7 @@ class WebBluetoothDevice {
   }
 
   //
-  // external static void removeEventListener(
+  // void removeEventListener(
   //     String type, void Function(dynamic) listener);
 
   @visibleForTesting
