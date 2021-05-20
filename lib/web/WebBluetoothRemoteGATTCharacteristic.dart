@@ -68,9 +68,13 @@ class WebBluetoothRemoteGATTCharacteristic {
       for (final item in result) {
         try {
           items.add(WebBluetoothRemoteGATTDescriptor.fromJSObject(item, this));
-        } on UnsupportedError {
-          debugPrint(
-              'Could not convert known device to BluetoothRemoteGATTDescriptor');
+        } catch (e) {
+          if (e is UnsupportedError) {
+            debugPrint(
+                'Could not convert known device to BluetoothRemoteGATTDescriptor. Error: "${e.message}"');
+          } else {
+            throw e;
+          }
         }
       }
       return items;
@@ -90,7 +94,7 @@ class WebBluetoothRemoteGATTCharacteristic {
       'but not every browser supports the new `writeValueWithResponse` '
       'and `writeValueWithoutResponse` yet.')
   Future<void> writeValue(Uint8List value) async {
-    final data = List.generate(value.length, (index) => value[index]);
+    final data = WebBluetoothConverters.convertUint8ListToJSArrayBuffer(value);
     final promise = _JSUtil.callMethod(this._jsObject, 'writeValue', [data]);
     await _JSUtil.promiseToFuture(promise);
   }
@@ -107,7 +111,7 @@ class WebBluetoothRemoteGATTCharacteristic {
     if (!hasWriteValueWithResponse()) {
       throw NativeAPINotImplementedError('writeValueWithResponse');
     }
-    final data = List.generate(value.length, (index) => value[index]);
+    final data = WebBluetoothConverters.convertUint8ListToJSArrayBuffer(value);
     final promise =
         _JSUtil.callMethod(this._jsObject, 'writeValueWithResponse', [data]);
     await _JSUtil.promiseToFuture(promise);
@@ -117,7 +121,7 @@ class WebBluetoothRemoteGATTCharacteristic {
     if (!hasWriteValueWithoutResponse()) {
       throw NativeAPINotImplementedError('writeValueWithoutResponse');
     }
-    final data = List.generate(value.length, (index) => value[index]);
+    final data = WebBluetoothConverters.convertUint8ListToJSArrayBuffer(value);
     final promise =
         _JSUtil.callMethod(this._jsObject, 'writeValueWithoutResponse', [data]);
     await _JSUtil.promiseToFuture(promise);

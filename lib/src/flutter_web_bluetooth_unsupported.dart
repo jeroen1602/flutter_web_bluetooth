@@ -17,6 +17,8 @@ part 'bluetooth_service.dart';
 
 part 'errors/BluetoothAdapterNotAvailable.dart';
 
+part 'errors/NetworkError.dart';
+
 part 'errors/NotFoundError.dart';
 
 part 'errors/NotSupportedError.dart';

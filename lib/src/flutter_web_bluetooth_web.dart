@@ -18,6 +18,8 @@ part 'bluetooth_service.dart';
 
 part 'errors/BluetoothAdapterNotAvailable.dart';
 
+part 'errors/NetworkError.dart';
+
 part 'errors/NotFoundError.dart';
 
 part 'errors/NotSupportedError.dart';
@@ -131,7 +133,8 @@ class FlutterWebBluetooth extends FlutterWebBluetoothInterface {
     if (!(await Bluetooth.getAvailability())) {
       throw BluetoothAdapterNotAvailable('requestDevice');
     }
-    final device = await Bluetooth.requestDevice(options.toRequestOptions());
+    final convertedOptions = options.toRequestOptions();
+    final device = await Bluetooth.requestDevice(convertedOptions);
     final webDevice = BluetoothDevice(device);
     _addKnownDevice(webDevice);
     return webDevice;

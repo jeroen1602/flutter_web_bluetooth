@@ -13,8 +13,13 @@ class BluetoothDevice {
   BehaviorSubject<bool>? _connectionSubject;
 
   Stream<bool> get connected {
+    _startConnectedStream();
+    return _connectionSubject!.stream;
+  }
+
+  void _startConnectedStream() {
     if (_connectionSubject != null) {
-      return _connectionSubject!;
+      return;
     }
 
     _connectionSubject = BehaviorSubject.seeded(gatt?.connected == true);
@@ -26,7 +31,6 @@ class BluetoothDevice {
         _servicesSubject.add([]);
       }
     });
-    return _connectionSubject!.stream;
   }
 
   bool get hasGATT => this.gatt != null;
@@ -41,24 +45,26 @@ class BluetoothDevice {
   /// if you want to cancel it in that case.
   /// May throw [TypeError] if there is no gatt. Always check [hasGATT] before
   /// calling this method.
+  /// May throw [NetworkError] if no connection could be established.
   ///
   Future<void> connect({Duration? timeout = const Duration(seconds: 5)}) async {
     final gatt = this.gatt!;
+    _startConnectedStream();
     // No timeout.
-    if (timeout == null) {
-      await gatt.connect();
-    } else {
-      try {
+    try {
+      if (timeout == null) {
+        await gatt.connect();
+      } else {
         await gatt.connect().timeout(timeout);
-      } catch (e) {
-        if (e is TimeoutException) {
-          this.disconnect();
-        }
-        if (e is String) {
-          // Native web error.
-          // TODO: handle these and convert them to the correct error types.
-        }
+      }
+    } catch (e) {
+      if (e is TimeoutException) {
+        this.disconnect();
         throw e;
+      }
+      final error = e.toString().trim();
+      if (error.startsWith('NetworkError')) {
+        throw NetworkError(this.id);
       }
     }
 
@@ -84,16 +90,12 @@ class BluetoothDevice {
   /// May throw [StateError] if the device is not connected.
   ///
   Future<List<BluetoothService>> discoverServices() async {
-    if (_connectionSubject == null ||
-        !_connectionSubject!.hasValue ||
-        _connectionSubject!.requireValue == false) {
+    final gatt = this.gatt;
+    if (gatt == null || !gatt.connected) {
       throw StateError(
           'Cannot discover services if the device is not connected.');
     }
-    final gatt = this.gatt;
-    if (gatt == null) {
-      throw StateError('How can gatt be null but the device be connected?');
-    }
+
     final services = await gatt.getPrimaryServices(null);
     final convertedServices = services.map((e) => BluetoothService(e)).toList();
     _servicesSubject.add(convertedServices);

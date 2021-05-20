@@ -3,21 +3,23 @@ part of flutter_web_bluetooth;
 class RequestOptionsBuilder {
   final bool _acceptAllDevices;
   final List<RequestFilterBuilder> _requestFilters;
-  final List<dynamic>? _optionalServices;
+  final List<String>? _optionalServices;
 
   ///
   /// May throw [StateError] if no filters are set, consider using
   /// [RequestOptionsBuilder.acceptAllDevices].
-  RequestOptionsBuilder(this._requestFilters, {List<dynamic>? optionalServices})
-      : this._acceptAllDevices = false,
+  RequestOptionsBuilder(List<RequestFilterBuilder> requestFilters,
+      {List<String>? optionalServices})
+      : this._requestFilters = requestFilters,
+        this._acceptAllDevices = false,
         this._optionalServices = optionalServices {
     if (this._requestFilters.isEmpty) {
       throw StateError('No filters have been set, consider using '
-          '[RequestOptionsBuilder.acceptAllDevices()] instead.');
+          'RequestOptionsBuilder.acceptAllDevices() instead.');
     }
   }
 
-  RequestOptionsBuilder.acceptAllDevices({List<dynamic>? optionalServices})
+  RequestOptionsBuilder.acceptAllDevices({List<String>? optionalServices})
       : this._acceptAllDevices = true,
         this._requestFilters = [],
         this._optionalServices = optionalServices;
@@ -30,7 +32,9 @@ class RequestOptionsBuilder {
         return RequestOptions(acceptAllDevices: true);
       } else {
         return RequestOptions(
-            acceptAllDevices: true, optionalServices: optionalService);
+            acceptAllDevices: true,
+            optionalServices:
+                optionalService.map((e) => e.toLowerCase()).toList());
       }
     } else {
       if (optionalService == null) {
@@ -39,7 +43,8 @@ class RequestOptionsBuilder {
       } else {
         return RequestOptions(
             filters: _requestFilters.map((e) => e.toScanFilter()).toList(),
-            optionalServices: optionalService);
+            optionalServices:
+                optionalService.map((e) => e.toLowerCase()).toList());
       }
     }
   }
@@ -48,7 +53,7 @@ class RequestOptionsBuilder {
 class RequestFilterBuilder {
   final String? _name;
   final String? _namePrefix;
-  final List<dynamic>? _services;
+  final List<String>? _services;
 
   ///
   /// May throw [StateError] if all the parameters are null or services list is
@@ -56,7 +61,7 @@ class RequestFilterBuilder {
   ///
   /// TODO: change this API to force the developer to enter at least one filter item
   RequestFilterBuilder(
-      {String? name, String? namePrefix, List<dynamic>? services})
+      {String? name, String? namePrefix, List<String>? services})
       : _name = name,
         _namePrefix = namePrefix,
         _services = services {
@@ -75,7 +80,7 @@ class RequestFilterBuilder {
 
   @visibleForTesting
   BluetoothScanFilter toScanFilter() {
-    return BluetoothScanFilter(
-        name: _name, namePrefix: _namePrefix, services: _services);
+    return BluetoothScanFilterHelper.createJsObject(
+        _services, _name, _namePrefix) as BluetoothScanFilter;
   }
 }

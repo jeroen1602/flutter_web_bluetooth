@@ -51,14 +51,34 @@ void setNativeBluetooth(NativeBluetooth nativeBluetooth) {
 @JS()
 @anonymous
 class BluetoothScanFilter {
-  external List<dynamic>? get services;
+  external List<String>? get services;
 
   external String? get name;
 
   external String? get namePrefix;
 
   external factory BluetoothScanFilter(
-      {List<dynamic>? services, String? name, String? namePrefix});
+      {List<String>? services, String? name, String? namePrefix});
+}
+
+class BluetoothScanFilterHelper {
+  BluetoothScanFilterHelper._();
+
+  static Object createJsObject(
+      List<String>? services, String? name, String? namePrefix) {
+    final jsObject = _JSUtil.newObject();
+    if (services != null) {
+      _JSUtil.setProperty(
+          jsObject, 'services', services.map((e) => e.toLowerCase()).toList());
+    }
+    if (name != null) {
+      _JSUtil.setProperty(jsObject, 'name', name);
+    }
+    if (namePrefix != null) {
+      _JSUtil.setProperty(jsObject, 'namePrefix', namePrefix);
+    }
+    return jsObject;
+  }
 }
 
 @JS()
@@ -66,7 +86,7 @@ class BluetoothScanFilter {
 class RequestOptions {
   external List<BluetoothScanFilter> get filters;
 
-  external List<dynamic> get optionalServices;
+  external List<String> get optionalServices;
 
   external bool get acceptAllDevices;
 

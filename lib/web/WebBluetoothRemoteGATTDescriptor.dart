@@ -23,21 +23,25 @@ class WebBluetoothRemoteGATTDescriptor {
     return 'UNKNOWN';
   }
 
-  dynamic get value {
+  ByteData? get value {
     if (!_JSUtil.hasProperty(this._jsObject, 'value')) {
       return null;
     }
-    return _JSUtil.getProperty(this._jsObject, 'value');
+    final result = _JSUtil.getProperty(this._jsObject, 'value');
+    final data = WebBluetoothConverters.convertJSDataViewToByteData(result);
+    return data;
   }
 
   Future<ByteData> readValue() async {
     final promise = _JSUtil.callMethod(this._jsObject, 'readValue', []);
     final result = await _JSUtil.promiseToFuture(promise);
-    return WebBluetoothConverters.convertJSDataViewToByteData(result);
+    final data = WebBluetoothConverters.convertJSDataViewToByteData(result);
+    return data;
   }
 
-  Future<void> writeValue(Object value) async {
-    final promise = _JSUtil.callMethod(this._jsObject, 'writeValue', [value]);
+  Future<void> writeValue(Uint8List value) async {
+    final data = WebBluetoothConverters.convertUint8ListToJSArrayBuffer(value);
+    final promise = _JSUtil.callMethod(this._jsObject, 'writeValue', [data]);
     await _JSUtil.promiseToFuture(promise);
   }
 
@@ -46,6 +50,18 @@ class WebBluetoothRemoteGATTDescriptor {
       this._jsObject, this.characteristic) {
     if (!_JSUtil.hasProperty(_jsObject, 'characteristic')) {
       throw UnsupportedError('JSObject does not have characteristic');
+    }
+    if (!_JSUtil.hasProperty(_jsObject, 'uuid')) {
+      throw UnsupportedError('JSObject does not have uuid');
+    }
+    if (!_JSUtil.hasProperty(_jsObject, 'value')) {
+      throw UnsupportedError('JSObject does not have value');
+    }
+    if (!_JSUtil.hasProperty(_jsObject, 'readValue')) {
+      throw UnsupportedError('JSObject does not have readValue');
+    }
+    if (!_JSUtil.hasProperty(_jsObject, 'writeValue')) {
+      throw UnsupportedError('JSObject does not have writeValue');
     }
   }
 }
