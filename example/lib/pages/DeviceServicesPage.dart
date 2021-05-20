@@ -74,9 +74,13 @@ class DeviceServicesState extends State<DeviceServicesPage> {
                       );
                     }
 
-                    final serviceWidgets = List.generate(services.length, (index) => ServiceWidget(service: services[index]));
+                    final serviceWidgets = List.generate(services.length,
+                        (index) => ServiceWidget(service: services[index]));
 
-                    return Container(child: ListView(children: serviceWidgets,));
+                    return Container(
+                        child: ListView(
+                      children: serviceWidgets,
+                    ));
                   },
                 );
               } else {

@@ -24,7 +24,7 @@ class WebBluetoothConverters {
   ///
   /// Convert a Dart [Uint8List] to a js Uint8Array. Both are almost the same
   /// data type, but the web api doesn't like the [Uint8List].
-  /// 
+  ///
   static Object convertUint8ListToJSArrayBuffer(Uint8List data) {
     final constructor = _JSUtil.getProperty(_window, 'Uint8Array');
     final newArray = _JSUtil.callConstructor(constructor, [data.length]);

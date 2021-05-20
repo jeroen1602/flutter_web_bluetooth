@@ -15,20 +15,20 @@ abstract class FlutterWebBluetoothInterface {
   /// Get a [Stream] for the availability of a Bluetooth adapter.
   /// If a user inserts or removes a bluetooth adapter from their devices this
   /// stream will update.
-  /// It will not necicerly update if the user enables/ disables a bleutooth
+  /// It will not necessarily update if the user enables/ disables a bluetooth
   /// adapter.
   ///
   /// Will return `Stream.value(false)` if [isBluetoothApiSupported] is false.
   ///
-  /// For non web platfors it will always return `false`
+  /// For non web platforms it will always return `false`
   ///
   Stream<bool> get isAvailable;
 
   ///
   /// Get a Set of devices already known to the browser.
-  /// According to the doc this should return a list of devices that the user
-  /// has granted access to, but it sometimes it doesn't return known devices
-  /// after a page reload.
+  /// This will return a list of device that the page has connected to at
+  /// least once. This does not mean that the device is in range, just that
+  /// it's paired.
   ///
   /// Will return a [Stream] of an empty [Set] if [isAvailable] is false.
   ///
