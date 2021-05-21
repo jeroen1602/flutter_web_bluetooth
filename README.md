@@ -1,5 +1,7 @@
 # Introduction
 
+This brench is to host the example build with github pages.
+
 Flutter web bluetooth is a [Flutter](https://flutter.dev/) plugin to add support for the 
 [web bluetooth api](https://developer.mozilla.org/en-US/docs/Web/API/Web_Bluetooth_API).
 
