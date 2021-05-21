@@ -3,6 +3,10 @@
 Flutter web bluetooth is a [Flutter](https://flutter.dev/) plugin to add support for the 
 [web bluetooth api](https://developer.mozilla.org/en-US/docs/Web/API/Web_Bluetooth_API).
 
+The example code in this project is hosted on Github pages. Checkout 
+[jeroen1602.github.io/flutter_web_bluetooth/](https://jeroen1602.github.io/flutter_web_bluetooth/) for a proof of 
+concept.
+
 # Limited support
 
 The web bluetooth is still a draft, because of this it is not (yet) supported in every browser. 

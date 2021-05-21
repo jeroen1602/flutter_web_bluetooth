@@ -43,6 +43,7 @@ This patch was originally written for Flutter 2.0.4.
 
 Also works with:
  - 2.0.5
+ - 2.2.0
 
 # Running as a webserver
 
