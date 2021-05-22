@@ -46,7 +46,7 @@ class FlutterWebBluetooth extends FlutterWebBluetoothInterface {
 
   void _addKnownDevice(BluetoothDevice device) {
     final set = _knownDevicesStream.hasValue
-        ? _knownDevicesStream.requireValue
+        ? _knownDevicesStream.value!
         : Set<BluetoothDevice>();
     set.add(device);
     _knownDevicesStream.add(set);
@@ -94,7 +94,7 @@ class FlutterWebBluetooth extends FlutterWebBluetoothInterface {
             'it\'s not available in this browser/ for this devices.');
       }
       final set = _knownDevicesStream.hasValue
-          ? _knownDevicesStream.requireValue
+          ? _knownDevicesStream.value!
           : Set<BluetoothDevice>();
       set.clear();
       _knownDevicesStream.add(set);
@@ -104,7 +104,7 @@ class FlutterWebBluetooth extends FlutterWebBluetoothInterface {
     final devicesSet =
         Set<BluetoothDevice>.from(devices.map((e) => BluetoothDevice(e)));
     final set = _knownDevicesStream.hasValue
-        ? _knownDevicesStream.requireValue
+        ? _knownDevicesStream.value!
         : Set<BluetoothDevice>();
     set.addAll(devicesSet);
     this._knownDevicesStream.add(set);

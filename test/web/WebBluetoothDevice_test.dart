@@ -1,7 +1,6 @@
-import 'package:flutter_test/flutter_test.dart';
 import 'package:flutter_web_bluetooth/js_web_bluetooth.dart';
 import 'package:flutter_web_bluetooth/web/js/JSUtils.dart';
-import 'package:test/test.dart' as dartTest;
+import 'package:test/test.dart';
 
 import '../helper/JSUtilsTesting.dart';
 import '../helper/NativeBluetoothDeviceTesting.dart';
@@ -24,7 +23,7 @@ void main() {
 
     expect(() {
       return WebBluetoothDevice.fromJSObject(jsObject);
-    }, throwsA(const dartTest.TypeMatcher<UnsupportedError>()));
+    }, throwsA(const TypeMatcher<UnsupportedError>()));
   });
 
   final deviceJSObject = NativeBluetoothDeviceTesting.createJSObject(
@@ -58,7 +57,7 @@ void main() {
         NativeBluetoothRemoteGATTServerTesting.createStubJSOBject();
 
     final gatt = device.gatt;
-    expect(gatt, const dartTest.TypeMatcher<NativeBluetoothRemoteGATTServer>());
+    expect(gatt, const TypeMatcher<NativeBluetoothRemoteGATTServer>());
   });
 
   test('Should not get gatt', () {

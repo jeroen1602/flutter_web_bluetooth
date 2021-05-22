@@ -1,5 +1,5 @@
-import 'package:flutter_test/flutter_test.dart';
 import 'package:flutter_web_bluetooth/flutter_web_bluetooth.dart';
+import 'package:test/test.dart';
 
 const String EXAMPLE_TEXT =
     "SecurityError: getCharacteristic(s) called with blocklisted UUID. https://goo.gl/4NeimX";

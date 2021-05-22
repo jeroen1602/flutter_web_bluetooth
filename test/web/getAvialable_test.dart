@@ -1,6 +1,6 @@
-import 'package:flutter_test/flutter_test.dart';
 import 'package:flutter_web_bluetooth/js_web_bluetooth.dart';
 import 'package:flutter_web_bluetooth/web/js/JSUtils.dart';
+import 'package:test/test.dart';
 
 import '../helper/JSUtilsTesting.dart';
 import '../helper/NativeBluetoothTesting.dart';

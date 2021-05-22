@@ -1,6 +1,7 @@
-import 'package:flutter_test/flutter_test.dart';
 import 'package:flutter_web_bluetooth/flutter_web_bluetooth.dart';
-import 'package:test/test.dart' as dartTest;
+import 'package:flutter_web_bluetooth/js_web_bluetooth.dart';
+import 'package:test/fake.dart';
+import 'package:test/test.dart';
 
 class FakeRequestOptions extends Fake implements RequestOptionsBuilder {}
 
@@ -19,6 +20,6 @@ void main() {
     expect(
         () async => await FlutterWebBluetooth.instance
             .requestDevice(FakeRequestOptions()),
-        throwsA(const dartTest.TypeMatcher<StateError>()));
+        throwsA(const TypeMatcher<NativeAPINotImplementedError>()));
   });
 }

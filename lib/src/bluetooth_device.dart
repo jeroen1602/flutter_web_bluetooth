@@ -77,10 +77,10 @@ class BluetoothDevice {
   Stream<List<BluetoothService>> get services async* {
     while (_connectionSubject == null ||
         !_connectionSubject!.hasValue ||
-        _connectionSubject!.requireValue == false) {
+        _connectionSubject!.value == false) {
       yield [];
     }
-    if (!_servicesSubject.hasValue || _servicesSubject.requireValue.isEmpty) {
+    if (!_servicesSubject.hasValue || _servicesSubject.value!.isEmpty) {
       yield await discoverServices();
     }
     yield* _servicesSubject.stream;
