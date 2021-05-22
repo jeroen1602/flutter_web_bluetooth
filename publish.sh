@@ -11,5 +11,9 @@ rm -rfv scripts || exit 4
 rm -rfv test || exit 4
 rm -rfv example/test || exit 4
 rm -rfv .idea || exit 4
+rm -rfv publish.sh || exit 4
 echo "Running pub publish"
 flutter pub publish --dry-run
+
+echo "Reverting back to HEAD"
+git reset --hard HEAD
