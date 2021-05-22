@@ -1,6 +1,6 @@
 name: flutter_web_bluetooth
 description: A library to use the web bluetooth api.
-version: 0.0.1
+version: 0.0.2
 homepage: https://github.com/jeroen1602/flutter_web_bluetooth/
 repository: https://github.com/jeroen1602/flutter_web_bluetooth/
 issue_tracker: https://github.com/jeroen1602/flutter_web_bluetooth/issues/

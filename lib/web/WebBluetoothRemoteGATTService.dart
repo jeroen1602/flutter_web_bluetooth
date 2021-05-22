@@ -49,8 +49,8 @@ class WebBluetoothRemoteGATTService {
 
   Future<WebBluetoothRemoteGATTCharacteristic> getCharacteristic(
       String characteristicUUID) async {
-    final promise = _JSUtil.callMethod(
-        this._jsObject, 'getCharacteristic', [characteristicUUID]);
+    final promise = _JSUtil.callMethod(this._jsObject, 'getCharacteristic',
+        [characteristicUUID.toLowerCase()]);
     final result = await _JSUtil.promiseToFuture(promise);
     return WebBluetoothRemoteGATTCharacteristic.fromJSObject(result, this);
   }
@@ -62,13 +62,15 @@ class WebBluetoothRemoteGATTService {
   @Deprecated(
       'Not really deprecated, just not implemented in any browser (yet).')
   Future<List<WebBluetoothRemoteGATTCharacteristic>> getCharacteristics(
-      String characteristicUUID) async {
+      String? characteristicUUID) async {
     if (!hasGetCharacteristicsFunction()) {
       throw NativeAPINotImplementedError(
           'BluetoothRemoteGATTService.getCharacteristics');
     }
-    final promise = _JSUtil.callMethod(
-        this._jsObject, 'getCharacteristics', [characteristicUUID]);
+    final arguments =
+        characteristicUUID == null ? [] : [characteristicUUID.toLowerCase()];
+    final promise =
+        _JSUtil.callMethod(this._jsObject, 'getCharacteristics', arguments);
     final result = await _JSUtil.promiseToFuture(promise);
     if (result is List) {
       final items = <WebBluetoothRemoteGATTCharacteristic>[];
@@ -92,12 +94,12 @@ class WebBluetoothRemoteGATTService {
 
   // Will not exist if there are no includedServices.
   Future<WebBluetoothRemoteGATTService> getIncludedService(
-      Object serviceUUID) async {
+      String serviceUUID) async {
     if (!hasGetIncludedServiceFunction()) {
       throw NativeAPINotImplementedError('getIncludedService');
     }
-    final promise =
-        _JSUtil.callMethod(this._jsObject, 'getIncludedService', [serviceUUID]);
+    final promise = _JSUtil.callMethod(
+        this._jsObject, 'getIncludedService', [serviceUUID.toLowerCase()]);
     final result = await _JSUtil.promiseToFuture(promise);
     return WebBluetoothRemoteGATTService.fromJSObject(result, this.device);
   }
@@ -109,12 +111,13 @@ class WebBluetoothRemoteGATTService {
   @Deprecated(
       'Not really deprecated, just not implemented in any browser (yet).')
   Future<List<WebBluetoothRemoteGATTService>> getIncludedServices(
-      Object? serviceUUID) async {
+      String? serviceUUID) async {
     if (!hasGetIncludedServicesFunction()) {
       throw NativeAPINotImplementedError('getIncludedServices');
     }
-    final promise = _JSUtil.callMethod(
-        this._jsObject, 'getIncludedServices', [serviceUUID]);
+    final arguments = serviceUUID == null ? [] : [serviceUUID.toLowerCase()];
+    final promise =
+        _JSUtil.callMethod(this._jsObject, 'getIncludedServices', arguments);
     final result = await _JSUtil.promiseToFuture(promise);
     if (result is List) {
       final items = <WebBluetoothRemoteGATTService>[];

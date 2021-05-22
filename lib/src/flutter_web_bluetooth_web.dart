@@ -10,6 +10,8 @@ import 'package:rxdart/rxdart.dart';
 
 part 'bluetooth_characteristic.dart';
 
+part 'bluetooth_characteristic_properties.dart';
+
 part 'bluetooth_default_uuids.dart';
 
 part 'bluetooth_device.dart';
