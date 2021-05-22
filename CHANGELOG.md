@@ -3,6 +3,7 @@
 * Removed Flutter as a dependency
 * Added characteristic properties
 * Added toLowerCase to every call that requires a UUID, because the web api expects only lower case UUIDS.
+* Added Bluetooth descriptors.
 
 ## 0.0.1
 

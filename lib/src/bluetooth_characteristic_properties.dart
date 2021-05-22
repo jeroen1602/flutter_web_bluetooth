@@ -12,7 +12,7 @@ class BluetoothCharacteristicProperties {
   @visibleForTesting
   BluetoothCharacteristicProperties(this._properties);
 
-  WebBluetoothCharacteristicProperties _properties;
+  final WebBluetoothCharacteristicProperties _properties;
 
   bool get broadcast => _properties.broadcast;
 
