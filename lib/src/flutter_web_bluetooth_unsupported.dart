@@ -3,7 +3,6 @@ library flutter_web_bluetooth;
 import 'dart:async';
 import 'dart:typed_data';
 
-import 'package:flutter/foundation.dart';
 import 'package:flutter_web_bluetooth/js_web_bluetooth.dart';
 import 'package:rxdart/rxdart.dart';
 

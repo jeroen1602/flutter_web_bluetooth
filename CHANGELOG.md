@@ -1,3 +1,7 @@
+## 0.0.3
+
+* Forgot some Flutter dependency
+
 ## 0.0.2
 
 * Removed Flutter as a dependency

@@ -78,9 +78,13 @@ class WebBluetoothRemoteGATTService {
         try {
           items.add(
               WebBluetoothRemoteGATTCharacteristic.fromJSObject(item, this));
-        } on UnsupportedError {
-          debugPrint(
-              'Could not convert known device to BluetoothRemoteGATTCharacteristic');
+        } catch (e) {
+          if (e is UnsupportedError) {
+            print(
+                'flutter_web_bluetooth: Could not convert known device to BluetoothRemoteGATTCharacteristic. Error: "${e.message}"');
+          } else {
+            throw e;
+          }
         }
       }
       return items;
@@ -125,9 +129,13 @@ class WebBluetoothRemoteGATTService {
         try {
           items.add(
               WebBluetoothRemoteGATTService.fromJSObject(item, this.device));
-        } on UnsupportedError {
-          debugPrint(
-              'Could not convert known device to BluetoothRemoteGATTService');
+        } catch (e) {
+          if (e is UnsupportedError) {
+            print(
+                'flutter_web_bluetooth: Could not convert known device to BluetoothRemoteGATTService. Error: "${e.message}"');
+          } else {
+            throw e;
+          }
         }
       }
       return items;
@@ -135,7 +143,6 @@ class WebBluetoothRemoteGATTService {
     return [];
   }
 
-  @visibleForTesting
   WebBluetoothRemoteGATTService.fromJSObject(this._jsObject, this.device) {
     if (!_JSUtil.hasProperty(_jsObject, 'uuid')) {
       throw UnsupportedError('JSObject does not have uuid');

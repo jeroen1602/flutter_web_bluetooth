@@ -1,7 +1,5 @@
 library bluetooth_web_js_utils;
 
-import 'package:flutter/foundation.dart';
-
 part 'JSUtilsInterface.dart';
 
 class JSUtils extends JSUtilsInterface {

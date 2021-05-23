@@ -9,7 +9,6 @@ part of flutter_web_bluetooth;
 /// then it will throw a [NotSupportedError].
 ///
 class BluetoothCharacteristicProperties {
-  @visibleForTesting
   BluetoothCharacteristicProperties(this._properties);
 
   final WebBluetoothCharacteristicProperties _properties;

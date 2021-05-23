@@ -1,7 +1,6 @@
 part of flutter_web_bluetooth;
 
 class BluetoothService {
-  @visibleForTesting
   BluetoothService(this._bluetoothService);
 
   final WebBluetoothRemoteGATTService _bluetoothService;

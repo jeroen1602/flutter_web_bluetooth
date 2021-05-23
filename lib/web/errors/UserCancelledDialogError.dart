@@ -3,7 +3,9 @@ part of js_web_bluetooth;
 class UserCancelledDialogError extends DeviceNotFoundError {
   UserCancelledDialogError(String message) : super(message);
 
-  @protected
+  ///
+  /// A protected value for the sub classes.
+  ///
   @override
   String get errorName => 'UserCancelledDialogError';
 }

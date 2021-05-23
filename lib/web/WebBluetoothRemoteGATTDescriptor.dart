@@ -45,7 +45,6 @@ class WebBluetoothRemoteGATTDescriptor {
     await _JSUtil.promiseToFuture(promise);
   }
 
-  @visibleForTesting
   WebBluetoothRemoteGATTDescriptor.fromJSObject(
       this._jsObject, this.characteristic) {
     if (!_JSUtil.hasProperty(_jsObject, 'characteristic')) {

@@ -7,7 +7,7 @@ import '../helper/NativeBluetoothTesting.dart';
 
 void main() {
   JSUtilsInterface utils = JSUtilsTesting();
-  setJSUtils(utils);
+  testingSetJSUtils(utils);
 
   test('Available should be true', () async {
     NativeBluetooth nativeBluetooth = NativeBluetoothTesting(available: true);

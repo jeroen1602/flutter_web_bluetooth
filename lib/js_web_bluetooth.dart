@@ -3,8 +3,6 @@ library js_web_bluetooth;
 
 import 'dart:typed_data';
 
-import 'package:flutter/foundation.dart';
-import 'package:flutter/material.dart';
 import 'package:rxdart/rxdart.dart';
 
 import 'web/js/JSUtils.dart';
@@ -34,7 +32,9 @@ part 'web/errors/UserCancelledDialogError.dart';
 
 JSUtilsInterface _JSUtil = JSUtils();
 
-@visibleForTesting
-void setJSUtils(JSUtilsInterface utils) {
+///
+/// This method is meant for testing!
+///
+void testingSetJSUtils(JSUtilsInterface utils) {
   _JSUtil = utils;
 }

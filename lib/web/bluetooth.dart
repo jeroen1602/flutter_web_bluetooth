@@ -18,7 +18,6 @@ class _NativeBluetooth {
       String type, void Function(dynamic) listener);
 }
 
-@visibleForTesting
 class NativeBluetooth {
   Object getAvailability() {
     return _NativeBluetooth.getAvailability();
@@ -43,7 +42,6 @@ class NativeBluetooth {
 
 NativeBluetooth _nativeBluetooth = NativeBluetooth();
 
-@visibleForTesting
 void setNativeBluetooth(NativeBluetooth nativeBluetooth) {
   _nativeBluetooth = nativeBluetooth;
 }
@@ -101,7 +99,6 @@ external Object _navigator;
 
 Object? _navigatorTesting;
 
-@visibleForTesting
 void setNavigator(Object navigatorObject) {
   _navigatorTesting = navigatorObject;
 }
@@ -136,9 +133,6 @@ class Bluetooth {
     }
     final promise = _nativeBluetooth.getAvailability();
     final result = await _JSUtil.promiseToFuture(promise);
-    if (!kReleaseMode) {
-      debugPrint('flutter_web_bluetooth: Result getAvailability $result');
-    }
     if (result is bool) {
       availabilityStream?.add(result);
       return result;
@@ -146,7 +140,6 @@ class Bluetooth {
     return false;
   }
 
-  @visibleForTesting
   static BehaviorSubject<bool>? availabilityStream;
 
   ///
@@ -158,9 +151,6 @@ class Bluetooth {
   ///
   static Stream<bool> onAvailabilitychanged() {
     if (!isBluetoothAPISupported()) {
-      if (!kReleaseMode) {
-        debugPrint('flutter_web_bluetooth: Bluetooth api not supported');
-      }
       return Stream.value(false);
     }
     if (availabilityStream != null) {
@@ -170,9 +160,6 @@ class Bluetooth {
     _nativeBluetooth.addEventListener('availabilitychanged',
         _JSUtil.allowInterop((event) {
       final value = _JSUtil.getProperty(event, 'value');
-      if (!kReleaseMode) {
-        debugPrint('flutter_web_bluetooth: Availability changed $value');
-      }
       if (value is bool) {
         availabilityStream?.add(value);
       }
@@ -189,9 +176,14 @@ class Bluetooth {
       for (final item in result) {
         try {
           items.add(WebBluetoothDevice.fromJSObject(item));
-        } on UnsupportedError {
-          debugPrint(
-              'flutter_web_bluetooth: Could not convert known device to BluetoothDevice');
+        } catch (e) {
+          if (e is UnsupportedError) {
+            print(
+                'flutter_web_bluetooth: Could not convert known device to BluetoothDevice. Error: "${e
+                    .message}"');
+          } else {
+            throw e;
+          }
         }
       }
       return items;

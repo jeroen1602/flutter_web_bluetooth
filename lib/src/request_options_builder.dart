@@ -24,7 +24,6 @@ class RequestOptionsBuilder {
         this._requestFilters = [],
         this._optionalServices = optionalServices;
 
-  @visibleForTesting
   RequestOptions toRequestOptions() {
     final optionalService = this._optionalServices;
     if (_acceptAllDevices) {
@@ -78,7 +77,6 @@ class RequestFilterBuilder {
     }
   }
 
-  @visibleForTesting
   BluetoothScanFilter toScanFilter() {
     return BluetoothScanFilterHelper.createJsObject(
         _services, _name, _namePrefix) as BluetoothScanFilter;

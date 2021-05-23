@@ -5,7 +5,9 @@ class DeviceNotFoundError extends Error {
 
   DeviceNotFoundError(this.message) : super();
 
-  @protected
+  ///
+  /// A protected value for the sub classes.
+  ///
   String get errorName => 'DeviceNotFoundError';
 
   @override

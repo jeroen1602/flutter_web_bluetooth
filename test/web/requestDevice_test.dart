@@ -11,7 +11,7 @@ class FakeRequestOptions extends Fake implements RequestOptions {}
 
 void main() {
   JSUtilsInterface utils = JSUtilsTesting();
-  setJSUtils(utils);
+  testingSetJSUtils(utils);
 
   NativeBluetoothTesting nativeBluetooth =
       NativeBluetoothTesting(available: true);

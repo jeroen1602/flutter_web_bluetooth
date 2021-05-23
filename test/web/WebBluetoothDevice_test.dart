@@ -8,7 +8,7 @@ import '../helper/NativeBluetoothRemoteGATTServerTesting.dart';
 
 void main() {
   JSUtilsInterface utils = JSUtilsTesting();
-  setJSUtils(utils);
+  testingSetJSUtils(utils);
 
   test('Should parse basic jsObject', () {
     Map<String, dynamic> jsObject = {'id': 'SOME-ID'};

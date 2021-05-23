@@ -1,7 +1,6 @@
 part of flutter_web_bluetooth;
 
 class BluetoothCharacteristic {
-  @visibleForTesting
   BluetoothCharacteristic(this._characteristic) {
     this._characteristic.addEventListener('oncharacteristicvaluechanged',
         (event) {

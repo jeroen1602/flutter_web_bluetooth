@@ -1,7 +1,6 @@
 part of flutter_web_bluetooth;
 
 class BluetoothDevice {
-  @visibleForTesting
   BluetoothDevice(this._bluetoothDevice);
 
   final WebBluetoothDevice _bluetoothDevice;

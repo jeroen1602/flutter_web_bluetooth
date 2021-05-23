@@ -1,7 +1,6 @@
 
 part of bluetooth_web_js_utils;
 
-@visibleForTesting
 abstract class JSUtilsInterface {
   dynamic newObject();
 

@@ -47,8 +47,8 @@ class NativeBluetoothRemoteGATTServer {
               WebBluetoothRemoteGATTService.fromJSObject(item, this.device));
         } catch (e) {
           if (e is UnsupportedError) {
-            debugPrint(
-                'Could not convert known device to BluetoothRemoteGATTService. Error: "${e.message}"');
+            print(
+                'flutter_web_bluetooth: Could not convert known device to BluetoothRemoteGATTService. Error: "${e.message}"');
           } else {
             throw e;
           }
@@ -59,7 +59,6 @@ class NativeBluetoothRemoteGATTServer {
     return [];
   }
 
-  @visibleForTesting
   NativeBluetoothRemoteGATTServer.fromJSObject(this._jsObject, this.device) {
     if (!_JSUtil.hasProperty(_jsObject, 'connected')) {
       throw UnsupportedError('JSObject does not have connected');

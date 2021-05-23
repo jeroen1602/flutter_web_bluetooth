@@ -1,7 +1,6 @@
 part of flutter_web_bluetooth;
 
 class BluetoothDescriptor {
-  @visibleForTesting
   BluetoothDescriptor(this._descriptor);
 
   final WebBluetoothRemoteGATTDescriptor _descriptor;

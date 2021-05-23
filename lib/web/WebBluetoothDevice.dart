@@ -47,8 +47,13 @@ class WebBluetoothDevice {
     if (newGatt != null) {
       try {
         _gatt = NativeBluetoothRemoteGATTServer.fromJSObject(newGatt, this);
-      } on UnsupportedError {
-        debugPrint('Could not convert JSObject to BluetoothRemoteGattServer');
+      } catch (e) {
+        if (e is UnsupportedError) {
+          print(
+              'flutter_web_bluetooth: Could not convert JSObject to BluetoothRemoteGattServer. Error: "${e.message}"');
+        } else {
+          throw e;
+        }
       }
     }
     return _gatt;
@@ -63,7 +68,6 @@ class WebBluetoothDevice {
   // void removeEventListener(
   //     String type, void Function(dynamic) listener);
 
-  @visibleForTesting
   WebBluetoothDevice.fromJSObject(this._jsObject) {
     if (!_JSUtil.hasProperty(_jsObject, 'id')) {
       throw UnsupportedError('JSObject does not have an id.');
