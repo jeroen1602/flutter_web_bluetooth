@@ -1,3 +1,8 @@
+///
+/// A library around dart:js and dart:js_util to help make it testable and
+/// helps making the library compile against dart IO. (It will however not
+/// work).
+///
 library bluetooth_web_js_utils;
 
 import 'dart:js' as JS;

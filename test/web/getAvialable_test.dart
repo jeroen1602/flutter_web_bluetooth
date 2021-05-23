@@ -16,7 +16,7 @@ void main() {
     Object object = {
       'bluetooth': Object(),
     };
-    setNavigator(object);
+    testingSetNavigator(object);
     final available = await Bluetooth.getAvailability();
     expect(available, true, reason: 'Available should return true');
   });
@@ -28,7 +28,7 @@ void main() {
     Object object = {
       'bluetooth': Object(),
     };
-    setNavigator(object);
+    testingSetNavigator(object);
     final available = await Bluetooth.getAvailability();
     expect(available, false, reason: 'Available should return false');
   });
@@ -40,7 +40,7 @@ void main() {
     Object object = {
       'no-bluetooth': Object(),
     };
-    setNavigator(object);
+    testingSetNavigator(object);
     final available = await Bluetooth.getAvailability();
     expect(available, false, reason: 'Available should return false');
   });

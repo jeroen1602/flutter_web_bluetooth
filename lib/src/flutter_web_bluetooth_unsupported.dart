@@ -1,3 +1,4 @@
+/// @nodoc
 library flutter_web_bluetooth;
 
 import 'dart:async';
@@ -32,6 +33,7 @@ part 'flutter_web_bluetooth_interface.dart';
 
 part 'request_options_builder.dart';
 
+/// @nodoc
 class FlutterWebBluetooth extends FlutterWebBluetoothInterface {
   FlutterWebBluetooth._() {
     print(

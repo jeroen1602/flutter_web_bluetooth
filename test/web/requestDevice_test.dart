@@ -18,7 +18,7 @@ void main() {
   setNativeBluetooth(nativeBluetooth);
 
   Object navigator = {'bluetooth': Object()};
-  setNavigator(navigator);
+  testingSetNavigator(navigator);
 
   test('Should get device', () async {
     final available = await Bluetooth.getAvailability();

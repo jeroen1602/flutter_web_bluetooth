@@ -1,8 +1,7 @@
 part of flutter_web_bluetooth;
 
 class SecurityError extends Error {
-  static final _urlReg = RegExp(
-      r"https?:\/\/\S+");
+  static final _urlReg = RegExp(r"https?:\/\/\S+");
   final String uuid;
   String? url;
 

@@ -1,4 +1,3 @@
-
 part of bluetooth_web_js_utils;
 
 abstract class JSUtilsInterface {

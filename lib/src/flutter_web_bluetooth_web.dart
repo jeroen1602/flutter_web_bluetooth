@@ -1,3 +1,8 @@
+///
+/// A wrapper around [js_web_bluetooth] to make it more Dart friendly.
+/// Changes event listeners into [Stream]s and Javascript Promises into
+/// [Future]s.
+///
 library flutter_web_bluetooth;
 
 import 'dart:async';
@@ -77,6 +82,14 @@ class FlutterWebBluetooth extends FlutterWebBluetoothInterface {
     return Bluetooth.onAvailabilitychanged();
   }
 
+  ///
+  /// Get a Set of devices already known to the browser.
+  /// This will return a list of device that the page has connected to at
+  /// least once. This does not mean that the device is in range, just that
+  /// it's paired.
+  ///
+  /// Will return a [Stream] of an empty [Set] if [isAvailable] is false.
+  ///
   @override
   Stream<Set<BluetoothDevice>> get devices {
     if (!_checkedDevices) {

@@ -1,7 +1,9 @@
+/// @nodoc
 library bluetooth_web_js_utils;
 
 part 'JSUtilsInterface.dart';
 
+/// @nodoc
 class JSUtils extends JSUtilsInterface {
   @override
   callConstructor(Object constr, List<Object?>? arguments) {

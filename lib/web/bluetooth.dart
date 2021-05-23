@@ -99,7 +99,11 @@ external Object _navigator;
 
 Object? _navigatorTesting;
 
-void setNavigator(Object navigatorObject) {
+///
+/// Change the navigator object used.
+/// This method is meant for testing!
+///
+void testingSetNavigator(Object navigatorObject) {
   _navigatorTesting = navigatorObject;
 }
 
@@ -179,8 +183,7 @@ class Bluetooth {
         } catch (e) {
           if (e is UnsupportedError) {
             print(
-                'flutter_web_bluetooth: Could not convert known device to BluetoothDevice. Error: "${e
-                    .message}"');
+                'flutter_web_bluetooth: Could not convert known device to BluetoothDevice. Error: "${e.message}"');
           } else {
             throw e;
           }

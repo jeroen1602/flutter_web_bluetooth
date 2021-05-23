@@ -1,3 +1,7 @@
+///
+/// A library to make the Javascript web bluetooth api available in Dart.
+/// It's a direct conversion of the original API without any helpers.
+///
 @JS('window')
 library js_web_bluetooth;
 

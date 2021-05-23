@@ -5,890 +5,1860 @@
 part of flutter_web_bluetooth;
 
 abstract class BluetoothDefaultUUIDS {
-    final String name;
-    final String uuid16;
-    final String uuid;
-    final int ordinal;
+  final String name;
+  final String uuid16;
+  final String uuid;
+  final int ordinal;
 
-    const BluetoothDefaultUUIDS._(this.name, this.uuid16, this.uuid, this.ordinal);
+  const BluetoothDefaultUUIDS._(
+      this.name, this.uuid16, this.uuid, this.ordinal);
 }
 
 class BluetoothDefaultServiceUUIDS extends BluetoothDefaultUUIDS {
+  const BluetoothDefaultServiceUUIDS._(
+      String name, String uuid16, String uuid, int ordinal)
+      : super._(name, uuid16, uuid, ordinal);
 
-    const BluetoothDefaultServiceUUIDS._(String name, String uuid16, String uuid, int ordinal): super._(name, uuid16, uuid, ordinal);
+  static const GENERIC_ATTRIBUTE = BluetoothDefaultServiceUUIDS._(
+      'Generic Attribute', '1801', '00001801-0000-1000-8000-00805f9b34fb', 0);
+  static const IMMEDIATE_ALERT = BluetoothDefaultServiceUUIDS._(
+      'Immediate Alert', '1802', '00001802-0000-1000-8000-00805f9b34fb', 1);
+  static const LINK_LOSS = BluetoothDefaultServiceUUIDS._(
+      'Link Loss', '1803', '00001803-0000-1000-8000-00805f9b34fb', 2);
+  static const TX_POWER = BluetoothDefaultServiceUUIDS._(
+      'Tx Power', '1804', '00001804-0000-1000-8000-00805f9b34fb', 3);
+  static const CURRENT_TIME = BluetoothDefaultServiceUUIDS._(
+      'Current Time', '1805', '00001805-0000-1000-8000-00805f9b34fb', 4);
+  static const REFERENCE_TIME_UPDATE = BluetoothDefaultServiceUUIDS._(
+      'Reference Time Update',
+      '1806',
+      '00001806-0000-1000-8000-00805f9b34fb',
+      5);
+  static const NEXT_DST_CHANGE = BluetoothDefaultServiceUUIDS._(
+      'Next DST Change', '1807', '00001807-0000-1000-8000-00805f9b34fb', 6);
+  static const GLUCOSE = BluetoothDefaultServiceUUIDS._(
+      'Glucose', '1808', '00001808-0000-1000-8000-00805f9b34fb', 7);
+  static const HEALTH_THERMOMETER = BluetoothDefaultServiceUUIDS._(
+      'Health Thermometer', '1809', '00001809-0000-1000-8000-00805f9b34fb', 8);
+  static const DEVICE_INFORMATION = BluetoothDefaultServiceUUIDS._(
+      'Device Information', '180a', '0000180a-0000-1000-8000-00805f9b34fb', 9);
+  static const HEART_RATE = BluetoothDefaultServiceUUIDS._(
+      'Heart Rate', '180d', '0000180d-0000-1000-8000-00805f9b34fb', 10);
+  static const PHONE_ALERT_STATUS = BluetoothDefaultServiceUUIDS._(
+      'Phone Alert Status', '180e', '0000180e-0000-1000-8000-00805f9b34fb', 11);
+  static const BATTERY = BluetoothDefaultServiceUUIDS._(
+      'Battery', '180f', '0000180f-0000-1000-8000-00805f9b34fb', 12);
+  static const BLOOD_PRESSURE = BluetoothDefaultServiceUUIDS._(
+      'Blood Pressure', '1810', '00001810-0000-1000-8000-00805f9b34fb', 13);
+  static const ALERT_NOTIFICATION = BluetoothDefaultServiceUUIDS._(
+      'Alert Notification', '1811', '00001811-0000-1000-8000-00805f9b34fb', 14);
+  static const HUMAN_INTERFACE_DEVICE = BluetoothDefaultServiceUUIDS._(
+      'Human Interface Device',
+      '1812',
+      '00001812-0000-1000-8000-00805f9b34fb',
+      15);
+  static const SCAN_PARAMETERS = BluetoothDefaultServiceUUIDS._(
+      'Scan Parameters', '1813', '00001813-0000-1000-8000-00805f9b34fb', 16);
+  static const RUNNING_SPEED_AND_CADENCE = BluetoothDefaultServiceUUIDS._(
+      'Running Speed and Cadence',
+      '1814',
+      '00001814-0000-1000-8000-00805f9b34fb',
+      17);
+  static const AUTOMATION_IO = BluetoothDefaultServiceUUIDS._(
+      'Automation IO', '1815', '00001815-0000-1000-8000-00805f9b34fb', 18);
+  static const CYCLING_SPEED_AND_CADENCE = BluetoothDefaultServiceUUIDS._(
+      'Cycling Speed and Cadence',
+      '1816',
+      '00001816-0000-1000-8000-00805f9b34fb',
+      19);
+  static const GENERIC_ACCESS = BluetoothDefaultServiceUUIDS._(
+      'Generic Access', '1800', '00001800-0000-1000-8000-00805f9b34fb', 20);
+  static const CYCLING_POWER = BluetoothDefaultServiceUUIDS._(
+      'Cycling Power', '1818', '00001818-0000-1000-8000-00805f9b34fb', 21);
+  static const LOCATION_AND_NAVIGATION = BluetoothDefaultServiceUUIDS._(
+      'Location and Navigation',
+      '1819',
+      '00001819-0000-1000-8000-00805f9b34fb',
+      22);
+  static const ENVIRONMENTAL_SENSING = BluetoothDefaultServiceUUIDS._(
+      'Environmental Sensing',
+      '181a',
+      '0000181a-0000-1000-8000-00805f9b34fb',
+      23);
+  static const BODY_COMPOSITION = BluetoothDefaultServiceUUIDS._(
+      'Body Composition', '181b', '0000181b-0000-1000-8000-00805f9b34fb', 24);
+  static const USER_DATA = BluetoothDefaultServiceUUIDS._(
+      'User Data', '181c', '0000181c-0000-1000-8000-00805f9b34fb', 25);
+  static const WEIGHT_SCALE = BluetoothDefaultServiceUUIDS._(
+      'Weight Scale', '181d', '0000181d-0000-1000-8000-00805f9b34fb', 26);
+  static const BOND_MANAGEMENT = BluetoothDefaultServiceUUIDS._(
+      'Bond Management', '181e', '0000181e-0000-1000-8000-00805f9b34fb', 27);
+  static const CONTINUOUS_GLUCOSE_MONITORING = BluetoothDefaultServiceUUIDS._(
+      'Continuous Glucose Monitoring',
+      '181f',
+      '0000181f-0000-1000-8000-00805f9b34fb',
+      28);
+  static const INTERNET_PROTOCOL_SUPPORT = BluetoothDefaultServiceUUIDS._(
+      'Internet Protocol Support',
+      '1820',
+      '00001820-0000-1000-8000-00805f9b34fb',
+      29);
+  static const INDOOR_POSITIONING = BluetoothDefaultServiceUUIDS._(
+      'Indoor Positioning', '1821', '00001821-0000-1000-8000-00805f9b34fb', 30);
+  static const PULSE_OXIMETER = BluetoothDefaultServiceUUIDS._(
+      'Pulse Oximeter', '1822', '00001822-0000-1000-8000-00805f9b34fb', 31);
+  static const HTTP_PROXY = BluetoothDefaultServiceUUIDS._(
+      'HTTP Proxy', '1823', '00001823-0000-1000-8000-00805f9b34fb', 32);
+  static const TRANSPORT_DISCOVERY = BluetoothDefaultServiceUUIDS._(
+      'Transport Discovery',
+      '1824',
+      '00001824-0000-1000-8000-00805f9b34fb',
+      33);
+  static const OBJECT_TRANSFER = BluetoothDefaultServiceUUIDS._(
+      'Object Transfer', '1825', '00001825-0000-1000-8000-00805f9b34fb', 34);
+  static const FITNESS_MACHINE = BluetoothDefaultServiceUUIDS._(
+      'Fitness Machine', '1826', '00001826-0000-1000-8000-00805f9b34fb', 35);
+  static const MESH_PROVISIONING = BluetoothDefaultServiceUUIDS._(
+      'Mesh Provisioning', '1827', '00001827-0000-1000-8000-00805f9b34fb', 36);
+  static const MESH_PROXY = BluetoothDefaultServiceUUIDS._(
+      'Mesh Proxy', '1828', '00001828-0000-1000-8000-00805f9b34fb', 37);
+  static const RECONNECTION_CONFIGURATION = BluetoothDefaultServiceUUIDS._(
+      'Reconnection Configuration',
+      '1829',
+      '00001829-0000-1000-8000-00805f9b34fb',
+      38);
+  static const INSULIN_DELIVERY = BluetoothDefaultServiceUUIDS._(
+      'Insulin Delivery', '183a', '0000183a-0000-1000-8000-00805f9b34fb', 39);
+  static const BINARY_SENSOR = BluetoothDefaultServiceUUIDS._(
+      'Binary Sensor', '183b', '0000183b-0000-1000-8000-00805f9b34fb', 40);
+  static const EMERGENCY_CONFIGURATION = BluetoothDefaultServiceUUIDS._(
+      'Emergency Configuration',
+      '183c',
+      '0000183c-0000-1000-8000-00805f9b34fb',
+      41);
+  static const PHYSICAL_ACTIVITY_MONITOR = BluetoothDefaultServiceUUIDS._(
+      'Physical Activity Monitor',
+      '183e',
+      '0000183e-0000-1000-8000-00805f9b34fb',
+      42);
+  static const AUDIO_INPUT_CONTROL = BluetoothDefaultServiceUUIDS._(
+      'Audio Input Control',
+      '1843',
+      '00001843-0000-1000-8000-00805f9b34fb',
+      43);
+  static const VOLUME_CONTROL = BluetoothDefaultServiceUUIDS._(
+      'Volume Control', '1844', '00001844-0000-1000-8000-00805f9b34fb', 44);
+  static const VOLUME_OFFSET_CONTROL = BluetoothDefaultServiceUUIDS._(
+      'Volume Offset Control',
+      '1845',
+      '00001845-0000-1000-8000-00805f9b34fb',
+      45);
+  static const COORDINATED_SET_IDENTIFICATION_SERVICE =
+      BluetoothDefaultServiceUUIDS._('Coordinated Set Identification Service',
+          '1846', '00001846-0000-1000-8000-00805f9b34fb', 46);
+  static const DEVICE_TIME = BluetoothDefaultServiceUUIDS._(
+      'Device Time', '1847', '00001847-0000-1000-8000-00805f9b34fb', 47);
+  static const MEDIA_CONTROL_SERVICE = BluetoothDefaultServiceUUIDS._(
+      'Media Control Service',
+      '1848',
+      '00001848-0000-1000-8000-00805f9b34fb',
+      48);
+  static const GENERIC_MEDIA_CONTROL_SERVICE = BluetoothDefaultServiceUUIDS._(
+      'Generic Media Control Service',
+      '1849',
+      '00001849-0000-1000-8000-00805f9b34fb',
+      49);
+  static const CONSTANT_TONE_EXTENSION = BluetoothDefaultServiceUUIDS._(
+      'Constant Tone Extension',
+      '184a',
+      '0000184a-0000-1000-8000-00805f9b34fb',
+      50);
+  static const TELEPHONE_BEARER_SERVICE = BluetoothDefaultServiceUUIDS._(
+      'Telephone Bearer Service',
+      '184b',
+      '0000184b-0000-1000-8000-00805f9b34fb',
+      51);
+  static const GENERIC_TELEPHONE_BEARER_SERVICE =
+      BluetoothDefaultServiceUUIDS._('Generic Telephone Bearer Service', '184c',
+          '0000184c-0000-1000-8000-00805f9b34fb', 52);
+  static const MICROPHONE_CONTROL = BluetoothDefaultServiceUUIDS._(
+      'Microphone Control', '184d', '0000184d-0000-1000-8000-00805f9b34fb', 53);
 
-    static const GENERIC_ATTRIBUTE = BluetoothDefaultServiceUUIDS._('Generic Attribute', '1801', '00001801-0000-1000-8000-00805f9b34fb', 0);
-    static const IMMEDIATE_ALERT = BluetoothDefaultServiceUUIDS._('Immediate Alert', '1802', '00001802-0000-1000-8000-00805f9b34fb', 1);
-    static const LINK_LOSS = BluetoothDefaultServiceUUIDS._('Link Loss', '1803', '00001803-0000-1000-8000-00805f9b34fb', 2);
-    static const TX_POWER = BluetoothDefaultServiceUUIDS._('Tx Power', '1804', '00001804-0000-1000-8000-00805f9b34fb', 3);
-    static const CURRENT_TIME = BluetoothDefaultServiceUUIDS._('Current Time', '1805', '00001805-0000-1000-8000-00805f9b34fb', 4);
-    static const REFERENCE_TIME_UPDATE = BluetoothDefaultServiceUUIDS._('Reference Time Update', '1806', '00001806-0000-1000-8000-00805f9b34fb', 5);
-    static const NEXT_DST_CHANGE = BluetoothDefaultServiceUUIDS._('Next DST Change', '1807', '00001807-0000-1000-8000-00805f9b34fb', 6);
-    static const GLUCOSE = BluetoothDefaultServiceUUIDS._('Glucose', '1808', '00001808-0000-1000-8000-00805f9b34fb', 7);
-    static const HEALTH_THERMOMETER = BluetoothDefaultServiceUUIDS._('Health Thermometer', '1809', '00001809-0000-1000-8000-00805f9b34fb', 8);
-    static const DEVICE_INFORMATION = BluetoothDefaultServiceUUIDS._('Device Information', '180a', '0000180a-0000-1000-8000-00805f9b34fb', 9);
-    static const HEART_RATE = BluetoothDefaultServiceUUIDS._('Heart Rate', '180d', '0000180d-0000-1000-8000-00805f9b34fb', 10);
-    static const PHONE_ALERT_STATUS = BluetoothDefaultServiceUUIDS._('Phone Alert Status', '180e', '0000180e-0000-1000-8000-00805f9b34fb', 11);
-    static const BATTERY = BluetoothDefaultServiceUUIDS._('Battery', '180f', '0000180f-0000-1000-8000-00805f9b34fb', 12);
-    static const BLOOD_PRESSURE = BluetoothDefaultServiceUUIDS._('Blood Pressure', '1810', '00001810-0000-1000-8000-00805f9b34fb', 13);
-    static const ALERT_NOTIFICATION = BluetoothDefaultServiceUUIDS._('Alert Notification', '1811', '00001811-0000-1000-8000-00805f9b34fb', 14);
-    static const HUMAN_INTERFACE_DEVICE = BluetoothDefaultServiceUUIDS._('Human Interface Device', '1812', '00001812-0000-1000-8000-00805f9b34fb', 15);
-    static const SCAN_PARAMETERS = BluetoothDefaultServiceUUIDS._('Scan Parameters', '1813', '00001813-0000-1000-8000-00805f9b34fb', 16);
-    static const RUNNING_SPEED_AND_CADENCE = BluetoothDefaultServiceUUIDS._('Running Speed and Cadence', '1814', '00001814-0000-1000-8000-00805f9b34fb', 17);
-    static const AUTOMATION_IO = BluetoothDefaultServiceUUIDS._('Automation IO', '1815', '00001815-0000-1000-8000-00805f9b34fb', 18);
-    static const CYCLING_SPEED_AND_CADENCE = BluetoothDefaultServiceUUIDS._('Cycling Speed and Cadence', '1816', '00001816-0000-1000-8000-00805f9b34fb', 19);
-    static const GENERIC_ACCESS = BluetoothDefaultServiceUUIDS._('Generic Access', '1800', '00001800-0000-1000-8000-00805f9b34fb', 20);
-    static const CYCLING_POWER = BluetoothDefaultServiceUUIDS._('Cycling Power', '1818', '00001818-0000-1000-8000-00805f9b34fb', 21);
-    static const LOCATION_AND_NAVIGATION = BluetoothDefaultServiceUUIDS._('Location and Navigation', '1819', '00001819-0000-1000-8000-00805f9b34fb', 22);
-    static const ENVIRONMENTAL_SENSING = BluetoothDefaultServiceUUIDS._('Environmental Sensing', '181a', '0000181a-0000-1000-8000-00805f9b34fb', 23);
-    static const BODY_COMPOSITION = BluetoothDefaultServiceUUIDS._('Body Composition', '181b', '0000181b-0000-1000-8000-00805f9b34fb', 24);
-    static const USER_DATA = BluetoothDefaultServiceUUIDS._('User Data', '181c', '0000181c-0000-1000-8000-00805f9b34fb', 25);
-    static const WEIGHT_SCALE = BluetoothDefaultServiceUUIDS._('Weight Scale', '181d', '0000181d-0000-1000-8000-00805f9b34fb', 26);
-    static const BOND_MANAGEMENT = BluetoothDefaultServiceUUIDS._('Bond Management', '181e', '0000181e-0000-1000-8000-00805f9b34fb', 27);
-    static const CONTINUOUS_GLUCOSE_MONITORING = BluetoothDefaultServiceUUIDS._('Continuous Glucose Monitoring', '181f', '0000181f-0000-1000-8000-00805f9b34fb', 28);
-    static const INTERNET_PROTOCOL_SUPPORT = BluetoothDefaultServiceUUIDS._('Internet Protocol Support', '1820', '00001820-0000-1000-8000-00805f9b34fb', 29);
-    static const INDOOR_POSITIONING = BluetoothDefaultServiceUUIDS._('Indoor Positioning', '1821', '00001821-0000-1000-8000-00805f9b34fb', 30);
-    static const PULSE_OXIMETER = BluetoothDefaultServiceUUIDS._('Pulse Oximeter', '1822', '00001822-0000-1000-8000-00805f9b34fb', 31);
-    static const HTTP_PROXY = BluetoothDefaultServiceUUIDS._('HTTP Proxy', '1823', '00001823-0000-1000-8000-00805f9b34fb', 32);
-    static const TRANSPORT_DISCOVERY = BluetoothDefaultServiceUUIDS._('Transport Discovery', '1824', '00001824-0000-1000-8000-00805f9b34fb', 33);
-    static const OBJECT_TRANSFER = BluetoothDefaultServiceUUIDS._('Object Transfer', '1825', '00001825-0000-1000-8000-00805f9b34fb', 34);
-    static const FITNESS_MACHINE = BluetoothDefaultServiceUUIDS._('Fitness Machine', '1826', '00001826-0000-1000-8000-00805f9b34fb', 35);
-    static const MESH_PROVISIONING = BluetoothDefaultServiceUUIDS._('Mesh Provisioning', '1827', '00001827-0000-1000-8000-00805f9b34fb', 36);
-    static const MESH_PROXY = BluetoothDefaultServiceUUIDS._('Mesh Proxy', '1828', '00001828-0000-1000-8000-00805f9b34fb', 37);
-    static const RECONNECTION_CONFIGURATION = BluetoothDefaultServiceUUIDS._('Reconnection Configuration', '1829', '00001829-0000-1000-8000-00805f9b34fb', 38);
-    static const INSULIN_DELIVERY = BluetoothDefaultServiceUUIDS._('Insulin Delivery', '183a', '0000183a-0000-1000-8000-00805f9b34fb', 39);
-    static const BINARY_SENSOR = BluetoothDefaultServiceUUIDS._('Binary Sensor', '183b', '0000183b-0000-1000-8000-00805f9b34fb', 40);
-    static const EMERGENCY_CONFIGURATION = BluetoothDefaultServiceUUIDS._('Emergency Configuration', '183c', '0000183c-0000-1000-8000-00805f9b34fb', 41);
-    static const PHYSICAL_ACTIVITY_MONITOR = BluetoothDefaultServiceUUIDS._('Physical Activity Monitor', '183e', '0000183e-0000-1000-8000-00805f9b34fb', 42);
-    static const AUDIO_INPUT_CONTROL = BluetoothDefaultServiceUUIDS._('Audio Input Control', '1843', '00001843-0000-1000-8000-00805f9b34fb', 43);
-    static const VOLUME_CONTROL = BluetoothDefaultServiceUUIDS._('Volume Control', '1844', '00001844-0000-1000-8000-00805f9b34fb', 44);
-    static const VOLUME_OFFSET_CONTROL = BluetoothDefaultServiceUUIDS._('Volume Offset Control', '1845', '00001845-0000-1000-8000-00805f9b34fb', 45);
-    static const COORDINATED_SET_IDENTIFICATION_SERVICE = BluetoothDefaultServiceUUIDS._('Coordinated Set Identification Service', '1846', '00001846-0000-1000-8000-00805f9b34fb', 46);
-    static const DEVICE_TIME = BluetoothDefaultServiceUUIDS._('Device Time', '1847', '00001847-0000-1000-8000-00805f9b34fb', 47);
-    static const MEDIA_CONTROL_SERVICE = BluetoothDefaultServiceUUIDS._('Media Control Service', '1848', '00001848-0000-1000-8000-00805f9b34fb', 48);
-    static const GENERIC_MEDIA_CONTROL_SERVICE = BluetoothDefaultServiceUUIDS._('Generic Media Control Service', '1849', '00001849-0000-1000-8000-00805f9b34fb', 49);
-    static const CONSTANT_TONE_EXTENSION = BluetoothDefaultServiceUUIDS._('Constant Tone Extension', '184a', '0000184a-0000-1000-8000-00805f9b34fb', 50);
-    static const TELEPHONE_BEARER_SERVICE = BluetoothDefaultServiceUUIDS._('Telephone Bearer Service', '184b', '0000184b-0000-1000-8000-00805f9b34fb', 51);
-    static const GENERIC_TELEPHONE_BEARER_SERVICE = BluetoothDefaultServiceUUIDS._('Generic Telephone Bearer Service', '184c', '0000184c-0000-1000-8000-00805f9b34fb', 52);
-    static const MICROPHONE_CONTROL = BluetoothDefaultServiceUUIDS._('Microphone Control', '184d', '0000184d-0000-1000-8000-00805f9b34fb', 53);
-
-
-    static const VALUES = [
-        GENERIC_ATTRIBUTE,
-        IMMEDIATE_ALERT,
-        LINK_LOSS,
-        TX_POWER,
-        CURRENT_TIME,
-        REFERENCE_TIME_UPDATE,
-        NEXT_DST_CHANGE,
-        GLUCOSE,
-        HEALTH_THERMOMETER,
-        DEVICE_INFORMATION,
-        HEART_RATE,
-        PHONE_ALERT_STATUS,
-        BATTERY,
-        BLOOD_PRESSURE,
-        ALERT_NOTIFICATION,
-        HUMAN_INTERFACE_DEVICE,
-        SCAN_PARAMETERS,
-        RUNNING_SPEED_AND_CADENCE,
-        AUTOMATION_IO,
-        CYCLING_SPEED_AND_CADENCE,
-        GENERIC_ACCESS,
-        CYCLING_POWER,
-        LOCATION_AND_NAVIGATION,
-        ENVIRONMENTAL_SENSING,
-        BODY_COMPOSITION,
-        USER_DATA,
-        WEIGHT_SCALE,
-        BOND_MANAGEMENT,
-        CONTINUOUS_GLUCOSE_MONITORING,
-        INTERNET_PROTOCOL_SUPPORT,
-        INDOOR_POSITIONING,
-        PULSE_OXIMETER,
-        HTTP_PROXY,
-        TRANSPORT_DISCOVERY,
-        OBJECT_TRANSFER,
-        FITNESS_MACHINE,
-        MESH_PROVISIONING,
-        MESH_PROXY,
-        RECONNECTION_CONFIGURATION,
-        INSULIN_DELIVERY,
-        BINARY_SENSOR,
-        EMERGENCY_CONFIGURATION,
-        PHYSICAL_ACTIVITY_MONITOR,
-        AUDIO_INPUT_CONTROL,
-        VOLUME_CONTROL,
-        VOLUME_OFFSET_CONTROL,
-        COORDINATED_SET_IDENTIFICATION_SERVICE,
-        DEVICE_TIME,
-        MEDIA_CONTROL_SERVICE,
-        GENERIC_MEDIA_CONTROL_SERVICE,
-        CONSTANT_TONE_EXTENSION,
-        TELEPHONE_BEARER_SERVICE,
-        GENERIC_TELEPHONE_BEARER_SERVICE,
-        MICROPHONE_CONTROL,
-    ];
+  static const VALUES = [
+    GENERIC_ATTRIBUTE,
+    IMMEDIATE_ALERT,
+    LINK_LOSS,
+    TX_POWER,
+    CURRENT_TIME,
+    REFERENCE_TIME_UPDATE,
+    NEXT_DST_CHANGE,
+    GLUCOSE,
+    HEALTH_THERMOMETER,
+    DEVICE_INFORMATION,
+    HEART_RATE,
+    PHONE_ALERT_STATUS,
+    BATTERY,
+    BLOOD_PRESSURE,
+    ALERT_NOTIFICATION,
+    HUMAN_INTERFACE_DEVICE,
+    SCAN_PARAMETERS,
+    RUNNING_SPEED_AND_CADENCE,
+    AUTOMATION_IO,
+    CYCLING_SPEED_AND_CADENCE,
+    GENERIC_ACCESS,
+    CYCLING_POWER,
+    LOCATION_AND_NAVIGATION,
+    ENVIRONMENTAL_SENSING,
+    BODY_COMPOSITION,
+    USER_DATA,
+    WEIGHT_SCALE,
+    BOND_MANAGEMENT,
+    CONTINUOUS_GLUCOSE_MONITORING,
+    INTERNET_PROTOCOL_SUPPORT,
+    INDOOR_POSITIONING,
+    PULSE_OXIMETER,
+    HTTP_PROXY,
+    TRANSPORT_DISCOVERY,
+    OBJECT_TRANSFER,
+    FITNESS_MACHINE,
+    MESH_PROVISIONING,
+    MESH_PROXY,
+    RECONNECTION_CONFIGURATION,
+    INSULIN_DELIVERY,
+    BINARY_SENSOR,
+    EMERGENCY_CONFIGURATION,
+    PHYSICAL_ACTIVITY_MONITOR,
+    AUDIO_INPUT_CONTROL,
+    VOLUME_CONTROL,
+    VOLUME_OFFSET_CONTROL,
+    COORDINATED_SET_IDENTIFICATION_SERVICE,
+    DEVICE_TIME,
+    MEDIA_CONTROL_SERVICE,
+    GENERIC_MEDIA_CONTROL_SERVICE,
+    CONSTANT_TONE_EXTENSION,
+    TELEPHONE_BEARER_SERVICE,
+    GENERIC_TELEPHONE_BEARER_SERVICE,
+    MICROPHONE_CONTROL,
+  ];
 }
 
 class BluetoothDefaultCharacteristicUUIDS extends BluetoothDefaultUUIDS {
+  const BluetoothDefaultCharacteristicUUIDS._(
+      String name, String uuid16, String uuid, int ordinal)
+      : super._(name, uuid16, uuid, ordinal);
 
-    const BluetoothDefaultCharacteristicUUIDS._(String name, String uuid16, String uuid, int ordinal): super._(name, uuid16, uuid, ordinal);
+  static const DEVICE_NAME = BluetoothDefaultCharacteristicUUIDS._(
+      'Device Name', '2a00', '00002a00-0000-1000-8000-00805f9b34fb', 0);
+  static const APPEARANCE = BluetoothDefaultCharacteristicUUIDS._(
+      'Appearance', '2a01', '00002a01-0000-1000-8000-00805f9b34fb', 1);
+  static const PERIPHERAL_PRIVACY_FLAG = BluetoothDefaultCharacteristicUUIDS._(
+      'Peripheral Privacy Flag',
+      '2a02',
+      '00002a02-0000-1000-8000-00805f9b34fb',
+      2);
+  static const RECONNECTION_ADDRESS = BluetoothDefaultCharacteristicUUIDS._(
+      'Reconnection Address',
+      '2a03',
+      '00002a03-0000-1000-8000-00805f9b34fb',
+      3);
+  static const PERIPHERAL_PREFERRED_CONNECTION_PARAMETERS =
+      BluetoothDefaultCharacteristicUUIDS._(
+          'Peripheral Preferred Connection Parameters',
+          '2a04',
+          '00002a04-0000-1000-8000-00805f9b34fb',
+          4);
+  static const SERVICE_CHANGED = BluetoothDefaultCharacteristicUUIDS._(
+      'Service Changed', '2a05', '00002a05-0000-1000-8000-00805f9b34fb', 5);
+  static const ALERT_LEVEL = BluetoothDefaultCharacteristicUUIDS._(
+      'Alert Level', '2a06', '00002a06-0000-1000-8000-00805f9b34fb', 6);
+  static const TX_POWER_LEVEL = BluetoothDefaultCharacteristicUUIDS._(
+      'Tx Power Level', '2a07', '00002a07-0000-1000-8000-00805f9b34fb', 7);
+  static const DATE_TIME = BluetoothDefaultCharacteristicUUIDS._(
+      'Date Time', '2a08', '00002a08-0000-1000-8000-00805f9b34fb', 8);
+  static const DAY_OF_WEEK = BluetoothDefaultCharacteristicUUIDS._(
+      'Day of Week', '2a09', '00002a09-0000-1000-8000-00805f9b34fb', 9);
+  static const DAY_DATE_TIME = BluetoothDefaultCharacteristicUUIDS._(
+      'Day Date Time', '2a0a', '00002a0a-0000-1000-8000-00805f9b34fb', 10);
+  static const EXACT_TIME_256 = BluetoothDefaultCharacteristicUUIDS._(
+      'Exact Time 256', '2a0c', '00002a0c-0000-1000-8000-00805f9b34fb', 11);
+  static const DST_OFFSET = BluetoothDefaultCharacteristicUUIDS._(
+      'DST Offset', '2a0d', '00002a0d-0000-1000-8000-00805f9b34fb', 12);
+  static const TIME_ZONE = BluetoothDefaultCharacteristicUUIDS._(
+      'Time Zone', '2a0e', '00002a0e-0000-1000-8000-00805f9b34fb', 13);
+  static const LOCAL_TIME_INFORMATION = BluetoothDefaultCharacteristicUUIDS._(
+      'Local Time Information',
+      '2a0f',
+      '00002a0f-0000-1000-8000-00805f9b34fb',
+      14);
+  static const TIME_WITH_DST = BluetoothDefaultCharacteristicUUIDS._(
+      'Time with DST', '2a11', '00002a11-0000-1000-8000-00805f9b34fb', 15);
+  static const TIME_ACCURACY = BluetoothDefaultCharacteristicUUIDS._(
+      'Time Accuracy', '2a12', '00002a12-0000-1000-8000-00805f9b34fb', 16);
+  static const TIME_SOURCE = BluetoothDefaultCharacteristicUUIDS._(
+      'Time Source', '2a13', '00002a13-0000-1000-8000-00805f9b34fb', 17);
+  static const REFERENCE_TIME_INFORMATION =
+      BluetoothDefaultCharacteristicUUIDS._('Reference Time Information',
+          '2a14', '00002a14-0000-1000-8000-00805f9b34fb', 18);
+  static const TIME_UPDATE_CONTROL_POINT =
+      BluetoothDefaultCharacteristicUUIDS._('Time Update Control Point', '2a16',
+          '00002a16-0000-1000-8000-00805f9b34fb', 19);
+  static const TIME_UPDATE_STATE = BluetoothDefaultCharacteristicUUIDS._(
+      'Time Update State', '2a17', '00002a17-0000-1000-8000-00805f9b34fb', 20);
+  static const GLUCOSE_MEASUREMENT = BluetoothDefaultCharacteristicUUIDS._(
+      'Glucose Measurement',
+      '2a18',
+      '00002a18-0000-1000-8000-00805f9b34fb',
+      21);
+  static const BATTERY_LEVEL = BluetoothDefaultCharacteristicUUIDS._(
+      'Battery Level', '2a19', '00002a19-0000-1000-8000-00805f9b34fb', 22);
+  static const TEMPERATURE_MEASUREMENT = BluetoothDefaultCharacteristicUUIDS._(
+      'Temperature Measurement',
+      '2a1c',
+      '00002a1c-0000-1000-8000-00805f9b34fb',
+      23);
+  static const TEMPERATURE_TYPE = BluetoothDefaultCharacteristicUUIDS._(
+      'Temperature Type', '2a1d', '00002a1d-0000-1000-8000-00805f9b34fb', 24);
+  static const INTERMEDIATE_TEMPERATURE = BluetoothDefaultCharacteristicUUIDS._(
+      'Intermediate Temperature',
+      '2a1e',
+      '00002a1e-0000-1000-8000-00805f9b34fb',
+      25);
+  static const MEASUREMENT_INTERVAL = BluetoothDefaultCharacteristicUUIDS._(
+      'Measurement Interval',
+      '2a21',
+      '00002a21-0000-1000-8000-00805f9b34fb',
+      26);
+  static const BOOT_KEYBOARD_INPUT_REPORT =
+      BluetoothDefaultCharacteristicUUIDS._('Boot Keyboard Input Report',
+          '2a22', '00002a22-0000-1000-8000-00805f9b34fb', 27);
+  static const SYSTEM_ID = BluetoothDefaultCharacteristicUUIDS._(
+      'System ID', '2a23', '00002a23-0000-1000-8000-00805f9b34fb', 28);
+  static const MODEL_NUMBER_STRING = BluetoothDefaultCharacteristicUUIDS._(
+      'Model Number String',
+      '2a24',
+      '00002a24-0000-1000-8000-00805f9b34fb',
+      29);
+  static const SERIAL_NUMBER_STRING = BluetoothDefaultCharacteristicUUIDS._(
+      'Serial Number String',
+      '2a25',
+      '00002a25-0000-1000-8000-00805f9b34fb',
+      30);
+  static const FIRMWARE_REVISION_STRING = BluetoothDefaultCharacteristicUUIDS._(
+      'Firmware Revision String',
+      '2a26',
+      '00002a26-0000-1000-8000-00805f9b34fb',
+      31);
+  static const HARDWARE_REVISION_STRING = BluetoothDefaultCharacteristicUUIDS._(
+      'Hardware Revision String',
+      '2a27',
+      '00002a27-0000-1000-8000-00805f9b34fb',
+      32);
+  static const SOFTWARE_REVISION_STRING = BluetoothDefaultCharacteristicUUIDS._(
+      'Software Revision String',
+      '2a28',
+      '00002a28-0000-1000-8000-00805f9b34fb',
+      33);
+  static const MANUFACTURER_NAME_STRING = BluetoothDefaultCharacteristicUUIDS._(
+      'Manufacturer Name String',
+      '2a29',
+      '00002a29-0000-1000-8000-00805f9b34fb',
+      34);
+  static const IEEE_11073_20601_REGULATORY_CERTIFICATION_DATA_LIST =
+      BluetoothDefaultCharacteristicUUIDS._(
+          'IEEE 11073-20601 Regulatory Certification Data List',
+          '2a2a',
+          '00002a2a-0000-1000-8000-00805f9b34fb',
+          35);
+  static const CURRENT_TIME = BluetoothDefaultCharacteristicUUIDS._(
+      'Current Time', '2a2b', '00002a2b-0000-1000-8000-00805f9b34fb', 36);
+  static const SCAN_REFRESH = BluetoothDefaultCharacteristicUUIDS._(
+      'Scan Refresh', '2a31', '00002a31-0000-1000-8000-00805f9b34fb', 37);
+  static const BOOT_KEYBOARD_OUTPUT_REPORT =
+      BluetoothDefaultCharacteristicUUIDS._('Boot Keyboard Output Report',
+          '2a32', '00002a32-0000-1000-8000-00805f9b34fb', 38);
+  static const BOOT_MOUSE_INPUT_REPORT = BluetoothDefaultCharacteristicUUIDS._(
+      'Boot Mouse Input Report',
+      '2a33',
+      '00002a33-0000-1000-8000-00805f9b34fb',
+      39);
+  static const GLUCOSE_MEASUREMENT_CONTEXT =
+      BluetoothDefaultCharacteristicUUIDS._('Glucose Measurement Context',
+          '2a34', '00002a34-0000-1000-8000-00805f9b34fb', 40);
+  static const BLOOD_PRESSURE_MEASUREMENT =
+      BluetoothDefaultCharacteristicUUIDS._('Blood Pressure Measurement',
+          '2a35', '00002a35-0000-1000-8000-00805f9b34fb', 41);
+  static const INTERMEDIATE_CUFF_PRESSURE =
+      BluetoothDefaultCharacteristicUUIDS._('Intermediate Cuff Pressure',
+          '2a36', '00002a36-0000-1000-8000-00805f9b34fb', 42);
+  static const HEART_RATE_MEASUREMENT = BluetoothDefaultCharacteristicUUIDS._(
+      'Heart Rate Measurement',
+      '2a37',
+      '00002a37-0000-1000-8000-00805f9b34fb',
+      43);
+  static const BODY_SENSOR_LOCATION = BluetoothDefaultCharacteristicUUIDS._(
+      'Body Sensor Location',
+      '2a38',
+      '00002a38-0000-1000-8000-00805f9b34fb',
+      44);
+  static const HEART_RATE_CONTROL_POINT = BluetoothDefaultCharacteristicUUIDS._(
+      'Heart Rate Control Point',
+      '2a39',
+      '00002a39-0000-1000-8000-00805f9b34fb',
+      45);
+  static const ALERT_STATUS = BluetoothDefaultCharacteristicUUIDS._(
+      'Alert Status', '2a3f', '00002a3f-0000-1000-8000-00805f9b34fb', 46);
+  static const RINGER_CONTROL_POINT = BluetoothDefaultCharacteristicUUIDS._(
+      'Ringer Control Point',
+      '2a40',
+      '00002a40-0000-1000-8000-00805f9b34fb',
+      47);
+  static const RINGER_SETTING = BluetoothDefaultCharacteristicUUIDS._(
+      'Ringer Setting', '2a41', '00002a41-0000-1000-8000-00805f9b34fb', 48);
+  static const ALERT_CATEGORY_ID_BIT_MASK =
+      BluetoothDefaultCharacteristicUUIDS._('Alert Category ID Bit Mask',
+          '2a42', '00002a42-0000-1000-8000-00805f9b34fb', 49);
+  static const ALERT_CATEGORY_ID = BluetoothDefaultCharacteristicUUIDS._(
+      'Alert Category ID', '2a43', '00002a43-0000-1000-8000-00805f9b34fb', 50);
+  static const ALERT_NOTIFICATION_CONTROL_POINT =
+      BluetoothDefaultCharacteristicUUIDS._('Alert Notification Control Point',
+          '2a44', '00002a44-0000-1000-8000-00805f9b34fb', 51);
+  static const UNREAD_ALERT_STATUS = BluetoothDefaultCharacteristicUUIDS._(
+      'Unread Alert Status',
+      '2a45',
+      '00002a45-0000-1000-8000-00805f9b34fb',
+      52);
+  static const NEW_ALERT = BluetoothDefaultCharacteristicUUIDS._(
+      'New Alert', '2a46', '00002a46-0000-1000-8000-00805f9b34fb', 53);
+  static const SUPPORTED_NEW_ALERT_CATEGORY =
+      BluetoothDefaultCharacteristicUUIDS._('Supported New Alert Category',
+          '2a47', '00002a47-0000-1000-8000-00805f9b34fb', 54);
+  static const SUPPORTED_UNREAD_ALERT_CATEGORY =
+      BluetoothDefaultCharacteristicUUIDS._('Supported Unread Alert Category',
+          '2a48', '00002a48-0000-1000-8000-00805f9b34fb', 55);
+  static const BLOOD_PRESSURE_FEATURE = BluetoothDefaultCharacteristicUUIDS._(
+      'Blood Pressure Feature',
+      '2a49',
+      '00002a49-0000-1000-8000-00805f9b34fb',
+      56);
+  static const HID_INFORMATION = BluetoothDefaultCharacteristicUUIDS._(
+      'HID Information', '2a4a', '00002a4a-0000-1000-8000-00805f9b34fb', 57);
+  static const REPORT_MAP = BluetoothDefaultCharacteristicUUIDS._(
+      'Report Map', '2a4b', '00002a4b-0000-1000-8000-00805f9b34fb', 58);
+  static const HID_CONTROL_POINT = BluetoothDefaultCharacteristicUUIDS._(
+      'HID Control Point', '2a4c', '00002a4c-0000-1000-8000-00805f9b34fb', 59);
+  static const REPORT = BluetoothDefaultCharacteristicUUIDS._(
+      'Report', '2a4d', '00002a4d-0000-1000-8000-00805f9b34fb', 60);
+  static const PROTOCOL_MODE = BluetoothDefaultCharacteristicUUIDS._(
+      'Protocol Mode', '2a4e', '00002a4e-0000-1000-8000-00805f9b34fb', 61);
+  static const SCAN_INTERVAL_WINDOW = BluetoothDefaultCharacteristicUUIDS._(
+      'Scan Interval Window',
+      '2a4f',
+      '00002a4f-0000-1000-8000-00805f9b34fb',
+      62);
+  static const PNP_ID = BluetoothDefaultCharacteristicUUIDS._(
+      'PnP ID', '2a50', '00002a50-0000-1000-8000-00805f9b34fb', 63);
+  static const GLUCOSE_FEATURE = BluetoothDefaultCharacteristicUUIDS._(
+      'Glucose Feature', '2a51', '00002a51-0000-1000-8000-00805f9b34fb', 64);
+  static const RECORD_ACCESS_CONTROL_POINT =
+      BluetoothDefaultCharacteristicUUIDS._('Record Access Control Point',
+          '2a52', '00002a52-0000-1000-8000-00805f9b34fb', 65);
+  static const RSC_MEASUREMENT = BluetoothDefaultCharacteristicUUIDS._(
+      'RSC Measurement', '2a53', '00002a53-0000-1000-8000-00805f9b34fb', 66);
+  static const RSC_FEATURE = BluetoothDefaultCharacteristicUUIDS._(
+      'RSC Feature', '2a54', '00002a54-0000-1000-8000-00805f9b34fb', 67);
+  static const SC_CONTROL_POINT = BluetoothDefaultCharacteristicUUIDS._(
+      'SC Control Point', '2a55', '00002a55-0000-1000-8000-00805f9b34fb', 68);
+  static const AGGREGATE = BluetoothDefaultCharacteristicUUIDS._(
+      'Aggregate', '2a5a', '00002a5a-0000-1000-8000-00805f9b34fb', 69);
+  static const CSC_MEASUREMENT = BluetoothDefaultCharacteristicUUIDS._(
+      'CSC Measurement', '2a5b', '00002a5b-0000-1000-8000-00805f9b34fb', 70);
+  static const CSC_FEATURE = BluetoothDefaultCharacteristicUUIDS._(
+      'CSC Feature', '2a5c', '00002a5c-0000-1000-8000-00805f9b34fb', 71);
+  static const SENSOR_LOCATION = BluetoothDefaultCharacteristicUUIDS._(
+      'Sensor Location', '2a5d', '00002a5d-0000-1000-8000-00805f9b34fb', 72);
+  static const PLX_SPOT_CHECK_MEASUREMENT =
+      BluetoothDefaultCharacteristicUUIDS._('PLX Spot-Check Measurement',
+          '2a5e', '00002a5e-0000-1000-8000-00805f9b34fb', 73);
+  static const PLX_CONTINUOUS_MEASUREMENT =
+      BluetoothDefaultCharacteristicUUIDS._('PLX Continuous Measurement',
+          '2a5f', '00002a5f-0000-1000-8000-00805f9b34fb', 74);
+  static const PLX_FEATURES = BluetoothDefaultCharacteristicUUIDS._(
+      'PLX Features', '2a60', '00002a60-0000-1000-8000-00805f9b34fb', 75);
+  static const CYCLING_POWER_MEASUREMENT =
+      BluetoothDefaultCharacteristicUUIDS._('Cycling Power Measurement', '2a63',
+          '00002a63-0000-1000-8000-00805f9b34fb', 76);
+  static const CYCLING_POWER_VECTOR = BluetoothDefaultCharacteristicUUIDS._(
+      'Cycling Power Vector',
+      '2a64',
+      '00002a64-0000-1000-8000-00805f9b34fb',
+      77);
+  static const CYCLING_POWER_FEATURE = BluetoothDefaultCharacteristicUUIDS._(
+      'Cycling Power Feature',
+      '2a65',
+      '00002a65-0000-1000-8000-00805f9b34fb',
+      78);
+  static const CYCLING_POWER_CONTROL_POINT =
+      BluetoothDefaultCharacteristicUUIDS._('Cycling Power Control Point',
+          '2a66', '00002a66-0000-1000-8000-00805f9b34fb', 79);
+  static const LOCATION_AND_SPEED = BluetoothDefaultCharacteristicUUIDS._(
+      'Location and Speed', '2a67', '00002a67-0000-1000-8000-00805f9b34fb', 80);
+  static const NAVIGATION = BluetoothDefaultCharacteristicUUIDS._(
+      'Navigation', '2a68', '00002a68-0000-1000-8000-00805f9b34fb', 81);
+  static const POSITION_QUALITY = BluetoothDefaultCharacteristicUUIDS._(
+      'Position Quality', '2a69', '00002a69-0000-1000-8000-00805f9b34fb', 82);
+  static const LN_FEATURE = BluetoothDefaultCharacteristicUUIDS._(
+      'LN Feature', '2a6a', '00002a6a-0000-1000-8000-00805f9b34fb', 83);
+  static const LN_CONTROL_POINT = BluetoothDefaultCharacteristicUUIDS._(
+      'LN Control Point', '2a6b', '00002a6b-0000-1000-8000-00805f9b34fb', 84);
+  static const ELEVATION = BluetoothDefaultCharacteristicUUIDS._(
+      'Elevation', '2a6c', '00002a6c-0000-1000-8000-00805f9b34fb', 85);
+  static const PRESSURE = BluetoothDefaultCharacteristicUUIDS._(
+      'Pressure', '2a6d', '00002a6d-0000-1000-8000-00805f9b34fb', 86);
+  static const TEMPERATURE = BluetoothDefaultCharacteristicUUIDS._(
+      'Temperature', '2a6e', '00002a6e-0000-1000-8000-00805f9b34fb', 87);
+  static const HUMIDITY = BluetoothDefaultCharacteristicUUIDS._(
+      'Humidity', '2a6f', '00002a6f-0000-1000-8000-00805f9b34fb', 88);
+  static const TRUE_WIND_SPEED = BluetoothDefaultCharacteristicUUIDS._(
+      'True Wind Speed', '2a70', '00002a70-0000-1000-8000-00805f9b34fb', 89);
+  static const TRUE_WIND_DIRECTION = BluetoothDefaultCharacteristicUUIDS._(
+      'True Wind Direction',
+      '2a71',
+      '00002a71-0000-1000-8000-00805f9b34fb',
+      90);
+  static const APPARENT_WIND_SPEED = BluetoothDefaultCharacteristicUUIDS._(
+      'Apparent Wind Speed',
+      '2a72',
+      '00002a72-0000-1000-8000-00805f9b34fb',
+      91);
+  static const APPARENT_WIND_DIRECTION = BluetoothDefaultCharacteristicUUIDS._(
+      'Apparent Wind Direction',
+      '2a73',
+      '00002a73-0000-1000-8000-00805f9b34fb',
+      92);
+  static const GUST_FACTOR = BluetoothDefaultCharacteristicUUIDS._(
+      'Gust Factor', '2a74', '00002a74-0000-1000-8000-00805f9b34fb', 93);
+  static const POLLEN_CONCENTRATION = BluetoothDefaultCharacteristicUUIDS._(
+      'Pollen Concentration',
+      '2a75',
+      '00002a75-0000-1000-8000-00805f9b34fb',
+      94);
+  static const UV_INDEX = BluetoothDefaultCharacteristicUUIDS._(
+      'UV Index', '2a76', '00002a76-0000-1000-8000-00805f9b34fb', 95);
+  static const IRRADIANCE = BluetoothDefaultCharacteristicUUIDS._(
+      'Irradiance', '2a77', '00002a77-0000-1000-8000-00805f9b34fb', 96);
+  static const RAINFALL = BluetoothDefaultCharacteristicUUIDS._(
+      'Rainfall', '2a78', '00002a78-0000-1000-8000-00805f9b34fb', 97);
+  static const WIND_CHILL = BluetoothDefaultCharacteristicUUIDS._(
+      'Wind Chill', '2a79', '00002a79-0000-1000-8000-00805f9b34fb', 98);
+  static const HEAT_INDEX = BluetoothDefaultCharacteristicUUIDS._(
+      'Heat Index', '2a7a', '00002a7a-0000-1000-8000-00805f9b34fb', 99);
+  static const DEW_POINT = BluetoothDefaultCharacteristicUUIDS._(
+      'Dew Point', '2a7b', '00002a7b-0000-1000-8000-00805f9b34fb', 100);
+  static const DESCRIPTOR_VALUE_CHANGED = BluetoothDefaultCharacteristicUUIDS._(
+      'Descriptor Value Changed',
+      '2a7d',
+      '00002a7d-0000-1000-8000-00805f9b34fb',
+      101);
+  static const AEROBIC_HEART_RATE_LOWER_LIMIT =
+      BluetoothDefaultCharacteristicUUIDS._('Aerobic Heart Rate Lower Limit',
+          '2a7e', '00002a7e-0000-1000-8000-00805f9b34fb', 102);
+  static const AEROBIC_THRESHOLD = BluetoothDefaultCharacteristicUUIDS._(
+      'Aerobic Threshold', '2a7f', '00002a7f-0000-1000-8000-00805f9b34fb', 103);
+  static const AGE = BluetoothDefaultCharacteristicUUIDS._(
+      'Age', '2a80', '00002a80-0000-1000-8000-00805f9b34fb', 104);
+  static const ANAEROBIC_HEART_RATE_LOWER_LIMIT =
+      BluetoothDefaultCharacteristicUUIDS._('Anaerobic Heart Rate Lower Limit',
+          '2a81', '00002a81-0000-1000-8000-00805f9b34fb', 105);
+  static const ANAEROBIC_HEART_RATE_UPPER_LIMIT =
+      BluetoothDefaultCharacteristicUUIDS._('Anaerobic Heart Rate Upper Limit',
+          '2a82', '00002a82-0000-1000-8000-00805f9b34fb', 106);
+  static const ANAEROBIC_THRESHOLD = BluetoothDefaultCharacteristicUUIDS._(
+      'Anaerobic Threshold',
+      '2a83',
+      '00002a83-0000-1000-8000-00805f9b34fb',
+      107);
+  static const AEROBIC_HEART_RATE_UPPER_LIMIT =
+      BluetoothDefaultCharacteristicUUIDS._('Aerobic Heart Rate Upper Limit',
+          '2a84', '00002a84-0000-1000-8000-00805f9b34fb', 108);
+  static const DATE_OF_BIRTH = BluetoothDefaultCharacteristicUUIDS._(
+      'Date of Birth', '2a85', '00002a85-0000-1000-8000-00805f9b34fb', 109);
+  static const DATE_OF_THRESHOLD_ASSESSMENT =
+      BluetoothDefaultCharacteristicUUIDS._('Date of Threshold Assessment',
+          '2a86', '00002a86-0000-1000-8000-00805f9b34fb', 110);
+  static const EMAIL_ADDRESS = BluetoothDefaultCharacteristicUUIDS._(
+      'Email Address', '2a87', '00002a87-0000-1000-8000-00805f9b34fb', 111);
+  static const FAT_BURN_HEART_RATE_LOWER_LIMIT =
+      BluetoothDefaultCharacteristicUUIDS._('Fat Burn Heart Rate Lower Limit',
+          '2a88', '00002a88-0000-1000-8000-00805f9b34fb', 112);
+  static const FAT_BURN_HEART_RATE_UPPER_LIMIT =
+      BluetoothDefaultCharacteristicUUIDS._('Fat Burn Heart Rate Upper Limit',
+          '2a89', '00002a89-0000-1000-8000-00805f9b34fb', 113);
+  static const FIRST_NAME = BluetoothDefaultCharacteristicUUIDS._(
+      'First Name', '2a8a', '00002a8a-0000-1000-8000-00805f9b34fb', 114);
+  static const FIVE_ZONE_HEART_RATE_LIMITS =
+      BluetoothDefaultCharacteristicUUIDS._('Five Zone Heart Rate Limits',
+          '2a8b', '00002a8b-0000-1000-8000-00805f9b34fb', 115);
+  static const GENDER = BluetoothDefaultCharacteristicUUIDS._(
+      'Gender', '2a8c', '00002a8c-0000-1000-8000-00805f9b34fb', 116);
+  static const HEART_RATE_MAX = BluetoothDefaultCharacteristicUUIDS._(
+      'Heart Rate Max', '2a8d', '00002a8d-0000-1000-8000-00805f9b34fb', 117);
+  static const HEIGHT = BluetoothDefaultCharacteristicUUIDS._(
+      'Height', '2a8e', '00002a8e-0000-1000-8000-00805f9b34fb', 118);
+  static const HIP_CIRCUMFERENCE = BluetoothDefaultCharacteristicUUIDS._(
+      'Hip Circumference', '2a8f', '00002a8f-0000-1000-8000-00805f9b34fb', 119);
+  static const LAST_NAME = BluetoothDefaultCharacteristicUUIDS._(
+      'Last Name', '2a90', '00002a90-0000-1000-8000-00805f9b34fb', 120);
+  static const MAXIMUM_RECOMMENDED_HEART_RATE =
+      BluetoothDefaultCharacteristicUUIDS._('Maximum Recommended Heart Rate',
+          '2a91', '00002a91-0000-1000-8000-00805f9b34fb', 121);
+  static const RESTING_HEART_RATE = BluetoothDefaultCharacteristicUUIDS._(
+      'Resting Heart Rate',
+      '2a92',
+      '00002a92-0000-1000-8000-00805f9b34fb',
+      122);
+  static const SPORT_TYPE_FOR_AEROBIC_AND_ANAEROBIC_THRESHOLDS =
+      BluetoothDefaultCharacteristicUUIDS._(
+          'Sport Type for Aerobic and Anaerobic Thresholds',
+          '2a93',
+          '00002a93-0000-1000-8000-00805f9b34fb',
+          123);
+  static const THREE_ZONE_HEART_RATE_LIMITS =
+      BluetoothDefaultCharacteristicUUIDS._('Three Zone Heart Rate Limits',
+          '2a94', '00002a94-0000-1000-8000-00805f9b34fb', 124);
+  static const TWO_ZONE_HEART_RATE_LIMITS =
+      BluetoothDefaultCharacteristicUUIDS._('Two Zone Heart Rate Limits',
+          '2a95', '00002a95-0000-1000-8000-00805f9b34fb', 125);
+  static const VO2_MAX = BluetoothDefaultCharacteristicUUIDS._(
+      'VO2 Max', '2a96', '00002a96-0000-1000-8000-00805f9b34fb', 126);
+  static const WAIST_CIRCUMFERENCE = BluetoothDefaultCharacteristicUUIDS._(
+      'Waist Circumference',
+      '2a97',
+      '00002a97-0000-1000-8000-00805f9b34fb',
+      127);
+  static const WEIGHT = BluetoothDefaultCharacteristicUUIDS._(
+      'Weight', '2a98', '00002a98-0000-1000-8000-00805f9b34fb', 128);
+  static const DATABASE_CHANGE_INCREMENT =
+      BluetoothDefaultCharacteristicUUIDS._('Database Change Increment', '2a99',
+          '00002a99-0000-1000-8000-00805f9b34fb', 129);
+  static const USER_INDEX = BluetoothDefaultCharacteristicUUIDS._(
+      'User Index', '2a9a', '00002a9a-0000-1000-8000-00805f9b34fb', 130);
+  static const BODY_COMPOSITION_FEATURE = BluetoothDefaultCharacteristicUUIDS._(
+      'Body Composition Feature',
+      '2a9b',
+      '00002a9b-0000-1000-8000-00805f9b34fb',
+      131);
+  static const BODY_COMPOSITION_MEASUREMENT =
+      BluetoothDefaultCharacteristicUUIDS._('Body Composition Measurement',
+          '2a9c', '00002a9c-0000-1000-8000-00805f9b34fb', 132);
+  static const WEIGHT_MEASUREMENT = BluetoothDefaultCharacteristicUUIDS._(
+      'Weight Measurement',
+      '2a9d',
+      '00002a9d-0000-1000-8000-00805f9b34fb',
+      133);
+  static const WEIGHT_SCALE_FEATURE = BluetoothDefaultCharacteristicUUIDS._(
+      'Weight Scale Feature',
+      '2a9e',
+      '00002a9e-0000-1000-8000-00805f9b34fb',
+      134);
+  static const USER_CONTROL_POINT = BluetoothDefaultCharacteristicUUIDS._(
+      'User Control Point',
+      '2a9f',
+      '00002a9f-0000-1000-8000-00805f9b34fb',
+      135);
+  static const MAGNETIC_FLUX_DENSITY___2D =
+      BluetoothDefaultCharacteristicUUIDS._('Magnetic Flux Density - 2D',
+          '2aa0', '00002aa0-0000-1000-8000-00805f9b34fb', 136);
+  static const MAGNETIC_FLUX_DENSITY___3D =
+      BluetoothDefaultCharacteristicUUIDS._('Magnetic Flux Density - 3D',
+          '2aa1', '00002aa1-0000-1000-8000-00805f9b34fb', 137);
+  static const LANGUAGE = BluetoothDefaultCharacteristicUUIDS._(
+      'Language', '2aa2', '00002aa2-0000-1000-8000-00805f9b34fb', 138);
+  static const BAROMETRIC_PRESSURE_TREND =
+      BluetoothDefaultCharacteristicUUIDS._('Barometric Pressure Trend', '2aa3',
+          '00002aa3-0000-1000-8000-00805f9b34fb', 139);
+  static const BOND_MANAGEMENT_CONTROL_POINT =
+      BluetoothDefaultCharacteristicUUIDS._('Bond Management Control Point',
+          '2aa4', '00002aa4-0000-1000-8000-00805f9b34fb', 140);
+  static const BOND_MANAGEMENT_FEATURE = BluetoothDefaultCharacteristicUUIDS._(
+      'Bond Management Feature',
+      '2aa5',
+      '00002aa5-0000-1000-8000-00805f9b34fb',
+      141);
+  static const CENTRAL_ADDRESS_RESOLUTION =
+      BluetoothDefaultCharacteristicUUIDS._('Central Address Resolution',
+          '2aa6', '00002aa6-0000-1000-8000-00805f9b34fb', 142);
+  static const CGM_MEASUREMENT = BluetoothDefaultCharacteristicUUIDS._(
+      'CGM Measurement', '2aa7', '00002aa7-0000-1000-8000-00805f9b34fb', 143);
+  static const CGM_FEATURE = BluetoothDefaultCharacteristicUUIDS._(
+      'CGM Feature', '2aa8', '00002aa8-0000-1000-8000-00805f9b34fb', 144);
+  static const CGM_STATUS = BluetoothDefaultCharacteristicUUIDS._(
+      'CGM Status', '2aa9', '00002aa9-0000-1000-8000-00805f9b34fb', 145);
+  static const CGM_SESSION_START_TIME = BluetoothDefaultCharacteristicUUIDS._(
+      'CGM Session Start Time',
+      '2aaa',
+      '00002aaa-0000-1000-8000-00805f9b34fb',
+      146);
+  static const CGM_SESSION_RUN_TIME = BluetoothDefaultCharacteristicUUIDS._(
+      'CGM Session Run Time',
+      '2aab',
+      '00002aab-0000-1000-8000-00805f9b34fb',
+      147);
+  static const CGM_SPECIFIC_OPS_CONTROL_POINT =
+      BluetoothDefaultCharacteristicUUIDS._('CGM Specific Ops Control Point',
+          '2aac', '00002aac-0000-1000-8000-00805f9b34fb', 148);
+  static const INDOOR_POSITIONING_CONFIGURATION =
+      BluetoothDefaultCharacteristicUUIDS._('Indoor Positioning Configuration',
+          '2aad', '00002aad-0000-1000-8000-00805f9b34fb', 149);
+  static const LATITUDE = BluetoothDefaultCharacteristicUUIDS._(
+      'Latitude', '2aae', '00002aae-0000-1000-8000-00805f9b34fb', 150);
+  static const LONGITUDE = BluetoothDefaultCharacteristicUUIDS._(
+      'Longitude', '2aaf', '00002aaf-0000-1000-8000-00805f9b34fb', 151);
+  static const LOCAL_NORTH_COORDINATE = BluetoothDefaultCharacteristicUUIDS._(
+      'Local North Coordinate',
+      '2ab0',
+      '00002ab0-0000-1000-8000-00805f9b34fb',
+      152);
+  static const LOCAL_EAST_COORDINATE = BluetoothDefaultCharacteristicUUIDS._(
+      'Local East Coordinate',
+      '2ab1',
+      '00002ab1-0000-1000-8000-00805f9b34fb',
+      153);
+  static const FLOOR_NUMBER = BluetoothDefaultCharacteristicUUIDS._(
+      'Floor Number', '2ab2', '00002ab2-0000-1000-8000-00805f9b34fb', 154);
+  static const ALTITUDE = BluetoothDefaultCharacteristicUUIDS._(
+      'Altitude', '2ab3', '00002ab3-0000-1000-8000-00805f9b34fb', 155);
+  static const UNCERTAINTY = BluetoothDefaultCharacteristicUUIDS._(
+      'Uncertainty', '2ab4', '00002ab4-0000-1000-8000-00805f9b34fb', 156);
+  static const LOCATION_NAME = BluetoothDefaultCharacteristicUUIDS._(
+      'Location Name', '2ab5', '00002ab5-0000-1000-8000-00805f9b34fb', 157);
+  static const URI = BluetoothDefaultCharacteristicUUIDS._(
+      'URI', '2ab6', '00002ab6-0000-1000-8000-00805f9b34fb', 158);
+  static const HTTP_HEADERS = BluetoothDefaultCharacteristicUUIDS._(
+      'HTTP Headers', '2ab7', '00002ab7-0000-1000-8000-00805f9b34fb', 159);
+  static const HTTP_STATUS_CODE = BluetoothDefaultCharacteristicUUIDS._(
+      'HTTP Status Code', '2ab8', '00002ab8-0000-1000-8000-00805f9b34fb', 160);
+  static const HTTP_ENTITY_BODY = BluetoothDefaultCharacteristicUUIDS._(
+      'HTTP Entity Body', '2ab9', '00002ab9-0000-1000-8000-00805f9b34fb', 161);
+  static const HTTP_CONTROL_POINT = BluetoothDefaultCharacteristicUUIDS._(
+      'HTTP Control Point',
+      '2aba',
+      '00002aba-0000-1000-8000-00805f9b34fb',
+      162);
+  static const HTTPS_SECURITY = BluetoothDefaultCharacteristicUUIDS._(
+      'HTTPS Security', '2abb', '00002abb-0000-1000-8000-00805f9b34fb', 163);
+  static const TDS_CONTROL_POINT = BluetoothDefaultCharacteristicUUIDS._(
+      'TDS Control Point', '2abc', '00002abc-0000-1000-8000-00805f9b34fb', 164);
+  static const OTS_FEATURE = BluetoothDefaultCharacteristicUUIDS._(
+      'OTS Feature', '2abd', '00002abd-0000-1000-8000-00805f9b34fb', 165);
+  static const OBJECT_NAME = BluetoothDefaultCharacteristicUUIDS._(
+      'object name', '2abe', '00002abe-0000-1000-8000-00805f9b34fb', 166);
+  static const OBJECT_TYPE = BluetoothDefaultCharacteristicUUIDS._(
+      'object type', '2abf', '00002abf-0000-1000-8000-00805f9b34fb', 167);
+  static const OBJECT_SIZE = BluetoothDefaultCharacteristicUUIDS._(
+      'object size', '2ac0', '00002ac0-0000-1000-8000-00805f9b34fb', 168);
+  static const OBJECT_FIRST_CREATED = BluetoothDefaultCharacteristicUUIDS._(
+      'object first created',
+      '2ac1',
+      '00002ac1-0000-1000-8000-00805f9b34fb',
+      169);
+  static const OBJECT_LAST_MODIFIED = BluetoothDefaultCharacteristicUUIDS._(
+      'object last modified',
+      '2ac2',
+      '00002ac2-0000-1000-8000-00805f9b34fb',
+      170);
+  static const OBJECT_ID = BluetoothDefaultCharacteristicUUIDS._(
+      'object ID', '2ac3', '00002ac3-0000-1000-8000-00805f9b34fb', 171);
+  static const OBJECT_PROPERTIES = BluetoothDefaultCharacteristicUUIDS._(
+      'object properties', '2ac4', '00002ac4-0000-1000-8000-00805f9b34fb', 172);
+  static const OBJECT_ACTIONCONTROL_POINT =
+      BluetoothDefaultCharacteristicUUIDS._('object actioncontrol point',
+          '2ac5', '00002ac5-0000-1000-8000-00805f9b34fb', 173);
+  static const OBJECT_LIST_CONTROL_POINT =
+      BluetoothDefaultCharacteristicUUIDS._('object list control point', '2ac6',
+          '00002ac6-0000-1000-8000-00805f9b34fb', 174);
+  static const OBJECT_LIST_FILTER = BluetoothDefaultCharacteristicUUIDS._(
+      'object list filter',
+      '2ac7',
+      '00002ac7-0000-1000-8000-00805f9b34fb',
+      175);
+  static const OBJECT_CHANGED = BluetoothDefaultCharacteristicUUIDS._(
+      'object changed', '2ac8', '00002ac8-0000-1000-8000-00805f9b34fb', 176);
+  static const RESOLVABLE_PRIVATE_ADDRESS_ONLY =
+      BluetoothDefaultCharacteristicUUIDS._('Resolvable Private Address Only',
+          '2ac9', '00002ac9-0000-1000-8000-00805f9b34fb', 177);
+  static const UNSPECIFIED = BluetoothDefaultCharacteristicUUIDS._(
+      'Unspecified', '2aca', '00002aca-0000-1000-8000-00805f9b34fb', 178);
+  static const DIRECTORY_LISTING = BluetoothDefaultCharacteristicUUIDS._(
+      'Directory Listing', '2acb', '00002acb-0000-1000-8000-00805f9b34fb', 179);
+  static const FITNESS_MACHINE_FEATURE = BluetoothDefaultCharacteristicUUIDS._(
+      'Fitness Machine Feature',
+      '2acc',
+      '00002acc-0000-1000-8000-00805f9b34fb',
+      180);
+  static const TREADMILL_DATA = BluetoothDefaultCharacteristicUUIDS._(
+      'Treadmill Data', '2acd', '00002acd-0000-1000-8000-00805f9b34fb', 181);
+  static const CROSS_TRAINER_DATA = BluetoothDefaultCharacteristicUUIDS._(
+      'Cross Trainer Data',
+      '2ace',
+      '00002ace-0000-1000-8000-00805f9b34fb',
+      182);
+  static const STEP_CLIMBER_DATA = BluetoothDefaultCharacteristicUUIDS._(
+      'Step Climber Data', '2acf', '00002acf-0000-1000-8000-00805f9b34fb', 183);
+  static const STAIR_CLIMBER_DATA = BluetoothDefaultCharacteristicUUIDS._(
+      'Stair Climber Data',
+      '2ad0',
+      '00002ad0-0000-1000-8000-00805f9b34fb',
+      184);
+  static const ROWER_DATA = BluetoothDefaultCharacteristicUUIDS._(
+      'Rower Data', '2ad1', '00002ad1-0000-1000-8000-00805f9b34fb', 185);
+  static const INDOOR_BIKE_DATA = BluetoothDefaultCharacteristicUUIDS._(
+      'Indoor Bike Data', '2ad2', '00002ad2-0000-1000-8000-00805f9b34fb', 186);
+  static const TRAINING_STATUS = BluetoothDefaultCharacteristicUUIDS._(
+      'Training Status', '2ad3', '00002ad3-0000-1000-8000-00805f9b34fb', 187);
+  static const SUPPORTED_SPEED_RANGE = BluetoothDefaultCharacteristicUUIDS._(
+      'Supported Speed Range',
+      '2ad4',
+      '00002ad4-0000-1000-8000-00805f9b34fb',
+      188);
+  static const SUPPORTED_INCLINATION_RANGE =
+      BluetoothDefaultCharacteristicUUIDS._('Supported Inclination Range',
+          '2ad5', '00002ad5-0000-1000-8000-00805f9b34fb', 189);
+  static const SUPPORTED_RESISTANCE_LEVEL_RANGE =
+      BluetoothDefaultCharacteristicUUIDS._('Supported Resistance Level Range',
+          '2ad6', '00002ad6-0000-1000-8000-00805f9b34fb', 190);
+  static const SUPPORTED_HEART_RATE_RANGE =
+      BluetoothDefaultCharacteristicUUIDS._('Supported Heart Rate Range',
+          '2ad7', '00002ad7-0000-1000-8000-00805f9b34fb', 191);
+  static const SUPPORTED_POWER_RANGE = BluetoothDefaultCharacteristicUUIDS._(
+      'Supported Power Range',
+      '2ad8',
+      '00002ad8-0000-1000-8000-00805f9b34fb',
+      192);
+  static const FITNESS_MACHINE_CONTROL_POINT =
+      BluetoothDefaultCharacteristicUUIDS._('Fitness Machine Control Point',
+          '2ad9', '00002ad9-0000-1000-8000-00805f9b34fb', 193);
+  static const FITNESS_MACHINE_STATUS = BluetoothDefaultCharacteristicUUIDS._(
+      'Fitness Machine Status',
+      '2ada',
+      '00002ada-0000-1000-8000-00805f9b34fb',
+      194);
+  static const MESH_PROVISIONING_DATA_IN =
+      BluetoothDefaultCharacteristicUUIDS._('Mesh Provisioning Data In', '2adb',
+          '00002adb-0000-1000-8000-00805f9b34fb', 195);
+  static const MESH_PROVISIONING_DATA_OUT =
+      BluetoothDefaultCharacteristicUUIDS._('Mesh Provisioning Data Out',
+          '2adc', '00002adc-0000-1000-8000-00805f9b34fb', 196);
+  static const MESH_PROXY_DATA_IN = BluetoothDefaultCharacteristicUUIDS._(
+      'Mesh Proxy Data In',
+      '2add',
+      '00002add-0000-1000-8000-00805f9b34fb',
+      197);
+  static const MESH_PROXY_DATA_OUT = BluetoothDefaultCharacteristicUUIDS._(
+      'Mesh Proxy Data Out',
+      '2ade',
+      '00002ade-0000-1000-8000-00805f9b34fb',
+      198);
+  static const AVERAGE_CURRENT = BluetoothDefaultCharacteristicUUIDS._(
+      'Average Current', '2ae0', '00002ae0-0000-1000-8000-00805f9b34fb', 199);
+  static const AVERAGE_VOLTAGE = BluetoothDefaultCharacteristicUUIDS._(
+      'Average Voltage', '2ae1', '00002ae1-0000-1000-8000-00805f9b34fb', 200);
+  static const BOOLEAN = BluetoothDefaultCharacteristicUUIDS._(
+      'Boolean', '2ae2', '00002ae2-0000-1000-8000-00805f9b34fb', 201);
+  static const CHROMATIC_DISTANCE_FROM_PLANCKIAN =
+      BluetoothDefaultCharacteristicUUIDS._('Chromatic Distance From Planckian',
+          '2ae3', '00002ae3-0000-1000-8000-00805f9b34fb', 202);
+  static const CHROMATICITY_COORDINATES = BluetoothDefaultCharacteristicUUIDS._(
+      'Chromaticity Coordinates',
+      '2ae4',
+      '00002ae4-0000-1000-8000-00805f9b34fb',
+      203);
+  static const CHROMATICITY_IN_CCT_AND_DUV_VALUES =
+      BluetoothDefaultCharacteristicUUIDS._(
+          'Chromaticity in CCT And Duv Values',
+          '2ae5',
+          '00002ae5-0000-1000-8000-00805f9b34fb',
+          204);
+  static const CHROMATICITY_TOLERANCE = BluetoothDefaultCharacteristicUUIDS._(
+      'Chromaticity Tolerance',
+      '2ae6',
+      '00002ae6-0000-1000-8000-00805f9b34fb',
+      205);
+  static const CIE_13_3_1995_COLOR_RENDERING_INDEX =
+      BluetoothDefaultCharacteristicUUIDS._(
+          'CIE 13.3-1995 Color Rendering Index',
+          '2ae7',
+          '00002ae7-0000-1000-8000-00805f9b34fb',
+          206);
+  static const COEFFICIENT = BluetoothDefaultCharacteristicUUIDS._(
+      'Coefficient', '2ae8', '00002ae8-0000-1000-8000-00805f9b34fb', 207);
+  static const CORRELATED_COLOR_TEMPERATURE =
+      BluetoothDefaultCharacteristicUUIDS._('Correlated Color Temperature',
+          '2ae9', '00002ae9-0000-1000-8000-00805f9b34fb', 208);
+  static const COUNT_16 = BluetoothDefaultCharacteristicUUIDS._(
+      'Count 16', '2aea', '00002aea-0000-1000-8000-00805f9b34fb', 209);
+  static const COUNT_24 = BluetoothDefaultCharacteristicUUIDS._(
+      'Count 24', '2aeb', '00002aeb-0000-1000-8000-00805f9b34fb', 210);
+  static const COUNTRY_CODE = BluetoothDefaultCharacteristicUUIDS._(
+      'Country Code', '2aec', '00002aec-0000-1000-8000-00805f9b34fb', 211);
+  static const DATE_UTC = BluetoothDefaultCharacteristicUUIDS._(
+      'Date UTC', '2aed', '00002aed-0000-1000-8000-00805f9b34fb', 212);
+  static const ELECTRIC_CURRENT = BluetoothDefaultCharacteristicUUIDS._(
+      'Electric Current', '2aee', '00002aee-0000-1000-8000-00805f9b34fb', 213);
+  static const ELECTRIC_CURRENT_RANGE = BluetoothDefaultCharacteristicUUIDS._(
+      'Electric Current Range',
+      '2aef',
+      '00002aef-0000-1000-8000-00805f9b34fb',
+      214);
+  static const ELECTRIC_CURRENT_SPECIFICATION =
+      BluetoothDefaultCharacteristicUUIDS._('Electric Current Specification',
+          '2af0', '00002af0-0000-1000-8000-00805f9b34fb', 215);
+  static const ELECTRIC_CURRENT_STATISTICS =
+      BluetoothDefaultCharacteristicUUIDS._('Electric Current Statistics',
+          '2af1', '00002af1-0000-1000-8000-00805f9b34fb', 216);
+  static const ENERGY = BluetoothDefaultCharacteristicUUIDS._(
+      'Energy', '2af2', '00002af2-0000-1000-8000-00805f9b34fb', 217);
+  static const ENERGY_IN_A_PERIOD_OF_DAY =
+      BluetoothDefaultCharacteristicUUIDS._('Energy In A Period Of Day', '2af3',
+          '00002af3-0000-1000-8000-00805f9b34fb', 218);
+  static const EVENT_STATISTICS = BluetoothDefaultCharacteristicUUIDS._(
+      'Event Statistics', '2af4', '00002af4-0000-1000-8000-00805f9b34fb', 219);
+  static const FIXED_STRING_16 = BluetoothDefaultCharacteristicUUIDS._(
+      'Fixed String 16', '2af5', '00002af5-0000-1000-8000-00805f9b34fb', 220);
+  static const FIXED_STRING_24 = BluetoothDefaultCharacteristicUUIDS._(
+      'Fixed String 24', '2af6', '00002af6-0000-1000-8000-00805f9b34fb', 221);
+  static const FIXED_STRING_36 = BluetoothDefaultCharacteristicUUIDS._(
+      'Fixed String 36', '2af7', '00002af7-0000-1000-8000-00805f9b34fb', 222);
+  static const FIXED_STRING_8 = BluetoothDefaultCharacteristicUUIDS._(
+      'Fixed String 8', '2af8', '00002af8-0000-1000-8000-00805f9b34fb', 223);
+  static const GENERIC_LEVEL = BluetoothDefaultCharacteristicUUIDS._(
+      'Generic Level', '2af9', '00002af9-0000-1000-8000-00805f9b34fb', 224);
+  static const GLOBAL_TRADE_ITEM_NUMBER = BluetoothDefaultCharacteristicUUIDS._(
+      'Global Trade Item Number',
+      '2afa',
+      '00002afa-0000-1000-8000-00805f9b34fb',
+      225);
+  static const ILLUMINANCE = BluetoothDefaultCharacteristicUUIDS._(
+      'Illuminance', '2afb', '00002afb-0000-1000-8000-00805f9b34fb', 226);
+  static const LUMINOUS_EFFICACY = BluetoothDefaultCharacteristicUUIDS._(
+      'Luminous Efficacy', '2afc', '00002afc-0000-1000-8000-00805f9b34fb', 227);
+  static const LUMINOUS_ENERGY = BluetoothDefaultCharacteristicUUIDS._(
+      'Luminous Energy', '2afd', '00002afd-0000-1000-8000-00805f9b34fb', 228);
+  static const LUMINOUS_EXPOSURE = BluetoothDefaultCharacteristicUUIDS._(
+      'Luminous Exposure', '2afe', '00002afe-0000-1000-8000-00805f9b34fb', 229);
+  static const LUMINOUS_FLUX = BluetoothDefaultCharacteristicUUIDS._(
+      'Luminous Flux', '2aff', '00002aff-0000-1000-8000-00805f9b34fb', 230);
+  static const LUMINOUS_FLUX_RANGE = BluetoothDefaultCharacteristicUUIDS._(
+      'Luminous Flux Range',
+      '2b00',
+      '00002b00-0000-1000-8000-00805f9b34fb',
+      231);
+  static const LUMINOUS_INTENSITY = BluetoothDefaultCharacteristicUUIDS._(
+      'Luminous Intensity',
+      '2b01',
+      '00002b01-0000-1000-8000-00805f9b34fb',
+      232);
+  static const MASS_FLOW = BluetoothDefaultCharacteristicUUIDS._(
+      'Mass Flow', '2b02', '00002b02-0000-1000-8000-00805f9b34fb', 233);
+  static const PERCEIVED_LIGHTNESS = BluetoothDefaultCharacteristicUUIDS._(
+      'Perceived Lightness',
+      '2b03',
+      '00002b03-0000-1000-8000-00805f9b34fb',
+      234);
+  static const PERCENTAGE_8 = BluetoothDefaultCharacteristicUUIDS._(
+      'Percentage 8', '2b04', '00002b04-0000-1000-8000-00805f9b34fb', 235);
+  static const POWER = BluetoothDefaultCharacteristicUUIDS._(
+      'Power', '2b05', '00002b05-0000-1000-8000-00805f9b34fb', 236);
+  static const POWER_SPECIFICATION = BluetoothDefaultCharacteristicUUIDS._(
+      'Power Specification',
+      '2b06',
+      '00002b06-0000-1000-8000-00805f9b34fb',
+      237);
+  static const RELATIVE_RUNTIME_IN_A_CURRENT_RANGE =
+      BluetoothDefaultCharacteristicUUIDS._(
+          'Relative Runtime In A Current Range',
+          '2b07',
+          '00002b07-0000-1000-8000-00805f9b34fb',
+          238);
+  static const RELATIVE_RUNTIME_IN_A_GENERIC_LEVEL_RANGE =
+      BluetoothDefaultCharacteristicUUIDS._(
+          'Relative Runtime In A Generic Level Range',
+          '2b08',
+          '00002b08-0000-1000-8000-00805f9b34fb',
+          239);
+  static const RELATIVE_VALUE_IN_A_VOLTAGE_RANGE =
+      BluetoothDefaultCharacteristicUUIDS._('Relative Value In A Voltage Range',
+          '2b09', '00002b09-0000-1000-8000-00805f9b34fb', 240);
+  static const RELATIVE_VALUE_IN_AN_ILLUMINANCE_RANGE =
+      BluetoothDefaultCharacteristicUUIDS._(
+          'Relative Value In An Illuminance Range',
+          '2b0a',
+          '00002b0a-0000-1000-8000-00805f9b34fb',
+          241);
+  static const RELATIVE_VALUE_IN_A_PERIOD_OF_DAY =
+      BluetoothDefaultCharacteristicUUIDS._('Relative Value In A Period Of Day',
+          '2b0b', '00002b0b-0000-1000-8000-00805f9b34fb', 242);
+  static const RELATIVE_VALUE_IN_A_TEMPERATURE_RANGE =
+      BluetoothDefaultCharacteristicUUIDS._(
+          'Relative Value In A Temperature Range',
+          '2b0c',
+          '00002b0c-0000-1000-8000-00805f9b34fb',
+          243);
+  static const TEMPERATURE_8 = BluetoothDefaultCharacteristicUUIDS._(
+      'Temperature 8', '2b0d', '00002b0d-0000-1000-8000-00805f9b34fb', 244);
+  static const TEMPERATURE_8_IN_A_PERIOD_OF_DAY =
+      BluetoothDefaultCharacteristicUUIDS._('Temperature 8 In A Period Of Day',
+          '2b0e', '00002b0e-0000-1000-8000-00805f9b34fb', 245);
+  static const TEMPERATURE_8_STATISTICS = BluetoothDefaultCharacteristicUUIDS._(
+      'Temperature 8 Statistics',
+      '2b0f',
+      '00002b0f-0000-1000-8000-00805f9b34fb',
+      246);
+  static const TEMPERATURE_RANGE = BluetoothDefaultCharacteristicUUIDS._(
+      'Temperature Range', '2b10', '00002b10-0000-1000-8000-00805f9b34fb', 247);
+  static const TEMPERATURE_STATISTICS = BluetoothDefaultCharacteristicUUIDS._(
+      'Temperature Statistics',
+      '2b11',
+      '00002b11-0000-1000-8000-00805f9b34fb',
+      248);
+  static const TIME_DECIHOUR_8 = BluetoothDefaultCharacteristicUUIDS._(
+      'Time Decihour 8', '2b12', '00002b12-0000-1000-8000-00805f9b34fb', 249);
+  static const TIME_EXPONENTIAL_8 = BluetoothDefaultCharacteristicUUIDS._(
+      'Time Exponential 8',
+      '2b13',
+      '00002b13-0000-1000-8000-00805f9b34fb',
+      250);
+  static const TIME_HOUR_24 = BluetoothDefaultCharacteristicUUIDS._(
+      'Time Hour 24', '2b14', '00002b14-0000-1000-8000-00805f9b34fb', 251);
+  static const TIME_MILLISECOND_24 = BluetoothDefaultCharacteristicUUIDS._(
+      'Time Millisecond 24',
+      '2b15',
+      '00002b15-0000-1000-8000-00805f9b34fb',
+      252);
+  static const TIME_SECOND_16 = BluetoothDefaultCharacteristicUUIDS._(
+      'Time Second 16', '2b16', '00002b16-0000-1000-8000-00805f9b34fb', 253);
+  static const TIME_SECOND_8 = BluetoothDefaultCharacteristicUUIDS._(
+      'Time Second 8', '2b17', '00002b17-0000-1000-8000-00805f9b34fb', 254);
+  static const VOLTAGE = BluetoothDefaultCharacteristicUUIDS._(
+      'Voltage', '2b18', '00002b18-0000-1000-8000-00805f9b34fb', 255);
+  static const VOLTAGE_SPECIFICATION = BluetoothDefaultCharacteristicUUIDS._(
+      'Voltage Specification',
+      '2b19',
+      '00002b19-0000-1000-8000-00805f9b34fb',
+      256);
+  static const VOLTAGE_STATISTICS = BluetoothDefaultCharacteristicUUIDS._(
+      'Voltage Statistics',
+      '2b1a',
+      '00002b1a-0000-1000-8000-00805f9b34fb',
+      257);
+  static const VOLUME_FLOW = BluetoothDefaultCharacteristicUUIDS._(
+      'Volume Flow', '2b1b', '00002b1b-0000-1000-8000-00805f9b34fb', 258);
+  static const CHROMATICITY_COORDINATE = BluetoothDefaultCharacteristicUUIDS._(
+      'Chromaticity Coordinate',
+      '2b1c',
+      '00002b1c-0000-1000-8000-00805f9b34fb',
+      259);
+  static const RC_FEATURE = BluetoothDefaultCharacteristicUUIDS._(
+      'RC Feature', '2b1d', '00002b1d-0000-1000-8000-00805f9b34fb', 260);
+  static const RC_SETTINGS = BluetoothDefaultCharacteristicUUIDS._(
+      'RC Settings', '2b1e', '00002b1e-0000-1000-8000-00805f9b34fb', 261);
+  static const RECONNECTION_CONFIGURATION_CONTROL_POINT =
+      BluetoothDefaultCharacteristicUUIDS._(
+          'Reconnection Configuration Control Point',
+          '2b1f',
+          '00002b1f-0000-1000-8000-00805f9b34fb',
+          262);
+  static const IDD_STATUS_CHANGED = BluetoothDefaultCharacteristicUUIDS._(
+      'IDD Status Changed',
+      '2b20',
+      '00002b20-0000-1000-8000-00805f9b34fb',
+      263);
+  static const IDD_STATUS = BluetoothDefaultCharacteristicUUIDS._(
+      'IDD Status', '2b21', '00002b21-0000-1000-8000-00805f9b34fb', 264);
+  static const IDD_ANNUNCIATION_STATUS = BluetoothDefaultCharacteristicUUIDS._(
+      'IDD Annunciation Status',
+      '2b22',
+      '00002b22-0000-1000-8000-00805f9b34fb',
+      265);
+  static const IDD_FEATURES = BluetoothDefaultCharacteristicUUIDS._(
+      'IDD Features', '2b23', '00002b23-0000-1000-8000-00805f9b34fb', 266);
+  static const IDD_STATUS_READER_CONTROL_POINT =
+      BluetoothDefaultCharacteristicUUIDS._('IDD Status Reader Control Point',
+          '2b24', '00002b24-0000-1000-8000-00805f9b34fb', 267);
+  static const IDD_COMMAND_CONTROL_POINT =
+      BluetoothDefaultCharacteristicUUIDS._('IDD Command Control Point', '2b25',
+          '00002b25-0000-1000-8000-00805f9b34fb', 268);
+  static const IDD_COMMAND_DATA = BluetoothDefaultCharacteristicUUIDS._(
+      'IDD Command Data', '2b26', '00002b26-0000-1000-8000-00805f9b34fb', 269);
+  static const IDD_RECORD_ACCESS_CONTROL_POINT =
+      BluetoothDefaultCharacteristicUUIDS._('IDD Record Access Control Point',
+          '2b27', '00002b27-0000-1000-8000-00805f9b34fb', 270);
+  static const IDD_HISTORY_DATA = BluetoothDefaultCharacteristicUUIDS._(
+      'IDD History Data', '2b28', '00002b28-0000-1000-8000-00805f9b34fb', 271);
+  static const CLIENT_SUPPORTED_FEATURES =
+      BluetoothDefaultCharacteristicUUIDS._('Client Supported Features', '2b29',
+          '00002b29-0000-1000-8000-00805f9b34fb', 272);
+  static const DATABASE_HASH = BluetoothDefaultCharacteristicUUIDS._(
+      'Database Hash', '2b2a', '00002b2a-0000-1000-8000-00805f9b34fb', 273);
+  static const BSS_CONTROL_POINT = BluetoothDefaultCharacteristicUUIDS._(
+      'BSS Control Point', '2b2b', '00002b2b-0000-1000-8000-00805f9b34fb', 274);
+  static const BSS_RESPONSE = BluetoothDefaultCharacteristicUUIDS._(
+      'BSS Response', '2b2c', '00002b2c-0000-1000-8000-00805f9b34fb', 275);
+  static const EMERGENCY_ID = BluetoothDefaultCharacteristicUUIDS._(
+      'Emergency ID', '2b2d', '00002b2d-0000-1000-8000-00805f9b34fb', 276);
+  static const EMERGENCY_TEXT = BluetoothDefaultCharacteristicUUIDS._(
+      'Emergency Text', '2b2e', '00002b2e-0000-1000-8000-00805f9b34fb', 277);
+  static const ENHANCED_BLOOD_PRESSURE_MEASUREMENT =
+      BluetoothDefaultCharacteristicUUIDS._(
+          'Enhanced Blood Pressure Measurement',
+          '2b34',
+          '00002b34-0000-1000-8000-00805f9b34fb',
+          278);
+  static const ENHANCED_INTERMEDIATE_CUFF_PRESSURE =
+      BluetoothDefaultCharacteristicUUIDS._(
+          'Enhanced Intermediate Cuff Pressure',
+          '2b35',
+          '00002b35-0000-1000-8000-00805f9b34fb',
+          279);
+  static const BLOOD_PRESSURE_RECORD = BluetoothDefaultCharacteristicUUIDS._(
+      'Blood Pressure Record',
+      '2b36',
+      '00002b36-0000-1000-8000-00805f9b34fb',
+      280);
+  static const BR_EDR_HANDOVER_DATA = BluetoothDefaultCharacteristicUUIDS._(
+      'BR-EDR Handover Data',
+      '2b38',
+      '00002b38-0000-1000-8000-00805f9b34fb',
+      281);
+  static const BLUETOOTH_SIG_DATA = BluetoothDefaultCharacteristicUUIDS._(
+      'Bluetooth SIG Data',
+      '2b39',
+      '00002b39-0000-1000-8000-00805f9b34fb',
+      282);
+  static const SERVER_SUPPORTED_FEATURES =
+      BluetoothDefaultCharacteristicUUIDS._('Server Supported Features', '2b3a',
+          '00002b3a-0000-1000-8000-00805f9b34fb', 283);
+  static const PHYSICAL_ACTIVITY_MONITOR_FEATURES =
+      BluetoothDefaultCharacteristicUUIDS._(
+          'Physical Activity Monitor Features',
+          '2b3b',
+          '00002b3b-0000-1000-8000-00805f9b34fb',
+          284);
+  static const GENERAL_ACTIVITY_INSTANTANEOUS_DATA =
+      BluetoothDefaultCharacteristicUUIDS._(
+          'General Activity Instantaneous Data',
+          '2b3c',
+          '00002b3c-0000-1000-8000-00805f9b34fb',
+          285);
+  static const GENERAL_ACTIVITY_SUMMARY_DATA =
+      BluetoothDefaultCharacteristicUUIDS._('General Activity Summary Data',
+          '2b3d', '00002b3d-0000-1000-8000-00805f9b34fb', 286);
+  static const CARDIORESPIRATORY_ACTIVITY_INSTANTANEOUS_DATA =
+      BluetoothDefaultCharacteristicUUIDS._(
+          'CardioRespiratory Activity Instantaneous Data',
+          '2b3e',
+          '00002b3e-0000-1000-8000-00805f9b34fb',
+          287);
+  static const CARDIORESPIRATORY_ACTIVITY_SUMMARY_DATA =
+      BluetoothDefaultCharacteristicUUIDS._(
+          'CardioRespiratory Activity Summary Data',
+          '2b3f',
+          '00002b3f-0000-1000-8000-00805f9b34fb',
+          288);
+  static const STEP_COUNTER_ACTIVITY_SUMMARY_DATA =
+      BluetoothDefaultCharacteristicUUIDS._(
+          'Step Counter Activity Summary Data',
+          '2b40',
+          '00002b40-0000-1000-8000-00805f9b34fb',
+          289);
+  static const SLEEP_ACTIVITY_INSTANTANEOUS_DATA =
+      BluetoothDefaultCharacteristicUUIDS._('Sleep Activity Instantaneous Data',
+          '2b41', '00002b41-0000-1000-8000-00805f9b34fb', 290);
+  static const SLEEP_ACTIVITY_SUMMARY_DATA =
+      BluetoothDefaultCharacteristicUUIDS._('Sleep Activity Summary Data',
+          '2b42', '00002b42-0000-1000-8000-00805f9b34fb', 291);
+  static const PHYSICAL_ACTIVITY_MONITOR_CONTROL_POINT =
+      BluetoothDefaultCharacteristicUUIDS._(
+          'Physical Activity Monitor Control Point',
+          '2b43',
+          '00002b43-0000-1000-8000-00805f9b34fb',
+          292);
+  static const CURRENT_SESSION = BluetoothDefaultCharacteristicUUIDS._(
+      'Current Session', '2b44', '00002b44-0000-1000-8000-00805f9b34fb', 293);
+  static const SESSION = BluetoothDefaultCharacteristicUUIDS._(
+      'Session', '2b45', '00002b45-0000-1000-8000-00805f9b34fb', 294);
+  static const PREFERRED_UNITS = BluetoothDefaultCharacteristicUUIDS._(
+      'Preferred Units', '2b46', '00002b46-0000-1000-8000-00805f9b34fb', 295);
+  static const HIGH_RESOLUTION_HEIGHT = BluetoothDefaultCharacteristicUUIDS._(
+      'High Resolution Height',
+      '2b47',
+      '00002b47-0000-1000-8000-00805f9b34fb',
+      296);
+  static const MIDDLE_NAME = BluetoothDefaultCharacteristicUUIDS._(
+      'Middle Name', '2b48', '00002b48-0000-1000-8000-00805f9b34fb', 297);
+  static const STRIDE_LENGTH = BluetoothDefaultCharacteristicUUIDS._(
+      'Stride Length', '2b49', '00002b49-0000-1000-8000-00805f9b34fb', 298);
+  static const HANDEDNESS = BluetoothDefaultCharacteristicUUIDS._(
+      'Handedness', '2b4a', '00002b4a-0000-1000-8000-00805f9b34fb', 299);
+  static const DEVICE_WEARING_POSITION = BluetoothDefaultCharacteristicUUIDS._(
+      'Device Wearing Position',
+      '2b4b',
+      '00002b4b-0000-1000-8000-00805f9b34fb',
+      300);
+  static const FOUR_ZONE_HEART_RATE_LIMITS =
+      BluetoothDefaultCharacteristicUUIDS._('Four Zone Heart Rate Limits',
+          '2b4c', '00002b4c-0000-1000-8000-00805f9b34fb', 301);
+  static const HIGH_INTENSITY_EXERCISE_THRESHOLD =
+      BluetoothDefaultCharacteristicUUIDS._('High Intensity Exercise Threshold',
+          '2b4d', '00002b4d-0000-1000-8000-00805f9b34fb', 302);
+  static const ACTIVITY_GOAL = BluetoothDefaultCharacteristicUUIDS._(
+      'Activity Goal', '2b4e', '00002b4e-0000-1000-8000-00805f9b34fb', 303);
+  static const SEDENTARY_INTERVAL_NOTIFICATION =
+      BluetoothDefaultCharacteristicUUIDS._('Sedentary Interval Notification',
+          '2b4f', '00002b4f-0000-1000-8000-00805f9b34fb', 304);
+  static const CALORIC_INTAKE = BluetoothDefaultCharacteristicUUIDS._(
+      'Caloric Intake', '2b50', '00002b50-0000-1000-8000-00805f9b34fb', 305);
+  static const AUDIO_INPUT_STATE = BluetoothDefaultCharacteristicUUIDS._(
+      'Audio Input State', '2b77', '00002b77-0000-1000-8000-00805f9b34fb', 306);
+  static const GAIN_SETTINGS_ATTRIBUTE = BluetoothDefaultCharacteristicUUIDS._(
+      'Gain Settings Attribute',
+      '2b78',
+      '00002b78-0000-1000-8000-00805f9b34fb',
+      307);
+  static const AUDIO_INPUT_TYPE = BluetoothDefaultCharacteristicUUIDS._(
+      'Audio Input Type', '2b79', '00002b79-0000-1000-8000-00805f9b34fb', 308);
+  static const AUDIO_INPUT_STATUS = BluetoothDefaultCharacteristicUUIDS._(
+      'Audio Input Status',
+      '2b7a',
+      '00002b7a-0000-1000-8000-00805f9b34fb',
+      309);
+  static const AUDIO_INPUT_CONTROL_POINT =
+      BluetoothDefaultCharacteristicUUIDS._('Audio Input Control Point', '2b7b',
+          '00002b7b-0000-1000-8000-00805f9b34fb', 310);
+  static const AUDIO_INPUT_DESCRIPTION = BluetoothDefaultCharacteristicUUIDS._(
+      'Audio Input Description',
+      '2b7c',
+      '00002b7c-0000-1000-8000-00805f9b34fb',
+      311);
+  static const VOLUME_STATE = BluetoothDefaultCharacteristicUUIDS._(
+      'Volume State', '2b7d', '00002b7d-0000-1000-8000-00805f9b34fb', 312);
+  static const VOLUME_CONTROL_POINT = BluetoothDefaultCharacteristicUUIDS._(
+      'Volume Control Point',
+      '2b7e',
+      '00002b7e-0000-1000-8000-00805f9b34fb',
+      313);
+  static const VOLUME_FLAGS = BluetoothDefaultCharacteristicUUIDS._(
+      'Volume Flags', '2b7f', '00002b7f-0000-1000-8000-00805f9b34fb', 314);
+  static const OFFSET_STATE = BluetoothDefaultCharacteristicUUIDS._(
+      'Offset State', '2b80', '00002b80-0000-1000-8000-00805f9b34fb', 315);
+  static const AUDIO_LOCATION = BluetoothDefaultCharacteristicUUIDS._(
+      'Audio Location', '2b81', '00002b81-0000-1000-8000-00805f9b34fb', 316);
+  static const VOLUME_OFFSET_CONTROL_POINT =
+      BluetoothDefaultCharacteristicUUIDS._('Volume Offset Control Point',
+          '2b82', '00002b82-0000-1000-8000-00805f9b34fb', 317);
+  static const AUDIO_OUTPUT_DESCRIPTION = BluetoothDefaultCharacteristicUUIDS._(
+      'Audio Output Description',
+      '2b83',
+      '00002b83-0000-1000-8000-00805f9b34fb',
+      318);
+  static const SET_IDENTITY_RESOLVING_KEY_CHARACTERISTIC =
+      BluetoothDefaultCharacteristicUUIDS._(
+          'Set Identity Resolving Key Characteristic',
+          '2b84',
+          '00002b84-0000-1000-8000-00805f9b34fb',
+          319);
+  static const SIZE_CHARACTERISTIC = BluetoothDefaultCharacteristicUUIDS._(
+      'Size Characteristic',
+      '2b85',
+      '00002b85-0000-1000-8000-00805f9b34fb',
+      320);
+  static const LOCK_CHARACTERISTIC = BluetoothDefaultCharacteristicUUIDS._(
+      'Lock Characteristic',
+      '2b86',
+      '00002b86-0000-1000-8000-00805f9b34fb',
+      321);
+  static const RANK_CHARACTERISTIC = BluetoothDefaultCharacteristicUUIDS._(
+      'Rank Characteristic',
+      '2b87',
+      '00002b87-0000-1000-8000-00805f9b34fb',
+      322);
+  static const DEVICE_TIME_FEATURE = BluetoothDefaultCharacteristicUUIDS._(
+      'Device Time Feature',
+      '2b8e',
+      '00002b8e-0000-1000-8000-00805f9b34fb',
+      323);
+  static const DEVICE_TIME_PARAMETERS = BluetoothDefaultCharacteristicUUIDS._(
+      'Device Time Parameters',
+      '2b8f',
+      '00002b8f-0000-1000-8000-00805f9b34fb',
+      324);
+  static const DEVICE_TIME = BluetoothDefaultCharacteristicUUIDS._(
+      'Device Time', '2b90', '00002b90-0000-1000-8000-00805f9b34fb', 325);
+  static const DEVICE_TIME_CONTROL_POINT =
+      BluetoothDefaultCharacteristicUUIDS._('Device Time Control Point', '2b91',
+          '00002b91-0000-1000-8000-00805f9b34fb', 326);
+  static const TIME_CHANGE_LOG_DATA = BluetoothDefaultCharacteristicUUIDS._(
+      'Time Change Log Data',
+      '2b92',
+      '00002b92-0000-1000-8000-00805f9b34fb',
+      327);
+  static const MEDIA_PLAYER_NAME = BluetoothDefaultCharacteristicUUIDS._(
+      'Media Player Name', '2b93', '00002b93-0000-1000-8000-00805f9b34fb', 328);
+  static const MEDIA_PLAYER_ICON_OBJECT_ID =
+      BluetoothDefaultCharacteristicUUIDS._('Media Player Icon Object ID',
+          '2b94', '00002b94-0000-1000-8000-00805f9b34fb', 329);
+  static const MEDIA_PLAYER_ICON_URL = BluetoothDefaultCharacteristicUUIDS._(
+      'Media Player Icon URL',
+      '2b95',
+      '00002b95-0000-1000-8000-00805f9b34fb',
+      330);
+  static const TRACK_CHANGED = BluetoothDefaultCharacteristicUUIDS._(
+      'Track Changed', '2b96', '00002b96-0000-1000-8000-00805f9b34fb', 331);
+  static const TRACK_TITLE = BluetoothDefaultCharacteristicUUIDS._(
+      'Track Title', '2b97', '00002b97-0000-1000-8000-00805f9b34fb', 332);
+  static const TRACK_DURATION = BluetoothDefaultCharacteristicUUIDS._(
+      'Track Duration', '2b98', '00002b98-0000-1000-8000-00805f9b34fb', 333);
+  static const TRACK_POSITION = BluetoothDefaultCharacteristicUUIDS._(
+      'Track Position', '2b99', '00002b99-0000-1000-8000-00805f9b34fb', 334);
+  static const PLAYBACK_SPEED = BluetoothDefaultCharacteristicUUIDS._(
+      'Playback Speed', '2b9a', '00002b9a-0000-1000-8000-00805f9b34fb', 335);
+  static const SEEKING_SPEED = BluetoothDefaultCharacteristicUUIDS._(
+      'Seeking Speed', '2b9b', '00002b9b-0000-1000-8000-00805f9b34fb', 336);
+  static const CURRENT_TRACK_SEGMENTS_OBJECT_ID =
+      BluetoothDefaultCharacteristicUUIDS._('Current Track Segments Object ID',
+          '2b9c', '00002b9c-0000-1000-8000-00805f9b34fb', 337);
+  static const CURRENT_TRACK_OBJECT_ID = BluetoothDefaultCharacteristicUUIDS._(
+      'Current Track Object ID',
+      '2b9d',
+      '00002b9d-0000-1000-8000-00805f9b34fb',
+      338);
+  static const NEXT_TRACK_OBJECT_ID = BluetoothDefaultCharacteristicUUIDS._(
+      'Next Track Object ID',
+      '2b9e',
+      '00002b9e-0000-1000-8000-00805f9b34fb',
+      339);
+  static const PARENT_GROUP_OBJECT_ID = BluetoothDefaultCharacteristicUUIDS._(
+      'Parent Group Object ID',
+      '2b9f',
+      '00002b9f-0000-1000-8000-00805f9b34fb',
+      340);
+  static const CURRENT_GROUP_OBJECT_ID = BluetoothDefaultCharacteristicUUIDS._(
+      'Current Group Object ID',
+      '2ba0',
+      '00002ba0-0000-1000-8000-00805f9b34fb',
+      341);
+  static const PLAYING_ORDER = BluetoothDefaultCharacteristicUUIDS._(
+      'Playing Order', '2ba1', '00002ba1-0000-1000-8000-00805f9b34fb', 342);
+  static const PLAYING_ORDERS_SUPPORTED = BluetoothDefaultCharacteristicUUIDS._(
+      'Playing Orders Supported',
+      '2ba2',
+      '00002ba2-0000-1000-8000-00805f9b34fb',
+      343);
+  static const MEDIA_STATE = BluetoothDefaultCharacteristicUUIDS._(
+      'Media State', '2ba3', '00002ba3-0000-1000-8000-00805f9b34fb', 344);
+  static const MEDIA_CONTROL_POINT = BluetoothDefaultCharacteristicUUIDS._(
+      'Media Control Point',
+      '2ba4',
+      '00002ba4-0000-1000-8000-00805f9b34fb',
+      345);
+  static const MEDIA_CONTROL_POINT_OPCODES_SUPPORTED =
+      BluetoothDefaultCharacteristicUUIDS._(
+          'Media Control Point Opcodes Supported',
+          '2ba5',
+          '00002ba5-0000-1000-8000-00805f9b34fb',
+          346);
+  static const SEARCH_RESULTS_OBJECT_ID = BluetoothDefaultCharacteristicUUIDS._(
+      'Search Results Object ID',
+      '2ba6',
+      '00002ba6-0000-1000-8000-00805f9b34fb',
+      347);
+  static const SEARCH_CONTROL_POINT = BluetoothDefaultCharacteristicUUIDS._(
+      'Search Control Point',
+      '2ba7',
+      '00002ba7-0000-1000-8000-00805f9b34fb',
+      348);
+  static const MEDIA_PLAYER_ICON_OBJECT_TYPE =
+      BluetoothDefaultCharacteristicUUIDS._('Media Player Icon Object Type',
+          '2ba9', '00002ba9-0000-1000-8000-00805f9b34fb', 349);
+  static const TRACK_SEGMENTS_OBJECT_TYPE =
+      BluetoothDefaultCharacteristicUUIDS._('Track Segments Object Type',
+          '2baa', '00002baa-0000-1000-8000-00805f9b34fb', 350);
+  static const TRACK_OBJECT_TYPE = BluetoothDefaultCharacteristicUUIDS._(
+      'Track Object Type', '2bab', '00002bab-0000-1000-8000-00805f9b34fb', 351);
+  static const GROUP_OBJECT_TYPE = BluetoothDefaultCharacteristicUUIDS._(
+      'Group Object Type', '2bac', '00002bac-0000-1000-8000-00805f9b34fb', 352);
+  static const CONSTANT_TONE_EXTENSION_ENABLE =
+      BluetoothDefaultCharacteristicUUIDS._('Constant Tone Extension Enable',
+          '2bad', '00002bad-0000-1000-8000-00805f9b34fb', 353);
+  static const ADVERTISING_CONSTANT_TONE_EXTENSION_MINIMUM_LENGTH =
+      BluetoothDefaultCharacteristicUUIDS._(
+          'Advertising Constant Tone Extension Minimum Length',
+          '2bae',
+          '00002bae-0000-1000-8000-00805f9b34fb',
+          354);
+  static const ADVERTISING_CONSTANT_TONE_EXTENSION_MINIMUM_TRANSMIT_COUNT =
+      BluetoothDefaultCharacteristicUUIDS._(
+          'Advertising Constant Tone Extension Minimum Transmit Count',
+          '2baf',
+          '00002baf-0000-1000-8000-00805f9b34fb',
+          355);
+  static const ADVERTISING_CONSTANT_TONE_EXTENSION_TRANSMIT_DURATION =
+      BluetoothDefaultCharacteristicUUIDS._(
+          'Advertising Constant Tone Extension Transmit Duration',
+          '2bb0',
+          '00002bb0-0000-1000-8000-00805f9b34fb',
+          356);
+  static const ADVERTISING_CONSTANT_TONE_EXTENSION_INTERVAL =
+      BluetoothDefaultCharacteristicUUIDS._(
+          'Advertising Constant Tone Extension Interval',
+          '2bb1',
+          '00002bb1-0000-1000-8000-00805f9b34fb',
+          357);
+  static const ADVERTISING_CONSTANT_TONE_EXTENSION_PHY =
+      BluetoothDefaultCharacteristicUUIDS._(
+          'Advertising Constant Tone Extension PHY',
+          '2bb2',
+          '00002bb2-0000-1000-8000-00805f9b34fb',
+          358);
+  static const BEARER_PROVIDER_NAME = BluetoothDefaultCharacteristicUUIDS._(
+      'Bearer Provider Name',
+      '2bb3',
+      '00002bb3-0000-1000-8000-00805f9b34fb',
+      359);
+  static const BEARER_UCI = BluetoothDefaultCharacteristicUUIDS._(
+      'Bearer UCI', '2bb4', '00002bb4-0000-1000-8000-00805f9b34fb', 360);
+  static const BEARER_TECHNOLOGY = BluetoothDefaultCharacteristicUUIDS._(
+      'Bearer Technology', '2bb5', '00002bb5-0000-1000-8000-00805f9b34fb', 361);
+  static const BEARER_URI_SCHEMES_SUPPORTED_LIST =
+      BluetoothDefaultCharacteristicUUIDS._('Bearer URI Schemes Supported List',
+          '2bb6', '00002bb6-0000-1000-8000-00805f9b34fb', 362);
+  static const BEARER_SIGNAL_STRENGTH = BluetoothDefaultCharacteristicUUIDS._(
+      'Bearer Signal Strength',
+      '2bb7',
+      '00002bb7-0000-1000-8000-00805f9b34fb',
+      363);
+  static const BEARER_SIGNAL_STRENGTH_REPORTING_INTERVAL =
+      BluetoothDefaultCharacteristicUUIDS._(
+          'Bearer Signal Strength Reporting Interval',
+          '2bb8',
+          '00002bb8-0000-1000-8000-00805f9b34fb',
+          364);
+  static const BEARER_LIST_CURRENT_CALLS =
+      BluetoothDefaultCharacteristicUUIDS._('Bearer List Current Calls', '2bb9',
+          '00002bb9-0000-1000-8000-00805f9b34fb', 365);
+  static const CONTENT_CONTROL_ID = BluetoothDefaultCharacteristicUUIDS._(
+      'Content Control ID',
+      '2bba',
+      '00002bba-0000-1000-8000-00805f9b34fb',
+      366);
+  static const STATUS_FLAGS = BluetoothDefaultCharacteristicUUIDS._(
+      'Status Flags', '2bbb', '00002bbb-0000-1000-8000-00805f9b34fb', 367);
+  static const INCOMING_CALL_TARGET_BEARER_URI =
+      BluetoothDefaultCharacteristicUUIDS._('Incoming Call Target Bearer URI',
+          '2bbc', '00002bbc-0000-1000-8000-00805f9b34fb', 368);
+  static const CALL_STATE = BluetoothDefaultCharacteristicUUIDS._(
+      'Call State', '2bbd', '00002bbd-0000-1000-8000-00805f9b34fb', 369);
+  static const CALL_CONTROL_POINT = BluetoothDefaultCharacteristicUUIDS._(
+      'Call Control Point',
+      '2bbe',
+      '00002bbe-0000-1000-8000-00805f9b34fb',
+      370);
+  static const CALL_CONTROL_POINT_OPTIONAL_OPCODES =
+      BluetoothDefaultCharacteristicUUIDS._(
+          'Call Control Point Optional Opcodes',
+          '2bbf',
+          '00002bbf-0000-1000-8000-00805f9b34fb',
+          371);
+  static const TERMINATION_REASON = BluetoothDefaultCharacteristicUUIDS._(
+      'Termination Reason',
+      '2bc0',
+      '00002bc0-0000-1000-8000-00805f9b34fb',
+      372);
+  static const INCOMING_CALL = BluetoothDefaultCharacteristicUUIDS._(
+      'Incoming Call', '2bc1', '00002bc1-0000-1000-8000-00805f9b34fb', 373);
+  static const CALL_FRIENDLY_NAME = BluetoothDefaultCharacteristicUUIDS._(
+      'Call Friendly Name',
+      '2bc2',
+      '00002bc2-0000-1000-8000-00805f9b34fb',
+      374);
+  static const MUTE = BluetoothDefaultCharacteristicUUIDS._(
+      'Mute', '2bc3', '00002bc3-0000-1000-8000-00805f9b34fb', 375);
 
-    static const DEVICE_NAME = BluetoothDefaultCharacteristicUUIDS._('Device Name', '2a00', '00002a00-0000-1000-8000-00805f9b34fb', 0);
-    static const APPEARANCE = BluetoothDefaultCharacteristicUUIDS._('Appearance', '2a01', '00002a01-0000-1000-8000-00805f9b34fb', 1);
-    static const PERIPHERAL_PRIVACY_FLAG = BluetoothDefaultCharacteristicUUIDS._('Peripheral Privacy Flag', '2a02', '00002a02-0000-1000-8000-00805f9b34fb', 2);
-    static const RECONNECTION_ADDRESS = BluetoothDefaultCharacteristicUUIDS._('Reconnection Address', '2a03', '00002a03-0000-1000-8000-00805f9b34fb', 3);
-    static const PERIPHERAL_PREFERRED_CONNECTION_PARAMETERS = BluetoothDefaultCharacteristicUUIDS._('Peripheral Preferred Connection Parameters', '2a04', '00002a04-0000-1000-8000-00805f9b34fb', 4);
-    static const SERVICE_CHANGED = BluetoothDefaultCharacteristicUUIDS._('Service Changed', '2a05', '00002a05-0000-1000-8000-00805f9b34fb', 5);
-    static const ALERT_LEVEL = BluetoothDefaultCharacteristicUUIDS._('Alert Level', '2a06', '00002a06-0000-1000-8000-00805f9b34fb', 6);
-    static const TX_POWER_LEVEL = BluetoothDefaultCharacteristicUUIDS._('Tx Power Level', '2a07', '00002a07-0000-1000-8000-00805f9b34fb', 7);
-    static const DATE_TIME = BluetoothDefaultCharacteristicUUIDS._('Date Time', '2a08', '00002a08-0000-1000-8000-00805f9b34fb', 8);
-    static const DAY_OF_WEEK = BluetoothDefaultCharacteristicUUIDS._('Day of Week', '2a09', '00002a09-0000-1000-8000-00805f9b34fb', 9);
-    static const DAY_DATE_TIME = BluetoothDefaultCharacteristicUUIDS._('Day Date Time', '2a0a', '00002a0a-0000-1000-8000-00805f9b34fb', 10);
-    static const EXACT_TIME_256 = BluetoothDefaultCharacteristicUUIDS._('Exact Time 256', '2a0c', '00002a0c-0000-1000-8000-00805f9b34fb', 11);
-    static const DST_OFFSET = BluetoothDefaultCharacteristicUUIDS._('DST Offset', '2a0d', '00002a0d-0000-1000-8000-00805f9b34fb', 12);
-    static const TIME_ZONE = BluetoothDefaultCharacteristicUUIDS._('Time Zone', '2a0e', '00002a0e-0000-1000-8000-00805f9b34fb', 13);
-    static const LOCAL_TIME_INFORMATION = BluetoothDefaultCharacteristicUUIDS._('Local Time Information', '2a0f', '00002a0f-0000-1000-8000-00805f9b34fb', 14);
-    static const TIME_WITH_DST = BluetoothDefaultCharacteristicUUIDS._('Time with DST', '2a11', '00002a11-0000-1000-8000-00805f9b34fb', 15);
-    static const TIME_ACCURACY = BluetoothDefaultCharacteristicUUIDS._('Time Accuracy', '2a12', '00002a12-0000-1000-8000-00805f9b34fb', 16);
-    static const TIME_SOURCE = BluetoothDefaultCharacteristicUUIDS._('Time Source', '2a13', '00002a13-0000-1000-8000-00805f9b34fb', 17);
-    static const REFERENCE_TIME_INFORMATION = BluetoothDefaultCharacteristicUUIDS._('Reference Time Information', '2a14', '00002a14-0000-1000-8000-00805f9b34fb', 18);
-    static const TIME_UPDATE_CONTROL_POINT = BluetoothDefaultCharacteristicUUIDS._('Time Update Control Point', '2a16', '00002a16-0000-1000-8000-00805f9b34fb', 19);
-    static const TIME_UPDATE_STATE = BluetoothDefaultCharacteristicUUIDS._('Time Update State', '2a17', '00002a17-0000-1000-8000-00805f9b34fb', 20);
-    static const GLUCOSE_MEASUREMENT = BluetoothDefaultCharacteristicUUIDS._('Glucose Measurement', '2a18', '00002a18-0000-1000-8000-00805f9b34fb', 21);
-    static const BATTERY_LEVEL = BluetoothDefaultCharacteristicUUIDS._('Battery Level', '2a19', '00002a19-0000-1000-8000-00805f9b34fb', 22);
-    static const TEMPERATURE_MEASUREMENT = BluetoothDefaultCharacteristicUUIDS._('Temperature Measurement', '2a1c', '00002a1c-0000-1000-8000-00805f9b34fb', 23);
-    static const TEMPERATURE_TYPE = BluetoothDefaultCharacteristicUUIDS._('Temperature Type', '2a1d', '00002a1d-0000-1000-8000-00805f9b34fb', 24);
-    static const INTERMEDIATE_TEMPERATURE = BluetoothDefaultCharacteristicUUIDS._('Intermediate Temperature', '2a1e', '00002a1e-0000-1000-8000-00805f9b34fb', 25);
-    static const MEASUREMENT_INTERVAL = BluetoothDefaultCharacteristicUUIDS._('Measurement Interval', '2a21', '00002a21-0000-1000-8000-00805f9b34fb', 26);
-    static const BOOT_KEYBOARD_INPUT_REPORT = BluetoothDefaultCharacteristicUUIDS._('Boot Keyboard Input Report', '2a22', '00002a22-0000-1000-8000-00805f9b34fb', 27);
-    static const SYSTEM_ID = BluetoothDefaultCharacteristicUUIDS._('System ID', '2a23', '00002a23-0000-1000-8000-00805f9b34fb', 28);
-    static const MODEL_NUMBER_STRING = BluetoothDefaultCharacteristicUUIDS._('Model Number String', '2a24', '00002a24-0000-1000-8000-00805f9b34fb', 29);
-    static const SERIAL_NUMBER_STRING = BluetoothDefaultCharacteristicUUIDS._('Serial Number String', '2a25', '00002a25-0000-1000-8000-00805f9b34fb', 30);
-    static const FIRMWARE_REVISION_STRING = BluetoothDefaultCharacteristicUUIDS._('Firmware Revision String', '2a26', '00002a26-0000-1000-8000-00805f9b34fb', 31);
-    static const HARDWARE_REVISION_STRING = BluetoothDefaultCharacteristicUUIDS._('Hardware Revision String', '2a27', '00002a27-0000-1000-8000-00805f9b34fb', 32);
-    static const SOFTWARE_REVISION_STRING = BluetoothDefaultCharacteristicUUIDS._('Software Revision String', '2a28', '00002a28-0000-1000-8000-00805f9b34fb', 33);
-    static const MANUFACTURER_NAME_STRING = BluetoothDefaultCharacteristicUUIDS._('Manufacturer Name String', '2a29', '00002a29-0000-1000-8000-00805f9b34fb', 34);
-    static const IEEE_11073_20601_REGULATORY_CERTIFICATION_DATA_LIST = BluetoothDefaultCharacteristicUUIDS._('IEEE 11073-20601 Regulatory Certification Data List', '2a2a', '00002a2a-0000-1000-8000-00805f9b34fb', 35);
-    static const CURRENT_TIME = BluetoothDefaultCharacteristicUUIDS._('Current Time', '2a2b', '00002a2b-0000-1000-8000-00805f9b34fb', 36);
-    static const SCAN_REFRESH = BluetoothDefaultCharacteristicUUIDS._('Scan Refresh', '2a31', '00002a31-0000-1000-8000-00805f9b34fb', 37);
-    static const BOOT_KEYBOARD_OUTPUT_REPORT = BluetoothDefaultCharacteristicUUIDS._('Boot Keyboard Output Report', '2a32', '00002a32-0000-1000-8000-00805f9b34fb', 38);
-    static const BOOT_MOUSE_INPUT_REPORT = BluetoothDefaultCharacteristicUUIDS._('Boot Mouse Input Report', '2a33', '00002a33-0000-1000-8000-00805f9b34fb', 39);
-    static const GLUCOSE_MEASUREMENT_CONTEXT = BluetoothDefaultCharacteristicUUIDS._('Glucose Measurement Context', '2a34', '00002a34-0000-1000-8000-00805f9b34fb', 40);
-    static const BLOOD_PRESSURE_MEASUREMENT = BluetoothDefaultCharacteristicUUIDS._('Blood Pressure Measurement', '2a35', '00002a35-0000-1000-8000-00805f9b34fb', 41);
-    static const INTERMEDIATE_CUFF_PRESSURE = BluetoothDefaultCharacteristicUUIDS._('Intermediate Cuff Pressure', '2a36', '00002a36-0000-1000-8000-00805f9b34fb', 42);
-    static const HEART_RATE_MEASUREMENT = BluetoothDefaultCharacteristicUUIDS._('Heart Rate Measurement', '2a37', '00002a37-0000-1000-8000-00805f9b34fb', 43);
-    static const BODY_SENSOR_LOCATION = BluetoothDefaultCharacteristicUUIDS._('Body Sensor Location', '2a38', '00002a38-0000-1000-8000-00805f9b34fb', 44);
-    static const HEART_RATE_CONTROL_POINT = BluetoothDefaultCharacteristicUUIDS._('Heart Rate Control Point', '2a39', '00002a39-0000-1000-8000-00805f9b34fb', 45);
-    static const ALERT_STATUS = BluetoothDefaultCharacteristicUUIDS._('Alert Status', '2a3f', '00002a3f-0000-1000-8000-00805f9b34fb', 46);
-    static const RINGER_CONTROL_POINT = BluetoothDefaultCharacteristicUUIDS._('Ringer Control Point', '2a40', '00002a40-0000-1000-8000-00805f9b34fb', 47);
-    static const RINGER_SETTING = BluetoothDefaultCharacteristicUUIDS._('Ringer Setting', '2a41', '00002a41-0000-1000-8000-00805f9b34fb', 48);
-    static const ALERT_CATEGORY_ID_BIT_MASK = BluetoothDefaultCharacteristicUUIDS._('Alert Category ID Bit Mask', '2a42', '00002a42-0000-1000-8000-00805f9b34fb', 49);
-    static const ALERT_CATEGORY_ID = BluetoothDefaultCharacteristicUUIDS._('Alert Category ID', '2a43', '00002a43-0000-1000-8000-00805f9b34fb', 50);
-    static const ALERT_NOTIFICATION_CONTROL_POINT = BluetoothDefaultCharacteristicUUIDS._('Alert Notification Control Point', '2a44', '00002a44-0000-1000-8000-00805f9b34fb', 51);
-    static const UNREAD_ALERT_STATUS = BluetoothDefaultCharacteristicUUIDS._('Unread Alert Status', '2a45', '00002a45-0000-1000-8000-00805f9b34fb', 52);
-    static const NEW_ALERT = BluetoothDefaultCharacteristicUUIDS._('New Alert', '2a46', '00002a46-0000-1000-8000-00805f9b34fb', 53);
-    static const SUPPORTED_NEW_ALERT_CATEGORY = BluetoothDefaultCharacteristicUUIDS._('Supported New Alert Category', '2a47', '00002a47-0000-1000-8000-00805f9b34fb', 54);
-    static const SUPPORTED_UNREAD_ALERT_CATEGORY = BluetoothDefaultCharacteristicUUIDS._('Supported Unread Alert Category', '2a48', '00002a48-0000-1000-8000-00805f9b34fb', 55);
-    static const BLOOD_PRESSURE_FEATURE = BluetoothDefaultCharacteristicUUIDS._('Blood Pressure Feature', '2a49', '00002a49-0000-1000-8000-00805f9b34fb', 56);
-    static const HID_INFORMATION = BluetoothDefaultCharacteristicUUIDS._('HID Information', '2a4a', '00002a4a-0000-1000-8000-00805f9b34fb', 57);
-    static const REPORT_MAP = BluetoothDefaultCharacteristicUUIDS._('Report Map', '2a4b', '00002a4b-0000-1000-8000-00805f9b34fb', 58);
-    static const HID_CONTROL_POINT = BluetoothDefaultCharacteristicUUIDS._('HID Control Point', '2a4c', '00002a4c-0000-1000-8000-00805f9b34fb', 59);
-    static const REPORT = BluetoothDefaultCharacteristicUUIDS._('Report', '2a4d', '00002a4d-0000-1000-8000-00805f9b34fb', 60);
-    static const PROTOCOL_MODE = BluetoothDefaultCharacteristicUUIDS._('Protocol Mode', '2a4e', '00002a4e-0000-1000-8000-00805f9b34fb', 61);
-    static const SCAN_INTERVAL_WINDOW = BluetoothDefaultCharacteristicUUIDS._('Scan Interval Window', '2a4f', '00002a4f-0000-1000-8000-00805f9b34fb', 62);
-    static const PNP_ID = BluetoothDefaultCharacteristicUUIDS._('PnP ID', '2a50', '00002a50-0000-1000-8000-00805f9b34fb', 63);
-    static const GLUCOSE_FEATURE = BluetoothDefaultCharacteristicUUIDS._('Glucose Feature', '2a51', '00002a51-0000-1000-8000-00805f9b34fb', 64);
-    static const RECORD_ACCESS_CONTROL_POINT = BluetoothDefaultCharacteristicUUIDS._('Record Access Control Point', '2a52', '00002a52-0000-1000-8000-00805f9b34fb', 65);
-    static const RSC_MEASUREMENT = BluetoothDefaultCharacteristicUUIDS._('RSC Measurement', '2a53', '00002a53-0000-1000-8000-00805f9b34fb', 66);
-    static const RSC_FEATURE = BluetoothDefaultCharacteristicUUIDS._('RSC Feature', '2a54', '00002a54-0000-1000-8000-00805f9b34fb', 67);
-    static const SC_CONTROL_POINT = BluetoothDefaultCharacteristicUUIDS._('SC Control Point', '2a55', '00002a55-0000-1000-8000-00805f9b34fb', 68);
-    static const AGGREGATE = BluetoothDefaultCharacteristicUUIDS._('Aggregate', '2a5a', '00002a5a-0000-1000-8000-00805f9b34fb', 69);
-    static const CSC_MEASUREMENT = BluetoothDefaultCharacteristicUUIDS._('CSC Measurement', '2a5b', '00002a5b-0000-1000-8000-00805f9b34fb', 70);
-    static const CSC_FEATURE = BluetoothDefaultCharacteristicUUIDS._('CSC Feature', '2a5c', '00002a5c-0000-1000-8000-00805f9b34fb', 71);
-    static const SENSOR_LOCATION = BluetoothDefaultCharacteristicUUIDS._('Sensor Location', '2a5d', '00002a5d-0000-1000-8000-00805f9b34fb', 72);
-    static const PLX_SPOT_CHECK_MEASUREMENT = BluetoothDefaultCharacteristicUUIDS._('PLX Spot-Check Measurement', '2a5e', '00002a5e-0000-1000-8000-00805f9b34fb', 73);
-    static const PLX_CONTINUOUS_MEASUREMENT = BluetoothDefaultCharacteristicUUIDS._('PLX Continuous Measurement', '2a5f', '00002a5f-0000-1000-8000-00805f9b34fb', 74);
-    static const PLX_FEATURES = BluetoothDefaultCharacteristicUUIDS._('PLX Features', '2a60', '00002a60-0000-1000-8000-00805f9b34fb', 75);
-    static const CYCLING_POWER_MEASUREMENT = BluetoothDefaultCharacteristicUUIDS._('Cycling Power Measurement', '2a63', '00002a63-0000-1000-8000-00805f9b34fb', 76);
-    static const CYCLING_POWER_VECTOR = BluetoothDefaultCharacteristicUUIDS._('Cycling Power Vector', '2a64', '00002a64-0000-1000-8000-00805f9b34fb', 77);
-    static const CYCLING_POWER_FEATURE = BluetoothDefaultCharacteristicUUIDS._('Cycling Power Feature', '2a65', '00002a65-0000-1000-8000-00805f9b34fb', 78);
-    static const CYCLING_POWER_CONTROL_POINT = BluetoothDefaultCharacteristicUUIDS._('Cycling Power Control Point', '2a66', '00002a66-0000-1000-8000-00805f9b34fb', 79);
-    static const LOCATION_AND_SPEED = BluetoothDefaultCharacteristicUUIDS._('Location and Speed', '2a67', '00002a67-0000-1000-8000-00805f9b34fb', 80);
-    static const NAVIGATION = BluetoothDefaultCharacteristicUUIDS._('Navigation', '2a68', '00002a68-0000-1000-8000-00805f9b34fb', 81);
-    static const POSITION_QUALITY = BluetoothDefaultCharacteristicUUIDS._('Position Quality', '2a69', '00002a69-0000-1000-8000-00805f9b34fb', 82);
-    static const LN_FEATURE = BluetoothDefaultCharacteristicUUIDS._('LN Feature', '2a6a', '00002a6a-0000-1000-8000-00805f9b34fb', 83);
-    static const LN_CONTROL_POINT = BluetoothDefaultCharacteristicUUIDS._('LN Control Point', '2a6b', '00002a6b-0000-1000-8000-00805f9b34fb', 84);
-    static const ELEVATION = BluetoothDefaultCharacteristicUUIDS._('Elevation', '2a6c', '00002a6c-0000-1000-8000-00805f9b34fb', 85);
-    static const PRESSURE = BluetoothDefaultCharacteristicUUIDS._('Pressure', '2a6d', '00002a6d-0000-1000-8000-00805f9b34fb', 86);
-    static const TEMPERATURE = BluetoothDefaultCharacteristicUUIDS._('Temperature', '2a6e', '00002a6e-0000-1000-8000-00805f9b34fb', 87);
-    static const HUMIDITY = BluetoothDefaultCharacteristicUUIDS._('Humidity', '2a6f', '00002a6f-0000-1000-8000-00805f9b34fb', 88);
-    static const TRUE_WIND_SPEED = BluetoothDefaultCharacteristicUUIDS._('True Wind Speed', '2a70', '00002a70-0000-1000-8000-00805f9b34fb', 89);
-    static const TRUE_WIND_DIRECTION = BluetoothDefaultCharacteristicUUIDS._('True Wind Direction', '2a71', '00002a71-0000-1000-8000-00805f9b34fb', 90);
-    static const APPARENT_WIND_SPEED = BluetoothDefaultCharacteristicUUIDS._('Apparent Wind Speed', '2a72', '00002a72-0000-1000-8000-00805f9b34fb', 91);
-    static const APPARENT_WIND_DIRECTION = BluetoothDefaultCharacteristicUUIDS._('Apparent Wind Direction', '2a73', '00002a73-0000-1000-8000-00805f9b34fb', 92);
-    static const GUST_FACTOR = BluetoothDefaultCharacteristicUUIDS._('Gust Factor', '2a74', '00002a74-0000-1000-8000-00805f9b34fb', 93);
-    static const POLLEN_CONCENTRATION = BluetoothDefaultCharacteristicUUIDS._('Pollen Concentration', '2a75', '00002a75-0000-1000-8000-00805f9b34fb', 94);
-    static const UV_INDEX = BluetoothDefaultCharacteristicUUIDS._('UV Index', '2a76', '00002a76-0000-1000-8000-00805f9b34fb', 95);
-    static const IRRADIANCE = BluetoothDefaultCharacteristicUUIDS._('Irradiance', '2a77', '00002a77-0000-1000-8000-00805f9b34fb', 96);
-    static const RAINFALL = BluetoothDefaultCharacteristicUUIDS._('Rainfall', '2a78', '00002a78-0000-1000-8000-00805f9b34fb', 97);
-    static const WIND_CHILL = BluetoothDefaultCharacteristicUUIDS._('Wind Chill', '2a79', '00002a79-0000-1000-8000-00805f9b34fb', 98);
-    static const HEAT_INDEX = BluetoothDefaultCharacteristicUUIDS._('Heat Index', '2a7a', '00002a7a-0000-1000-8000-00805f9b34fb', 99);
-    static const DEW_POINT = BluetoothDefaultCharacteristicUUIDS._('Dew Point', '2a7b', '00002a7b-0000-1000-8000-00805f9b34fb', 100);
-    static const DESCRIPTOR_VALUE_CHANGED = BluetoothDefaultCharacteristicUUIDS._('Descriptor Value Changed', '2a7d', '00002a7d-0000-1000-8000-00805f9b34fb', 101);
-    static const AEROBIC_HEART_RATE_LOWER_LIMIT = BluetoothDefaultCharacteristicUUIDS._('Aerobic Heart Rate Lower Limit', '2a7e', '00002a7e-0000-1000-8000-00805f9b34fb', 102);
-    static const AEROBIC_THRESHOLD = BluetoothDefaultCharacteristicUUIDS._('Aerobic Threshold', '2a7f', '00002a7f-0000-1000-8000-00805f9b34fb', 103);
-    static const AGE = BluetoothDefaultCharacteristicUUIDS._('Age', '2a80', '00002a80-0000-1000-8000-00805f9b34fb', 104);
-    static const ANAEROBIC_HEART_RATE_LOWER_LIMIT = BluetoothDefaultCharacteristicUUIDS._('Anaerobic Heart Rate Lower Limit', '2a81', '00002a81-0000-1000-8000-00805f9b34fb', 105);
-    static const ANAEROBIC_HEART_RATE_UPPER_LIMIT = BluetoothDefaultCharacteristicUUIDS._('Anaerobic Heart Rate Upper Limit', '2a82', '00002a82-0000-1000-8000-00805f9b34fb', 106);
-    static const ANAEROBIC_THRESHOLD = BluetoothDefaultCharacteristicUUIDS._('Anaerobic Threshold', '2a83', '00002a83-0000-1000-8000-00805f9b34fb', 107);
-    static const AEROBIC_HEART_RATE_UPPER_LIMIT = BluetoothDefaultCharacteristicUUIDS._('Aerobic Heart Rate Upper Limit', '2a84', '00002a84-0000-1000-8000-00805f9b34fb', 108);
-    static const DATE_OF_BIRTH = BluetoothDefaultCharacteristicUUIDS._('Date of Birth', '2a85', '00002a85-0000-1000-8000-00805f9b34fb', 109);
-    static const DATE_OF_THRESHOLD_ASSESSMENT = BluetoothDefaultCharacteristicUUIDS._('Date of Threshold Assessment', '2a86', '00002a86-0000-1000-8000-00805f9b34fb', 110);
-    static const EMAIL_ADDRESS = BluetoothDefaultCharacteristicUUIDS._('Email Address', '2a87', '00002a87-0000-1000-8000-00805f9b34fb', 111);
-    static const FAT_BURN_HEART_RATE_LOWER_LIMIT = BluetoothDefaultCharacteristicUUIDS._('Fat Burn Heart Rate Lower Limit', '2a88', '00002a88-0000-1000-8000-00805f9b34fb', 112);
-    static const FAT_BURN_HEART_RATE_UPPER_LIMIT = BluetoothDefaultCharacteristicUUIDS._('Fat Burn Heart Rate Upper Limit', '2a89', '00002a89-0000-1000-8000-00805f9b34fb', 113);
-    static const FIRST_NAME = BluetoothDefaultCharacteristicUUIDS._('First Name', '2a8a', '00002a8a-0000-1000-8000-00805f9b34fb', 114);
-    static const FIVE_ZONE_HEART_RATE_LIMITS = BluetoothDefaultCharacteristicUUIDS._('Five Zone Heart Rate Limits', '2a8b', '00002a8b-0000-1000-8000-00805f9b34fb', 115);
-    static const GENDER = BluetoothDefaultCharacteristicUUIDS._('Gender', '2a8c', '00002a8c-0000-1000-8000-00805f9b34fb', 116);
-    static const HEART_RATE_MAX = BluetoothDefaultCharacteristicUUIDS._('Heart Rate Max', '2a8d', '00002a8d-0000-1000-8000-00805f9b34fb', 117);
-    static const HEIGHT = BluetoothDefaultCharacteristicUUIDS._('Height', '2a8e', '00002a8e-0000-1000-8000-00805f9b34fb', 118);
-    static const HIP_CIRCUMFERENCE = BluetoothDefaultCharacteristicUUIDS._('Hip Circumference', '2a8f', '00002a8f-0000-1000-8000-00805f9b34fb', 119);
-    static const LAST_NAME = BluetoothDefaultCharacteristicUUIDS._('Last Name', '2a90', '00002a90-0000-1000-8000-00805f9b34fb', 120);
-    static const MAXIMUM_RECOMMENDED_HEART_RATE = BluetoothDefaultCharacteristicUUIDS._('Maximum Recommended Heart Rate', '2a91', '00002a91-0000-1000-8000-00805f9b34fb', 121);
-    static const RESTING_HEART_RATE = BluetoothDefaultCharacteristicUUIDS._('Resting Heart Rate', '2a92', '00002a92-0000-1000-8000-00805f9b34fb', 122);
-    static const SPORT_TYPE_FOR_AEROBIC_AND_ANAEROBIC_THRESHOLDS = BluetoothDefaultCharacteristicUUIDS._('Sport Type for Aerobic and Anaerobic Thresholds', '2a93', '00002a93-0000-1000-8000-00805f9b34fb', 123);
-    static const THREE_ZONE_HEART_RATE_LIMITS = BluetoothDefaultCharacteristicUUIDS._('Three Zone Heart Rate Limits', '2a94', '00002a94-0000-1000-8000-00805f9b34fb', 124);
-    static const TWO_ZONE_HEART_RATE_LIMITS = BluetoothDefaultCharacteristicUUIDS._('Two Zone Heart Rate Limits', '2a95', '00002a95-0000-1000-8000-00805f9b34fb', 125);
-    static const VO2_MAX = BluetoothDefaultCharacteristicUUIDS._('VO2 Max', '2a96', '00002a96-0000-1000-8000-00805f9b34fb', 126);
-    static const WAIST_CIRCUMFERENCE = BluetoothDefaultCharacteristicUUIDS._('Waist Circumference', '2a97', '00002a97-0000-1000-8000-00805f9b34fb', 127);
-    static const WEIGHT = BluetoothDefaultCharacteristicUUIDS._('Weight', '2a98', '00002a98-0000-1000-8000-00805f9b34fb', 128);
-    static const DATABASE_CHANGE_INCREMENT = BluetoothDefaultCharacteristicUUIDS._('Database Change Increment', '2a99', '00002a99-0000-1000-8000-00805f9b34fb', 129);
-    static const USER_INDEX = BluetoothDefaultCharacteristicUUIDS._('User Index', '2a9a', '00002a9a-0000-1000-8000-00805f9b34fb', 130);
-    static const BODY_COMPOSITION_FEATURE = BluetoothDefaultCharacteristicUUIDS._('Body Composition Feature', '2a9b', '00002a9b-0000-1000-8000-00805f9b34fb', 131);
-    static const BODY_COMPOSITION_MEASUREMENT = BluetoothDefaultCharacteristicUUIDS._('Body Composition Measurement', '2a9c', '00002a9c-0000-1000-8000-00805f9b34fb', 132);
-    static const WEIGHT_MEASUREMENT = BluetoothDefaultCharacteristicUUIDS._('Weight Measurement', '2a9d', '00002a9d-0000-1000-8000-00805f9b34fb', 133);
-    static const WEIGHT_SCALE_FEATURE = BluetoothDefaultCharacteristicUUIDS._('Weight Scale Feature', '2a9e', '00002a9e-0000-1000-8000-00805f9b34fb', 134);
-    static const USER_CONTROL_POINT = BluetoothDefaultCharacteristicUUIDS._('User Control Point', '2a9f', '00002a9f-0000-1000-8000-00805f9b34fb', 135);
-    static const MAGNETIC_FLUX_DENSITY___2D = BluetoothDefaultCharacteristicUUIDS._('Magnetic Flux Density - 2D', '2aa0', '00002aa0-0000-1000-8000-00805f9b34fb', 136);
-    static const MAGNETIC_FLUX_DENSITY___3D = BluetoothDefaultCharacteristicUUIDS._('Magnetic Flux Density - 3D', '2aa1', '00002aa1-0000-1000-8000-00805f9b34fb', 137);
-    static const LANGUAGE = BluetoothDefaultCharacteristicUUIDS._('Language', '2aa2', '00002aa2-0000-1000-8000-00805f9b34fb', 138);
-    static const BAROMETRIC_PRESSURE_TREND = BluetoothDefaultCharacteristicUUIDS._('Barometric Pressure Trend', '2aa3', '00002aa3-0000-1000-8000-00805f9b34fb', 139);
-    static const BOND_MANAGEMENT_CONTROL_POINT = BluetoothDefaultCharacteristicUUIDS._('Bond Management Control Point', '2aa4', '00002aa4-0000-1000-8000-00805f9b34fb', 140);
-    static const BOND_MANAGEMENT_FEATURE = BluetoothDefaultCharacteristicUUIDS._('Bond Management Feature', '2aa5', '00002aa5-0000-1000-8000-00805f9b34fb', 141);
-    static const CENTRAL_ADDRESS_RESOLUTION = BluetoothDefaultCharacteristicUUIDS._('Central Address Resolution', '2aa6', '00002aa6-0000-1000-8000-00805f9b34fb', 142);
-    static const CGM_MEASUREMENT = BluetoothDefaultCharacteristicUUIDS._('CGM Measurement', '2aa7', '00002aa7-0000-1000-8000-00805f9b34fb', 143);
-    static const CGM_FEATURE = BluetoothDefaultCharacteristicUUIDS._('CGM Feature', '2aa8', '00002aa8-0000-1000-8000-00805f9b34fb', 144);
-    static const CGM_STATUS = BluetoothDefaultCharacteristicUUIDS._('CGM Status', '2aa9', '00002aa9-0000-1000-8000-00805f9b34fb', 145);
-    static const CGM_SESSION_START_TIME = BluetoothDefaultCharacteristicUUIDS._('CGM Session Start Time', '2aaa', '00002aaa-0000-1000-8000-00805f9b34fb', 146);
-    static const CGM_SESSION_RUN_TIME = BluetoothDefaultCharacteristicUUIDS._('CGM Session Run Time', '2aab', '00002aab-0000-1000-8000-00805f9b34fb', 147);
-    static const CGM_SPECIFIC_OPS_CONTROL_POINT = BluetoothDefaultCharacteristicUUIDS._('CGM Specific Ops Control Point', '2aac', '00002aac-0000-1000-8000-00805f9b34fb', 148);
-    static const INDOOR_POSITIONING_CONFIGURATION = BluetoothDefaultCharacteristicUUIDS._('Indoor Positioning Configuration', '2aad', '00002aad-0000-1000-8000-00805f9b34fb', 149);
-    static const LATITUDE = BluetoothDefaultCharacteristicUUIDS._('Latitude', '2aae', '00002aae-0000-1000-8000-00805f9b34fb', 150);
-    static const LONGITUDE = BluetoothDefaultCharacteristicUUIDS._('Longitude', '2aaf', '00002aaf-0000-1000-8000-00805f9b34fb', 151);
-    static const LOCAL_NORTH_COORDINATE = BluetoothDefaultCharacteristicUUIDS._('Local North Coordinate', '2ab0', '00002ab0-0000-1000-8000-00805f9b34fb', 152);
-    static const LOCAL_EAST_COORDINATE = BluetoothDefaultCharacteristicUUIDS._('Local East Coordinate', '2ab1', '00002ab1-0000-1000-8000-00805f9b34fb', 153);
-    static const FLOOR_NUMBER = BluetoothDefaultCharacteristicUUIDS._('Floor Number', '2ab2', '00002ab2-0000-1000-8000-00805f9b34fb', 154);
-    static const ALTITUDE = BluetoothDefaultCharacteristicUUIDS._('Altitude', '2ab3', '00002ab3-0000-1000-8000-00805f9b34fb', 155);
-    static const UNCERTAINTY = BluetoothDefaultCharacteristicUUIDS._('Uncertainty', '2ab4', '00002ab4-0000-1000-8000-00805f9b34fb', 156);
-    static const LOCATION_NAME = BluetoothDefaultCharacteristicUUIDS._('Location Name', '2ab5', '00002ab5-0000-1000-8000-00805f9b34fb', 157);
-    static const URI = BluetoothDefaultCharacteristicUUIDS._('URI', '2ab6', '00002ab6-0000-1000-8000-00805f9b34fb', 158);
-    static const HTTP_HEADERS = BluetoothDefaultCharacteristicUUIDS._('HTTP Headers', '2ab7', '00002ab7-0000-1000-8000-00805f9b34fb', 159);
-    static const HTTP_STATUS_CODE = BluetoothDefaultCharacteristicUUIDS._('HTTP Status Code', '2ab8', '00002ab8-0000-1000-8000-00805f9b34fb', 160);
-    static const HTTP_ENTITY_BODY = BluetoothDefaultCharacteristicUUIDS._('HTTP Entity Body', '2ab9', '00002ab9-0000-1000-8000-00805f9b34fb', 161);
-    static const HTTP_CONTROL_POINT = BluetoothDefaultCharacteristicUUIDS._('HTTP Control Point', '2aba', '00002aba-0000-1000-8000-00805f9b34fb', 162);
-    static const HTTPS_SECURITY = BluetoothDefaultCharacteristicUUIDS._('HTTPS Security', '2abb', '00002abb-0000-1000-8000-00805f9b34fb', 163);
-    static const TDS_CONTROL_POINT = BluetoothDefaultCharacteristicUUIDS._('TDS Control Point', '2abc', '00002abc-0000-1000-8000-00805f9b34fb', 164);
-    static const OTS_FEATURE = BluetoothDefaultCharacteristicUUIDS._('OTS Feature', '2abd', '00002abd-0000-1000-8000-00805f9b34fb', 165);
-    static const OBJECT_NAME = BluetoothDefaultCharacteristicUUIDS._('object name', '2abe', '00002abe-0000-1000-8000-00805f9b34fb', 166);
-    static const OBJECT_TYPE = BluetoothDefaultCharacteristicUUIDS._('object type', '2abf', '00002abf-0000-1000-8000-00805f9b34fb', 167);
-    static const OBJECT_SIZE = BluetoothDefaultCharacteristicUUIDS._('object size', '2ac0', '00002ac0-0000-1000-8000-00805f9b34fb', 168);
-    static const OBJECT_FIRST_CREATED = BluetoothDefaultCharacteristicUUIDS._('object first created', '2ac1', '00002ac1-0000-1000-8000-00805f9b34fb', 169);
-    static const OBJECT_LAST_MODIFIED = BluetoothDefaultCharacteristicUUIDS._('object last modified', '2ac2', '00002ac2-0000-1000-8000-00805f9b34fb', 170);
-    static const OBJECT_ID = BluetoothDefaultCharacteristicUUIDS._('object ID', '2ac3', '00002ac3-0000-1000-8000-00805f9b34fb', 171);
-    static const OBJECT_PROPERTIES = BluetoothDefaultCharacteristicUUIDS._('object properties', '2ac4', '00002ac4-0000-1000-8000-00805f9b34fb', 172);
-    static const OBJECT_ACTIONCONTROL_POINT = BluetoothDefaultCharacteristicUUIDS._('object actioncontrol point', '2ac5', '00002ac5-0000-1000-8000-00805f9b34fb', 173);
-    static const OBJECT_LIST_CONTROL_POINT = BluetoothDefaultCharacteristicUUIDS._('object list control point', '2ac6', '00002ac6-0000-1000-8000-00805f9b34fb', 174);
-    static const OBJECT_LIST_FILTER = BluetoothDefaultCharacteristicUUIDS._('object list filter', '2ac7', '00002ac7-0000-1000-8000-00805f9b34fb', 175);
-    static const OBJECT_CHANGED = BluetoothDefaultCharacteristicUUIDS._('object changed', '2ac8', '00002ac8-0000-1000-8000-00805f9b34fb', 176);
-    static const RESOLVABLE_PRIVATE_ADDRESS_ONLY = BluetoothDefaultCharacteristicUUIDS._('Resolvable Private Address Only', '2ac9', '00002ac9-0000-1000-8000-00805f9b34fb', 177);
-    static const UNSPECIFIED = BluetoothDefaultCharacteristicUUIDS._('Unspecified', '2aca', '00002aca-0000-1000-8000-00805f9b34fb', 178);
-    static const DIRECTORY_LISTING = BluetoothDefaultCharacteristicUUIDS._('Directory Listing', '2acb', '00002acb-0000-1000-8000-00805f9b34fb', 179);
-    static const FITNESS_MACHINE_FEATURE = BluetoothDefaultCharacteristicUUIDS._('Fitness Machine Feature', '2acc', '00002acc-0000-1000-8000-00805f9b34fb', 180);
-    static const TREADMILL_DATA = BluetoothDefaultCharacteristicUUIDS._('Treadmill Data', '2acd', '00002acd-0000-1000-8000-00805f9b34fb', 181);
-    static const CROSS_TRAINER_DATA = BluetoothDefaultCharacteristicUUIDS._('Cross Trainer Data', '2ace', '00002ace-0000-1000-8000-00805f9b34fb', 182);
-    static const STEP_CLIMBER_DATA = BluetoothDefaultCharacteristicUUIDS._('Step Climber Data', '2acf', '00002acf-0000-1000-8000-00805f9b34fb', 183);
-    static const STAIR_CLIMBER_DATA = BluetoothDefaultCharacteristicUUIDS._('Stair Climber Data', '2ad0', '00002ad0-0000-1000-8000-00805f9b34fb', 184);
-    static const ROWER_DATA = BluetoothDefaultCharacteristicUUIDS._('Rower Data', '2ad1', '00002ad1-0000-1000-8000-00805f9b34fb', 185);
-    static const INDOOR_BIKE_DATA = BluetoothDefaultCharacteristicUUIDS._('Indoor Bike Data', '2ad2', '00002ad2-0000-1000-8000-00805f9b34fb', 186);
-    static const TRAINING_STATUS = BluetoothDefaultCharacteristicUUIDS._('Training Status', '2ad3', '00002ad3-0000-1000-8000-00805f9b34fb', 187);
-    static const SUPPORTED_SPEED_RANGE = BluetoothDefaultCharacteristicUUIDS._('Supported Speed Range', '2ad4', '00002ad4-0000-1000-8000-00805f9b34fb', 188);
-    static const SUPPORTED_INCLINATION_RANGE = BluetoothDefaultCharacteristicUUIDS._('Supported Inclination Range', '2ad5', '00002ad5-0000-1000-8000-00805f9b34fb', 189);
-    static const SUPPORTED_RESISTANCE_LEVEL_RANGE = BluetoothDefaultCharacteristicUUIDS._('Supported Resistance Level Range', '2ad6', '00002ad6-0000-1000-8000-00805f9b34fb', 190);
-    static const SUPPORTED_HEART_RATE_RANGE = BluetoothDefaultCharacteristicUUIDS._('Supported Heart Rate Range', '2ad7', '00002ad7-0000-1000-8000-00805f9b34fb', 191);
-    static const SUPPORTED_POWER_RANGE = BluetoothDefaultCharacteristicUUIDS._('Supported Power Range', '2ad8', '00002ad8-0000-1000-8000-00805f9b34fb', 192);
-    static const FITNESS_MACHINE_CONTROL_POINT = BluetoothDefaultCharacteristicUUIDS._('Fitness Machine Control Point', '2ad9', '00002ad9-0000-1000-8000-00805f9b34fb', 193);
-    static const FITNESS_MACHINE_STATUS = BluetoothDefaultCharacteristicUUIDS._('Fitness Machine Status', '2ada', '00002ada-0000-1000-8000-00805f9b34fb', 194);
-    static const MESH_PROVISIONING_DATA_IN = BluetoothDefaultCharacteristicUUIDS._('Mesh Provisioning Data In', '2adb', '00002adb-0000-1000-8000-00805f9b34fb', 195);
-    static const MESH_PROVISIONING_DATA_OUT = BluetoothDefaultCharacteristicUUIDS._('Mesh Provisioning Data Out', '2adc', '00002adc-0000-1000-8000-00805f9b34fb', 196);
-    static const MESH_PROXY_DATA_IN = BluetoothDefaultCharacteristicUUIDS._('Mesh Proxy Data In', '2add', '00002add-0000-1000-8000-00805f9b34fb', 197);
-    static const MESH_PROXY_DATA_OUT = BluetoothDefaultCharacteristicUUIDS._('Mesh Proxy Data Out', '2ade', '00002ade-0000-1000-8000-00805f9b34fb', 198);
-    static const AVERAGE_CURRENT = BluetoothDefaultCharacteristicUUIDS._('Average Current', '2ae0', '00002ae0-0000-1000-8000-00805f9b34fb', 199);
-    static const AVERAGE_VOLTAGE = BluetoothDefaultCharacteristicUUIDS._('Average Voltage', '2ae1', '00002ae1-0000-1000-8000-00805f9b34fb', 200);
-    static const BOOLEAN = BluetoothDefaultCharacteristicUUIDS._('Boolean', '2ae2', '00002ae2-0000-1000-8000-00805f9b34fb', 201);
-    static const CHROMATIC_DISTANCE_FROM_PLANCKIAN = BluetoothDefaultCharacteristicUUIDS._('Chromatic Distance From Planckian', '2ae3', '00002ae3-0000-1000-8000-00805f9b34fb', 202);
-    static const CHROMATICITY_COORDINATES = BluetoothDefaultCharacteristicUUIDS._('Chromaticity Coordinates', '2ae4', '00002ae4-0000-1000-8000-00805f9b34fb', 203);
-    static const CHROMATICITY_IN_CCT_AND_DUV_VALUES = BluetoothDefaultCharacteristicUUIDS._('Chromaticity in CCT And Duv Values', '2ae5', '00002ae5-0000-1000-8000-00805f9b34fb', 204);
-    static const CHROMATICITY_TOLERANCE = BluetoothDefaultCharacteristicUUIDS._('Chromaticity Tolerance', '2ae6', '00002ae6-0000-1000-8000-00805f9b34fb', 205);
-    static const CIE_13_3_1995_COLOR_RENDERING_INDEX = BluetoothDefaultCharacteristicUUIDS._('CIE 13.3-1995 Color Rendering Index', '2ae7', '00002ae7-0000-1000-8000-00805f9b34fb', 206);
-    static const COEFFICIENT = BluetoothDefaultCharacteristicUUIDS._('Coefficient', '2ae8', '00002ae8-0000-1000-8000-00805f9b34fb', 207);
-    static const CORRELATED_COLOR_TEMPERATURE = BluetoothDefaultCharacteristicUUIDS._('Correlated Color Temperature', '2ae9', '00002ae9-0000-1000-8000-00805f9b34fb', 208);
-    static const COUNT_16 = BluetoothDefaultCharacteristicUUIDS._('Count 16', '2aea', '00002aea-0000-1000-8000-00805f9b34fb', 209);
-    static const COUNT_24 = BluetoothDefaultCharacteristicUUIDS._('Count 24', '2aeb', '00002aeb-0000-1000-8000-00805f9b34fb', 210);
-    static const COUNTRY_CODE = BluetoothDefaultCharacteristicUUIDS._('Country Code', '2aec', '00002aec-0000-1000-8000-00805f9b34fb', 211);
-    static const DATE_UTC = BluetoothDefaultCharacteristicUUIDS._('Date UTC', '2aed', '00002aed-0000-1000-8000-00805f9b34fb', 212);
-    static const ELECTRIC_CURRENT = BluetoothDefaultCharacteristicUUIDS._('Electric Current', '2aee', '00002aee-0000-1000-8000-00805f9b34fb', 213);
-    static const ELECTRIC_CURRENT_RANGE = BluetoothDefaultCharacteristicUUIDS._('Electric Current Range', '2aef', '00002aef-0000-1000-8000-00805f9b34fb', 214);
-    static const ELECTRIC_CURRENT_SPECIFICATION = BluetoothDefaultCharacteristicUUIDS._('Electric Current Specification', '2af0', '00002af0-0000-1000-8000-00805f9b34fb', 215);
-    static const ELECTRIC_CURRENT_STATISTICS = BluetoothDefaultCharacteristicUUIDS._('Electric Current Statistics', '2af1', '00002af1-0000-1000-8000-00805f9b34fb', 216);
-    static const ENERGY = BluetoothDefaultCharacteristicUUIDS._('Energy', '2af2', '00002af2-0000-1000-8000-00805f9b34fb', 217);
-    static const ENERGY_IN_A_PERIOD_OF_DAY = BluetoothDefaultCharacteristicUUIDS._('Energy In A Period Of Day', '2af3', '00002af3-0000-1000-8000-00805f9b34fb', 218);
-    static const EVENT_STATISTICS = BluetoothDefaultCharacteristicUUIDS._('Event Statistics', '2af4', '00002af4-0000-1000-8000-00805f9b34fb', 219);
-    static const FIXED_STRING_16 = BluetoothDefaultCharacteristicUUIDS._('Fixed String 16', '2af5', '00002af5-0000-1000-8000-00805f9b34fb', 220);
-    static const FIXED_STRING_24 = BluetoothDefaultCharacteristicUUIDS._('Fixed String 24', '2af6', '00002af6-0000-1000-8000-00805f9b34fb', 221);
-    static const FIXED_STRING_36 = BluetoothDefaultCharacteristicUUIDS._('Fixed String 36', '2af7', '00002af7-0000-1000-8000-00805f9b34fb', 222);
-    static const FIXED_STRING_8 = BluetoothDefaultCharacteristicUUIDS._('Fixed String 8', '2af8', '00002af8-0000-1000-8000-00805f9b34fb', 223);
-    static const GENERIC_LEVEL = BluetoothDefaultCharacteristicUUIDS._('Generic Level', '2af9', '00002af9-0000-1000-8000-00805f9b34fb', 224);
-    static const GLOBAL_TRADE_ITEM_NUMBER = BluetoothDefaultCharacteristicUUIDS._('Global Trade Item Number', '2afa', '00002afa-0000-1000-8000-00805f9b34fb', 225);
-    static const ILLUMINANCE = BluetoothDefaultCharacteristicUUIDS._('Illuminance', '2afb', '00002afb-0000-1000-8000-00805f9b34fb', 226);
-    static const LUMINOUS_EFFICACY = BluetoothDefaultCharacteristicUUIDS._('Luminous Efficacy', '2afc', '00002afc-0000-1000-8000-00805f9b34fb', 227);
-    static const LUMINOUS_ENERGY = BluetoothDefaultCharacteristicUUIDS._('Luminous Energy', '2afd', '00002afd-0000-1000-8000-00805f9b34fb', 228);
-    static const LUMINOUS_EXPOSURE = BluetoothDefaultCharacteristicUUIDS._('Luminous Exposure', '2afe', '00002afe-0000-1000-8000-00805f9b34fb', 229);
-    static const LUMINOUS_FLUX = BluetoothDefaultCharacteristicUUIDS._('Luminous Flux', '2aff', '00002aff-0000-1000-8000-00805f9b34fb', 230);
-    static const LUMINOUS_FLUX_RANGE = BluetoothDefaultCharacteristicUUIDS._('Luminous Flux Range', '2b00', '00002b00-0000-1000-8000-00805f9b34fb', 231);
-    static const LUMINOUS_INTENSITY = BluetoothDefaultCharacteristicUUIDS._('Luminous Intensity', '2b01', '00002b01-0000-1000-8000-00805f9b34fb', 232);
-    static const MASS_FLOW = BluetoothDefaultCharacteristicUUIDS._('Mass Flow', '2b02', '00002b02-0000-1000-8000-00805f9b34fb', 233);
-    static const PERCEIVED_LIGHTNESS = BluetoothDefaultCharacteristicUUIDS._('Perceived Lightness', '2b03', '00002b03-0000-1000-8000-00805f9b34fb', 234);
-    static const PERCENTAGE_8 = BluetoothDefaultCharacteristicUUIDS._('Percentage 8', '2b04', '00002b04-0000-1000-8000-00805f9b34fb', 235);
-    static const POWER = BluetoothDefaultCharacteristicUUIDS._('Power', '2b05', '00002b05-0000-1000-8000-00805f9b34fb', 236);
-    static const POWER_SPECIFICATION = BluetoothDefaultCharacteristicUUIDS._('Power Specification', '2b06', '00002b06-0000-1000-8000-00805f9b34fb', 237);
-    static const RELATIVE_RUNTIME_IN_A_CURRENT_RANGE = BluetoothDefaultCharacteristicUUIDS._('Relative Runtime In A Current Range', '2b07', '00002b07-0000-1000-8000-00805f9b34fb', 238);
-    static const RELATIVE_RUNTIME_IN_A_GENERIC_LEVEL_RANGE = BluetoothDefaultCharacteristicUUIDS._('Relative Runtime In A Generic Level Range', '2b08', '00002b08-0000-1000-8000-00805f9b34fb', 239);
-    static const RELATIVE_VALUE_IN_A_VOLTAGE_RANGE = BluetoothDefaultCharacteristicUUIDS._('Relative Value In A Voltage Range', '2b09', '00002b09-0000-1000-8000-00805f9b34fb', 240);
-    static const RELATIVE_VALUE_IN_AN_ILLUMINANCE_RANGE = BluetoothDefaultCharacteristicUUIDS._('Relative Value In An Illuminance Range', '2b0a', '00002b0a-0000-1000-8000-00805f9b34fb', 241);
-    static const RELATIVE_VALUE_IN_A_PERIOD_OF_DAY = BluetoothDefaultCharacteristicUUIDS._('Relative Value In A Period Of Day', '2b0b', '00002b0b-0000-1000-8000-00805f9b34fb', 242);
-    static const RELATIVE_VALUE_IN_A_TEMPERATURE_RANGE = BluetoothDefaultCharacteristicUUIDS._('Relative Value In A Temperature Range', '2b0c', '00002b0c-0000-1000-8000-00805f9b34fb', 243);
-    static const TEMPERATURE_8 = BluetoothDefaultCharacteristicUUIDS._('Temperature 8', '2b0d', '00002b0d-0000-1000-8000-00805f9b34fb', 244);
-    static const TEMPERATURE_8_IN_A_PERIOD_OF_DAY = BluetoothDefaultCharacteristicUUIDS._('Temperature 8 In A Period Of Day', '2b0e', '00002b0e-0000-1000-8000-00805f9b34fb', 245);
-    static const TEMPERATURE_8_STATISTICS = BluetoothDefaultCharacteristicUUIDS._('Temperature 8 Statistics', '2b0f', '00002b0f-0000-1000-8000-00805f9b34fb', 246);
-    static const TEMPERATURE_RANGE = BluetoothDefaultCharacteristicUUIDS._('Temperature Range', '2b10', '00002b10-0000-1000-8000-00805f9b34fb', 247);
-    static const TEMPERATURE_STATISTICS = BluetoothDefaultCharacteristicUUIDS._('Temperature Statistics', '2b11', '00002b11-0000-1000-8000-00805f9b34fb', 248);
-    static const TIME_DECIHOUR_8 = BluetoothDefaultCharacteristicUUIDS._('Time Decihour 8', '2b12', '00002b12-0000-1000-8000-00805f9b34fb', 249);
-    static const TIME_EXPONENTIAL_8 = BluetoothDefaultCharacteristicUUIDS._('Time Exponential 8', '2b13', '00002b13-0000-1000-8000-00805f9b34fb', 250);
-    static const TIME_HOUR_24 = BluetoothDefaultCharacteristicUUIDS._('Time Hour 24', '2b14', '00002b14-0000-1000-8000-00805f9b34fb', 251);
-    static const TIME_MILLISECOND_24 = BluetoothDefaultCharacteristicUUIDS._('Time Millisecond 24', '2b15', '00002b15-0000-1000-8000-00805f9b34fb', 252);
-    static const TIME_SECOND_16 = BluetoothDefaultCharacteristicUUIDS._('Time Second 16', '2b16', '00002b16-0000-1000-8000-00805f9b34fb', 253);
-    static const TIME_SECOND_8 = BluetoothDefaultCharacteristicUUIDS._('Time Second 8', '2b17', '00002b17-0000-1000-8000-00805f9b34fb', 254);
-    static const VOLTAGE = BluetoothDefaultCharacteristicUUIDS._('Voltage', '2b18', '00002b18-0000-1000-8000-00805f9b34fb', 255);
-    static const VOLTAGE_SPECIFICATION = BluetoothDefaultCharacteristicUUIDS._('Voltage Specification', '2b19', '00002b19-0000-1000-8000-00805f9b34fb', 256);
-    static const VOLTAGE_STATISTICS = BluetoothDefaultCharacteristicUUIDS._('Voltage Statistics', '2b1a', '00002b1a-0000-1000-8000-00805f9b34fb', 257);
-    static const VOLUME_FLOW = BluetoothDefaultCharacteristicUUIDS._('Volume Flow', '2b1b', '00002b1b-0000-1000-8000-00805f9b34fb', 258);
-    static const CHROMATICITY_COORDINATE = BluetoothDefaultCharacteristicUUIDS._('Chromaticity Coordinate', '2b1c', '00002b1c-0000-1000-8000-00805f9b34fb', 259);
-    static const RC_FEATURE = BluetoothDefaultCharacteristicUUIDS._('RC Feature', '2b1d', '00002b1d-0000-1000-8000-00805f9b34fb', 260);
-    static const RC_SETTINGS = BluetoothDefaultCharacteristicUUIDS._('RC Settings', '2b1e', '00002b1e-0000-1000-8000-00805f9b34fb', 261);
-    static const RECONNECTION_CONFIGURATION_CONTROL_POINT = BluetoothDefaultCharacteristicUUIDS._('Reconnection Configuration Control Point', '2b1f', '00002b1f-0000-1000-8000-00805f9b34fb', 262);
-    static const IDD_STATUS_CHANGED = BluetoothDefaultCharacteristicUUIDS._('IDD Status Changed', '2b20', '00002b20-0000-1000-8000-00805f9b34fb', 263);
-    static const IDD_STATUS = BluetoothDefaultCharacteristicUUIDS._('IDD Status', '2b21', '00002b21-0000-1000-8000-00805f9b34fb', 264);
-    static const IDD_ANNUNCIATION_STATUS = BluetoothDefaultCharacteristicUUIDS._('IDD Annunciation Status', '2b22', '00002b22-0000-1000-8000-00805f9b34fb', 265);
-    static const IDD_FEATURES = BluetoothDefaultCharacteristicUUIDS._('IDD Features', '2b23', '00002b23-0000-1000-8000-00805f9b34fb', 266);
-    static const IDD_STATUS_READER_CONTROL_POINT = BluetoothDefaultCharacteristicUUIDS._('IDD Status Reader Control Point', '2b24', '00002b24-0000-1000-8000-00805f9b34fb', 267);
-    static const IDD_COMMAND_CONTROL_POINT = BluetoothDefaultCharacteristicUUIDS._('IDD Command Control Point', '2b25', '00002b25-0000-1000-8000-00805f9b34fb', 268);
-    static const IDD_COMMAND_DATA = BluetoothDefaultCharacteristicUUIDS._('IDD Command Data', '2b26', '00002b26-0000-1000-8000-00805f9b34fb', 269);
-    static const IDD_RECORD_ACCESS_CONTROL_POINT = BluetoothDefaultCharacteristicUUIDS._('IDD Record Access Control Point', '2b27', '00002b27-0000-1000-8000-00805f9b34fb', 270);
-    static const IDD_HISTORY_DATA = BluetoothDefaultCharacteristicUUIDS._('IDD History Data', '2b28', '00002b28-0000-1000-8000-00805f9b34fb', 271);
-    static const CLIENT_SUPPORTED_FEATURES = BluetoothDefaultCharacteristicUUIDS._('Client Supported Features', '2b29', '00002b29-0000-1000-8000-00805f9b34fb', 272);
-    static const DATABASE_HASH = BluetoothDefaultCharacteristicUUIDS._('Database Hash', '2b2a', '00002b2a-0000-1000-8000-00805f9b34fb', 273);
-    static const BSS_CONTROL_POINT = BluetoothDefaultCharacteristicUUIDS._('BSS Control Point', '2b2b', '00002b2b-0000-1000-8000-00805f9b34fb', 274);
-    static const BSS_RESPONSE = BluetoothDefaultCharacteristicUUIDS._('BSS Response', '2b2c', '00002b2c-0000-1000-8000-00805f9b34fb', 275);
-    static const EMERGENCY_ID = BluetoothDefaultCharacteristicUUIDS._('Emergency ID', '2b2d', '00002b2d-0000-1000-8000-00805f9b34fb', 276);
-    static const EMERGENCY_TEXT = BluetoothDefaultCharacteristicUUIDS._('Emergency Text', '2b2e', '00002b2e-0000-1000-8000-00805f9b34fb', 277);
-    static const ENHANCED_BLOOD_PRESSURE_MEASUREMENT = BluetoothDefaultCharacteristicUUIDS._('Enhanced Blood Pressure Measurement', '2b34', '00002b34-0000-1000-8000-00805f9b34fb', 278);
-    static const ENHANCED_INTERMEDIATE_CUFF_PRESSURE = BluetoothDefaultCharacteristicUUIDS._('Enhanced Intermediate Cuff Pressure', '2b35', '00002b35-0000-1000-8000-00805f9b34fb', 279);
-    static const BLOOD_PRESSURE_RECORD = BluetoothDefaultCharacteristicUUIDS._('Blood Pressure Record', '2b36', '00002b36-0000-1000-8000-00805f9b34fb', 280);
-    static const BR_EDR_HANDOVER_DATA = BluetoothDefaultCharacteristicUUIDS._('BR-EDR Handover Data', '2b38', '00002b38-0000-1000-8000-00805f9b34fb', 281);
-    static const BLUETOOTH_SIG_DATA = BluetoothDefaultCharacteristicUUIDS._('Bluetooth SIG Data', '2b39', '00002b39-0000-1000-8000-00805f9b34fb', 282);
-    static const SERVER_SUPPORTED_FEATURES = BluetoothDefaultCharacteristicUUIDS._('Server Supported Features', '2b3a', '00002b3a-0000-1000-8000-00805f9b34fb', 283);
-    static const PHYSICAL_ACTIVITY_MONITOR_FEATURES = BluetoothDefaultCharacteristicUUIDS._('Physical Activity Monitor Features', '2b3b', '00002b3b-0000-1000-8000-00805f9b34fb', 284);
-    static const GENERAL_ACTIVITY_INSTANTANEOUS_DATA = BluetoothDefaultCharacteristicUUIDS._('General Activity Instantaneous Data', '2b3c', '00002b3c-0000-1000-8000-00805f9b34fb', 285);
-    static const GENERAL_ACTIVITY_SUMMARY_DATA = BluetoothDefaultCharacteristicUUIDS._('General Activity Summary Data', '2b3d', '00002b3d-0000-1000-8000-00805f9b34fb', 286);
-    static const CARDIORESPIRATORY_ACTIVITY_INSTANTANEOUS_DATA = BluetoothDefaultCharacteristicUUIDS._('CardioRespiratory Activity Instantaneous Data', '2b3e', '00002b3e-0000-1000-8000-00805f9b34fb', 287);
-    static const CARDIORESPIRATORY_ACTIVITY_SUMMARY_DATA = BluetoothDefaultCharacteristicUUIDS._('CardioRespiratory Activity Summary Data', '2b3f', '00002b3f-0000-1000-8000-00805f9b34fb', 288);
-    static const STEP_COUNTER_ACTIVITY_SUMMARY_DATA = BluetoothDefaultCharacteristicUUIDS._('Step Counter Activity Summary Data', '2b40', '00002b40-0000-1000-8000-00805f9b34fb', 289);
-    static const SLEEP_ACTIVITY_INSTANTANEOUS_DATA = BluetoothDefaultCharacteristicUUIDS._('Sleep Activity Instantaneous Data', '2b41', '00002b41-0000-1000-8000-00805f9b34fb', 290);
-    static const SLEEP_ACTIVITY_SUMMARY_DATA = BluetoothDefaultCharacteristicUUIDS._('Sleep Activity Summary Data', '2b42', '00002b42-0000-1000-8000-00805f9b34fb', 291);
-    static const PHYSICAL_ACTIVITY_MONITOR_CONTROL_POINT = BluetoothDefaultCharacteristicUUIDS._('Physical Activity Monitor Control Point', '2b43', '00002b43-0000-1000-8000-00805f9b34fb', 292);
-    static const CURRENT_SESSION = BluetoothDefaultCharacteristicUUIDS._('Current Session', '2b44', '00002b44-0000-1000-8000-00805f9b34fb', 293);
-    static const SESSION = BluetoothDefaultCharacteristicUUIDS._('Session', '2b45', '00002b45-0000-1000-8000-00805f9b34fb', 294);
-    static const PREFERRED_UNITS = BluetoothDefaultCharacteristicUUIDS._('Preferred Units', '2b46', '00002b46-0000-1000-8000-00805f9b34fb', 295);
-    static const HIGH_RESOLUTION_HEIGHT = BluetoothDefaultCharacteristicUUIDS._('High Resolution Height', '2b47', '00002b47-0000-1000-8000-00805f9b34fb', 296);
-    static const MIDDLE_NAME = BluetoothDefaultCharacteristicUUIDS._('Middle Name', '2b48', '00002b48-0000-1000-8000-00805f9b34fb', 297);
-    static const STRIDE_LENGTH = BluetoothDefaultCharacteristicUUIDS._('Stride Length', '2b49', '00002b49-0000-1000-8000-00805f9b34fb', 298);
-    static const HANDEDNESS = BluetoothDefaultCharacteristicUUIDS._('Handedness', '2b4a', '00002b4a-0000-1000-8000-00805f9b34fb', 299);
-    static const DEVICE_WEARING_POSITION = BluetoothDefaultCharacteristicUUIDS._('Device Wearing Position', '2b4b', '00002b4b-0000-1000-8000-00805f9b34fb', 300);
-    static const FOUR_ZONE_HEART_RATE_LIMITS = BluetoothDefaultCharacteristicUUIDS._('Four Zone Heart Rate Limits', '2b4c', '00002b4c-0000-1000-8000-00805f9b34fb', 301);
-    static const HIGH_INTENSITY_EXERCISE_THRESHOLD = BluetoothDefaultCharacteristicUUIDS._('High Intensity Exercise Threshold', '2b4d', '00002b4d-0000-1000-8000-00805f9b34fb', 302);
-    static const ACTIVITY_GOAL = BluetoothDefaultCharacteristicUUIDS._('Activity Goal', '2b4e', '00002b4e-0000-1000-8000-00805f9b34fb', 303);
-    static const SEDENTARY_INTERVAL_NOTIFICATION = BluetoothDefaultCharacteristicUUIDS._('Sedentary Interval Notification', '2b4f', '00002b4f-0000-1000-8000-00805f9b34fb', 304);
-    static const CALORIC_INTAKE = BluetoothDefaultCharacteristicUUIDS._('Caloric Intake', '2b50', '00002b50-0000-1000-8000-00805f9b34fb', 305);
-    static const AUDIO_INPUT_STATE = BluetoothDefaultCharacteristicUUIDS._('Audio Input State', '2b77', '00002b77-0000-1000-8000-00805f9b34fb', 306);
-    static const GAIN_SETTINGS_ATTRIBUTE = BluetoothDefaultCharacteristicUUIDS._('Gain Settings Attribute', '2b78', '00002b78-0000-1000-8000-00805f9b34fb', 307);
-    static const AUDIO_INPUT_TYPE = BluetoothDefaultCharacteristicUUIDS._('Audio Input Type', '2b79', '00002b79-0000-1000-8000-00805f9b34fb', 308);
-    static const AUDIO_INPUT_STATUS = BluetoothDefaultCharacteristicUUIDS._('Audio Input Status', '2b7a', '00002b7a-0000-1000-8000-00805f9b34fb', 309);
-    static const AUDIO_INPUT_CONTROL_POINT = BluetoothDefaultCharacteristicUUIDS._('Audio Input Control Point', '2b7b', '00002b7b-0000-1000-8000-00805f9b34fb', 310);
-    static const AUDIO_INPUT_DESCRIPTION = BluetoothDefaultCharacteristicUUIDS._('Audio Input Description', '2b7c', '00002b7c-0000-1000-8000-00805f9b34fb', 311);
-    static const VOLUME_STATE = BluetoothDefaultCharacteristicUUIDS._('Volume State', '2b7d', '00002b7d-0000-1000-8000-00805f9b34fb', 312);
-    static const VOLUME_CONTROL_POINT = BluetoothDefaultCharacteristicUUIDS._('Volume Control Point', '2b7e', '00002b7e-0000-1000-8000-00805f9b34fb', 313);
-    static const VOLUME_FLAGS = BluetoothDefaultCharacteristicUUIDS._('Volume Flags', '2b7f', '00002b7f-0000-1000-8000-00805f9b34fb', 314);
-    static const OFFSET_STATE = BluetoothDefaultCharacteristicUUIDS._('Offset State', '2b80', '00002b80-0000-1000-8000-00805f9b34fb', 315);
-    static const AUDIO_LOCATION = BluetoothDefaultCharacteristicUUIDS._('Audio Location', '2b81', '00002b81-0000-1000-8000-00805f9b34fb', 316);
-    static const VOLUME_OFFSET_CONTROL_POINT = BluetoothDefaultCharacteristicUUIDS._('Volume Offset Control Point', '2b82', '00002b82-0000-1000-8000-00805f9b34fb', 317);
-    static const AUDIO_OUTPUT_DESCRIPTION = BluetoothDefaultCharacteristicUUIDS._('Audio Output Description', '2b83', '00002b83-0000-1000-8000-00805f9b34fb', 318);
-    static const SET_IDENTITY_RESOLVING_KEY_CHARACTERISTIC = BluetoothDefaultCharacteristicUUIDS._('Set Identity Resolving Key Characteristic', '2b84', '00002b84-0000-1000-8000-00805f9b34fb', 319);
-    static const SIZE_CHARACTERISTIC = BluetoothDefaultCharacteristicUUIDS._('Size Characteristic', '2b85', '00002b85-0000-1000-8000-00805f9b34fb', 320);
-    static const LOCK_CHARACTERISTIC = BluetoothDefaultCharacteristicUUIDS._('Lock Characteristic', '2b86', '00002b86-0000-1000-8000-00805f9b34fb', 321);
-    static const RANK_CHARACTERISTIC = BluetoothDefaultCharacteristicUUIDS._('Rank Characteristic', '2b87', '00002b87-0000-1000-8000-00805f9b34fb', 322);
-    static const DEVICE_TIME_FEATURE = BluetoothDefaultCharacteristicUUIDS._('Device Time Feature', '2b8e', '00002b8e-0000-1000-8000-00805f9b34fb', 323);
-    static const DEVICE_TIME_PARAMETERS = BluetoothDefaultCharacteristicUUIDS._('Device Time Parameters', '2b8f', '00002b8f-0000-1000-8000-00805f9b34fb', 324);
-    static const DEVICE_TIME = BluetoothDefaultCharacteristicUUIDS._('Device Time', '2b90', '00002b90-0000-1000-8000-00805f9b34fb', 325);
-    static const DEVICE_TIME_CONTROL_POINT = BluetoothDefaultCharacteristicUUIDS._('Device Time Control Point', '2b91', '00002b91-0000-1000-8000-00805f9b34fb', 326);
-    static const TIME_CHANGE_LOG_DATA = BluetoothDefaultCharacteristicUUIDS._('Time Change Log Data', '2b92', '00002b92-0000-1000-8000-00805f9b34fb', 327);
-    static const MEDIA_PLAYER_NAME = BluetoothDefaultCharacteristicUUIDS._('Media Player Name', '2b93', '00002b93-0000-1000-8000-00805f9b34fb', 328);
-    static const MEDIA_PLAYER_ICON_OBJECT_ID = BluetoothDefaultCharacteristicUUIDS._('Media Player Icon Object ID', '2b94', '00002b94-0000-1000-8000-00805f9b34fb', 329);
-    static const MEDIA_PLAYER_ICON_URL = BluetoothDefaultCharacteristicUUIDS._('Media Player Icon URL', '2b95', '00002b95-0000-1000-8000-00805f9b34fb', 330);
-    static const TRACK_CHANGED = BluetoothDefaultCharacteristicUUIDS._('Track Changed', '2b96', '00002b96-0000-1000-8000-00805f9b34fb', 331);
-    static const TRACK_TITLE = BluetoothDefaultCharacteristicUUIDS._('Track Title', '2b97', '00002b97-0000-1000-8000-00805f9b34fb', 332);
-    static const TRACK_DURATION = BluetoothDefaultCharacteristicUUIDS._('Track Duration', '2b98', '00002b98-0000-1000-8000-00805f9b34fb', 333);
-    static const TRACK_POSITION = BluetoothDefaultCharacteristicUUIDS._('Track Position', '2b99', '00002b99-0000-1000-8000-00805f9b34fb', 334);
-    static const PLAYBACK_SPEED = BluetoothDefaultCharacteristicUUIDS._('Playback Speed', '2b9a', '00002b9a-0000-1000-8000-00805f9b34fb', 335);
-    static const SEEKING_SPEED = BluetoothDefaultCharacteristicUUIDS._('Seeking Speed', '2b9b', '00002b9b-0000-1000-8000-00805f9b34fb', 336);
-    static const CURRENT_TRACK_SEGMENTS_OBJECT_ID = BluetoothDefaultCharacteristicUUIDS._('Current Track Segments Object ID', '2b9c', '00002b9c-0000-1000-8000-00805f9b34fb', 337);
-    static const CURRENT_TRACK_OBJECT_ID = BluetoothDefaultCharacteristicUUIDS._('Current Track Object ID', '2b9d', '00002b9d-0000-1000-8000-00805f9b34fb', 338);
-    static const NEXT_TRACK_OBJECT_ID = BluetoothDefaultCharacteristicUUIDS._('Next Track Object ID', '2b9e', '00002b9e-0000-1000-8000-00805f9b34fb', 339);
-    static const PARENT_GROUP_OBJECT_ID = BluetoothDefaultCharacteristicUUIDS._('Parent Group Object ID', '2b9f', '00002b9f-0000-1000-8000-00805f9b34fb', 340);
-    static const CURRENT_GROUP_OBJECT_ID = BluetoothDefaultCharacteristicUUIDS._('Current Group Object ID', '2ba0', '00002ba0-0000-1000-8000-00805f9b34fb', 341);
-    static const PLAYING_ORDER = BluetoothDefaultCharacteristicUUIDS._('Playing Order', '2ba1', '00002ba1-0000-1000-8000-00805f9b34fb', 342);
-    static const PLAYING_ORDERS_SUPPORTED = BluetoothDefaultCharacteristicUUIDS._('Playing Orders Supported', '2ba2', '00002ba2-0000-1000-8000-00805f9b34fb', 343);
-    static const MEDIA_STATE = BluetoothDefaultCharacteristicUUIDS._('Media State', '2ba3', '00002ba3-0000-1000-8000-00805f9b34fb', 344);
-    static const MEDIA_CONTROL_POINT = BluetoothDefaultCharacteristicUUIDS._('Media Control Point', '2ba4', '00002ba4-0000-1000-8000-00805f9b34fb', 345);
-    static const MEDIA_CONTROL_POINT_OPCODES_SUPPORTED = BluetoothDefaultCharacteristicUUIDS._('Media Control Point Opcodes Supported', '2ba5', '00002ba5-0000-1000-8000-00805f9b34fb', 346);
-    static const SEARCH_RESULTS_OBJECT_ID = BluetoothDefaultCharacteristicUUIDS._('Search Results Object ID', '2ba6', '00002ba6-0000-1000-8000-00805f9b34fb', 347);
-    static const SEARCH_CONTROL_POINT = BluetoothDefaultCharacteristicUUIDS._('Search Control Point', '2ba7', '00002ba7-0000-1000-8000-00805f9b34fb', 348);
-    static const MEDIA_PLAYER_ICON_OBJECT_TYPE = BluetoothDefaultCharacteristicUUIDS._('Media Player Icon Object Type', '2ba9', '00002ba9-0000-1000-8000-00805f9b34fb', 349);
-    static const TRACK_SEGMENTS_OBJECT_TYPE = BluetoothDefaultCharacteristicUUIDS._('Track Segments Object Type', '2baa', '00002baa-0000-1000-8000-00805f9b34fb', 350);
-    static const TRACK_OBJECT_TYPE = BluetoothDefaultCharacteristicUUIDS._('Track Object Type', '2bab', '00002bab-0000-1000-8000-00805f9b34fb', 351);
-    static const GROUP_OBJECT_TYPE = BluetoothDefaultCharacteristicUUIDS._('Group Object Type', '2bac', '00002bac-0000-1000-8000-00805f9b34fb', 352);
-    static const CONSTANT_TONE_EXTENSION_ENABLE = BluetoothDefaultCharacteristicUUIDS._('Constant Tone Extension Enable', '2bad', '00002bad-0000-1000-8000-00805f9b34fb', 353);
-    static const ADVERTISING_CONSTANT_TONE_EXTENSION_MINIMUM_LENGTH = BluetoothDefaultCharacteristicUUIDS._('Advertising Constant Tone Extension Minimum Length', '2bae', '00002bae-0000-1000-8000-00805f9b34fb', 354);
-    static const ADVERTISING_CONSTANT_TONE_EXTENSION_MINIMUM_TRANSMIT_COUNT = BluetoothDefaultCharacteristicUUIDS._('Advertising Constant Tone Extension Minimum Transmit Count', '2baf', '00002baf-0000-1000-8000-00805f9b34fb', 355);
-    static const ADVERTISING_CONSTANT_TONE_EXTENSION_TRANSMIT_DURATION = BluetoothDefaultCharacteristicUUIDS._('Advertising Constant Tone Extension Transmit Duration', '2bb0', '00002bb0-0000-1000-8000-00805f9b34fb', 356);
-    static const ADVERTISING_CONSTANT_TONE_EXTENSION_INTERVAL = BluetoothDefaultCharacteristicUUIDS._('Advertising Constant Tone Extension Interval', '2bb1', '00002bb1-0000-1000-8000-00805f9b34fb', 357);
-    static const ADVERTISING_CONSTANT_TONE_EXTENSION_PHY = BluetoothDefaultCharacteristicUUIDS._('Advertising Constant Tone Extension PHY', '2bb2', '00002bb2-0000-1000-8000-00805f9b34fb', 358);
-    static const BEARER_PROVIDER_NAME = BluetoothDefaultCharacteristicUUIDS._('Bearer Provider Name', '2bb3', '00002bb3-0000-1000-8000-00805f9b34fb', 359);
-    static const BEARER_UCI = BluetoothDefaultCharacteristicUUIDS._('Bearer UCI', '2bb4', '00002bb4-0000-1000-8000-00805f9b34fb', 360);
-    static const BEARER_TECHNOLOGY = BluetoothDefaultCharacteristicUUIDS._('Bearer Technology', '2bb5', '00002bb5-0000-1000-8000-00805f9b34fb', 361);
-    static const BEARER_URI_SCHEMES_SUPPORTED_LIST = BluetoothDefaultCharacteristicUUIDS._('Bearer URI Schemes Supported List', '2bb6', '00002bb6-0000-1000-8000-00805f9b34fb', 362);
-    static const BEARER_SIGNAL_STRENGTH = BluetoothDefaultCharacteristicUUIDS._('Bearer Signal Strength', '2bb7', '00002bb7-0000-1000-8000-00805f9b34fb', 363);
-    static const BEARER_SIGNAL_STRENGTH_REPORTING_INTERVAL = BluetoothDefaultCharacteristicUUIDS._('Bearer Signal Strength Reporting Interval', '2bb8', '00002bb8-0000-1000-8000-00805f9b34fb', 364);
-    static const BEARER_LIST_CURRENT_CALLS = BluetoothDefaultCharacteristicUUIDS._('Bearer List Current Calls', '2bb9', '00002bb9-0000-1000-8000-00805f9b34fb', 365);
-    static const CONTENT_CONTROL_ID = BluetoothDefaultCharacteristicUUIDS._('Content Control ID', '2bba', '00002bba-0000-1000-8000-00805f9b34fb', 366);
-    static const STATUS_FLAGS = BluetoothDefaultCharacteristicUUIDS._('Status Flags', '2bbb', '00002bbb-0000-1000-8000-00805f9b34fb', 367);
-    static const INCOMING_CALL_TARGET_BEARER_URI = BluetoothDefaultCharacteristicUUIDS._('Incoming Call Target Bearer URI', '2bbc', '00002bbc-0000-1000-8000-00805f9b34fb', 368);
-    static const CALL_STATE = BluetoothDefaultCharacteristicUUIDS._('Call State', '2bbd', '00002bbd-0000-1000-8000-00805f9b34fb', 369);
-    static const CALL_CONTROL_POINT = BluetoothDefaultCharacteristicUUIDS._('Call Control Point', '2bbe', '00002bbe-0000-1000-8000-00805f9b34fb', 370);
-    static const CALL_CONTROL_POINT_OPTIONAL_OPCODES = BluetoothDefaultCharacteristicUUIDS._('Call Control Point Optional Opcodes', '2bbf', '00002bbf-0000-1000-8000-00805f9b34fb', 371);
-    static const TERMINATION_REASON = BluetoothDefaultCharacteristicUUIDS._('Termination Reason', '2bc0', '00002bc0-0000-1000-8000-00805f9b34fb', 372);
-    static const INCOMING_CALL = BluetoothDefaultCharacteristicUUIDS._('Incoming Call', '2bc1', '00002bc1-0000-1000-8000-00805f9b34fb', 373);
-    static const CALL_FRIENDLY_NAME = BluetoothDefaultCharacteristicUUIDS._('Call Friendly Name', '2bc2', '00002bc2-0000-1000-8000-00805f9b34fb', 374);
-    static const MUTE = BluetoothDefaultCharacteristicUUIDS._('Mute', '2bc3', '00002bc3-0000-1000-8000-00805f9b34fb', 375);
-
-
-    static const VALUES = [
-        DEVICE_NAME,
-        APPEARANCE,
-        PERIPHERAL_PRIVACY_FLAG,
-        RECONNECTION_ADDRESS,
-        PERIPHERAL_PREFERRED_CONNECTION_PARAMETERS,
-        SERVICE_CHANGED,
-        ALERT_LEVEL,
-        TX_POWER_LEVEL,
-        DATE_TIME,
-        DAY_OF_WEEK,
-        DAY_DATE_TIME,
-        EXACT_TIME_256,
-        DST_OFFSET,
-        TIME_ZONE,
-        LOCAL_TIME_INFORMATION,
-        TIME_WITH_DST,
-        TIME_ACCURACY,
-        TIME_SOURCE,
-        REFERENCE_TIME_INFORMATION,
-        TIME_UPDATE_CONTROL_POINT,
-        TIME_UPDATE_STATE,
-        GLUCOSE_MEASUREMENT,
-        BATTERY_LEVEL,
-        TEMPERATURE_MEASUREMENT,
-        TEMPERATURE_TYPE,
-        INTERMEDIATE_TEMPERATURE,
-        MEASUREMENT_INTERVAL,
-        BOOT_KEYBOARD_INPUT_REPORT,
-        SYSTEM_ID,
-        MODEL_NUMBER_STRING,
-        SERIAL_NUMBER_STRING,
-        FIRMWARE_REVISION_STRING,
-        HARDWARE_REVISION_STRING,
-        SOFTWARE_REVISION_STRING,
-        MANUFACTURER_NAME_STRING,
-        IEEE_11073_20601_REGULATORY_CERTIFICATION_DATA_LIST,
-        CURRENT_TIME,
-        SCAN_REFRESH,
-        BOOT_KEYBOARD_OUTPUT_REPORT,
-        BOOT_MOUSE_INPUT_REPORT,
-        GLUCOSE_MEASUREMENT_CONTEXT,
-        BLOOD_PRESSURE_MEASUREMENT,
-        INTERMEDIATE_CUFF_PRESSURE,
-        HEART_RATE_MEASUREMENT,
-        BODY_SENSOR_LOCATION,
-        HEART_RATE_CONTROL_POINT,
-        ALERT_STATUS,
-        RINGER_CONTROL_POINT,
-        RINGER_SETTING,
-        ALERT_CATEGORY_ID_BIT_MASK,
-        ALERT_CATEGORY_ID,
-        ALERT_NOTIFICATION_CONTROL_POINT,
-        UNREAD_ALERT_STATUS,
-        NEW_ALERT,
-        SUPPORTED_NEW_ALERT_CATEGORY,
-        SUPPORTED_UNREAD_ALERT_CATEGORY,
-        BLOOD_PRESSURE_FEATURE,
-        HID_INFORMATION,
-        REPORT_MAP,
-        HID_CONTROL_POINT,
-        REPORT,
-        PROTOCOL_MODE,
-        SCAN_INTERVAL_WINDOW,
-        PNP_ID,
-        GLUCOSE_FEATURE,
-        RECORD_ACCESS_CONTROL_POINT,
-        RSC_MEASUREMENT,
-        RSC_FEATURE,
-        SC_CONTROL_POINT,
-        AGGREGATE,
-        CSC_MEASUREMENT,
-        CSC_FEATURE,
-        SENSOR_LOCATION,
-        PLX_SPOT_CHECK_MEASUREMENT,
-        PLX_CONTINUOUS_MEASUREMENT,
-        PLX_FEATURES,
-        CYCLING_POWER_MEASUREMENT,
-        CYCLING_POWER_VECTOR,
-        CYCLING_POWER_FEATURE,
-        CYCLING_POWER_CONTROL_POINT,
-        LOCATION_AND_SPEED,
-        NAVIGATION,
-        POSITION_QUALITY,
-        LN_FEATURE,
-        LN_CONTROL_POINT,
-        ELEVATION,
-        PRESSURE,
-        TEMPERATURE,
-        HUMIDITY,
-        TRUE_WIND_SPEED,
-        TRUE_WIND_DIRECTION,
-        APPARENT_WIND_SPEED,
-        APPARENT_WIND_DIRECTION,
-        GUST_FACTOR,
-        POLLEN_CONCENTRATION,
-        UV_INDEX,
-        IRRADIANCE,
-        RAINFALL,
-        WIND_CHILL,
-        HEAT_INDEX,
-        DEW_POINT,
-        DESCRIPTOR_VALUE_CHANGED,
-        AEROBIC_HEART_RATE_LOWER_LIMIT,
-        AEROBIC_THRESHOLD,
-        AGE,
-        ANAEROBIC_HEART_RATE_LOWER_LIMIT,
-        ANAEROBIC_HEART_RATE_UPPER_LIMIT,
-        ANAEROBIC_THRESHOLD,
-        AEROBIC_HEART_RATE_UPPER_LIMIT,
-        DATE_OF_BIRTH,
-        DATE_OF_THRESHOLD_ASSESSMENT,
-        EMAIL_ADDRESS,
-        FAT_BURN_HEART_RATE_LOWER_LIMIT,
-        FAT_BURN_HEART_RATE_UPPER_LIMIT,
-        FIRST_NAME,
-        FIVE_ZONE_HEART_RATE_LIMITS,
-        GENDER,
-        HEART_RATE_MAX,
-        HEIGHT,
-        HIP_CIRCUMFERENCE,
-        LAST_NAME,
-        MAXIMUM_RECOMMENDED_HEART_RATE,
-        RESTING_HEART_RATE,
-        SPORT_TYPE_FOR_AEROBIC_AND_ANAEROBIC_THRESHOLDS,
-        THREE_ZONE_HEART_RATE_LIMITS,
-        TWO_ZONE_HEART_RATE_LIMITS,
-        VO2_MAX,
-        WAIST_CIRCUMFERENCE,
-        WEIGHT,
-        DATABASE_CHANGE_INCREMENT,
-        USER_INDEX,
-        BODY_COMPOSITION_FEATURE,
-        BODY_COMPOSITION_MEASUREMENT,
-        WEIGHT_MEASUREMENT,
-        WEIGHT_SCALE_FEATURE,
-        USER_CONTROL_POINT,
-        MAGNETIC_FLUX_DENSITY___2D,
-        MAGNETIC_FLUX_DENSITY___3D,
-        LANGUAGE,
-        BAROMETRIC_PRESSURE_TREND,
-        BOND_MANAGEMENT_CONTROL_POINT,
-        BOND_MANAGEMENT_FEATURE,
-        CENTRAL_ADDRESS_RESOLUTION,
-        CGM_MEASUREMENT,
-        CGM_FEATURE,
-        CGM_STATUS,
-        CGM_SESSION_START_TIME,
-        CGM_SESSION_RUN_TIME,
-        CGM_SPECIFIC_OPS_CONTROL_POINT,
-        INDOOR_POSITIONING_CONFIGURATION,
-        LATITUDE,
-        LONGITUDE,
-        LOCAL_NORTH_COORDINATE,
-        LOCAL_EAST_COORDINATE,
-        FLOOR_NUMBER,
-        ALTITUDE,
-        UNCERTAINTY,
-        LOCATION_NAME,
-        URI,
-        HTTP_HEADERS,
-        HTTP_STATUS_CODE,
-        HTTP_ENTITY_BODY,
-        HTTP_CONTROL_POINT,
-        HTTPS_SECURITY,
-        TDS_CONTROL_POINT,
-        OTS_FEATURE,
-        OBJECT_NAME,
-        OBJECT_TYPE,
-        OBJECT_SIZE,
-        OBJECT_FIRST_CREATED,
-        OBJECT_LAST_MODIFIED,
-        OBJECT_ID,
-        OBJECT_PROPERTIES,
-        OBJECT_ACTIONCONTROL_POINT,
-        OBJECT_LIST_CONTROL_POINT,
-        OBJECT_LIST_FILTER,
-        OBJECT_CHANGED,
-        RESOLVABLE_PRIVATE_ADDRESS_ONLY,
-        UNSPECIFIED,
-        DIRECTORY_LISTING,
-        FITNESS_MACHINE_FEATURE,
-        TREADMILL_DATA,
-        CROSS_TRAINER_DATA,
-        STEP_CLIMBER_DATA,
-        STAIR_CLIMBER_DATA,
-        ROWER_DATA,
-        INDOOR_BIKE_DATA,
-        TRAINING_STATUS,
-        SUPPORTED_SPEED_RANGE,
-        SUPPORTED_INCLINATION_RANGE,
-        SUPPORTED_RESISTANCE_LEVEL_RANGE,
-        SUPPORTED_HEART_RATE_RANGE,
-        SUPPORTED_POWER_RANGE,
-        FITNESS_MACHINE_CONTROL_POINT,
-        FITNESS_MACHINE_STATUS,
-        MESH_PROVISIONING_DATA_IN,
-        MESH_PROVISIONING_DATA_OUT,
-        MESH_PROXY_DATA_IN,
-        MESH_PROXY_DATA_OUT,
-        AVERAGE_CURRENT,
-        AVERAGE_VOLTAGE,
-        BOOLEAN,
-        CHROMATIC_DISTANCE_FROM_PLANCKIAN,
-        CHROMATICITY_COORDINATES,
-        CHROMATICITY_IN_CCT_AND_DUV_VALUES,
-        CHROMATICITY_TOLERANCE,
-        CIE_13_3_1995_COLOR_RENDERING_INDEX,
-        COEFFICIENT,
-        CORRELATED_COLOR_TEMPERATURE,
-        COUNT_16,
-        COUNT_24,
-        COUNTRY_CODE,
-        DATE_UTC,
-        ELECTRIC_CURRENT,
-        ELECTRIC_CURRENT_RANGE,
-        ELECTRIC_CURRENT_SPECIFICATION,
-        ELECTRIC_CURRENT_STATISTICS,
-        ENERGY,
-        ENERGY_IN_A_PERIOD_OF_DAY,
-        EVENT_STATISTICS,
-        FIXED_STRING_16,
-        FIXED_STRING_24,
-        FIXED_STRING_36,
-        FIXED_STRING_8,
-        GENERIC_LEVEL,
-        GLOBAL_TRADE_ITEM_NUMBER,
-        ILLUMINANCE,
-        LUMINOUS_EFFICACY,
-        LUMINOUS_ENERGY,
-        LUMINOUS_EXPOSURE,
-        LUMINOUS_FLUX,
-        LUMINOUS_FLUX_RANGE,
-        LUMINOUS_INTENSITY,
-        MASS_FLOW,
-        PERCEIVED_LIGHTNESS,
-        PERCENTAGE_8,
-        POWER,
-        POWER_SPECIFICATION,
-        RELATIVE_RUNTIME_IN_A_CURRENT_RANGE,
-        RELATIVE_RUNTIME_IN_A_GENERIC_LEVEL_RANGE,
-        RELATIVE_VALUE_IN_A_VOLTAGE_RANGE,
-        RELATIVE_VALUE_IN_AN_ILLUMINANCE_RANGE,
-        RELATIVE_VALUE_IN_A_PERIOD_OF_DAY,
-        RELATIVE_VALUE_IN_A_TEMPERATURE_RANGE,
-        TEMPERATURE_8,
-        TEMPERATURE_8_IN_A_PERIOD_OF_DAY,
-        TEMPERATURE_8_STATISTICS,
-        TEMPERATURE_RANGE,
-        TEMPERATURE_STATISTICS,
-        TIME_DECIHOUR_8,
-        TIME_EXPONENTIAL_8,
-        TIME_HOUR_24,
-        TIME_MILLISECOND_24,
-        TIME_SECOND_16,
-        TIME_SECOND_8,
-        VOLTAGE,
-        VOLTAGE_SPECIFICATION,
-        VOLTAGE_STATISTICS,
-        VOLUME_FLOW,
-        CHROMATICITY_COORDINATE,
-        RC_FEATURE,
-        RC_SETTINGS,
-        RECONNECTION_CONFIGURATION_CONTROL_POINT,
-        IDD_STATUS_CHANGED,
-        IDD_STATUS,
-        IDD_ANNUNCIATION_STATUS,
-        IDD_FEATURES,
-        IDD_STATUS_READER_CONTROL_POINT,
-        IDD_COMMAND_CONTROL_POINT,
-        IDD_COMMAND_DATA,
-        IDD_RECORD_ACCESS_CONTROL_POINT,
-        IDD_HISTORY_DATA,
-        CLIENT_SUPPORTED_FEATURES,
-        DATABASE_HASH,
-        BSS_CONTROL_POINT,
-        BSS_RESPONSE,
-        EMERGENCY_ID,
-        EMERGENCY_TEXT,
-        ENHANCED_BLOOD_PRESSURE_MEASUREMENT,
-        ENHANCED_INTERMEDIATE_CUFF_PRESSURE,
-        BLOOD_PRESSURE_RECORD,
-        BR_EDR_HANDOVER_DATA,
-        BLUETOOTH_SIG_DATA,
-        SERVER_SUPPORTED_FEATURES,
-        PHYSICAL_ACTIVITY_MONITOR_FEATURES,
-        GENERAL_ACTIVITY_INSTANTANEOUS_DATA,
-        GENERAL_ACTIVITY_SUMMARY_DATA,
-        CARDIORESPIRATORY_ACTIVITY_INSTANTANEOUS_DATA,
-        CARDIORESPIRATORY_ACTIVITY_SUMMARY_DATA,
-        STEP_COUNTER_ACTIVITY_SUMMARY_DATA,
-        SLEEP_ACTIVITY_INSTANTANEOUS_DATA,
-        SLEEP_ACTIVITY_SUMMARY_DATA,
-        PHYSICAL_ACTIVITY_MONITOR_CONTROL_POINT,
-        CURRENT_SESSION,
-        SESSION,
-        PREFERRED_UNITS,
-        HIGH_RESOLUTION_HEIGHT,
-        MIDDLE_NAME,
-        STRIDE_LENGTH,
-        HANDEDNESS,
-        DEVICE_WEARING_POSITION,
-        FOUR_ZONE_HEART_RATE_LIMITS,
-        HIGH_INTENSITY_EXERCISE_THRESHOLD,
-        ACTIVITY_GOAL,
-        SEDENTARY_INTERVAL_NOTIFICATION,
-        CALORIC_INTAKE,
-        AUDIO_INPUT_STATE,
-        GAIN_SETTINGS_ATTRIBUTE,
-        AUDIO_INPUT_TYPE,
-        AUDIO_INPUT_STATUS,
-        AUDIO_INPUT_CONTROL_POINT,
-        AUDIO_INPUT_DESCRIPTION,
-        VOLUME_STATE,
-        VOLUME_CONTROL_POINT,
-        VOLUME_FLAGS,
-        OFFSET_STATE,
-        AUDIO_LOCATION,
-        VOLUME_OFFSET_CONTROL_POINT,
-        AUDIO_OUTPUT_DESCRIPTION,
-        SET_IDENTITY_RESOLVING_KEY_CHARACTERISTIC,
-        SIZE_CHARACTERISTIC,
-        LOCK_CHARACTERISTIC,
-        RANK_CHARACTERISTIC,
-        DEVICE_TIME_FEATURE,
-        DEVICE_TIME_PARAMETERS,
-        DEVICE_TIME,
-        DEVICE_TIME_CONTROL_POINT,
-        TIME_CHANGE_LOG_DATA,
-        MEDIA_PLAYER_NAME,
-        MEDIA_PLAYER_ICON_OBJECT_ID,
-        MEDIA_PLAYER_ICON_URL,
-        TRACK_CHANGED,
-        TRACK_TITLE,
-        TRACK_DURATION,
-        TRACK_POSITION,
-        PLAYBACK_SPEED,
-        SEEKING_SPEED,
-        CURRENT_TRACK_SEGMENTS_OBJECT_ID,
-        CURRENT_TRACK_OBJECT_ID,
-        NEXT_TRACK_OBJECT_ID,
-        PARENT_GROUP_OBJECT_ID,
-        CURRENT_GROUP_OBJECT_ID,
-        PLAYING_ORDER,
-        PLAYING_ORDERS_SUPPORTED,
-        MEDIA_STATE,
-        MEDIA_CONTROL_POINT,
-        MEDIA_CONTROL_POINT_OPCODES_SUPPORTED,
-        SEARCH_RESULTS_OBJECT_ID,
-        SEARCH_CONTROL_POINT,
-        MEDIA_PLAYER_ICON_OBJECT_TYPE,
-        TRACK_SEGMENTS_OBJECT_TYPE,
-        TRACK_OBJECT_TYPE,
-        GROUP_OBJECT_TYPE,
-        CONSTANT_TONE_EXTENSION_ENABLE,
-        ADVERTISING_CONSTANT_TONE_EXTENSION_MINIMUM_LENGTH,
-        ADVERTISING_CONSTANT_TONE_EXTENSION_MINIMUM_TRANSMIT_COUNT,
-        ADVERTISING_CONSTANT_TONE_EXTENSION_TRANSMIT_DURATION,
-        ADVERTISING_CONSTANT_TONE_EXTENSION_INTERVAL,
-        ADVERTISING_CONSTANT_TONE_EXTENSION_PHY,
-        BEARER_PROVIDER_NAME,
-        BEARER_UCI,
-        BEARER_TECHNOLOGY,
-        BEARER_URI_SCHEMES_SUPPORTED_LIST,
-        BEARER_SIGNAL_STRENGTH,
-        BEARER_SIGNAL_STRENGTH_REPORTING_INTERVAL,
-        BEARER_LIST_CURRENT_CALLS,
-        CONTENT_CONTROL_ID,
-        STATUS_FLAGS,
-        INCOMING_CALL_TARGET_BEARER_URI,
-        CALL_STATE,
-        CALL_CONTROL_POINT,
-        CALL_CONTROL_POINT_OPTIONAL_OPCODES,
-        TERMINATION_REASON,
-        INCOMING_CALL,
-        CALL_FRIENDLY_NAME,
-        MUTE,
-    ];
+  static const VALUES = [
+    DEVICE_NAME,
+    APPEARANCE,
+    PERIPHERAL_PRIVACY_FLAG,
+    RECONNECTION_ADDRESS,
+    PERIPHERAL_PREFERRED_CONNECTION_PARAMETERS,
+    SERVICE_CHANGED,
+    ALERT_LEVEL,
+    TX_POWER_LEVEL,
+    DATE_TIME,
+    DAY_OF_WEEK,
+    DAY_DATE_TIME,
+    EXACT_TIME_256,
+    DST_OFFSET,
+    TIME_ZONE,
+    LOCAL_TIME_INFORMATION,
+    TIME_WITH_DST,
+    TIME_ACCURACY,
+    TIME_SOURCE,
+    REFERENCE_TIME_INFORMATION,
+    TIME_UPDATE_CONTROL_POINT,
+    TIME_UPDATE_STATE,
+    GLUCOSE_MEASUREMENT,
+    BATTERY_LEVEL,
+    TEMPERATURE_MEASUREMENT,
+    TEMPERATURE_TYPE,
+    INTERMEDIATE_TEMPERATURE,
+    MEASUREMENT_INTERVAL,
+    BOOT_KEYBOARD_INPUT_REPORT,
+    SYSTEM_ID,
+    MODEL_NUMBER_STRING,
+    SERIAL_NUMBER_STRING,
+    FIRMWARE_REVISION_STRING,
+    HARDWARE_REVISION_STRING,
+    SOFTWARE_REVISION_STRING,
+    MANUFACTURER_NAME_STRING,
+    IEEE_11073_20601_REGULATORY_CERTIFICATION_DATA_LIST,
+    CURRENT_TIME,
+    SCAN_REFRESH,
+    BOOT_KEYBOARD_OUTPUT_REPORT,
+    BOOT_MOUSE_INPUT_REPORT,
+    GLUCOSE_MEASUREMENT_CONTEXT,
+    BLOOD_PRESSURE_MEASUREMENT,
+    INTERMEDIATE_CUFF_PRESSURE,
+    HEART_RATE_MEASUREMENT,
+    BODY_SENSOR_LOCATION,
+    HEART_RATE_CONTROL_POINT,
+    ALERT_STATUS,
+    RINGER_CONTROL_POINT,
+    RINGER_SETTING,
+    ALERT_CATEGORY_ID_BIT_MASK,
+    ALERT_CATEGORY_ID,
+    ALERT_NOTIFICATION_CONTROL_POINT,
+    UNREAD_ALERT_STATUS,
+    NEW_ALERT,
+    SUPPORTED_NEW_ALERT_CATEGORY,
+    SUPPORTED_UNREAD_ALERT_CATEGORY,
+    BLOOD_PRESSURE_FEATURE,
+    HID_INFORMATION,
+    REPORT_MAP,
+    HID_CONTROL_POINT,
+    REPORT,
+    PROTOCOL_MODE,
+    SCAN_INTERVAL_WINDOW,
+    PNP_ID,
+    GLUCOSE_FEATURE,
+    RECORD_ACCESS_CONTROL_POINT,
+    RSC_MEASUREMENT,
+    RSC_FEATURE,
+    SC_CONTROL_POINT,
+    AGGREGATE,
+    CSC_MEASUREMENT,
+    CSC_FEATURE,
+    SENSOR_LOCATION,
+    PLX_SPOT_CHECK_MEASUREMENT,
+    PLX_CONTINUOUS_MEASUREMENT,
+    PLX_FEATURES,
+    CYCLING_POWER_MEASUREMENT,
+    CYCLING_POWER_VECTOR,
+    CYCLING_POWER_FEATURE,
+    CYCLING_POWER_CONTROL_POINT,
+    LOCATION_AND_SPEED,
+    NAVIGATION,
+    POSITION_QUALITY,
+    LN_FEATURE,
+    LN_CONTROL_POINT,
+    ELEVATION,
+    PRESSURE,
+    TEMPERATURE,
+    HUMIDITY,
+    TRUE_WIND_SPEED,
+    TRUE_WIND_DIRECTION,
+    APPARENT_WIND_SPEED,
+    APPARENT_WIND_DIRECTION,
+    GUST_FACTOR,
+    POLLEN_CONCENTRATION,
+    UV_INDEX,
+    IRRADIANCE,
+    RAINFALL,
+    WIND_CHILL,
+    HEAT_INDEX,
+    DEW_POINT,
+    DESCRIPTOR_VALUE_CHANGED,
+    AEROBIC_HEART_RATE_LOWER_LIMIT,
+    AEROBIC_THRESHOLD,
+    AGE,
+    ANAEROBIC_HEART_RATE_LOWER_LIMIT,
+    ANAEROBIC_HEART_RATE_UPPER_LIMIT,
+    ANAEROBIC_THRESHOLD,
+    AEROBIC_HEART_RATE_UPPER_LIMIT,
+    DATE_OF_BIRTH,
+    DATE_OF_THRESHOLD_ASSESSMENT,
+    EMAIL_ADDRESS,
+    FAT_BURN_HEART_RATE_LOWER_LIMIT,
+    FAT_BURN_HEART_RATE_UPPER_LIMIT,
+    FIRST_NAME,
+    FIVE_ZONE_HEART_RATE_LIMITS,
+    GENDER,
+    HEART_RATE_MAX,
+    HEIGHT,
+    HIP_CIRCUMFERENCE,
+    LAST_NAME,
+    MAXIMUM_RECOMMENDED_HEART_RATE,
+    RESTING_HEART_RATE,
+    SPORT_TYPE_FOR_AEROBIC_AND_ANAEROBIC_THRESHOLDS,
+    THREE_ZONE_HEART_RATE_LIMITS,
+    TWO_ZONE_HEART_RATE_LIMITS,
+    VO2_MAX,
+    WAIST_CIRCUMFERENCE,
+    WEIGHT,
+    DATABASE_CHANGE_INCREMENT,
+    USER_INDEX,
+    BODY_COMPOSITION_FEATURE,
+    BODY_COMPOSITION_MEASUREMENT,
+    WEIGHT_MEASUREMENT,
+    WEIGHT_SCALE_FEATURE,
+    USER_CONTROL_POINT,
+    MAGNETIC_FLUX_DENSITY___2D,
+    MAGNETIC_FLUX_DENSITY___3D,
+    LANGUAGE,
+    BAROMETRIC_PRESSURE_TREND,
+    BOND_MANAGEMENT_CONTROL_POINT,
+    BOND_MANAGEMENT_FEATURE,
+    CENTRAL_ADDRESS_RESOLUTION,
+    CGM_MEASUREMENT,
+    CGM_FEATURE,
+    CGM_STATUS,
+    CGM_SESSION_START_TIME,
+    CGM_SESSION_RUN_TIME,
+    CGM_SPECIFIC_OPS_CONTROL_POINT,
+    INDOOR_POSITIONING_CONFIGURATION,
+    LATITUDE,
+    LONGITUDE,
+    LOCAL_NORTH_COORDINATE,
+    LOCAL_EAST_COORDINATE,
+    FLOOR_NUMBER,
+    ALTITUDE,
+    UNCERTAINTY,
+    LOCATION_NAME,
+    URI,
+    HTTP_HEADERS,
+    HTTP_STATUS_CODE,
+    HTTP_ENTITY_BODY,
+    HTTP_CONTROL_POINT,
+    HTTPS_SECURITY,
+    TDS_CONTROL_POINT,
+    OTS_FEATURE,
+    OBJECT_NAME,
+    OBJECT_TYPE,
+    OBJECT_SIZE,
+    OBJECT_FIRST_CREATED,
+    OBJECT_LAST_MODIFIED,
+    OBJECT_ID,
+    OBJECT_PROPERTIES,
+    OBJECT_ACTIONCONTROL_POINT,
+    OBJECT_LIST_CONTROL_POINT,
+    OBJECT_LIST_FILTER,
+    OBJECT_CHANGED,
+    RESOLVABLE_PRIVATE_ADDRESS_ONLY,
+    UNSPECIFIED,
+    DIRECTORY_LISTING,
+    FITNESS_MACHINE_FEATURE,
+    TREADMILL_DATA,
+    CROSS_TRAINER_DATA,
+    STEP_CLIMBER_DATA,
+    STAIR_CLIMBER_DATA,
+    ROWER_DATA,
+    INDOOR_BIKE_DATA,
+    TRAINING_STATUS,
+    SUPPORTED_SPEED_RANGE,
+    SUPPORTED_INCLINATION_RANGE,
+    SUPPORTED_RESISTANCE_LEVEL_RANGE,
+    SUPPORTED_HEART_RATE_RANGE,
+    SUPPORTED_POWER_RANGE,
+    FITNESS_MACHINE_CONTROL_POINT,
+    FITNESS_MACHINE_STATUS,
+    MESH_PROVISIONING_DATA_IN,
+    MESH_PROVISIONING_DATA_OUT,
+    MESH_PROXY_DATA_IN,
+    MESH_PROXY_DATA_OUT,
+    AVERAGE_CURRENT,
+    AVERAGE_VOLTAGE,
+    BOOLEAN,
+    CHROMATIC_DISTANCE_FROM_PLANCKIAN,
+    CHROMATICITY_COORDINATES,
+    CHROMATICITY_IN_CCT_AND_DUV_VALUES,
+    CHROMATICITY_TOLERANCE,
+    CIE_13_3_1995_COLOR_RENDERING_INDEX,
+    COEFFICIENT,
+    CORRELATED_COLOR_TEMPERATURE,
+    COUNT_16,
+    COUNT_24,
+    COUNTRY_CODE,
+    DATE_UTC,
+    ELECTRIC_CURRENT,
+    ELECTRIC_CURRENT_RANGE,
+    ELECTRIC_CURRENT_SPECIFICATION,
+    ELECTRIC_CURRENT_STATISTICS,
+    ENERGY,
+    ENERGY_IN_A_PERIOD_OF_DAY,
+    EVENT_STATISTICS,
+    FIXED_STRING_16,
+    FIXED_STRING_24,
+    FIXED_STRING_36,
+    FIXED_STRING_8,
+    GENERIC_LEVEL,
+    GLOBAL_TRADE_ITEM_NUMBER,
+    ILLUMINANCE,
+    LUMINOUS_EFFICACY,
+    LUMINOUS_ENERGY,
+    LUMINOUS_EXPOSURE,
+    LUMINOUS_FLUX,
+    LUMINOUS_FLUX_RANGE,
+    LUMINOUS_INTENSITY,
+    MASS_FLOW,
+    PERCEIVED_LIGHTNESS,
+    PERCENTAGE_8,
+    POWER,
+    POWER_SPECIFICATION,
+    RELATIVE_RUNTIME_IN_A_CURRENT_RANGE,
+    RELATIVE_RUNTIME_IN_A_GENERIC_LEVEL_RANGE,
+    RELATIVE_VALUE_IN_A_VOLTAGE_RANGE,
+    RELATIVE_VALUE_IN_AN_ILLUMINANCE_RANGE,
+    RELATIVE_VALUE_IN_A_PERIOD_OF_DAY,
+    RELATIVE_VALUE_IN_A_TEMPERATURE_RANGE,
+    TEMPERATURE_8,
+    TEMPERATURE_8_IN_A_PERIOD_OF_DAY,
+    TEMPERATURE_8_STATISTICS,
+    TEMPERATURE_RANGE,
+    TEMPERATURE_STATISTICS,
+    TIME_DECIHOUR_8,
+    TIME_EXPONENTIAL_8,
+    TIME_HOUR_24,
+    TIME_MILLISECOND_24,
+    TIME_SECOND_16,
+    TIME_SECOND_8,
+    VOLTAGE,
+    VOLTAGE_SPECIFICATION,
+    VOLTAGE_STATISTICS,
+    VOLUME_FLOW,
+    CHROMATICITY_COORDINATE,
+    RC_FEATURE,
+    RC_SETTINGS,
+    RECONNECTION_CONFIGURATION_CONTROL_POINT,
+    IDD_STATUS_CHANGED,
+    IDD_STATUS,
+    IDD_ANNUNCIATION_STATUS,
+    IDD_FEATURES,
+    IDD_STATUS_READER_CONTROL_POINT,
+    IDD_COMMAND_CONTROL_POINT,
+    IDD_COMMAND_DATA,
+    IDD_RECORD_ACCESS_CONTROL_POINT,
+    IDD_HISTORY_DATA,
+    CLIENT_SUPPORTED_FEATURES,
+    DATABASE_HASH,
+    BSS_CONTROL_POINT,
+    BSS_RESPONSE,
+    EMERGENCY_ID,
+    EMERGENCY_TEXT,
+    ENHANCED_BLOOD_PRESSURE_MEASUREMENT,
+    ENHANCED_INTERMEDIATE_CUFF_PRESSURE,
+    BLOOD_PRESSURE_RECORD,
+    BR_EDR_HANDOVER_DATA,
+    BLUETOOTH_SIG_DATA,
+    SERVER_SUPPORTED_FEATURES,
+    PHYSICAL_ACTIVITY_MONITOR_FEATURES,
+    GENERAL_ACTIVITY_INSTANTANEOUS_DATA,
+    GENERAL_ACTIVITY_SUMMARY_DATA,
+    CARDIORESPIRATORY_ACTIVITY_INSTANTANEOUS_DATA,
+    CARDIORESPIRATORY_ACTIVITY_SUMMARY_DATA,
+    STEP_COUNTER_ACTIVITY_SUMMARY_DATA,
+    SLEEP_ACTIVITY_INSTANTANEOUS_DATA,
+    SLEEP_ACTIVITY_SUMMARY_DATA,
+    PHYSICAL_ACTIVITY_MONITOR_CONTROL_POINT,
+    CURRENT_SESSION,
+    SESSION,
+    PREFERRED_UNITS,
+    HIGH_RESOLUTION_HEIGHT,
+    MIDDLE_NAME,
+    STRIDE_LENGTH,
+    HANDEDNESS,
+    DEVICE_WEARING_POSITION,
+    FOUR_ZONE_HEART_RATE_LIMITS,
+    HIGH_INTENSITY_EXERCISE_THRESHOLD,
+    ACTIVITY_GOAL,
+    SEDENTARY_INTERVAL_NOTIFICATION,
+    CALORIC_INTAKE,
+    AUDIO_INPUT_STATE,
+    GAIN_SETTINGS_ATTRIBUTE,
+    AUDIO_INPUT_TYPE,
+    AUDIO_INPUT_STATUS,
+    AUDIO_INPUT_CONTROL_POINT,
+    AUDIO_INPUT_DESCRIPTION,
+    VOLUME_STATE,
+    VOLUME_CONTROL_POINT,
+    VOLUME_FLAGS,
+    OFFSET_STATE,
+    AUDIO_LOCATION,
+    VOLUME_OFFSET_CONTROL_POINT,
+    AUDIO_OUTPUT_DESCRIPTION,
+    SET_IDENTITY_RESOLVING_KEY_CHARACTERISTIC,
+    SIZE_CHARACTERISTIC,
+    LOCK_CHARACTERISTIC,
+    RANK_CHARACTERISTIC,
+    DEVICE_TIME_FEATURE,
+    DEVICE_TIME_PARAMETERS,
+    DEVICE_TIME,
+    DEVICE_TIME_CONTROL_POINT,
+    TIME_CHANGE_LOG_DATA,
+    MEDIA_PLAYER_NAME,
+    MEDIA_PLAYER_ICON_OBJECT_ID,
+    MEDIA_PLAYER_ICON_URL,
+    TRACK_CHANGED,
+    TRACK_TITLE,
+    TRACK_DURATION,
+    TRACK_POSITION,
+    PLAYBACK_SPEED,
+    SEEKING_SPEED,
+    CURRENT_TRACK_SEGMENTS_OBJECT_ID,
+    CURRENT_TRACK_OBJECT_ID,
+    NEXT_TRACK_OBJECT_ID,
+    PARENT_GROUP_OBJECT_ID,
+    CURRENT_GROUP_OBJECT_ID,
+    PLAYING_ORDER,
+    PLAYING_ORDERS_SUPPORTED,
+    MEDIA_STATE,
+    MEDIA_CONTROL_POINT,
+    MEDIA_CONTROL_POINT_OPCODES_SUPPORTED,
+    SEARCH_RESULTS_OBJECT_ID,
+    SEARCH_CONTROL_POINT,
+    MEDIA_PLAYER_ICON_OBJECT_TYPE,
+    TRACK_SEGMENTS_OBJECT_TYPE,
+    TRACK_OBJECT_TYPE,
+    GROUP_OBJECT_TYPE,
+    CONSTANT_TONE_EXTENSION_ENABLE,
+    ADVERTISING_CONSTANT_TONE_EXTENSION_MINIMUM_LENGTH,
+    ADVERTISING_CONSTANT_TONE_EXTENSION_MINIMUM_TRANSMIT_COUNT,
+    ADVERTISING_CONSTANT_TONE_EXTENSION_TRANSMIT_DURATION,
+    ADVERTISING_CONSTANT_TONE_EXTENSION_INTERVAL,
+    ADVERTISING_CONSTANT_TONE_EXTENSION_PHY,
+    BEARER_PROVIDER_NAME,
+    BEARER_UCI,
+    BEARER_TECHNOLOGY,
+    BEARER_URI_SCHEMES_SUPPORTED_LIST,
+    BEARER_SIGNAL_STRENGTH,
+    BEARER_SIGNAL_STRENGTH_REPORTING_INTERVAL,
+    BEARER_LIST_CURRENT_CALLS,
+    CONTENT_CONTROL_ID,
+    STATUS_FLAGS,
+    INCOMING_CALL_TARGET_BEARER_URI,
+    CALL_STATE,
+    CALL_CONTROL_POINT,
+    CALL_CONTROL_POINT_OPTIONAL_OPCODES,
+    TERMINATION_REASON,
+    INCOMING_CALL,
+    CALL_FRIENDLY_NAME,
+    MUTE,
+  ];
 }

@@ -96,8 +96,11 @@ Future<void> readThroughFile(
     }
     final uuidInt = int.parse(columns[0].replaceFirst("0x", ""), radix: 16);
     final name = columns[1].replaceAll("\r", "").replaceAll("\n", "").trim();
-    final variableName =
-        name.toUpperCase().replaceAll(" ", "_").replaceAll("-", "_").replaceAll(".", "_");
+    final variableName = name
+        .toUpperCase()
+        .replaceAll(" ", "_")
+        .replaceAll("-", "_")
+        .replaceAll(".", "_");
     final uuid16 = uuidInt.toRadixString(16).toLowerCase().padLeft(4, '0');
     final uuid =
         '${uuidInt.toRadixString(16).toLowerCase().padLeft(8, '0')}-0000-1000-8000-00805f9b34fb';
