@@ -3,8 +3,6 @@
   <component name="ProjectModuleManager">
     <modules>
       <module fileurl="file://$PROJECT_DIR$/flutter_web_bluetooth.iml" filepath="$PROJECT_DIR$/flutter_web_bluetooth.iml" />
-      <module fileurl="file://$PROJECT_DIR$/android/flutter_web_bluetooth_android.iml" filepath="$PROJECT_DIR$/android/flutter_web_bluetooth_android.iml" />
-      <module fileurl="file://$PROJECT_DIR$/example/android/flutter_web_bluetooth_example_android.iml" filepath="$PROJECT_DIR$/example/android/flutter_web_bluetooth_example_android.iml" />
     </modules>
   </component>
 </project>
