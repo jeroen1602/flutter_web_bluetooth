@@ -5,13 +5,13 @@ const CACHE_NAME = 'flutter-app-cache';
 const RESOURCES = {
   "icons/Icon-192.png": "ac9a721a12bbc803b44f645561ecb1e1",
 "icons/Icon-512.png": "96e752610906ba2a93c65f8abe1645f1",
-"index.html": "7a6f2164f695f25ab71537f0ed6845ae",
-"/": "7a6f2164f695f25ab71537f0ed6845ae",
+"index.html": "5355c076e24345a949f11891a920f0e6",
+"/flutter_web_bluetooth/": "5355c076e24345a949f11891a920f0e6",
 "assets/fonts/MaterialIcons-Regular.otf": "4e6447691c9509f7acdbf8a931a85ca1",
 "assets/NOTICES": "f6bb797f4dd22f511930d281d55fd59e",
 "assets/AssetManifest.json": "99914b932bd37a50b983c5e7c90ae93b",
 "assets/FontManifest.json": "7b2a36307916a9721811788013e65289",
-"main.dart.js": "e7ca8a2fe978bd5e930904f071590473",
+"main.dart.js": "72e1d99c0f2426fbd65c9ad625361b86",
 "version.json": "fa9344f9483aebc4a622d2a4f0065c48",
 "manifest.json": "c163cbd2f212c994ba45fbb07db93a5f",
 "favicon.png": "5dcef449791fa27946b3d35ad8803796"
@@ -20,7 +20,7 @@ const RESOURCES = {
 // The application shell files that are downloaded before a service worker can
 // start.
 const CORE = [
-  "/",
+  "/flutter_web_bluetooth/",
 "main.dart.js",
 "index.html",
 "assets/NOTICES",
