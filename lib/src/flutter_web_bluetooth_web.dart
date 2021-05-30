@@ -79,16 +79,18 @@ class FlutterWebBluetooth extends FlutterWebBluetoothInterface {
   ///
   @override
   Stream<bool> get isAvailable {
-    return Bluetooth.onAvailabilitychanged();
+    return Bluetooth.onAvailabilityChanged();
   }
 
   ///
-  /// Get a Set of devices already known to the browser.
-  /// This will return a list of device that the page has connected to at
-  /// least once. This does not mean that the device is in range, just that
-  /// it's paired.
+  /// Get a [Stream] with a [Set] of all devices paired in this browser session.
+  /// If the browser supports [Bluetooth.getDevices], which none currently do
+  /// unless a flag is used, then it will also return a list of all paired devices.
   ///
   /// Will return a [Stream] of an empty [Set] if [isAvailable] is false.
+  ///
+  /// A paired device is a device that the user has granted access to and the
+  /// web app has once connected with.
   ///
   @override
   Stream<Set<BluetoothDevice>> get devices {
