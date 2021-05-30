@@ -31,10 +31,6 @@ class NativeBluetooth {
     return _NativeBluetooth.requestDevice(options);
   }
 
-  bool hasGetDevices() {
-    return _JSUtil.hasProperty(_NativeBluetooth, 'getDevices');
-  }
-
   void addEventListener(String type, void Function(dynamic) listener) {
     _NativeBluetooth.addEventListener(type, listener);
   }
@@ -118,6 +114,10 @@ Object _getNavigator() {
 class Bluetooth {
   Bluetooth._();
 
+  ///
+  /// Check to see if the Bluetooth api is even support in the current
+  /// browser.
+  ///
   static bool isBluetoothAPISupported() {
     final hasProperty = _JSUtil.hasProperty(_getNavigator(), 'bluetooth');
     return hasProperty;
@@ -180,7 +180,11 @@ class Bluetooth {
   /// Check to see if the [getDevices] call is available in the current browser.
   ///
   static bool hasGetDevices() {
-    return _nativeBluetooth.hasGetDevices();
+    if (!isBluetoothAPISupported()) {
+      return false;
+    }
+    final bluetooth = _JSUtil.getProperty(_getNavigator(), 'bluetooth');
+    return _JSUtil.hasProperty(bluetooth, 'getDevices');
   }
 
   ///
