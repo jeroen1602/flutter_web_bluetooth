@@ -1,3 +1,8 @@
+## 0.0.4
+
+* Fixed call to `navigator.bluetooth.getDevices` in browsers that don't support it.
+* Added more documentation
+
 ## 0.0.3
 
 * Forgot some Flutter dependency
