@@ -31,6 +31,10 @@ class NativeBluetooth {
     return _NativeBluetooth.requestDevice(options);
   }
 
+  bool hasGetDevices() {
+    return _JSUtil.hasProperty(_NativeBluetooth, 'getDevices');
+  }
+
   void addEventListener(String type, void Function(dynamic) listener) {
     _NativeBluetooth.addEventListener(type, listener);
   }
@@ -146,10 +150,10 @@ class Bluetooth {
   /// Get a [Stream] for the availability of a Bluetooth adapter.
   /// If a user inserts or removes a bluetooth adapter from their devices this
   /// stream will update.
-  /// It will not necicerly update if the user enables/ disables a bleutooth
+  /// It will not necessarily update if the user enables/ disables a bluetooth
   /// adapter.
   ///
-  static Stream<bool> onAvailabilitychanged() {
+  static Stream<bool> onAvailabilityChanged() {
     if (!isBluetoothAPISupported()) {
       return Stream.value(false);
     }
@@ -168,7 +172,30 @@ class Bluetooth {
         [Stream.fromFuture(getAvailability()), availabilityStream!.stream]);
   }
 
+  ///
+  /// Check to see if the [getDevices] call is available in the current browser.
+  ///
+  static bool hasGetDevices() {
+    return _nativeBluetooth.hasGetDevices();
+  }
+
+  ///
+  /// Get a list back of already paired devices. A device becomes paired once a
+  /// user clicks on it in the pair menu and the web app also connects to the
+  /// device. If only a user pairs a device, but not connection attempt is made
+  /// then it won't be marked as paired.
+  ///
+  /// No browser currently supports this without needing a browser flag.
+  /// https://caniuse.com/mdn-api_bluetooth_getdevices
+  ///
+  /// Will return an empty list if [hasGetDevices] returns false.
+  /// See [hasGetDevices].
+  ///
+  ///
   static Future<List<WebBluetoothDevice>> getDevices() async {
+    if (!hasGetDevices()) {
+      return [];
+    }
     final promise = _nativeBluetooth.getDevices();
     final result = await _JSUtil.promiseToFuture(promise);
     if (result is List) {
@@ -179,8 +206,7 @@ class Bluetooth {
         } catch (e) {
           if (e is UnsupportedError) {
             print(
-                'flutter_web_bluetooth: Could not convert known device to BluetoothDevice. Error: "${e
-                    .message}"');
+                'flutter_web_bluetooth: Could not convert known device to BluetoothDevice. Error: "${e.message}"');
           } else {
             throw e;
           }
