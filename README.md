@@ -1,4 +1,6 @@
 # Introduction
+[![FOSSA Status](https://app.fossa.com/api/projects/git%2Bgithub.com%2Fjeroen1602%2Fflutter_web_bluetooth.svg?type=shield)](https://app.fossa.com/projects/git%2Bgithub.com%2Fjeroen1602%2Fflutter_web_bluetooth?ref=badge_shield)
+
 
 Flutter web bluetooth is a [Flutter](https://flutter.dev/) plugin to add support for the 
 [web bluetooth api](https://developer.mozilla.org/en-US/docs/Web/API/Web_Bluetooth_API).
@@ -73,3 +75,7 @@ reference back to all the connected devices by listening to the devices stream.
 ```dart
 FlutterWebBluetooth.instance.devices; // A stream with a [Set] of all the devices that the user has paired, and given permission for.
 ```
+
+
+## License
+[![FOSSA Status](https://app.fossa.com/api/projects/git%2Bgithub.com%2Fjeroen1602%2Fflutter_web_bluetooth.svg?type=large)](https://app.fossa.com/projects/git%2Bgithub.com%2Fjeroen1602%2Fflutter_web_bluetooth?ref=badge_large)
