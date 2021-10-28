@@ -2,7 +2,7 @@ part of flutter_web_bluetooth;
 
 class BluetoothCharacteristic {
   BluetoothCharacteristic(this._characteristic) {
-    this._characteristic.addEventListener('oncharacteristicvaluechanged',
+    this._characteristic.addEventListener('characteristicvaluechanged',
         (event) {
       print(event);
       final data = this._characteristic.value;
