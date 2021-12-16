@@ -8,11 +8,12 @@ class NativeBluetoothTesting extends NativeBluetooth {
 
   @override
   Object getAvailability() {
-    return Future.value(this.available);
+    return Future.value(available);
   }
 
+  @override
   Object requestDevice(RequestOptions? options) {
-    return Future.value(bluetoothDevice ?? Map<String, dynamic>());
+    return Future.value(bluetoothDevice ?? <String, dynamic>{});
   }
 
   @override

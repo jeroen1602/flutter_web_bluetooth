@@ -21,9 +21,10 @@ class BluetoothDevice {
       return;
     }
 
+    // ignore: deprecated_member_use_from_same_package
     _connectionSubject = BehaviorSubject.seeded(gatt?.connected == true);
 
-    this._bluetoothDevice.addEventListener('gattserverdisconnected',
+    _bluetoothDevice.addEventListener('gattserverdisconnected',
         (dynamic event) {
       _connectionSubject?.add(false);
       if (_servicesSubject.hasValue) {
@@ -32,9 +33,11 @@ class BluetoothDevice {
     });
   }
 
-  bool get hasGATT => this.gatt != null;
+  // ignore: deprecated_member_use_from_same_package
+  bool get hasGATT => gatt != null;
 
   void disconnect() {
+    // ignore: deprecated_member_use_from_same_package
     gatt?.disconnect();
   }
 
@@ -47,6 +50,7 @@ class BluetoothDevice {
   /// May throw [NetworkError] if no connection could be established.
   ///
   Future<void> connect({Duration? timeout = const Duration(seconds: 5)}) async {
+    // ignore: deprecated_member_use_from_same_package
     final gatt = this.gatt!;
     _startConnectedStream();
     // No timeout.
@@ -58,19 +62,19 @@ class BluetoothDevice {
       }
     } catch (e) {
       if (e is TimeoutException) {
-        this.disconnect();
-        throw e;
+        disconnect();
+        rethrow;
       }
       final error = e.toString().trim();
       if (error.startsWith('NetworkError')) {
-        throw NetworkError(this.id);
+        throw NetworkError(id);
       }
     }
 
-    this._connectionSubject?.add(true);
+    _connectionSubject?.add(true);
   }
 
-  BehaviorSubject<List<BluetoothService>> _servicesSubject =
+  final BehaviorSubject<List<BluetoothService>> _servicesSubject =
       BehaviorSubject.seeded([]);
 
   Stream<List<BluetoothService>> get services async* {
@@ -79,7 +83,7 @@ class BluetoothDevice {
         _connectionSubject!.value == false) {
       yield [];
     }
-    if (!_servicesSubject.hasValue || _servicesSubject.value!.isEmpty) {
+    if (!_servicesSubject.hasValue || _servicesSubject.value.isEmpty) {
       yield await discoverServices();
     }
     yield* _servicesSubject.stream;
@@ -89,6 +93,7 @@ class BluetoothDevice {
   /// May throw [StateError] if the device is not connected.
   ///
   Future<List<BluetoothService>> discoverServices() async {
+    // ignore: deprecated_member_use_from_same_package
     final gatt = this.gatt;
     if (gatt == null || !gatt.connected) {
       throw StateError(
@@ -117,12 +122,12 @@ class BluetoothDevice {
 
   @override
   bool operator ==(Object other) {
-    if (!(other is BluetoothDevice)) {
+    if (other is! BluetoothDevice) {
       return false;
     }
-    return this.id == other.id;
+    return id == other.id;
   }
 
   @override
-  int get hashCode => this.id.hashCode;
+  int get hashCode => id.hashCode;
 }

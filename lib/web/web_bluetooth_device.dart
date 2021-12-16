@@ -13,7 +13,7 @@ class WebBluetoothDevice {
     if (id != null) {
       return id;
     }
-    id = _JSUtil.getProperty(this._jsObject, 'id') as String;
+    id = _JSUtil.getProperty(_jsObject, 'id') as String;
     _id = id;
     return id;
   }
@@ -25,10 +25,10 @@ class WebBluetoothDevice {
     if (name != null) {
       return name;
     }
-    if (!_JSUtil.hasProperty(this._jsObject, 'name')) {
+    if (!_JSUtil.hasProperty(_jsObject, 'name')) {
       return null;
     }
-    name = _JSUtil.getProperty(this._jsObject, 'name') as String;
+    name = _JSUtil.getProperty(_jsObject, 'name') as String;
     _name = name;
     return name;
   }
@@ -40,10 +40,10 @@ class WebBluetoothDevice {
     if (gatt != null) {
       return gatt;
     }
-    if (!_JSUtil.hasProperty(this._jsObject, 'gatt')) {
+    if (!_JSUtil.hasProperty(_jsObject, 'gatt')) {
       return null;
     }
-    final newGatt = _JSUtil.getProperty(this._jsObject, 'gatt');
+    final newGatt = _JSUtil.getProperty(_jsObject, 'gatt');
     if (newGatt != null) {
       try {
         _gatt = NativeBluetoothRemoteGATTServer.fromJSObject(newGatt, this);
@@ -52,7 +52,7 @@ class WebBluetoothDevice {
           print(
               'flutter_web_bluetooth: Could not convert JSObject to BluetoothRemoteGattServer. Error: "${e.message}"');
         } else {
-          throw e;
+          rethrow;
         }
       }
     }

@@ -9,31 +9,32 @@ import 'dart:typed_data';
 
 import 'package:rxdart/rxdart.dart';
 
-import 'web/js/JSUtils.dart';
+import 'web/js/js_utils.dart';
 import 'web/js/js.dart';
 
-part 'web/NativeBluetoothRemoteGATTServer.dart';
+part 'web/native_bluetooth_remote_gatt_server.dart';
 
-part 'web/WebBluetoothCharacteristicProperties.dart';
+part 'web/web_bluetooth_characteristic_properties.dart';
 
-part 'web/WebBluetoothConverters.dart';
+part 'web/web_bluetooth_converters.dart';
 
-part 'web/WebBluetoothDevice.dart';
+part 'web/web_bluetooth_device.dart';
 
-part 'web/WebBluetoothRemoteGATTCharacteristic.dart';
+part 'web/web_bluetooth_remote_gatt_characteristic.dart';
 
-part 'web/WebBluetoothRemoteGATTDescriptor.dart';
+part 'web/web_bluetooth_remote_gatt_descriptor.dart';
 
-part 'web/WebBluetoothRemoteGATTService.dart';
+part 'web/web_bluetooth_remote_gatt_service.dart';
 
 part 'web/bluetooth.dart';
 
-part 'web/errors/DeviceNotFoundError.dart';
+part 'web/errors/device_not_found_error.dart';
 
-part 'web/errors/NativeAPINotImplementedError.dart';
+part 'web/errors/native_api_not_implemented_error.dart';
 
-part 'web/errors/UserCancelledDialogError.dart';
+part 'web/errors/user_cancelled_dialog_error.dart';
 
+// ignore: non_constant_identifier_names
 JSUtilsInterface _JSUtil = JSUtils();
 
 ///

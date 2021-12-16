@@ -10,7 +10,8 @@ environment:
 
 dependencies:
   js: '>=0.6.3 <0.7.0'
-  rxdart: '>=0.26.0 <0.28.0'
+  rxdart: '>=0.27.0 <0.28.0'
 
 dev_dependencies:
   test: ^1.17.4
+  lints: ^1.0.0

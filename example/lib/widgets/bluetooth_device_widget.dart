@@ -5,7 +5,7 @@ class BluetoothDeviceWidget extends StatelessWidget {
   final BluetoothDevice bluetoothDevice;
   final VoidCallback? onTap;
 
-  BluetoothDeviceWidget({
+  const BluetoothDeviceWidget({
     Key? key,
     required this.bluetoothDevice,
     this.onTap,
@@ -20,13 +20,12 @@ class BluetoothDeviceWidget extends StatelessWidget {
 
     return Column(
       children: [
-        Container(
-            child: ListTile(
-          onTap: this.onTap,
+        ListTile(
+          onTap: onTap,
           title: Row(
             children: [
               StreamBuilder(
-                  stream: this.bluetoothDevice.connected,
+                  stream: bluetoothDevice.connected,
                   initialData: false,
                   builder:
                       (BuildContext context, AsyncSnapshot<bool> snapshot) {
@@ -34,14 +33,14 @@ class BluetoothDeviceWidget extends StatelessWidget {
                         color:
                             snapshot.requireData ? Colors.green : Colors.red);
                   }),
-              SelectableText(this.bluetoothDevice.name ?? 'null',
-                  style: this.bluetoothDevice.name == null ? cursive : null),
+              SelectableText(bluetoothDevice.name ?? 'null',
+                  style: bluetoothDevice.name == null ? cursive : null),
             ],
           ),
-          subtitle: SelectableText(this.bluetoothDevice.id),
-          trailing: this.onTap != null ? Icon(Icons.arrow_forward_ios) : null,
-        )),
-        Divider(),
+          subtitle: SelectableText(bluetoothDevice.id),
+          trailing: onTap != null ? const Icon(Icons.arrow_forward_ios) : null,
+        ),
+        const Divider(),
       ],
     );
   }

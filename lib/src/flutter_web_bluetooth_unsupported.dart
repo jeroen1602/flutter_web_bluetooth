@@ -19,15 +19,15 @@ part 'bluetooth_device.dart';
 
 part 'bluetooth_service.dart';
 
-part 'errors/BluetoothAdapterNotAvailable.dart';
+part 'errors/bluetooth_adapter_not_available.dart';
 
-part 'errors/NetworkError.dart';
+part 'errors/network_error.dart';
 
-part 'errors/NotFoundError.dart';
+part 'errors/not_found_error.dart';
 
-part 'errors/NotSupportedError.dart';
+part 'errors/not_supported_error.dart';
 
-part 'errors/SecurityError.dart';
+part 'errors/security_error.dart';
 
 part 'flutter_web_bluetooth_interface.dart';
 
@@ -57,7 +57,7 @@ class FlutterWebBluetooth extends FlutterWebBluetoothInterface {
   /// Will always return a [Stream] with an empty [Set].
   ///
   @override
-  Stream<Set<BluetoothDevice>> get devices => Stream.value(Set());
+  Stream<Set<BluetoothDevice>> get devices => Stream.value(<BluetoothDevice>{});
 
   ///
   /// Will always throw a [NativeAPINotImplementedError].

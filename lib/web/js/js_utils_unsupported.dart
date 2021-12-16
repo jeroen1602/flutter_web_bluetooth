@@ -1,7 +1,7 @@
 /// @nodoc
 library bluetooth_web_js_utils;
 
-part 'JSUtilsInterface.dart';
+part 'js_utils_interface.dart';
 
 /// @nodoc
 class JSUtils extends JSUtilsInterface {

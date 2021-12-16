@@ -1,3 +1,5 @@
+// ignore_for_file: constant_identifier_names
+
 import 'package:flutter_web_bluetooth/flutter_web_bluetooth.dart';
 import 'package:test/test.dart';
 

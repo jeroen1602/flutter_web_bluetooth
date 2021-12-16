@@ -8,7 +8,7 @@ class WebBluetoothRemoteGATTService {
   final WebBluetoothDevice device;
 
   bool hasIsPrimary() {
-    return _JSUtil.hasProperty(this._jsObject, 'isPrimary');
+    return _JSUtil.hasProperty(_jsObject, 'isPrimary');
   }
 
   bool? _isPrimary;
@@ -18,13 +18,13 @@ class WebBluetoothRemoteGATTService {
     if (isPrimary != null) {
       return isPrimary;
     }
-    if (!this.hasIsPrimary()) {
+    if (!hasIsPrimary()) {
       throw NativeAPINotImplementedError(
           'BluetoothRemoteGATTService.isPrimary');
     }
 
-    isPrimary = _JSUtil.getProperty(this._jsObject, 'isPrimary');
-    if (isPrimary != null && isPrimary is bool) {
+    isPrimary = _JSUtil.getProperty(_jsObject, 'isPrimary');
+    if (isPrimary != null) {
       _isPrimary = isPrimary;
       return isPrimary;
     }
@@ -39,8 +39,8 @@ class WebBluetoothRemoteGATTService {
       return uuid;
     }
 
-    uuid = _JSUtil.getProperty(this._jsObject, 'uuid');
-    if (uuid != null && uuid is String) {
+    uuid = _JSUtil.getProperty(_jsObject, 'uuid');
+    if (uuid != null) {
       _uuid = uuid;
       return uuid;
     }
@@ -49,14 +49,14 @@ class WebBluetoothRemoteGATTService {
 
   Future<WebBluetoothRemoteGATTCharacteristic> getCharacteristic(
       String characteristicUUID) async {
-    final promise = _JSUtil.callMethod(this._jsObject, 'getCharacteristic',
-        [characteristicUUID.toLowerCase()]);
+    final promise = _JSUtil.callMethod(
+        _jsObject, 'getCharacteristic', [characteristicUUID.toLowerCase()]);
     final result = await _JSUtil.promiseToFuture(promise);
     return WebBluetoothRemoteGATTCharacteristic.fromJSObject(result, this);
   }
 
   bool hasGetCharacteristicsFunction() {
-    return _JSUtil.hasProperty(this._jsObject, 'getCharacteristics');
+    return _JSUtil.hasProperty(_jsObject, 'getCharacteristics');
   }
 
   @Deprecated(
@@ -70,7 +70,7 @@ class WebBluetoothRemoteGATTService {
     final arguments =
         characteristicUUID == null ? [] : [characteristicUUID.toLowerCase()];
     final promise =
-        _JSUtil.callMethod(this._jsObject, 'getCharacteristics', arguments);
+        _JSUtil.callMethod(_jsObject, 'getCharacteristics', arguments);
     final result = await _JSUtil.promiseToFuture(promise);
     if (result is List) {
       final items = <WebBluetoothRemoteGATTCharacteristic>[];
@@ -83,7 +83,7 @@ class WebBluetoothRemoteGATTService {
             print(
                 'flutter_web_bluetooth: Could not convert known device to BluetoothRemoteGATTCharacteristic. Error: "${e.message}"');
           } else {
-            throw e;
+            rethrow;
           }
         }
       }
@@ -93,7 +93,7 @@ class WebBluetoothRemoteGATTService {
   }
 
   bool hasGetIncludedServiceFunction() {
-    return _JSUtil.hasProperty(this._jsObject, 'getIncludedService');
+    return _JSUtil.hasProperty(_jsObject, 'getIncludedService');
   }
 
   // Will not exist if there are no includedServices.
@@ -103,13 +103,13 @@ class WebBluetoothRemoteGATTService {
       throw NativeAPINotImplementedError('getIncludedService');
     }
     final promise = _JSUtil.callMethod(
-        this._jsObject, 'getIncludedService', [serviceUUID.toLowerCase()]);
+        _jsObject, 'getIncludedService', [serviceUUID.toLowerCase()]);
     final result = await _JSUtil.promiseToFuture(promise);
-    return WebBluetoothRemoteGATTService.fromJSObject(result, this.device);
+    return WebBluetoothRemoteGATTService.fromJSObject(result, device);
   }
 
   bool hasGetIncludedServicesFunction() {
-    return _JSUtil.hasProperty(this._jsObject, 'getIncludedServices');
+    return _JSUtil.hasProperty(_jsObject, 'getIncludedServices');
   }
 
   @Deprecated(
@@ -121,20 +121,19 @@ class WebBluetoothRemoteGATTService {
     }
     final arguments = serviceUUID == null ? [] : [serviceUUID.toLowerCase()];
     final promise =
-        _JSUtil.callMethod(this._jsObject, 'getIncludedServices', arguments);
+        _JSUtil.callMethod(_jsObject, 'getIncludedServices', arguments);
     final result = await _JSUtil.promiseToFuture(promise);
     if (result is List) {
       final items = <WebBluetoothRemoteGATTService>[];
       for (final item in result) {
         try {
-          items.add(
-              WebBluetoothRemoteGATTService.fromJSObject(item, this.device));
+          items.add(WebBluetoothRemoteGATTService.fromJSObject(item, device));
         } catch (e) {
           if (e is UnsupportedError) {
             print(
                 'flutter_web_bluetooth: Could not convert known device to BluetoothRemoteGATTService. Error: "${e.message}"');
           } else {
-            throw e;
+            rethrow;
           }
         }
       }

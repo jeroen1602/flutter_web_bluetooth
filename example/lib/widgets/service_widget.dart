@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_web_bluetooth/flutter_web_bluetooth.dart';
-import 'package:flutter_web_bluetooth_example/widgets/CharacteristicWidget.dart';
+import 'package:flutter_web_bluetooth_example/widgets/characteristic_widget.dart';
 
 class _ServiceAndCharacteristic {
   final List<BluetoothService> services;
@@ -16,13 +16,13 @@ class ServiceWidget extends StatelessWidget {
   ServiceWidget({Key? key, required this.service}) : super(key: key) {
     serviceName = BluetoothDefaultServiceUUIDS.VALUES
         .cast<BluetoothDefaultServiceUUIDS?>()
-        .firstWhere((element) => element?.uuid == this.service.uuid)
+        .firstWhere((element) => element?.uuid == service.uuid)
         ?.name;
   }
 
   Future<_ServiceAndCharacteristic> getServicesAndCharacteristics() async {
     final List<BluetoothService> services = [];
-    if (this.service.hasIncludedService) {
+    if (service.hasIncludedService) {
       for (final defaultService in BluetoothDefaultServiceUUIDS.VALUES) {
         try {
           final service =
@@ -32,6 +32,7 @@ class ServiceWidget extends StatelessWidget {
           if (e is NotFoundError) {
             // Don't want to spam the console.
           } else {
+            // ignore: avoid_print
             print(e);
           }
         }
@@ -42,12 +43,13 @@ class ServiceWidget extends StatelessWidget {
         in BluetoothDefaultCharacteristicUUIDS.VALUES) {
       try {
         final characteristic =
-            await this.service.getCharacteristic(defaultCharacteristics.uuid);
+            await service.getCharacteristic(defaultCharacteristics.uuid);
         characteristics.add(characteristic);
       } catch (e) {
         if (e is NotFoundError) {
           // Don't want to spam the console.
         } else {
+          // ignore: avoid_print
           print(e);
         }
       }
@@ -60,7 +62,7 @@ class ServiceWidget extends StatelessWidget {
   Widget build(BuildContext context) {
     return FutureBuilder(
         future: getServicesAndCharacteristics(),
-        initialData: _ServiceAndCharacteristic([], []),
+        initialData: const _ServiceAndCharacteristic([], []),
         builder: (BuildContext context,
             AsyncSnapshot<_ServiceAndCharacteristic> snapshot) {
           final data = snapshot.requireData;
@@ -69,11 +71,11 @@ class ServiceWidget extends StatelessWidget {
           for (final service in data.services) {
             subServices.addAll([
               Text('Service with uuid: ${service.uuid}'),
-              Divider(),
+              const Divider(),
             ]);
           }
           if (subServices.isNotEmpty) {
-            subServices.add(Divider(
+            subServices.add(const Divider(
               thickness: 1.5,
             ));
           }
@@ -82,24 +84,24 @@ class ServiceWidget extends StatelessWidget {
           for (final characteristic in data.characteristics) {
             characteristics.addAll([
               CharacteristicWidget(characteristic: characteristic),
-              Divider(),
+              const Divider(),
             ]);
           }
 
           return Column(
             children: [
               ListTile(
-                title: Text('Service'),
+                title: const Text('Service'),
                 subtitle: SelectableText(serviceName == null
                     ? service.uuid
                     : '${service.uuid} ($serviceName)'),
               ),
-              Divider(
+              const Divider(
                 thickness: 1.5,
               ),
               ...subServices,
               ...characteristics,
-              Divider(
+              const Divider(
                 thickness: 2.0,
               ),
             ],

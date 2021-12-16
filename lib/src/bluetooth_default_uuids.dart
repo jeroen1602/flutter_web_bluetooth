@@ -2,6 +2,8 @@
 /// scripts/generate_default_uuids.dart. If you need more uuids please change
 /// the csv files and regenerate the file.
 
+// ignore_for_file: constant_identifier_names
+
 part of flutter_web_bluetooth;
 
 abstract class BluetoothDefaultUUIDS {
