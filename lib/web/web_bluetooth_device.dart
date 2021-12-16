@@ -28,7 +28,7 @@ class WebBluetoothDevice {
     if (!_JSUtil.hasProperty(_jsObject, 'name')) {
       return null;
     }
-    name = _JSUtil.getProperty(_jsObject, 'name') as String;
+    name = _JSUtil.getProperty(_jsObject, 'name') as String?;
     _name = name;
     return name;
   }
