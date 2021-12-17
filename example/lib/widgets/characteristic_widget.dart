@@ -99,7 +99,9 @@ class DataWidget extends StatelessWidget {
       print('COULD NOT CONVERT');
       return '';
     } catch (e) {
-      rethrow;
+      // ignore: avoid_print
+      print('COULD NOT CONVERT $e');
+      return '';
     }
   }
 
