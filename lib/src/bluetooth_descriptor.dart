@@ -18,9 +18,9 @@ class BluetoothDescriptor {
     } catch (e) {
       final error = e.toString().trim();
       if (error.startsWith('NotSupportedError')) {
-        throw NotSupportedError(this.uuid);
+        throw NotSupportedError(uuid);
       }
-      throw e;
+      rethrow;
     }
   }
 
@@ -33,9 +33,9 @@ class BluetoothDescriptor {
     } catch (e) {
       final error = e.toString().trim();
       if (error.startsWith('NotSupportedError')) {
-        throw NotSupportedError(this.uuid);
+        throw NotSupportedError(uuid);
       }
-      throw e;
+      rethrow;
     }
   }
 }

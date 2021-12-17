@@ -5,10 +5,12 @@
 ///
 library bluetooth_web_js_utils;
 
+// ignore: library_prefixes
 import 'dart:js' as JS;
+// ignore: library_prefixes
 import 'dart:js_util' as JSUtil;
 
-part 'JSUtilsInterface.dart';
+part 'js_utils_interface.dart';
 
 class JSUtils extends JSUtilsInterface {
   @override
@@ -39,6 +41,7 @@ class JSUtils extends JSUtilsInterface {
   dynamic setProperty(Object o, Object name, Object? value) =>
       JSUtil.setProperty(o, name, value);
 
+  @override
   F allowInterop<F extends Function>(F f) {
     return JS.allowInterop(f);
   }

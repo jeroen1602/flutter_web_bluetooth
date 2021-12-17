@@ -1,10 +1,10 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_web_bluetooth/flutter_web_bluetooth.dart';
 import 'package:flutter_web_bluetooth/js_web_bluetooth.dart';
-import 'package:flutter_web_bluetooth_example/pages/DeviceServicesPage.dart';
-import 'package:flutter_web_bluetooth_example/webHelpers/WebHelpers.dart';
-import 'package:flutter_web_bluetooth_example/widgets/BluetoothDeviceWidget.dart';
-import 'package:flutter_web_bluetooth_example/widgets/BrowserNotSupportedAlertWidget.dart';
+import 'package:flutter_web_bluetooth_example/pages/device_services_page.dart';
+import 'package:flutter_web_bluetooth_example/web_helpers/web_helpers.dart';
+import 'package:flutter_web_bluetooth_example/widgets/bluetooth_device_widget.dart';
+import 'package:flutter_web_bluetooth_example/widgets/browser_not_supported_alert_widget.dart';
 
 const redirect = bool.fromEnvironment('redirectToHttps', defaultValue: false);
 
@@ -12,10 +12,12 @@ void main() {
   if (redirect) {
     WebHelpers.redirectToHttps();
   }
-  runApp(MyApp());
+  runApp(const MyApp());
 }
 
 class MyApp extends StatefulWidget {
+  const MyApp({Key? key}) : super(key: key);
+
   @override
   _MyAppState createState() => _MyAppState();
 }
@@ -62,25 +64,25 @@ class _MyAppState extends State<MyApp> {
                       } on BluetoothAdapterNotAvailable {
                         ScaffoldMessenger.maybeOf(context)
                             ?.showSnackBar(SnackBar(
-                          content: Text('No bluetooth adapter available'),
+                          content: const Text('No bluetooth adapter available'),
                           backgroundColor: errorColor,
                         ));
                       } on UserCancelledDialogError {
                         ScaffoldMessenger.maybeOf(context)
                             ?.showSnackBar(SnackBar(
-                          content: Text('User canceled the dialog'),
+                          content: const Text('User canceled the dialog'),
                           backgroundColor: errorColor,
                         ));
                       } on DeviceNotFoundError {
                         ScaffoldMessenger.maybeOf(context)
                             ?.showSnackBar(SnackBar(
-                          content: Text('No devices found'),
+                          content: const Text('No devices found'),
                           backgroundColor: errorColor,
                         ));
                       }
                     }
                   },
-                  child: Icon(Icons.search));
+                  child: const Icon(Icons.search));
             },
           ),
         ));
@@ -110,11 +112,11 @@ class MainPageState extends State<MainPage> {
       MainPageHeader(
         isBluetoothAvailable: widget.isBluetoothAvailable,
       ),
-      Divider(),
+      const Divider(),
       Expanded(
         child: StreamBuilder(
           stream: FlutterWebBluetooth.instance.devices,
-          initialData: Set<BluetoothDevice>(),
+          initialData: const <BluetoothDevice>{},
           builder: (BuildContext context,
               AsyncSnapshot<Set<BluetoothDevice>> snapshot) {
             final devices = snapshot.requireData;
@@ -141,7 +143,7 @@ class MainPageState extends State<MainPage> {
 }
 
 class MainPageHeader extends StatelessWidget {
-  MainPageHeader({Key? key, required this.isBluetoothAvailable})
+  const MainPageHeader({Key? key, required this.isBluetoothAvailable})
       : super(key: key);
 
   final bool isBluetoothAvailable;
@@ -154,25 +156,25 @@ class MainPageHeader extends StatelessWidget {
     final phoneSize = screenWidth <= 620.0;
 
     final children = <Widget>[
-      Container(
+      SizedBox(
           width: phoneSize ? screenWidth : screenWidth * 0.5,
           child: ListTile(
-            title: SelectableText('Bluetooth api available'),
+            title: const SelectableText('Bluetooth api available'),
             subtitle: SelectableText(
                 FlutterWebBluetooth.instance.isBluetoothApiSupported
                     ? 'true'
                     : 'false'),
           )),
-      Container(
+      SizedBox(
           width: phoneSize ? screenWidth : screenWidth * 0.5,
           child: ListTile(
-            title: SelectableText('Bluetooth available'),
+            title: const SelectableText('Bluetooth available'),
             subtitle: SelectableText(text),
           )),
     ];
 
     if (phoneSize) {
-      children.insert(1, Divider());
+      children.insert(1, const Divider());
       return Column(
         children: children,
       );

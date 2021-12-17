@@ -216,7 +216,7 @@ class Bluetooth {
             print(
                 'flutter_web_bluetooth: Could not convert known device to BluetoothDevice. Error: "${e.message}"');
           } else {
-            throw e;
+            rethrow;
           }
         }
       }
@@ -244,7 +244,7 @@ class Bluetooth {
         throw DeviceNotFoundError(
             error.replaceFirst('NotFoundError', '').replaceFirst(': ', ''));
       }
-      throw e;
+      rethrow;
     }
   }
 }

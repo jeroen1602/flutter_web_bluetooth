@@ -1,10 +1,10 @@
 import 'package:flutter_web_bluetooth/js_web_bluetooth.dart';
-import 'package:flutter_web_bluetooth/web/js/JSUtils.dart';
+import 'package:flutter_web_bluetooth/web/js/js_utils.dart';
 import 'package:test/test.dart';
 
-import '../helper/JSUtilsTesting.dart';
-import '../helper/NativeBluetoothDeviceTesting.dart';
-import '../helper/NativeBluetoothRemoteGATTServerTesting.dart';
+import '../helper/js_utils_testing.dart';
+import '../helper/native_bluetooth_device_testing.dart';
+import '../helper/native_bluetooth_remote_gatt_server_testing.dart';
 
 void main() {
   JSUtilsInterface utils = JSUtilsTesting();

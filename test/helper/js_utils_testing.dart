@@ -1,4 +1,4 @@
-import 'package:flutter_web_bluetooth/web/js/JSUtils.dart';
+import 'package:flutter_web_bluetooth/web/js/js_utils.dart';
 
 class JSUtilsTesting extends JSUtilsInterface {
   @override
@@ -37,13 +37,13 @@ class JSUtilsTesting extends JSUtilsInterface {
 
   @override
   newObject() {
-    return Map<String, dynamic>();
+    return <String, dynamic>{};
   }
 
   @override
   Future<T> promiseToFuture<T>(Object jsPromise) {
     if (jsPromise is Future) {
-      if (!(jsPromise is Future<T>)) {
+      if (jsPromise is! Future<T>) {
         print('Warning the input "promnise" (future for testing) didn\'t '
             'have the correct generic.');
       }

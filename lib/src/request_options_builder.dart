@@ -10,22 +10,22 @@ class RequestOptionsBuilder {
   /// [RequestOptionsBuilder.acceptAllDevices].
   RequestOptionsBuilder(List<RequestFilterBuilder> requestFilters,
       {List<String>? optionalServices})
-      : this._requestFilters = requestFilters,
-        this._acceptAllDevices = false,
-        this._optionalServices = optionalServices {
-    if (this._requestFilters.isEmpty) {
+      : _requestFilters = requestFilters,
+        _acceptAllDevices = false,
+        _optionalServices = optionalServices {
+    if (_requestFilters.isEmpty) {
       throw StateError('No filters have been set, consider using '
           'RequestOptionsBuilder.acceptAllDevices() instead.');
     }
   }
 
   RequestOptionsBuilder.acceptAllDevices({List<String>? optionalServices})
-      : this._acceptAllDevices = true,
-        this._requestFilters = [],
-        this._optionalServices = optionalServices;
+      : _acceptAllDevices = true,
+        _requestFilters = [],
+        _optionalServices = optionalServices;
 
   RequestOptions toRequestOptions() {
-    final optionalService = this._optionalServices;
+    final optionalService = _optionalServices;
     if (_acceptAllDevices) {
       if (optionalService == null) {
         return RequestOptions(acceptAllDevices: true);

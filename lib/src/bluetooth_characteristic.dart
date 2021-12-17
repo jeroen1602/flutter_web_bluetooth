@@ -2,46 +2,45 @@ part of flutter_web_bluetooth;
 
 class BluetoothCharacteristic {
   BluetoothCharacteristic(this._characteristic) {
-    this._characteristic.addEventListener('characteristicvaluechanged',
-        (event) {
+    _characteristic.addEventListener('characteristicvaluechanged', (event) {
       print(event);
-      final data = this._characteristic.value;
+      final data = _characteristic.value;
       if (data != null) {
         _value.add(data);
       }
     });
   }
 
-  WebBluetoothRemoteGATTCharacteristic _characteristic;
+  final WebBluetoothRemoteGATTCharacteristic _characteristic;
 
-  String get uuid => this._characteristic.uuid;
+  String get uuid => _characteristic.uuid;
 
   bool _isNotifying = false;
 
-  bool get isNotifying => this._isNotifying;
+  bool get isNotifying => _isNotifying;
 
-  BehaviorSubject<ByteData> _value = BehaviorSubject();
+  final BehaviorSubject<ByteData> _value = BehaviorSubject();
 
   Stream<ByteData> get value => _value.stream;
 
-  ByteData get lastValue => _value.value ?? ByteData(0);
+  ByteData get lastValue => _value.valueOrNullCompat ?? ByteData(0);
 
   WebBluetoothCharacteristicProperties get properties =>
-      this._characteristic.properties;
+      _characteristic.properties;
 
   ///
   /// May throw [NotSupportedError] if the operation is not allowed.
   ///
   Future<void> startNotifications() async {
     try {
-      await this._characteristic.startNotifications();
+      await _characteristic.startNotifications();
       _isNotifying = true;
     } catch (e) {
       final error = e.toString().trim();
       if (error.startsWith('NotSupportedError')) {
-        throw NotSupportedError(this.uuid);
+        throw NotSupportedError(uuid);
       }
-      throw e;
+      rethrow;
     }
   }
 
@@ -50,33 +49,35 @@ class BluetoothCharacteristic {
   ///
   Future<void> stopNotifications() async {
     try {
-      await this._characteristic.stopNotifications();
+      await _characteristic.stopNotifications();
       _isNotifying = false;
     } catch (e) {
       final error = e.toString().trim();
       if (error.startsWith('NotSupportedError')) {
-        throw NotSupportedError(this.uuid);
+        throw NotSupportedError(uuid);
       }
-      throw e;
+      rethrow;
     }
   }
 
   Future<void> writeValueWithoutResponse(Uint8List data) async {
-    if (this._characteristic.hasWriteValueWithoutResponse()) {
-      return this._characteristic.writeValueWithoutResponse(data);
+    if (_characteristic.hasWriteValueWithoutResponse()) {
+      return _characteristic.writeValueWithoutResponse(data);
     }
     print(
         "WriteValueWithoutResponse not supported in this browser. Using writeValue instead");
-    return this._characteristic.writeValue(data);
+    // ignore: deprecated_member_use_from_same_package
+    return _characteristic.writeValue(data);
   }
 
   Future<void> writeValueWithResponse(Uint8List data) async {
-    if (this._characteristic.hasWriteValueWithResponse()) {
-      return this._characteristic.writeValueWithResponse(data);
+    if (_characteristic.hasWriteValueWithResponse()) {
+      return _characteristic.writeValueWithResponse(data);
     }
     print(
         "WriteValueWithResponse not supported in this browser. Using writeValue instead");
-    return this._characteristic.writeValue(data);
+    // ignore: deprecated_member_use_from_same_package
+    return _characteristic.writeValue(data);
   }
 
   ///
@@ -89,15 +90,15 @@ class BluetoothCharacteristic {
   Future<ByteData> readValue(
       {Duration timeout = const Duration(seconds: 5)}) async {
     try {
-      final value = await this._characteristic.readValue().timeout(timeout);
-      this._value.add(value);
+      final value = await _characteristic.readValue().timeout(timeout);
+      _value.add(value);
       return value;
     } catch (e) {
       final error = e.toString().trim();
       if (error.startsWith('NotSupportedError')) {
-        throw NotSupportedError(this.uuid);
+        throw NotSupportedError(uuid);
       }
-      throw e;
+      rethrow;
     }
   }
 }

@@ -32,7 +32,7 @@ class BluetoothService {
       } else if (error.startsWith("SecurityError")) {
         throw SecurityError(uuid, error);
       }
-      throw e;
+      rethrow;
     }
   }
 
@@ -51,7 +51,7 @@ class BluetoothService {
       } else if (error.startsWith("SecurityError")) {
         throw SecurityError(uuid, error);
       }
-      throw e;
+      rethrow;
     }
   }
 }

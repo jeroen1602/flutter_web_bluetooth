@@ -9,7 +9,7 @@ class CharacteristicWidget extends StatefulWidget {
       : super(key: key) {
     characteristicName = BluetoothDefaultCharacteristicUUIDS.VALUES
         .cast<BluetoothDefaultCharacteristicUUIDS?>()
-        .firstWhere((element) => element?.uuid == this.characteristic.uuid)
+        .firstWhere((element) => element?.uuid == characteristic.uuid)
         ?.name;
   }
 
@@ -45,7 +45,7 @@ class CharacteristicWidgetState extends State<CharacteristicWidget> {
               if (data != null) {
                 return DataWidget(data: data);
               }
-              return Text('No data retrieved!');
+              return const Text('No data retrieved!');
             }),
         Padding(
           padding: const EdgeInsets.all(8.0),
@@ -55,7 +55,7 @@ class CharacteristicWidgetState extends State<CharacteristicWidget> {
                   onPressed: () async {
                     await widget.characteristic.readValue();
                   },
-                  child: Text('Get value')),
+                  child: const Text('Get value')),
               OutlinedButton(
                   onPressed: () async {
                     if (widget.characteristic.isNotifying) {
@@ -77,7 +77,7 @@ class CharacteristicWidgetState extends State<CharacteristicWidget> {
 }
 
 class DataWidget extends StatelessWidget {
-  DataWidget({required this.data, Key? key}) : super(key: key);
+  const DataWidget({required this.data, Key? key}) : super(key: key);
 
   final ByteData data;
 
@@ -93,12 +93,15 @@ class DataWidget extends StatelessWidget {
     final list =
         List.generate(data.lengthInBytes, (index) => data.getUint8(index));
     try {
-      return Utf8Decoder().convert(list);
+      return const Utf8Decoder().convert(list);
     } on FormatException {
+      // ignore: avoid_print
       print('COULD NOT CONVERT');
       return '';
     } catch (e) {
-      throw e;
+      // ignore: avoid_print
+      print('COULD NOT CONVERT $e');
+      return '';
     }
   }
 
@@ -110,15 +113,15 @@ class DataWidget extends StatelessWidget {
         children: [
           Row(
             children: [
-              Text('Data as hex:'),
-              VerticalDivider(),
+              const Text('Data as hex:'),
+              const VerticalDivider(),
               SelectableText(_toHex())
             ],
           ),
           Row(
             children: [
-              Text('Data as UTF-8 String:'),
-              VerticalDivider(),
+              const Text('Data as UTF-8 String:'),
+              const VerticalDivider(),
               SelectableText(_asUTF8String())
             ],
           ),

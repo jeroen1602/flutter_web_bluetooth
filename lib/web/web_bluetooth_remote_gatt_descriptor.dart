@@ -15,8 +15,8 @@ class WebBluetoothRemoteGATTDescriptor {
       return uuid;
     }
 
-    uuid = _JSUtil.getProperty(this._jsObject, 'uuid');
-    if (uuid != null && uuid is String) {
+    uuid = _JSUtil.getProperty(_jsObject, 'uuid');
+    if (uuid != null) {
       _uuid = uuid;
       return uuid;
     }
@@ -24,16 +24,16 @@ class WebBluetoothRemoteGATTDescriptor {
   }
 
   ByteData? get value {
-    if (!_JSUtil.hasProperty(this._jsObject, 'value')) {
+    if (!_JSUtil.hasProperty(_jsObject, 'value')) {
       return null;
     }
-    final result = _JSUtil.getProperty(this._jsObject, 'value');
+    final result = _JSUtil.getProperty(_jsObject, 'value');
     final data = WebBluetoothConverters.convertJSDataViewToByteData(result);
     return data;
   }
 
   Future<ByteData> readValue() async {
-    final promise = _JSUtil.callMethod(this._jsObject, 'readValue', []);
+    final promise = _JSUtil.callMethod(_jsObject, 'readValue', []);
     final result = await _JSUtil.promiseToFuture(promise);
     final data = WebBluetoothConverters.convertJSDataViewToByteData(result);
     return data;
@@ -41,7 +41,7 @@ class WebBluetoothRemoteGATTDescriptor {
 
   Future<void> writeValue(Uint8List value) async {
     final data = WebBluetoothConverters.convertUint8ListToJSArrayBuffer(value);
-    final promise = _JSUtil.callMethod(this._jsObject, 'writeValue', [data]);
+    final promise = _JSUtil.callMethod(_jsObject, 'writeValue', [data]);
     await _JSUtil.promiseToFuture(promise);
   }
 

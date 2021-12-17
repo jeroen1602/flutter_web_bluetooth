@@ -1,9 +1,9 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_web_bluetooth/flutter_web_bluetooth.dart';
-import 'package:flutter_web_bluetooth_example/widgets/serviceWidget.dart';
+import 'package:flutter_web_bluetooth_example/widgets/service_widget.dart';
 
 class DeviceServicesPage extends StatefulWidget {
-  DeviceServicesPage({Key? key, required this.bluetoothDevice})
+  const DeviceServicesPage({Key? key, required this.bluetoothDevice})
       : super(key: key);
 
   final BluetoothDevice bluetoothDevice;
@@ -36,7 +36,7 @@ class DeviceServicesState extends State<DeviceServicesPage> {
                         if (!widget.bluetoothDevice.hasGATT) {
                           ScaffoldMessenger.maybeOf(context)
                               ?.showSnackBar(SnackBar(
-                            content: Text('This device has no gatt'),
+                            content: const Text('This device has no gatt'),
                             backgroundColor: theme.errorColor,
                           ));
                           return;
@@ -57,7 +57,7 @@ class DeviceServicesState extends State<DeviceServicesPage> {
               if (connected) {
                 return StreamBuilder<List<BluetoothService>>(
                   stream: widget.bluetoothDevice.services,
-                  initialData: [],
+                  initialData: const [],
                   builder: (BuildContext context,
                       AsyncSnapshot<List<BluetoothService>> serviceSnapshot) {
                     if (serviceSnapshot.hasError) {
@@ -69,7 +69,7 @@ class DeviceServicesState extends State<DeviceServicesPage> {
                     }
                     final services = serviceSnapshot.requireData;
                     if (services.isEmpty) {
-                      return Center(
+                      return const Center(
                         child: Text('No services found!'),
                       );
                     }
@@ -77,14 +77,13 @@ class DeviceServicesState extends State<DeviceServicesPage> {
                     final serviceWidgets = List.generate(services.length,
                         (index) => ServiceWidget(service: services[index]));
 
-                    return Container(
-                        child: ListView(
+                    return ListView(
                       children: serviceWidgets,
-                    ));
+                    );
                   },
                 );
               } else {
-                return Center(
+                return const Center(
                   child: Text('Click connect first'),
                 );
               }

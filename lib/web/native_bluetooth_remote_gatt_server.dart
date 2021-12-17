@@ -8,7 +8,7 @@ class NativeBluetoothRemoteGATTServer {
   final WebBluetoothDevice device;
 
   bool get connected {
-    final value = _JSUtil.getProperty(this._jsObject, 'connected');
+    final value = _JSUtil.getProperty(_jsObject, 'connected');
     if (value is bool) {
       return value;
     }
@@ -16,41 +16,40 @@ class NativeBluetoothRemoteGATTServer {
   }
 
   Future<NativeBluetoothRemoteGATTServer> connect() async {
-    final promise = _JSUtil.callMethod(this._jsObject, 'connect', []);
+    final promise = _JSUtil.callMethod(_jsObject, 'connect', []);
     await _JSUtil.promiseToFuture(promise);
     return this;
   }
 
   void disconnect() {
-    _JSUtil.callMethod(this._jsObject, 'disconnect', []);
+    _JSUtil.callMethod(_jsObject, 'disconnect', []);
   }
 
   Future<WebBluetoothRemoteGATTService> getPrimaryService(
       String serviceUUID) async {
     final promise = _JSUtil.callMethod(
-        this._jsObject, 'getPrimaryService', [serviceUUID.toLowerCase()]);
+        _jsObject, 'getPrimaryService', [serviceUUID.toLowerCase()]);
     final result = await _JSUtil.promiseToFuture(promise);
-    return WebBluetoothRemoteGATTService.fromJSObject(result, this.device);
+    return WebBluetoothRemoteGATTService.fromJSObject(result, device);
   }
 
   Future<List<WebBluetoothRemoteGATTService>> getPrimaryServices(
       String? serviceUUID) async {
     final arguments = serviceUUID == null ? [] : [serviceUUID.toLowerCase()];
     final promise =
-        _JSUtil.callMethod(this._jsObject, 'getPrimaryServices', arguments);
+        _JSUtil.callMethod(_jsObject, 'getPrimaryServices', arguments);
     final result = await _JSUtil.promiseToFuture(promise);
     if (result is List) {
       final items = <WebBluetoothRemoteGATTService>[];
       for (final item in result) {
         try {
-          items.add(
-              WebBluetoothRemoteGATTService.fromJSObject(item, this.device));
+          items.add(WebBluetoothRemoteGATTService.fromJSObject(item, device));
         } catch (e) {
           if (e is UnsupportedError) {
             print(
                 'flutter_web_bluetooth: Could not convert known device to BluetoothRemoteGATTService. Error: "${e.message}"');
           } else {
-            throw e;
+            rethrow;
           }
         }
       }

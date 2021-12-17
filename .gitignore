@@ -16,3 +16,8 @@ flutter*.log
 .idea/assetWizardSettings.xml
 .idea/dictionaries
 .idea/libraries
+
+# IDE
+.idea/
+*.iml
+.vscode/
