@@ -1,4 +1,4 @@
-## 0.05
+## 0.0.5
 
 * Fixed typo in `characteristicvaluechanged` for the `BluetoothCharacteristic.startNotifications()`. (Thanks [AshTerry](https://github.com/AshTerry).)
 * Fixed crash when the device name of a bluetooth device is null. (Thanks [alextekartik](https://github.com/alextekartik).)
