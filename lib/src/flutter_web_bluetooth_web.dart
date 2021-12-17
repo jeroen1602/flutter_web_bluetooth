@@ -9,7 +9,7 @@ import 'dart:async';
 import 'dart:typed_data';
 
 import 'package:flutter_web_bluetooth/js_web_bluetooth.dart';
-import 'package:rxdart/rxdart.dart';
+import 'rxdart_import.dart';
 
 part 'bluetooth_characteristic.dart';
 
@@ -53,7 +53,7 @@ class FlutterWebBluetooth extends FlutterWebBluetoothInterface {
 
   void _addKnownDevice(BluetoothDevice device) {
     final set = _knownDevicesStream.hasValue
-        ? _knownDevicesStream.value
+        ? _knownDevicesStream.valueCompat
         : <BluetoothDevice>{};
     set.add(device);
     _knownDevicesStream.add(set);
@@ -109,7 +109,7 @@ class FlutterWebBluetooth extends FlutterWebBluetoothInterface {
       print('flutter_web_bluetooth: could not get known devices because '
           'it\'s not available in this browser/ for this devices.');
       final set = _knownDevicesStream.hasValue
-          ? _knownDevicesStream.value
+          ? _knownDevicesStream.valueCompat
           : <BluetoothDevice>{};
       set.clear();
       _knownDevicesStream.add(set);
@@ -119,7 +119,7 @@ class FlutterWebBluetooth extends FlutterWebBluetoothInterface {
     final devicesSet =
         Set<BluetoothDevice>.from(devices.map((e) => BluetoothDevice(e)));
     final set = _knownDevicesStream.hasValue
-        ? _knownDevicesStream.value
+        ? _knownDevicesStream.valueCompat
         : <BluetoothDevice>{};
     set.addAll(devicesSet);
     _knownDevicesStream.add(set);

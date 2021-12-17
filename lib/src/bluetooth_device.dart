@@ -83,7 +83,7 @@ class BluetoothDevice {
         _connectionSubject!.value == false) {
       yield [];
     }
-    if (!_servicesSubject.hasValue || _servicesSubject.value.isEmpty) {
+    if (!_servicesSubject.hasValue || _servicesSubject.valueCompat.isEmpty) {
       yield await discoverServices();
     }
     yield* _servicesSubject.stream;

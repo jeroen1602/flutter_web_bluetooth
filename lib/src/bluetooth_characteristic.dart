@@ -23,7 +23,7 @@ class BluetoothCharacteristic {
 
   Stream<ByteData> get value => _value.stream;
 
-  ByteData get lastValue => _value.valueOrNull ?? ByteData(0);
+  ByteData get lastValue => _value.valueOrNullCompat ?? ByteData(0);
 
   WebBluetoothCharacteristicProperties get properties =>
       _characteristic.properties;

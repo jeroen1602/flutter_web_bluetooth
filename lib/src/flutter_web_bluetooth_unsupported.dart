@@ -5,7 +5,7 @@ import 'dart:async';
 import 'dart:typed_data';
 
 import 'package:flutter_web_bluetooth/js_web_bluetooth.dart';
-import 'package:rxdart/rxdart.dart';
+import 'rxdart_import.dart';
 
 part 'bluetooth_characteristic.dart';
 
