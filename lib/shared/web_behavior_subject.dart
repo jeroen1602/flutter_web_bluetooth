@@ -13,7 +13,9 @@ class WebBehaviorSubject<T> {
 
   T? get value => _value;
 
-  WebBehaviorSubject.seeded(T seed) : _value = seed;
+  WebBehaviorSubject.seeded(T seed) {
+    add(seed);
+  }
 
   WebBehaviorSubject();
 
