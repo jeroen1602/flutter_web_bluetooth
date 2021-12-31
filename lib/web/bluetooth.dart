@@ -103,6 +103,7 @@ Object? _navigatorTesting;
 /// Change the navigator object used.
 /// This method is meant for testing!
 ///
+@visibleForTesting
 void testingSetNavigator(Object navigatorObject) {
   _navigatorTesting = navigatorObject;
 }
