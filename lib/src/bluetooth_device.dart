@@ -9,7 +9,7 @@ class BluetoothDevice {
 
   String? get name => _bluetoothDevice.name;
 
-  BehaviorSubject<bool>? _connectionSubject;
+  WebBehaviorSubject<bool>? _connectionSubject;
 
   Stream<bool> get connected {
     _startConnectedStream();
@@ -22,7 +22,7 @@ class BluetoothDevice {
     }
 
     // ignore: deprecated_member_use_from_same_package
-    _connectionSubject = BehaviorSubject.seeded(gatt?.connected == true);
+    _connectionSubject = WebBehaviorSubject.seeded(gatt?.connected == true);
 
     _bluetoothDevice.addEventListener('gattserverdisconnected',
         (dynamic event) {
@@ -74,8 +74,8 @@ class BluetoothDevice {
     _connectionSubject?.add(true);
   }
 
-  final BehaviorSubject<List<BluetoothService>> _servicesSubject =
-      BehaviorSubject.seeded([]);
+  final WebBehaviorSubject<List<BluetoothService>> _servicesSubject =
+      WebBehaviorSubject.seeded([]);
 
   Stream<List<BluetoothService>> get services async* {
     while (_connectionSubject == null ||
@@ -83,7 +83,7 @@ class BluetoothDevice {
         _connectionSubject!.value == false) {
       yield [];
     }
-    if (!_servicesSubject.hasValue || _servicesSubject.valueCompat.isEmpty) {
+    if (_servicesSubject.value?.isEmpty == true) {
       yield await discoverServices();
     }
     yield* _servicesSubject.stream;

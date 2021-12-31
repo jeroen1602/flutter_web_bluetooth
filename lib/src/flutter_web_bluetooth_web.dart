@@ -9,7 +9,8 @@ import 'dart:async';
 import 'dart:typed_data';
 
 import 'package:flutter_web_bluetooth/js_web_bluetooth.dart';
-import 'rxdart_import.dart';
+
+import '../shared/web_behavior_subject.dart';
 
 part 'bluetooth_characteristic.dart';
 
@@ -47,14 +48,12 @@ class FlutterWebBluetooth extends FlutterWebBluetoothInterface {
     return _instance!;
   }
 
-  final BehaviorSubject<Set<BluetoothDevice>> _knownDevicesStream =
-      BehaviorSubject.seeded(<BluetoothDevice>{});
+  final WebBehaviorSubject<Set<BluetoothDevice>> _knownDevicesStream =
+      WebBehaviorSubject.seeded(<BluetoothDevice>{});
   bool _checkedDevices = false;
 
   void _addKnownDevice(BluetoothDevice device) {
-    final set = _knownDevicesStream.hasValue
-        ? _knownDevicesStream.valueCompat
-        : <BluetoothDevice>{};
+    final set = _knownDevicesStream.value ?? <BluetoothDevice>{};
     set.add(device);
     _knownDevicesStream.add(set);
   }
@@ -108,9 +107,7 @@ class FlutterWebBluetooth extends FlutterWebBluetoothInterface {
     if (shouldCheck && !(await Bluetooth.getAvailability())) {
       print('flutter_web_bluetooth: could not get known devices because '
           'it\'s not available in this browser/ for this devices.');
-      final set = _knownDevicesStream.hasValue
-          ? _knownDevicesStream.valueCompat
-          : <BluetoothDevice>{};
+      final set = _knownDevicesStream.value ?? <BluetoothDevice>{};
       set.clear();
       _knownDevicesStream.add(set);
       return;
@@ -118,9 +115,7 @@ class FlutterWebBluetooth extends FlutterWebBluetoothInterface {
     final devices = await Bluetooth.getDevices();
     final devicesSet =
         Set<BluetoothDevice>.from(devices.map((e) => BluetoothDevice(e)));
-    final set = _knownDevicesStream.hasValue
-        ? _knownDevicesStream.valueCompat
-        : <BluetoothDevice>{};
+    final set = _knownDevicesStream.value ?? <BluetoothDevice>{};
     set.addAll(devicesSet);
     _knownDevicesStream.add(set);
   }

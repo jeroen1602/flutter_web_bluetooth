@@ -148,7 +148,7 @@ class Bluetooth {
     return false;
   }
 
-  static BehaviorSubject<bool>? availabilityStream;
+  static WebBehaviorSubject<bool>? availabilityStream;
 
   ///
   /// Get a [Stream] for the availability of a Bluetooth adapter.
@@ -157,14 +157,14 @@ class Bluetooth {
   /// It will not necessarily update if the user enables/ disables a bluetooth
   /// adapter.
   ///
-  static Stream<bool> onAvailabilityChanged() {
+  static Stream<bool> onAvailabilityChanged() async* {
     if (!isBluetoothAPISupported()) {
-      return Stream.value(false);
+      yield* Stream.value(false);
     }
     if (availabilityStream != null) {
-      return availabilityStream!.stream;
+      yield* availabilityStream!.stream;
     }
-    availabilityStream = BehaviorSubject();
+    availabilityStream = WebBehaviorSubject();
     _nativeBluetooth.addEventListener('availabilitychanged',
         _JSUtil.allowInterop((event) {
       final value = _JSUtil.getProperty(event, 'value');
@@ -172,8 +172,8 @@ class Bluetooth {
         availabilityStream?.add(value);
       }
     }));
-    return MergeStream(
-        [Stream.fromFuture(getAvailability()), availabilityStream!.stream]);
+    yield await getAvailability();
+    yield* availabilityStream!.stream;
   }
 
   ///
