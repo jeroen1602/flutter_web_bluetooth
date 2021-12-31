@@ -189,7 +189,7 @@ class BluetoothDevice {
   }
 
   /// Get the underlying native (web) gatt service.
-  ///@visibleForTesting
+  @visibleForTesting
   @Deprecated('This is here for debugging and will be removed once web '
       'bluetooth is actually released. '
       '(It will still exist as visible for testing)')
