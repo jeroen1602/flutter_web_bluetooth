@@ -44,7 +44,7 @@ class JSUtilsTesting extends JSUtilsInterface {
   Future<T> promiseToFuture<T>(Object jsPromise) {
     if (jsPromise is Future) {
       if (jsPromise is! Future<T>) {
-        print('Warning the input "promnise" (future for testing) didn\'t '
+        print('Warning the input "promise" (future for testing) didn\'t '
             'have the correct generic.');
       }
       return jsPromise as Future<T>;

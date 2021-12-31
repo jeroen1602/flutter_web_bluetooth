@@ -7,6 +7,8 @@ library js_web_bluetooth;
 
 import 'dart:typed_data';
 
+import 'package:meta/meta.dart';
+
 import 'web/js/js_utils.dart';
 import 'web/js/js.dart';
 import '../shared/web_behavior_subject.dart';
@@ -39,6 +41,7 @@ JSUtilsInterface _JSUtil = JSUtils();
 ///
 /// This method is meant for testing!
 ///
+@visibleForTesting
 void testingSetJSUtils(JSUtilsInterface utils) {
   _JSUtil = utils;
 }

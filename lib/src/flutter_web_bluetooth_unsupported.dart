@@ -3,6 +3,7 @@ library flutter_web_bluetooth;
 
 import 'dart:async';
 import 'dart:typed_data';
+import 'package:meta/meta.dart';
 
 import 'package:flutter_web_bluetooth/js_web_bluetooth.dart';
 import '../shared/web_behavior_subject.dart';
@@ -63,6 +64,7 @@ class FlutterWebBluetooth extends FlutterWebBluetoothInterface {
   /// Will always throw a [NativeAPINotImplementedError].
   ///
   @override
+  @alwaysThrows
   Future<BluetoothDevice> requestDevice(RequestOptionsBuilder options) {
     throw NativeAPINotImplementedError('requestDevice');
   }
