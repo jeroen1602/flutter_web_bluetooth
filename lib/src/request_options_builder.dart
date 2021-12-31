@@ -19,7 +19,8 @@ class RequestOptionsBuilder {
   /// device doesn't have this service then the browser won't reject it.
   ///
   /// **NOTE:** You **NEED** to define a service in either the [requestFilters]
-  /// or [optionalServices] if you want to be able to communicate with it.
+  /// or [optionalServices] if you want to be able to communicate with a
+  /// characteristic in it.
   ///
   /// May throw [StateError] if no filters are set, consider using
   /// [RequestOptionsBuilder.acceptAllDevices].
@@ -39,7 +40,8 @@ class RequestOptionsBuilder {
   /// Tell the browser to just accept all devices.
   ///
   /// **NOTE:** You **NEED** to define a service in [optionalServices] if you
-  /// want to be able to communicate with it.
+  /// want to be able to communicate communicate with a
+  /// characteristic in it.
   ///
   RequestOptionsBuilder.acceptAllDevices({List<String>? optionalServices})
       : _acceptAllDevices = true,
@@ -119,6 +121,10 @@ class RequestFilterBuilder {
     }
   }
 
+  ///
+  /// convert to an actual [BluetoothScanFilter] Javascript object for the web
+  /// api call.
+  ///
   BluetoothScanFilter toScanFilter() {
     return BluetoothScanFilterHelper.createJsObject(
         _services, _name, _namePrefix) as BluetoothScanFilter;
