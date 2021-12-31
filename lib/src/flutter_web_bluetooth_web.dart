@@ -1,6 +1,6 @@
 ///
 /// A wrapper around [js_web_bluetooth] to make it more Dart friendly.
-/// Changes event listeners into [Stream]s and Javascript Promises into
+/// Changes event listeners into [Stream]s and Javascript promises into
 /// [Future]s.
 ///
 library flutter_web_bluetooth;
@@ -38,14 +38,21 @@ part 'flutter_web_bluetooth_interface.dart';
 
 part 'request_options_builder.dart';
 
+///
+/// The main class to request devices from on the web.
+///
+/// Just get an instance using [instance] and request a device using [requestDevice].
+///
 class FlutterWebBluetooth extends FlutterWebBluetoothInterface {
   FlutterWebBluetooth._();
 
   static FlutterWebBluetooth? _instance;
 
+  ///
+  /// Get an instance of the library. There will always only be one instance.
+  ///
   static FlutterWebBluetoothInterface get instance {
-    _instance ??= FlutterWebBluetooth._();
-    return _instance!;
+    return _instance ??= FlutterWebBluetooth._();
   }
 
   final WebBehaviorSubject<Set<BluetoothDevice>> _knownDevicesStream =
@@ -61,7 +68,7 @@ class FlutterWebBluetooth extends FlutterWebBluetoothInterface {
   ///
   /// Get if the bluetooth api is available in this browser. This will only
   /// check if the api is in the `navigator`. Not if anything is available.
-  /// This will sometimes return false if the website is not loaded in a
+  /// This will return false if the website is not loaded in a
   /// [secure context](https://developer.mozilla.org/en-US/docs/Web/Security/Secure_Contexts).
   ///
   @override
@@ -69,8 +76,10 @@ class FlutterWebBluetooth extends FlutterWebBluetoothInterface {
 
   ///
   /// Get a [Stream] for the availability of a Bluetooth adapter.
+  ///
   /// If a user inserts or removes a bluetooth adapter from their devices this
   /// stream will update.
+  ///
   /// It will not necessarily update if the user enables/ disables a bluetooth
   /// adapter.
   ///
@@ -128,13 +137,18 @@ class FlutterWebBluetooth extends FlutterWebBluetoothInterface {
   /// If you want multiple devices you will need to call this method multiple
   /// times, the user however can still click the already connected device twice.
   ///
-  /// May throw [NativeAPINotImplementedError] if the native api is not
+  /// - May throw [NativeAPINotImplementedError] if the native api is not
   /// implemented for this user agent (browser).
-  /// May throw [BluetoothAdapterNotAvailable] if there is not bluetooth device
+  ///
+  /// - May throw [BluetoothAdapterNotAvailable] if there is no bluetooth adapter
   /// available.
-  /// May throw [UserCancelledDialogError] if the user cancels the pairing dialog.
-  /// May throw [DeviceNotFoundError] if the device could not be found with the
+  ///
+  /// - May throw [UserCancelledDialogError] if the user cancels the pairing dialog.
+  ///
+  /// - May throw [DeviceNotFoundError] if the device could not be found with the
   /// current request filters.
+  ///
+  /// See: [RequestOptionsBuilder]
   ///
   @override
   Future<BluetoothDevice> requestDevice(RequestOptionsBuilder options) async {

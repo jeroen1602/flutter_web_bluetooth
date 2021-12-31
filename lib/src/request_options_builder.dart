@@ -1,13 +1,29 @@
 part of flutter_web_bluetooth;
 
+///
+/// A builder to help setup the correct request options for a new device.
+///
+/// See: [FlutterWebBluetooth.requestDevice].
+///
 class RequestOptionsBuilder {
   final bool _acceptAllDevices;
   final List<RequestFilterBuilder> _requestFilters;
   final List<String>? _optionalServices;
 
   ///
+  /// Tell the browser to only accept device matching the [requestFilters].
+  /// A device has to only match one filter, so if you support multiple device
+  /// types then you add a filter for each device type.
+  ///
+  /// [optionalServices] is a list of services that are a nice to have. If a
+  /// device doesn't have this service then the browser won't reject it.
+  ///
+  /// **NOTE:** You **NEED** to define a service in either the [requestFilters]
+  /// or [optionalServices] if you want to be able to communicate with it.
+  ///
   /// May throw [StateError] if no filters are set, consider using
   /// [RequestOptionsBuilder.acceptAllDevices].
+  ///
   RequestOptionsBuilder(List<RequestFilterBuilder> requestFilters,
       {List<String>? optionalServices})
       : _requestFilters = requestFilters,
@@ -19,11 +35,21 @@ class RequestOptionsBuilder {
     }
   }
 
+  ///
+  /// Tell the browser to just accept all devices.
+  ///
+  /// **NOTE:** You **NEED** to define a service in [optionalServices] if you
+  /// want to be able to communicate with it.
+  ///
   RequestOptionsBuilder.acceptAllDevices({List<String>? optionalServices})
       : _acceptAllDevices = true,
         _requestFilters = [],
         _optionalServices = optionalServices;
 
+  ///
+  /// Convert the input requests to a [RequestOptions] object needed for the
+  /// web navigator request.
+  ///
   RequestOptions toRequestOptions() {
     final optionalService = _optionalServices;
     if (_acceptAllDevices) {
@@ -49,11 +75,27 @@ class RequestOptionsBuilder {
   }
 }
 
+///
+/// A helper to help create a [BluetoothScanFilter].
+///
+/// A device needs to match all the items in this filter before the browser
+/// will allow it.
+///
 class RequestFilterBuilder {
   final String? _name;
   final String? _namePrefix;
   final List<String>? _services;
 
+  ///
+  /// [name] is the name of the device. The name must match exactly for
+  /// the device to be accepted.
+  ///
+  /// [namePrefix] is the a prefix of the name. The name of the device must
+  /// have the same prefix. For example: a device with the name "ABCDEF" will
+  /// be allowed with the prefix "ABC" and not with the prefix "DEF".
+  ///
+  /// [services] is a list of service UUIDS. The device must have all the
+  /// services advertised in the list or it won't be allowed access.
   ///
   /// May throw [StateError] if all the parameters are null or services list is
   /// empty.

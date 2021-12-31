@@ -34,7 +34,7 @@ class NativeBluetoothRemoteGATTServer {
   }
 
   Future<List<WebBluetoothRemoteGATTService>> getPrimaryServices(
-      String? serviceUUID) async {
+      [String? serviceUUID]) async {
     final arguments = serviceUUID == null ? [] : [serviceUUID.toLowerCase()];
     final promise =
         _JSUtil.callMethod(_jsObject, 'getPrimaryServices', arguments);

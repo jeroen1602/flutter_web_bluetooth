@@ -23,6 +23,9 @@ class WebBluetoothCharacteristicProperties {
   }
 
   bool get writeWithoutResponse {
+    if (!_JSUtil.hasProperty(_jsObject, 'writeWithoutResponse')) {
+      return false;
+    }
     final result = _JSUtil.getProperty(_jsObject, 'writeWithoutResponse');
     if (result is bool) {
       return result;
@@ -84,9 +87,6 @@ class WebBluetoothCharacteristicProperties {
     }
     if (!_JSUtil.hasProperty(_jsObject, 'read')) {
       throw UnsupportedError('JSObject does not have read');
-    }
-    if (!_JSUtil.hasProperty(_jsObject, 'writeWithoutResponse')) {
-      throw UnsupportedError('JSObject does not have writeWithoutResponse');
     }
     if (!_JSUtil.hasProperty(_jsObject, 'write')) {
       throw UnsupportedError('JSObject does not have write');

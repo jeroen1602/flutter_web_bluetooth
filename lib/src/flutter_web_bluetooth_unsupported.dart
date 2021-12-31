@@ -1,10 +1,18 @@
-/// @nodoc
+///
+/// A wrapper around [js_web_bluetooth] to make it more Dart friendly.
+/// Changes event listeners into [Stream]s and Javascript promises into
+/// [Future]s.
+///
+/// See:
+/// [flutter_web_bluetooth_web] file for the actual web implementation.
+///
 library flutter_web_bluetooth;
 
 import 'dart:async';
 import 'dart:typed_data';
 
 import 'package:flutter_web_bluetooth/js_web_bluetooth.dart';
+
 import '../shared/web_behavior_subject.dart';
 
 part 'bluetooth_characteristic.dart';
@@ -33,7 +41,14 @@ part 'flutter_web_bluetooth_interface.dart';
 
 part 'request_options_builder.dart';
 
-/// @nodoc
+///
+/// The main class to request devices from on the web.
+///
+/// Just get an instance using [instance] and request a device using [requestDevice].
+///
+/// **Note:** this is the unsupported variant that is exposed in io builds,
+/// check the web version where the functions actually work!
+///
 class FlutterWebBluetooth extends FlutterWebBluetoothInterface {
   FlutterWebBluetooth._() {
     print(
@@ -43,8 +58,7 @@ class FlutterWebBluetooth extends FlutterWebBluetoothInterface {
   static FlutterWebBluetooth? _instance;
 
   static FlutterWebBluetoothInterface get instance {
-    _instance ??= FlutterWebBluetooth._();
-    return _instance!;
+    return _instance ??= FlutterWebBluetooth._();
   }
 
   @override
@@ -53,15 +67,9 @@ class FlutterWebBluetooth extends FlutterWebBluetoothInterface {
   @override
   Stream<bool> get isAvailable => Stream.value(false);
 
-  ///
-  /// Will always return a [Stream] with an empty [Set].
-  ///
   @override
   Stream<Set<BluetoothDevice>> get devices => Stream.value(<BluetoothDevice>{});
 
-  ///
-  /// Will always throw a [NativeAPINotImplementedError].
-  ///
   @override
   Future<BluetoothDevice> requestDevice(RequestOptionsBuilder options) {
     throw NativeAPINotImplementedError('requestDevice');
