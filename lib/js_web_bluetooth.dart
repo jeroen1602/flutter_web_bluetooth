@@ -7,10 +7,9 @@ library js_web_bluetooth;
 
 import 'dart:typed_data';
 
-import 'package:rxdart/rxdart.dart';
-
 import 'web/js/js_utils.dart';
 import 'web/js/js.dart';
+import '../shared/web_behavior_subject.dart';
 
 part 'web/native_bluetooth_remote_gatt_server.dart';
 

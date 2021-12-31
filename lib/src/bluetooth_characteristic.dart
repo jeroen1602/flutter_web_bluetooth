@@ -19,11 +19,10 @@ class BluetoothCharacteristic {
 
   bool get isNotifying => _isNotifying;
 
-  final BehaviorSubject<ByteData> _value = BehaviorSubject();
-
+  final WebBehaviorSubject<ByteData> _value = WebBehaviorSubject<ByteData>();
   Stream<ByteData> get value => _value.stream;
 
-  ByteData get lastValue => _value.valueOrNullCompat ?? ByteData(0);
+  ByteData get lastValue => _value.value ?? ByteData(0);
 
   WebBluetoothCharacteristicProperties get properties =>
       _characteristic.properties;
