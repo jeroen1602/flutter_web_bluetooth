@@ -1,18 +1,66 @@
 part of js_web_bluetooth;
 
 ///
-/// https://webbluetoothcg.github.io/web-bluetooth/#bluetoothgattservice-interface
-/// https://developer.mozilla.org/en-US/docs/Web/API/BluetoothRemoteGATTService
+/// A class for calling methods and values for [WebBluetoothRemoteGATTService].
+///
+/// You can get a [WebBluetoothRemoteGATTService] from
+/// [NativeBluetoothRemoteGATTServer.getPrimaryService],
+/// [NativeBluetoothRemoteGATTServer.getPrimaryServices],
+/// [WebBluetoothRemoteGATTService.getIncludedService], and
+/// ignore: deprecated_member_use_from_same_package
+/// [WebBluetoothRemoteGATTService.getIncludedServices].
+///
+/// See:
+///
+/// - https://developer.mozilla.org/en-US/docs/Web/API/BluetoothRemoteGATTService
+///
+/// - https://webbluetoothcg.github.io/web-bluetooth/#bluetoothgattservice-interface
+///
 class WebBluetoothRemoteGATTService {
   final Object _jsObject;
+
+  ///
+  /// The device that this gatt server belongs too.
+  ///
+  /// See:
+  ///
+  /// - https://developer.mozilla.org/en-US/docs/Web/API/BluetoothRemoteGATTService/device
+  ///
+  /// - https://webbluetoothcg.github.io/web-bluetooth/#dom-bluetoothremotegattservice-device
+  ///
   final WebBluetoothDevice device;
 
+  ///
+  /// Check to see if the [isPrimary] exists on the js object.
+  ///
+  /// It may not exist on some browsers.
+  ///
+  /// See:
+  ///
+  /// - [isPrimary]
+  ///
   bool hasIsPrimary() {
     return _JSUtil.hasProperty(_jsObject, 'isPrimary');
   }
 
   bool? _isPrimary;
 
+  ///
+  /// Check if the service is a primary service (top level).
+  ///
+  /// Not all browser versions support this call yet. Use [hasIsPrimary] to see
+  /// if the call is supported.
+  ///
+  /// - May throw [NativeAPINotImplementedError] if the method does not exist.
+  ///
+  /// See:
+  ///
+  /// - [hasIsPrimary]
+  ///
+  /// - https://developer.mozilla.org/en-US/docs/Web/API/BluetoothRemoteGATTService/isPrimary
+  ///
+  /// - https://webbluetoothcg.github.io/web-bluetooth/#dom-bluetoothremotegattservice-isprimary
+  ///
   bool get isPrimary {
     var isPrimary = _isPrimary;
     if (isPrimary != null) {
@@ -33,7 +81,16 @@ class WebBluetoothRemoteGATTService {
 
   String? _uuid;
 
-  String /* UUID */ get uuid {
+  ///
+  /// The uuid of the service.
+  ///
+  /// See:
+  ///
+  /// - https://developer.mozilla.org/en-US/docs/Web/API/BluetoothRemoteGATTService/uuid
+  ///
+  /// - https://webbluetoothcg.github.io/web-bluetooth/#dom-bluetoothremotegattservice-uuid
+  ///
+  String get uuid {
     var uuid = _uuid;
     if (uuid != null) {
       return uuid;
@@ -47,6 +104,29 @@ class WebBluetoothRemoteGATTService {
     return 'UNKNOWN';
   }
 
+  ///
+  /// Get a characteristic from this service.
+  ///
+  /// [characteristicUUID] is the UUID (lower case) of the characteristic to
+  /// get.
+  ///
+  /// - May throw SecurityError if the characteristic's UUID is on a blocklist.
+  ///
+  /// - May throw NetworkError if the GATT server is not connected.
+  ///
+  /// - May throw InvalidStateError if service is `null`.
+  ///
+  /// - May throw NotFoundError if the characteristic was not found.
+  ///
+  /// See:
+  ///
+  /// ignore: deprecated_member_use_from_same_package
+  /// - [getCharacteristics]
+  ///
+  /// - https://developer.mozilla.org/en-US/docs/Web/API/BluetoothRemoteGATTService/getCharacteristic
+  ///
+  /// - https://webbluetoothcg.github.io/web-bluetooth/#dom-bluetoothremotegattservice-getcharacteristic
+  ///
   Future<WebBluetoothRemoteGATTCharacteristic> getCharacteristic(
       String characteristicUUID) async {
     final promise = _JSUtil.callMethod(
@@ -55,14 +135,53 @@ class WebBluetoothRemoteGATTService {
     return WebBluetoothRemoteGATTCharacteristic.fromJSObject(result, this);
   }
 
+  ///
+  /// ignore: deprecated_member_use_from_same_package
+  /// Check to see if the [getCharacteristics] function exists on the js object.
+  ///
+  /// It may not exist on some browsers.
+  ///
+  /// See:
+  ///
+  ///  ignore: deprecated_member_use_from_same_package
+  /// - [getCharacteristics]
+  ///
   bool hasGetCharacteristicsFunction() {
     return _JSUtil.hasProperty(_jsObject, 'getCharacteristics');
   }
 
+  ///
+  /// Get a characteristic from this service.
+  ///
+  /// Currently no browser supports this function yet.
+  ///
+  /// [characteristicUUID] according to the docs this value is optional, but I
+  /// can't find what would it would do if you set it anyways.
+  ///
+  /// - May throw [NativeAPINotImplementedError] if the function does not exist.
+  ///
+  /// - May throw SecurityError if the characteristic's UUID is on a blocklist.
+  ///
+  /// - May throw NetworkError if the GATT server is not connected.
+  ///
+  /// - May throw InvalidStateError if service is `null`.
+  ///
+  /// - May throw NotFoundError if the characteristic was not found.
+  ///
+  /// See:
+  ///
+  /// - [hasGetCharacteristicsFunction]
+  ///
+  /// - [getCharacteristic]
+  ///
+  /// - https://developer.mozilla.org/en-US/docs/Web/API/BluetoothRemoteGATTService/getCharacteristics
+  ///
+  /// - https://webbluetoothcg.github.io/web-bluetooth/#dom-bluetoothremotegattservice-getcharacteristics
+  ///
   @Deprecated(
       'Not really deprecated, just not implemented in any browser (yet).')
   Future<List<WebBluetoothRemoteGATTCharacteristic>> getCharacteristics(
-      String? characteristicUUID) async {
+      [String? characteristicUUID]) async {
     if (!hasGetCharacteristicsFunction()) {
       throw NativeAPINotImplementedError(
           'BluetoothRemoteGATTService.getCharacteristics');
@@ -92,11 +211,47 @@ class WebBluetoothRemoteGATTService {
     return [];
   }
 
+  ///
+  /// Check to see if the [getIncludedService] function exists on the js object.
+  ///
+  /// The function will not exists if the current service doesn't have any
+  /// included services.
+  ///
+  /// See:
+  ///
+  /// - [getIncludedService]
+  ///
   bool hasGetIncludedServiceFunction() {
     return _JSUtil.hasProperty(_jsObject, 'getIncludedService');
   }
 
-  // Will not exist if there are no includedServices.
+  ///
+  /// Get an included service from this service.
+  ///
+  /// This function doesn't exist if the current service has no included services.
+  /// Check [hasGetIncludedServiceFunction] to make sure.
+  ///
+  /// [serviceUUID] is the UUID (lower case) of the service to get.
+  ///
+  /// - May throw [NativeAPINotImplementedError] if the function does not exist.
+  ///
+  /// - May throw SecurityError if the service's UUID is on a blocklist.
+  ///
+  /// - May throw NetworkError if the GATT server is not connected.
+  ///
+  /// - May throw InvalidStateError if service is `null`.
+  ///
+  /// - May throw NotFoundError if the service was not found.
+  ///
+  /// See:
+  ///
+  /// - [hasGetIncludedServiceFunction]
+  ///
+  /// ignore: deprecated_member_use_from_same_package
+  /// - [getIncludedServices]
+  ///
+  /// - https://webbluetoothcg.github.io/web-bluetooth/#dom-bluetoothremotegattservice-getincludedservice
+  ///
   Future<WebBluetoothRemoteGATTService> getIncludedService(
       String serviceUUID) async {
     if (!hasGetIncludedServiceFunction()) {
@@ -108,10 +263,55 @@ class WebBluetoothRemoteGATTService {
     return WebBluetoothRemoteGATTService.fromJSObject(result, device);
   }
 
+  ///
+  /// ignore: deprecated_member_use_from_same_package
+  /// Check to see if the [getIncludedServices] function exists on the js object.
+  ///
+  /// It may not exist on some browsers.
+  ///
+  /// The function will not exists if the current service doesn't have any
+  /// included services.
+  ///
+  /// See:
+  ///
+  /// ignore: deprecated_member_use_from_same_package
+  /// - [getIncludedServices]
+  ///
   bool hasGetIncludedServicesFunction() {
     return _JSUtil.hasProperty(_jsObject, 'getIncludedServices');
   }
 
+  ///
+  /// Get all included services from this service.
+  ///
+  /// Currently no browser supports this function yet.
+  ///
+  /// This function doesn't exist if the current service has no included services.
+  /// Check [hasGetIncludedServicesFunction] to make sure.
+  ///
+  ///
+  /// [serviceUUID] according to the docs this value is optional, but I
+  /// can't find what would it would do if you set it anyways.
+  ///
+  /// - May throw [NativeAPINotImplementedError] if the function does not exist.
+  ///
+  /// - May throw SecurityError if the service's UUID is on a blocklist.
+  ///
+  /// - May throw NetworkError if the GATT server is not connected.
+  ///
+  /// - May throw InvalidStateError if service is `null`.
+  ///
+  /// - May throw NotFoundError if the service was not found.
+  ///
+  /// See:
+  ///
+  /// - [hasGetIncludedServiceFunction]
+  ///
+  /// ignore: deprecated_member_use_from_same_package
+  /// - [getIncludedServices]
+  ///
+  /// - https://webbluetoothcg.github.io/web-bluetooth/#dom-bluetoothremotegattservice-getincludedservice
+  ///
   @Deprecated(
       'Not really deprecated, just not implemented in any browser (yet).')
   Future<List<WebBluetoothRemoteGATTService>> getIncludedServices(
@@ -142,6 +342,18 @@ class WebBluetoothRemoteGATTService {
     return [];
   }
 
+  ///
+  /// Create a new instance from a js object.
+  ///
+  /// **This should only be done by the library or if you're testing.**
+  ///
+  /// To get an instance use
+  /// [NativeBluetoothRemoteGATTServer.getPrimaryService],
+  /// [NativeBluetoothRemoteGATTServer.getPrimaryServices],
+  /// [WebBluetoothRemoteGATTService.getIncludedService], and
+  /// ignore: deprecated_member_use_from_same_package
+  /// [WebBluetoothRemoteGATTService.getIncludedServices].
+  ///
   WebBluetoothRemoteGATTService.fromJSObject(this._jsObject, this.device) {
     if (!_JSUtil.hasProperty(_jsObject, 'uuid')) {
       throw UnsupportedError('JSObject does not have uuid');
