@@ -160,6 +160,9 @@ class BluetoothDevice {
   ///
   /// Will return a list of [BluetoothService].
   ///
+  /// Only services defined in the [RequestOptionsBuilder] from when
+  /// [FlutterWebBluetooth.requestDevice] was called are available.
+  ///
   /// Will also update the [services] stream with the data returned form this
   /// method.
   ///
@@ -183,6 +186,14 @@ class BluetoothDevice {
       final error = e.toString().trim();
       if (error.startsWith('SecurityError')) {
         throw SecurityError("getPrimaryServices", error);
+      } else if (error.startsWith('NetworkError')) {
+        throw StateError(
+            'Cannot discover services if the device is not connected.');
+      } else if (error.startsWith('InvalidStateError')) {
+        throw StateError('GATT is null');
+      } else if (error.startsWith('NotFoundError')) {
+        _servicesSubject.add([]);
+        return [];
       }
       rethrow;
     }

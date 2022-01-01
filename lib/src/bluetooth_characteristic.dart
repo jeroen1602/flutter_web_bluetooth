@@ -126,10 +126,9 @@ class BluetoothCharacteristic {
   ///
   /// See: [BluetoothDescriptor].
   ///
-  Future<List<BluetoothDescriptor>> getDescriptors(
-      String? descriptorUUID) async {
+  Future<List<BluetoothDescriptor>> getDescriptors() async {
     try {
-      final descriptors = await _characteristic.getDescriptors(descriptorUUID);
+      final descriptors = await _characteristic.getDescriptors();
       return descriptors.map((e) => BluetoothDescriptor(e)).toList();
     } catch (e) {
       final error = e.toString().trim();
@@ -140,7 +139,7 @@ class BluetoothCharacteristic {
       } else if (error.startsWith('InvalidStateError')) {
         throw StateError("Characteristic is null");
       } else if (error.startsWith("NotFoundError")) {
-        throw NotFoundError.forDescriptor(descriptorUUID, uuid);
+        throw NotFoundError.forDescriptor("ALL", uuid);
       }
       rethrow;
     }
