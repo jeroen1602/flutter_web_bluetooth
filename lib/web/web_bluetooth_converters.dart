@@ -3,6 +3,13 @@ part of js_web_bluetooth;
 @JS('window')
 external Object _window;
 
+///
+/// Some converters to convert from Dart objects to native js object expected
+/// by some API calls.
+///
+/// You shouldn't have to do this manually as the library should take care of
+/// it when it is needed.
+///
 class WebBluetoothConverters {
   WebBluetoothConverters._();
 

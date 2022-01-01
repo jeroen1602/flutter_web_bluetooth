@@ -8,6 +8,7 @@ build/
 flutter*.log
 .idea/libraries/Dart_Packages.xml
 .idea/libraries/Dart_SDK.xml
+doc/
 
 .idea/workspace.xml
 .idea/vcs.xml
@@ -26,4 +27,4 @@ flutter*.log
 chrome-experimental-launch
 example/test
 test
-scripts
+tool

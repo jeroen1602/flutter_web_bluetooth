@@ -7,11 +7,18 @@ library bluetooth_web_js_utils;
 
 // ignore: library_prefixes
 import 'dart:js' as JS;
+
 // ignore: library_prefixes
 import 'dart:js_util' as JSUtil;
 
 part 'js_utils_interface.dart';
 
+///
+/// An implementation of [JSUtilsInterface] that will call the actual methods
+/// that are part of dart:js and dart:js_util.
+///
+/// The actually used implementation can be overwritten by calling [testingSetJSUtils].
+///
 class JSUtils extends JSUtilsInterface {
   @override
   dynamic callConstructor(Object constr, List<Object?>? arguments) =>

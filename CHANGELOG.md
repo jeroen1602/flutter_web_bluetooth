@@ -1,3 +1,12 @@
+## 0.0.6
+
+* Removed RxDart as a dependency
+* Added Dart Meta annotations to help with avoiding methods only meant for testing
+* Added a lot of documentation
+* Added more error handling and descriptions for when these errors may occur and how to avoid them
+* Added characteristic descriptor
+* Deprecated SNAKE_CASE for default uuids. Use the camelCase version instead
+
 ## 0.0.5
 
 * Fixed typo in `characteristicvaluechanged` for the `BluetoothCharacteristic.startNotifications()`. (Thanks [AshTerry](https://github.com/AshTerry).)
