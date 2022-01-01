@@ -36,7 +36,7 @@ class DeviceServicesState extends State<DeviceServicesPage> {
                         if (!widget.bluetoothDevice.hasGATT) {
                           ScaffoldMessenger.maybeOf(context)
                               ?.showSnackBar(SnackBar(
-                            content: const Text('This device has no gatt'),
+                            content: const Text('This device has no GATT'),
                             backgroundColor: theme.errorColor,
                           ));
                           return;
