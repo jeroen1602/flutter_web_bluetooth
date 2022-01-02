@@ -46,9 +46,7 @@ part 'request_options_builder.dart';
 /// Just get an instance using [instance] and request a device using [requestDevice].
 ///
 class FlutterWebBluetooth extends FlutterWebBluetoothInterface {
-  FlutterWebBluetooth._() {
-    webBluetoothLogger.severe("Initializing the library!");
-  }
+  FlutterWebBluetooth._();
 
   static FlutterWebBluetooth? _instance;
 
