@@ -24,7 +24,18 @@ class WebBehaviorSubject<T> {
     controller.add(event);
   }
 
-  Stream<T> get stream => controller.stream;
+  ///
+  /// Will return the [Stream] from the [StreamController]
+  ///
+  /// Will also first return the stored value in [value] before returning the
+  /// actual stream.
+  ///
+  Stream<T> get stream async* {
+    if (_value != null) {
+      yield _value!;
+    }
+    yield* controller.stream;
+  }
 
   bool get hasValue => _value != null;
 }
