@@ -1,3 +1,7 @@
+## 0.0.6+2
+
+* Fixed the behavior subject stream not returning the stored value causing some implementations to wait forever.
+
 ## 0.0.6+1
 
 * Fixed the library trying to add the `availabilitychanged` event on unsupported platforms.
