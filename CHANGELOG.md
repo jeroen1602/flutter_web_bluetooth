@@ -1,3 +1,7 @@
+## 0.0.6+1
+
+* Fixed the library trying to add the `availabilitychanged` event on unsupported platforms.
+
 ## 0.0.6
 
 * Removed RxDart as a dependency
