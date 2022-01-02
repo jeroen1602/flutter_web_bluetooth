@@ -11,6 +11,7 @@ import 'dart:typed_data';
 import 'package:flutter_web_bluetooth/js_web_bluetooth.dart';
 import 'package:meta/meta.dart';
 
+import '../web_bluetooth_logger.dart';
 import '../shared/web_behavior_subject.dart';
 
 part 'bluetooth_characteristic.dart';
@@ -115,8 +116,11 @@ class FlutterWebBluetooth extends FlutterWebBluetoothInterface {
   Future<void> _getKnownDevices({bool shouldCheck = true}) async {
     _checkedDevices = true;
     if (shouldCheck && !(await Bluetooth.getAvailability())) {
-      print('flutter_web_bluetooth: could not get known devices because '
-          'it\'s not available in this browser/ for this devices.');
+      webBluetoothLogger.severe(
+          'Could not get known devices because it\'s not available in this '
+          'browser/ for this devices.',
+          null,
+          StackTrace.current);
       final set = _knownDevicesStream.value ?? <BluetoothDevice>{};
       set.clear();
       _knownDevicesStream.add(set);

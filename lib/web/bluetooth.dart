@@ -500,10 +500,10 @@ class Bluetooth {
       for (final item in result) {
         try {
           items.add(WebBluetoothDevice.fromJSObject(item));
-        } catch (e) {
+        } catch (e, stack) {
           if (e is UnsupportedError) {
-            print(
-                'flutter_web_bluetooth: Could not convert known device to BluetoothDevice. Error: "${e.message}"');
+            webBluetoothLogger.severe(
+                'Could not convert known device to BluetoothDevice.', e, stack);
           } else {
             rethrow;
           }

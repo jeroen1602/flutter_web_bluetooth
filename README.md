@@ -99,3 +99,13 @@ reference back to all the connected devices by listening to the devices stream.
 // A stream with a [Set] of all the devices that the user has paired, and given permission for.
 FlutterWebBluetooth.instance.devices;
 ```
+
+You can also overwrite the `logger` that his library uses. This allows you to decide where log messages go. See
+[logging](https://pub.dev/packages/logging) on [pub.dev](https://pub.dev/) for more info on how to intercept these
+messages.
+
+```dart
+import 'package:flutter_web_bluetooth/web_bluetooth_logger.dart';
+
+setWebBluetoothLogger(Logger("my logger"));
+```

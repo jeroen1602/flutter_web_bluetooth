@@ -10,7 +10,8 @@ import 'dart:typed_data';
 
 import 'package:meta/meta.dart';
 
-import '../shared/web_behavior_subject.dart';
+import 'web_bluetooth_logger.dart';
+import 'shared/web_behavior_subject.dart';
 import 'web/js/js.dart';
 import 'web/js/js_utils.dart';
 
