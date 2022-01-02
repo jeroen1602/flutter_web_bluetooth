@@ -10,10 +10,11 @@ library flutter_web_bluetooth;
 
 import 'dart:async';
 import 'dart:typed_data';
-import 'package:meta/meta.dart';
 
 import 'package:flutter_web_bluetooth/js_web_bluetooth.dart';
+import 'package:meta/meta.dart';
 
+import '../web_bluetooth_logger.dart';
 import '../shared/web_behavior_subject.dart';
 
 part 'bluetooth_characteristic.dart';
@@ -52,8 +53,10 @@ part 'request_options_builder.dart';
 ///
 class FlutterWebBluetooth extends FlutterWebBluetoothInterface {
   FlutterWebBluetooth._() {
-    print(
-        'WARNING! initialized an instance of FlutterWebBluetooth on a non web platform!');
+    webBluetoothLogger.warning(
+        'WARNING! initialized an instance of FlutterWebBluetooth on a non web platform!',
+        null,
+        StackTrace.current);
   }
 
   static FlutterWebBluetooth? _instance;

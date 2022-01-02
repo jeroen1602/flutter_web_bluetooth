@@ -197,10 +197,12 @@ class WebBluetoothRemoteGATTService {
         try {
           items.add(
               WebBluetoothRemoteGATTCharacteristic.fromJSObject(item, this));
-        } catch (e) {
+        } catch (e, stack) {
           if (e is UnsupportedError) {
-            print(
-                'flutter_web_bluetooth: Could not convert known device to BluetoothRemoteGATTCharacteristic. Error: "${e.message}"');
+            webBluetoothLogger.severe(
+                'Could not convert known device to BluetoothRemoteGATTCharacteristic',
+                e,
+                stack);
           } else {
             rethrow;
           }
@@ -328,10 +330,12 @@ class WebBluetoothRemoteGATTService {
       for (final item in result) {
         try {
           items.add(WebBluetoothRemoteGATTService.fromJSObject(item, device));
-        } catch (e) {
+        } catch (e, stack) {
           if (e is UnsupportedError) {
-            print(
-                'flutter_web_bluetooth: Could not convert known device to BluetoothRemoteGATTService. Error: "${e.message}"');
+            webBluetoothLogger.severe(
+                'Could not convert included service to BluetoothRemoteGATTService',
+                e,
+                stack);
           } else {
             rethrow;
           }

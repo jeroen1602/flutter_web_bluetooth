@@ -25,7 +25,6 @@ class BluetoothCharacteristic {
       : _properties =
             BluetoothCharacteristicProperties(_characteristic.properties) {
     _characteristic.addEventListener('characteristicvaluechanged', (event) {
-      print(event);
       final data = _characteristic.value;
       if (data != null) {
         _value.add(data);
@@ -231,8 +230,11 @@ class BluetoothCharacteristic {
       if (_characteristic.hasWriteValueWithoutResponse()) {
         return _characteristic.writeValueWithoutResponse(data);
       }
-      print(
-          "WriteValueWithoutResponse not supported in this browser. Using writeValue instead");
+      webBluetoothLogger.info(
+          "WriteValueWithoutResponse not supported in this browser. "
+          "Using writeValue instead",
+          null,
+          StackTrace.current);
       // ignore: deprecated_member_use_from_same_package
       return _characteristic.writeValue(data);
     } catch (e) {
@@ -276,8 +278,11 @@ class BluetoothCharacteristic {
       if (_characteristic.hasWriteValueWithResponse()) {
         return _characteristic.writeValueWithResponse(data);
       }
-      print(
-          "WriteValueWithResponse not supported in this browser. Using writeValue instead");
+      webBluetoothLogger.info(
+          "WriteValueWithResponse not supported in this browser. "
+          "Using writeValue instead",
+          null,
+          StackTrace.current);
       // ignore: deprecated_member_use_from_same_package
       return _characteristic.writeValue(data);
     } catch (e) {
