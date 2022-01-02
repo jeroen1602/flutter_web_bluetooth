@@ -3,22 +3,22 @@ const MANIFEST = 'flutter-app-manifest';
 const TEMP = 'flutter-temp-cache';
 const CACHE_NAME = 'flutter-app-cache';
 const RESOURCES = {
-  "favicon.png": "5dcef449791fa27946b3d35ad8803796",
+  "icons/Icon-192.png": "ac9a721a12bbc803b44f645561ecb1e1",
+"icons/Icon-512.png": "96e752610906ba2a93c65f8abe1645f1",
+"index.html": "46dbdd01deb4ea79abbcb0c4a0fc2149",
+"/flutter_web_bluetooth/": "46dbdd01deb4ea79abbcb0c4a0fc2149",
+"assets/fonts/MaterialIcons-Regular.otf": "4e6447691c9509f7acdbf8a931a85ca1",
+"assets/NOTICES": "8638c4d6300080a943d7f58ecfc1e1d7",
+"assets/AssetManifest.json": "99914b932bd37a50b983c5e7c90ae93b",
+"assets/FontManifest.json": "7b2a36307916a9721811788013e65289",
 "canvaskit/canvaskit.wasm": "04ed3c745ff1dee16504be01f9623498",
-"canvaskit/canvaskit.js": "43fa9e17039a625450b6aba93baf521e",
 "canvaskit/profiling/canvaskit.wasm": "a9610cf39260f60fbe7524a785c66101",
 "canvaskit/profiling/canvaskit.js": "f3bfccc993a1e0bfdd3440af60d99df4",
-"index.html": "18c837e9faf5dd952767422ec24ffc93",
-"/flutter_web_bluetooth/": "18c837e9faf5dd952767422ec24ffc93",
+"canvaskit/canvaskit.js": "43fa9e17039a625450b6aba93baf521e",
+"main.dart.js": "cda6eed54a1380501f7b10da9c504e96",
 "version.json": "979f10383a3724b85cd60c928712efb7",
-"icons/Icon-192.png": "ac9a721a12bbc803b44f645561ecb1e1",
-"icons/Icon-512.png": "96e752610906ba2a93c65f8abe1645f1",
-"main.dart.js": "50ba2d6148421403dd8828ac57ca40f5",
-"assets/NOTICES": "6729f68da9ef022d24d99ff010cac1eb",
-"assets/fonts/MaterialIcons-Regular.otf": "4e6447691c9509f7acdbf8a931a85ca1",
-"assets/FontManifest.json": "7b2a36307916a9721811788013e65289",
-"assets/AssetManifest.json": "99914b932bd37a50b983c5e7c90ae93b",
-"manifest.json": "c163cbd2f212c994ba45fbb07db93a5f"
+"manifest.json": "c163cbd2f212c994ba45fbb07db93a5f",
+"favicon.png": "5dcef449791fa27946b3d35ad8803796"
 };
 
 // The application shell files that are downloaded before a service worker can

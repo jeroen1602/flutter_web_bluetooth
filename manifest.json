@@ -1,7 +1,7 @@
 {
     "name": "flutter_web_bluetooth_example",
     "short_name": "flutter_web_bluetooth_example",
-    "start_url": "/flutter_web_bluetooth/",
+    "start_url": ".",
     "display": "standalone",
     "background_color": "#0175C2",
     "theme_color": "#0175C2",
