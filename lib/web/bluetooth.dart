@@ -445,12 +445,12 @@ class Bluetooth {
   /// It will not necessarily update if the user enables/ disables a bluetooth
   /// adapter.
   ///
-  static Stream<bool> onAvailabilityChanged() async* {
+  static Stream<bool> onAvailabilityChanged() {
     if (!isBluetoothAPISupported()) {
-      yield* Stream.value(false);
+      return Stream.value(false);
     }
     if (_availabilityStream != null) {
-      yield* _availabilityStream!.stream;
+      return _availabilityStream!.stream;
     }
     _availabilityStream = WebBehaviorSubject();
     _nativeBluetooth.addEventListener('availabilitychanged',
@@ -460,8 +460,8 @@ class Bluetooth {
         _availabilityStream?.add(value);
       }
     }));
-    yield await getAvailability();
-    yield* _availabilityStream!.stream;
+    getAvailability();
+    return _availabilityStream!.stream;
   }
 
   ///
