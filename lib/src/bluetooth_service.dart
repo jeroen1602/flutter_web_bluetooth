@@ -122,4 +122,28 @@ class BluetoothService {
       rethrow;
     }
   }
+
+  ///
+  /// Get a list of characteristics from this service.
+  ///
+  /// [uuid] optional uuid.
+  ///
+  /// TODO: Needs Error checking
+  ///
+  ///
+  Future<List<BluetoothCharacteristic>> getCharacteristics(
+      {String? uuid}) async {
+    try {
+      final List<WebBluetoothRemoteGATTCharacteristic> characteristic =
+          await _bluetoothService.getCharacteristics(uuid);
+      List<BluetoothCharacteristic> characteristicList = [];
+      characteristic.forEach((element) {
+        characteristicList.add(BluetoothCharacteristic(element));
+      });
+      return characteristicList;
+    } catch (e) {
+      final error = e.toString().trim();
+      rethrow;
+    }
+  }
 }
