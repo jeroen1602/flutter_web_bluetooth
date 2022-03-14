@@ -143,6 +143,15 @@ class BluetoothService {
       return characteristics;
     } catch (e) {
       final error = e.toString().trim();
+      if (error.startsWith("NotFoundError")) {
+        throw NotFoundError;
+      } else if (error.startsWith("SecurityError")) {
+        throw SecurityError;
+      } else if (error.startsWith('NetworkError')) {
+        throw NetworkError;
+      } else if (error.startsWith('InvalidStateError')) {
+        throw StateError("Service is null");
+      }
       rethrow;
     }
   }
