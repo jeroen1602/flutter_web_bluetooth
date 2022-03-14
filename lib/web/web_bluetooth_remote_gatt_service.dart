@@ -178,8 +178,6 @@ class WebBluetoothRemoteGATTService {
   ///
   /// - https://webbluetoothcg.github.io/web-bluetooth/#dom-bluetoothremotegattservice-getcharacteristics
   ///
-  @Deprecated(
-      'Not really deprecated, just not implemented in any browser (yet).')
   Future<List<WebBluetoothRemoteGATTCharacteristic>> getCharacteristics(
       [String? characteristicUUID]) async {
     if (!hasGetCharacteristicsFunction()) {
