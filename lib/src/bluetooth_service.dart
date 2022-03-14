@@ -136,11 +136,11 @@ class BluetoothService {
     try {
       final List<WebBluetoothRemoteGATTCharacteristic> characteristic =
           await _bluetoothService.getCharacteristics(uuid);
-      List<BluetoothCharacteristic> characteristicList = [];
-      characteristic.forEach((element) {
-        characteristicList.add(BluetoothCharacteristic(element));
-      });
-      return characteristicList;
+      List<BluetoothCharacteristic> characteristics = [];
+      for (final element in characteristic) {
+        characteristics.add(BluetoothCharacteristic(element));
+      }
+      return characteristics;
     } catch (e) {
       final error = e.toString().trim();
       rethrow;
