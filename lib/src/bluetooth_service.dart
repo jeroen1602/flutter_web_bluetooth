@@ -128,7 +128,14 @@ class BluetoothService {
   ///
   /// [uuid] optional uuid.
   ///
-  /// TODO: Needs Error checking
+  /// - May throw [NotFoundError] if the characteristic or service could not be found.
+  ///
+  /// - May throw [SecurityError] if the service or uuid is on a blacklist
+  ///
+  /// - May throw [NetworkError] if the device is not connected or if
+  /// there is an error with the communication.
+  ///
+  /// - May throw [StateError] if the service is null.
   ///
   ///
   Future<List<BluetoothCharacteristic>> getCharacteristics(
