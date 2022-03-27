@@ -120,7 +120,6 @@ class WebBluetoothRemoteGATTService {
   ///
   /// See:
   ///
-  /// ignore: deprecated_member_use_from_same_package
   /// - [getCharacteristics]
   ///
   /// - https://developer.mozilla.org/en-US/docs/Web/API/BluetoothRemoteGATTService/getCharacteristic
@@ -136,14 +135,12 @@ class WebBluetoothRemoteGATTService {
   }
 
   ///
-  /// ignore: deprecated_member_use_from_same_package
   /// Check to see if the [getCharacteristics] function exists on the js object.
   ///
   /// It may not exist on some browsers.
   ///
   /// See:
   ///
-  ///  ignore: deprecated_member_use_from_same_package
   /// - [getCharacteristics]
   ///
   bool hasGetCharacteristicsFunction() {

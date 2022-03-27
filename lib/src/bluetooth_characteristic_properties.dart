@@ -9,6 +9,13 @@ part of flutter_web_bluetooth;
 /// then it will throw a [NotSupportedError].
 ///
 class BluetoothCharacteristicProperties {
+  ///
+  /// A constructor for new characteristic properties.
+  ///
+  /// **This should only be done by the library or if you're testing.**
+  ///
+  /// To get an instance use [BluetoothCharacteristic.properties].
+  ///
   BluetoothCharacteristicProperties(this._properties);
 
   final WebBluetoothCharacteristicProperties _properties;

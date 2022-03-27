@@ -6,7 +6,6 @@ part of js_web_bluetooth;
 ///
 /// You can get a [WebBluetoothRemoteGATTCharacteristic] from
 /// [WebBluetoothRemoteGATTService.getCharacteristic], and
-/// ignore: deprecated_member_use_from_same_package
 /// [WebBluetoothRemoteGATTService.getCharacteristics].
 ///
 /// See:
@@ -484,7 +483,6 @@ class WebBluetoothRemoteGATTCharacteristic {
   /// **This should only be done by the library or if you're testing.**
   ///
   /// To get an instance use [WebBluetoothRemoteGATTService.getCharacteristic],
-  /// ignore: deprecated_member_use_from_same_package
   /// and [WebBluetoothRemoteGATTService.getCharacteristics].
   ///
   WebBluetoothRemoteGATTCharacteristic.fromJSObject(

@@ -113,6 +113,19 @@ class _NativeBluetooth {
 @visibleForTesting
 class NativeBluetooth {
   ///
+  /// Create a new instance of [NativeBluetooth] with the default
+  /// implementations for the methods that will call the actual methods
+  /// on the navigator in the background.
+  ///
+  /// Using the constructor can be used if you want to rest the native bluetooth
+  /// implementation for testing using [setNativeBluetooth].
+  ///
+  /// Otherwise the Fake library can be used to overwrite the methods for testing
+  ///
+  @visibleForTesting
+  NativeBluetooth();
+
+  ///
   /// Should return a promise (which will be converted to a future using
   /// [JSUtils.promiseToFuture]) with a [bool] if bluetooth is available on
   /// the current device.

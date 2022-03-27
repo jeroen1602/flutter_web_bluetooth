@@ -28,7 +28,7 @@ Logger get webBluetoothLogger {
 }
 
 ///
-/// Overwrite the logger used so you can do decide where the log messages go.
+/// Overwrite the logger used so you can decide where the log messages go.
 ///
 /// If you want to go back to the default logger at a later date then just call
 /// [initWebBluetoothLogger] to overwrite the user set logger for the default one.

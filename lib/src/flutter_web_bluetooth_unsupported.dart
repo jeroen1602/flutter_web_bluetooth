@@ -14,8 +14,8 @@ import 'dart:typed_data';
 import 'package:flutter_web_bluetooth/js_web_bluetooth.dart';
 import 'package:meta/meta.dart';
 
-import '../web_bluetooth_logger.dart';
 import '../shared/web_behavior_subject.dart';
+import '../web_bluetooth_logger.dart';
 
 part 'bluetooth_characteristic.dart';
 
@@ -61,6 +61,12 @@ class FlutterWebBluetooth extends FlutterWebBluetoothInterface {
 
   static FlutterWebBluetooth? _instance;
 
+  ///
+  /// Get an instance of the library. There will always only be one instance.
+  ///
+  /// **Note:** this is the unsupported variant that is exposed in io builds,
+  /// check the web version where the functions actually work!
+  ///
   static FlutterWebBluetoothInterface get instance {
     return _instance ??= FlutterWebBluetooth._();
   }

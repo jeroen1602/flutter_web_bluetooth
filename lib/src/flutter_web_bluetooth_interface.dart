@@ -8,6 +8,14 @@ part of flutter_web_bluetooth;
 ///
 abstract class FlutterWebBluetoothInterface {
   ///
+  /// An interface for [FlutterWebBluetooth] to make sure that both the
+  /// unsupported and web version have the same api.
+  ///
+  /// See: [FlutterWebBluetooth].
+  ///
+  FlutterWebBluetoothInterface();
+
+  ///
   /// Get if the bluetooth api is available in this browser. This will only
   /// check if the api is in the `navigator`. Not if anything is available.
   /// This will return false if the website is not loaded in a

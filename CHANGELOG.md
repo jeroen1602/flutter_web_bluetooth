@@ -1,3 +1,9 @@
+## 0.0.7
+
+* Added `getCharacteristics` to the bluetooth service to get all the characteristics.
+* Set target platform to web for [pub.dev](https://pub.dev/packages/flutter_web_bluetooth/) target platform list (it will still compile when used in non-native programs.)
+* Added documentation to the last few public interfaces
+
 ## 0.0.6+2
 
 * Fixed the behavior subject stream not returning the stored value causing some implementations to wait forever.
