@@ -122,4 +122,44 @@ class BluetoothService {
       rethrow;
     }
   }
+
+  ///
+  /// Get a list of characteristics from this service.
+  ///
+  /// [uuid] optional uuid.
+  ///
+  /// - May throw [NotFoundError] if the characteristic or service could not be found.
+  ///
+  /// - May throw [SecurityError] if the service or uuid is on a blacklist
+  ///
+  /// - May throw [NetworkError] if the device is not connected or if
+  /// there is an error with the communication.
+  ///
+  /// - May throw [StateError] if the service is null.
+  ///
+  ///
+  Future<List<BluetoothCharacteristic>> getCharacteristics(
+      {String? uuid}) async {
+    try {
+      final List<WebBluetoothRemoteGATTCharacteristic> characteristic =
+          await _bluetoothService.getCharacteristics(uuid);
+      List<BluetoothCharacteristic> characteristics = [];
+      for (final element in characteristic) {
+        characteristics.add(BluetoothCharacteristic(element));
+      }
+      return characteristics;
+    } catch (e) {
+      final error = e.toString().trim();
+      if (error.startsWith("NotFoundError")) {
+        throw NotFoundError;
+      } else if (error.startsWith("SecurityError")) {
+        throw SecurityError;
+      } else if (error.startsWith('NetworkError')) {
+        throw NetworkError;
+      } else if (error.startsWith('InvalidStateError')) {
+        throw StateError("Service is null");
+      }
+      rethrow;
+    }
+  }
 }
