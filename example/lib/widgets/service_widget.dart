@@ -38,21 +38,11 @@ class ServiceWidget extends StatelessWidget {
         }
       }
     }
-    final List<BluetoothCharacteristic> characteristics = [];
-    for (final defaultCharacteristics
-        in BluetoothDefaultCharacteristicUUIDS.VALUES) {
-      try {
-        final characteristic =
-            await service.getCharacteristic(defaultCharacteristics.uuid);
-        characteristics.add(characteristic);
-      } catch (e) {
-        if (e is NotFoundError) {
-          // Don't want to spam the console.
-        } else {
-          // ignore: avoid_print
-          print(e);
-        }
-      }
+    List<BluetoothCharacteristic> characteristics = [];
+    try {
+      characteristics = await service.getCharacteristics();
+    } catch (e) {
+      print(e);
     }
 
     return _ServiceAndCharacteristic(services, characteristics);

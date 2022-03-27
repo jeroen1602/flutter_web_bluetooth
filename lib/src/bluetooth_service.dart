@@ -151,11 +151,11 @@ class BluetoothService {
     } catch (e) {
       final error = e.toString().trim();
       if (error.startsWith("NotFoundError")) {
-        throw NotFoundError;
+        throw NotFoundError.forService(uuid, this.uuid);
       } else if (error.startsWith("SecurityError")) {
-        throw SecurityError;
+        throw SecurityError(this.uuid, error);
       } else if (error.startsWith('NetworkError')) {
-        throw NetworkError;
+        throw NetworkError.withUUid(uuid);
       } else if (error.startsWith('InvalidStateError')) {
         throw StateError("Service is null");
       }

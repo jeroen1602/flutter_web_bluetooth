@@ -22,8 +22,9 @@ class NotFoundError extends Error {
   ///
   /// Create an error for a [BluetoothService] that could not be found.
   ///
-  NotFoundError.forService(this.searchUUID, this.fromUUID)
-      : searchType = 'Service';
+  NotFoundError.forService(String? searchUUID, this.fromUUID)
+      : searchUUID = searchUUID ?? "UNKNOWN",
+        searchType = 'Service';
 
   ///
   /// Creat an error for a [BluetoothCharacteristic]  that could not be found.
