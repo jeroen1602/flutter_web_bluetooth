@@ -32,8 +32,7 @@ class ServiceWidget extends StatelessWidget {
           if (e is NotFoundError) {
             // Don't want to spam the console.
           } else {
-            // ignore: avoid_print
-            print(e);
+            debugPrint("$e");
           }
         }
       }
@@ -42,7 +41,7 @@ class ServiceWidget extends StatelessWidget {
     try {
       characteristics = await service.getCharacteristics();
     } catch (e) {
-      print(e);
+      debugPrint("$e");
     }
 
     return _ServiceAndCharacteristic(services, characteristics);
