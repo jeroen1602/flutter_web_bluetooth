@@ -1,3 +1,7 @@
+## 0.0.8
+
+* Added manufacturer scan filters and service scan filters
+
 ## 0.0.7
 
 * Added `getCharacteristics` to the bluetooth service to get all the characteristics.
