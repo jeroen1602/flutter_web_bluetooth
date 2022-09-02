@@ -46,6 +46,7 @@ Also works with:
  - 2.2.0
  - 2.8.1
  - 3.0.1
+ - 3.3.0
 
 # Running as a webserver
 

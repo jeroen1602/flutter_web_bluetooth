@@ -20,7 +20,7 @@ class ServiceWidget extends StatelessWidget {
         ?.name;
   }
 
-  Future<_ServiceAndCharacteristic> getServicesAndCharacteristics() async {
+  Future<_ServiceAndCharacteristic> _getServicesAndCharacteristics() async {
     final List<BluetoothService> services = [];
     if (service.hasIncludedService) {
       for (final defaultService in BluetoothDefaultServiceUUIDS.VALUES) {
@@ -50,7 +50,7 @@ class ServiceWidget extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return FutureBuilder(
-        future: getServicesAndCharacteristics(),
+        future: _getServicesAndCharacteristics(),
         initialData: const _ServiceAndCharacteristic([], []),
         builder: (BuildContext context,
             AsyncSnapshot<_ServiceAndCharacteristic> snapshot) {

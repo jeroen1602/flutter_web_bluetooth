@@ -1,3 +1,8 @@
+## 0.0.9
+
+* Added a hotfix for the IOS Bluefy browser. As a side effect none of the characteristic properties are required anymore, but there are no methods yet to check if the properties exist. So add a try-catch around these methods for now!
+* Updated dependencies to work with Flutter 3.3.0
+
 ## 0.0.8
 
 * Added manufacturer scan filters and service scan filters
