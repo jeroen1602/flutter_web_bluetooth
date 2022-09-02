@@ -225,30 +225,30 @@ class WebBluetoothCharacteristicProperties {
   /// To get an instance use [WebBluetoothRemoteGATTCharacteristic.properties].
   ///
   WebBluetoothCharacteristicProperties.fromJSObject(this._jsObject) {
-    if (!_JSUtil.hasProperty(_jsObject, 'broadcast')) {
-      throw UnsupportedError('JSObject does not have broadcast');
-    }
-    if (!_JSUtil.hasProperty(_jsObject, 'read')) {
-      throw UnsupportedError('JSObject does not have read');
-    }
-    if (!_JSUtil.hasProperty(_jsObject, 'write')) {
-      throw UnsupportedError('JSObject does not have write');
-    }
-    if (!_JSUtil.hasProperty(_jsObject, 'notify')) {
-      throw UnsupportedError('JSObject does not have notify');
-    }
-    if (!_JSUtil.hasProperty(_jsObject, 'indicate')) {
-      throw UnsupportedError('JSObject does not have indicate');
-    }
-    if (!_JSUtil.hasProperty(_jsObject, 'authenticatedSignedWrites')) {
-      throw UnsupportedError(
-          'JSObject does not have authenticatedSignedWrites');
-    }
-    if (!_JSUtil.hasProperty(_jsObject, 'reliableWrite')) {
-      throw UnsupportedError('JSObject does not have reliableWrite');
-    }
-    if (!_JSUtil.hasProperty(_jsObject, 'writableAuxiliaries')) {
-      throw UnsupportedError('JSObject does not have writableAuxiliaries');
-    }
+    // if (!_JSUtil.hasProperty(_jsObject, 'broadcast')) {
+    //   throw UnsupportedError('JSObject does not have broadcast');
+    // }
+    // if (!_JSUtil.hasProperty(_jsObject, 'read')) {
+    //   throw UnsupportedError('JSObject does not have read');
+    // }
+    // if (!_JSUtil.hasProperty(_jsObject, 'write')) {
+    //   throw UnsupportedError('JSObject does not have write');
+    // }
+    // if (!_JSUtil.hasProperty(_jsObject, 'notify')) {
+    //   throw UnsupportedError('JSObject does not have notify');
+    // }
+    // if (!_JSUtil.hasProperty(_jsObject, 'indicate')) {
+    //   throw UnsupportedError('JSObject does not have indicate');
+    // }
+    // if (!_JSUtil.hasProperty(_jsObject, 'authenticatedSignedWrites')) {
+    //   throw UnsupportedError(
+    //       'JSObject does not have authenticatedSignedWrites');
+    // }
+    // if (!_JSUtil.hasProperty(_jsObject, 'reliableWrite')) {
+    //   throw UnsupportedError('JSObject does not have reliableWrite');
+    // }
+    // if (!_JSUtil.hasProperty(_jsObject, 'writableAuxiliaries')) {
+    //   throw UnsupportedError('JSObject does not have writableAuxiliaries');
+    // }
   }
 }
