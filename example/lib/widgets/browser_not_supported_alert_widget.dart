@@ -58,7 +58,7 @@ class BrowserNotSupportedAlertWidget extends StatelessWidget {
           // style: textStyle,
           linkStyle: linkStyle,
           onOpen: (link) {
-            launch('https://caniuse.com/web-bluetooth');
+            launchUrl(Uri.parse('https://caniuse.com/web-bluetooth'));
           },
         )),
       ])),
