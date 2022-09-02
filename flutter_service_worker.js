@@ -3,31 +3,31 @@ const MANIFEST = 'flutter-app-manifest';
 const TEMP = 'flutter-temp-cache';
 const CACHE_NAME = 'flutter-app-cache';
 const RESOURCES = {
-  "icons/Icon-192.png": "ac9a721a12bbc803b44f645561ecb1e1",
-"icons/Icon-512.png": "96e752610906ba2a93c65f8abe1645f1",
-"index.html": "46dbdd01deb4ea79abbcb0c4a0fc2149",
-"/flutter_web_bluetooth/": "46dbdd01deb4ea79abbcb0c4a0fc2149",
-"assets/fonts/MaterialIcons-Regular.otf": "4e6447691c9509f7acdbf8a931a85ca1",
-"assets/NOTICES": "8638c4d6300080a943d7f58ecfc1e1d7",
+  "assets/FontManifest.json": "7b2a36307916a9721811788013e65289",
+"assets/NOTICES": "51b7505ae4f4490fb0aafb04bbfcfd23",
 "assets/AssetManifest.json": "99914b932bd37a50b983c5e7c90ae93b",
-"assets/FontManifest.json": "7b2a36307916a9721811788013e65289",
-"canvaskit/canvaskit.wasm": "04ed3c745ff1dee16504be01f9623498",
-"canvaskit/profiling/canvaskit.wasm": "a9610cf39260f60fbe7524a785c66101",
-"canvaskit/profiling/canvaskit.js": "f3bfccc993a1e0bfdd3440af60d99df4",
-"canvaskit/canvaskit.js": "43fa9e17039a625450b6aba93baf521e",
-"main.dart.js": "cda6eed54a1380501f7b10da9c504e96",
-"version.json": "979f10383a3724b85cd60c928712efb7",
+"assets/fonts/MaterialIcons-Regular.otf": "95db9098c58fd6db106f1116bae85a0b",
+"assets/shaders/ink_sparkle.frag": "8e23460760ced49cae796636ad290b37",
+"index.html": "bbe7b09c80faca0e5f00a91aa41b153c",
+"/flutter_web_bluetooth/": "bbe7b09c80faca0e5f00a91aa41b153c",
+"main.dart.js": "0d839e8de526119e0a87401a3a67db1f",
+"favicon.png": "5dcef449791fa27946b3d35ad8803796",
 "manifest.json": "c163cbd2f212c994ba45fbb07db93a5f",
-"favicon.png": "5dcef449791fa27946b3d35ad8803796"
+"canvaskit/canvaskit.js": "2bc454a691c631b07a9307ac4ca47797",
+"canvaskit/canvaskit.wasm": "bf50631470eb967688cca13ee181af62",
+"canvaskit/profiling/canvaskit.js": "38164e5a72bdad0faa4ce740c9b8e564",
+"canvaskit/profiling/canvaskit.wasm": "95a45378b69e77af5ed2bc72b2209b94",
+"version.json": "979f10383a3724b85cd60c928712efb7",
+"flutter.js": "f85e6fb278b0fd20c349186fb46ae36d",
+"icons/Icon-512.png": "96e752610906ba2a93c65f8abe1645f1",
+"icons/Icon-192.png": "ac9a721a12bbc803b44f645561ecb1e1"
 };
 
 // The application shell files that are downloaded before a service worker can
 // start.
 const CORE = [
-  "/flutter_web_bluetooth/",
-"main.dart.js",
+  "main.dart.js",
 "index.html",
-"assets/NOTICES",
 "assets/AssetManifest.json",
 "assets/FontManifest.json"];
 // During install, the TEMP cache is populated with the application shell files.
@@ -126,9 +126,11 @@ self.addEventListener("fetch", (event) => {
     .then((cache) =>  {
       return cache.match(event.request).then((response) => {
         // Either respond with the cached resource, or perform a fetch and
-        // lazily populate the cache.
+        // lazily populate the cache only if the resource was successfully fetched.
         return response || fetch(event.request).then((response) => {
-          cache.put(event.request, response.clone());
+          if (response && Boolean(response.ok)) {
+            cache.put(event.request, response.clone());
+          }
           return response;
         });
       })
