@@ -747,4 +747,20 @@ class Bluetooth {
       rethrow;
     }
   }
+
+  ///
+  /// This is a setting for (new) devices if it should use memory for advertisements.
+  ///
+  /// Not every device sends a completely filled out advertisement packet for
+  /// each advertisements. For example every other packet might have the name
+  /// field missing. If this setting is set to `true` it will use the last received
+  /// event to fill in the missing data on the current new event.
+  ///
+  /// You may want to disable this for certain projects in that case set this
+  /// option to `false`.
+  ///
+  /// It can also be set on a per device level if that is desirable.
+  /// [BluetoothDevice.advertisementsUseMemory].
+  ///
+  static bool defaultAdvertisementsMemory = true;
 }

@@ -45,6 +45,39 @@ class BluetoothDevice {
 
   WebBehaviorSubject<bool>? _connectionSubject;
 
+  WebBehaviorSubject<AdvertisementReceivedEvent>? _advertisementSubject;
+  AbortController? _advertisementAbortController;
+
+  ///
+  /// A stream which will emit all the advertisements received.
+  ///
+  /// Start watching for advertisements using [watchAdvertisements]. If the
+  /// browser doesn't support watching advertisements then this stream will
+  /// throw an error.
+  ///
+  /// Also take a look at [advertisementsUseMemory] because this field changes
+  /// the behavior of the emitted events.
+  ///
+  Stream<AdvertisementReceivedEvent> get advertisements {
+    _startAdvertisementStream();
+    return _advertisementSubject!.stream;
+  }
+
+  ///
+  /// This is a setting for this device if it should use memory for advertisements
+  ///
+  /// Not every device sends a completely filled out advertisement packet for
+  /// each advertisements. For example every other packet might have the name
+  /// field missing. If this setting is set to `true` it will use the last received
+  /// event to fill in the missing data on the current new event.
+  ///
+  /// You may want to disable this for certain projects in that case set this
+  /// option to `false`.
+  ///
+  /// It can also be set globally (for new devices) here [Bluetooth.defaultAdvertisementsMemory]
+  ///
+  bool advertisementsUseMemory = Bluetooth.defaultAdvertisementsMemory;
+
   ///
   /// A stream that gives the current connection state.
   ///
@@ -69,6 +102,40 @@ class BluetoothDevice {
       _connectionSubject?.add(false);
       if (_servicesSubject.hasValue) {
         _servicesSubject.add([]);
+      }
+    });
+  }
+
+  void _startAdvertisementStream() {
+    if (_advertisementSubject != null) {
+      return;
+    }
+
+    _advertisementSubject = WebBehaviorSubject();
+
+    WebAdvertisementReceivedEvent? memory;
+    _bluetoothDevice.addEventListener('advertisementreceived', (dynamic event) {
+      try {
+        final convertedEvent =
+            WebAdvertisementReceivedEvent.fromJSObject(event, _bluetoothDevice);
+
+        var combined = convertedEvent;
+        final storedMemory = memory;
+        if (storedMemory != null && advertisementsUseMemory) {
+          combined = WebAdvertisementReceivedEvent.withMemory(
+              storedMemory, convertedEvent);
+        }
+        memory = combined;
+
+        _advertisementSubject
+            ?.add(AdvertisementReceivedEvent._(combined, this));
+      } catch (e, s) {
+        if (e is Error) {
+          _advertisementSubject?.controller.addError(e, s);
+        } else {
+          _advertisementSubject?.controller
+              .addError(BrowserError(e.toString()), StackTrace.current);
+        }
       }
     });
   }
@@ -132,6 +199,107 @@ class BluetoothDevice {
     }
 
     _connectionSubject?.add(true);
+  }
+
+  ///
+  /// Check to see if the current browser supports the [watchAdvertisements]
+  /// call.
+  /// This can be used to avoid the [NativeAPINotImplementedError].
+  ///
+  bool hasWatchAdvertisements() {
+    return _bluetoothDevice.hasWatchAdvertisements();
+  }
+
+  ///
+  /// Watch for advertisements from this device. The advertisements will
+  /// be received using the [advertisements] [Stream].
+  /// You can choose to only watch advertisements for a specific amount of times
+  /// in that case use the [timeout] variable. If this is `null` then it will
+  /// watch advertisements for as long as the device is in range. Do note that
+  /// not every device will keep sending out advertisements.
+  ///
+  /// Not every browser supports this API yet. Chrome for Windows, Linux, and
+  /// probably also mac os have this hidden behind the
+  /// chrome://flags/#enable-experimental-web-platform-features flag.
+  /// If the API is not supported then this method will throw a
+  /// [NativeAPINotImplementedError] use [hasWatchAdvertisements] to make sure
+  /// that the browser supports the method.
+  /// Even if the device technically has the method sometimes it won't fire any
+  /// advertisement events even though the device may be sending them. This is
+  /// the case with chrome for linux.
+  ///
+  /// If the browser is already watching for advertisements and this is called
+  /// again then nothing special will happen and it will request the device
+  /// again to send advertisements.
+  ///
+  Future<void> watchAdvertisements([Duration? timeout]) async {
+    if (!_bluetoothDevice.hasWatchAdvertisements()) {
+      // Throw the error
+      return await _bluetoothDevice.watchAdvertisements();
+    }
+    _advertisementAbortController
+        ?.abort(StateError("Can only watch the advertisements once"));
+
+    _startAdvertisementStream();
+    final controller = timeout != null ? null : AbortController();
+    if (timeout != null) {
+      _advertisementAbortController = controller;
+    }
+    final signal = timeout != null
+        ? AbortSignal.timeout(timeout.inMilliseconds)
+        : controller!.signal;
+    try {
+      final options = WatchAdvertisementsOptions(signal: signal);
+      await _bluetoothDevice.watchAdvertisements(options);
+    } catch (e) {
+      if (e is Error) {
+        rethrow;
+      }
+      final asString = e.toString();
+      throw BrowserError(asString);
+    }
+  }
+
+  ///
+  /// Stop watching for advertisements.
+  ///
+  /// If the device was not watching advertisements then this method will
+  /// just silently do nothing. You can check if the device was watching
+  /// advertisements by using [watchingAdvertisements].
+  ///
+  /// Unlike [watchAdvertisements] this will never throw a [NativeAPINotImplementedError]
+  /// even if the api is not supported. It will just silently do nothing.
+  ///
+  Future<void> unwatchAdvertisements() async {
+    _advertisementAbortController
+        ?.abort(StateError("Watching advertisements has been aborted"));
+    _advertisementAbortController = null;
+    if (_bluetoothDevice.watchingAdvertisements &&
+        _bluetoothDevice.hasWatchAdvertisements()) {
+      try {
+        // It seems that the device is still watching for advertisements even
+        // though it should have already stopped. Stop it anyways.
+        final signal =
+            AbortSignal.abort(StateError("Stop the advertisements!"));
+        final options = WatchAdvertisementsOptions(signal: signal);
+        await _bluetoothDevice.watchAdvertisements(options);
+      } catch (e) {
+        // expect an error because of the aborted signal.
+        final asString = e.toString();
+        if (!asString.toLowerCase().startsWith("aborterror")) {
+          // Expect the abort error, rethrow for everything else.
+          throw BrowserError(asString);
+        }
+      }
+    }
+  }
+
+  ///
+  /// If the device is watching for advertisements.
+  /// If advertisements are not unsupported then it will always return `false`.
+  ///
+  bool get watchingAdvertisements {
+    return _bluetoothDevice.watchingAdvertisements;
   }
 
   final WebBehaviorSubject<List<BluetoothService>> _servicesSubject =
