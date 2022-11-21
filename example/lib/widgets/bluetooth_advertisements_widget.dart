@@ -32,9 +32,13 @@ class BluetoothAdvertisementsWidget extends StatefulWidget {
 class _BluetoothAdvertisementsState
     extends State<BluetoothAdvertisementsWidget> {
   Future<void> advertisingPressed() async {
+    final theme = Theme.of(context);
+    final errorColor = theme.colorScheme.error;
     if (!widget.device.hasWatchAdvertisements()) {
-      ScaffoldMessenger.maybeOf(context)?.showSnackBar(const SnackBar(
-          content: Text('Advertisements are not supported for this browser')));
+      ScaffoldMessenger.maybeOf(context)?.showSnackBar(SnackBar(
+        content: const Text('Advertisements are not supported for this browser'),
+        backgroundColor: errorColor,
+      ));
     } else {
       if (widget.device.watchingAdvertisements) {
         await widget.device.unwatchAdvertisements();
