@@ -1,10 +1,12 @@
+import 'dart:math';
+
 import 'package:flutter/material.dart';
 import 'package:flutter_web_bluetooth/flutter_web_bluetooth.dart';
-import 'package:flutter_web_bluetooth_example/widgets/service_widget.dart';
+import 'package:flutter_web_bluetooth_example/widgets/bluetooth_advertisements_widget.dart';
+import 'package:flutter_web_bluetooth_example/widgets/bluetooth_services_widget.dart';
 
 class DeviceServicesPage extends StatefulWidget {
-  const DeviceServicesPage({Key? key, required this.bluetoothDevice})
-      : super(key: key);
+  const DeviceServicesPage({super.key, required this.bluetoothDevice});
 
   final BluetoothDevice bluetoothDevice;
 
@@ -17,78 +19,28 @@ class DeviceServicesPage extends StatefulWidget {
 class DeviceServicesState extends State<DeviceServicesPage> {
   @override
   Widget build(BuildContext context) {
-    return StreamBuilder<bool>(
-      stream: widget.bluetoothDevice.connected,
-      initialData: false,
-      builder: (BuildContext context, AsyncSnapshot<bool> snapshot) {
-        final connected = snapshot.requireData;
-        final theme = Theme.of(context);
+    const appbarHeight = 56.0;
+    final height = max(
+        0.0, (MediaQuery.maybeOf(context)?.size.height ?? 0.0) - appbarHeight);
+    final itemHeight = height / 2.0;
 
-        return Scaffold(
-            appBar: AppBar(
-              title:
-                  SelectableText(widget.bluetoothDevice.name ?? 'No name set'),
-              actions: [
-                Builder(
-                  builder: (BuildContext context) {
-                    return ElevatedButton(
-                      onPressed: () async {
-                        if (!widget.bluetoothDevice.hasGATT) {
-                          ScaffoldMessenger.maybeOf(context)
-                              ?.showSnackBar(SnackBar(
-                            content: const Text('This device has no GATT'),
-                            backgroundColor: theme.errorColor,
-                          ));
-                          return;
-                        }
-                        if (connected) {
-                          widget.bluetoothDevice.disconnect();
-                        } else {
-                          await widget.bluetoothDevice.connect();
-                        }
-                      },
-                      child: Text(connected ? 'Disconnect' : 'Connect'),
-                    );
-                  },
-                ),
+    return Scaffold(
+        appBar: AppBar(
+          title: SelectableText(widget.bluetoothDevice.name ?? 'No name set'),
+        ),
+        body: SingleChildScrollView(
+            scrollDirection: Axis.vertical,
+            child: Column(
+              children: [
+                Container(
+                    constraints: BoxConstraints(minHeight: itemHeight),
+                    child: BluetoothAdvertisementsWidget(
+                        widget.bluetoothDevice, itemHeight)),
+                Container(
+                    constraints: BoxConstraints(minHeight: itemHeight),
+                    child: BluetoothServicesWidget(
+                        widget.bluetoothDevice, itemHeight))
               ],
-            ),
-            body: Builder(builder: (BuildContext context) {
-              if (connected) {
-                return StreamBuilder<List<BluetoothService>>(
-                  stream: widget.bluetoothDevice.services,
-                  initialData: const [],
-                  builder: (BuildContext context,
-                      AsyncSnapshot<List<BluetoothService>> serviceSnapshot) {
-                    if (serviceSnapshot.hasError) {
-                      final error = serviceSnapshot.error.toString();
-                      debugPrint('Error!: $error');
-                      return Center(
-                        child: Text(error),
-                      );
-                    }
-                    final services = serviceSnapshot.requireData;
-                    if (services.isEmpty) {
-                      return const Center(
-                        child: Text('No services found!'),
-                      );
-                    }
-
-                    final serviceWidgets = List.generate(services.length,
-                        (index) => ServiceWidget(service: services[index]));
-
-                    return ListView(
-                      children: serviceWidgets,
-                    );
-                  },
-                );
-              } else {
-                return const Center(
-                  child: Text('Click connect first'),
-                );
-              }
-            }));
-      },
-    );
+            )));
   }
 }

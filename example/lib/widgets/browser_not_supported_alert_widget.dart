@@ -12,10 +12,10 @@ class BrowserNotSupportedAlertWidget extends StatelessWidget {
   Widget build(BuildContext context) {
     final browser = Browser.detectOrNull();
     final theme = Theme.of(context);
-    final textStyle = theme.textTheme.bodyText1;
+    final textStyle = theme.textTheme.bodyLarge;
     final boldStyle =
-        theme.textTheme.bodyText1?.copyWith(fontWeight: FontWeight.bold);
-    final linkStyle = theme.textTheme.bodyText1?.copyWith(
+        theme.textTheme.bodyLarge?.copyWith(fontWeight: FontWeight.bold);
+    final linkStyle = theme.textTheme.bodyLarge?.copyWith(
         color: theme.colorScheme.secondary,
         decoration: TextDecoration.underline);
 

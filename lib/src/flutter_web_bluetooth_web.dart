@@ -6,13 +6,16 @@
 library flutter_web_bluetooth;
 
 import 'dart:async';
+import 'dart:collection';
 import 'dart:typed_data';
 
 import 'package:flutter_web_bluetooth/js_web_bluetooth.dart';
 import 'package:meta/meta.dart';
 
-import '../web_bluetooth_logger.dart';
 import '../shared/web_behavior_subject.dart';
+import '../web_bluetooth_logger.dart';
+
+part 'advertisement_received_event.dart';
 
 part 'bluetooth_characteristic.dart';
 

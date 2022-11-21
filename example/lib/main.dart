@@ -46,7 +46,7 @@ class _MyAppState extends State<MyApp> {
           floatingActionButton: Builder(
             builder: (BuildContext context) {
               final theme = Theme.of(context);
-              final errorColor = theme.errorColor;
+              final errorColor = theme.colorScheme.error;
               return ElevatedButton(
                   onPressed: () async {
                     if (!FlutterWebBluetooth.instance.isBluetoothApiSupported) {

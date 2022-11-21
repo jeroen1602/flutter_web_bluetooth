@@ -15,7 +15,7 @@ class BluetoothDeviceWidget extends StatelessWidget {
   Widget build(BuildContext context) {
     final cursive = Theme.of(context)
         .textTheme
-        .bodyText1
+        .bodyLarge
         ?.copyWith(fontStyle: FontStyle.italic);
 
     return Column(

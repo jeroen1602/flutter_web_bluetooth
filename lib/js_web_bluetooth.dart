@@ -6,16 +6,19 @@
 @JS('window')
 library js_web_bluetooth;
 
+import 'dart:collection';
 import 'dart:typed_data';
 
 import 'package:meta/meta.dart';
 
-import 'web_bluetooth_logger.dart';
 import 'shared/web_behavior_subject.dart';
 import 'web/js/js.dart';
 import 'web/js/js_utils.dart';
+import 'web_bluetooth_logger.dart';
 
 part 'web/bluetooth.dart';
+
+part 'web/errors/browser_error.dart';
 
 part 'web/errors/device_not_found_error.dart';
 
@@ -23,7 +26,11 @@ part 'web/errors/native_api_not_implemented_error.dart';
 
 part 'web/errors/user_cancelled_dialog_error.dart';
 
+part 'web/js/abort_controller.dart';
+
 part 'web/native_bluetooth_remote_gatt_server.dart';
+
+part 'web/web_advertisement_received_event.dart';
 
 part 'web/web_bluetooth_characteristic_properties.dart';
 

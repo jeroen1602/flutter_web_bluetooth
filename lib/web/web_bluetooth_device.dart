@@ -111,6 +111,55 @@ class WebBluetoothDevice {
   }
 
   ///
+  /// Start watching for advertisements. The advertisements will be received
+  /// on the `advertisementreceived` event. See [WebAdvertisementReceivedEvent]
+  /// for the object that is emitted every time the event fires.
+  ///
+  /// Not very browser has this implemented yet without the
+  /// `enable-experimental-web-platform-features` flag enabled.
+  /// So use [hasWatchAdvertisements] or it will throw an
+  /// [NativeAPINotImplementedError].
+  ///
+  /// If you want to stop watching for advertisements then you will need to call
+  /// this method again and with a [WatchAdvertisementsOptions.signal] that has
+  /// already been aborted. If you do this then the method will throw a
+  /// DOMException that you will need to handle.
+  ///
+  /// Example of the exception is: `DOMException: Failed to execute
+  /// 'watchAdvertisements' on 'BluetoothDevice': The Bluetooth operation was cancelled.`
+  ///
+  Future<void> watchAdvertisements(
+      [WatchAdvertisementsOptions? options]) async {
+    if (!hasWatchAdvertisements()) {
+      throw NativeAPINotImplementedError('watchAdvertisements');
+    }
+    if (options == null) {
+      await _JSUtil.promiseToFuture(
+          _JSUtil.callMethod(_jsObject, 'watchAdvertisements', []));
+    } else {
+      await _JSUtil.promiseToFuture(
+          _JSUtil.callMethod(_jsObject, 'watchAdvertisements', [options]));
+    }
+  }
+
+  ///
+  /// Check to see if the current browser has the watch advertisements method
+  /// implemented
+  ///
+  bool hasWatchAdvertisements() {
+    return _JSUtil.hasProperty(_jsObject, 'watchAdvertisements');
+  }
+
+  ///
+  /// If the device is watching for advertisements.
+  /// If advertisements are not unsupported then it will always return `false`.
+  ///
+  bool get watchingAdvertisements {
+    return _JSUtil.getProperty(_jsObject, 'watchingAdvertisements') as bool? ??
+        false;
+  }
+
+  ///
   /// Add a new event listener to the device.
   ///
   /// Marking the method with [JSUtils.allowInterop] will be done automatically
@@ -172,4 +221,27 @@ class WebBluetoothDevice {
       throw UnsupportedError('JSObject does not have an id.');
     }
   }
+}
+
+///
+/// The options to configure the [WebBluetoothDevice.watchAdvertisements]
+/// method.
+///
+/// The only option that this object has right now is [signal] which can be
+/// used to abort watching for advertisements.
+///
+@JS()
+@anonymous
+class WatchAdvertisementsOptions {
+  ///
+  /// This signal can be used to abort watching later on in the program.
+  ///
+  /// See [AbortController] and [AbortSignal] on how to create these signals.
+  ///
+  external final AbortSignal signal;
+
+  ///
+  /// The constructor for the options.
+  ///
+  external factory WatchAdvertisementsOptions({AbortSignal signal});
 }
