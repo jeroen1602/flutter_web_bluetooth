@@ -36,7 +36,8 @@ class _BluetoothAdvertisementsState
     final errorColor = theme.colorScheme.error;
     if (!widget.device.hasWatchAdvertisements()) {
       ScaffoldMessenger.maybeOf(context)?.showSnackBar(SnackBar(
-        content: const Text('Advertisements are not supported for this browser'),
+        content:
+            const Text('Advertisements are not supported for this browser'),
         backgroundColor: errorColor,
       ));
     } else {
