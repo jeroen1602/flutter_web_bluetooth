@@ -1,3 +1,7 @@
+## 0.1.0
+
+* Added bluetooth advertisements event to a bluetooth device. (Note this is still behind a flag in most browsers.)
+
 ## 0.0.9
 
 * Added a hotfix for the IOS Bluefy browser. As a side effect none of the characteristic properties are required anymore, but there are no methods yet to check if the properties exist. So add a try-catch around these methods for now!
