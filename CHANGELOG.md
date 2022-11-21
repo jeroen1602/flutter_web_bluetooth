@@ -1,6 +1,7 @@
 ## 0.1.0
 
 * Added bluetooth advertisements event to a bluetooth device. (Note this is still behind a flag in most browsers.)
+* Support the newest version of logging.
 
 ## 0.0.9
 
