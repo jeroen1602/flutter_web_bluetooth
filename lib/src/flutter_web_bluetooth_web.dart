@@ -41,6 +41,8 @@ part 'errors/security_error.dart';
 
 part 'flutter_web_bluetooth_interface.dart';
 
+part 'le_scan_options_builder.dart';
+
 part 'request_options_builder.dart';
 
 ///
@@ -50,6 +52,37 @@ part 'request_options_builder.dart';
 ///
 class FlutterWebBluetooth extends FlutterWebBluetoothInterface {
   FlutterWebBluetooth._();
+
+  WebBehaviorSubject<AdvertisementReceivedEvent<AdvertisementBluetoothDevice>>?
+      _advertisementSubject;
+
+  void _startAdvertisementStream() {
+    if (_advertisementSubject != null) {
+      return;
+    }
+
+    _advertisementSubject = WebBehaviorSubject();
+
+    Bluetooth.addEventListener('advertisementreceived', (dynamic event) {
+      try {
+        final webDevice = WebBluetoothDevice.fromEvent(event);
+        final convertedEvent =
+            WebAdvertisementReceivedEvent.fromJSObject(event, webDevice);
+        final device = AdvertisementBluetoothDevice(webDevice);
+
+        _advertisementSubject?.add(
+            AdvertisementReceivedEvent<AdvertisementBluetoothDevice>._(
+                convertedEvent, device));
+      } catch (e, s) {
+        if (e is Error) {
+          _advertisementSubject?.controller.addError(e, s);
+        } else {
+          _advertisementSubject?.controller
+              .addError(BrowserError(e.toString()), StackTrace.current);
+        }
+      }
+    });
+  }
 
   static FlutterWebBluetooth? _instance;
 
@@ -159,7 +192,8 @@ class FlutterWebBluetooth extends FlutterWebBluetoothInterface {
   /// See: [RequestOptionsBuilder]
   ///
   @override
-  Future<BluetoothDevice> requestDevice(RequestOptionsBuilder options) async {
+  Future<BluetoothDevice> requestDevice(
+      final RequestOptionsBuilder options) async {
     if (!isBluetoothApiSupported) {
       throw NativeAPINotImplementedError('requestDevice');
     }
@@ -171,5 +205,147 @@ class FlutterWebBluetooth extends FlutterWebBluetoothInterface {
     final webDevice = BluetoothDevice(device);
     _addKnownDevice(webDevice);
     return webDevice;
+  }
+
+  ///
+  /// The [advertisements] stream emits an event with a
+  /// [AdvertisementBluetoothDevice]. This device doesn't have a gatt server and
+  /// can thus not do everything you may want.
+  ///
+  /// This method requests the user to pair to the device.
+  ///
+  /// All this method does is constructs a [RequestOptionsBuilder] using
+  /// information from [device], [requiredServices], and [optionalServices] and
+  /// then calls [requestDevice].
+  ///
+  /// There is no guarantee that the user only sees 1 option in their pair
+  /// dialog and thus there is no guarantee that the user pairs the exact same
+  /// device as the one given.
+  ///
+  /// May throw the same exceptions as [requestDevice].
+  ///
+  /// See: [requestDevice]
+  ///
+  @override
+  Future<BluetoothDevice> requestAdvertisementDevice(
+      AdvertisementBluetoothDevice device,
+      {List<String> requiredServices = const [],
+      List<String> optionalServices = const []}) async {
+    final RequestOptionsBuilder options =
+        _createRequestOptionsFromAdvertisementDevice(
+            device, requiredServices, optionalServices);
+    return requestDevice(options);
+  }
+
+  ///
+  /// Create request options for an advertisement device.
+  ///
+  RequestOptionsBuilder _createRequestOptionsFromAdvertisementDevice(
+      AdvertisementBluetoothDevice device,
+      List<String> requiredServices,
+      List<String> optionalServices) {
+    if (device.name != null || requiredServices.isNotEmpty) {
+      return RequestOptionsBuilder([
+        RequestFilterBuilder(
+            name: device.name,
+            services: requiredServices.isEmpty ? null : requiredServices),
+      ], optionalServices: optionalServices.isEmpty ? null : optionalServices);
+    } else {
+      webBluetoothLogger.warning(
+          "Requesting access to an advertisement device (id: ${device.id})"
+              "without identifying information (either a name or required"
+              "services), so `acceptAllDevices` is used.");
+      return RequestOptionsBuilder.acceptAllDevices(
+          optionalServices: optionalServices.isEmpty ? null : optionalServices);
+    }
+  }
+
+  ///
+  /// Check to see if the current browser has the [requestLEScan] method.
+  ///
+  /// Use this to avoid the [NativeAPINotImplementedError].
+  ///
+  @override
+  bool get hasRequestLEScan => Bluetooth.hasRequestLEScan();
+
+  ///
+  /// Request the user to start scanning for Bluetooth LE devices in the
+  /// area. Not every browser supports this method yet so check it using
+  /// [hasRequestLEScan]. However even if the browser supports it, the [Future]
+  /// may never complete on browsers. This has been the case for Chrome on linux
+  /// and windows even with the correct flag enabled. Chrome on Android does
+  /// seem to work. Add a [Future.timeout] to combat this.
+  ///
+  /// The devices found through this are emitted using the [advertisements]
+  /// stream. The devices emitted through this stream aren't [BluetoothDevice]s
+  /// but [AdvertisementBluetoothDevice]s instead as they don't have a
+  /// gatt server.
+  ///
+  /// It will only emit devices that match the [options] so it could happen
+  /// that there are no devices in range while the scan is running.
+  /// See [LEScanOptionsBuilder] for details on the options.
+  ///
+  /// Once a scan is running (and there were no errors) it can be stopped by
+  /// calling [BluetoothLEScan.stop] on the returned object from the [Future].
+  /// If this object doesn't get saved then there is no way to stop the scan,
+  /// it should be able to start multiple scans with different scan options.
+  ///
+  /// - May throw [UserCancelledDialogError] if the user cancelled the dialog.
+  ///
+  /// - May throw [NativeAPINotImplementedError] if the browser/ user agent
+  /// doesn't support this method. This may still be thrown even if
+  /// [hasRequestLEScan] is checked first.
+  ///
+  /// - May throw [StateError] for any state error that the method may throw.
+  ///
+  /// - May throw [PolicyError] if Bluetooth has been disabled by an
+  /// administrator via a policy.
+  ///
+  /// - May throw [PermissionError] if the user has disallowed the permission.
+  ///
+  /// - May throw [BluetoothAdapterNotAvailable] if there is no Bluetooth
+  /// adapter available.
+  ///
+  /// - May throw [BrowserError] for every other browser error.
+  ///
+  @override
+  Future<BluetoothLEScan> requestLEScan(
+      final LEScanOptionsBuilder options) async {
+    if (!hasRequestLEScan) {
+      throw NativeAPINotImplementedError('requestLEScan');
+    }
+    if (!(await Bluetooth.getAvailability())) {
+      throw BluetoothAdapterNotAvailable('requestLEScan');
+    }
+    _startAdvertisementStream();
+    try {
+      final convertedOptions = options.toRequestOptions();
+      return await Bluetooth.requestLEScan(convertedOptions);
+    } on BrowserError catch (e) {
+      if (e.message.startsWith('InvalidStateError')) {
+        throw BluetoothAdapterNotAvailable('requestLEScan');
+      }
+      rethrow;
+    }
+  }
+
+  ///
+  /// the [advertisements] stream emits [AdvertisementReceivedEvent]s
+  /// for devices found through [requestLEScan].
+  ///
+  /// The device that is in this event is a [AdvertisementBluetoothDevice] this
+  /// bluetooth device lacks a gatt server and can thus not communicate with
+  /// any [BluetoothCharacteristic]s. Use [requestAdvertisementDevice] to get
+  /// a [BluetoothDevice] based on the [AdvertisementBluetoothDevice].
+  ///
+  /// Even if the browser doesn't support [requestLEScan] this stream will not
+  /// throw an [Error]. It will just never emit any events since you can't start
+  /// scan.
+  ///
+  @override
+  Stream<AdvertisementReceivedEvent<AdvertisementBluetoothDevice>>
+      get advertisements {
+    _startAdvertisementStream();
+    return _advertisementSubject!.stream;
   }
 }

@@ -221,6 +221,18 @@ class WebBluetoothDevice {
       throw UnsupportedError('JSObject does not have an id.');
     }
   }
+
+  ///
+  /// Create a new instance form an `advertisementreceived` event.
+  ///
+  /// **This should only be done by the library of if you're testing.**
+  ///
+  /// To get an instance use [Bluetooth.requestDevice].
+  ///
+  factory WebBluetoothDevice.fromEvent(final Object event) {
+    return WebBluetoothDevice.fromJSObject(
+        _JSUtil.getProperty(event, 'device'));
+  }
 }
 
 ///

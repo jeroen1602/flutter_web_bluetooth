@@ -2,10 +2,16 @@
 
 * Added bluetooth advertisements event to a bluetooth device. (Note this is still behind a flag in most browsers.)
 * Support the newest version of logging.
+* **Breaking** in `Bluetooth.requestDevice()` the `RequestOptions` are no longer nullable.
+* Added `requestLEScan` to `Bluetooth` and `FlutterWebBluetooth`. You can now scan for devices advertisements without
+  needing to pair with each device. However, a normal pair does need to happen before characteristics can be used.
+* **Breaking** `BluetoothDevice.gatt` is no longer marked as deprecated, it is still marked as `visibleForTesting`.
 
 ## 0.0.9
 
-* Added a hotfix for the IOS Bluefy browser. As a side effect none of the characteristic properties are required anymore, but there are no methods yet to check if the properties exist. So add a try-catch around these methods for now!
+* Added a hotfix for the IOS Bluefy browser. As a side effect none of the characteristic properties are required
+  anymore, but there are no methods yet to check if the properties exist. So add a try-catch around these methods for
+  now!
 * Updated dependencies to work with Flutter 3.3.0
 
 ## 0.0.8
@@ -15,7 +21,8 @@
 ## 0.0.7
 
 * Added `getCharacteristics` to the bluetooth service to get all the characteristics.
-* Set target platform to web for [pub.dev](https://pub.dev/packages/flutter_web_bluetooth/) target platform list (it will still compile when used in non-native programs.)
+* Set target platform to web for [pub.dev](https://pub.dev/packages/flutter_web_bluetooth/) target platform list (it
+  will still compile when used in non-native programs.)
 * Added documentation to the last few public interfaces
 
 ## 0.0.6+2

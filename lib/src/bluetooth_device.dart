@@ -1,21 +1,26 @@
 part of flutter_web_bluetooth;
 
 ///
-/// A Bluetooth low energy (web) device. This represents a device that (may)
-/// be connected to the browser using BLE.
+/// This is a [BluetoothDevice] that has been found using
+/// [FlutterWebBluetooth.requestLeScan] and will be emitted by the
+/// [FlutterWebBluetooth.advertisements] stream.
 ///
-/// You can get a [BluetoothDevice] by calling
-/// [FlutterWebBluetooth.requestDevice].
+/// Devices that have been retrieved in that way don't have access to the GATT
+/// server so communicating with them is not possible. If you need a [BluetoothDevice]
+/// use [FlutterWebBluetooth.requestAdvertisementDevice] to request the user to
+/// give access to more of the features of the device.
 ///
-class BluetoothDevice {
+class AdvertisementBluetoothDevice {
   ///
-  /// A constructor for a new device.
+  /// Construct a new instance.
   ///
   /// **This should only be done by the library or if you're testing.**
   ///
-  /// To get an instance use [FlutterWebBluetooth.requestDevice].
+  /// Get a new instance by calling [FlutterWebBluetooth.requestLeScan] and
+  /// listening to the [FlutterWebBluetooth.advertisements] stream and
+  /// getting the device from [AdvertisementReceivedEvent.device].
   ///
-  BluetoothDevice(this._bluetoothDevice);
+  AdvertisementBluetoothDevice(this._bluetoothDevice);
 
   final WebBluetoothDevice _bluetoothDevice;
 
@@ -43,9 +48,46 @@ class BluetoothDevice {
   ///
   String? get name => _bluetoothDevice.name;
 
+  ///
+  /// Check to see if two device have the same id.
+  ///
+  @override
+  bool operator ==(Object other) {
+    if (other is! AdvertisementBluetoothDevice) {
+      return false;
+    }
+    return id == other.id;
+  }
+
+  @override
+  int get hashCode => id.hashCode;
+}
+
+///
+/// A Bluetooth low energy (web) device. This represents a device that (may)
+/// be connected to the browser using BLE. This is a descendant of
+/// [AdvertisementBluetoothDevice] with an actual [gatt] server so it can
+/// communicate with the [BluetoothService]s and [BluetoothCharacteristic]s of
+/// the device.
+///
+/// You can get a [BluetoothDevice] by calling
+/// [FlutterWebBluetooth.requestDevice] or
+/// [FlutterWebBluetooth.requestAdvertisementDevice].
+///
+class BluetoothDevice extends AdvertisementBluetoothDevice {
+  ///
+  /// A constructor for a new device.
+  ///
+  /// **This should only be done by the library or if you're testing.**
+  ///
+  /// To get an instance use [FlutterWebBluetooth.requestDevice].
+  ///
+  BluetoothDevice(WebBluetoothDevice bluetoothDevice) : super(bluetoothDevice);
+
   WebBehaviorSubject<bool>? _connectionSubject;
 
-  WebBehaviorSubject<AdvertisementReceivedEvent>? _advertisementSubject;
+  WebBehaviorSubject<AdvertisementReceivedEvent<BluetoothDevice>>?
+      _advertisementSubject;
   AbortController? _advertisementAbortController;
 
   ///
@@ -58,7 +100,7 @@ class BluetoothDevice {
   /// Also take a look at [advertisementsUseMemory] because this field changes
   /// the behavior of the emitted events.
   ///
-  Stream<AdvertisementReceivedEvent> get advertisements {
+  Stream<AdvertisementReceivedEvent<BluetoothDevice>> get advertisements {
     _startAdvertisementStream();
     return _advertisementSubject!.stream;
   }
@@ -74,9 +116,11 @@ class BluetoothDevice {
   /// You may want to disable this for certain projects in that case set this
   /// option to `false`.
   ///
-  /// It can also be set globally (for new devices) here [Bluetooth.defaultAdvertisementsMemory]
+  /// It can also be set globally (for new devices) here
+  /// [FlutterWebBluetoothInterface.defaultAdvertisementsMemory].
   ///
-  bool advertisementsUseMemory = Bluetooth.defaultAdvertisementsMemory;
+  bool advertisementsUseMemory =
+      FlutterWebBluetooth.instance.defaultAdvertisementsMemory;
 
   ///
   /// A stream that gives the current connection state.
@@ -94,7 +138,6 @@ class BluetoothDevice {
       return;
     }
 
-    // ignore: deprecated_member_use_from_same_package
     _connectionSubject = WebBehaviorSubject.seeded(gatt?.connected == true);
 
     _bluetoothDevice.addEventListener('gattserverdisconnected',
@@ -127,8 +170,8 @@ class BluetoothDevice {
         }
         memory = combined;
 
-        _advertisementSubject
-            ?.add(AdvertisementReceivedEvent._(combined, this));
+        _advertisementSubject?.add(
+            AdvertisementReceivedEvent<BluetoothDevice>._(combined, this));
       } catch (e, s) {
         if (e is Error) {
           _advertisementSubject?.controller.addError(e, s);
@@ -146,7 +189,6 @@ class BluetoothDevice {
   /// Some devices may allow you to find them, but they are on a blocklist
   /// restricting the ability to communicate with its GATT service.
   ///
-  /// ignore: deprecated_member_use_from_same_package
   bool get hasGATT => gatt != null;
 
   ///
@@ -155,7 +197,6 @@ class BluetoothDevice {
   /// See [hasGATT].
   ///
   void disconnect() {
-    // ignore: deprecated_member_use_from_same_package
     gatt?.disconnect();
   }
 
@@ -174,7 +215,6 @@ class BluetoothDevice {
   /// - May throw [StateError] if the connection was aborted. TODO: use a better error.
   ///
   Future<void> connect({Duration? timeout = const Duration(seconds: 5)}) async {
-    // ignore: deprecated_member_use_from_same_package
     final gatt = this.gatt!;
     _startConnectedStream();
     // No timeout.
@@ -337,7 +377,6 @@ class BluetoothDevice {
   /// - May throw [StateError] if the device is not connected.
   ///
   Future<List<BluetoothService>> discoverServices() async {
-    // ignore: deprecated_member_use_from_same_package
     final gatt = this.gatt;
     if (gatt == null || !gatt.connected) {
       throw StateError(
@@ -369,9 +408,6 @@ class BluetoothDevice {
 
   /// Get the underlying native (web) gatt service.
   @visibleForTesting
-  @Deprecated('This is here for debugging and will be removed once web '
-      'bluetooth is actually released. '
-      '(It will still exist as visible for testing)')
   NativeBluetoothRemoteGATTServer? get gatt => _bluetoothDevice.gatt;
 
   ///
@@ -380,18 +416,4 @@ class BluetoothDevice {
   @Deprecated('This is here for debugging and will be removed once web '
       'bluetooth is actually released.')
   WebBluetoothDevice get nativeDevice => _bluetoothDevice;
-
-  ///
-  /// Check to see if two device have the same id.
-  ///
-  @override
-  bool operator ==(Object other) {
-    if (other is! BluetoothDevice) {
-      return false;
-    }
-    return id == other.id;
-  }
-
-  @override
-  int get hashCode => id.hashCode;
 }
