@@ -46,12 +46,12 @@ class WebBluetoothRemoteGATTDescriptor {
       return uuid;
     }
 
-    uuid = _JSUtil.getProperty(_jsObject, 'uuid');
+    uuid = _JSUtil.getProperty(_jsObject, "uuid");
     if (uuid != null) {
       _uuid = uuid;
       return uuid;
     }
-    return 'UNKNOWN';
+    return "UNKNOWN";
   }
 
   ///
@@ -66,10 +66,10 @@ class WebBluetoothRemoteGATTDescriptor {
   /// - https://webbluetoothcg.github.io/web-bluetooth/#dom-bluetoothremotegattdescriptor-value
   ///
   ByteData? get value {
-    if (!_JSUtil.hasProperty(_jsObject, 'value')) {
+    if (!_JSUtil.hasProperty(_jsObject, "value")) {
       return null;
     }
-    final result = _JSUtil.getProperty(_jsObject, 'value');
+    final result = _JSUtil.getProperty(_jsObject, "value");
     if (result == null) {
       return null;
     }
@@ -95,7 +95,7 @@ class WebBluetoothRemoteGATTDescriptor {
   /// - https://webbluetoothcg.github.io/web-bluetooth/#dom-bluetoothremotegattdescriptor-readvalue
   ///
   Future<ByteData> readValue() async {
-    final promise = _JSUtil.callMethod(_jsObject, 'readValue', []);
+    final promise = _JSUtil.callMethod(_jsObject, "readValue", []);
     final result = await _JSUtil.promiseToFuture(promise);
     final data = WebBluetoothConverters.convertJSDataViewToByteData(result);
     return data;
@@ -122,9 +122,9 @@ class WebBluetoothRemoteGATTDescriptor {
   ///
   /// - https://webbluetoothcg.github.io/web-bluetooth/#dom-bluetoothremotegattdescriptor-writevalue
   ///
-  Future<void> writeValue(Uint8List value) async {
+  Future<void> writeValue(final Uint8List value) async {
     final data = WebBluetoothConverters.convertUint8ListToJSArrayBuffer(value);
-    final promise = _JSUtil.callMethod(_jsObject, 'writeValue', [data]);
+    final promise = _JSUtil.callMethod(_jsObject, "writeValue", [data]);
     await _JSUtil.promiseToFuture(promise);
   }
 
@@ -139,20 +139,20 @@ class WebBluetoothRemoteGATTDescriptor {
   ///
   WebBluetoothRemoteGATTDescriptor.fromJSObject(
       this._jsObject, this.characteristic) {
-    if (!_JSUtil.hasProperty(_jsObject, 'characteristic')) {
-      throw UnsupportedError('JSObject does not have characteristic');
+    if (!_JSUtil.hasProperty(_jsObject, "characteristic")) {
+      throw UnsupportedError("JSObject does not have characteristic");
     }
-    if (!_JSUtil.hasProperty(_jsObject, 'uuid')) {
-      throw UnsupportedError('JSObject does not have uuid');
+    if (!_JSUtil.hasProperty(_jsObject, "uuid")) {
+      throw UnsupportedError("JSObject does not have uuid");
     }
-    if (!_JSUtil.hasProperty(_jsObject, 'value')) {
-      throw UnsupportedError('JSObject does not have value');
+    if (!_JSUtil.hasProperty(_jsObject, "value")) {
+      throw UnsupportedError("JSObject does not have value");
     }
-    if (!_JSUtil.hasProperty(_jsObject, 'readValue')) {
-      throw UnsupportedError('JSObject does not have readValue');
+    if (!_JSUtil.hasProperty(_jsObject, "readValue")) {
+      throw UnsupportedError("JSObject does not have readValue");
     }
-    if (!_JSUtil.hasProperty(_jsObject, 'writeValue')) {
-      throw UnsupportedError('JSObject does not have writeValue');
+    if (!_JSUtil.hasProperty(_jsObject, "writeValue")) {
+      throw UnsupportedError("JSObject does not have writeValue");
     }
   }
 }

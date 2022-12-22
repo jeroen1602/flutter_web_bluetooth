@@ -37,7 +37,7 @@ class NativeBluetoothRemoteGATTServer {
   /// - https://webbluetoothcg.github.io/web-bluetooth/#dom-bluetoothremotegattserver-connected
   ///
   bool get connected {
-    final value = _JSUtil.getProperty(_jsObject, 'connected');
+    final value = _JSUtil.getProperty(_jsObject, "connected");
     if (value is bool) {
       return value;
     }
@@ -65,7 +65,7 @@ class NativeBluetoothRemoteGATTServer {
   /// - https://webbluetoothcg.github.io/web-bluetooth/#dom-bluetoothremotegattserver-connect
   ///
   Future<NativeBluetoothRemoteGATTServer> connect() async {
-    final promise = _JSUtil.callMethod(_jsObject, 'connect', []);
+    final promise = _JSUtil.callMethod(_jsObject, "connect", []);
     await _JSUtil.promiseToFuture(promise);
     return this;
   }
@@ -82,7 +82,7 @@ class NativeBluetoothRemoteGATTServer {
   /// - https://webbluetoothcg.github.io/web-bluetooth/#dom-bluetoothremotegattserver-disconnect
   ///
   void disconnect() {
-    _JSUtil.callMethod(_jsObject, 'disconnect', []);
+    _JSUtil.callMethod(_jsObject, "disconnect", []);
   }
 
   ///
@@ -110,9 +110,9 @@ class NativeBluetoothRemoteGATTServer {
   /// - https://webbluetoothcg.github.io/web-bluetooth/#dom-bluetoothremotegattserver-getprimaryservice
   ///
   Future<WebBluetoothRemoteGATTService> getPrimaryService(
-      String serviceUUID) async {
+      final String serviceUUID) async {
     final promise = _JSUtil.callMethod(
-        _jsObject, 'getPrimaryService', [serviceUUID.toLowerCase()]);
+        _jsObject, "getPrimaryService", [serviceUUID.toLowerCase()]);
     final result = await _JSUtil.promiseToFuture(promise);
     return WebBluetoothRemoteGATTService.fromJSObject(result, device);
   }
@@ -143,10 +143,10 @@ class NativeBluetoothRemoteGATTServer {
   /// - https://webbluetoothcg.github.io/web-bluetooth/#dom-bluetoothremotegattserver-getprimaryservices
   ///
   Future<List<WebBluetoothRemoteGATTService>> getPrimaryServices(
-      [String? serviceUUID]) async {
+      [final String? serviceUUID]) async {
     final arguments = serviceUUID == null ? [] : [serviceUUID.toLowerCase()];
     final promise =
-        _JSUtil.callMethod(_jsObject, 'getPrimaryServices', arguments);
+        _JSUtil.callMethod(_jsObject, "getPrimaryServices", arguments);
     final result = await _JSUtil.promiseToFuture(promise);
     if (result is List) {
       final items = <WebBluetoothRemoteGATTService>[];
@@ -156,7 +156,7 @@ class NativeBluetoothRemoteGATTServer {
         } catch (e, stack) {
           if (e is UnsupportedError) {
             webBluetoothLogger.severe(
-                'Could not convert primary service to BluetoothRemoteGATTService',
+                "Could not convert primary service to BluetoothRemoteGATTService",
                 e,
                 stack);
           } else {
@@ -177,23 +177,23 @@ class NativeBluetoothRemoteGATTServer {
   /// To get an instance use [WebBluetoothDevice.gatt].
   ///
   NativeBluetoothRemoteGATTServer.fromJSObject(this._jsObject, this.device) {
-    if (!_JSUtil.hasProperty(_jsObject, 'connected')) {
-      throw UnsupportedError('JSObject does not have connected');
+    if (!_JSUtil.hasProperty(_jsObject, "connected")) {
+      throw UnsupportedError("JSObject does not have connected");
     }
-    if (!_JSUtil.hasProperty(_jsObject, 'device')) {
-      throw UnsupportedError('JSObject does not have device');
+    if (!_JSUtil.hasProperty(_jsObject, "device")) {
+      throw UnsupportedError("JSObject does not have device");
     }
-    if (!_JSUtil.hasProperty(_jsObject, 'connect')) {
-      throw UnsupportedError('JSObject does not have connect');
+    if (!_JSUtil.hasProperty(_jsObject, "connect")) {
+      throw UnsupportedError("JSObject does not have connect");
     }
-    if (!_JSUtil.hasProperty(_jsObject, 'disconnect')) {
-      throw UnsupportedError('JSObject does not have disconnect');
+    if (!_JSUtil.hasProperty(_jsObject, "disconnect")) {
+      throw UnsupportedError("JSObject does not have disconnect");
     }
-    if (!_JSUtil.hasProperty(_jsObject, 'getPrimaryService')) {
-      throw UnsupportedError('JSObject does not have getPrimaryService');
+    if (!_JSUtil.hasProperty(_jsObject, "getPrimaryService")) {
+      throw UnsupportedError("JSObject does not have getPrimaryService");
     }
-    if (!_JSUtil.hasProperty(_jsObject, 'getPrimaryServices')) {
-      throw UnsupportedError('JSObject does not have getPrimaryServices');
+    if (!_JSUtil.hasProperty(_jsObject, "getPrimaryServices")) {
+      throw UnsupportedError("JSObject does not have getPrimaryServices");
     }
   }
 }

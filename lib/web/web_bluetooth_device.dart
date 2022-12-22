@@ -39,7 +39,7 @@ class WebBluetoothDevice {
     if (id != null) {
       return id;
     }
-    id = _JSUtil.getProperty(_jsObject, 'id') as String;
+    id = _JSUtil.getProperty(_jsObject, "id") as String;
     _id = id;
     return id;
   }
@@ -62,10 +62,10 @@ class WebBluetoothDevice {
     if (name != null) {
       return name;
     }
-    if (!_JSUtil.hasProperty(_jsObject, 'name')) {
+    if (!_JSUtil.hasProperty(_jsObject, "name")) {
       return null;
     }
-    name = _JSUtil.getProperty(_jsObject, 'name') as String?;
+    name = _JSUtil.getProperty(_jsObject, "name") as String?;
     _name = name;
     return name;
   }
@@ -91,17 +91,17 @@ class WebBluetoothDevice {
     if (gatt != null) {
       return gatt;
     }
-    if (!_JSUtil.hasProperty(_jsObject, 'gatt')) {
+    if (!_JSUtil.hasProperty(_jsObject, "gatt")) {
       return null;
     }
-    final newGatt = _JSUtil.getProperty(_jsObject, 'gatt');
+    final newGatt = _JSUtil.getProperty(_jsObject, "gatt");
     if (newGatt != null) {
       try {
         _gatt = NativeBluetoothRemoteGATTServer.fromJSObject(newGatt, this);
       } catch (e, stack) {
         if (e is UnsupportedError) {
           webBluetoothLogger.severe(
-              'Could not convert gatt to BluetoothRemoteGattServer', e, stack);
+              "Could not convert gatt to BluetoothRemoteGattServer", e, stack);
         } else {
           rethrow;
         }
@@ -129,16 +129,16 @@ class WebBluetoothDevice {
   /// 'watchAdvertisements' on 'BluetoothDevice': The Bluetooth operation was cancelled.`
   ///
   Future<void> watchAdvertisements(
-      [WatchAdvertisementsOptions? options]) async {
+      [final WatchAdvertisementsOptions? options]) async {
     if (!hasWatchAdvertisements()) {
-      throw NativeAPINotImplementedError('watchAdvertisements');
+      throw NativeAPINotImplementedError("watchAdvertisements");
     }
     if (options == null) {
       await _JSUtil.promiseToFuture(
-          _JSUtil.callMethod(_jsObject, 'watchAdvertisements', []));
+          _JSUtil.callMethod(_jsObject, "watchAdvertisements", []));
     } else {
       await _JSUtil.promiseToFuture(
-          _JSUtil.callMethod(_jsObject, 'watchAdvertisements', [options]));
+          _JSUtil.callMethod(_jsObject, "watchAdvertisements", [options]));
     }
   }
 
@@ -146,18 +146,16 @@ class WebBluetoothDevice {
   /// Check to see if the current browser has the watch advertisements method
   /// implemented
   ///
-  bool hasWatchAdvertisements() {
-    return _JSUtil.hasProperty(_jsObject, 'watchAdvertisements');
-  }
+  bool hasWatchAdvertisements() =>
+      _JSUtil.hasProperty(_jsObject, "watchAdvertisements");
 
   ///
   /// If the device is watching for advertisements.
   /// If advertisements are not unsupported then it will always return `false`.
   ///
-  bool get watchingAdvertisements {
-    return _JSUtil.getProperty(_jsObject, 'watchingAdvertisements') as bool? ??
-        false;
-  }
+  bool get watchingAdvertisements =>
+      _JSUtil.getProperty(_jsObject, "watchingAdvertisements") as bool? ??
+      false;
 
   ///
   /// Add a new event listener to the device.
@@ -189,9 +187,10 @@ class WebBluetoothDevice {
   ///
   /// - https://webbluetoothcg.github.io/web-bluetooth/#characteristiceventhandlers
   ///
-  void addEventListener(String type, void Function(dynamic) listener) {
+  void addEventListener(
+      final String type, final void Function(dynamic) listener) {
     _JSUtil.callMethod(
-        _jsObject, 'addEventListener', [type, _JSUtil.allowInterop(listener)]);
+        _jsObject, "addEventListener", [type, _JSUtil.allowInterop(listener)]);
   }
 
   ///
@@ -202,10 +201,11 @@ class WebBluetoothDevice {
   ///
   /// See: [addEventListener].
   ///
-  void removeEventListener(String type, void Function(dynamic) listener) {
+  void removeEventListener(
+      final String type, final void Function(dynamic) listener) {
     /// TODO: may need to tell the developer to store the listener that you get
     /// after throwing it through _JSUtil.allowInterop.
-    _JSUtil.callMethod(_jsObject, 'removeEventListener',
+    _JSUtil.callMethod(_jsObject, "removeEventListener",
         [type, _JSUtil.allowInterop(listener)]);
   }
 
@@ -217,8 +217,8 @@ class WebBluetoothDevice {
   /// To get an instance use [Bluetooth.requestDevice].
   ///
   WebBluetoothDevice.fromJSObject(this._jsObject) {
-    if (!_JSUtil.hasProperty(_jsObject, 'id')) {
-      throw UnsupportedError('JSObject does not have an id.');
+    if (!_JSUtil.hasProperty(_jsObject, "id")) {
+      throw UnsupportedError("JSObject does not have an id.");
     }
   }
 
@@ -229,10 +229,8 @@ class WebBluetoothDevice {
   ///
   /// To get an instance use [Bluetooth.requestDevice].
   ///
-  factory WebBluetoothDevice.fromEvent(final Object event) {
-    return WebBluetoothDevice.fromJSObject(
-        _JSUtil.getProperty(event, 'device'));
-  }
+  factory WebBluetoothDevice.fromEvent(final Object event) =>
+      WebBluetoothDevice.fromJSObject(_JSUtil.getProperty(event, "device"));
 }
 
 ///
@@ -255,5 +253,5 @@ class WatchAdvertisementsOptions {
   ///
   /// The constructor for the options.
   ///
-  external factory WatchAdvertisementsOptions({AbortSignal signal});
+  external factory WatchAdvertisementsOptions({final AbortSignal signal});
 }

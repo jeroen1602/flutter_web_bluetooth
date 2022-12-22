@@ -9,205 +9,205 @@ part of flutter_web_bluetooth;
 enum BluetoothDefaultServiceUUIDS {
   /// The default service for Generic Attribute
   genericAttribute(
-      'Generic Attribute', '1801', '00001801-0000-1000-8000-00805f9b34fb'),
+      "Generic Attribute", "1801", "00001801-0000-1000-8000-00805f9b34fb"),
 
   /// The default service for Immediate Alert
   immediateAlert(
-      'Immediate Alert', '1802', '00001802-0000-1000-8000-00805f9b34fb'),
+      "Immediate Alert", "1802", "00001802-0000-1000-8000-00805f9b34fb"),
 
   /// The default service for Link Loss
-  linkLoss('Link Loss', '1803', '00001803-0000-1000-8000-00805f9b34fb'),
+  linkLoss("Link Loss", "1803", "00001803-0000-1000-8000-00805f9b34fb"),
 
   /// The default service for Tx Power
-  txPower('Tx Power', '1804', '00001804-0000-1000-8000-00805f9b34fb'),
+  txPower("Tx Power", "1804", "00001804-0000-1000-8000-00805f9b34fb"),
 
   /// The default service for Current Time
-  currentTime('Current Time', '1805', '00001805-0000-1000-8000-00805f9b34fb'),
+  currentTime("Current Time", "1805", "00001805-0000-1000-8000-00805f9b34fb"),
 
   /// The default service for Reference Time Update
   referenceTimeUpdate(
-      'Reference Time Update', '1806', '00001806-0000-1000-8000-00805f9b34fb'),
+      "Reference Time Update", "1806", "00001806-0000-1000-8000-00805f9b34fb"),
 
   /// The default service for Next DST Change
   nextDstChange(
-      'Next DST Change', '1807', '00001807-0000-1000-8000-00805f9b34fb'),
+      "Next DST Change", "1807", "00001807-0000-1000-8000-00805f9b34fb"),
 
   /// The default service for Glucose
-  glucose('Glucose', '1808', '00001808-0000-1000-8000-00805f9b34fb'),
+  glucose("Glucose", "1808", "00001808-0000-1000-8000-00805f9b34fb"),
 
   /// The default service for Health Thermometer
   healthThermometer(
-      'Health Thermometer', '1809', '00001809-0000-1000-8000-00805f9b34fb'),
+      "Health Thermometer", "1809", "00001809-0000-1000-8000-00805f9b34fb"),
 
   /// The default service for Device Information
   deviceInformation(
-      'Device Information', '180a', '0000180a-0000-1000-8000-00805f9b34fb'),
+      "Device Information", "180a", "0000180a-0000-1000-8000-00805f9b34fb"),
 
   /// The default service for Heart Rate
-  heartRate('Heart Rate', '180d', '0000180d-0000-1000-8000-00805f9b34fb'),
+  heartRate("Heart Rate", "180d", "0000180d-0000-1000-8000-00805f9b34fb"),
 
   /// The default service for Phone Alert Status
   phoneAlertStatus(
-      'Phone Alert Status', '180e', '0000180e-0000-1000-8000-00805f9b34fb'),
+      "Phone Alert Status", "180e", "0000180e-0000-1000-8000-00805f9b34fb"),
 
   /// The default service for Battery
-  battery('Battery', '180f', '0000180f-0000-1000-8000-00805f9b34fb'),
+  battery("Battery", "180f", "0000180f-0000-1000-8000-00805f9b34fb"),
 
   /// The default service for Blood Pressure
   bloodPressure(
-      'Blood Pressure', '1810', '00001810-0000-1000-8000-00805f9b34fb'),
+      "Blood Pressure", "1810", "00001810-0000-1000-8000-00805f9b34fb"),
 
   /// The default service for Alert Notification
   alertNotification(
-      'Alert Notification', '1811', '00001811-0000-1000-8000-00805f9b34fb'),
+      "Alert Notification", "1811", "00001811-0000-1000-8000-00805f9b34fb"),
 
   /// The default service for Human Interface Device
   humanInterfaceDevice(
-      'Human Interface Device', '1812', '00001812-0000-1000-8000-00805f9b34fb'),
+      "Human Interface Device", "1812", "00001812-0000-1000-8000-00805f9b34fb"),
 
   /// The default service for Scan Parameters
   scanParameters(
-      'Scan Parameters', '1813', '00001813-0000-1000-8000-00805f9b34fb'),
+      "Scan Parameters", "1813", "00001813-0000-1000-8000-00805f9b34fb"),
 
   /// The default service for Running Speed and Cadence
-  runningSpeedAndCadence('Running Speed and Cadence', '1814',
-      '00001814-0000-1000-8000-00805f9b34fb'),
+  runningSpeedAndCadence("Running Speed and Cadence", "1814",
+      "00001814-0000-1000-8000-00805f9b34fb"),
 
   /// The default service for Automation IO
-  automationIo('Automation IO', '1815', '00001815-0000-1000-8000-00805f9b34fb'),
+  automationIo("Automation IO", "1815", "00001815-0000-1000-8000-00805f9b34fb"),
 
   /// The default service for Cycling Speed and Cadence
-  cyclingSpeedAndCadence('Cycling Speed and Cadence', '1816',
-      '00001816-0000-1000-8000-00805f9b34fb'),
+  cyclingSpeedAndCadence("Cycling Speed and Cadence", "1816",
+      "00001816-0000-1000-8000-00805f9b34fb"),
 
   /// The default service for Generic Access
   genericAccess(
-      'Generic Access', '1800', '00001800-0000-1000-8000-00805f9b34fb'),
+      "Generic Access", "1800", "00001800-0000-1000-8000-00805f9b34fb"),
 
   /// The default service for Cycling Power
-  cyclingPower('Cycling Power', '1818', '00001818-0000-1000-8000-00805f9b34fb'),
+  cyclingPower("Cycling Power", "1818", "00001818-0000-1000-8000-00805f9b34fb"),
 
   /// The default service for Location and Navigation
-  locationAndNavigation('Location and Navigation', '1819',
-      '00001819-0000-1000-8000-00805f9b34fb'),
+  locationAndNavigation("Location and Navigation", "1819",
+      "00001819-0000-1000-8000-00805f9b34fb"),
 
   /// The default service for Environmental Sensing
   environmentalSensing(
-      'Environmental Sensing', '181a', '0000181a-0000-1000-8000-00805f9b34fb'),
+      "Environmental Sensing", "181a", "0000181a-0000-1000-8000-00805f9b34fb"),
 
   /// The default service for Body Composition
   bodyComposition(
-      'Body Composition', '181b', '0000181b-0000-1000-8000-00805f9b34fb'),
+      "Body Composition", "181b", "0000181b-0000-1000-8000-00805f9b34fb"),
 
   /// The default service for User Data
-  userData('User Data', '181c', '0000181c-0000-1000-8000-00805f9b34fb'),
+  userData("User Data", "181c", "0000181c-0000-1000-8000-00805f9b34fb"),
 
   /// The default service for Weight Scale
-  weightScale('Weight Scale', '181d', '0000181d-0000-1000-8000-00805f9b34fb'),
+  weightScale("Weight Scale", "181d", "0000181d-0000-1000-8000-00805f9b34fb"),
 
   /// The default service for Bond Management
   bondManagement(
-      'Bond Management', '181e', '0000181e-0000-1000-8000-00805f9b34fb'),
+      "Bond Management", "181e", "0000181e-0000-1000-8000-00805f9b34fb"),
 
   /// The default service for Continuous Glucose Monitoring
-  continuousGlucoseMonitoring('Continuous Glucose Monitoring', '181f',
-      '0000181f-0000-1000-8000-00805f9b34fb'),
+  continuousGlucoseMonitoring("Continuous Glucose Monitoring", "181f",
+      "0000181f-0000-1000-8000-00805f9b34fb"),
 
   /// The default service for Internet Protocol Support
-  internetProtocolSupport('Internet Protocol Support', '1820',
-      '00001820-0000-1000-8000-00805f9b34fb'),
+  internetProtocolSupport("Internet Protocol Support", "1820",
+      "00001820-0000-1000-8000-00805f9b34fb"),
 
   /// The default service for Indoor Positioning
   indoorPositioning(
-      'Indoor Positioning', '1821', '00001821-0000-1000-8000-00805f9b34fb'),
+      "Indoor Positioning", "1821", "00001821-0000-1000-8000-00805f9b34fb"),
 
   /// The default service for Pulse Oximeter
   pulseOximeter(
-      'Pulse Oximeter', '1822', '00001822-0000-1000-8000-00805f9b34fb'),
+      "Pulse Oximeter", "1822", "00001822-0000-1000-8000-00805f9b34fb"),
 
   /// The default service for HTTP Proxy
-  httpProxy('HTTP Proxy', '1823', '00001823-0000-1000-8000-00805f9b34fb'),
+  httpProxy("HTTP Proxy", "1823", "00001823-0000-1000-8000-00805f9b34fb"),
 
   /// The default service for Transport Discovery
   transportDiscovery(
-      'Transport Discovery', '1824', '00001824-0000-1000-8000-00805f9b34fb'),
+      "Transport Discovery", "1824", "00001824-0000-1000-8000-00805f9b34fb"),
 
   /// The default service for Object Transfer
   objectTransfer(
-      'Object Transfer', '1825', '00001825-0000-1000-8000-00805f9b34fb'),
+      "Object Transfer", "1825", "00001825-0000-1000-8000-00805f9b34fb"),
 
   /// The default service for Fitness Machine
   fitnessMachine(
-      'Fitness Machine', '1826', '00001826-0000-1000-8000-00805f9b34fb'),
+      "Fitness Machine", "1826", "00001826-0000-1000-8000-00805f9b34fb"),
 
   /// The default service for Mesh Provisioning
   meshProvisioning(
-      'Mesh Provisioning', '1827', '00001827-0000-1000-8000-00805f9b34fb'),
+      "Mesh Provisioning", "1827", "00001827-0000-1000-8000-00805f9b34fb"),
 
   /// The default service for Mesh Proxy
-  meshProxy('Mesh Proxy', '1828', '00001828-0000-1000-8000-00805f9b34fb'),
+  meshProxy("Mesh Proxy", "1828", "00001828-0000-1000-8000-00805f9b34fb"),
 
   /// The default service for Reconnection Configuration
-  reconnectionConfiguration('Reconnection Configuration', '1829',
-      '00001829-0000-1000-8000-00805f9b34fb'),
+  reconnectionConfiguration("Reconnection Configuration", "1829",
+      "00001829-0000-1000-8000-00805f9b34fb"),
 
   /// The default service for Insulin Delivery
   insulinDelivery(
-      'Insulin Delivery', '183a', '0000183a-0000-1000-8000-00805f9b34fb'),
+      "Insulin Delivery", "183a", "0000183a-0000-1000-8000-00805f9b34fb"),
 
   /// The default service for Binary Sensor
-  binarySensor('Binary Sensor', '183b', '0000183b-0000-1000-8000-00805f9b34fb'),
+  binarySensor("Binary Sensor", "183b", "0000183b-0000-1000-8000-00805f9b34fb"),
 
   /// The default service for Emergency Configuration
-  emergencyConfiguration('Emergency Configuration', '183c',
-      '0000183c-0000-1000-8000-00805f9b34fb'),
+  emergencyConfiguration("Emergency Configuration", "183c",
+      "0000183c-0000-1000-8000-00805f9b34fb"),
 
   /// The default service for Physical Activity Monitor
-  physicalActivityMonitor('Physical Activity Monitor', '183e',
-      '0000183e-0000-1000-8000-00805f9b34fb'),
+  physicalActivityMonitor("Physical Activity Monitor", "183e",
+      "0000183e-0000-1000-8000-00805f9b34fb"),
 
   /// The default service for Audio Input Control
   audioInputControl(
-      'Audio Input Control', '1843', '00001843-0000-1000-8000-00805f9b34fb'),
+      "Audio Input Control", "1843", "00001843-0000-1000-8000-00805f9b34fb"),
 
   /// The default service for Volume Control
   volumeControl(
-      'Volume Control', '1844', '00001844-0000-1000-8000-00805f9b34fb'),
+      "Volume Control", "1844", "00001844-0000-1000-8000-00805f9b34fb"),
 
   /// The default service for Volume Offset Control
   volumeOffsetControl(
-      'Volume Offset Control', '1845', '00001845-0000-1000-8000-00805f9b34fb'),
+      "Volume Offset Control", "1845", "00001845-0000-1000-8000-00805f9b34fb"),
 
   /// The default service for Coordinated Set Identification Service
-  coordinatedSetIdentificationService('Coordinated Set Identification Service',
-      '1846', '00001846-0000-1000-8000-00805f9b34fb'),
+  coordinatedSetIdentificationService("Coordinated Set Identification Service",
+      "1846", "00001846-0000-1000-8000-00805f9b34fb"),
 
   /// The default service for Device Time
-  deviceTime('Device Time', '1847', '00001847-0000-1000-8000-00805f9b34fb'),
+  deviceTime("Device Time", "1847", "00001847-0000-1000-8000-00805f9b34fb"),
 
   /// The default service for Media Control Service
   mediaControlService(
-      'Media Control Service', '1848', '00001848-0000-1000-8000-00805f9b34fb'),
+      "Media Control Service", "1848", "00001848-0000-1000-8000-00805f9b34fb"),
 
   /// The default service for Generic Media Control Service
-  genericMediaControlService('Generic Media Control Service', '1849',
-      '00001849-0000-1000-8000-00805f9b34fb'),
+  genericMediaControlService("Generic Media Control Service", "1849",
+      "00001849-0000-1000-8000-00805f9b34fb"),
 
   /// The default service for Constant Tone Extension
-  constantToneExtension('Constant Tone Extension', '184a',
-      '0000184a-0000-1000-8000-00805f9b34fb'),
+  constantToneExtension("Constant Tone Extension", "184a",
+      "0000184a-0000-1000-8000-00805f9b34fb"),
 
   /// The default service for Telephone Bearer Service
-  telephoneBearerService('Telephone Bearer Service', '184b',
-      '0000184b-0000-1000-8000-00805f9b34fb'),
+  telephoneBearerService("Telephone Bearer Service", "184b",
+      "0000184b-0000-1000-8000-00805f9b34fb"),
 
   /// The default service for Generic Telephone Bearer Service
-  genericTelephoneBearerService('Generic Telephone Bearer Service', '184c',
-      '0000184c-0000-1000-8000-00805f9b34fb'),
+  genericTelephoneBearerService("Generic Telephone Bearer Service", "184c",
+      "0000184c-0000-1000-8000-00805f9b34fb"),
 
   /// The default service for Microphone Control
   microphoneControl(
-      'Microphone Control', '184d', '0000184d-0000-1000-8000-00805f9b34fb');
+      "Microphone Control", "184d", "0000184d-0000-1000-8000-00805f9b34fb");
 
   ///
   /// A service UUID consists of a human readable name of the service, as well
@@ -229,1424 +229,1424 @@ enum BluetoothDefaultServiceUUIDS {
 /// See: [values] for a list of all the characteristics.
 enum BluetoothDefaultCharacteristicUUIDS {
   /// The default characteristic for Device Name
-  deviceName('Device Name', '2a00', '00002a00-0000-1000-8000-00805f9b34fb'),
+  deviceName("Device Name", "2a00", "00002a00-0000-1000-8000-00805f9b34fb"),
 
   /// The default characteristic for Appearance
-  appearance('Appearance', '2a01', '00002a01-0000-1000-8000-00805f9b34fb'),
+  appearance("Appearance", "2a01", "00002a01-0000-1000-8000-00805f9b34fb"),
 
   /// The default characteristic for Peripheral Privacy Flag
-  peripheralPrivacyFlag('Peripheral Privacy Flag', '2a02',
-      '00002a02-0000-1000-8000-00805f9b34fb'),
+  peripheralPrivacyFlag("Peripheral Privacy Flag", "2a02",
+      "00002a02-0000-1000-8000-00805f9b34fb"),
 
   /// The default characteristic for Reconnection Address
   reconnectionAddress(
-      'Reconnection Address', '2a03', '00002a03-0000-1000-8000-00805f9b34fb'),
+      "Reconnection Address", "2a03", "00002a03-0000-1000-8000-00805f9b34fb"),
 
   /// The default characteristic for Peripheral Preferred Connection Parameters
   peripheralPreferredConnectionParameters(
-      'Peripheral Preferred Connection Parameters',
-      '2a04',
-      '00002a04-0000-1000-8000-00805f9b34fb'),
+      "Peripheral Preferred Connection Parameters",
+      "2a04",
+      "00002a04-0000-1000-8000-00805f9b34fb"),
 
   /// The default characteristic for Service Changed
   serviceChanged(
-      'Service Changed', '2a05', '00002a05-0000-1000-8000-00805f9b34fb'),
+      "Service Changed", "2a05", "00002a05-0000-1000-8000-00805f9b34fb"),
 
   /// The default characteristic for Alert Level
-  alertLevel('Alert Level', '2a06', '00002a06-0000-1000-8000-00805f9b34fb'),
+  alertLevel("Alert Level", "2a06", "00002a06-0000-1000-8000-00805f9b34fb"),
 
   /// The default characteristic for Tx Power Level
   txPowerLevel(
-      'Tx Power Level', '2a07', '00002a07-0000-1000-8000-00805f9b34fb'),
+      "Tx Power Level", "2a07", "00002a07-0000-1000-8000-00805f9b34fb"),
 
   /// The default characteristic for Date Time
-  dateTime('Date Time', '2a08', '00002a08-0000-1000-8000-00805f9b34fb'),
+  dateTime("Date Time", "2a08", "00002a08-0000-1000-8000-00805f9b34fb"),
 
   /// The default characteristic for Day of Week
-  dayOfWeek('Day of Week', '2a09', '00002a09-0000-1000-8000-00805f9b34fb'),
+  dayOfWeek("Day of Week", "2a09", "00002a09-0000-1000-8000-00805f9b34fb"),
 
   /// The default characteristic for Day Date Time
-  dayDateTime('Day Date Time', '2a0a', '00002a0a-0000-1000-8000-00805f9b34fb'),
+  dayDateTime("Day Date Time", "2a0a", "00002a0a-0000-1000-8000-00805f9b34fb"),
 
   /// The default characteristic for Exact Time 256
   exactTime256(
-      'Exact Time 256', '2a0c', '00002a0c-0000-1000-8000-00805f9b34fb'),
+      "Exact Time 256", "2a0c", "00002a0c-0000-1000-8000-00805f9b34fb"),
 
   /// The default characteristic for DST Offset
-  dstOffset('DST Offset', '2a0d', '00002a0d-0000-1000-8000-00805f9b34fb'),
+  dstOffset("DST Offset", "2a0d", "00002a0d-0000-1000-8000-00805f9b34fb"),
 
   /// The default characteristic for Time Zone
-  timeZone('Time Zone', '2a0e', '00002a0e-0000-1000-8000-00805f9b34fb'),
+  timeZone("Time Zone", "2a0e", "00002a0e-0000-1000-8000-00805f9b34fb"),
 
   /// The default characteristic for Local Time Information
   localTimeInformation(
-      'Local Time Information', '2a0f', '00002a0f-0000-1000-8000-00805f9b34fb'),
+      "Local Time Information", "2a0f", "00002a0f-0000-1000-8000-00805f9b34fb"),
 
   /// The default characteristic for Time with DST
-  timeWithDst('Time with DST', '2a11', '00002a11-0000-1000-8000-00805f9b34fb'),
+  timeWithDst("Time with DST", "2a11", "00002a11-0000-1000-8000-00805f9b34fb"),
 
   /// The default characteristic for Time Accuracy
-  timeAccuracy('Time Accuracy', '2a12', '00002a12-0000-1000-8000-00805f9b34fb'),
+  timeAccuracy("Time Accuracy", "2a12", "00002a12-0000-1000-8000-00805f9b34fb"),
 
   /// The default characteristic for Time Source
-  timeSource('Time Source', '2a13', '00002a13-0000-1000-8000-00805f9b34fb'),
+  timeSource("Time Source", "2a13", "00002a13-0000-1000-8000-00805f9b34fb"),
 
   /// The default characteristic for Reference Time Information
-  referenceTimeInformation('Reference Time Information', '2a14',
-      '00002a14-0000-1000-8000-00805f9b34fb'),
+  referenceTimeInformation("Reference Time Information", "2a14",
+      "00002a14-0000-1000-8000-00805f9b34fb"),
 
   /// The default characteristic for Time Update Control Point
-  timeUpdateControlPoint('Time Update Control Point', '2a16',
-      '00002a16-0000-1000-8000-00805f9b34fb'),
+  timeUpdateControlPoint("Time Update Control Point", "2a16",
+      "00002a16-0000-1000-8000-00805f9b34fb"),
 
   /// The default characteristic for Time Update State
   timeUpdateState(
-      'Time Update State', '2a17', '00002a17-0000-1000-8000-00805f9b34fb'),
+      "Time Update State", "2a17", "00002a17-0000-1000-8000-00805f9b34fb"),
 
   /// The default characteristic for Glucose Measurement
   glucoseMeasurement(
-      'Glucose Measurement', '2a18', '00002a18-0000-1000-8000-00805f9b34fb'),
+      "Glucose Measurement", "2a18", "00002a18-0000-1000-8000-00805f9b34fb"),
 
   /// The default characteristic for Battery Level
-  batteryLevel('Battery Level', '2a19', '00002a19-0000-1000-8000-00805f9b34fb'),
+  batteryLevel("Battery Level", "2a19", "00002a19-0000-1000-8000-00805f9b34fb"),
 
   /// The default characteristic for Temperature Measurement
-  temperatureMeasurement('Temperature Measurement', '2a1c',
-      '00002a1c-0000-1000-8000-00805f9b34fb'),
+  temperatureMeasurement("Temperature Measurement", "2a1c",
+      "00002a1c-0000-1000-8000-00805f9b34fb"),
 
   /// The default characteristic for Temperature Type
   temperatureType(
-      'Temperature Type', '2a1d', '00002a1d-0000-1000-8000-00805f9b34fb'),
+      "Temperature Type", "2a1d", "00002a1d-0000-1000-8000-00805f9b34fb"),
 
   /// The default characteristic for Intermediate Temperature
-  intermediateTemperature('Intermediate Temperature', '2a1e',
-      '00002a1e-0000-1000-8000-00805f9b34fb'),
+  intermediateTemperature("Intermediate Temperature", "2a1e",
+      "00002a1e-0000-1000-8000-00805f9b34fb"),
 
   /// The default characteristic for Measurement Interval
   measurementInterval(
-      'Measurement Interval', '2a21', '00002a21-0000-1000-8000-00805f9b34fb'),
+      "Measurement Interval", "2a21", "00002a21-0000-1000-8000-00805f9b34fb"),
 
   /// The default characteristic for Boot Keyboard Input Report
-  bootKeyboardInputReport('Boot Keyboard Input Report', '2a22',
-      '00002a22-0000-1000-8000-00805f9b34fb'),
+  bootKeyboardInputReport("Boot Keyboard Input Report", "2a22",
+      "00002a22-0000-1000-8000-00805f9b34fb"),
 
   /// The default characteristic for System ID
-  systemId('System ID', '2a23', '00002a23-0000-1000-8000-00805f9b34fb'),
+  systemId("System ID", "2a23", "00002a23-0000-1000-8000-00805f9b34fb"),
 
   /// The default characteristic for Model Number String
   modelNumberString(
-      'Model Number String', '2a24', '00002a24-0000-1000-8000-00805f9b34fb'),
+      "Model Number String", "2a24", "00002a24-0000-1000-8000-00805f9b34fb"),
 
   /// The default characteristic for Serial Number String
   serialNumberString(
-      'Serial Number String', '2a25', '00002a25-0000-1000-8000-00805f9b34fb'),
+      "Serial Number String", "2a25", "00002a25-0000-1000-8000-00805f9b34fb"),
 
   /// The default characteristic for Firmware Revision String
-  firmwareRevisionString('Firmware Revision String', '2a26',
-      '00002a26-0000-1000-8000-00805f9b34fb'),
+  firmwareRevisionString("Firmware Revision String", "2a26",
+      "00002a26-0000-1000-8000-00805f9b34fb"),
 
   /// The default characteristic for Hardware Revision String
-  hardwareRevisionString('Hardware Revision String', '2a27',
-      '00002a27-0000-1000-8000-00805f9b34fb'),
+  hardwareRevisionString("Hardware Revision String", "2a27",
+      "00002a27-0000-1000-8000-00805f9b34fb"),
 
   /// The default characteristic for Software Revision String
-  softwareRevisionString('Software Revision String', '2a28',
-      '00002a28-0000-1000-8000-00805f9b34fb'),
+  softwareRevisionString("Software Revision String", "2a28",
+      "00002a28-0000-1000-8000-00805f9b34fb"),
 
   /// The default characteristic for Manufacturer Name String
-  manufacturerNameString('Manufacturer Name String', '2a29',
-      '00002a29-0000-1000-8000-00805f9b34fb'),
+  manufacturerNameString("Manufacturer Name String", "2a29",
+      "00002a29-0000-1000-8000-00805f9b34fb"),
 
   /// The default characteristic for IEEE 11073-20601 Regulatory Certification Data List
   ieee1107320601RegulatoryCertificationDataList(
-      'IEEE 11073-20601 Regulatory Certification Data List',
-      '2a2a',
-      '00002a2a-0000-1000-8000-00805f9b34fb'),
+      "IEEE 11073-20601 Regulatory Certification Data List",
+      "2a2a",
+      "00002a2a-0000-1000-8000-00805f9b34fb"),
 
   /// The default characteristic for Current Time
-  currentTime('Current Time', '2a2b', '00002a2b-0000-1000-8000-00805f9b34fb'),
+  currentTime("Current Time", "2a2b", "00002a2b-0000-1000-8000-00805f9b34fb"),
 
   /// The default characteristic for Scan Refresh
-  scanRefresh('Scan Refresh', '2a31', '00002a31-0000-1000-8000-00805f9b34fb'),
+  scanRefresh("Scan Refresh", "2a31", "00002a31-0000-1000-8000-00805f9b34fb"),
 
   /// The default characteristic for Boot Keyboard Output Report
-  bootKeyboardOutputReport('Boot Keyboard Output Report', '2a32',
-      '00002a32-0000-1000-8000-00805f9b34fb'),
+  bootKeyboardOutputReport("Boot Keyboard Output Report", "2a32",
+      "00002a32-0000-1000-8000-00805f9b34fb"),
 
   /// The default characteristic for Boot Mouse Input Report
-  bootMouseInputReport('Boot Mouse Input Report', '2a33',
-      '00002a33-0000-1000-8000-00805f9b34fb'),
+  bootMouseInputReport("Boot Mouse Input Report", "2a33",
+      "00002a33-0000-1000-8000-00805f9b34fb"),
 
   /// The default characteristic for Glucose Measurement Context
-  glucoseMeasurementContext('Glucose Measurement Context', '2a34',
-      '00002a34-0000-1000-8000-00805f9b34fb'),
+  glucoseMeasurementContext("Glucose Measurement Context", "2a34",
+      "00002a34-0000-1000-8000-00805f9b34fb"),
 
   /// The default characteristic for Blood Pressure Measurement
-  bloodPressureMeasurement('Blood Pressure Measurement', '2a35',
-      '00002a35-0000-1000-8000-00805f9b34fb'),
+  bloodPressureMeasurement("Blood Pressure Measurement", "2a35",
+      "00002a35-0000-1000-8000-00805f9b34fb"),
 
   /// The default characteristic for Intermediate Cuff Pressure
-  intermediateCuffPressure('Intermediate Cuff Pressure', '2a36',
-      '00002a36-0000-1000-8000-00805f9b34fb'),
+  intermediateCuffPressure("Intermediate Cuff Pressure", "2a36",
+      "00002a36-0000-1000-8000-00805f9b34fb"),
 
   /// The default characteristic for Heart Rate Measurement
   heartRateMeasurement(
-      'Heart Rate Measurement', '2a37', '00002a37-0000-1000-8000-00805f9b34fb'),
+      "Heart Rate Measurement", "2a37", "00002a37-0000-1000-8000-00805f9b34fb"),
 
   /// The default characteristic for Body Sensor Location
   bodySensorLocation(
-      'Body Sensor Location', '2a38', '00002a38-0000-1000-8000-00805f9b34fb'),
+      "Body Sensor Location", "2a38", "00002a38-0000-1000-8000-00805f9b34fb"),
 
   /// The default characteristic for Heart Rate Control Point
-  heartRateControlPoint('Heart Rate Control Point', '2a39',
-      '00002a39-0000-1000-8000-00805f9b34fb'),
+  heartRateControlPoint("Heart Rate Control Point", "2a39",
+      "00002a39-0000-1000-8000-00805f9b34fb"),
 
   /// The default characteristic for Alert Status
-  alertStatus('Alert Status', '2a3f', '00002a3f-0000-1000-8000-00805f9b34fb'),
+  alertStatus("Alert Status", "2a3f", "00002a3f-0000-1000-8000-00805f9b34fb"),
 
   /// The default characteristic for Ringer Control Point
   ringerControlPoint(
-      'Ringer Control Point', '2a40', '00002a40-0000-1000-8000-00805f9b34fb'),
+      "Ringer Control Point", "2a40", "00002a40-0000-1000-8000-00805f9b34fb"),
 
   /// The default characteristic for Ringer Setting
   ringerSetting(
-      'Ringer Setting', '2a41', '00002a41-0000-1000-8000-00805f9b34fb'),
+      "Ringer Setting", "2a41", "00002a41-0000-1000-8000-00805f9b34fb"),
 
   /// The default characteristic for Alert Category ID Bit Mask
-  alertCategoryIdBitMask('Alert Category ID Bit Mask', '2a42',
-      '00002a42-0000-1000-8000-00805f9b34fb'),
+  alertCategoryIdBitMask("Alert Category ID Bit Mask", "2a42",
+      "00002a42-0000-1000-8000-00805f9b34fb"),
 
   /// The default characteristic for Alert Category ID
   alertCategoryId(
-      'Alert Category ID', '2a43', '00002a43-0000-1000-8000-00805f9b34fb'),
+      "Alert Category ID", "2a43", "00002a43-0000-1000-8000-00805f9b34fb"),
 
   /// The default characteristic for Alert Notification Control Point
-  alertNotificationControlPoint('Alert Notification Control Point', '2a44',
-      '00002a44-0000-1000-8000-00805f9b34fb'),
+  alertNotificationControlPoint("Alert Notification Control Point", "2a44",
+      "00002a44-0000-1000-8000-00805f9b34fb"),
 
   /// The default characteristic for Unread Alert Status
   unreadAlertStatus(
-      'Unread Alert Status', '2a45', '00002a45-0000-1000-8000-00805f9b34fb'),
+      "Unread Alert Status", "2a45", "00002a45-0000-1000-8000-00805f9b34fb"),
 
   /// The default characteristic for New Alert
-  newAlert('New Alert', '2a46', '00002a46-0000-1000-8000-00805f9b34fb'),
+  newAlert("New Alert", "2a46", "00002a46-0000-1000-8000-00805f9b34fb"),
 
   /// The default characteristic for Supported New Alert Category
-  supportedNewAlertCategory('Supported New Alert Category', '2a47',
-      '00002a47-0000-1000-8000-00805f9b34fb'),
+  supportedNewAlertCategory("Supported New Alert Category", "2a47",
+      "00002a47-0000-1000-8000-00805f9b34fb"),
 
   /// The default characteristic for Supported Unread Alert Category
-  supportedUnreadAlertCategory('Supported Unread Alert Category', '2a48',
-      '00002a48-0000-1000-8000-00805f9b34fb'),
+  supportedUnreadAlertCategory("Supported Unread Alert Category", "2a48",
+      "00002a48-0000-1000-8000-00805f9b34fb"),
 
   /// The default characteristic for Blood Pressure Feature
   bloodPressureFeature(
-      'Blood Pressure Feature', '2a49', '00002a49-0000-1000-8000-00805f9b34fb'),
+      "Blood Pressure Feature", "2a49", "00002a49-0000-1000-8000-00805f9b34fb"),
 
   /// The default characteristic for HID Information
   hidInformation(
-      'HID Information', '2a4a', '00002a4a-0000-1000-8000-00805f9b34fb'),
+      "HID Information", "2a4a", "00002a4a-0000-1000-8000-00805f9b34fb"),
 
   /// The default characteristic for Report Map
-  reportMap('Report Map', '2a4b', '00002a4b-0000-1000-8000-00805f9b34fb'),
+  reportMap("Report Map", "2a4b", "00002a4b-0000-1000-8000-00805f9b34fb"),
 
   /// The default characteristic for HID Control Point
   hidControlPoint(
-      'HID Control Point', '2a4c', '00002a4c-0000-1000-8000-00805f9b34fb'),
+      "HID Control Point", "2a4c", "00002a4c-0000-1000-8000-00805f9b34fb"),
 
   /// The default characteristic for Report
-  report('Report', '2a4d', '00002a4d-0000-1000-8000-00805f9b34fb'),
+  report("Report", "2a4d", "00002a4d-0000-1000-8000-00805f9b34fb"),
 
   /// The default characteristic for Protocol Mode
-  protocolMode('Protocol Mode', '2a4e', '00002a4e-0000-1000-8000-00805f9b34fb'),
+  protocolMode("Protocol Mode", "2a4e", "00002a4e-0000-1000-8000-00805f9b34fb"),
 
   /// The default characteristic for Scan Interval Window
   scanIntervalWindow(
-      'Scan Interval Window', '2a4f', '00002a4f-0000-1000-8000-00805f9b34fb'),
+      "Scan Interval Window", "2a4f", "00002a4f-0000-1000-8000-00805f9b34fb"),
 
   /// The default characteristic for PnP ID
-  pnpId('PnP ID', '2a50', '00002a50-0000-1000-8000-00805f9b34fb'),
+  pnpId("PnP ID", "2a50", "00002a50-0000-1000-8000-00805f9b34fb"),
 
   /// The default characteristic for Glucose Feature
   glucoseFeature(
-      'Glucose Feature', '2a51', '00002a51-0000-1000-8000-00805f9b34fb'),
+      "Glucose Feature", "2a51", "00002a51-0000-1000-8000-00805f9b34fb"),
 
   /// The default characteristic for Record Access Control Point
-  recordAccessControlPoint('Record Access Control Point', '2a52',
-      '00002a52-0000-1000-8000-00805f9b34fb'),
+  recordAccessControlPoint("Record Access Control Point", "2a52",
+      "00002a52-0000-1000-8000-00805f9b34fb"),
 
   /// The default characteristic for RSC Measurement
   rscMeasurement(
-      'RSC Measurement', '2a53', '00002a53-0000-1000-8000-00805f9b34fb'),
+      "RSC Measurement", "2a53", "00002a53-0000-1000-8000-00805f9b34fb"),
 
   /// The default characteristic for RSC Feature
-  rscFeature('RSC Feature', '2a54', '00002a54-0000-1000-8000-00805f9b34fb'),
+  rscFeature("RSC Feature", "2a54", "00002a54-0000-1000-8000-00805f9b34fb"),
 
   /// The default characteristic for SC Control Point
   scControlPoint(
-      'SC Control Point', '2a55', '00002a55-0000-1000-8000-00805f9b34fb'),
+      "SC Control Point", "2a55", "00002a55-0000-1000-8000-00805f9b34fb"),
 
   /// The default characteristic for Aggregate
-  aggregate('Aggregate', '2a5a', '00002a5a-0000-1000-8000-00805f9b34fb'),
+  aggregate("Aggregate", "2a5a", "00002a5a-0000-1000-8000-00805f9b34fb"),
 
   /// The default characteristic for CSC Measurement
   cscMeasurement(
-      'CSC Measurement', '2a5b', '00002a5b-0000-1000-8000-00805f9b34fb'),
+      "CSC Measurement", "2a5b", "00002a5b-0000-1000-8000-00805f9b34fb"),
 
   /// The default characteristic for CSC Feature
-  cscFeature('CSC Feature', '2a5c', '00002a5c-0000-1000-8000-00805f9b34fb'),
+  cscFeature("CSC Feature", "2a5c", "00002a5c-0000-1000-8000-00805f9b34fb"),
 
   /// The default characteristic for Sensor Location
   sensorLocation(
-      'Sensor Location', '2a5d', '00002a5d-0000-1000-8000-00805f9b34fb'),
+      "Sensor Location", "2a5d", "00002a5d-0000-1000-8000-00805f9b34fb"),
 
   /// The default characteristic for PLX Spot-Check Measurement
-  plxSpotCheckMeasurement('PLX Spot-Check Measurement', '2a5e',
-      '00002a5e-0000-1000-8000-00805f9b34fb'),
+  plxSpotCheckMeasurement("PLX Spot-Check Measurement", "2a5e",
+      "00002a5e-0000-1000-8000-00805f9b34fb"),
 
   /// The default characteristic for PLX Continuous Measurement
-  plxContinuousMeasurement('PLX Continuous Measurement', '2a5f',
-      '00002a5f-0000-1000-8000-00805f9b34fb'),
+  plxContinuousMeasurement("PLX Continuous Measurement", "2a5f",
+      "00002a5f-0000-1000-8000-00805f9b34fb"),
 
   /// The default characteristic for PLX Features
-  plxFeatures('PLX Features', '2a60', '00002a60-0000-1000-8000-00805f9b34fb'),
+  plxFeatures("PLX Features", "2a60", "00002a60-0000-1000-8000-00805f9b34fb"),
 
   /// The default characteristic for Cycling Power Measurement
-  cyclingPowerMeasurement('Cycling Power Measurement', '2a63',
-      '00002a63-0000-1000-8000-00805f9b34fb'),
+  cyclingPowerMeasurement("Cycling Power Measurement", "2a63",
+      "00002a63-0000-1000-8000-00805f9b34fb"),
 
   /// The default characteristic for Cycling Power Vector
   cyclingPowerVector(
-      'Cycling Power Vector', '2a64', '00002a64-0000-1000-8000-00805f9b34fb'),
+      "Cycling Power Vector", "2a64", "00002a64-0000-1000-8000-00805f9b34fb"),
 
   /// The default characteristic for Cycling Power Feature
   cyclingPowerFeature(
-      'Cycling Power Feature', '2a65', '00002a65-0000-1000-8000-00805f9b34fb'),
+      "Cycling Power Feature", "2a65", "00002a65-0000-1000-8000-00805f9b34fb"),
 
   /// The default characteristic for Cycling Power Control Point
-  cyclingPowerControlPoint('Cycling Power Control Point', '2a66',
-      '00002a66-0000-1000-8000-00805f9b34fb'),
+  cyclingPowerControlPoint("Cycling Power Control Point", "2a66",
+      "00002a66-0000-1000-8000-00805f9b34fb"),
 
   /// The default characteristic for Location and Speed
   locationAndSpeed(
-      'Location and Speed', '2a67', '00002a67-0000-1000-8000-00805f9b34fb'),
+      "Location and Speed", "2a67", "00002a67-0000-1000-8000-00805f9b34fb"),
 
   /// The default characteristic for Navigation
-  navigation('Navigation', '2a68', '00002a68-0000-1000-8000-00805f9b34fb'),
+  navigation("Navigation", "2a68", "00002a68-0000-1000-8000-00805f9b34fb"),
 
   /// The default characteristic for Position Quality
   positionQuality(
-      'Position Quality', '2a69', '00002a69-0000-1000-8000-00805f9b34fb'),
+      "Position Quality", "2a69", "00002a69-0000-1000-8000-00805f9b34fb"),
 
   /// The default characteristic for LN Feature
-  lnFeature('LN Feature', '2a6a', '00002a6a-0000-1000-8000-00805f9b34fb'),
+  lnFeature("LN Feature", "2a6a", "00002a6a-0000-1000-8000-00805f9b34fb"),
 
   /// The default characteristic for LN Control Point
   lnControlPoint(
-      'LN Control Point', '2a6b', '00002a6b-0000-1000-8000-00805f9b34fb'),
+      "LN Control Point", "2a6b", "00002a6b-0000-1000-8000-00805f9b34fb"),
 
   /// The default characteristic for Elevation
-  elevation('Elevation', '2a6c', '00002a6c-0000-1000-8000-00805f9b34fb'),
+  elevation("Elevation", "2a6c", "00002a6c-0000-1000-8000-00805f9b34fb"),
 
   /// The default characteristic for Pressure
-  pressure('Pressure', '2a6d', '00002a6d-0000-1000-8000-00805f9b34fb'),
+  pressure("Pressure", "2a6d", "00002a6d-0000-1000-8000-00805f9b34fb"),
 
   /// The default characteristic for Temperature
-  temperature('Temperature', '2a6e', '00002a6e-0000-1000-8000-00805f9b34fb'),
+  temperature("Temperature", "2a6e", "00002a6e-0000-1000-8000-00805f9b34fb"),
 
   /// The default characteristic for Humidity
-  humidity('Humidity', '2a6f', '00002a6f-0000-1000-8000-00805f9b34fb'),
+  humidity("Humidity", "2a6f", "00002a6f-0000-1000-8000-00805f9b34fb"),
 
   /// The default characteristic for True Wind Speed
   trueWindSpeed(
-      'True Wind Speed', '2a70', '00002a70-0000-1000-8000-00805f9b34fb'),
+      "True Wind Speed", "2a70", "00002a70-0000-1000-8000-00805f9b34fb"),
 
   /// The default characteristic for True Wind Direction
   trueWindDirection(
-      'True Wind Direction', '2a71', '00002a71-0000-1000-8000-00805f9b34fb'),
+      "True Wind Direction", "2a71", "00002a71-0000-1000-8000-00805f9b34fb"),
 
   /// The default characteristic for Apparent Wind Speed
   apparentWindSpeed(
-      'Apparent Wind Speed', '2a72', '00002a72-0000-1000-8000-00805f9b34fb'),
+      "Apparent Wind Speed", "2a72", "00002a72-0000-1000-8000-00805f9b34fb"),
 
   /// The default characteristic for Apparent Wind Direction
-  apparentWindDirection('Apparent Wind Direction', '2a73',
-      '00002a73-0000-1000-8000-00805f9b34fb'),
+  apparentWindDirection("Apparent Wind Direction", "2a73",
+      "00002a73-0000-1000-8000-00805f9b34fb"),
 
   /// The default characteristic for Gust Factor
-  gustFactor('Gust Factor', '2a74', '00002a74-0000-1000-8000-00805f9b34fb'),
+  gustFactor("Gust Factor", "2a74", "00002a74-0000-1000-8000-00805f9b34fb"),
 
   /// The default characteristic for Pollen Concentration
   pollenConcentration(
-      'Pollen Concentration', '2a75', '00002a75-0000-1000-8000-00805f9b34fb'),
+      "Pollen Concentration", "2a75", "00002a75-0000-1000-8000-00805f9b34fb"),
 
   /// The default characteristic for UV Index
-  uvIndex('UV Index', '2a76', '00002a76-0000-1000-8000-00805f9b34fb'),
+  uvIndex("UV Index", "2a76", "00002a76-0000-1000-8000-00805f9b34fb"),
 
   /// The default characteristic for Irradiance
-  irradiance('Irradiance', '2a77', '00002a77-0000-1000-8000-00805f9b34fb'),
+  irradiance("Irradiance", "2a77", "00002a77-0000-1000-8000-00805f9b34fb"),
 
   /// The default characteristic for Rainfall
-  rainfall('Rainfall', '2a78', '00002a78-0000-1000-8000-00805f9b34fb'),
+  rainfall("Rainfall", "2a78", "00002a78-0000-1000-8000-00805f9b34fb"),
 
   /// The default characteristic for Wind Chill
-  windChill('Wind Chill', '2a79', '00002a79-0000-1000-8000-00805f9b34fb'),
+  windChill("Wind Chill", "2a79", "00002a79-0000-1000-8000-00805f9b34fb"),
 
   /// The default characteristic for Heat Index
-  heatIndex('Heat Index', '2a7a', '00002a7a-0000-1000-8000-00805f9b34fb'),
+  heatIndex("Heat Index", "2a7a", "00002a7a-0000-1000-8000-00805f9b34fb"),
 
   /// The default characteristic for Dew Point
-  dewPoint('Dew Point', '2a7b', '00002a7b-0000-1000-8000-00805f9b34fb'),
+  dewPoint("Dew Point", "2a7b", "00002a7b-0000-1000-8000-00805f9b34fb"),
 
   /// The default characteristic for Descriptor Value Changed
-  descriptorValueChanged('Descriptor Value Changed', '2a7d',
-      '00002a7d-0000-1000-8000-00805f9b34fb'),
+  descriptorValueChanged("Descriptor Value Changed", "2a7d",
+      "00002a7d-0000-1000-8000-00805f9b34fb"),
 
   /// The default characteristic for Aerobic Heart Rate Lower Limit
-  aerobicHeartRateLowerLimit('Aerobic Heart Rate Lower Limit', '2a7e',
-      '00002a7e-0000-1000-8000-00805f9b34fb'),
+  aerobicHeartRateLowerLimit("Aerobic Heart Rate Lower Limit", "2a7e",
+      "00002a7e-0000-1000-8000-00805f9b34fb"),
 
   /// The default characteristic for Aerobic Threshold
   aerobicThreshold(
-      'Aerobic Threshold', '2a7f', '00002a7f-0000-1000-8000-00805f9b34fb'),
+      "Aerobic Threshold", "2a7f", "00002a7f-0000-1000-8000-00805f9b34fb"),
 
   /// The default characteristic for Age
-  age('Age', '2a80', '00002a80-0000-1000-8000-00805f9b34fb'),
+  age("Age", "2a80", "00002a80-0000-1000-8000-00805f9b34fb"),
 
   /// The default characteristic for Anaerobic Heart Rate Lower Limit
-  anaerobicHeartRateLowerLimit('Anaerobic Heart Rate Lower Limit', '2a81',
-      '00002a81-0000-1000-8000-00805f9b34fb'),
+  anaerobicHeartRateLowerLimit("Anaerobic Heart Rate Lower Limit", "2a81",
+      "00002a81-0000-1000-8000-00805f9b34fb"),
 
   /// The default characteristic for Anaerobic Heart Rate Upper Limit
-  anaerobicHeartRateUpperLimit('Anaerobic Heart Rate Upper Limit', '2a82',
-      '00002a82-0000-1000-8000-00805f9b34fb'),
+  anaerobicHeartRateUpperLimit("Anaerobic Heart Rate Upper Limit", "2a82",
+      "00002a82-0000-1000-8000-00805f9b34fb"),
 
   /// The default characteristic for Anaerobic Threshold
   anaerobicThreshold(
-      'Anaerobic Threshold', '2a83', '00002a83-0000-1000-8000-00805f9b34fb'),
+      "Anaerobic Threshold", "2a83", "00002a83-0000-1000-8000-00805f9b34fb"),
 
   /// The default characteristic for Aerobic Heart Rate Upper Limit
-  aerobicHeartRateUpperLimit('Aerobic Heart Rate Upper Limit', '2a84',
-      '00002a84-0000-1000-8000-00805f9b34fb'),
+  aerobicHeartRateUpperLimit("Aerobic Heart Rate Upper Limit", "2a84",
+      "00002a84-0000-1000-8000-00805f9b34fb"),
 
   /// The default characteristic for Date of Birth
-  dateOfBirth('Date of Birth', '2a85', '00002a85-0000-1000-8000-00805f9b34fb'),
+  dateOfBirth("Date of Birth", "2a85", "00002a85-0000-1000-8000-00805f9b34fb"),
 
   /// The default characteristic for Date of Threshold Assessment
-  dateOfThresholdAssessment('Date of Threshold Assessment', '2a86',
-      '00002a86-0000-1000-8000-00805f9b34fb'),
+  dateOfThresholdAssessment("Date of Threshold Assessment", "2a86",
+      "00002a86-0000-1000-8000-00805f9b34fb"),
 
   /// The default characteristic for Email Address
-  emailAddress('Email Address', '2a87', '00002a87-0000-1000-8000-00805f9b34fb'),
+  emailAddress("Email Address", "2a87", "00002a87-0000-1000-8000-00805f9b34fb"),
 
   /// The default characteristic for Fat Burn Heart Rate Lower Limit
-  fatBurnHeartRateLowerLimit('Fat Burn Heart Rate Lower Limit', '2a88',
-      '00002a88-0000-1000-8000-00805f9b34fb'),
+  fatBurnHeartRateLowerLimit("Fat Burn Heart Rate Lower Limit", "2a88",
+      "00002a88-0000-1000-8000-00805f9b34fb"),
 
   /// The default characteristic for Fat Burn Heart Rate Upper Limit
-  fatBurnHeartRateUpperLimit('Fat Burn Heart Rate Upper Limit', '2a89',
-      '00002a89-0000-1000-8000-00805f9b34fb'),
+  fatBurnHeartRateUpperLimit("Fat Burn Heart Rate Upper Limit", "2a89",
+      "00002a89-0000-1000-8000-00805f9b34fb"),
 
   /// The default characteristic for First Name
-  firstName('First Name', '2a8a', '00002a8a-0000-1000-8000-00805f9b34fb'),
+  firstName("First Name", "2a8a", "00002a8a-0000-1000-8000-00805f9b34fb"),
 
   /// The default characteristic for Five Zone Heart Rate Limits
-  fiveZoneHeartRateLimits('Five Zone Heart Rate Limits', '2a8b',
-      '00002a8b-0000-1000-8000-00805f9b34fb'),
+  fiveZoneHeartRateLimits("Five Zone Heart Rate Limits", "2a8b",
+      "00002a8b-0000-1000-8000-00805f9b34fb"),
 
   /// The default characteristic for Gender
-  gender('Gender', '2a8c', '00002a8c-0000-1000-8000-00805f9b34fb'),
+  gender("Gender", "2a8c", "00002a8c-0000-1000-8000-00805f9b34fb"),
 
   /// The default characteristic for Heart Rate Max
   heartRateMax(
-      'Heart Rate Max', '2a8d', '00002a8d-0000-1000-8000-00805f9b34fb'),
+      "Heart Rate Max", "2a8d", "00002a8d-0000-1000-8000-00805f9b34fb"),
 
   /// The default characteristic for Height
-  height('Height', '2a8e', '00002a8e-0000-1000-8000-00805f9b34fb'),
+  height("Height", "2a8e", "00002a8e-0000-1000-8000-00805f9b34fb"),
 
   /// The default characteristic for Hip Circumference
   hipCircumference(
-      'Hip Circumference', '2a8f', '00002a8f-0000-1000-8000-00805f9b34fb'),
+      "Hip Circumference", "2a8f", "00002a8f-0000-1000-8000-00805f9b34fb"),
 
   /// The default characteristic for Last Name
-  lastName('Last Name', '2a90', '00002a90-0000-1000-8000-00805f9b34fb'),
+  lastName("Last Name", "2a90", "00002a90-0000-1000-8000-00805f9b34fb"),
 
   /// The default characteristic for Maximum Recommended Heart Rate
-  maximumRecommendedHeartRate('Maximum Recommended Heart Rate', '2a91',
-      '00002a91-0000-1000-8000-00805f9b34fb'),
+  maximumRecommendedHeartRate("Maximum Recommended Heart Rate", "2a91",
+      "00002a91-0000-1000-8000-00805f9b34fb"),
 
   /// The default characteristic for Resting Heart Rate
   restingHeartRate(
-      'Resting Heart Rate', '2a92', '00002a92-0000-1000-8000-00805f9b34fb'),
+      "Resting Heart Rate", "2a92", "00002a92-0000-1000-8000-00805f9b34fb"),
 
   /// The default characteristic for Sport Type for Aerobic and Anaerobic Thresholds
   sportTypeForAerobicAndAnaerobicThresholds(
-      'Sport Type for Aerobic and Anaerobic Thresholds',
-      '2a93',
-      '00002a93-0000-1000-8000-00805f9b34fb'),
+      "Sport Type for Aerobic and Anaerobic Thresholds",
+      "2a93",
+      "00002a93-0000-1000-8000-00805f9b34fb"),
 
   /// The default characteristic for Three Zone Heart Rate Limits
-  threeZoneHeartRateLimits('Three Zone Heart Rate Limits', '2a94',
-      '00002a94-0000-1000-8000-00805f9b34fb'),
+  threeZoneHeartRateLimits("Three Zone Heart Rate Limits", "2a94",
+      "00002a94-0000-1000-8000-00805f9b34fb"),
 
   /// The default characteristic for Two Zone Heart Rate Limits
-  twoZoneHeartRateLimits('Two Zone Heart Rate Limits', '2a95',
-      '00002a95-0000-1000-8000-00805f9b34fb'),
+  twoZoneHeartRateLimits("Two Zone Heart Rate Limits", "2a95",
+      "00002a95-0000-1000-8000-00805f9b34fb"),
 
   /// The default characteristic for VO2 Max
-  vo2Max('VO2 Max', '2a96', '00002a96-0000-1000-8000-00805f9b34fb'),
+  vo2Max("VO2 Max", "2a96", "00002a96-0000-1000-8000-00805f9b34fb"),
 
   /// The default characteristic for Waist Circumference
   waistCircumference(
-      'Waist Circumference', '2a97', '00002a97-0000-1000-8000-00805f9b34fb'),
+      "Waist Circumference", "2a97", "00002a97-0000-1000-8000-00805f9b34fb"),
 
   /// The default characteristic for Weight
-  weight('Weight', '2a98', '00002a98-0000-1000-8000-00805f9b34fb'),
+  weight("Weight", "2a98", "00002a98-0000-1000-8000-00805f9b34fb"),
 
   /// The default characteristic for Database Change Increment
-  databaseChangeIncrement('Database Change Increment', '2a99',
-      '00002a99-0000-1000-8000-00805f9b34fb'),
+  databaseChangeIncrement("Database Change Increment", "2a99",
+      "00002a99-0000-1000-8000-00805f9b34fb"),
 
   /// The default characteristic for User Index
-  userIndex('User Index', '2a9a', '00002a9a-0000-1000-8000-00805f9b34fb'),
+  userIndex("User Index", "2a9a", "00002a9a-0000-1000-8000-00805f9b34fb"),
 
   /// The default characteristic for Body Composition Feature
-  bodyCompositionFeature('Body Composition Feature', '2a9b',
-      '00002a9b-0000-1000-8000-00805f9b34fb'),
+  bodyCompositionFeature("Body Composition Feature", "2a9b",
+      "00002a9b-0000-1000-8000-00805f9b34fb"),
 
   /// The default characteristic for Body Composition Measurement
-  bodyCompositionMeasurement('Body Composition Measurement', '2a9c',
-      '00002a9c-0000-1000-8000-00805f9b34fb'),
+  bodyCompositionMeasurement("Body Composition Measurement", "2a9c",
+      "00002a9c-0000-1000-8000-00805f9b34fb"),
 
   /// The default characteristic for Weight Measurement
   weightMeasurement(
-      'Weight Measurement', '2a9d', '00002a9d-0000-1000-8000-00805f9b34fb'),
+      "Weight Measurement", "2a9d", "00002a9d-0000-1000-8000-00805f9b34fb"),
 
   /// The default characteristic for Weight Scale Feature
   weightScaleFeature(
-      'Weight Scale Feature', '2a9e', '00002a9e-0000-1000-8000-00805f9b34fb'),
+      "Weight Scale Feature", "2a9e", "00002a9e-0000-1000-8000-00805f9b34fb"),
 
   /// The default characteristic for User Control Point
   userControlPoint(
-      'User Control Point', '2a9f', '00002a9f-0000-1000-8000-00805f9b34fb'),
+      "User Control Point", "2a9f", "00002a9f-0000-1000-8000-00805f9b34fb"),
 
   /// The default characteristic for Magnetic Flux Density - 2D
-  magneticFluxDensity2d('Magnetic Flux Density - 2D', '2aa0',
-      '00002aa0-0000-1000-8000-00805f9b34fb'),
+  magneticFluxDensity2d("Magnetic Flux Density - 2D", "2aa0",
+      "00002aa0-0000-1000-8000-00805f9b34fb"),
 
   /// The default characteristic for Magnetic Flux Density - 3D
-  magneticFluxDensity3d('Magnetic Flux Density - 3D', '2aa1',
-      '00002aa1-0000-1000-8000-00805f9b34fb'),
+  magneticFluxDensity3d("Magnetic Flux Density - 3D", "2aa1",
+      "00002aa1-0000-1000-8000-00805f9b34fb"),
 
   /// The default characteristic for Language
-  language('Language', '2aa2', '00002aa2-0000-1000-8000-00805f9b34fb'),
+  language("Language", "2aa2", "00002aa2-0000-1000-8000-00805f9b34fb"),
 
   /// The default characteristic for Barometric Pressure Trend
-  barometricPressureTrend('Barometric Pressure Trend', '2aa3',
-      '00002aa3-0000-1000-8000-00805f9b34fb'),
+  barometricPressureTrend("Barometric Pressure Trend", "2aa3",
+      "00002aa3-0000-1000-8000-00805f9b34fb"),
 
   /// The default characteristic for Bond Management Control Point
-  bondManagementControlPoint('Bond Management Control Point', '2aa4',
-      '00002aa4-0000-1000-8000-00805f9b34fb'),
+  bondManagementControlPoint("Bond Management Control Point", "2aa4",
+      "00002aa4-0000-1000-8000-00805f9b34fb"),
 
   /// The default characteristic for Bond Management Feature
-  bondManagementFeature('Bond Management Feature', '2aa5',
-      '00002aa5-0000-1000-8000-00805f9b34fb'),
+  bondManagementFeature("Bond Management Feature", "2aa5",
+      "00002aa5-0000-1000-8000-00805f9b34fb"),
 
   /// The default characteristic for Central Address Resolution
-  centralAddressResolution('Central Address Resolution', '2aa6',
-      '00002aa6-0000-1000-8000-00805f9b34fb'),
+  centralAddressResolution("Central Address Resolution", "2aa6",
+      "00002aa6-0000-1000-8000-00805f9b34fb"),
 
   /// The default characteristic for CGM Measurement
   cgmMeasurement(
-      'CGM Measurement', '2aa7', '00002aa7-0000-1000-8000-00805f9b34fb'),
+      "CGM Measurement", "2aa7", "00002aa7-0000-1000-8000-00805f9b34fb"),
 
   /// The default characteristic for CGM Feature
-  cgmFeature('CGM Feature', '2aa8', '00002aa8-0000-1000-8000-00805f9b34fb'),
+  cgmFeature("CGM Feature", "2aa8", "00002aa8-0000-1000-8000-00805f9b34fb"),
 
   /// The default characteristic for CGM Status
-  cgmStatus('CGM Status', '2aa9', '00002aa9-0000-1000-8000-00805f9b34fb'),
+  cgmStatus("CGM Status", "2aa9", "00002aa9-0000-1000-8000-00805f9b34fb"),
 
   /// The default characteristic for CGM Session Start Time
   cgmSessionStartTime(
-      'CGM Session Start Time', '2aaa', '00002aaa-0000-1000-8000-00805f9b34fb'),
+      "CGM Session Start Time", "2aaa", "00002aaa-0000-1000-8000-00805f9b34fb"),
 
   /// The default characteristic for CGM Session Run Time
   cgmSessionRunTime(
-      'CGM Session Run Time', '2aab', '00002aab-0000-1000-8000-00805f9b34fb'),
+      "CGM Session Run Time", "2aab", "00002aab-0000-1000-8000-00805f9b34fb"),
 
   /// The default characteristic for CGM Specific Ops Control Point
-  cgmSpecificOpsControlPoint('CGM Specific Ops Control Point', '2aac',
-      '00002aac-0000-1000-8000-00805f9b34fb'),
+  cgmSpecificOpsControlPoint("CGM Specific Ops Control Point", "2aac",
+      "00002aac-0000-1000-8000-00805f9b34fb"),
 
   /// The default characteristic for Indoor Positioning Configuration
-  indoorPositioningConfiguration('Indoor Positioning Configuration', '2aad',
-      '00002aad-0000-1000-8000-00805f9b34fb'),
+  indoorPositioningConfiguration("Indoor Positioning Configuration", "2aad",
+      "00002aad-0000-1000-8000-00805f9b34fb"),
 
   /// The default characteristic for Latitude
-  latitude('Latitude', '2aae', '00002aae-0000-1000-8000-00805f9b34fb'),
+  latitude("Latitude", "2aae", "00002aae-0000-1000-8000-00805f9b34fb"),
 
   /// The default characteristic for Longitude
-  longitude('Longitude', '2aaf', '00002aaf-0000-1000-8000-00805f9b34fb'),
+  longitude("Longitude", "2aaf", "00002aaf-0000-1000-8000-00805f9b34fb"),
 
   /// The default characteristic for Local North Coordinate
   localNorthCoordinate(
-      'Local North Coordinate', '2ab0', '00002ab0-0000-1000-8000-00805f9b34fb'),
+      "Local North Coordinate", "2ab0", "00002ab0-0000-1000-8000-00805f9b34fb"),
 
   /// The default characteristic for Local East Coordinate
   localEastCoordinate(
-      'Local East Coordinate', '2ab1', '00002ab1-0000-1000-8000-00805f9b34fb'),
+      "Local East Coordinate", "2ab1", "00002ab1-0000-1000-8000-00805f9b34fb"),
 
   /// The default characteristic for Floor Number
-  floorNumber('Floor Number', '2ab2', '00002ab2-0000-1000-8000-00805f9b34fb'),
+  floorNumber("Floor Number", "2ab2", "00002ab2-0000-1000-8000-00805f9b34fb"),
 
   /// The default characteristic for Altitude
-  altitude('Altitude', '2ab3', '00002ab3-0000-1000-8000-00805f9b34fb'),
+  altitude("Altitude", "2ab3", "00002ab3-0000-1000-8000-00805f9b34fb"),
 
   /// The default characteristic for Uncertainty
-  uncertainty('Uncertainty', '2ab4', '00002ab4-0000-1000-8000-00805f9b34fb'),
+  uncertainty("Uncertainty", "2ab4", "00002ab4-0000-1000-8000-00805f9b34fb"),
 
   /// The default characteristic for Location Name
-  locationName('Location Name', '2ab5', '00002ab5-0000-1000-8000-00805f9b34fb'),
+  locationName("Location Name", "2ab5", "00002ab5-0000-1000-8000-00805f9b34fb"),
 
   /// The default characteristic for URI
-  uri('URI', '2ab6', '00002ab6-0000-1000-8000-00805f9b34fb'),
+  uri("URI", "2ab6", "00002ab6-0000-1000-8000-00805f9b34fb"),
 
   /// The default characteristic for HTTP Headers
-  httpHeaders('HTTP Headers', '2ab7', '00002ab7-0000-1000-8000-00805f9b34fb'),
+  httpHeaders("HTTP Headers", "2ab7", "00002ab7-0000-1000-8000-00805f9b34fb"),
 
   /// The default characteristic for HTTP Status Code
   httpStatusCode(
-      'HTTP Status Code', '2ab8', '00002ab8-0000-1000-8000-00805f9b34fb'),
+      "HTTP Status Code", "2ab8", "00002ab8-0000-1000-8000-00805f9b34fb"),
 
   /// The default characteristic for HTTP Entity Body
   httpEntityBody(
-      'HTTP Entity Body', '2ab9', '00002ab9-0000-1000-8000-00805f9b34fb'),
+      "HTTP Entity Body", "2ab9", "00002ab9-0000-1000-8000-00805f9b34fb"),
 
   /// The default characteristic for HTTP Control Point
   httpControlPoint(
-      'HTTP Control Point', '2aba', '00002aba-0000-1000-8000-00805f9b34fb'),
+      "HTTP Control Point", "2aba", "00002aba-0000-1000-8000-00805f9b34fb"),
 
   /// The default characteristic for HTTPS Security
   httpsSecurity(
-      'HTTPS Security', '2abb', '00002abb-0000-1000-8000-00805f9b34fb'),
+      "HTTPS Security", "2abb", "00002abb-0000-1000-8000-00805f9b34fb"),
 
   /// The default characteristic for TDS Control Point
   tdsControlPoint(
-      'TDS Control Point', '2abc', '00002abc-0000-1000-8000-00805f9b34fb'),
+      "TDS Control Point", "2abc", "00002abc-0000-1000-8000-00805f9b34fb"),
 
   /// The default characteristic for OTS Feature
-  otsFeature('OTS Feature', '2abd', '00002abd-0000-1000-8000-00805f9b34fb'),
+  otsFeature("OTS Feature", "2abd", "00002abd-0000-1000-8000-00805f9b34fb"),
 
   /// The default characteristic for object name
-  objectName('object name', '2abe', '00002abe-0000-1000-8000-00805f9b34fb'),
+  objectName("object name", "2abe", "00002abe-0000-1000-8000-00805f9b34fb"),
 
   /// The default characteristic for object type
-  objectType('object type', '2abf', '00002abf-0000-1000-8000-00805f9b34fb'),
+  objectType("object type", "2abf", "00002abf-0000-1000-8000-00805f9b34fb"),
 
   /// The default characteristic for object size
-  objectSize('object size', '2ac0', '00002ac0-0000-1000-8000-00805f9b34fb'),
+  objectSize("object size", "2ac0", "00002ac0-0000-1000-8000-00805f9b34fb"),
 
   /// The default characteristic for object first created
   objectFirstCreated(
-      'object first created', '2ac1', '00002ac1-0000-1000-8000-00805f9b34fb'),
+      "object first created", "2ac1", "00002ac1-0000-1000-8000-00805f9b34fb"),
 
   /// The default characteristic for object last modified
   objectLastModified(
-      'object last modified', '2ac2', '00002ac2-0000-1000-8000-00805f9b34fb'),
+      "object last modified", "2ac2", "00002ac2-0000-1000-8000-00805f9b34fb"),
 
   /// The default characteristic for object ID
-  objectId('object ID', '2ac3', '00002ac3-0000-1000-8000-00805f9b34fb'),
+  objectId("object ID", "2ac3", "00002ac3-0000-1000-8000-00805f9b34fb"),
 
   /// The default characteristic for object properties
   objectProperties(
-      'object properties', '2ac4', '00002ac4-0000-1000-8000-00805f9b34fb'),
+      "object properties", "2ac4", "00002ac4-0000-1000-8000-00805f9b34fb"),
 
   /// The default characteristic for object actioncontrol point
-  objectActioncontrolPoint('object actioncontrol point', '2ac5',
-      '00002ac5-0000-1000-8000-00805f9b34fb'),
+  objectActioncontrolPoint("object actioncontrol point", "2ac5",
+      "00002ac5-0000-1000-8000-00805f9b34fb"),
 
   /// The default characteristic for object list control point
-  objectListControlPoint('object list control point', '2ac6',
-      '00002ac6-0000-1000-8000-00805f9b34fb'),
+  objectListControlPoint("object list control point", "2ac6",
+      "00002ac6-0000-1000-8000-00805f9b34fb"),
 
   /// The default characteristic for object list filter
   objectListFilter(
-      'object list filter', '2ac7', '00002ac7-0000-1000-8000-00805f9b34fb'),
+      "object list filter", "2ac7", "00002ac7-0000-1000-8000-00805f9b34fb"),
 
   /// The default characteristic for object changed
   objectChanged(
-      'object changed', '2ac8', '00002ac8-0000-1000-8000-00805f9b34fb'),
+      "object changed", "2ac8", "00002ac8-0000-1000-8000-00805f9b34fb"),
 
   /// The default characteristic for Resolvable Private Address Only
-  resolvablePrivateAddressOnly('Resolvable Private Address Only', '2ac9',
-      '00002ac9-0000-1000-8000-00805f9b34fb'),
+  resolvablePrivateAddressOnly("Resolvable Private Address Only", "2ac9",
+      "00002ac9-0000-1000-8000-00805f9b34fb"),
 
   /// The default characteristic for Unspecified
-  unspecified('Unspecified', '2aca', '00002aca-0000-1000-8000-00805f9b34fb'),
+  unspecified("Unspecified", "2aca", "00002aca-0000-1000-8000-00805f9b34fb"),
 
   /// The default characteristic for Directory Listing
   directoryListing(
-      'Directory Listing', '2acb', '00002acb-0000-1000-8000-00805f9b34fb'),
+      "Directory Listing", "2acb", "00002acb-0000-1000-8000-00805f9b34fb"),
 
   /// The default characteristic for Fitness Machine Feature
-  fitnessMachineFeature('Fitness Machine Feature', '2acc',
-      '00002acc-0000-1000-8000-00805f9b34fb'),
+  fitnessMachineFeature("Fitness Machine Feature", "2acc",
+      "00002acc-0000-1000-8000-00805f9b34fb"),
 
   /// The default characteristic for Treadmill Data
   treadmillData(
-      'Treadmill Data', '2acd', '00002acd-0000-1000-8000-00805f9b34fb'),
+      "Treadmill Data", "2acd", "00002acd-0000-1000-8000-00805f9b34fb"),
 
   /// The default characteristic for Cross Trainer Data
   crossTrainerData(
-      'Cross Trainer Data', '2ace', '00002ace-0000-1000-8000-00805f9b34fb'),
+      "Cross Trainer Data", "2ace", "00002ace-0000-1000-8000-00805f9b34fb"),
 
   /// The default characteristic for Step Climber Data
   stepClimberData(
-      'Step Climber Data', '2acf', '00002acf-0000-1000-8000-00805f9b34fb'),
+      "Step Climber Data", "2acf", "00002acf-0000-1000-8000-00805f9b34fb"),
 
   /// The default characteristic for Stair Climber Data
   stairClimberData(
-      'Stair Climber Data', '2ad0', '00002ad0-0000-1000-8000-00805f9b34fb'),
+      "Stair Climber Data", "2ad0", "00002ad0-0000-1000-8000-00805f9b34fb"),
 
   /// The default characteristic for Rower Data
-  rowerData('Rower Data', '2ad1', '00002ad1-0000-1000-8000-00805f9b34fb'),
+  rowerData("Rower Data", "2ad1", "00002ad1-0000-1000-8000-00805f9b34fb"),
 
   /// The default characteristic for Indoor Bike Data
   indoorBikeData(
-      'Indoor Bike Data', '2ad2', '00002ad2-0000-1000-8000-00805f9b34fb'),
+      "Indoor Bike Data", "2ad2", "00002ad2-0000-1000-8000-00805f9b34fb"),
 
   /// The default characteristic for Training Status
   trainingStatus(
-      'Training Status', '2ad3', '00002ad3-0000-1000-8000-00805f9b34fb'),
+      "Training Status", "2ad3", "00002ad3-0000-1000-8000-00805f9b34fb"),
 
   /// The default characteristic for Supported Speed Range
   supportedSpeedRange(
-      'Supported Speed Range', '2ad4', '00002ad4-0000-1000-8000-00805f9b34fb'),
+      "Supported Speed Range", "2ad4", "00002ad4-0000-1000-8000-00805f9b34fb"),
 
   /// The default characteristic for Supported Inclination Range
-  supportedInclinationRange('Supported Inclination Range', '2ad5',
-      '00002ad5-0000-1000-8000-00805f9b34fb'),
+  supportedInclinationRange("Supported Inclination Range", "2ad5",
+      "00002ad5-0000-1000-8000-00805f9b34fb"),
 
   /// The default characteristic for Supported Resistance Level Range
-  supportedResistanceLevelRange('Supported Resistance Level Range', '2ad6',
-      '00002ad6-0000-1000-8000-00805f9b34fb'),
+  supportedResistanceLevelRange("Supported Resistance Level Range", "2ad6",
+      "00002ad6-0000-1000-8000-00805f9b34fb"),
 
   /// The default characteristic for Supported Heart Rate Range
-  supportedHeartRateRange('Supported Heart Rate Range', '2ad7',
-      '00002ad7-0000-1000-8000-00805f9b34fb'),
+  supportedHeartRateRange("Supported Heart Rate Range", "2ad7",
+      "00002ad7-0000-1000-8000-00805f9b34fb"),
 
   /// The default characteristic for Supported Power Range
   supportedPowerRange(
-      'Supported Power Range', '2ad8', '00002ad8-0000-1000-8000-00805f9b34fb'),
+      "Supported Power Range", "2ad8", "00002ad8-0000-1000-8000-00805f9b34fb"),
 
   /// The default characteristic for Fitness Machine Control Point
-  fitnessMachineControlPoint('Fitness Machine Control Point', '2ad9',
-      '00002ad9-0000-1000-8000-00805f9b34fb'),
+  fitnessMachineControlPoint("Fitness Machine Control Point", "2ad9",
+      "00002ad9-0000-1000-8000-00805f9b34fb"),
 
   /// The default characteristic for Fitness Machine Status
   fitnessMachineStatus(
-      'Fitness Machine Status', '2ada', '00002ada-0000-1000-8000-00805f9b34fb'),
+      "Fitness Machine Status", "2ada", "00002ada-0000-1000-8000-00805f9b34fb"),
 
   /// The default characteristic for Mesh Provisioning Data In
-  meshProvisioningDataIn('Mesh Provisioning Data In', '2adb',
-      '00002adb-0000-1000-8000-00805f9b34fb'),
+  meshProvisioningDataIn("Mesh Provisioning Data In", "2adb",
+      "00002adb-0000-1000-8000-00805f9b34fb"),
 
   /// The default characteristic for Mesh Provisioning Data Out
-  meshProvisioningDataOut('Mesh Provisioning Data Out', '2adc',
-      '00002adc-0000-1000-8000-00805f9b34fb'),
+  meshProvisioningDataOut("Mesh Provisioning Data Out", "2adc",
+      "00002adc-0000-1000-8000-00805f9b34fb"),
 
   /// The default characteristic for Mesh Proxy Data In
   meshProxyDataIn(
-      'Mesh Proxy Data In', '2add', '00002add-0000-1000-8000-00805f9b34fb'),
+      "Mesh Proxy Data In", "2add", "00002add-0000-1000-8000-00805f9b34fb"),
 
   /// The default characteristic for Mesh Proxy Data Out
   meshProxyDataOut(
-      'Mesh Proxy Data Out', '2ade', '00002ade-0000-1000-8000-00805f9b34fb'),
+      "Mesh Proxy Data Out", "2ade", "00002ade-0000-1000-8000-00805f9b34fb"),
 
   /// The default characteristic for Average Current
   averageCurrent(
-      'Average Current', '2ae0', '00002ae0-0000-1000-8000-00805f9b34fb'),
+      "Average Current", "2ae0", "00002ae0-0000-1000-8000-00805f9b34fb"),
 
   /// The default characteristic for Average Voltage
   averageVoltage(
-      'Average Voltage', '2ae1', '00002ae1-0000-1000-8000-00805f9b34fb'),
+      "Average Voltage", "2ae1", "00002ae1-0000-1000-8000-00805f9b34fb"),
 
   /// The default characteristic for Boolean
-  boolean('Boolean', '2ae2', '00002ae2-0000-1000-8000-00805f9b34fb'),
+  boolean("Boolean", "2ae2", "00002ae2-0000-1000-8000-00805f9b34fb"),
 
   /// The default characteristic for Chromatic Distance From Planckian
-  chromaticDistanceFromPlanckian('Chromatic Distance From Planckian', '2ae3',
-      '00002ae3-0000-1000-8000-00805f9b34fb'),
+  chromaticDistanceFromPlanckian("Chromatic Distance From Planckian", "2ae3",
+      "00002ae3-0000-1000-8000-00805f9b34fb"),
 
   /// The default characteristic for Chromaticity Coordinates
-  chromaticityCoordinates('Chromaticity Coordinates', '2ae4',
-      '00002ae4-0000-1000-8000-00805f9b34fb'),
+  chromaticityCoordinates("Chromaticity Coordinates", "2ae4",
+      "00002ae4-0000-1000-8000-00805f9b34fb"),
 
   /// The default characteristic for Chromaticity in CCT And Duv Values
-  chromaticityInCctAndDuvValues('Chromaticity in CCT And Duv Values', '2ae5',
-      '00002ae5-0000-1000-8000-00805f9b34fb'),
+  chromaticityInCctAndDuvValues("Chromaticity in CCT And Duv Values", "2ae5",
+      "00002ae5-0000-1000-8000-00805f9b34fb"),
 
   /// The default characteristic for Chromaticity Tolerance
   chromaticityTolerance(
-      'Chromaticity Tolerance', '2ae6', '00002ae6-0000-1000-8000-00805f9b34fb'),
+      "Chromaticity Tolerance", "2ae6", "00002ae6-0000-1000-8000-00805f9b34fb"),
 
   /// The default characteristic for CIE 13.3-1995 Color Rendering Index
-  cie1331995ColorRenderingIndex('CIE 13.3-1995 Color Rendering Index', '2ae7',
-      '00002ae7-0000-1000-8000-00805f9b34fb'),
+  cie1331995ColorRenderingIndex("CIE 13.3-1995 Color Rendering Index", "2ae7",
+      "00002ae7-0000-1000-8000-00805f9b34fb"),
 
   /// The default characteristic for Coefficient
-  coefficient('Coefficient', '2ae8', '00002ae8-0000-1000-8000-00805f9b34fb'),
+  coefficient("Coefficient", "2ae8", "00002ae8-0000-1000-8000-00805f9b34fb"),
 
   /// The default characteristic for Correlated Color Temperature
-  correlatedColorTemperature('Correlated Color Temperature', '2ae9',
-      '00002ae9-0000-1000-8000-00805f9b34fb'),
+  correlatedColorTemperature("Correlated Color Temperature", "2ae9",
+      "00002ae9-0000-1000-8000-00805f9b34fb"),
 
   /// The default characteristic for Count 16
-  count16('Count 16', '2aea', '00002aea-0000-1000-8000-00805f9b34fb'),
+  count16("Count 16", "2aea", "00002aea-0000-1000-8000-00805f9b34fb"),
 
   /// The default characteristic for Count 24
-  count24('Count 24', '2aeb', '00002aeb-0000-1000-8000-00805f9b34fb'),
+  count24("Count 24", "2aeb", "00002aeb-0000-1000-8000-00805f9b34fb"),
 
   /// The default characteristic for Country Code
-  countryCode('Country Code', '2aec', '00002aec-0000-1000-8000-00805f9b34fb'),
+  countryCode("Country Code", "2aec", "00002aec-0000-1000-8000-00805f9b34fb"),
 
   /// The default characteristic for Date UTC
-  dateUtc('Date UTC', '2aed', '00002aed-0000-1000-8000-00805f9b34fb'),
+  dateUtc("Date UTC", "2aed", "00002aed-0000-1000-8000-00805f9b34fb"),
 
   /// The default characteristic for Electric Current
   electricCurrent(
-      'Electric Current', '2aee', '00002aee-0000-1000-8000-00805f9b34fb'),
+      "Electric Current", "2aee", "00002aee-0000-1000-8000-00805f9b34fb"),
 
   /// The default characteristic for Electric Current Range
   electricCurrentRange(
-      'Electric Current Range', '2aef', '00002aef-0000-1000-8000-00805f9b34fb'),
+      "Electric Current Range", "2aef", "00002aef-0000-1000-8000-00805f9b34fb"),
 
   /// The default characteristic for Electric Current Specification
-  electricCurrentSpecification('Electric Current Specification', '2af0',
-      '00002af0-0000-1000-8000-00805f9b34fb'),
+  electricCurrentSpecification("Electric Current Specification", "2af0",
+      "00002af0-0000-1000-8000-00805f9b34fb"),
 
   /// The default characteristic for Electric Current Statistics
-  electricCurrentStatistics('Electric Current Statistics', '2af1',
-      '00002af1-0000-1000-8000-00805f9b34fb'),
+  electricCurrentStatistics("Electric Current Statistics", "2af1",
+      "00002af1-0000-1000-8000-00805f9b34fb"),
 
   /// The default characteristic for Energy
-  energy('Energy', '2af2', '00002af2-0000-1000-8000-00805f9b34fb'),
+  energy("Energy", "2af2", "00002af2-0000-1000-8000-00805f9b34fb"),
 
   /// The default characteristic for Energy In A Period Of Day
-  energyInAPeriodOfDay('Energy In A Period Of Day', '2af3',
-      '00002af3-0000-1000-8000-00805f9b34fb'),
+  energyInAPeriodOfDay("Energy In A Period Of Day", "2af3",
+      "00002af3-0000-1000-8000-00805f9b34fb"),
 
   /// The default characteristic for Event Statistics
   eventStatistics(
-      'Event Statistics', '2af4', '00002af4-0000-1000-8000-00805f9b34fb'),
+      "Event Statistics", "2af4", "00002af4-0000-1000-8000-00805f9b34fb"),
 
   /// The default characteristic for Fixed String 16
   fixedString16(
-      'Fixed String 16', '2af5', '00002af5-0000-1000-8000-00805f9b34fb'),
+      "Fixed String 16", "2af5", "00002af5-0000-1000-8000-00805f9b34fb"),
 
   /// The default characteristic for Fixed String 24
   fixedString24(
-      'Fixed String 24', '2af6', '00002af6-0000-1000-8000-00805f9b34fb'),
+      "Fixed String 24", "2af6", "00002af6-0000-1000-8000-00805f9b34fb"),
 
   /// The default characteristic for Fixed String 36
   fixedString36(
-      'Fixed String 36', '2af7', '00002af7-0000-1000-8000-00805f9b34fb'),
+      "Fixed String 36", "2af7", "00002af7-0000-1000-8000-00805f9b34fb"),
 
   /// The default characteristic for Fixed String 8
   fixedString8(
-      'Fixed String 8', '2af8', '00002af8-0000-1000-8000-00805f9b34fb'),
+      "Fixed String 8", "2af8", "00002af8-0000-1000-8000-00805f9b34fb"),
 
   /// The default characteristic for Generic Level
-  genericLevel('Generic Level', '2af9', '00002af9-0000-1000-8000-00805f9b34fb'),
+  genericLevel("Generic Level", "2af9", "00002af9-0000-1000-8000-00805f9b34fb"),
 
   /// The default characteristic for Global Trade Item Number
-  globalTradeItemNumber('Global Trade Item Number', '2afa',
-      '00002afa-0000-1000-8000-00805f9b34fb'),
+  globalTradeItemNumber("Global Trade Item Number", "2afa",
+      "00002afa-0000-1000-8000-00805f9b34fb"),
 
   /// The default characteristic for Illuminance
-  illuminance('Illuminance', '2afb', '00002afb-0000-1000-8000-00805f9b34fb'),
+  illuminance("Illuminance", "2afb", "00002afb-0000-1000-8000-00805f9b34fb"),
 
   /// The default characteristic for Luminous Efficacy
   luminousEfficacy(
-      'Luminous Efficacy', '2afc', '00002afc-0000-1000-8000-00805f9b34fb'),
+      "Luminous Efficacy", "2afc", "00002afc-0000-1000-8000-00805f9b34fb"),
 
   /// The default characteristic for Luminous Energy
   luminousEnergy(
-      'Luminous Energy', '2afd', '00002afd-0000-1000-8000-00805f9b34fb'),
+      "Luminous Energy", "2afd", "00002afd-0000-1000-8000-00805f9b34fb"),
 
   /// The default characteristic for Luminous Exposure
   luminousExposure(
-      'Luminous Exposure', '2afe', '00002afe-0000-1000-8000-00805f9b34fb'),
+      "Luminous Exposure", "2afe", "00002afe-0000-1000-8000-00805f9b34fb"),
 
   /// The default characteristic for Luminous Flux
-  luminousFlux('Luminous Flux', '2aff', '00002aff-0000-1000-8000-00805f9b34fb'),
+  luminousFlux("Luminous Flux", "2aff", "00002aff-0000-1000-8000-00805f9b34fb"),
 
   /// The default characteristic for Luminous Flux Range
   luminousFluxRange(
-      'Luminous Flux Range', '2b00', '00002b00-0000-1000-8000-00805f9b34fb'),
+      "Luminous Flux Range", "2b00", "00002b00-0000-1000-8000-00805f9b34fb"),
 
   /// The default characteristic for Luminous Intensity
   luminousIntensity(
-      'Luminous Intensity', '2b01', '00002b01-0000-1000-8000-00805f9b34fb'),
+      "Luminous Intensity", "2b01", "00002b01-0000-1000-8000-00805f9b34fb"),
 
   /// The default characteristic for Mass Flow
-  massFlow('Mass Flow', '2b02', '00002b02-0000-1000-8000-00805f9b34fb'),
+  massFlow("Mass Flow", "2b02", "00002b02-0000-1000-8000-00805f9b34fb"),
 
   /// The default characteristic for Perceived Lightness
   perceivedLightness(
-      'Perceived Lightness', '2b03', '00002b03-0000-1000-8000-00805f9b34fb'),
+      "Perceived Lightness", "2b03", "00002b03-0000-1000-8000-00805f9b34fb"),
 
   /// The default characteristic for Percentage 8
-  percentage8('Percentage 8', '2b04', '00002b04-0000-1000-8000-00805f9b34fb'),
+  percentage8("Percentage 8", "2b04", "00002b04-0000-1000-8000-00805f9b34fb"),
 
   /// The default characteristic for Power
-  power('Power', '2b05', '00002b05-0000-1000-8000-00805f9b34fb'),
+  power("Power", "2b05", "00002b05-0000-1000-8000-00805f9b34fb"),
 
   /// The default characteristic for Power Specification
   powerSpecification(
-      'Power Specification', '2b06', '00002b06-0000-1000-8000-00805f9b34fb'),
+      "Power Specification", "2b06", "00002b06-0000-1000-8000-00805f9b34fb"),
 
   /// The default characteristic for Relative Runtime In A Current Range
-  relativeRuntimeInACurrentRange('Relative Runtime In A Current Range', '2b07',
-      '00002b07-0000-1000-8000-00805f9b34fb'),
+  relativeRuntimeInACurrentRange("Relative Runtime In A Current Range", "2b07",
+      "00002b07-0000-1000-8000-00805f9b34fb"),
 
   /// The default characteristic for Relative Runtime In A Generic Level Range
   relativeRuntimeInAGenericLevelRange(
-      'Relative Runtime In A Generic Level Range',
-      '2b08',
-      '00002b08-0000-1000-8000-00805f9b34fb'),
+      "Relative Runtime In A Generic Level Range",
+      "2b08",
+      "00002b08-0000-1000-8000-00805f9b34fb"),
 
   /// The default characteristic for Relative Value In A Voltage Range
-  relativeValueInAVoltageRange('Relative Value In A Voltage Range', '2b09',
-      '00002b09-0000-1000-8000-00805f9b34fb'),
+  relativeValueInAVoltageRange("Relative Value In A Voltage Range", "2b09",
+      "00002b09-0000-1000-8000-00805f9b34fb"),
 
   /// The default characteristic for Relative Value In An Illuminance Range
-  relativeValueInAnIlluminanceRange('Relative Value In An Illuminance Range',
-      '2b0a', '00002b0a-0000-1000-8000-00805f9b34fb'),
+  relativeValueInAnIlluminanceRange("Relative Value In An Illuminance Range",
+      "2b0a", "00002b0a-0000-1000-8000-00805f9b34fb"),
 
   /// The default characteristic for Relative Value In A Period Of Day
-  relativeValueInAPeriodOfDay('Relative Value In A Period Of Day', '2b0b',
-      '00002b0b-0000-1000-8000-00805f9b34fb'),
+  relativeValueInAPeriodOfDay("Relative Value In A Period Of Day", "2b0b",
+      "00002b0b-0000-1000-8000-00805f9b34fb"),
 
   /// The default characteristic for Relative Value In A Temperature Range
-  relativeValueInATemperatureRange('Relative Value In A Temperature Range',
-      '2b0c', '00002b0c-0000-1000-8000-00805f9b34fb'),
+  relativeValueInATemperatureRange("Relative Value In A Temperature Range",
+      "2b0c", "00002b0c-0000-1000-8000-00805f9b34fb"),
 
   /// The default characteristic for Temperature 8
-  temperature8('Temperature 8', '2b0d', '00002b0d-0000-1000-8000-00805f9b34fb'),
+  temperature8("Temperature 8", "2b0d", "00002b0d-0000-1000-8000-00805f9b34fb"),
 
   /// The default characteristic for Temperature 8 In A Period Of Day
-  temperature8InAPeriodOfDay('Temperature 8 In A Period Of Day', '2b0e',
-      '00002b0e-0000-1000-8000-00805f9b34fb'),
+  temperature8InAPeriodOfDay("Temperature 8 In A Period Of Day", "2b0e",
+      "00002b0e-0000-1000-8000-00805f9b34fb"),
 
   /// The default characteristic for Temperature 8 Statistics
-  temperature8Statistics('Temperature 8 Statistics', '2b0f',
-      '00002b0f-0000-1000-8000-00805f9b34fb'),
+  temperature8Statistics("Temperature 8 Statistics", "2b0f",
+      "00002b0f-0000-1000-8000-00805f9b34fb"),
 
   /// The default characteristic for Temperature Range
   temperatureRange(
-      'Temperature Range', '2b10', '00002b10-0000-1000-8000-00805f9b34fb'),
+      "Temperature Range", "2b10", "00002b10-0000-1000-8000-00805f9b34fb"),
 
   /// The default characteristic for Temperature Statistics
   temperatureStatistics(
-      'Temperature Statistics', '2b11', '00002b11-0000-1000-8000-00805f9b34fb'),
+      "Temperature Statistics", "2b11", "00002b11-0000-1000-8000-00805f9b34fb"),
 
   /// The default characteristic for Time Decihour 8
   timeDecihour8(
-      'Time Decihour 8', '2b12', '00002b12-0000-1000-8000-00805f9b34fb'),
+      "Time Decihour 8", "2b12", "00002b12-0000-1000-8000-00805f9b34fb"),
 
   /// The default characteristic for Time Exponential 8
   timeExponential8(
-      'Time Exponential 8', '2b13', '00002b13-0000-1000-8000-00805f9b34fb'),
+      "Time Exponential 8", "2b13", "00002b13-0000-1000-8000-00805f9b34fb"),
 
   /// The default characteristic for Time Hour 24
-  timeHour24('Time Hour 24', '2b14', '00002b14-0000-1000-8000-00805f9b34fb'),
+  timeHour24("Time Hour 24", "2b14", "00002b14-0000-1000-8000-00805f9b34fb"),
 
   /// The default characteristic for Time Millisecond 24
   timeMillisecond24(
-      'Time Millisecond 24', '2b15', '00002b15-0000-1000-8000-00805f9b34fb'),
+      "Time Millisecond 24", "2b15", "00002b15-0000-1000-8000-00805f9b34fb"),
 
   /// The default characteristic for Time Second 16
   timeSecond16(
-      'Time Second 16', '2b16', '00002b16-0000-1000-8000-00805f9b34fb'),
+      "Time Second 16", "2b16", "00002b16-0000-1000-8000-00805f9b34fb"),
 
   /// The default characteristic for Time Second 8
-  timeSecond8('Time Second 8', '2b17', '00002b17-0000-1000-8000-00805f9b34fb'),
+  timeSecond8("Time Second 8", "2b17", "00002b17-0000-1000-8000-00805f9b34fb"),
 
   /// The default characteristic for Voltage
-  voltage('Voltage', '2b18', '00002b18-0000-1000-8000-00805f9b34fb'),
+  voltage("Voltage", "2b18", "00002b18-0000-1000-8000-00805f9b34fb"),
 
   /// The default characteristic for Voltage Specification
   voltageSpecification(
-      'Voltage Specification', '2b19', '00002b19-0000-1000-8000-00805f9b34fb'),
+      "Voltage Specification", "2b19", "00002b19-0000-1000-8000-00805f9b34fb"),
 
   /// The default characteristic for Voltage Statistics
   voltageStatistics(
-      'Voltage Statistics', '2b1a', '00002b1a-0000-1000-8000-00805f9b34fb'),
+      "Voltage Statistics", "2b1a", "00002b1a-0000-1000-8000-00805f9b34fb"),
 
   /// The default characteristic for Volume Flow
-  volumeFlow('Volume Flow', '2b1b', '00002b1b-0000-1000-8000-00805f9b34fb'),
+  volumeFlow("Volume Flow", "2b1b", "00002b1b-0000-1000-8000-00805f9b34fb"),
 
   /// The default characteristic for Chromaticity Coordinate
-  chromaticityCoordinate('Chromaticity Coordinate', '2b1c',
-      '00002b1c-0000-1000-8000-00805f9b34fb'),
+  chromaticityCoordinate("Chromaticity Coordinate", "2b1c",
+      "00002b1c-0000-1000-8000-00805f9b34fb"),
 
   /// The default characteristic for RC Feature
-  rcFeature('RC Feature', '2b1d', '00002b1d-0000-1000-8000-00805f9b34fb'),
+  rcFeature("RC Feature", "2b1d", "00002b1d-0000-1000-8000-00805f9b34fb"),
 
   /// The default characteristic for RC Settings
-  rcSettings('RC Settings', '2b1e', '00002b1e-0000-1000-8000-00805f9b34fb'),
+  rcSettings("RC Settings", "2b1e", "00002b1e-0000-1000-8000-00805f9b34fb"),
 
   /// The default characteristic for Reconnection Configuration Control Point
   reconnectionConfigurationControlPoint(
-      'Reconnection Configuration Control Point',
-      '2b1f',
-      '00002b1f-0000-1000-8000-00805f9b34fb'),
+      "Reconnection Configuration Control Point",
+      "2b1f",
+      "00002b1f-0000-1000-8000-00805f9b34fb"),
 
   /// The default characteristic for IDD Status Changed
   iddStatusChanged(
-      'IDD Status Changed', '2b20', '00002b20-0000-1000-8000-00805f9b34fb'),
+      "IDD Status Changed", "2b20", "00002b20-0000-1000-8000-00805f9b34fb"),
 
   /// The default characteristic for IDD Status
-  iddStatus('IDD Status', '2b21', '00002b21-0000-1000-8000-00805f9b34fb'),
+  iddStatus("IDD Status", "2b21", "00002b21-0000-1000-8000-00805f9b34fb"),
 
   /// The default characteristic for IDD Annunciation Status
-  iddAnnunciationStatus('IDD Annunciation Status', '2b22',
-      '00002b22-0000-1000-8000-00805f9b34fb'),
+  iddAnnunciationStatus("IDD Annunciation Status", "2b22",
+      "00002b22-0000-1000-8000-00805f9b34fb"),
 
   /// The default characteristic for IDD Features
-  iddFeatures('IDD Features', '2b23', '00002b23-0000-1000-8000-00805f9b34fb'),
+  iddFeatures("IDD Features", "2b23", "00002b23-0000-1000-8000-00805f9b34fb"),
 
   /// The default characteristic for IDD Status Reader Control Point
-  iddStatusReaderControlPoint('IDD Status Reader Control Point', '2b24',
-      '00002b24-0000-1000-8000-00805f9b34fb'),
+  iddStatusReaderControlPoint("IDD Status Reader Control Point", "2b24",
+      "00002b24-0000-1000-8000-00805f9b34fb"),
 
   /// The default characteristic for IDD Command Control Point
-  iddCommandControlPoint('IDD Command Control Point', '2b25',
-      '00002b25-0000-1000-8000-00805f9b34fb'),
+  iddCommandControlPoint("IDD Command Control Point", "2b25",
+      "00002b25-0000-1000-8000-00805f9b34fb"),
 
   /// The default characteristic for IDD Command Data
   iddCommandData(
-      'IDD Command Data', '2b26', '00002b26-0000-1000-8000-00805f9b34fb'),
+      "IDD Command Data", "2b26", "00002b26-0000-1000-8000-00805f9b34fb"),
 
   /// The default characteristic for IDD Record Access Control Point
-  iddRecordAccessControlPoint('IDD Record Access Control Point', '2b27',
-      '00002b27-0000-1000-8000-00805f9b34fb'),
+  iddRecordAccessControlPoint("IDD Record Access Control Point", "2b27",
+      "00002b27-0000-1000-8000-00805f9b34fb"),
 
   /// The default characteristic for IDD History Data
   iddHistoryData(
-      'IDD History Data', '2b28', '00002b28-0000-1000-8000-00805f9b34fb'),
+      "IDD History Data", "2b28", "00002b28-0000-1000-8000-00805f9b34fb"),
 
   /// The default characteristic for Client Supported Features
-  clientSupportedFeatures('Client Supported Features', '2b29',
-      '00002b29-0000-1000-8000-00805f9b34fb'),
+  clientSupportedFeatures("Client Supported Features", "2b29",
+      "00002b29-0000-1000-8000-00805f9b34fb"),
 
   /// The default characteristic for Database Hash
-  databaseHash('Database Hash', '2b2a', '00002b2a-0000-1000-8000-00805f9b34fb'),
+  databaseHash("Database Hash", "2b2a", "00002b2a-0000-1000-8000-00805f9b34fb"),
 
   /// The default characteristic for BSS Control Point
   bssControlPoint(
-      'BSS Control Point', '2b2b', '00002b2b-0000-1000-8000-00805f9b34fb'),
+      "BSS Control Point", "2b2b", "00002b2b-0000-1000-8000-00805f9b34fb"),
 
   /// The default characteristic for BSS Response
-  bssResponse('BSS Response', '2b2c', '00002b2c-0000-1000-8000-00805f9b34fb'),
+  bssResponse("BSS Response", "2b2c", "00002b2c-0000-1000-8000-00805f9b34fb"),
 
   /// The default characteristic for Emergency ID
-  emergencyId('Emergency ID', '2b2d', '00002b2d-0000-1000-8000-00805f9b34fb'),
+  emergencyId("Emergency ID", "2b2d", "00002b2d-0000-1000-8000-00805f9b34fb"),
 
   /// The default characteristic for Emergency Text
   emergencyText(
-      'Emergency Text', '2b2e', '00002b2e-0000-1000-8000-00805f9b34fb'),
+      "Emergency Text", "2b2e", "00002b2e-0000-1000-8000-00805f9b34fb"),
 
   /// The default characteristic for Enhanced Blood Pressure Measurement
-  enhancedBloodPressureMeasurement('Enhanced Blood Pressure Measurement',
-      '2b34', '00002b34-0000-1000-8000-00805f9b34fb'),
+  enhancedBloodPressureMeasurement("Enhanced Blood Pressure Measurement",
+      "2b34", "00002b34-0000-1000-8000-00805f9b34fb"),
 
   /// The default characteristic for Enhanced Intermediate Cuff Pressure
-  enhancedIntermediateCuffPressure('Enhanced Intermediate Cuff Pressure',
-      '2b35', '00002b35-0000-1000-8000-00805f9b34fb'),
+  enhancedIntermediateCuffPressure("Enhanced Intermediate Cuff Pressure",
+      "2b35", "00002b35-0000-1000-8000-00805f9b34fb"),
 
   /// The default characteristic for Blood Pressure Record
   bloodPressureRecord(
-      'Blood Pressure Record', '2b36', '00002b36-0000-1000-8000-00805f9b34fb'),
+      "Blood Pressure Record", "2b36", "00002b36-0000-1000-8000-00805f9b34fb"),
 
   /// The default characteristic for BR-EDR Handover Data
   brEdrHandoverData(
-      'BR-EDR Handover Data', '2b38', '00002b38-0000-1000-8000-00805f9b34fb'),
+      "BR-EDR Handover Data", "2b38", "00002b38-0000-1000-8000-00805f9b34fb"),
 
   /// The default characteristic for Bluetooth SIG Data
   bluetoothSigData(
-      'Bluetooth SIG Data', '2b39', '00002b39-0000-1000-8000-00805f9b34fb'),
+      "Bluetooth SIG Data", "2b39", "00002b39-0000-1000-8000-00805f9b34fb"),
 
   /// The default characteristic for Server Supported Features
-  serverSupportedFeatures('Server Supported Features', '2b3a',
-      '00002b3a-0000-1000-8000-00805f9b34fb'),
+  serverSupportedFeatures("Server Supported Features", "2b3a",
+      "00002b3a-0000-1000-8000-00805f9b34fb"),
 
   /// The default characteristic for Physical Activity Monitor Features
-  physicalActivityMonitorFeatures('Physical Activity Monitor Features', '2b3b',
-      '00002b3b-0000-1000-8000-00805f9b34fb'),
+  physicalActivityMonitorFeatures("Physical Activity Monitor Features", "2b3b",
+      "00002b3b-0000-1000-8000-00805f9b34fb"),
 
   /// The default characteristic for General Activity Instantaneous Data
-  generalActivityInstantaneousData('General Activity Instantaneous Data',
-      '2b3c', '00002b3c-0000-1000-8000-00805f9b34fb'),
+  generalActivityInstantaneousData("General Activity Instantaneous Data",
+      "2b3c", "00002b3c-0000-1000-8000-00805f9b34fb"),
 
   /// The default characteristic for General Activity Summary Data
-  generalActivitySummaryData('General Activity Summary Data', '2b3d',
-      '00002b3d-0000-1000-8000-00805f9b34fb'),
+  generalActivitySummaryData("General Activity Summary Data", "2b3d",
+      "00002b3d-0000-1000-8000-00805f9b34fb"),
 
   /// The default characteristic for CardioRespiratory Activity Instantaneous Data
   cardiorespiratoryActivityInstantaneousData(
-      'CardioRespiratory Activity Instantaneous Data',
-      '2b3e',
-      '00002b3e-0000-1000-8000-00805f9b34fb'),
+      "CardioRespiratory Activity Instantaneous Data",
+      "2b3e",
+      "00002b3e-0000-1000-8000-00805f9b34fb"),
 
   /// The default characteristic for CardioRespiratory Activity Summary Data
   cardiorespiratoryActivitySummaryData(
-      'CardioRespiratory Activity Summary Data',
-      '2b3f',
-      '00002b3f-0000-1000-8000-00805f9b34fb'),
+      "CardioRespiratory Activity Summary Data",
+      "2b3f",
+      "00002b3f-0000-1000-8000-00805f9b34fb"),
 
   /// The default characteristic for Step Counter Activity Summary Data
-  stepCounterActivitySummaryData('Step Counter Activity Summary Data', '2b40',
-      '00002b40-0000-1000-8000-00805f9b34fb'),
+  stepCounterActivitySummaryData("Step Counter Activity Summary Data", "2b40",
+      "00002b40-0000-1000-8000-00805f9b34fb"),
 
   /// The default characteristic for Sleep Activity Instantaneous Data
-  sleepActivityInstantaneousData('Sleep Activity Instantaneous Data', '2b41',
-      '00002b41-0000-1000-8000-00805f9b34fb'),
+  sleepActivityInstantaneousData("Sleep Activity Instantaneous Data", "2b41",
+      "00002b41-0000-1000-8000-00805f9b34fb"),
 
   /// The default characteristic for Sleep Activity Summary Data
-  sleepActivitySummaryData('Sleep Activity Summary Data', '2b42',
-      '00002b42-0000-1000-8000-00805f9b34fb'),
+  sleepActivitySummaryData("Sleep Activity Summary Data", "2b42",
+      "00002b42-0000-1000-8000-00805f9b34fb"),
 
   /// The default characteristic for Physical Activity Monitor Control Point
-  physicalActivityMonitorControlPoint('Physical Activity Monitor Control Point',
-      '2b43', '00002b43-0000-1000-8000-00805f9b34fb'),
+  physicalActivityMonitorControlPoint("Physical Activity Monitor Control Point",
+      "2b43", "00002b43-0000-1000-8000-00805f9b34fb"),
 
   /// The default characteristic for Current Session
   currentSession(
-      'Current Session', '2b44', '00002b44-0000-1000-8000-00805f9b34fb'),
+      "Current Session", "2b44", "00002b44-0000-1000-8000-00805f9b34fb"),
 
   /// The default characteristic for Session
-  session('Session', '2b45', '00002b45-0000-1000-8000-00805f9b34fb'),
+  session("Session", "2b45", "00002b45-0000-1000-8000-00805f9b34fb"),
 
   /// The default characteristic for Preferred Units
   preferredUnits(
-      'Preferred Units', '2b46', '00002b46-0000-1000-8000-00805f9b34fb'),
+      "Preferred Units", "2b46", "00002b46-0000-1000-8000-00805f9b34fb"),
 
   /// The default characteristic for High Resolution Height
   highResolutionHeight(
-      'High Resolution Height', '2b47', '00002b47-0000-1000-8000-00805f9b34fb'),
+      "High Resolution Height", "2b47", "00002b47-0000-1000-8000-00805f9b34fb"),
 
   /// The default characteristic for Middle Name
-  middleName('Middle Name', '2b48', '00002b48-0000-1000-8000-00805f9b34fb'),
+  middleName("Middle Name", "2b48", "00002b48-0000-1000-8000-00805f9b34fb"),
 
   /// The default characteristic for Stride Length
-  strideLength('Stride Length', '2b49', '00002b49-0000-1000-8000-00805f9b34fb'),
+  strideLength("Stride Length", "2b49", "00002b49-0000-1000-8000-00805f9b34fb"),
 
   /// The default characteristic for Handedness
-  handedness('Handedness', '2b4a', '00002b4a-0000-1000-8000-00805f9b34fb'),
+  handedness("Handedness", "2b4a", "00002b4a-0000-1000-8000-00805f9b34fb"),
 
   /// The default characteristic for Device Wearing Position
-  deviceWearingPosition('Device Wearing Position', '2b4b',
-      '00002b4b-0000-1000-8000-00805f9b34fb'),
+  deviceWearingPosition("Device Wearing Position", "2b4b",
+      "00002b4b-0000-1000-8000-00805f9b34fb"),
 
   /// The default characteristic for Four Zone Heart Rate Limits
-  fourZoneHeartRateLimits('Four Zone Heart Rate Limits', '2b4c',
-      '00002b4c-0000-1000-8000-00805f9b34fb'),
+  fourZoneHeartRateLimits("Four Zone Heart Rate Limits", "2b4c",
+      "00002b4c-0000-1000-8000-00805f9b34fb"),
 
   /// The default characteristic for High Intensity Exercise Threshold
-  highIntensityExerciseThreshold('High Intensity Exercise Threshold', '2b4d',
-      '00002b4d-0000-1000-8000-00805f9b34fb'),
+  highIntensityExerciseThreshold("High Intensity Exercise Threshold", "2b4d",
+      "00002b4d-0000-1000-8000-00805f9b34fb"),
 
   /// The default characteristic for Activity Goal
-  activityGoal('Activity Goal', '2b4e', '00002b4e-0000-1000-8000-00805f9b34fb'),
+  activityGoal("Activity Goal", "2b4e", "00002b4e-0000-1000-8000-00805f9b34fb"),
 
   /// The default characteristic for Sedentary Interval Notification
-  sedentaryIntervalNotification('Sedentary Interval Notification', '2b4f',
-      '00002b4f-0000-1000-8000-00805f9b34fb'),
+  sedentaryIntervalNotification("Sedentary Interval Notification", "2b4f",
+      "00002b4f-0000-1000-8000-00805f9b34fb"),
 
   /// The default characteristic for Caloric Intake
   caloricIntake(
-      'Caloric Intake', '2b50', '00002b50-0000-1000-8000-00805f9b34fb'),
+      "Caloric Intake", "2b50", "00002b50-0000-1000-8000-00805f9b34fb"),
 
   /// The default characteristic for Audio Input State
   audioInputState(
-      'Audio Input State', '2b77', '00002b77-0000-1000-8000-00805f9b34fb'),
+      "Audio Input State", "2b77", "00002b77-0000-1000-8000-00805f9b34fb"),
 
   /// The default characteristic for Gain Settings Attribute
-  gainSettingsAttribute('Gain Settings Attribute', '2b78',
-      '00002b78-0000-1000-8000-00805f9b34fb'),
+  gainSettingsAttribute("Gain Settings Attribute", "2b78",
+      "00002b78-0000-1000-8000-00805f9b34fb"),
 
   /// The default characteristic for Audio Input Type
   audioInputType(
-      'Audio Input Type', '2b79', '00002b79-0000-1000-8000-00805f9b34fb'),
+      "Audio Input Type", "2b79", "00002b79-0000-1000-8000-00805f9b34fb"),
 
   /// The default characteristic for Audio Input Status
   audioInputStatus(
-      'Audio Input Status', '2b7a', '00002b7a-0000-1000-8000-00805f9b34fb'),
+      "Audio Input Status", "2b7a", "00002b7a-0000-1000-8000-00805f9b34fb"),
 
   /// The default characteristic for Audio Input Control Point
-  audioInputControlPoint('Audio Input Control Point', '2b7b',
-      '00002b7b-0000-1000-8000-00805f9b34fb'),
+  audioInputControlPoint("Audio Input Control Point", "2b7b",
+      "00002b7b-0000-1000-8000-00805f9b34fb"),
 
   /// The default characteristic for Audio Input Description
-  audioInputDescription('Audio Input Description', '2b7c',
-      '00002b7c-0000-1000-8000-00805f9b34fb'),
+  audioInputDescription("Audio Input Description", "2b7c",
+      "00002b7c-0000-1000-8000-00805f9b34fb"),
 
   /// The default characteristic for Volume State
-  volumeState('Volume State', '2b7d', '00002b7d-0000-1000-8000-00805f9b34fb'),
+  volumeState("Volume State", "2b7d", "00002b7d-0000-1000-8000-00805f9b34fb"),
 
   /// The default characteristic for Volume Control Point
   volumeControlPoint(
-      'Volume Control Point', '2b7e', '00002b7e-0000-1000-8000-00805f9b34fb'),
+      "Volume Control Point", "2b7e", "00002b7e-0000-1000-8000-00805f9b34fb"),
 
   /// The default characteristic for Volume Flags
-  volumeFlags('Volume Flags', '2b7f', '00002b7f-0000-1000-8000-00805f9b34fb'),
+  volumeFlags("Volume Flags", "2b7f", "00002b7f-0000-1000-8000-00805f9b34fb"),
 
   /// The default characteristic for Offset State
-  offsetState('Offset State', '2b80', '00002b80-0000-1000-8000-00805f9b34fb'),
+  offsetState("Offset State", "2b80", "00002b80-0000-1000-8000-00805f9b34fb"),
 
   /// The default characteristic for Audio Location
   audioLocation(
-      'Audio Location', '2b81', '00002b81-0000-1000-8000-00805f9b34fb'),
+      "Audio Location", "2b81", "00002b81-0000-1000-8000-00805f9b34fb"),
 
   /// The default characteristic for Volume Offset Control Point
-  volumeOffsetControlPoint('Volume Offset Control Point', '2b82',
-      '00002b82-0000-1000-8000-00805f9b34fb'),
+  volumeOffsetControlPoint("Volume Offset Control Point", "2b82",
+      "00002b82-0000-1000-8000-00805f9b34fb"),
 
   /// The default characteristic for Audio Output Description
-  audioOutputDescription('Audio Output Description', '2b83',
-      '00002b83-0000-1000-8000-00805f9b34fb'),
+  audioOutputDescription("Audio Output Description", "2b83",
+      "00002b83-0000-1000-8000-00805f9b34fb"),
 
   /// The default characteristic for Set Identity Resolving Key Characteristic
   setIdentityResolvingKeyCharacteristic(
-      'Set Identity Resolving Key Characteristic',
-      '2b84',
-      '00002b84-0000-1000-8000-00805f9b34fb'),
+      "Set Identity Resolving Key Characteristic",
+      "2b84",
+      "00002b84-0000-1000-8000-00805f9b34fb"),
 
   /// The default characteristic for Size Characteristic
   sizeCharacteristic(
-      'Size Characteristic', '2b85', '00002b85-0000-1000-8000-00805f9b34fb'),
+      "Size Characteristic", "2b85", "00002b85-0000-1000-8000-00805f9b34fb"),
 
   /// The default characteristic for Lock Characteristic
   lockCharacteristic(
-      'Lock Characteristic', '2b86', '00002b86-0000-1000-8000-00805f9b34fb'),
+      "Lock Characteristic", "2b86", "00002b86-0000-1000-8000-00805f9b34fb"),
 
   /// The default characteristic for Rank Characteristic
   rankCharacteristic(
-      'Rank Characteristic', '2b87', '00002b87-0000-1000-8000-00805f9b34fb'),
+      "Rank Characteristic", "2b87", "00002b87-0000-1000-8000-00805f9b34fb"),
 
   /// The default characteristic for Device Time Feature
   deviceTimeFeature(
-      'Device Time Feature', '2b8e', '00002b8e-0000-1000-8000-00805f9b34fb'),
+      "Device Time Feature", "2b8e", "00002b8e-0000-1000-8000-00805f9b34fb"),
 
   /// The default characteristic for Device Time Parameters
   deviceTimeParameters(
-      'Device Time Parameters', '2b8f', '00002b8f-0000-1000-8000-00805f9b34fb'),
+      "Device Time Parameters", "2b8f", "00002b8f-0000-1000-8000-00805f9b34fb"),
 
   /// The default characteristic for Device Time
-  deviceTime('Device Time', '2b90', '00002b90-0000-1000-8000-00805f9b34fb'),
+  deviceTime("Device Time", "2b90", "00002b90-0000-1000-8000-00805f9b34fb"),
 
   /// The default characteristic for Device Time Control Point
-  deviceTimeControlPoint('Device Time Control Point', '2b91',
-      '00002b91-0000-1000-8000-00805f9b34fb'),
+  deviceTimeControlPoint("Device Time Control Point", "2b91",
+      "00002b91-0000-1000-8000-00805f9b34fb"),
 
   /// The default characteristic for Time Change Log Data
   timeChangeLogData(
-      'Time Change Log Data', '2b92', '00002b92-0000-1000-8000-00805f9b34fb'),
+      "Time Change Log Data", "2b92", "00002b92-0000-1000-8000-00805f9b34fb"),
 
   /// The default characteristic for Media Player Name
   mediaPlayerName(
-      'Media Player Name', '2b93', '00002b93-0000-1000-8000-00805f9b34fb'),
+      "Media Player Name", "2b93", "00002b93-0000-1000-8000-00805f9b34fb"),
 
   /// The default characteristic for Media Player Icon Object ID
-  mediaPlayerIconObjectId('Media Player Icon Object ID', '2b94',
-      '00002b94-0000-1000-8000-00805f9b34fb'),
+  mediaPlayerIconObjectId("Media Player Icon Object ID", "2b94",
+      "00002b94-0000-1000-8000-00805f9b34fb"),
 
   /// The default characteristic for Media Player Icon URL
   mediaPlayerIconUrl(
-      'Media Player Icon URL', '2b95', '00002b95-0000-1000-8000-00805f9b34fb'),
+      "Media Player Icon URL", "2b95", "00002b95-0000-1000-8000-00805f9b34fb"),
 
   /// The default characteristic for Track Changed
-  trackChanged('Track Changed', '2b96', '00002b96-0000-1000-8000-00805f9b34fb'),
+  trackChanged("Track Changed", "2b96", "00002b96-0000-1000-8000-00805f9b34fb"),
 
   /// The default characteristic for Track Title
-  trackTitle('Track Title', '2b97', '00002b97-0000-1000-8000-00805f9b34fb'),
+  trackTitle("Track Title", "2b97", "00002b97-0000-1000-8000-00805f9b34fb"),
 
   /// The default characteristic for Track Duration
   trackDuration(
-      'Track Duration', '2b98', '00002b98-0000-1000-8000-00805f9b34fb'),
+      "Track Duration", "2b98", "00002b98-0000-1000-8000-00805f9b34fb"),
 
   /// The default characteristic for Track Position
   trackPosition(
-      'Track Position', '2b99', '00002b99-0000-1000-8000-00805f9b34fb'),
+      "Track Position", "2b99", "00002b99-0000-1000-8000-00805f9b34fb"),
 
   /// The default characteristic for Playback Speed
   playbackSpeed(
-      'Playback Speed', '2b9a', '00002b9a-0000-1000-8000-00805f9b34fb'),
+      "Playback Speed", "2b9a", "00002b9a-0000-1000-8000-00805f9b34fb"),
 
   /// The default characteristic for Seeking Speed
-  seekingSpeed('Seeking Speed', '2b9b', '00002b9b-0000-1000-8000-00805f9b34fb'),
+  seekingSpeed("Seeking Speed", "2b9b", "00002b9b-0000-1000-8000-00805f9b34fb"),
 
   /// The default characteristic for Current Track Segments Object ID
-  currentTrackSegmentsObjectId('Current Track Segments Object ID', '2b9c',
-      '00002b9c-0000-1000-8000-00805f9b34fb'),
+  currentTrackSegmentsObjectId("Current Track Segments Object ID", "2b9c",
+      "00002b9c-0000-1000-8000-00805f9b34fb"),
 
   /// The default characteristic for Current Track Object ID
-  currentTrackObjectId('Current Track Object ID', '2b9d',
-      '00002b9d-0000-1000-8000-00805f9b34fb'),
+  currentTrackObjectId("Current Track Object ID", "2b9d",
+      "00002b9d-0000-1000-8000-00805f9b34fb"),
 
   /// The default characteristic for Next Track Object ID
   nextTrackObjectId(
-      'Next Track Object ID', '2b9e', '00002b9e-0000-1000-8000-00805f9b34fb'),
+      "Next Track Object ID", "2b9e", "00002b9e-0000-1000-8000-00805f9b34fb"),
 
   /// The default characteristic for Parent Group Object ID
   parentGroupObjectId(
-      'Parent Group Object ID', '2b9f', '00002b9f-0000-1000-8000-00805f9b34fb'),
+      "Parent Group Object ID", "2b9f", "00002b9f-0000-1000-8000-00805f9b34fb"),
 
   /// The default characteristic for Current Group Object ID
-  currentGroupObjectId('Current Group Object ID', '2ba0',
-      '00002ba0-0000-1000-8000-00805f9b34fb'),
+  currentGroupObjectId("Current Group Object ID", "2ba0",
+      "00002ba0-0000-1000-8000-00805f9b34fb"),
 
   /// The default characteristic for Playing Order
-  playingOrder('Playing Order', '2ba1', '00002ba1-0000-1000-8000-00805f9b34fb'),
+  playingOrder("Playing Order", "2ba1", "00002ba1-0000-1000-8000-00805f9b34fb"),
 
   /// The default characteristic for Playing Orders Supported
-  playingOrdersSupported('Playing Orders Supported', '2ba2',
-      '00002ba2-0000-1000-8000-00805f9b34fb'),
+  playingOrdersSupported("Playing Orders Supported", "2ba2",
+      "00002ba2-0000-1000-8000-00805f9b34fb"),
 
   /// The default characteristic for Media State
-  mediaState('Media State', '2ba3', '00002ba3-0000-1000-8000-00805f9b34fb'),
+  mediaState("Media State", "2ba3", "00002ba3-0000-1000-8000-00805f9b34fb"),
 
   /// The default characteristic for Media Control Point
   mediaControlPoint(
-      'Media Control Point', '2ba4', '00002ba4-0000-1000-8000-00805f9b34fb'),
+      "Media Control Point", "2ba4", "00002ba4-0000-1000-8000-00805f9b34fb"),
 
   /// The default characteristic for Media Control Point Opcodes Supported
-  mediaControlPointOpcodesSupported('Media Control Point Opcodes Supported',
-      '2ba5', '00002ba5-0000-1000-8000-00805f9b34fb'),
+  mediaControlPointOpcodesSupported("Media Control Point Opcodes Supported",
+      "2ba5", "00002ba5-0000-1000-8000-00805f9b34fb"),
 
   /// The default characteristic for Search Results Object ID
-  searchResultsObjectId('Search Results Object ID', '2ba6',
-      '00002ba6-0000-1000-8000-00805f9b34fb'),
+  searchResultsObjectId("Search Results Object ID", "2ba6",
+      "00002ba6-0000-1000-8000-00805f9b34fb"),
 
   /// The default characteristic for Search Control Point
   searchControlPoint(
-      'Search Control Point', '2ba7', '00002ba7-0000-1000-8000-00805f9b34fb'),
+      "Search Control Point", "2ba7", "00002ba7-0000-1000-8000-00805f9b34fb"),
 
   /// The default characteristic for Media Player Icon Object Type
-  mediaPlayerIconObjectType('Media Player Icon Object Type', '2ba9',
-      '00002ba9-0000-1000-8000-00805f9b34fb'),
+  mediaPlayerIconObjectType("Media Player Icon Object Type", "2ba9",
+      "00002ba9-0000-1000-8000-00805f9b34fb"),
 
   /// The default characteristic for Track Segments Object Type
-  trackSegmentsObjectType('Track Segments Object Type', '2baa',
-      '00002baa-0000-1000-8000-00805f9b34fb'),
+  trackSegmentsObjectType("Track Segments Object Type", "2baa",
+      "00002baa-0000-1000-8000-00805f9b34fb"),
 
   /// The default characteristic for Track Object Type
   trackObjectType(
-      'Track Object Type', '2bab', '00002bab-0000-1000-8000-00805f9b34fb'),
+      "Track Object Type", "2bab", "00002bab-0000-1000-8000-00805f9b34fb"),
 
   /// The default characteristic for Group Object Type
   groupObjectType(
-      'Group Object Type', '2bac', '00002bac-0000-1000-8000-00805f9b34fb'),
+      "Group Object Type", "2bac", "00002bac-0000-1000-8000-00805f9b34fb"),
 
   /// The default characteristic for Constant Tone Extension Enable
-  constantToneExtensionEnable('Constant Tone Extension Enable', '2bad',
-      '00002bad-0000-1000-8000-00805f9b34fb'),
+  constantToneExtensionEnable("Constant Tone Extension Enable", "2bad",
+      "00002bad-0000-1000-8000-00805f9b34fb"),
 
   /// The default characteristic for Advertising Constant Tone Extension Minimum Length
   advertisingConstantToneExtensionMinimumLength(
-      'Advertising Constant Tone Extension Minimum Length',
-      '2bae',
-      '00002bae-0000-1000-8000-00805f9b34fb'),
+      "Advertising Constant Tone Extension Minimum Length",
+      "2bae",
+      "00002bae-0000-1000-8000-00805f9b34fb"),
 
   /// The default characteristic for Advertising Constant Tone Extension Minimum Transmit Count
   advertisingConstantToneExtensionMinimumTransmitCount(
-      'Advertising Constant Tone Extension Minimum Transmit Count',
-      '2baf',
-      '00002baf-0000-1000-8000-00805f9b34fb'),
+      "Advertising Constant Tone Extension Minimum Transmit Count",
+      "2baf",
+      "00002baf-0000-1000-8000-00805f9b34fb"),
 
   /// The default characteristic for Advertising Constant Tone Extension Transmit Duration
   advertisingConstantToneExtensionTransmitDuration(
-      'Advertising Constant Tone Extension Transmit Duration',
-      '2bb0',
-      '00002bb0-0000-1000-8000-00805f9b34fb'),
+      "Advertising Constant Tone Extension Transmit Duration",
+      "2bb0",
+      "00002bb0-0000-1000-8000-00805f9b34fb"),
 
   /// The default characteristic for Advertising Constant Tone Extension Interval
   advertisingConstantToneExtensionInterval(
-      'Advertising Constant Tone Extension Interval',
-      '2bb1',
-      '00002bb1-0000-1000-8000-00805f9b34fb'),
+      "Advertising Constant Tone Extension Interval",
+      "2bb1",
+      "00002bb1-0000-1000-8000-00805f9b34fb"),
 
   /// The default characteristic for Advertising Constant Tone Extension PHY
-  advertisingConstantToneExtensionPhy('Advertising Constant Tone Extension PHY',
-      '2bb2', '00002bb2-0000-1000-8000-00805f9b34fb'),
+  advertisingConstantToneExtensionPhy("Advertising Constant Tone Extension PHY",
+      "2bb2", "00002bb2-0000-1000-8000-00805f9b34fb"),
 
   /// The default characteristic for Bearer Provider Name
   bearerProviderName(
-      'Bearer Provider Name', '2bb3', '00002bb3-0000-1000-8000-00805f9b34fb'),
+      "Bearer Provider Name", "2bb3", "00002bb3-0000-1000-8000-00805f9b34fb"),
 
   /// The default characteristic for Bearer UCI
-  bearerUci('Bearer UCI', '2bb4', '00002bb4-0000-1000-8000-00805f9b34fb'),
+  bearerUci("Bearer UCI", "2bb4", "00002bb4-0000-1000-8000-00805f9b34fb"),
 
   /// The default characteristic for Bearer Technology
   bearerTechnology(
-      'Bearer Technology', '2bb5', '00002bb5-0000-1000-8000-00805f9b34fb'),
+      "Bearer Technology", "2bb5", "00002bb5-0000-1000-8000-00805f9b34fb"),
 
   /// The default characteristic for Bearer URI Schemes Supported List
-  bearerUriSchemesSupportedList('Bearer URI Schemes Supported List', '2bb6',
-      '00002bb6-0000-1000-8000-00805f9b34fb'),
+  bearerUriSchemesSupportedList("Bearer URI Schemes Supported List", "2bb6",
+      "00002bb6-0000-1000-8000-00805f9b34fb"),
 
   /// The default characteristic for Bearer Signal Strength
   bearerSignalStrength(
-      'Bearer Signal Strength', '2bb7', '00002bb7-0000-1000-8000-00805f9b34fb'),
+      "Bearer Signal Strength", "2bb7", "00002bb7-0000-1000-8000-00805f9b34fb"),
 
   /// The default characteristic for Bearer Signal Strength Reporting Interval
   bearerSignalStrengthReportingInterval(
-      'Bearer Signal Strength Reporting Interval',
-      '2bb8',
-      '00002bb8-0000-1000-8000-00805f9b34fb'),
+      "Bearer Signal Strength Reporting Interval",
+      "2bb8",
+      "00002bb8-0000-1000-8000-00805f9b34fb"),
 
   /// The default characteristic for Bearer List Current Calls
-  bearerListCurrentCalls('Bearer List Current Calls', '2bb9',
-      '00002bb9-0000-1000-8000-00805f9b34fb'),
+  bearerListCurrentCalls("Bearer List Current Calls", "2bb9",
+      "00002bb9-0000-1000-8000-00805f9b34fb"),
 
   /// The default characteristic for Content Control ID
   contentControlId(
-      'Content Control ID', '2bba', '00002bba-0000-1000-8000-00805f9b34fb'),
+      "Content Control ID", "2bba", "00002bba-0000-1000-8000-00805f9b34fb"),
 
   /// The default characteristic for Status Flags
-  statusFlags('Status Flags', '2bbb', '00002bbb-0000-1000-8000-00805f9b34fb'),
+  statusFlags("Status Flags", "2bbb", "00002bbb-0000-1000-8000-00805f9b34fb"),
 
   /// The default characteristic for Incoming Call Target Bearer URI
-  incomingCallTargetBearerUri('Incoming Call Target Bearer URI', '2bbc',
-      '00002bbc-0000-1000-8000-00805f9b34fb'),
+  incomingCallTargetBearerUri("Incoming Call Target Bearer URI", "2bbc",
+      "00002bbc-0000-1000-8000-00805f9b34fb"),
 
   /// The default characteristic for Call State
-  callState('Call State', '2bbd', '00002bbd-0000-1000-8000-00805f9b34fb'),
+  callState("Call State", "2bbd", "00002bbd-0000-1000-8000-00805f9b34fb"),
 
   /// The default characteristic for Call Control Point
   callControlPoint(
-      'Call Control Point', '2bbe', '00002bbe-0000-1000-8000-00805f9b34fb'),
+      "Call Control Point", "2bbe", "00002bbe-0000-1000-8000-00805f9b34fb"),
 
   /// The default characteristic for Call Control Point Optional Opcodes
-  callControlPointOptionalOpcodes('Call Control Point Optional Opcodes', '2bbf',
-      '00002bbf-0000-1000-8000-00805f9b34fb'),
+  callControlPointOptionalOpcodes("Call Control Point Optional Opcodes", "2bbf",
+      "00002bbf-0000-1000-8000-00805f9b34fb"),
 
   /// The default characteristic for Termination Reason
   terminationReason(
-      'Termination Reason', '2bc0', '00002bc0-0000-1000-8000-00805f9b34fb'),
+      "Termination Reason", "2bc0", "00002bc0-0000-1000-8000-00805f9b34fb"),
 
   /// The default characteristic for Incoming Call
-  incomingCall('Incoming Call', '2bc1', '00002bc1-0000-1000-8000-00805f9b34fb'),
+  incomingCall("Incoming Call", "2bc1", "00002bc1-0000-1000-8000-00805f9b34fb"),
 
   /// The default characteristic for Call Friendly Name
   callFriendlyName(
-      'Call Friendly Name', '2bc2', '00002bc2-0000-1000-8000-00805f9b34fb'),
+      "Call Friendly Name", "2bc2", "00002bc2-0000-1000-8000-00805f9b34fb"),
 
   /// The default characteristic for Mute
-  mute('Mute', '2bc3', '00002bc3-0000-1000-8000-00805f9b34fb');
+  mute("Mute", "2bc3", "00002bc3-0000-1000-8000-00805f9b34fb");
 
   ///
   /// A characteristic UUID consists of a human readable name of the service, as well

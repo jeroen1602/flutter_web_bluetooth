@@ -31,7 +31,7 @@ class AbortController {
   /// It is recommended to use an [Error] or a derived class of it to keep
   /// consistency.
   ///
-  external void abort([dynamic reason]);
+  external void abort([final dynamic reason]);
 }
 
 ///
@@ -54,14 +54,14 @@ class AbortSignal {
   /// It is recommended to use an [Error] or a derived class of it to keep
   /// consistency
   ///
-  external static AbortSignal abort([dynamic reason]);
+  external static AbortSignal abort([final dynamic reason]);
 
   ///
   /// Create a new [AbortSignal] that will automatically abort after
   /// the timeout in milliseconds.
   ///
   /// The timeout may not be negative
-  external static AbortSignal timeout(int milliseconds);
+  external static AbortSignal timeout(final int milliseconds);
 
   ///
   /// If the signal has been aborted

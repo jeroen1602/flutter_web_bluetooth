@@ -113,10 +113,9 @@ class WebAdvertisementReceivedEvent
   @override
   final List<String> uuids;
 
-  static List<String> _parseUUIDS(final Object jsObject) {
-    return List.unmodifiable(WebBluetoothConverters.convertJSObjectToList(
-        _JSUtil.getProperty(jsObject, "uuids")));
-  }
+  static List<String> _parseUUIDS(final Object jsObject) =>
+      List.unmodifiable(WebBluetoothConverters.convertJSObjectToList(
+          _JSUtil.getProperty(jsObject, "uuids")));
 
   @override
   final UnmodifiableMapView<int, ByteData> manufacturerData;
@@ -126,8 +125,8 @@ class WebAdvertisementReceivedEvent
 
   static UnmodifiableMapView<K, ByteData> _getByteDataMap<K>(
       final Object jsObject, final String name) {
-    Object original = _JSUtil.getProperty(jsObject, name);
-    Map<K, ByteData> converted =
+    final Object original = _JSUtil.getProperty(jsObject, name);
+    final Map<K, ByteData> converted =
         WebBluetoothConverters.convertJsObjectToMap<K, ByteData>(original,
             valueConverter: WebBluetoothConverters.convertJSDataViewToByteData);
     return UnmodifiableMapView<K, ByteData>(converted);
@@ -155,30 +154,30 @@ class WebAdvertisementReceivedEvent
   /// while the original can just be re-used.
   ///
   factory WebAdvertisementReceivedEvent.fromJSObject(
-      Object jsObject, WebBluetoothDevice device) {
-    if (!_JSUtil.hasProperty(jsObject, 'device')) {
-      throw UnsupportedError('JSObject does not have a device.');
+      final Object jsObject, final WebBluetoothDevice device) {
+    if (!_JSUtil.hasProperty(jsObject, "device")) {
+      throw UnsupportedError("JSObject does not have a device.");
     }
-    if (!_JSUtil.hasProperty(jsObject, 'uuids')) {
-      throw UnsupportedError('JSObject does not have a uuids.');
+    if (!_JSUtil.hasProperty(jsObject, "uuids")) {
+      throw UnsupportedError("JSObject does not have a uuids.");
     }
-    if (!_JSUtil.hasProperty(jsObject, 'manufacturerData')) {
-      throw UnsupportedError('JSObject does not have a manufacturerData.');
+    if (!_JSUtil.hasProperty(jsObject, "manufacturerData")) {
+      throw UnsupportedError("JSObject does not have a manufacturerData.");
     }
-    if (!_JSUtil.hasProperty(jsObject, 'serviceData')) {
-      throw UnsupportedError('JSObject does not have a serviceData.');
+    if (!_JSUtil.hasProperty(jsObject, "serviceData")) {
+      throw UnsupportedError("JSObject does not have a serviceData.");
     }
 
     final List<String> uuids = _parseUUIDS(jsObject);
     final UnmodifiableMapView<int, ByteData> manufacturerData =
-        _getByteDataMap(jsObject, 'manufacturerData');
+        _getByteDataMap(jsObject, "manufacturerData");
     final UnmodifiableMapView<String, ByteData> serviceData =
-        _getByteDataMap(jsObject, 'serviceData');
+        _getByteDataMap(jsObject, "serviceData");
 
-    final String? name = _JSUtil.getProperty(jsObject, 'name') as String?;
-    final int? rssi = _JSUtil.getProperty(jsObject, 'rssi') as int?;
-    final int? txPower = _JSUtil.getProperty(jsObject, 'txPower') as int?;
-    final int? appearance = _JSUtil.getProperty(jsObject, 'appearance') as int?;
+    final String? name = _JSUtil.getProperty(jsObject, "name") as String?;
+    final int? rssi = _JSUtil.getProperty(jsObject, "rssi") as int?;
+    final int? txPower = _JSUtil.getProperty(jsObject, "txPower") as int?;
+    final int? appearance = _JSUtil.getProperty(jsObject, "appearance") as int?;
 
     return WebAdvertisementReceivedEvent._(
         uuids: uuids,
@@ -220,7 +219,8 @@ class WebAdvertisementReceivedEvent
   factory WebAdvertisementReceivedEvent.withMemory(
       final WebAdvertisementReceivedEvent memory,
       final WebAdvertisementReceivedEvent newEvent) {
-    assert(memory.device == newEvent.device);
+    assert(memory.device == newEvent.device,
+        "The device from memory should be the same as from the new event");
 
     final List<String> uuids = newEvent.uuids;
     final UnmodifiableMapView<int, ByteData> manufacturerData =
@@ -256,14 +256,14 @@ class WebAdvertisementReceivedEvent
         device: newEvent.device);
   }
 
-  WebAdvertisementReceivedEvent._(
-      {required this.uuids,
-      required this.manufacturerData,
-      required this.serviceData,
-      this.name,
-      this.rssi,
-      this.txPower,
-      this.appearance,
-      required WebBluetoothDevice device})
-      : super(device);
+  WebAdvertisementReceivedEvent._({
+    required this.uuids,
+    required this.manufacturerData,
+    required this.serviceData,
+    required final WebBluetoothDevice device,
+    this.name,
+    this.rssi,
+    this.txPower,
+    this.appearance,
+  }) : super(device);
 }

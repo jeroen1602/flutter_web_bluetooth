@@ -78,7 +78,7 @@ abstract class FlutterWebBluetoothInterface {
   ///
   /// See: [RequestOptionsBuilder]
   ///
-  Future<BluetoothDevice> requestDevice(RequestOptionsBuilder options);
+  Future<BluetoothDevice> requestDevice(final RequestOptionsBuilder options);
 
   ///
   /// The [advertisements] stream emits an event with a
@@ -100,9 +100,9 @@ abstract class FlutterWebBluetoothInterface {
   /// See: [requestDevice]
   ///
   Future<BluetoothDevice> requestAdvertisementDevice(
-    AdvertisementBluetoothDevice device, {
-    List<String> requiredServices = const [],
-    List<String> optionalServices = const [],
+    final AdvertisementBluetoothDevice device, {
+    final List<String> requiredServices = const [],
+    final List<String> optionalServices = const [],
   });
 
   ///
@@ -152,7 +152,7 @@ abstract class FlutterWebBluetoothInterface {
   ///
   /// - May throw [BrowserError] for every other browser error.
   ///
-  Future<BluetoothLEScan> requestLEScan(LEScanOptionsBuilder options);
+  Future<BluetoothLEScan> requestLEScan(final LEScanOptionsBuilder options);
 
   ///
   /// the [advertisements] stream emits [AdvertisementReceivedEvent]s

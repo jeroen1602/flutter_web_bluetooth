@@ -12,6 +12,6 @@ class NativeAPINotImplementedError extends UnsupportedError {
   /// Create a new instance of the error with the method that is not
   /// implemented.
   ///
-  NativeAPINotImplementedError(String method)
-      : super('$method not supported in this user agent');
+  NativeAPINotImplementedError(final String method)
+      : super("$method not supported in this user agent");
 }

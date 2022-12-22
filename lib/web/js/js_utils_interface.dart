@@ -19,41 +19,42 @@ abstract class JSUtilsInterface {
   ///
   /// this will effectively result into `name in o`  in js.
   ///
-  bool hasProperty(Object o, Object name);
+  bool hasProperty(final Object o, final Object name);
 
   ///
   /// Use JS utils to get the property of a js object.
   ///
-  dynamic getProperty(Object o, Object name);
+  dynamic getProperty(final Object o, final Object name);
 
   ///
   /// Use JS utils to set a property of a js object.
   ///
-  dynamic setProperty(Object o, Object name, Object? value);
+  dynamic setProperty(final Object o, final Object name, final Object? value);
 
   ///
   /// Use JS utils to call a method of a js object.
   ///
   /// Note that `null` in dart is not the same as `undefined`/ missing in js.
   ///
-  dynamic callMethod(Object o, String method, List<Object?> args);
+  dynamic callMethod(
+      final Object o, final String method, final List<Object?> args);
 
   ///
   /// Use JS utils to use instance of on a js object.
   ///
-  bool instanceof(Object? o, Object type);
+  bool instanceof(final Object? o, final Object type);
 
   ///
   /// Use JS utils to call a constructor of a class.
   ///
   /// Note that `null` in dart is not the same as `undefined`/ missing in js.
   ///
-  dynamic callConstructor(Object constr, List<Object?>? arguments);
+  dynamic callConstructor(final Object constr, final List<Object?>? arguments);
 
   ///
   /// Use JS utils to convert a js promise into a dart Future.
   ///
-  Future<T> promiseToFuture<T>(Object jsPromise);
+  Future<T> promiseToFuture<T>(final Object jsPromise);
 
   ///
   /// Use JS utils to allow for interop from dart functions into js code.
@@ -62,5 +63,5 @@ abstract class JSUtilsInterface {
   /// be wrapped inside this [allowInterop] method, otherwise the js API cannot
   /// call it.
   ///
-  F allowInterop<F extends Function>(F f);
+  F allowInterop<F extends Function>(final F f);
 }

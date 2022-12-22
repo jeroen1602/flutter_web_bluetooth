@@ -10,6 +10,6 @@ class BluetoothAdapterNotAvailable extends StateError {
   ///
   /// Create a new instance of the error with the method that the error happened
   /// in.
-  BluetoothAdapterNotAvailable(String method)
+  BluetoothAdapterNotAvailable(final String method)
       : super('Bluetooth adapter not available for method "$method"');
 }

@@ -50,7 +50,7 @@ class BluetoothLEScanOptions {
   /// leaving an item blank in this constructor and setting it to `null`.
   ///
   external factory BluetoothLEScanOptions(
-      {List<BluetoothScanFilter> filters,
-      bool keepRepeatedDevices,
-      bool acceptAllAdvertisements});
+      {final List<BluetoothScanFilter> filters,
+      final bool keepRepeatedDevices,
+      final bool acceptAllAdvertisements});
 }

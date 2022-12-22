@@ -7,32 +7,30 @@ abstract class NativeBluetoothRemoteGATTServerTesting {
   NativeBluetoothRemoteGATTServerTesting._();
 
   static Map<String, dynamic> createJSObject({
-    bool connected = true,
-    Map<String, dynamic>? device,
-    required ConnectFunction connectFunction,
-    required DisconnectFunction disconnectFunction,
-    required GetPrimaryService getPrimaryService,
-    required GetPrimaryServices getPrimaryServices,
-  }) {
-    return {
-      'connected': connected,
-      'device': device ?? Object(),
-      'connect': connectFunction,
-      'disconnect': disconnectFunction,
-      'getPrimaryService': getPrimaryService,
-      'getPrimaryServices': getPrimaryServices,
-    };
-  }
+    required final ConnectFunction connectFunction,
+    required final DisconnectFunction disconnectFunction,
+    required final GetPrimaryService getPrimaryService,
+    required final GetPrimaryServices getPrimaryServices,
+    final bool connected = true,
+    final Map<String, dynamic>? device,
+  }) =>
+      {
+        "connected": connected,
+        "device": device ?? Object(),
+        "connect": connectFunction,
+        "disconnect": disconnectFunction,
+        "getPrimaryService": getPrimaryService,
+        "getPrimaryServices": getPrimaryServices,
+      };
 
-  static Map<String, dynamic> createStubJSOBject() {
-    return createJSObject(connectFunction: () async {
-      throw UnsupportedError('connect STUB');
-    }, disconnectFunction: () {
-      throw UnsupportedError('disconnect STUB');
-    }, getPrimaryService: () {
-      throw UnsupportedError('primary service STUB');
-    }, getPrimaryServices: () {
-      throw UnsupportedError('primary services STUB');
-    });
-  }
+  static Map<String, dynamic> createStubJSObject() =>
+      createJSObject(connectFunction: () async {
+        throw UnsupportedError("connect STUB");
+      }, disconnectFunction: () {
+        throw UnsupportedError("disconnect STUB");
+      }, getPrimaryService: () {
+        throw UnsupportedError("primary service STUB");
+      }, getPrimaryServices: () {
+        throw UnsupportedError("primary services STUB");
+      });
 }

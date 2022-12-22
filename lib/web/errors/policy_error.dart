@@ -9,10 +9,10 @@ class PolicyError extends BrowserError {
   /// Create a new instance.
   /// [method] is the method where the error occurred.
   ///
-  PolicyError(String method)
+  PolicyError(final String method)
       : super("The browser's policy doesn't allow the method \"$method\"");
 
   @protected
   @override
-  String get errorName => 'PolicyError';
+  String get errorName => "PolicyError";
 }

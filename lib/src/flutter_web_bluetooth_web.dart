@@ -5,45 +5,30 @@
 ///
 library flutter_web_bluetooth;
 
-import 'dart:async';
-import 'dart:collection';
-import 'dart:typed_data';
+import "dart:async";
+import "dart:collection";
+import "dart:typed_data";
 
-import 'package:flutter_web_bluetooth/js_web_bluetooth.dart';
-import 'package:meta/meta.dart';
+import "package:flutter_web_bluetooth/js_web_bluetooth.dart";
+import "package:flutter_web_bluetooth/shared/web_behavior_subject.dart";
+import "package:flutter_web_bluetooth/web_bluetooth_logger.dart";
+import "package:meta/meta.dart";
 
-import '../shared/web_behavior_subject.dart';
-import '../web_bluetooth_logger.dart';
-
-part 'advertisement_received_event.dart';
-
-part 'bluetooth_characteristic.dart';
-
-part 'bluetooth_characteristic_properties.dart';
-
-part 'bluetooth_default_uuids.dart';
-
-part 'bluetooth_descriptor.dart';
-
-part 'bluetooth_device.dart';
-
-part 'bluetooth_service.dart';
-
-part 'errors/bluetooth_adapter_not_available.dart';
-
-part 'errors/network_error.dart';
-
-part 'errors/not_found_error.dart';
-
-part 'errors/not_supported_error.dart';
-
-part 'errors/security_error.dart';
-
-part 'flutter_web_bluetooth_interface.dart';
-
-part 'le_scan_options_builder.dart';
-
-part 'request_options_builder.dart';
+part "advertisement_received_event.dart";
+part "bluetooth_characteristic.dart";
+part "bluetooth_characteristic_properties.dart";
+part "bluetooth_default_uuids.dart";
+part "bluetooth_descriptor.dart";
+part "bluetooth_device.dart";
+part "bluetooth_service.dart";
+part "errors/bluetooth_adapter_not_available.dart";
+part "errors/network_error.dart";
+part "errors/not_found_error.dart";
+part "errors/not_supported_error.dart";
+part "errors/security_error.dart";
+part "flutter_web_bluetooth_interface.dart";
+part "le_scan_options_builder.dart";
+part "request_options_builder.dart";
 
 ///
 /// The main class to request devices from on the web.
@@ -63,7 +48,7 @@ class FlutterWebBluetooth extends FlutterWebBluetoothInterface {
 
     _advertisementSubject = WebBehaviorSubject();
 
-    Bluetooth.addEventListener('advertisementreceived', (dynamic event) {
+    Bluetooth.addEventListener("advertisementreceived", (final dynamic event) {
       try {
         final webDevice = WebBluetoothDevice.fromEvent(event);
         final convertedEvent =
@@ -89,15 +74,14 @@ class FlutterWebBluetooth extends FlutterWebBluetoothInterface {
   ///
   /// Get an instance of the library. There will always only be one instance.
   ///
-  static FlutterWebBluetoothInterface get instance {
-    return _instance ??= FlutterWebBluetooth._();
-  }
+  static FlutterWebBluetoothInterface get instance =>
+      _instance ??= FlutterWebBluetooth._();
 
   final WebBehaviorSubject<Set<BluetoothDevice>> _knownDevicesStream =
       WebBehaviorSubject.seeded(<BluetoothDevice>{});
   bool _checkedDevices = false;
 
-  void _addKnownDevice(BluetoothDevice device) {
+  void _addKnownDevice(final BluetoothDevice device) {
     final set = _knownDevicesStream.value ?? <BluetoothDevice>{};
     set.add(device);
     _knownDevicesStream.add(set);
@@ -124,9 +108,7 @@ class FlutterWebBluetooth extends FlutterWebBluetoothInterface {
   /// Will return `Stream.value(false)` if [isBluetoothApiSupported] is false.
   ///
   @override
-  Stream<bool> get isAvailable {
-    return Bluetooth.onAvailabilityChanged();
-  }
+  Stream<bool> get isAvailable => Bluetooth.onAvailabilityChanged();
 
   ///
   /// Get a [Stream] with a [Set] of all devices paired in this browser session.
@@ -141,6 +123,7 @@ class FlutterWebBluetooth extends FlutterWebBluetoothInterface {
   @override
   Stream<Set<BluetoothDevice>> get devices {
     if (!_checkedDevices) {
+      //ignore: discarded_futures
       _getKnownDevices();
     }
     return _knownDevicesStream.stream;
@@ -149,12 +132,12 @@ class FlutterWebBluetooth extends FlutterWebBluetoothInterface {
   ///
   /// Get the already known devices from the browser
   ///
-  Future<void> _getKnownDevices({bool shouldCheck = true}) async {
+  Future<void> _getKnownDevices({final bool shouldCheck = true}) async {
     _checkedDevices = true;
     if (shouldCheck && !(await Bluetooth.getAvailability())) {
       webBluetoothLogger.severe(
-          'Could not get known devices because it\'s not available in this '
-          'browser/ for this devices.',
+          "Could not get known devices because it's not available in this "
+          "browser/ for this devices.",
           null,
           StackTrace.current);
       final set = _knownDevicesStream.value ?? <BluetoothDevice>{};
@@ -164,7 +147,7 @@ class FlutterWebBluetooth extends FlutterWebBluetoothInterface {
     }
     final devices = await Bluetooth.getDevices();
     final devicesSet =
-        Set<BluetoothDevice>.from(devices.map((e) => BluetoothDevice(e)));
+        Set<BluetoothDevice>.from(devices.map(BluetoothDevice.new));
     final set = _knownDevicesStream.value ?? <BluetoothDevice>{};
     set.addAll(devicesSet);
     _knownDevicesStream.add(set);
@@ -195,10 +178,10 @@ class FlutterWebBluetooth extends FlutterWebBluetoothInterface {
   Future<BluetoothDevice> requestDevice(
       final RequestOptionsBuilder options) async {
     if (!isBluetoothApiSupported) {
-      throw NativeAPINotImplementedError('requestDevice');
+      throw NativeAPINotImplementedError("requestDevice");
     }
     if (!(await Bluetooth.getAvailability())) {
-      throw BluetoothAdapterNotAvailable('requestDevice');
+      throw BluetoothAdapterNotAvailable("requestDevice");
     }
     final convertedOptions = options.toRequestOptions();
     final device = await Bluetooth.requestDevice(convertedOptions);
@@ -228,9 +211,9 @@ class FlutterWebBluetooth extends FlutterWebBluetoothInterface {
   ///
   @override
   Future<BluetoothDevice> requestAdvertisementDevice(
-      AdvertisementBluetoothDevice device,
-      {List<String> requiredServices = const [],
-      List<String> optionalServices = const []}) async {
+      final AdvertisementBluetoothDevice device,
+      {final List<String> requiredServices = const [],
+      final List<String> optionalServices = const []}) async {
     final RequestOptionsBuilder options =
         _createRequestOptionsFromAdvertisementDevice(
             device, requiredServices, optionalServices);
@@ -241,9 +224,9 @@ class FlutterWebBluetooth extends FlutterWebBluetoothInterface {
   /// Create request options for an advertisement device.
   ///
   RequestOptionsBuilder _createRequestOptionsFromAdvertisementDevice(
-      AdvertisementBluetoothDevice device,
-      List<String> requiredServices,
-      List<String> optionalServices) {
+      final AdvertisementBluetoothDevice device,
+      final List<String> requiredServices,
+      final List<String> optionalServices) {
     if (device.name != null || requiredServices.isNotEmpty) {
       return RequestOptionsBuilder([
         RequestFilterBuilder(
@@ -252,8 +235,8 @@ class FlutterWebBluetooth extends FlutterWebBluetoothInterface {
       ], optionalServices: optionalServices.isEmpty ? null : optionalServices);
     } else {
       webBluetoothLogger.warning(
-          "Requesting access to an advertisement device (id: ${device.id})"
-          "without identifying information (either a name or required"
+          "Requesting access to an advertisement device (id: ${device.id}) "
+          "without identifying information (either a name or required "
           "services), so `acceptAllDevices` is used.");
       return RequestOptionsBuilder.acceptAllDevices(
           optionalServices: optionalServices.isEmpty ? null : optionalServices);
@@ -312,18 +295,18 @@ class FlutterWebBluetooth extends FlutterWebBluetoothInterface {
   Future<BluetoothLEScan> requestLEScan(
       final LEScanOptionsBuilder options) async {
     if (!hasRequestLEScan) {
-      throw NativeAPINotImplementedError('requestLEScan');
+      throw NativeAPINotImplementedError("requestLEScan");
     }
     if (!(await Bluetooth.getAvailability())) {
-      throw BluetoothAdapterNotAvailable('requestLEScan');
+      throw BluetoothAdapterNotAvailable("requestLEScan");
     }
     _startAdvertisementStream();
     try {
       final convertedOptions = options.toRequestOptions();
       return await Bluetooth.requestLEScan(convertedOptions);
     } on BrowserError catch (e) {
-      if (e.message.startsWith('InvalidStateError')) {
-        throw BluetoothAdapterNotAvailable('requestLEScan');
+      if (e.message.startsWith("InvalidStateError")) {
+        throw BluetoothAdapterNotAvailable("requestLEScan");
       }
       rethrow;
     }

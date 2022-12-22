@@ -54,13 +54,13 @@ class BluetoothDescriptor {
       return await _descriptor.readValue();
     } catch (e) {
       final error = e.toString().trim();
-      if (error.startsWith('NotSupportedError')) {
+      if (error.startsWith("NotSupportedError")) {
         throw NotSupportedError(uuid);
-      } else if (error.startsWith('NetworkError')) {
+      } else if (error.startsWith("NetworkError")) {
         throw NetworkError.withUUid(uuid);
-      } else if (error.startsWith('SecurityError')) {
+      } else if (error.startsWith("SecurityError")) {
         throw SecurityError(uuid, error);
-      } else if (error.startsWith('InvalidStateError')) {
+      } else if (error.startsWith("InvalidStateError")) {
         throw StateError("Descriptor is null");
       }
       rethrow;
@@ -83,20 +83,20 @@ class BluetoothDescriptor {
   ///  - May throw [StateError] if the input data is larger than 512 bytes.
   ///  TODO: use better error.
   ///
-  Future<void> writeValue(Uint8List data) async {
+  Future<void> writeValue(final Uint8List data) async {
     try {
       _descriptor.writeValue(data);
     } catch (e) {
       final error = e.toString().trim();
-      if (error.startsWith('NotSupportedError')) {
+      if (error.startsWith("NotSupportedError")) {
         throw NotSupportedError(uuid);
-      } else if (error.startsWith('NetworkError')) {
+      } else if (error.startsWith("NetworkError")) {
         throw NetworkError.withUUid(uuid);
-      } else if (error.startsWith('SecurityError')) {
+      } else if (error.startsWith("SecurityError")) {
         throw SecurityError(uuid, error);
-      } else if (error.startsWith('InvalidStateError')) {
+      } else if (error.startsWith("InvalidStateError")) {
         throw StateError("Descriptor is null");
-      } else if (error.startsWith('InvalidModificationError')) {
+      } else if (error.startsWith("InvalidModificationError")) {
         throw StateError("Input data was larger than 512 bytes");
       }
       rethrow;

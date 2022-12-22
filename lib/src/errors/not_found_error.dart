@@ -22,22 +22,22 @@ class NotFoundError extends Error {
   ///
   /// Create an error for a [BluetoothService] that could not be found.
   ///
-  NotFoundError.forService(String? searchUUID, this.fromUUID)
+  NotFoundError.forService(final String? searchUUID, this.fromUUID)
       : searchUUID = searchUUID ?? "UNKNOWN",
-        searchType = 'Service';
+        searchType = "Service";
 
   ///
   /// Creat an error for a [BluetoothCharacteristic]  that could not be found.
   ///
   NotFoundError.forCharacteristic(this.searchUUID, this.fromUUID)
-      : searchType = 'Characteristic';
+      : searchType = "Characteristic";
 
   ///
   /// Create an error for a [BluetoothDescriptor] that could not be found.
   ///
-  NotFoundError.forDescriptor(String? searchUUID, this.fromUUID)
+  NotFoundError.forDescriptor(final String? searchUUID, this.fromUUID)
       : searchUUID = searchUUID ?? "UNKNOWN",
-        searchType = 'Descriptor';
+        searchType = "Descriptor";
 
   @override
   String toString() {

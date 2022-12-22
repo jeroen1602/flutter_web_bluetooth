@@ -71,7 +71,7 @@ class BluetoothService {
   /// for this browser. Check [hasIncludedService] to make sure you don't get
   /// this error.
   ///
-  Future<BluetoothService> getIncludedService(String uuid) async {
+  Future<BluetoothService> getIncludedService(final String uuid) async {
     try {
       final service = await _bluetoothService.getIncludedService(uuid);
       return BluetoothService(service);
@@ -81,9 +81,9 @@ class BluetoothService {
         throw NotFoundError.forService(uuid, this.uuid);
       } else if (error.startsWith("SecurityError")) {
         throw SecurityError(uuid, error);
-      } else if (error.startsWith('NetworkError')) {
+      } else if (error.startsWith("NetworkError")) {
         throw NetworkError.withUUid(uuid);
-      } else if (error.startsWith('InvalidStateError')) {
+      } else if (error.startsWith("InvalidStateError")) {
         throw StateError("Service is null");
       }
       rethrow;
@@ -104,7 +104,7 @@ class BluetoothService {
   ///
   /// - May throw [StateError] if the service is null.
   ///
-  Future<BluetoothCharacteristic> getCharacteristic(String uuid) async {
+  Future<BluetoothCharacteristic> getCharacteristic(final String uuid) async {
     try {
       final characteristic = await _bluetoothService.getCharacteristic(uuid);
       return BluetoothCharacteristic(characteristic);
@@ -114,9 +114,9 @@ class BluetoothService {
         throw NotFoundError.forService(uuid, this.uuid);
       } else if (error.startsWith("SecurityError")) {
         throw SecurityError(uuid, error);
-      } else if (error.startsWith('NetworkError')) {
+      } else if (error.startsWith("NetworkError")) {
         throw NetworkError.withUUid(uuid);
-      } else if (error.startsWith('InvalidStateError')) {
+      } else if (error.startsWith("InvalidStateError")) {
         throw StateError("Service is null");
       }
       rethrow;
@@ -139,11 +139,11 @@ class BluetoothService {
   ///
   ///
   Future<List<BluetoothCharacteristic>> getCharacteristics(
-      {String? uuid}) async {
+      {final String? uuid}) async {
     try {
       final List<WebBluetoothRemoteGATTCharacteristic> characteristic =
           await _bluetoothService.getCharacteristics(uuid);
-      List<BluetoothCharacteristic> characteristics = [];
+      final List<BluetoothCharacteristic> characteristics = [];
       for (final element in characteristic) {
         characteristics.add(BluetoothCharacteristic(element));
       }
@@ -154,9 +154,9 @@ class BluetoothService {
         throw NotFoundError.forService(uuid, this.uuid);
       } else if (error.startsWith("SecurityError")) {
         throw SecurityError(this.uuid, error);
-      } else if (error.startsWith('NetworkError')) {
+      } else if (error.startsWith("NetworkError")) {
         throw NetworkError.withUUid(uuid);
-      } else if (error.startsWith('InvalidStateError')) {
+      } else if (error.startsWith("InvalidStateError")) {
         throw StateError("Service is null");
       }
       rethrow;

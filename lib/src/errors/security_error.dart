@@ -8,7 +8,7 @@ part of flutter_web_bluetooth;
 /// between browsers and versions of these browsers.
 ///
 class SecurityError extends Error {
-  static final _urlReg = RegExp(r"https?:\/\/\S+");
+  static final _urlReg = RegExp(r"https?://\S+");
 
   /// The uuid of the [BluetoothService] or [BluetoothCharacteristic].
   final String uuid;
@@ -21,7 +21,7 @@ class SecurityError extends Error {
   ///
   /// [originalMessage] is the original message of the error thrown by the
   /// browser.
-  SecurityError(this.uuid, String originalMessage) {
+  SecurityError(this.uuid, final String originalMessage) {
     final match = _urlReg.firstMatch(originalMessage);
     if (match != null) {
       final parsed = Uri.tryParse(originalMessage, match.start, match.end);
@@ -30,7 +30,6 @@ class SecurityError extends Error {
   }
 
   @override
-  String toString() {
-    return 'SecurityError Tried getting blocklisted UUID ($uuid). ${url ?? ''}';
-  }
+  String toString() =>
+      'SecurityError Tried getting blocklisted UUID ($uuid). ${url ?? ''}';
 }

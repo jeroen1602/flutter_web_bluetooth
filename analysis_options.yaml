@@ -15,9 +15,77 @@ include: package:lints/recommended.yaml
 
 # Uncomment the following section to specify additional rules.
 
-# linter:
-#   rules:
-#     - camel_case_types
+linter:
+  rules:
+    - always_use_package_imports
+    - avoid_print
+    - avoid_returning_null_for_future
+    - avoid_type_to_string
+    - cancel_subscriptions
+    - close_sinks
+    - discarded_futures
+    - literal_only_boolean_expressions
+    - no_adjacent_strings_in_list
+    - no_duplicate_case_values
+    - test_types_in_equals
+    - throw_in_finally
+    - unnecessary_statements
+    - unsafe_html # Probably not needed since the library doesn't interact directly with HTML
+#    Style rules
+    - always_declare_return_types
+    - always_put_control_body_on_new_line
+    - always_put_required_named_parameters_first
+    - avoid_double_and_int_checks
+    - avoid_field_initializers_in_const_classes
+    - avoid_js_rounded_ints
+    - avoid_null_checks_in_equality_operators
+    - avoid_positional_boolean_parameters
+    - avoid_returning_this
+    - avoid_unused_constructor_parameters
+    - avoid_void_async
+    - conditional_uri_does_not_exist
+    - deprecated_consistency
+    - directives_ordering
+    - eol_at_end_of_file
+    - join_return_with_assignment
+    - missing_whitespace_between_adjacent_strings
+    - no_runtimeType_toString
+    - noop_primitive_operations
+    - one_member_abstracts
+    - only_throw_errors
+    - package_api_docs
+    - public_member_api_docs
+    - prefer_asserts_in_initializer_lists
+    - prefer_asserts_with_message
+    - prefer_const_constructors
+    - prefer_const_declarations
+    - prefer_constructors_over_static_methods
+    - prefer_double_quotes # Not really a reason to chose " over ', just wanted to stay consistent
+    - prefer_expression_function_bodies
+    - prefer_final_fields
+    - prefer_final_in_for_each
+    - prefer_final_locals
+    - prefer_final_parameters
+    - prefer_if_elements_to_conditional_expressions
+    - prefer_null_aware_method_calls
+#    - sort_constructors_first # May enable this one in the future
+    - type_annotate_public_apis
+    - unnecessary_lambdas
+    - unnecessary_parenthesis
+    - unnecessary_raw_strings
+    - unnecessary_to_list_in_spreads
+    - use_enums
+    - use_if_null_to_convert_nulls_to_bools
+    - use_is_even_rather_than_modulo
+    - use_late_for_private_fields_and_variables
+    - use_named_constants
+    - use_setters_to_change_properties
+    - use_string_buffers
+    - use_super_parameters
+    - use_to_and_as_if_applicable
+ # pub rules
+    - depend_on_referenced_packages # everything that the library uses should also be in the requirements list
+    - sort_pub_dependencies
 
 analyzer:
   exclude:

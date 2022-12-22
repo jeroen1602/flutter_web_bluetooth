@@ -20,8 +20,8 @@ class BrowserError extends Error {
   /// [toString] function.
   ///
   @protected
-  String get errorName => 'BrowserError';
+  String get errorName => "BrowserError";
 
   @override
-  String toString() => '$errorName: $message';
+  String toString() => "$errorName: $message";
 }
