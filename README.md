@@ -64,7 +64,7 @@ limit.
 ```dart
 // Define the services you want to communicate with here!
 final requestOptions = RequestOptionsBuilder.acceptAllDevices(optionalServices: [
-  BluetoothDefaultServiceUUIDS.DEVICE_INFORMATION.uuid
+  BluetoothDefaultServiceUUIDS.deviceInformation.uuid
 ]);
 
 try {
@@ -81,9 +81,9 @@ Now that you have a device, you can go through the services and then find the ch
 ```dart
 await device.connect();
 final services = await device.discoverServices();
-final service = services.firstWhere((service) => service.uuid == BluetoothDefaultServiceUUIDS.DEVICE_INFORMATION.uuid);
+final service = services.firstWhere((service) => service.uuid == BluetoothDefaultServiceUUIDS.deviceInformation.uuid);
 // Now get the characteristic
-final characteristic = await service.getCharacteristic(BluetoothDefaultCharacteristicUUIDS.MANUFACTURER_NAME_STRING.uuid);
+final characteristic = await service.getCharacteristic(BluetoothDefaultCharacteristicUUIDS.manufacturerNameString.uuid);
 final value = characteristic.readValue();
 // Now we have a [ByteData] object with the manufacturer name in it.
 device.disconnect();
