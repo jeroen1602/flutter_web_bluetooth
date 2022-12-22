@@ -1,10 +1,13 @@
+import 'dart:async';
+
 import 'package:flutter/material.dart';
 import 'package:flutter_web_bluetooth/flutter_web_bluetooth.dart';
-import 'package:flutter_web_bluetooth/js_web_bluetooth.dart';
+import 'package:flutter_web_bluetooth_example/business/bluetooth_business.dart';
+import 'package:flutter_web_bluetooth_example/model/main_page_device.dart';
 import 'package:flutter_web_bluetooth_example/pages/device_services_page.dart';
 import 'package:flutter_web_bluetooth_example/web_helpers/web_helpers.dart';
 import 'package:flutter_web_bluetooth_example/widgets/bluetooth_device_widget.dart';
-import 'package:flutter_web_bluetooth_example/widgets/browser_not_supported_alert_widget.dart';
+import 'package:flutter_web_bluetooth_example/widgets/floating_action_buttons.dart';
 
 const redirect = bool.fromEnvironment('redirectToHttps', defaultValue: false);
 
@@ -43,48 +46,8 @@ class _MyAppState extends State<MyApp> {
           body: MainPage(
             isBluetoothAvailable: available,
           ),
-          floatingActionButton: Builder(
-            builder: (BuildContext context) {
-              final theme = Theme.of(context);
-              final errorColor = theme.colorScheme.error;
-              return ElevatedButton(
-                  onPressed: () async {
-                    if (!FlutterWebBluetooth.instance.isBluetoothApiSupported) {
-                      BrowserNotSupportedAlertWidget.showCustomDialog(context);
-                    } else {
-                      try {
-                        final device = await FlutterWebBluetooth.instance
-                            .requestDevice(
-                                RequestOptionsBuilder.acceptAllDevices(
-                                    optionalServices:
-                                        BluetoothDefaultServiceUUIDS.VALUES
-                                            .map((e) => e.uuid)
-                                            .toList()));
-                        debugPrint("Device got! ${device.name}, ${device.id}");
-                      } on BluetoothAdapterNotAvailable {
-                        ScaffoldMessenger.maybeOf(context)
-                            ?.showSnackBar(SnackBar(
-                          content: const Text('No bluetooth adapter available'),
-                          backgroundColor: errorColor,
-                        ));
-                      } on UserCancelledDialogError {
-                        ScaffoldMessenger.maybeOf(context)
-                            ?.showSnackBar(SnackBar(
-                          content: const Text('User canceled the dialog'),
-                          backgroundColor: errorColor,
-                        ));
-                      } on DeviceNotFoundError {
-                        ScaffoldMessenger.maybeOf(context)
-                            ?.showSnackBar(SnackBar(
-                          content: const Text('No devices found'),
-                          backgroundColor: errorColor,
-                        ));
-                      }
-                    }
-                  },
-                  child: const Icon(Icons.search));
-            },
-          ),
+          floatingActionButtonLocation: FloatingActionButtonLocation.endDocked,
+          floatingActionButton: const FABS(),
         ));
       },
     );
@@ -106,6 +69,76 @@ class MainPage extends StatefulWidget {
 }
 
 class MainPageState extends State<MainPage> {
+  Stream<Set<MainPageDevice>>? _devicesStream;
+
+  Color? _getErrorColor() {
+    if (!mounted) {
+      return null;
+    }
+    final theme = Theme.of(context);
+    return theme.colorScheme.error;
+  }
+
+  @override
+  void initState() {
+    super.initState();
+
+    _devicesStream = BluetoothBusiness.createDeviceStream();
+  }
+
+  Future<void> handleDeviceTap(final MainPageDevice device) async {
+    DeviceServicesPage? page;
+    if (device is MainPageDevice<BluetoothDevice>) {
+      page = DeviceServicesPage(bluetoothDevice: device.device);
+    } else {
+      final state =
+          await BluetoothBusiness.requestAdvertisementDevice(device.device);
+
+      late String message;
+      switch (state.state) {
+        case RequestDeviceState.adapterNotAvailable:
+          message = 'No bluetooth adapter available';
+          break;
+        case RequestDeviceState.userCancelled:
+          message = 'User canceled the dialog';
+          break;
+        case RequestDeviceState.deviceNotFound:
+          message = 'No devices found';
+          break;
+        case RequestDeviceState.ok:
+          message = '';
+          break;
+        case RequestDeviceState.other:
+        default:
+          message = 'Unknown error';
+          break;
+      }
+
+      if (state.state == RequestDeviceState.ok && state.device == null) {
+        message = 'Unknown error';
+      }
+
+      if (message.isNotEmpty && mounted) {
+        ScaffoldMessenger.maybeOf(context)?.showSnackBar(SnackBar(
+          content: Text(message),
+          backgroundColor: _getErrorColor(),
+        ));
+      } else {
+        page = DeviceServicesPage(bluetoothDevice: state.device!);
+      }
+    }
+
+    if (page != null && mounted) {
+      final finalPage = page;
+      Navigator.push(context,
+          MaterialPageRoute(builder: (BuildContext context) {
+        return finalPage;
+      }));
+    } else {
+      debugPrint('Could not open the page because not mounted anymore');
+    }
+  }
+
   @override
   Widget build(BuildContext context) {
     return Column(children: [
@@ -115,22 +148,19 @@ class MainPageState extends State<MainPage> {
       const Divider(),
       Expanded(
         child: StreamBuilder(
-          stream: FlutterWebBluetooth.instance.devices,
-          initialData: const <BluetoothDevice>{},
-          builder: (BuildContext context,
-              AsyncSnapshot<Set<BluetoothDevice>> snapshot) {
+          stream: _devicesStream,
+          initialData: const {},
+          builder: (final BuildContext context, final AsyncSnapshot snapshot) {
             final devices = snapshot.requireData;
             return ListView.builder(
               itemCount: devices.length,
               itemBuilder: (BuildContext context, int index) {
                 final device = devices.toList()[index];
+
                 return BluetoothDeviceWidget(
                   bluetoothDevice: device,
                   onTap: () async {
-                    Navigator.push(context,
-                        MaterialPageRoute(builder: (BuildContext context) {
-                      return DeviceServicesPage(bluetoothDevice: device);
-                    }));
+                    await handleDeviceTap(device);
                   },
                 );
               },
