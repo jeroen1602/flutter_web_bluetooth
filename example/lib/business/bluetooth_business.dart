@@ -48,7 +48,7 @@ class BluetoothBusiness {
     try {
       final device = await FlutterWebBluetooth.instance.requestDevice(
           RequestOptionsBuilder.acceptAllDevices(
-              optionalServices: BluetoothDefaultServiceUUIDS.VALUES
+              optionalServices: BluetoothDefaultServiceUUIDS.values
                   .map((e) => e.uuid)
                   .toList()));
       debugPrint("Device got! ${device.name}, ${device.id}");
@@ -73,7 +73,7 @@ class BluetoothBusiness {
     try {
       final newDevice = await FlutterWebBluetooth.instance
           .requestAdvertisementDevice(device,
-              optionalServices: BluetoothDefaultServiceUUIDS.VALUES
+              optionalServices: BluetoothDefaultServiceUUIDS.values
                   .map((e) => e.uuid)
                   .toList());
       debugPrint("Device got! ${newDevice.name}, ${newDevice.id}");

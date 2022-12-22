@@ -2,4575 +2,1664 @@
 /// scripts/generate_default_uuids.dart. If you need more uuids please change
 /// the csv files and regenerate the file.
 
-// ignore_for_file: constant_identifier_names
-
 part of flutter_web_bluetooth;
 
-/// A generated class for holding default characteristics/ services.
-abstract class BluetoothDefaultUUIDS {
-  /// The name of the service/ characteristic
-  final String name;
-
-  /// The shorter 16 bit uuid of the service/ characteristic.
-  final String uuid16;
-
-  /// The full uuid of the service/ characteristic.
-  final String uuid;
-
-  /// The ordinal (place in the list)
-  final int ordinal;
-
-  /// The constructor for a new default characteristic or service.
-  const BluetoothDefaultUUIDS._(
-      this.name, this.uuid16, this.uuid, this.ordinal);
-}
-
-/// All the default Bluetooth low energy services are statically defined in this class.
+/// All the default Bluetooth low energy services are defined in this enum.
 /// See: [values] for a list of all the services.
-class BluetoothDefaultServiceUUIDS extends BluetoothDefaultUUIDS {
-  const BluetoothDefaultServiceUUIDS._(
-      String name, String uuid16, String uuid, int ordinal)
-      : super._(name, uuid16, uuid, ordinal);
-
+enum BluetoothDefaultServiceUUIDS {
   /// The default service for Generic Attribute
-  static const genericAttribute = BluetoothDefaultServiceUUIDS._(
-      'Generic Attribute', '1801', '00001801-0000-1000-8000-00805f9b34fb', 0);
-
-  /// This is deprecated use [genericAttribute] instead.
-  static const GENERIC_ATTRIBUTE = genericAttribute;
+  genericAttribute(
+      'Generic Attribute', '1801', '00001801-0000-1000-8000-00805f9b34fb'),
 
   /// The default service for Immediate Alert
-  static const immediateAlert = BluetoothDefaultServiceUUIDS._(
-      'Immediate Alert', '1802', '00001802-0000-1000-8000-00805f9b34fb', 1);
-
-  /// This is deprecated use [immediateAlert] instead.
-  static const IMMEDIATE_ALERT = immediateAlert;
+  immediateAlert(
+      'Immediate Alert', '1802', '00001802-0000-1000-8000-00805f9b34fb'),
 
   /// The default service for Link Loss
-  static const linkLoss = BluetoothDefaultServiceUUIDS._(
-      'Link Loss', '1803', '00001803-0000-1000-8000-00805f9b34fb', 2);
-
-  /// This is deprecated use [linkLoss] instead.
-  static const LINK_LOSS = linkLoss;
+  linkLoss('Link Loss', '1803', '00001803-0000-1000-8000-00805f9b34fb'),
 
   /// The default service for Tx Power
-  static const txPower = BluetoothDefaultServiceUUIDS._(
-      'Tx Power', '1804', '00001804-0000-1000-8000-00805f9b34fb', 3);
-
-  /// This is deprecated use [txPower] instead.
-  static const TX_POWER = txPower;
+  txPower('Tx Power', '1804', '00001804-0000-1000-8000-00805f9b34fb'),
 
   /// The default service for Current Time
-  static const currentTime = BluetoothDefaultServiceUUIDS._(
-      'Current Time', '1805', '00001805-0000-1000-8000-00805f9b34fb', 4);
-
-  /// This is deprecated use [currentTime] instead.
-  static const CURRENT_TIME = currentTime;
+  currentTime('Current Time', '1805', '00001805-0000-1000-8000-00805f9b34fb'),
 
   /// The default service for Reference Time Update
-  static const referenceTimeUpdate = BluetoothDefaultServiceUUIDS._(
-      'Reference Time Update',
-      '1806',
-      '00001806-0000-1000-8000-00805f9b34fb',
-      5);
-
-  /// This is deprecated use [referenceTimeUpdate] instead.
-  static const REFERENCE_TIME_UPDATE = referenceTimeUpdate;
+  referenceTimeUpdate(
+      'Reference Time Update', '1806', '00001806-0000-1000-8000-00805f9b34fb'),
 
   /// The default service for Next DST Change
-  static const nextDstChange = BluetoothDefaultServiceUUIDS._(
-      'Next DST Change', '1807', '00001807-0000-1000-8000-00805f9b34fb', 6);
-
-  /// This is deprecated use [nextDstChange] instead.
-  static const NEXT_DST_CHANGE = nextDstChange;
+  nextDstChange(
+      'Next DST Change', '1807', '00001807-0000-1000-8000-00805f9b34fb'),
 
   /// The default service for Glucose
-  static const glucose = BluetoothDefaultServiceUUIDS._(
-      'Glucose', '1808', '00001808-0000-1000-8000-00805f9b34fb', 7);
-
-  /// This is deprecated use [glucose] instead.
-  static const GLUCOSE = glucose;
+  glucose('Glucose', '1808', '00001808-0000-1000-8000-00805f9b34fb'),
 
   /// The default service for Health Thermometer
-  static const healthThermometer = BluetoothDefaultServiceUUIDS._(
-      'Health Thermometer', '1809', '00001809-0000-1000-8000-00805f9b34fb', 8);
-
-  /// This is deprecated use [healthThermometer] instead.
-  static const HEALTH_THERMOMETER = healthThermometer;
+  healthThermometer(
+      'Health Thermometer', '1809', '00001809-0000-1000-8000-00805f9b34fb'),
 
   /// The default service for Device Information
-  static const deviceInformation = BluetoothDefaultServiceUUIDS._(
-      'Device Information', '180a', '0000180a-0000-1000-8000-00805f9b34fb', 9);
-
-  /// This is deprecated use [deviceInformation] instead.
-  static const DEVICE_INFORMATION = deviceInformation;
+  deviceInformation(
+      'Device Information', '180a', '0000180a-0000-1000-8000-00805f9b34fb'),
 
   /// The default service for Heart Rate
-  static const heartRate = BluetoothDefaultServiceUUIDS._(
-      'Heart Rate', '180d', '0000180d-0000-1000-8000-00805f9b34fb', 10);
-
-  /// This is deprecated use [heartRate] instead.
-  static const HEART_RATE = heartRate;
+  heartRate('Heart Rate', '180d', '0000180d-0000-1000-8000-00805f9b34fb'),
 
   /// The default service for Phone Alert Status
-  static const phoneAlertStatus = BluetoothDefaultServiceUUIDS._(
-      'Phone Alert Status', '180e', '0000180e-0000-1000-8000-00805f9b34fb', 11);
-
-  /// This is deprecated use [phoneAlertStatus] instead.
-  static const PHONE_ALERT_STATUS = phoneAlertStatus;
+  phoneAlertStatus(
+      'Phone Alert Status', '180e', '0000180e-0000-1000-8000-00805f9b34fb'),
 
   /// The default service for Battery
-  static const battery = BluetoothDefaultServiceUUIDS._(
-      'Battery', '180f', '0000180f-0000-1000-8000-00805f9b34fb', 12);
-
-  /// This is deprecated use [battery] instead.
-  static const BATTERY = battery;
+  battery('Battery', '180f', '0000180f-0000-1000-8000-00805f9b34fb'),
 
   /// The default service for Blood Pressure
-  static const bloodPressure = BluetoothDefaultServiceUUIDS._(
-      'Blood Pressure', '1810', '00001810-0000-1000-8000-00805f9b34fb', 13);
-
-  /// This is deprecated use [bloodPressure] instead.
-  static const BLOOD_PRESSURE = bloodPressure;
+  bloodPressure(
+      'Blood Pressure', '1810', '00001810-0000-1000-8000-00805f9b34fb'),
 
   /// The default service for Alert Notification
-  static const alertNotification = BluetoothDefaultServiceUUIDS._(
-      'Alert Notification', '1811', '00001811-0000-1000-8000-00805f9b34fb', 14);
-
-  /// This is deprecated use [alertNotification] instead.
-  static const ALERT_NOTIFICATION = alertNotification;
+  alertNotification(
+      'Alert Notification', '1811', '00001811-0000-1000-8000-00805f9b34fb'),
 
   /// The default service for Human Interface Device
-  static const humanInterfaceDevice = BluetoothDefaultServiceUUIDS._(
-      'Human Interface Device',
-      '1812',
-      '00001812-0000-1000-8000-00805f9b34fb',
-      15);
-
-  /// This is deprecated use [humanInterfaceDevice] instead.
-  static const HUMAN_INTERFACE_DEVICE = humanInterfaceDevice;
+  humanInterfaceDevice(
+      'Human Interface Device', '1812', '00001812-0000-1000-8000-00805f9b34fb'),
 
   /// The default service for Scan Parameters
-  static const scanParameters = BluetoothDefaultServiceUUIDS._(
-      'Scan Parameters', '1813', '00001813-0000-1000-8000-00805f9b34fb', 16);
-
-  /// This is deprecated use [scanParameters] instead.
-  static const SCAN_PARAMETERS = scanParameters;
+  scanParameters(
+      'Scan Parameters', '1813', '00001813-0000-1000-8000-00805f9b34fb'),
 
   /// The default service for Running Speed and Cadence
-  static const runningSpeedAndCadence = BluetoothDefaultServiceUUIDS._(
-      'Running Speed and Cadence',
-      '1814',
-      '00001814-0000-1000-8000-00805f9b34fb',
-      17);
-
-  /// This is deprecated use [runningSpeedAndCadence] instead.
-  static const RUNNING_SPEED_AND_CADENCE = runningSpeedAndCadence;
+  runningSpeedAndCadence('Running Speed and Cadence', '1814',
+      '00001814-0000-1000-8000-00805f9b34fb'),
 
   /// The default service for Automation IO
-  static const automationIo = BluetoothDefaultServiceUUIDS._(
-      'Automation IO', '1815', '00001815-0000-1000-8000-00805f9b34fb', 18);
-
-  /// This is deprecated use [automationIo] instead.
-  static const AUTOMATION_IO = automationIo;
+  automationIo('Automation IO', '1815', '00001815-0000-1000-8000-00805f9b34fb'),
 
   /// The default service for Cycling Speed and Cadence
-  static const cyclingSpeedAndCadence = BluetoothDefaultServiceUUIDS._(
-      'Cycling Speed and Cadence',
-      '1816',
-      '00001816-0000-1000-8000-00805f9b34fb',
-      19);
-
-  /// This is deprecated use [cyclingSpeedAndCadence] instead.
-  static const CYCLING_SPEED_AND_CADENCE = cyclingSpeedAndCadence;
+  cyclingSpeedAndCadence('Cycling Speed and Cadence', '1816',
+      '00001816-0000-1000-8000-00805f9b34fb'),
 
   /// The default service for Generic Access
-  static const genericAccess = BluetoothDefaultServiceUUIDS._(
-      'Generic Access', '1800', '00001800-0000-1000-8000-00805f9b34fb', 20);
-
-  /// This is deprecated use [genericAccess] instead.
-  static const GENERIC_ACCESS = genericAccess;
+  genericAccess(
+      'Generic Access', '1800', '00001800-0000-1000-8000-00805f9b34fb'),
 
   /// The default service for Cycling Power
-  static const cyclingPower = BluetoothDefaultServiceUUIDS._(
-      'Cycling Power', '1818', '00001818-0000-1000-8000-00805f9b34fb', 21);
-
-  /// This is deprecated use [cyclingPower] instead.
-  static const CYCLING_POWER = cyclingPower;
+  cyclingPower('Cycling Power', '1818', '00001818-0000-1000-8000-00805f9b34fb'),
 
   /// The default service for Location and Navigation
-  static const locationAndNavigation = BluetoothDefaultServiceUUIDS._(
-      'Location and Navigation',
-      '1819',
-      '00001819-0000-1000-8000-00805f9b34fb',
-      22);
-
-  /// This is deprecated use [locationAndNavigation] instead.
-  static const LOCATION_AND_NAVIGATION = locationAndNavigation;
+  locationAndNavigation('Location and Navigation', '1819',
+      '00001819-0000-1000-8000-00805f9b34fb'),
 
   /// The default service for Environmental Sensing
-  static const environmentalSensing = BluetoothDefaultServiceUUIDS._(
-      'Environmental Sensing',
-      '181a',
-      '0000181a-0000-1000-8000-00805f9b34fb',
-      23);
-
-  /// This is deprecated use [environmentalSensing] instead.
-  static const ENVIRONMENTAL_SENSING = environmentalSensing;
+  environmentalSensing(
+      'Environmental Sensing', '181a', '0000181a-0000-1000-8000-00805f9b34fb'),
 
   /// The default service for Body Composition
-  static const bodyComposition = BluetoothDefaultServiceUUIDS._(
-      'Body Composition', '181b', '0000181b-0000-1000-8000-00805f9b34fb', 24);
-
-  /// This is deprecated use [bodyComposition] instead.
-  static const BODY_COMPOSITION = bodyComposition;
+  bodyComposition(
+      'Body Composition', '181b', '0000181b-0000-1000-8000-00805f9b34fb'),
 
   /// The default service for User Data
-  static const userData = BluetoothDefaultServiceUUIDS._(
-      'User Data', '181c', '0000181c-0000-1000-8000-00805f9b34fb', 25);
-
-  /// This is deprecated use [userData] instead.
-  static const USER_DATA = userData;
+  userData('User Data', '181c', '0000181c-0000-1000-8000-00805f9b34fb'),
 
   /// The default service for Weight Scale
-  static const weightScale = BluetoothDefaultServiceUUIDS._(
-      'Weight Scale', '181d', '0000181d-0000-1000-8000-00805f9b34fb', 26);
-
-  /// This is deprecated use [weightScale] instead.
-  static const WEIGHT_SCALE = weightScale;
+  weightScale('Weight Scale', '181d', '0000181d-0000-1000-8000-00805f9b34fb'),
 
   /// The default service for Bond Management
-  static const bondManagement = BluetoothDefaultServiceUUIDS._(
-      'Bond Management', '181e', '0000181e-0000-1000-8000-00805f9b34fb', 27);
-
-  /// This is deprecated use [bondManagement] instead.
-  static const BOND_MANAGEMENT = bondManagement;
+  bondManagement(
+      'Bond Management', '181e', '0000181e-0000-1000-8000-00805f9b34fb'),
 
   /// The default service for Continuous Glucose Monitoring
-  static const continuousGlucoseMonitoring = BluetoothDefaultServiceUUIDS._(
-      'Continuous Glucose Monitoring',
-      '181f',
-      '0000181f-0000-1000-8000-00805f9b34fb',
-      28);
-
-  /// This is deprecated use [continuousGlucoseMonitoring] instead.
-  static const CONTINUOUS_GLUCOSE_MONITORING = continuousGlucoseMonitoring;
+  continuousGlucoseMonitoring('Continuous Glucose Monitoring', '181f',
+      '0000181f-0000-1000-8000-00805f9b34fb'),
 
   /// The default service for Internet Protocol Support
-  static const internetProtocolSupport = BluetoothDefaultServiceUUIDS._(
-      'Internet Protocol Support',
-      '1820',
-      '00001820-0000-1000-8000-00805f9b34fb',
-      29);
-
-  /// This is deprecated use [internetProtocolSupport] instead.
-  static const INTERNET_PROTOCOL_SUPPORT = internetProtocolSupport;
+  internetProtocolSupport('Internet Protocol Support', '1820',
+      '00001820-0000-1000-8000-00805f9b34fb'),
 
   /// The default service for Indoor Positioning
-  static const indoorPositioning = BluetoothDefaultServiceUUIDS._(
-      'Indoor Positioning', '1821', '00001821-0000-1000-8000-00805f9b34fb', 30);
-
-  /// This is deprecated use [indoorPositioning] instead.
-  static const INDOOR_POSITIONING = indoorPositioning;
+  indoorPositioning(
+      'Indoor Positioning', '1821', '00001821-0000-1000-8000-00805f9b34fb'),
 
   /// The default service for Pulse Oximeter
-  static const pulseOximeter = BluetoothDefaultServiceUUIDS._(
-      'Pulse Oximeter', '1822', '00001822-0000-1000-8000-00805f9b34fb', 31);
-
-  /// This is deprecated use [pulseOximeter] instead.
-  static const PULSE_OXIMETER = pulseOximeter;
+  pulseOximeter(
+      'Pulse Oximeter', '1822', '00001822-0000-1000-8000-00805f9b34fb'),
 
   /// The default service for HTTP Proxy
-  static const httpProxy = BluetoothDefaultServiceUUIDS._(
-      'HTTP Proxy', '1823', '00001823-0000-1000-8000-00805f9b34fb', 32);
-
-  /// This is deprecated use [httpProxy] instead.
-  static const HTTP_PROXY = httpProxy;
+  httpProxy('HTTP Proxy', '1823', '00001823-0000-1000-8000-00805f9b34fb'),
 
   /// The default service for Transport Discovery
-  static const transportDiscovery = BluetoothDefaultServiceUUIDS._(
-      'Transport Discovery',
-      '1824',
-      '00001824-0000-1000-8000-00805f9b34fb',
-      33);
-
-  /// This is deprecated use [transportDiscovery] instead.
-  static const TRANSPORT_DISCOVERY = transportDiscovery;
+  transportDiscovery(
+      'Transport Discovery', '1824', '00001824-0000-1000-8000-00805f9b34fb'),
 
   /// The default service for Object Transfer
-  static const objectTransfer = BluetoothDefaultServiceUUIDS._(
-      'Object Transfer', '1825', '00001825-0000-1000-8000-00805f9b34fb', 34);
-
-  /// This is deprecated use [objectTransfer] instead.
-  static const OBJECT_TRANSFER = objectTransfer;
+  objectTransfer(
+      'Object Transfer', '1825', '00001825-0000-1000-8000-00805f9b34fb'),
 
   /// The default service for Fitness Machine
-  static const fitnessMachine = BluetoothDefaultServiceUUIDS._(
-      'Fitness Machine', '1826', '00001826-0000-1000-8000-00805f9b34fb', 35);
-
-  /// This is deprecated use [fitnessMachine] instead.
-  static const FITNESS_MACHINE = fitnessMachine;
+  fitnessMachine(
+      'Fitness Machine', '1826', '00001826-0000-1000-8000-00805f9b34fb'),
 
   /// The default service for Mesh Provisioning
-  static const meshProvisioning = BluetoothDefaultServiceUUIDS._(
-      'Mesh Provisioning', '1827', '00001827-0000-1000-8000-00805f9b34fb', 36);
-
-  /// This is deprecated use [meshProvisioning] instead.
-  static const MESH_PROVISIONING = meshProvisioning;
+  meshProvisioning(
+      'Mesh Provisioning', '1827', '00001827-0000-1000-8000-00805f9b34fb'),
 
   /// The default service for Mesh Proxy
-  static const meshProxy = BluetoothDefaultServiceUUIDS._(
-      'Mesh Proxy', '1828', '00001828-0000-1000-8000-00805f9b34fb', 37);
-
-  /// This is deprecated use [meshProxy] instead.
-  static const MESH_PROXY = meshProxy;
+  meshProxy('Mesh Proxy', '1828', '00001828-0000-1000-8000-00805f9b34fb'),
 
   /// The default service for Reconnection Configuration
-  static const reconnectionConfiguration = BluetoothDefaultServiceUUIDS._(
-      'Reconnection Configuration',
-      '1829',
-      '00001829-0000-1000-8000-00805f9b34fb',
-      38);
-
-  /// This is deprecated use [reconnectionConfiguration] instead.
-  static const RECONNECTION_CONFIGURATION = reconnectionConfiguration;
+  reconnectionConfiguration('Reconnection Configuration', '1829',
+      '00001829-0000-1000-8000-00805f9b34fb'),
 
   /// The default service for Insulin Delivery
-  static const insulinDelivery = BluetoothDefaultServiceUUIDS._(
-      'Insulin Delivery', '183a', '0000183a-0000-1000-8000-00805f9b34fb', 39);
-
-  /// This is deprecated use [insulinDelivery] instead.
-  static const INSULIN_DELIVERY = insulinDelivery;
+  insulinDelivery(
+      'Insulin Delivery', '183a', '0000183a-0000-1000-8000-00805f9b34fb'),
 
   /// The default service for Binary Sensor
-  static const binarySensor = BluetoothDefaultServiceUUIDS._(
-      'Binary Sensor', '183b', '0000183b-0000-1000-8000-00805f9b34fb', 40);
-
-  /// This is deprecated use [binarySensor] instead.
-  static const BINARY_SENSOR = binarySensor;
+  binarySensor('Binary Sensor', '183b', '0000183b-0000-1000-8000-00805f9b34fb'),
 
   /// The default service for Emergency Configuration
-  static const emergencyConfiguration = BluetoothDefaultServiceUUIDS._(
-      'Emergency Configuration',
-      '183c',
-      '0000183c-0000-1000-8000-00805f9b34fb',
-      41);
-
-  /// This is deprecated use [emergencyConfiguration] instead.
-  static const EMERGENCY_CONFIGURATION = emergencyConfiguration;
+  emergencyConfiguration('Emergency Configuration', '183c',
+      '0000183c-0000-1000-8000-00805f9b34fb'),
 
   /// The default service for Physical Activity Monitor
-  static const physicalActivityMonitor = BluetoothDefaultServiceUUIDS._(
-      'Physical Activity Monitor',
-      '183e',
-      '0000183e-0000-1000-8000-00805f9b34fb',
-      42);
-
-  /// This is deprecated use [physicalActivityMonitor] instead.
-  static const PHYSICAL_ACTIVITY_MONITOR = physicalActivityMonitor;
+  physicalActivityMonitor('Physical Activity Monitor', '183e',
+      '0000183e-0000-1000-8000-00805f9b34fb'),
 
   /// The default service for Audio Input Control
-  static const audioInputControl = BluetoothDefaultServiceUUIDS._(
-      'Audio Input Control',
-      '1843',
-      '00001843-0000-1000-8000-00805f9b34fb',
-      43);
-
-  /// This is deprecated use [audioInputControl] instead.
-  static const AUDIO_INPUT_CONTROL = audioInputControl;
+  audioInputControl(
+      'Audio Input Control', '1843', '00001843-0000-1000-8000-00805f9b34fb'),
 
   /// The default service for Volume Control
-  static const volumeControl = BluetoothDefaultServiceUUIDS._(
-      'Volume Control', '1844', '00001844-0000-1000-8000-00805f9b34fb', 44);
-
-  /// This is deprecated use [volumeControl] instead.
-  static const VOLUME_CONTROL = volumeControl;
+  volumeControl(
+      'Volume Control', '1844', '00001844-0000-1000-8000-00805f9b34fb'),
 
   /// The default service for Volume Offset Control
-  static const volumeOffsetControl = BluetoothDefaultServiceUUIDS._(
-      'Volume Offset Control',
-      '1845',
-      '00001845-0000-1000-8000-00805f9b34fb',
-      45);
-
-  /// This is deprecated use [volumeOffsetControl] instead.
-  static const VOLUME_OFFSET_CONTROL = volumeOffsetControl;
+  volumeOffsetControl(
+      'Volume Offset Control', '1845', '00001845-0000-1000-8000-00805f9b34fb'),
 
   /// The default service for Coordinated Set Identification Service
-  static const coordinatedSetIdentificationService =
-      BluetoothDefaultServiceUUIDS._('Coordinated Set Identification Service',
-          '1846', '00001846-0000-1000-8000-00805f9b34fb', 46);
-
-  /// This is deprecated use [coordinatedSetIdentificationService] instead.
-  static const COORDINATED_SET_IDENTIFICATION_SERVICE =
-      coordinatedSetIdentificationService;
+  coordinatedSetIdentificationService('Coordinated Set Identification Service',
+      '1846', '00001846-0000-1000-8000-00805f9b34fb'),
 
   /// The default service for Device Time
-  static const deviceTime = BluetoothDefaultServiceUUIDS._(
-      'Device Time', '1847', '00001847-0000-1000-8000-00805f9b34fb', 47);
-
-  /// This is deprecated use [deviceTime] instead.
-  static const DEVICE_TIME = deviceTime;
+  deviceTime('Device Time', '1847', '00001847-0000-1000-8000-00805f9b34fb'),
 
   /// The default service for Media Control Service
-  static const mediaControlService = BluetoothDefaultServiceUUIDS._(
-      'Media Control Service',
-      '1848',
-      '00001848-0000-1000-8000-00805f9b34fb',
-      48);
-
-  /// This is deprecated use [mediaControlService] instead.
-  static const MEDIA_CONTROL_SERVICE = mediaControlService;
+  mediaControlService(
+      'Media Control Service', '1848', '00001848-0000-1000-8000-00805f9b34fb'),
 
   /// The default service for Generic Media Control Service
-  static const genericMediaControlService = BluetoothDefaultServiceUUIDS._(
-      'Generic Media Control Service',
-      '1849',
-      '00001849-0000-1000-8000-00805f9b34fb',
-      49);
-
-  /// This is deprecated use [genericMediaControlService] instead.
-  static const GENERIC_MEDIA_CONTROL_SERVICE = genericMediaControlService;
+  genericMediaControlService('Generic Media Control Service', '1849',
+      '00001849-0000-1000-8000-00805f9b34fb'),
 
   /// The default service for Constant Tone Extension
-  static const constantToneExtension = BluetoothDefaultServiceUUIDS._(
-      'Constant Tone Extension',
-      '184a',
-      '0000184a-0000-1000-8000-00805f9b34fb',
-      50);
-
-  /// This is deprecated use [constantToneExtension] instead.
-  static const CONSTANT_TONE_EXTENSION = constantToneExtension;
+  constantToneExtension('Constant Tone Extension', '184a',
+      '0000184a-0000-1000-8000-00805f9b34fb'),
 
   /// The default service for Telephone Bearer Service
-  static const telephoneBearerService = BluetoothDefaultServiceUUIDS._(
-      'Telephone Bearer Service',
-      '184b',
-      '0000184b-0000-1000-8000-00805f9b34fb',
-      51);
-
-  /// This is deprecated use [telephoneBearerService] instead.
-  static const TELEPHONE_BEARER_SERVICE = telephoneBearerService;
+  telephoneBearerService('Telephone Bearer Service', '184b',
+      '0000184b-0000-1000-8000-00805f9b34fb'),
 
   /// The default service for Generic Telephone Bearer Service
-  static const genericTelephoneBearerService = BluetoothDefaultServiceUUIDS._(
-      'Generic Telephone Bearer Service',
-      '184c',
-      '0000184c-0000-1000-8000-00805f9b34fb',
-      52);
-
-  /// This is deprecated use [genericTelephoneBearerService] instead.
-  static const GENERIC_TELEPHONE_BEARER_SERVICE = genericTelephoneBearerService;
+  genericTelephoneBearerService('Generic Telephone Bearer Service', '184c',
+      '0000184c-0000-1000-8000-00805f9b34fb'),
 
   /// The default service for Microphone Control
-  static const microphoneControl = BluetoothDefaultServiceUUIDS._(
-      'Microphone Control', '184d', '0000184d-0000-1000-8000-00805f9b34fb', 53);
+  microphoneControl(
+      'Microphone Control', '184d', '0000184d-0000-1000-8000-00805f9b34fb');
 
-  /// This is deprecated use [microphoneControl] instead.
-  static const MICROPHONE_CONTROL = microphoneControl;
+  ///
+  /// A service UUID consists of a human readable name of the service, as well
+  /// as its uuid represented as a 16 bit uuid and a full 128 bit uuid.
+  ///
+  const BluetoothDefaultServiceUUIDS(this.name, this.uuid16, this.uuid);
 
-  /// All the default services.
-  static const values = [
-    genericAttribute,
-    immediateAlert,
-    linkLoss,
-    txPower,
-    currentTime,
-    referenceTimeUpdate,
-    nextDstChange,
-    glucose,
-    healthThermometer,
-    deviceInformation,
-    heartRate,
-    phoneAlertStatus,
-    battery,
-    bloodPressure,
-    alertNotification,
-    humanInterfaceDevice,
-    scanParameters,
-    runningSpeedAndCadence,
-    automationIo,
-    cyclingSpeedAndCadence,
-    genericAccess,
-    cyclingPower,
-    locationAndNavigation,
-    environmentalSensing,
-    bodyComposition,
-    userData,
-    weightScale,
-    bondManagement,
-    continuousGlucoseMonitoring,
-    internetProtocolSupport,
-    indoorPositioning,
-    pulseOximeter,
-    httpProxy,
-    transportDiscovery,
-    objectTransfer,
-    fitnessMachine,
-    meshProvisioning,
-    meshProxy,
-    reconnectionConfiguration,
-    insulinDelivery,
-    binarySensor,
-    emergencyConfiguration,
-    physicalActivityMonitor,
-    audioInputControl,
-    volumeControl,
-    volumeOffsetControl,
-    coordinatedSetIdentificationService,
-    deviceTime,
-    mediaControlService,
-    genericMediaControlService,
-    constantToneExtension,
-    telephoneBearerService,
-    genericTelephoneBearerService,
-    microphoneControl,
-  ];
+  /// The name of the service.
+  final String name;
 
-  /// All the default services. Deprecated use [values] instead.
-  static const VALUES = [
-    GENERIC_ATTRIBUTE,
-    IMMEDIATE_ALERT,
-    LINK_LOSS,
-    TX_POWER,
-    CURRENT_TIME,
-    REFERENCE_TIME_UPDATE,
-    NEXT_DST_CHANGE,
-    GLUCOSE,
-    HEALTH_THERMOMETER,
-    DEVICE_INFORMATION,
-    HEART_RATE,
-    PHONE_ALERT_STATUS,
-    BATTERY,
-    BLOOD_PRESSURE,
-    ALERT_NOTIFICATION,
-    HUMAN_INTERFACE_DEVICE,
-    SCAN_PARAMETERS,
-    RUNNING_SPEED_AND_CADENCE,
-    AUTOMATION_IO,
-    CYCLING_SPEED_AND_CADENCE,
-    GENERIC_ACCESS,
-    CYCLING_POWER,
-    LOCATION_AND_NAVIGATION,
-    ENVIRONMENTAL_SENSING,
-    BODY_COMPOSITION,
-    USER_DATA,
-    WEIGHT_SCALE,
-    BOND_MANAGEMENT,
-    CONTINUOUS_GLUCOSE_MONITORING,
-    INTERNET_PROTOCOL_SUPPORT,
-    INDOOR_POSITIONING,
-    PULSE_OXIMETER,
-    HTTP_PROXY,
-    TRANSPORT_DISCOVERY,
-    OBJECT_TRANSFER,
-    FITNESS_MACHINE,
-    MESH_PROVISIONING,
-    MESH_PROXY,
-    RECONNECTION_CONFIGURATION,
-    INSULIN_DELIVERY,
-    BINARY_SENSOR,
-    EMERGENCY_CONFIGURATION,
-    PHYSICAL_ACTIVITY_MONITOR,
-    AUDIO_INPUT_CONTROL,
-    VOLUME_CONTROL,
-    VOLUME_OFFSET_CONTROL,
-    COORDINATED_SET_IDENTIFICATION_SERVICE,
-    DEVICE_TIME,
-    MEDIA_CONTROL_SERVICE,
-    GENERIC_MEDIA_CONTROL_SERVICE,
-    CONSTANT_TONE_EXTENSION,
-    TELEPHONE_BEARER_SERVICE,
-    GENERIC_TELEPHONE_BEARER_SERVICE,
-    MICROPHONE_CONTROL,
-  ];
+  /// The shorter 16 bit uuid of the service.
+  final String uuid16;
+
+  /// The full uuid of the service.
+  final String uuid;
 }
 
-/// All the default Bluetooth low energy characteristics are statically defined in this class.
+/// All the default Bluetooth low energy characteristics are defined in this enum.
 /// See: [values] for a list of all the characteristics.
-class BluetoothDefaultCharacteristicUUIDS extends BluetoothDefaultUUIDS {
-  const BluetoothDefaultCharacteristicUUIDS._(
-      String name, String uuid16, String uuid, int ordinal)
-      : super._(name, uuid16, uuid, ordinal);
-
+enum BluetoothDefaultCharacteristicUUIDS {
   /// The default characteristic for Device Name
-  static const deviceName = BluetoothDefaultCharacteristicUUIDS._(
-      'Device Name', '2a00', '00002a00-0000-1000-8000-00805f9b34fb', 0);
-
-  /// This is deprecated use [deviceName] instead.
-  static const DEVICE_NAME = deviceName;
+  deviceName('Device Name', '2a00', '00002a00-0000-1000-8000-00805f9b34fb'),
 
   /// The default characteristic for Appearance
-  static const appearance = BluetoothDefaultCharacteristicUUIDS._(
-      'Appearance', '2a01', '00002a01-0000-1000-8000-00805f9b34fb', 1);
-
-  /// This is deprecated use [appearance] instead.
-  static const APPEARANCE = appearance;
+  appearance('Appearance', '2a01', '00002a01-0000-1000-8000-00805f9b34fb'),
 
   /// The default characteristic for Peripheral Privacy Flag
-  static const peripheralPrivacyFlag = BluetoothDefaultCharacteristicUUIDS._(
-      'Peripheral Privacy Flag',
-      '2a02',
-      '00002a02-0000-1000-8000-00805f9b34fb',
-      2);
-
-  /// This is deprecated use [peripheralPrivacyFlag] instead.
-  static const PERIPHERAL_PRIVACY_FLAG = peripheralPrivacyFlag;
+  peripheralPrivacyFlag('Peripheral Privacy Flag', '2a02',
+      '00002a02-0000-1000-8000-00805f9b34fb'),
 
   /// The default characteristic for Reconnection Address
-  static const reconnectionAddress = BluetoothDefaultCharacteristicUUIDS._(
-      'Reconnection Address',
-      '2a03',
-      '00002a03-0000-1000-8000-00805f9b34fb',
-      3);
-
-  /// This is deprecated use [reconnectionAddress] instead.
-  static const RECONNECTION_ADDRESS = reconnectionAddress;
+  reconnectionAddress(
+      'Reconnection Address', '2a03', '00002a03-0000-1000-8000-00805f9b34fb'),
 
   /// The default characteristic for Peripheral Preferred Connection Parameters
-  static const peripheralPreferredConnectionParameters =
-      BluetoothDefaultCharacteristicUUIDS._(
-          'Peripheral Preferred Connection Parameters',
-          '2a04',
-          '00002a04-0000-1000-8000-00805f9b34fb',
-          4);
-
-  /// This is deprecated use [peripheralPreferredConnectionParameters] instead.
-  static const PERIPHERAL_PREFERRED_CONNECTION_PARAMETERS =
-      peripheralPreferredConnectionParameters;
+  peripheralPreferredConnectionParameters(
+      'Peripheral Preferred Connection Parameters',
+      '2a04',
+      '00002a04-0000-1000-8000-00805f9b34fb'),
 
   /// The default characteristic for Service Changed
-  static const serviceChanged = BluetoothDefaultCharacteristicUUIDS._(
-      'Service Changed', '2a05', '00002a05-0000-1000-8000-00805f9b34fb', 5);
-
-  /// This is deprecated use [serviceChanged] instead.
-  static const SERVICE_CHANGED = serviceChanged;
+  serviceChanged(
+      'Service Changed', '2a05', '00002a05-0000-1000-8000-00805f9b34fb'),
 
   /// The default characteristic for Alert Level
-  static const alertLevel = BluetoothDefaultCharacteristicUUIDS._(
-      'Alert Level', '2a06', '00002a06-0000-1000-8000-00805f9b34fb', 6);
-
-  /// This is deprecated use [alertLevel] instead.
-  static const ALERT_LEVEL = alertLevel;
+  alertLevel('Alert Level', '2a06', '00002a06-0000-1000-8000-00805f9b34fb'),
 
   /// The default characteristic for Tx Power Level
-  static const txPowerLevel = BluetoothDefaultCharacteristicUUIDS._(
-      'Tx Power Level', '2a07', '00002a07-0000-1000-8000-00805f9b34fb', 7);
-
-  /// This is deprecated use [txPowerLevel] instead.
-  static const TX_POWER_LEVEL = txPowerLevel;
+  txPowerLevel(
+      'Tx Power Level', '2a07', '00002a07-0000-1000-8000-00805f9b34fb'),
 
   /// The default characteristic for Date Time
-  static const dateTime = BluetoothDefaultCharacteristicUUIDS._(
-      'Date Time', '2a08', '00002a08-0000-1000-8000-00805f9b34fb', 8);
-
-  /// This is deprecated use [dateTime] instead.
-  static const DATE_TIME = dateTime;
+  dateTime('Date Time', '2a08', '00002a08-0000-1000-8000-00805f9b34fb'),
 
   /// The default characteristic for Day of Week
-  static const dayOfWeek = BluetoothDefaultCharacteristicUUIDS._(
-      'Day of Week', '2a09', '00002a09-0000-1000-8000-00805f9b34fb', 9);
-
-  /// This is deprecated use [dayOfWeek] instead.
-  static const DAY_OF_WEEK = dayOfWeek;
+  dayOfWeek('Day of Week', '2a09', '00002a09-0000-1000-8000-00805f9b34fb'),
 
   /// The default characteristic for Day Date Time
-  static const dayDateTime = BluetoothDefaultCharacteristicUUIDS._(
-      'Day Date Time', '2a0a', '00002a0a-0000-1000-8000-00805f9b34fb', 10);
-
-  /// This is deprecated use [dayDateTime] instead.
-  static const DAY_DATE_TIME = dayDateTime;
+  dayDateTime('Day Date Time', '2a0a', '00002a0a-0000-1000-8000-00805f9b34fb'),
 
   /// The default characteristic for Exact Time 256
-  static const exactTime256 = BluetoothDefaultCharacteristicUUIDS._(
-      'Exact Time 256', '2a0c', '00002a0c-0000-1000-8000-00805f9b34fb', 11);
-
-  /// This is deprecated use [exactTime256] instead.
-  static const EXACT_TIME_256 = exactTime256;
+  exactTime256(
+      'Exact Time 256', '2a0c', '00002a0c-0000-1000-8000-00805f9b34fb'),
 
   /// The default characteristic for DST Offset
-  static const dstOffset = BluetoothDefaultCharacteristicUUIDS._(
-      'DST Offset', '2a0d', '00002a0d-0000-1000-8000-00805f9b34fb', 12);
-
-  /// This is deprecated use [dstOffset] instead.
-  static const DST_OFFSET = dstOffset;
+  dstOffset('DST Offset', '2a0d', '00002a0d-0000-1000-8000-00805f9b34fb'),
 
   /// The default characteristic for Time Zone
-  static const timeZone = BluetoothDefaultCharacteristicUUIDS._(
-      'Time Zone', '2a0e', '00002a0e-0000-1000-8000-00805f9b34fb', 13);
-
-  /// This is deprecated use [timeZone] instead.
-  static const TIME_ZONE = timeZone;
+  timeZone('Time Zone', '2a0e', '00002a0e-0000-1000-8000-00805f9b34fb'),
 
   /// The default characteristic for Local Time Information
-  static const localTimeInformation = BluetoothDefaultCharacteristicUUIDS._(
-      'Local Time Information',
-      '2a0f',
-      '00002a0f-0000-1000-8000-00805f9b34fb',
-      14);
-
-  /// This is deprecated use [localTimeInformation] instead.
-  static const LOCAL_TIME_INFORMATION = localTimeInformation;
+  localTimeInformation(
+      'Local Time Information', '2a0f', '00002a0f-0000-1000-8000-00805f9b34fb'),
 
   /// The default characteristic for Time with DST
-  static const timeWithDst = BluetoothDefaultCharacteristicUUIDS._(
-      'Time with DST', '2a11', '00002a11-0000-1000-8000-00805f9b34fb', 15);
-
-  /// This is deprecated use [timeWithDst] instead.
-  static const TIME_WITH_DST = timeWithDst;
+  timeWithDst('Time with DST', '2a11', '00002a11-0000-1000-8000-00805f9b34fb'),
 
   /// The default characteristic for Time Accuracy
-  static const timeAccuracy = BluetoothDefaultCharacteristicUUIDS._(
-      'Time Accuracy', '2a12', '00002a12-0000-1000-8000-00805f9b34fb', 16);
-
-  /// This is deprecated use [timeAccuracy] instead.
-  static const TIME_ACCURACY = timeAccuracy;
+  timeAccuracy('Time Accuracy', '2a12', '00002a12-0000-1000-8000-00805f9b34fb'),
 
   /// The default characteristic for Time Source
-  static const timeSource = BluetoothDefaultCharacteristicUUIDS._(
-      'Time Source', '2a13', '00002a13-0000-1000-8000-00805f9b34fb', 17);
-
-  /// This is deprecated use [timeSource] instead.
-  static const TIME_SOURCE = timeSource;
+  timeSource('Time Source', '2a13', '00002a13-0000-1000-8000-00805f9b34fb'),
 
   /// The default characteristic for Reference Time Information
-  static const referenceTimeInformation = BluetoothDefaultCharacteristicUUIDS._(
-      'Reference Time Information',
-      '2a14',
-      '00002a14-0000-1000-8000-00805f9b34fb',
-      18);
-
-  /// This is deprecated use [referenceTimeInformation] instead.
-  static const REFERENCE_TIME_INFORMATION = referenceTimeInformation;
+  referenceTimeInformation('Reference Time Information', '2a14',
+      '00002a14-0000-1000-8000-00805f9b34fb'),
 
   /// The default characteristic for Time Update Control Point
-  static const timeUpdateControlPoint = BluetoothDefaultCharacteristicUUIDS._(
-      'Time Update Control Point',
-      '2a16',
-      '00002a16-0000-1000-8000-00805f9b34fb',
-      19);
-
-  /// This is deprecated use [timeUpdateControlPoint] instead.
-  static const TIME_UPDATE_CONTROL_POINT = timeUpdateControlPoint;
+  timeUpdateControlPoint('Time Update Control Point', '2a16',
+      '00002a16-0000-1000-8000-00805f9b34fb'),
 
   /// The default characteristic for Time Update State
-  static const timeUpdateState = BluetoothDefaultCharacteristicUUIDS._(
-      'Time Update State', '2a17', '00002a17-0000-1000-8000-00805f9b34fb', 20);
-
-  /// This is deprecated use [timeUpdateState] instead.
-  static const TIME_UPDATE_STATE = timeUpdateState;
+  timeUpdateState(
+      'Time Update State', '2a17', '00002a17-0000-1000-8000-00805f9b34fb'),
 
   /// The default characteristic for Glucose Measurement
-  static const glucoseMeasurement = BluetoothDefaultCharacteristicUUIDS._(
-      'Glucose Measurement',
-      '2a18',
-      '00002a18-0000-1000-8000-00805f9b34fb',
-      21);
-
-  /// This is deprecated use [glucoseMeasurement] instead.
-  static const GLUCOSE_MEASUREMENT = glucoseMeasurement;
+  glucoseMeasurement(
+      'Glucose Measurement', '2a18', '00002a18-0000-1000-8000-00805f9b34fb'),
 
   /// The default characteristic for Battery Level
-  static const batteryLevel = BluetoothDefaultCharacteristicUUIDS._(
-      'Battery Level', '2a19', '00002a19-0000-1000-8000-00805f9b34fb', 22);
-
-  /// This is deprecated use [batteryLevel] instead.
-  static const BATTERY_LEVEL = batteryLevel;
+  batteryLevel('Battery Level', '2a19', '00002a19-0000-1000-8000-00805f9b34fb'),
 
   /// The default characteristic for Temperature Measurement
-  static const temperatureMeasurement = BluetoothDefaultCharacteristicUUIDS._(
-      'Temperature Measurement',
-      '2a1c',
-      '00002a1c-0000-1000-8000-00805f9b34fb',
-      23);
-
-  /// This is deprecated use [temperatureMeasurement] instead.
-  static const TEMPERATURE_MEASUREMENT = temperatureMeasurement;
+  temperatureMeasurement('Temperature Measurement', '2a1c',
+      '00002a1c-0000-1000-8000-00805f9b34fb'),
 
   /// The default characteristic for Temperature Type
-  static const temperatureType = BluetoothDefaultCharacteristicUUIDS._(
-      'Temperature Type', '2a1d', '00002a1d-0000-1000-8000-00805f9b34fb', 24);
-
-  /// This is deprecated use [temperatureType] instead.
-  static const TEMPERATURE_TYPE = temperatureType;
+  temperatureType(
+      'Temperature Type', '2a1d', '00002a1d-0000-1000-8000-00805f9b34fb'),
 
   /// The default characteristic for Intermediate Temperature
-  static const intermediateTemperature = BluetoothDefaultCharacteristicUUIDS._(
-      'Intermediate Temperature',
-      '2a1e',
-      '00002a1e-0000-1000-8000-00805f9b34fb',
-      25);
-
-  /// This is deprecated use [intermediateTemperature] instead.
-  static const INTERMEDIATE_TEMPERATURE = intermediateTemperature;
+  intermediateTemperature('Intermediate Temperature', '2a1e',
+      '00002a1e-0000-1000-8000-00805f9b34fb'),
 
   /// The default characteristic for Measurement Interval
-  static const measurementInterval = BluetoothDefaultCharacteristicUUIDS._(
-      'Measurement Interval',
-      '2a21',
-      '00002a21-0000-1000-8000-00805f9b34fb',
-      26);
-
-  /// This is deprecated use [measurementInterval] instead.
-  static const MEASUREMENT_INTERVAL = measurementInterval;
+  measurementInterval(
+      'Measurement Interval', '2a21', '00002a21-0000-1000-8000-00805f9b34fb'),
 
   /// The default characteristic for Boot Keyboard Input Report
-  static const bootKeyboardInputReport = BluetoothDefaultCharacteristicUUIDS._(
-      'Boot Keyboard Input Report',
-      '2a22',
-      '00002a22-0000-1000-8000-00805f9b34fb',
-      27);
-
-  /// This is deprecated use [bootKeyboardInputReport] instead.
-  static const BOOT_KEYBOARD_INPUT_REPORT = bootKeyboardInputReport;
+  bootKeyboardInputReport('Boot Keyboard Input Report', '2a22',
+      '00002a22-0000-1000-8000-00805f9b34fb'),
 
   /// The default characteristic for System ID
-  static const systemId = BluetoothDefaultCharacteristicUUIDS._(
-      'System ID', '2a23', '00002a23-0000-1000-8000-00805f9b34fb', 28);
-
-  /// This is deprecated use [systemId] instead.
-  static const SYSTEM_ID = systemId;
+  systemId('System ID', '2a23', '00002a23-0000-1000-8000-00805f9b34fb'),
 
   /// The default characteristic for Model Number String
-  static const modelNumberString = BluetoothDefaultCharacteristicUUIDS._(
-      'Model Number String',
-      '2a24',
-      '00002a24-0000-1000-8000-00805f9b34fb',
-      29);
-
-  /// This is deprecated use [modelNumberString] instead.
-  static const MODEL_NUMBER_STRING = modelNumberString;
+  modelNumberString(
+      'Model Number String', '2a24', '00002a24-0000-1000-8000-00805f9b34fb'),
 
   /// The default characteristic for Serial Number String
-  static const serialNumberString = BluetoothDefaultCharacteristicUUIDS._(
-      'Serial Number String',
-      '2a25',
-      '00002a25-0000-1000-8000-00805f9b34fb',
-      30);
-
-  /// This is deprecated use [serialNumberString] instead.
-  static const SERIAL_NUMBER_STRING = serialNumberString;
+  serialNumberString(
+      'Serial Number String', '2a25', '00002a25-0000-1000-8000-00805f9b34fb'),
 
   /// The default characteristic for Firmware Revision String
-  static const firmwareRevisionString = BluetoothDefaultCharacteristicUUIDS._(
-      'Firmware Revision String',
-      '2a26',
-      '00002a26-0000-1000-8000-00805f9b34fb',
-      31);
-
-  /// This is deprecated use [firmwareRevisionString] instead.
-  static const FIRMWARE_REVISION_STRING = firmwareRevisionString;
+  firmwareRevisionString('Firmware Revision String', '2a26',
+      '00002a26-0000-1000-8000-00805f9b34fb'),
 
   /// The default characteristic for Hardware Revision String
-  static const hardwareRevisionString = BluetoothDefaultCharacteristicUUIDS._(
-      'Hardware Revision String',
-      '2a27',
-      '00002a27-0000-1000-8000-00805f9b34fb',
-      32);
-
-  /// This is deprecated use [hardwareRevisionString] instead.
-  static const HARDWARE_REVISION_STRING = hardwareRevisionString;
+  hardwareRevisionString('Hardware Revision String', '2a27',
+      '00002a27-0000-1000-8000-00805f9b34fb'),
 
   /// The default characteristic for Software Revision String
-  static const softwareRevisionString = BluetoothDefaultCharacteristicUUIDS._(
-      'Software Revision String',
-      '2a28',
-      '00002a28-0000-1000-8000-00805f9b34fb',
-      33);
-
-  /// This is deprecated use [softwareRevisionString] instead.
-  static const SOFTWARE_REVISION_STRING = softwareRevisionString;
+  softwareRevisionString('Software Revision String', '2a28',
+      '00002a28-0000-1000-8000-00805f9b34fb'),
 
   /// The default characteristic for Manufacturer Name String
-  static const manufacturerNameString = BluetoothDefaultCharacteristicUUIDS._(
-      'Manufacturer Name String',
-      '2a29',
-      '00002a29-0000-1000-8000-00805f9b34fb',
-      34);
-
-  /// This is deprecated use [manufacturerNameString] instead.
-  static const MANUFACTURER_NAME_STRING = manufacturerNameString;
+  manufacturerNameString('Manufacturer Name String', '2a29',
+      '00002a29-0000-1000-8000-00805f9b34fb'),
 
   /// The default characteristic for IEEE 11073-20601 Regulatory Certification Data List
-  static const ieee11073_20601RegulatoryCertificationDataList =
-      BluetoothDefaultCharacteristicUUIDS._(
-          'IEEE 11073-20601 Regulatory Certification Data List',
-          '2a2a',
-          '00002a2a-0000-1000-8000-00805f9b34fb',
-          35);
-
-  /// This is deprecated use [ieee11073_20601RegulatoryCertificationDataList] instead.
-  static const IEEE_11073_20601_REGULATORY_CERTIFICATION_DATA_LIST =
-      ieee11073_20601RegulatoryCertificationDataList;
+  ieee1107320601RegulatoryCertificationDataList(
+      'IEEE 11073-20601 Regulatory Certification Data List',
+      '2a2a',
+      '00002a2a-0000-1000-8000-00805f9b34fb'),
 
   /// The default characteristic for Current Time
-  static const currentTime = BluetoothDefaultCharacteristicUUIDS._(
-      'Current Time', '2a2b', '00002a2b-0000-1000-8000-00805f9b34fb', 36);
-
-  /// This is deprecated use [currentTime] instead.
-  static const CURRENT_TIME = currentTime;
+  currentTime('Current Time', '2a2b', '00002a2b-0000-1000-8000-00805f9b34fb'),
 
   /// The default characteristic for Scan Refresh
-  static const scanRefresh = BluetoothDefaultCharacteristicUUIDS._(
-      'Scan Refresh', '2a31', '00002a31-0000-1000-8000-00805f9b34fb', 37);
-
-  /// This is deprecated use [scanRefresh] instead.
-  static const SCAN_REFRESH = scanRefresh;
+  scanRefresh('Scan Refresh', '2a31', '00002a31-0000-1000-8000-00805f9b34fb'),
 
   /// The default characteristic for Boot Keyboard Output Report
-  static const bootKeyboardOutputReport = BluetoothDefaultCharacteristicUUIDS._(
-      'Boot Keyboard Output Report',
-      '2a32',
-      '00002a32-0000-1000-8000-00805f9b34fb',
-      38);
-
-  /// This is deprecated use [bootKeyboardOutputReport] instead.
-  static const BOOT_KEYBOARD_OUTPUT_REPORT = bootKeyboardOutputReport;
+  bootKeyboardOutputReport('Boot Keyboard Output Report', '2a32',
+      '00002a32-0000-1000-8000-00805f9b34fb'),
 
   /// The default characteristic for Boot Mouse Input Report
-  static const bootMouseInputReport = BluetoothDefaultCharacteristicUUIDS._(
-      'Boot Mouse Input Report',
-      '2a33',
-      '00002a33-0000-1000-8000-00805f9b34fb',
-      39);
-
-  /// This is deprecated use [bootMouseInputReport] instead.
-  static const BOOT_MOUSE_INPUT_REPORT = bootMouseInputReport;
+  bootMouseInputReport('Boot Mouse Input Report', '2a33',
+      '00002a33-0000-1000-8000-00805f9b34fb'),
 
   /// The default characteristic for Glucose Measurement Context
-  static const glucoseMeasurementContext =
-      BluetoothDefaultCharacteristicUUIDS._('Glucose Measurement Context',
-          '2a34', '00002a34-0000-1000-8000-00805f9b34fb', 40);
-
-  /// This is deprecated use [glucoseMeasurementContext] instead.
-  static const GLUCOSE_MEASUREMENT_CONTEXT = glucoseMeasurementContext;
+  glucoseMeasurementContext('Glucose Measurement Context', '2a34',
+      '00002a34-0000-1000-8000-00805f9b34fb'),
 
   /// The default characteristic for Blood Pressure Measurement
-  static const bloodPressureMeasurement = BluetoothDefaultCharacteristicUUIDS._(
-      'Blood Pressure Measurement',
-      '2a35',
-      '00002a35-0000-1000-8000-00805f9b34fb',
-      41);
-
-  /// This is deprecated use [bloodPressureMeasurement] instead.
-  static const BLOOD_PRESSURE_MEASUREMENT = bloodPressureMeasurement;
+  bloodPressureMeasurement('Blood Pressure Measurement', '2a35',
+      '00002a35-0000-1000-8000-00805f9b34fb'),
 
   /// The default characteristic for Intermediate Cuff Pressure
-  static const intermediateCuffPressure = BluetoothDefaultCharacteristicUUIDS._(
-      'Intermediate Cuff Pressure',
-      '2a36',
-      '00002a36-0000-1000-8000-00805f9b34fb',
-      42);
-
-  /// This is deprecated use [intermediateCuffPressure] instead.
-  static const INTERMEDIATE_CUFF_PRESSURE = intermediateCuffPressure;
+  intermediateCuffPressure('Intermediate Cuff Pressure', '2a36',
+      '00002a36-0000-1000-8000-00805f9b34fb'),
 
   /// The default characteristic for Heart Rate Measurement
-  static const heartRateMeasurement = BluetoothDefaultCharacteristicUUIDS._(
-      'Heart Rate Measurement',
-      '2a37',
-      '00002a37-0000-1000-8000-00805f9b34fb',
-      43);
-
-  /// This is deprecated use [heartRateMeasurement] instead.
-  static const HEART_RATE_MEASUREMENT = heartRateMeasurement;
+  heartRateMeasurement(
+      'Heart Rate Measurement', '2a37', '00002a37-0000-1000-8000-00805f9b34fb'),
 
   /// The default characteristic for Body Sensor Location
-  static const bodySensorLocation = BluetoothDefaultCharacteristicUUIDS._(
-      'Body Sensor Location',
-      '2a38',
-      '00002a38-0000-1000-8000-00805f9b34fb',
-      44);
-
-  /// This is deprecated use [bodySensorLocation] instead.
-  static const BODY_SENSOR_LOCATION = bodySensorLocation;
+  bodySensorLocation(
+      'Body Sensor Location', '2a38', '00002a38-0000-1000-8000-00805f9b34fb'),
 
   /// The default characteristic for Heart Rate Control Point
-  static const heartRateControlPoint = BluetoothDefaultCharacteristicUUIDS._(
-      'Heart Rate Control Point',
-      '2a39',
-      '00002a39-0000-1000-8000-00805f9b34fb',
-      45);
-
-  /// This is deprecated use [heartRateControlPoint] instead.
-  static const HEART_RATE_CONTROL_POINT = heartRateControlPoint;
+  heartRateControlPoint('Heart Rate Control Point', '2a39',
+      '00002a39-0000-1000-8000-00805f9b34fb'),
 
   /// The default characteristic for Alert Status
-  static const alertStatus = BluetoothDefaultCharacteristicUUIDS._(
-      'Alert Status', '2a3f', '00002a3f-0000-1000-8000-00805f9b34fb', 46);
-
-  /// This is deprecated use [alertStatus] instead.
-  static const ALERT_STATUS = alertStatus;
+  alertStatus('Alert Status', '2a3f', '00002a3f-0000-1000-8000-00805f9b34fb'),
 
   /// The default characteristic for Ringer Control Point
-  static const ringerControlPoint = BluetoothDefaultCharacteristicUUIDS._(
-      'Ringer Control Point',
-      '2a40',
-      '00002a40-0000-1000-8000-00805f9b34fb',
-      47);
-
-  /// This is deprecated use [ringerControlPoint] instead.
-  static const RINGER_CONTROL_POINT = ringerControlPoint;
+  ringerControlPoint(
+      'Ringer Control Point', '2a40', '00002a40-0000-1000-8000-00805f9b34fb'),
 
   /// The default characteristic for Ringer Setting
-  static const ringerSetting = BluetoothDefaultCharacteristicUUIDS._(
-      'Ringer Setting', '2a41', '00002a41-0000-1000-8000-00805f9b34fb', 48);
-
-  /// This is deprecated use [ringerSetting] instead.
-  static const RINGER_SETTING = ringerSetting;
+  ringerSetting(
+      'Ringer Setting', '2a41', '00002a41-0000-1000-8000-00805f9b34fb'),
 
   /// The default characteristic for Alert Category ID Bit Mask
-  static const alertCategoryIdBitMask = BluetoothDefaultCharacteristicUUIDS._(
-      'Alert Category ID Bit Mask',
-      '2a42',
-      '00002a42-0000-1000-8000-00805f9b34fb',
-      49);
-
-  /// This is deprecated use [alertCategoryIdBitMask] instead.
-  static const ALERT_CATEGORY_ID_BIT_MASK = alertCategoryIdBitMask;
+  alertCategoryIdBitMask('Alert Category ID Bit Mask', '2a42',
+      '00002a42-0000-1000-8000-00805f9b34fb'),
 
   /// The default characteristic for Alert Category ID
-  static const alertCategoryId = BluetoothDefaultCharacteristicUUIDS._(
-      'Alert Category ID', '2a43', '00002a43-0000-1000-8000-00805f9b34fb', 50);
-
-  /// This is deprecated use [alertCategoryId] instead.
-  static const ALERT_CATEGORY_ID = alertCategoryId;
+  alertCategoryId(
+      'Alert Category ID', '2a43', '00002a43-0000-1000-8000-00805f9b34fb'),
 
   /// The default characteristic for Alert Notification Control Point
-  static const alertNotificationControlPoint =
-      BluetoothDefaultCharacteristicUUIDS._('Alert Notification Control Point',
-          '2a44', '00002a44-0000-1000-8000-00805f9b34fb', 51);
-
-  /// This is deprecated use [alertNotificationControlPoint] instead.
-  static const ALERT_NOTIFICATION_CONTROL_POINT = alertNotificationControlPoint;
+  alertNotificationControlPoint('Alert Notification Control Point', '2a44',
+      '00002a44-0000-1000-8000-00805f9b34fb'),
 
   /// The default characteristic for Unread Alert Status
-  static const unreadAlertStatus = BluetoothDefaultCharacteristicUUIDS._(
-      'Unread Alert Status',
-      '2a45',
-      '00002a45-0000-1000-8000-00805f9b34fb',
-      52);
-
-  /// This is deprecated use [unreadAlertStatus] instead.
-  static const UNREAD_ALERT_STATUS = unreadAlertStatus;
+  unreadAlertStatus(
+      'Unread Alert Status', '2a45', '00002a45-0000-1000-8000-00805f9b34fb'),
 
   /// The default characteristic for New Alert
-  static const newAlert = BluetoothDefaultCharacteristicUUIDS._(
-      'New Alert', '2a46', '00002a46-0000-1000-8000-00805f9b34fb', 53);
-
-  /// This is deprecated use [newAlert] instead.
-  static const NEW_ALERT = newAlert;
+  newAlert('New Alert', '2a46', '00002a46-0000-1000-8000-00805f9b34fb'),
 
   /// The default characteristic for Supported New Alert Category
-  static const supportedNewAlertCategory =
-      BluetoothDefaultCharacteristicUUIDS._('Supported New Alert Category',
-          '2a47', '00002a47-0000-1000-8000-00805f9b34fb', 54);
-
-  /// This is deprecated use [supportedNewAlertCategory] instead.
-  static const SUPPORTED_NEW_ALERT_CATEGORY = supportedNewAlertCategory;
+  supportedNewAlertCategory('Supported New Alert Category', '2a47',
+      '00002a47-0000-1000-8000-00805f9b34fb'),
 
   /// The default characteristic for Supported Unread Alert Category
-  static const supportedUnreadAlertCategory =
-      BluetoothDefaultCharacteristicUUIDS._('Supported Unread Alert Category',
-          '2a48', '00002a48-0000-1000-8000-00805f9b34fb', 55);
-
-  /// This is deprecated use [supportedUnreadAlertCategory] instead.
-  static const SUPPORTED_UNREAD_ALERT_CATEGORY = supportedUnreadAlertCategory;
+  supportedUnreadAlertCategory('Supported Unread Alert Category', '2a48',
+      '00002a48-0000-1000-8000-00805f9b34fb'),
 
   /// The default characteristic for Blood Pressure Feature
-  static const bloodPressureFeature = BluetoothDefaultCharacteristicUUIDS._(
-      'Blood Pressure Feature',
-      '2a49',
-      '00002a49-0000-1000-8000-00805f9b34fb',
-      56);
-
-  /// This is deprecated use [bloodPressureFeature] instead.
-  static const BLOOD_PRESSURE_FEATURE = bloodPressureFeature;
+  bloodPressureFeature(
+      'Blood Pressure Feature', '2a49', '00002a49-0000-1000-8000-00805f9b34fb'),
 
   /// The default characteristic for HID Information
-  static const hidInformation = BluetoothDefaultCharacteristicUUIDS._(
-      'HID Information', '2a4a', '00002a4a-0000-1000-8000-00805f9b34fb', 57);
-
-  /// This is deprecated use [hidInformation] instead.
-  static const HID_INFORMATION = hidInformation;
+  hidInformation(
+      'HID Information', '2a4a', '00002a4a-0000-1000-8000-00805f9b34fb'),
 
   /// The default characteristic for Report Map
-  static const reportMap = BluetoothDefaultCharacteristicUUIDS._(
-      'Report Map', '2a4b', '00002a4b-0000-1000-8000-00805f9b34fb', 58);
-
-  /// This is deprecated use [reportMap] instead.
-  static const REPORT_MAP = reportMap;
+  reportMap('Report Map', '2a4b', '00002a4b-0000-1000-8000-00805f9b34fb'),
 
   /// The default characteristic for HID Control Point
-  static const hidControlPoint = BluetoothDefaultCharacteristicUUIDS._(
-      'HID Control Point', '2a4c', '00002a4c-0000-1000-8000-00805f9b34fb', 59);
-
-  /// This is deprecated use [hidControlPoint] instead.
-  static const HID_CONTROL_POINT = hidControlPoint;
+  hidControlPoint(
+      'HID Control Point', '2a4c', '00002a4c-0000-1000-8000-00805f9b34fb'),
 
   /// The default characteristic for Report
-  static const report = BluetoothDefaultCharacteristicUUIDS._(
-      'Report', '2a4d', '00002a4d-0000-1000-8000-00805f9b34fb', 60);
-
-  /// This is deprecated use [report] instead.
-  static const REPORT = report;
+  report('Report', '2a4d', '00002a4d-0000-1000-8000-00805f9b34fb'),
 
   /// The default characteristic for Protocol Mode
-  static const protocolMode = BluetoothDefaultCharacteristicUUIDS._(
-      'Protocol Mode', '2a4e', '00002a4e-0000-1000-8000-00805f9b34fb', 61);
-
-  /// This is deprecated use [protocolMode] instead.
-  static const PROTOCOL_MODE = protocolMode;
+  protocolMode('Protocol Mode', '2a4e', '00002a4e-0000-1000-8000-00805f9b34fb'),
 
   /// The default characteristic for Scan Interval Window
-  static const scanIntervalWindow = BluetoothDefaultCharacteristicUUIDS._(
-      'Scan Interval Window',
-      '2a4f',
-      '00002a4f-0000-1000-8000-00805f9b34fb',
-      62);
-
-  /// This is deprecated use [scanIntervalWindow] instead.
-  static const SCAN_INTERVAL_WINDOW = scanIntervalWindow;
+  scanIntervalWindow(
+      'Scan Interval Window', '2a4f', '00002a4f-0000-1000-8000-00805f9b34fb'),
 
   /// The default characteristic for PnP ID
-  static const pnpId = BluetoothDefaultCharacteristicUUIDS._(
-      'PnP ID', '2a50', '00002a50-0000-1000-8000-00805f9b34fb', 63);
-
-  /// This is deprecated use [pnpId] instead.
-  static const PNP_ID = pnpId;
+  pnpId('PnP ID', '2a50', '00002a50-0000-1000-8000-00805f9b34fb'),
 
   /// The default characteristic for Glucose Feature
-  static const glucoseFeature = BluetoothDefaultCharacteristicUUIDS._(
-      'Glucose Feature', '2a51', '00002a51-0000-1000-8000-00805f9b34fb', 64);
-
-  /// This is deprecated use [glucoseFeature] instead.
-  static const GLUCOSE_FEATURE = glucoseFeature;
+  glucoseFeature(
+      'Glucose Feature', '2a51', '00002a51-0000-1000-8000-00805f9b34fb'),
 
   /// The default characteristic for Record Access Control Point
-  static const recordAccessControlPoint = BluetoothDefaultCharacteristicUUIDS._(
-      'Record Access Control Point',
-      '2a52',
-      '00002a52-0000-1000-8000-00805f9b34fb',
-      65);
-
-  /// This is deprecated use [recordAccessControlPoint] instead.
-  static const RECORD_ACCESS_CONTROL_POINT = recordAccessControlPoint;
+  recordAccessControlPoint('Record Access Control Point', '2a52',
+      '00002a52-0000-1000-8000-00805f9b34fb'),
 
   /// The default characteristic for RSC Measurement
-  static const rscMeasurement = BluetoothDefaultCharacteristicUUIDS._(
-      'RSC Measurement', '2a53', '00002a53-0000-1000-8000-00805f9b34fb', 66);
-
-  /// This is deprecated use [rscMeasurement] instead.
-  static const RSC_MEASUREMENT = rscMeasurement;
+  rscMeasurement(
+      'RSC Measurement', '2a53', '00002a53-0000-1000-8000-00805f9b34fb'),
 
   /// The default characteristic for RSC Feature
-  static const rscFeature = BluetoothDefaultCharacteristicUUIDS._(
-      'RSC Feature', '2a54', '00002a54-0000-1000-8000-00805f9b34fb', 67);
-
-  /// This is deprecated use [rscFeature] instead.
-  static const RSC_FEATURE = rscFeature;
+  rscFeature('RSC Feature', '2a54', '00002a54-0000-1000-8000-00805f9b34fb'),
 
   /// The default characteristic for SC Control Point
-  static const scControlPoint = BluetoothDefaultCharacteristicUUIDS._(
-      'SC Control Point', '2a55', '00002a55-0000-1000-8000-00805f9b34fb', 68);
-
-  /// This is deprecated use [scControlPoint] instead.
-  static const SC_CONTROL_POINT = scControlPoint;
+  scControlPoint(
+      'SC Control Point', '2a55', '00002a55-0000-1000-8000-00805f9b34fb'),
 
   /// The default characteristic for Aggregate
-  static const aggregate = BluetoothDefaultCharacteristicUUIDS._(
-      'Aggregate', '2a5a', '00002a5a-0000-1000-8000-00805f9b34fb', 69);
-
-  /// This is deprecated use [aggregate] instead.
-  static const AGGREGATE = aggregate;
+  aggregate('Aggregate', '2a5a', '00002a5a-0000-1000-8000-00805f9b34fb'),
 
   /// The default characteristic for CSC Measurement
-  static const cscMeasurement = BluetoothDefaultCharacteristicUUIDS._(
-      'CSC Measurement', '2a5b', '00002a5b-0000-1000-8000-00805f9b34fb', 70);
-
-  /// This is deprecated use [cscMeasurement] instead.
-  static const CSC_MEASUREMENT = cscMeasurement;
+  cscMeasurement(
+      'CSC Measurement', '2a5b', '00002a5b-0000-1000-8000-00805f9b34fb'),
 
   /// The default characteristic for CSC Feature
-  static const cscFeature = BluetoothDefaultCharacteristicUUIDS._(
-      'CSC Feature', '2a5c', '00002a5c-0000-1000-8000-00805f9b34fb', 71);
-
-  /// This is deprecated use [cscFeature] instead.
-  static const CSC_FEATURE = cscFeature;
+  cscFeature('CSC Feature', '2a5c', '00002a5c-0000-1000-8000-00805f9b34fb'),
 
   /// The default characteristic for Sensor Location
-  static const sensorLocation = BluetoothDefaultCharacteristicUUIDS._(
-      'Sensor Location', '2a5d', '00002a5d-0000-1000-8000-00805f9b34fb', 72);
-
-  /// This is deprecated use [sensorLocation] instead.
-  static const SENSOR_LOCATION = sensorLocation;
+  sensorLocation(
+      'Sensor Location', '2a5d', '00002a5d-0000-1000-8000-00805f9b34fb'),
 
   /// The default characteristic for PLX Spot-Check Measurement
-  static const plxSpot_checkMeasurement = BluetoothDefaultCharacteristicUUIDS._(
-      'PLX Spot-Check Measurement',
-      '2a5e',
-      '00002a5e-0000-1000-8000-00805f9b34fb',
-      73);
-
-  /// This is deprecated use [plxSpot_checkMeasurement] instead.
-  static const PLX_SPOT_CHECK_MEASUREMENT = plxSpot_checkMeasurement;
+  plxSpotCheckMeasurement('PLX Spot-Check Measurement', '2a5e',
+      '00002a5e-0000-1000-8000-00805f9b34fb'),
 
   /// The default characteristic for PLX Continuous Measurement
-  static const plxContinuousMeasurement = BluetoothDefaultCharacteristicUUIDS._(
-      'PLX Continuous Measurement',
-      '2a5f',
-      '00002a5f-0000-1000-8000-00805f9b34fb',
-      74);
-
-  /// This is deprecated use [plxContinuousMeasurement] instead.
-  static const PLX_CONTINUOUS_MEASUREMENT = plxContinuousMeasurement;
+  plxContinuousMeasurement('PLX Continuous Measurement', '2a5f',
+      '00002a5f-0000-1000-8000-00805f9b34fb'),
 
   /// The default characteristic for PLX Features
-  static const plxFeatures = BluetoothDefaultCharacteristicUUIDS._(
-      'PLX Features', '2a60', '00002a60-0000-1000-8000-00805f9b34fb', 75);
-
-  /// This is deprecated use [plxFeatures] instead.
-  static const PLX_FEATURES = plxFeatures;
+  plxFeatures('PLX Features', '2a60', '00002a60-0000-1000-8000-00805f9b34fb'),
 
   /// The default characteristic for Cycling Power Measurement
-  static const cyclingPowerMeasurement = BluetoothDefaultCharacteristicUUIDS._(
-      'Cycling Power Measurement',
-      '2a63',
-      '00002a63-0000-1000-8000-00805f9b34fb',
-      76);
-
-  /// This is deprecated use [cyclingPowerMeasurement] instead.
-  static const CYCLING_POWER_MEASUREMENT = cyclingPowerMeasurement;
+  cyclingPowerMeasurement('Cycling Power Measurement', '2a63',
+      '00002a63-0000-1000-8000-00805f9b34fb'),
 
   /// The default characteristic for Cycling Power Vector
-  static const cyclingPowerVector = BluetoothDefaultCharacteristicUUIDS._(
-      'Cycling Power Vector',
-      '2a64',
-      '00002a64-0000-1000-8000-00805f9b34fb',
-      77);
-
-  /// This is deprecated use [cyclingPowerVector] instead.
-  static const CYCLING_POWER_VECTOR = cyclingPowerVector;
+  cyclingPowerVector(
+      'Cycling Power Vector', '2a64', '00002a64-0000-1000-8000-00805f9b34fb'),
 
   /// The default characteristic for Cycling Power Feature
-  static const cyclingPowerFeature = BluetoothDefaultCharacteristicUUIDS._(
-      'Cycling Power Feature',
-      '2a65',
-      '00002a65-0000-1000-8000-00805f9b34fb',
-      78);
-
-  /// This is deprecated use [cyclingPowerFeature] instead.
-  static const CYCLING_POWER_FEATURE = cyclingPowerFeature;
+  cyclingPowerFeature(
+      'Cycling Power Feature', '2a65', '00002a65-0000-1000-8000-00805f9b34fb'),
 
   /// The default characteristic for Cycling Power Control Point
-  static const cyclingPowerControlPoint = BluetoothDefaultCharacteristicUUIDS._(
-      'Cycling Power Control Point',
-      '2a66',
-      '00002a66-0000-1000-8000-00805f9b34fb',
-      79);
-
-  /// This is deprecated use [cyclingPowerControlPoint] instead.
-  static const CYCLING_POWER_CONTROL_POINT = cyclingPowerControlPoint;
+  cyclingPowerControlPoint('Cycling Power Control Point', '2a66',
+      '00002a66-0000-1000-8000-00805f9b34fb'),
 
   /// The default characteristic for Location and Speed
-  static const locationAndSpeed = BluetoothDefaultCharacteristicUUIDS._(
-      'Location and Speed', '2a67', '00002a67-0000-1000-8000-00805f9b34fb', 80);
-
-  /// This is deprecated use [locationAndSpeed] instead.
-  static const LOCATION_AND_SPEED = locationAndSpeed;
+  locationAndSpeed(
+      'Location and Speed', '2a67', '00002a67-0000-1000-8000-00805f9b34fb'),
 
   /// The default characteristic for Navigation
-  static const navigation = BluetoothDefaultCharacteristicUUIDS._(
-      'Navigation', '2a68', '00002a68-0000-1000-8000-00805f9b34fb', 81);
-
-  /// This is deprecated use [navigation] instead.
-  static const NAVIGATION = navigation;
+  navigation('Navigation', '2a68', '00002a68-0000-1000-8000-00805f9b34fb'),
 
   /// The default characteristic for Position Quality
-  static const positionQuality = BluetoothDefaultCharacteristicUUIDS._(
-      'Position Quality', '2a69', '00002a69-0000-1000-8000-00805f9b34fb', 82);
-
-  /// This is deprecated use [positionQuality] instead.
-  static const POSITION_QUALITY = positionQuality;
+  positionQuality(
+      'Position Quality', '2a69', '00002a69-0000-1000-8000-00805f9b34fb'),
 
   /// The default characteristic for LN Feature
-  static const lnFeature = BluetoothDefaultCharacteristicUUIDS._(
-      'LN Feature', '2a6a', '00002a6a-0000-1000-8000-00805f9b34fb', 83);
-
-  /// This is deprecated use [lnFeature] instead.
-  static const LN_FEATURE = lnFeature;
+  lnFeature('LN Feature', '2a6a', '00002a6a-0000-1000-8000-00805f9b34fb'),
 
   /// The default characteristic for LN Control Point
-  static const lnControlPoint = BluetoothDefaultCharacteristicUUIDS._(
-      'LN Control Point', '2a6b', '00002a6b-0000-1000-8000-00805f9b34fb', 84);
-
-  /// This is deprecated use [lnControlPoint] instead.
-  static const LN_CONTROL_POINT = lnControlPoint;
+  lnControlPoint(
+      'LN Control Point', '2a6b', '00002a6b-0000-1000-8000-00805f9b34fb'),
 
   /// The default characteristic for Elevation
-  static const elevation = BluetoothDefaultCharacteristicUUIDS._(
-      'Elevation', '2a6c', '00002a6c-0000-1000-8000-00805f9b34fb', 85);
-
-  /// This is deprecated use [elevation] instead.
-  static const ELEVATION = elevation;
+  elevation('Elevation', '2a6c', '00002a6c-0000-1000-8000-00805f9b34fb'),
 
   /// The default characteristic for Pressure
-  static const pressure = BluetoothDefaultCharacteristicUUIDS._(
-      'Pressure', '2a6d', '00002a6d-0000-1000-8000-00805f9b34fb', 86);
-
-  /// This is deprecated use [pressure] instead.
-  static const PRESSURE = pressure;
+  pressure('Pressure', '2a6d', '00002a6d-0000-1000-8000-00805f9b34fb'),
 
   /// The default characteristic for Temperature
-  static const temperature = BluetoothDefaultCharacteristicUUIDS._(
-      'Temperature', '2a6e', '00002a6e-0000-1000-8000-00805f9b34fb', 87);
-
-  /// This is deprecated use [temperature] instead.
-  static const TEMPERATURE = temperature;
+  temperature('Temperature', '2a6e', '00002a6e-0000-1000-8000-00805f9b34fb'),
 
   /// The default characteristic for Humidity
-  static const humidity = BluetoothDefaultCharacteristicUUIDS._(
-      'Humidity', '2a6f', '00002a6f-0000-1000-8000-00805f9b34fb', 88);
-
-  /// This is deprecated use [humidity] instead.
-  static const HUMIDITY = humidity;
+  humidity('Humidity', '2a6f', '00002a6f-0000-1000-8000-00805f9b34fb'),
 
   /// The default characteristic for True Wind Speed
-  static const trueWindSpeed = BluetoothDefaultCharacteristicUUIDS._(
-      'True Wind Speed', '2a70', '00002a70-0000-1000-8000-00805f9b34fb', 89);
-
-  /// This is deprecated use [trueWindSpeed] instead.
-  static const TRUE_WIND_SPEED = trueWindSpeed;
+  trueWindSpeed(
+      'True Wind Speed', '2a70', '00002a70-0000-1000-8000-00805f9b34fb'),
 
   /// The default characteristic for True Wind Direction
-  static const trueWindDirection = BluetoothDefaultCharacteristicUUIDS._(
-      'True Wind Direction',
-      '2a71',
-      '00002a71-0000-1000-8000-00805f9b34fb',
-      90);
-
-  /// This is deprecated use [trueWindDirection] instead.
-  static const TRUE_WIND_DIRECTION = trueWindDirection;
+  trueWindDirection(
+      'True Wind Direction', '2a71', '00002a71-0000-1000-8000-00805f9b34fb'),
 
   /// The default characteristic for Apparent Wind Speed
-  static const apparentWindSpeed = BluetoothDefaultCharacteristicUUIDS._(
-      'Apparent Wind Speed',
-      '2a72',
-      '00002a72-0000-1000-8000-00805f9b34fb',
-      91);
-
-  /// This is deprecated use [apparentWindSpeed] instead.
-  static const APPARENT_WIND_SPEED = apparentWindSpeed;
+  apparentWindSpeed(
+      'Apparent Wind Speed', '2a72', '00002a72-0000-1000-8000-00805f9b34fb'),
 
   /// The default characteristic for Apparent Wind Direction
-  static const apparentWindDirection = BluetoothDefaultCharacteristicUUIDS._(
-      'Apparent Wind Direction',
-      '2a73',
-      '00002a73-0000-1000-8000-00805f9b34fb',
-      92);
-
-  /// This is deprecated use [apparentWindDirection] instead.
-  static const APPARENT_WIND_DIRECTION = apparentWindDirection;
+  apparentWindDirection('Apparent Wind Direction', '2a73',
+      '00002a73-0000-1000-8000-00805f9b34fb'),
 
   /// The default characteristic for Gust Factor
-  static const gustFactor = BluetoothDefaultCharacteristicUUIDS._(
-      'Gust Factor', '2a74', '00002a74-0000-1000-8000-00805f9b34fb', 93);
-
-  /// This is deprecated use [gustFactor] instead.
-  static const GUST_FACTOR = gustFactor;
+  gustFactor('Gust Factor', '2a74', '00002a74-0000-1000-8000-00805f9b34fb'),
 
   /// The default characteristic for Pollen Concentration
-  static const pollenConcentration = BluetoothDefaultCharacteristicUUIDS._(
-      'Pollen Concentration',
-      '2a75',
-      '00002a75-0000-1000-8000-00805f9b34fb',
-      94);
-
-  /// This is deprecated use [pollenConcentration] instead.
-  static const POLLEN_CONCENTRATION = pollenConcentration;
+  pollenConcentration(
+      'Pollen Concentration', '2a75', '00002a75-0000-1000-8000-00805f9b34fb'),
 
   /// The default characteristic for UV Index
-  static const uvIndex = BluetoothDefaultCharacteristicUUIDS._(
-      'UV Index', '2a76', '00002a76-0000-1000-8000-00805f9b34fb', 95);
-
-  /// This is deprecated use [uvIndex] instead.
-  static const UV_INDEX = uvIndex;
+  uvIndex('UV Index', '2a76', '00002a76-0000-1000-8000-00805f9b34fb'),
 
   /// The default characteristic for Irradiance
-  static const irradiance = BluetoothDefaultCharacteristicUUIDS._(
-      'Irradiance', '2a77', '00002a77-0000-1000-8000-00805f9b34fb', 96);
-
-  /// This is deprecated use [irradiance] instead.
-  static const IRRADIANCE = irradiance;
+  irradiance('Irradiance', '2a77', '00002a77-0000-1000-8000-00805f9b34fb'),
 
   /// The default characteristic for Rainfall
-  static const rainfall = BluetoothDefaultCharacteristicUUIDS._(
-      'Rainfall', '2a78', '00002a78-0000-1000-8000-00805f9b34fb', 97);
-
-  /// This is deprecated use [rainfall] instead.
-  static const RAINFALL = rainfall;
+  rainfall('Rainfall', '2a78', '00002a78-0000-1000-8000-00805f9b34fb'),
 
   /// The default characteristic for Wind Chill
-  static const windChill = BluetoothDefaultCharacteristicUUIDS._(
-      'Wind Chill', '2a79', '00002a79-0000-1000-8000-00805f9b34fb', 98);
-
-  /// This is deprecated use [windChill] instead.
-  static const WIND_CHILL = windChill;
+  windChill('Wind Chill', '2a79', '00002a79-0000-1000-8000-00805f9b34fb'),
 
   /// The default characteristic for Heat Index
-  static const heatIndex = BluetoothDefaultCharacteristicUUIDS._(
-      'Heat Index', '2a7a', '00002a7a-0000-1000-8000-00805f9b34fb', 99);
-
-  /// This is deprecated use [heatIndex] instead.
-  static const HEAT_INDEX = heatIndex;
+  heatIndex('Heat Index', '2a7a', '00002a7a-0000-1000-8000-00805f9b34fb'),
 
   /// The default characteristic for Dew Point
-  static const dewPoint = BluetoothDefaultCharacteristicUUIDS._(
-      'Dew Point', '2a7b', '00002a7b-0000-1000-8000-00805f9b34fb', 100);
-
-  /// This is deprecated use [dewPoint] instead.
-  static const DEW_POINT = dewPoint;
+  dewPoint('Dew Point', '2a7b', '00002a7b-0000-1000-8000-00805f9b34fb'),
 
   /// The default characteristic for Descriptor Value Changed
-  static const descriptorValueChanged = BluetoothDefaultCharacteristicUUIDS._(
-      'Descriptor Value Changed',
-      '2a7d',
-      '00002a7d-0000-1000-8000-00805f9b34fb',
-      101);
-
-  /// This is deprecated use [descriptorValueChanged] instead.
-  static const DESCRIPTOR_VALUE_CHANGED = descriptorValueChanged;
+  descriptorValueChanged('Descriptor Value Changed', '2a7d',
+      '00002a7d-0000-1000-8000-00805f9b34fb'),
 
   /// The default characteristic for Aerobic Heart Rate Lower Limit
-  static const aerobicHeartRateLowerLimit =
-      BluetoothDefaultCharacteristicUUIDS._('Aerobic Heart Rate Lower Limit',
-          '2a7e', '00002a7e-0000-1000-8000-00805f9b34fb', 102);
-
-  /// This is deprecated use [aerobicHeartRateLowerLimit] instead.
-  static const AEROBIC_HEART_RATE_LOWER_LIMIT = aerobicHeartRateLowerLimit;
+  aerobicHeartRateLowerLimit('Aerobic Heart Rate Lower Limit', '2a7e',
+      '00002a7e-0000-1000-8000-00805f9b34fb'),
 
   /// The default characteristic for Aerobic Threshold
-  static const aerobicThreshold = BluetoothDefaultCharacteristicUUIDS._(
-      'Aerobic Threshold', '2a7f', '00002a7f-0000-1000-8000-00805f9b34fb', 103);
-
-  /// This is deprecated use [aerobicThreshold] instead.
-  static const AEROBIC_THRESHOLD = aerobicThreshold;
+  aerobicThreshold(
+      'Aerobic Threshold', '2a7f', '00002a7f-0000-1000-8000-00805f9b34fb'),
 
   /// The default characteristic for Age
-  static const age = BluetoothDefaultCharacteristicUUIDS._(
-      'Age', '2a80', '00002a80-0000-1000-8000-00805f9b34fb', 104);
-
-  /// This is deprecated use [age] instead.
-  static const AGE = age;
+  age('Age', '2a80', '00002a80-0000-1000-8000-00805f9b34fb'),
 
   /// The default characteristic for Anaerobic Heart Rate Lower Limit
-  static const anaerobicHeartRateLowerLimit =
-      BluetoothDefaultCharacteristicUUIDS._('Anaerobic Heart Rate Lower Limit',
-          '2a81', '00002a81-0000-1000-8000-00805f9b34fb', 105);
-
-  /// This is deprecated use [anaerobicHeartRateLowerLimit] instead.
-  static const ANAEROBIC_HEART_RATE_LOWER_LIMIT = anaerobicHeartRateLowerLimit;
+  anaerobicHeartRateLowerLimit('Anaerobic Heart Rate Lower Limit', '2a81',
+      '00002a81-0000-1000-8000-00805f9b34fb'),
 
   /// The default characteristic for Anaerobic Heart Rate Upper Limit
-  static const anaerobicHeartRateUpperLimit =
-      BluetoothDefaultCharacteristicUUIDS._('Anaerobic Heart Rate Upper Limit',
-          '2a82', '00002a82-0000-1000-8000-00805f9b34fb', 106);
-
-  /// This is deprecated use [anaerobicHeartRateUpperLimit] instead.
-  static const ANAEROBIC_HEART_RATE_UPPER_LIMIT = anaerobicHeartRateUpperLimit;
+  anaerobicHeartRateUpperLimit('Anaerobic Heart Rate Upper Limit', '2a82',
+      '00002a82-0000-1000-8000-00805f9b34fb'),
 
   /// The default characteristic for Anaerobic Threshold
-  static const anaerobicThreshold = BluetoothDefaultCharacteristicUUIDS._(
-      'Anaerobic Threshold',
-      '2a83',
-      '00002a83-0000-1000-8000-00805f9b34fb',
-      107);
-
-  /// This is deprecated use [anaerobicThreshold] instead.
-  static const ANAEROBIC_THRESHOLD = anaerobicThreshold;
+  anaerobicThreshold(
+      'Anaerobic Threshold', '2a83', '00002a83-0000-1000-8000-00805f9b34fb'),
 
   /// The default characteristic for Aerobic Heart Rate Upper Limit
-  static const aerobicHeartRateUpperLimit =
-      BluetoothDefaultCharacteristicUUIDS._('Aerobic Heart Rate Upper Limit',
-          '2a84', '00002a84-0000-1000-8000-00805f9b34fb', 108);
-
-  /// This is deprecated use [aerobicHeartRateUpperLimit] instead.
-  static const AEROBIC_HEART_RATE_UPPER_LIMIT = aerobicHeartRateUpperLimit;
+  aerobicHeartRateUpperLimit('Aerobic Heart Rate Upper Limit', '2a84',
+      '00002a84-0000-1000-8000-00805f9b34fb'),
 
   /// The default characteristic for Date of Birth
-  static const dateOfBirth = BluetoothDefaultCharacteristicUUIDS._(
-      'Date of Birth', '2a85', '00002a85-0000-1000-8000-00805f9b34fb', 109);
-
-  /// This is deprecated use [dateOfBirth] instead.
-  static const DATE_OF_BIRTH = dateOfBirth;
+  dateOfBirth('Date of Birth', '2a85', '00002a85-0000-1000-8000-00805f9b34fb'),
 
   /// The default characteristic for Date of Threshold Assessment
-  static const dateOfThresholdAssessment =
-      BluetoothDefaultCharacteristicUUIDS._('Date of Threshold Assessment',
-          '2a86', '00002a86-0000-1000-8000-00805f9b34fb', 110);
-
-  /// This is deprecated use [dateOfThresholdAssessment] instead.
-  static const DATE_OF_THRESHOLD_ASSESSMENT = dateOfThresholdAssessment;
+  dateOfThresholdAssessment('Date of Threshold Assessment', '2a86',
+      '00002a86-0000-1000-8000-00805f9b34fb'),
 
   /// The default characteristic for Email Address
-  static const emailAddress = BluetoothDefaultCharacteristicUUIDS._(
-      'Email Address', '2a87', '00002a87-0000-1000-8000-00805f9b34fb', 111);
-
-  /// This is deprecated use [emailAddress] instead.
-  static const EMAIL_ADDRESS = emailAddress;
+  emailAddress('Email Address', '2a87', '00002a87-0000-1000-8000-00805f9b34fb'),
 
   /// The default characteristic for Fat Burn Heart Rate Lower Limit
-  static const fatBurnHeartRateLowerLimit =
-      BluetoothDefaultCharacteristicUUIDS._('Fat Burn Heart Rate Lower Limit',
-          '2a88', '00002a88-0000-1000-8000-00805f9b34fb', 112);
-
-  /// This is deprecated use [fatBurnHeartRateLowerLimit] instead.
-  static const FAT_BURN_HEART_RATE_LOWER_LIMIT = fatBurnHeartRateLowerLimit;
+  fatBurnHeartRateLowerLimit('Fat Burn Heart Rate Lower Limit', '2a88',
+      '00002a88-0000-1000-8000-00805f9b34fb'),
 
   /// The default characteristic for Fat Burn Heart Rate Upper Limit
-  static const fatBurnHeartRateUpperLimit =
-      BluetoothDefaultCharacteristicUUIDS._('Fat Burn Heart Rate Upper Limit',
-          '2a89', '00002a89-0000-1000-8000-00805f9b34fb', 113);
-
-  /// This is deprecated use [fatBurnHeartRateUpperLimit] instead.
-  static const FAT_BURN_HEART_RATE_UPPER_LIMIT = fatBurnHeartRateUpperLimit;
+  fatBurnHeartRateUpperLimit('Fat Burn Heart Rate Upper Limit', '2a89',
+      '00002a89-0000-1000-8000-00805f9b34fb'),
 
   /// The default characteristic for First Name
-  static const firstName = BluetoothDefaultCharacteristicUUIDS._(
-      'First Name', '2a8a', '00002a8a-0000-1000-8000-00805f9b34fb', 114);
-
-  /// This is deprecated use [firstName] instead.
-  static const FIRST_NAME = firstName;
+  firstName('First Name', '2a8a', '00002a8a-0000-1000-8000-00805f9b34fb'),
 
   /// The default characteristic for Five Zone Heart Rate Limits
-  static const fiveZoneHeartRateLimits = BluetoothDefaultCharacteristicUUIDS._(
-      'Five Zone Heart Rate Limits',
-      '2a8b',
-      '00002a8b-0000-1000-8000-00805f9b34fb',
-      115);
-
-  /// This is deprecated use [fiveZoneHeartRateLimits] instead.
-  static const FIVE_ZONE_HEART_RATE_LIMITS = fiveZoneHeartRateLimits;
+  fiveZoneHeartRateLimits('Five Zone Heart Rate Limits', '2a8b',
+      '00002a8b-0000-1000-8000-00805f9b34fb'),
 
   /// The default characteristic for Gender
-  static const gender = BluetoothDefaultCharacteristicUUIDS._(
-      'Gender', '2a8c', '00002a8c-0000-1000-8000-00805f9b34fb', 116);
-
-  /// This is deprecated use [gender] instead.
-  static const GENDER = gender;
+  gender('Gender', '2a8c', '00002a8c-0000-1000-8000-00805f9b34fb'),
 
   /// The default characteristic for Heart Rate Max
-  static const heartRateMax = BluetoothDefaultCharacteristicUUIDS._(
-      'Heart Rate Max', '2a8d', '00002a8d-0000-1000-8000-00805f9b34fb', 117);
-
-  /// This is deprecated use [heartRateMax] instead.
-  static const HEART_RATE_MAX = heartRateMax;
+  heartRateMax(
+      'Heart Rate Max', '2a8d', '00002a8d-0000-1000-8000-00805f9b34fb'),
 
   /// The default characteristic for Height
-  static const height = BluetoothDefaultCharacteristicUUIDS._(
-      'Height', '2a8e', '00002a8e-0000-1000-8000-00805f9b34fb', 118);
-
-  /// This is deprecated use [height] instead.
-  static const HEIGHT = height;
+  height('Height', '2a8e', '00002a8e-0000-1000-8000-00805f9b34fb'),
 
   /// The default characteristic for Hip Circumference
-  static const hipCircumference = BluetoothDefaultCharacteristicUUIDS._(
-      'Hip Circumference', '2a8f', '00002a8f-0000-1000-8000-00805f9b34fb', 119);
-
-  /// This is deprecated use [hipCircumference] instead.
-  static const HIP_CIRCUMFERENCE = hipCircumference;
+  hipCircumference(
+      'Hip Circumference', '2a8f', '00002a8f-0000-1000-8000-00805f9b34fb'),
 
   /// The default characteristic for Last Name
-  static const lastName = BluetoothDefaultCharacteristicUUIDS._(
-      'Last Name', '2a90', '00002a90-0000-1000-8000-00805f9b34fb', 120);
-
-  /// This is deprecated use [lastName] instead.
-  static const LAST_NAME = lastName;
+  lastName('Last Name', '2a90', '00002a90-0000-1000-8000-00805f9b34fb'),
 
   /// The default characteristic for Maximum Recommended Heart Rate
-  static const maximumRecommendedHeartRate =
-      BluetoothDefaultCharacteristicUUIDS._('Maximum Recommended Heart Rate',
-          '2a91', '00002a91-0000-1000-8000-00805f9b34fb', 121);
-
-  /// This is deprecated use [maximumRecommendedHeartRate] instead.
-  static const MAXIMUM_RECOMMENDED_HEART_RATE = maximumRecommendedHeartRate;
+  maximumRecommendedHeartRate('Maximum Recommended Heart Rate', '2a91',
+      '00002a91-0000-1000-8000-00805f9b34fb'),
 
   /// The default characteristic for Resting Heart Rate
-  static const restingHeartRate = BluetoothDefaultCharacteristicUUIDS._(
-      'Resting Heart Rate',
-      '2a92',
-      '00002a92-0000-1000-8000-00805f9b34fb',
-      122);
-
-  /// This is deprecated use [restingHeartRate] instead.
-  static const RESTING_HEART_RATE = restingHeartRate;
+  restingHeartRate(
+      'Resting Heart Rate', '2a92', '00002a92-0000-1000-8000-00805f9b34fb'),
 
   /// The default characteristic for Sport Type for Aerobic and Anaerobic Thresholds
-  static const sportTypeForAerobicAndAnaerobicThresholds =
-      BluetoothDefaultCharacteristicUUIDS._(
-          'Sport Type for Aerobic and Anaerobic Thresholds',
-          '2a93',
-          '00002a93-0000-1000-8000-00805f9b34fb',
-          123);
-
-  /// This is deprecated use [sportTypeForAerobicAndAnaerobicThresholds] instead.
-  static const SPORT_TYPE_FOR_AEROBIC_AND_ANAEROBIC_THRESHOLDS =
-      sportTypeForAerobicAndAnaerobicThresholds;
+  sportTypeForAerobicAndAnaerobicThresholds(
+      'Sport Type for Aerobic and Anaerobic Thresholds',
+      '2a93',
+      '00002a93-0000-1000-8000-00805f9b34fb'),
 
   /// The default characteristic for Three Zone Heart Rate Limits
-  static const threeZoneHeartRateLimits = BluetoothDefaultCharacteristicUUIDS._(
-      'Three Zone Heart Rate Limits',
-      '2a94',
-      '00002a94-0000-1000-8000-00805f9b34fb',
-      124);
-
-  /// This is deprecated use [threeZoneHeartRateLimits] instead.
-  static const THREE_ZONE_HEART_RATE_LIMITS = threeZoneHeartRateLimits;
+  threeZoneHeartRateLimits('Three Zone Heart Rate Limits', '2a94',
+      '00002a94-0000-1000-8000-00805f9b34fb'),
 
   /// The default characteristic for Two Zone Heart Rate Limits
-  static const twoZoneHeartRateLimits = BluetoothDefaultCharacteristicUUIDS._(
-      'Two Zone Heart Rate Limits',
-      '2a95',
-      '00002a95-0000-1000-8000-00805f9b34fb',
-      125);
-
-  /// This is deprecated use [twoZoneHeartRateLimits] instead.
-  static const TWO_ZONE_HEART_RATE_LIMITS = twoZoneHeartRateLimits;
+  twoZoneHeartRateLimits('Two Zone Heart Rate Limits', '2a95',
+      '00002a95-0000-1000-8000-00805f9b34fb'),
 
   /// The default characteristic for VO2 Max
-  static const vo2Max = BluetoothDefaultCharacteristicUUIDS._(
-      'VO2 Max', '2a96', '00002a96-0000-1000-8000-00805f9b34fb', 126);
-
-  /// This is deprecated use [vo2Max] instead.
-  static const VO2_MAX = vo2Max;
+  vo2Max('VO2 Max', '2a96', '00002a96-0000-1000-8000-00805f9b34fb'),
 
   /// The default characteristic for Waist Circumference
-  static const waistCircumference = BluetoothDefaultCharacteristicUUIDS._(
-      'Waist Circumference',
-      '2a97',
-      '00002a97-0000-1000-8000-00805f9b34fb',
-      127);
-
-  /// This is deprecated use [waistCircumference] instead.
-  static const WAIST_CIRCUMFERENCE = waistCircumference;
+  waistCircumference(
+      'Waist Circumference', '2a97', '00002a97-0000-1000-8000-00805f9b34fb'),
 
   /// The default characteristic for Weight
-  static const weight = BluetoothDefaultCharacteristicUUIDS._(
-      'Weight', '2a98', '00002a98-0000-1000-8000-00805f9b34fb', 128);
-
-  /// This is deprecated use [weight] instead.
-  static const WEIGHT = weight;
+  weight('Weight', '2a98', '00002a98-0000-1000-8000-00805f9b34fb'),
 
   /// The default characteristic for Database Change Increment
-  static const databaseChangeIncrement = BluetoothDefaultCharacteristicUUIDS._(
-      'Database Change Increment',
-      '2a99',
-      '00002a99-0000-1000-8000-00805f9b34fb',
-      129);
-
-  /// This is deprecated use [databaseChangeIncrement] instead.
-  static const DATABASE_CHANGE_INCREMENT = databaseChangeIncrement;
+  databaseChangeIncrement('Database Change Increment', '2a99',
+      '00002a99-0000-1000-8000-00805f9b34fb'),
 
   /// The default characteristic for User Index
-  static const userIndex = BluetoothDefaultCharacteristicUUIDS._(
-      'User Index', '2a9a', '00002a9a-0000-1000-8000-00805f9b34fb', 130);
-
-  /// This is deprecated use [userIndex] instead.
-  static const USER_INDEX = userIndex;
+  userIndex('User Index', '2a9a', '00002a9a-0000-1000-8000-00805f9b34fb'),
 
   /// The default characteristic for Body Composition Feature
-  static const bodyCompositionFeature = BluetoothDefaultCharacteristicUUIDS._(
-      'Body Composition Feature',
-      '2a9b',
-      '00002a9b-0000-1000-8000-00805f9b34fb',
-      131);
-
-  /// This is deprecated use [bodyCompositionFeature] instead.
-  static const BODY_COMPOSITION_FEATURE = bodyCompositionFeature;
+  bodyCompositionFeature('Body Composition Feature', '2a9b',
+      '00002a9b-0000-1000-8000-00805f9b34fb'),
 
   /// The default characteristic for Body Composition Measurement
-  static const bodyCompositionMeasurement =
-      BluetoothDefaultCharacteristicUUIDS._('Body Composition Measurement',
-          '2a9c', '00002a9c-0000-1000-8000-00805f9b34fb', 132);
-
-  /// This is deprecated use [bodyCompositionMeasurement] instead.
-  static const BODY_COMPOSITION_MEASUREMENT = bodyCompositionMeasurement;
+  bodyCompositionMeasurement('Body Composition Measurement', '2a9c',
+      '00002a9c-0000-1000-8000-00805f9b34fb'),
 
   /// The default characteristic for Weight Measurement
-  static const weightMeasurement = BluetoothDefaultCharacteristicUUIDS._(
-      'Weight Measurement',
-      '2a9d',
-      '00002a9d-0000-1000-8000-00805f9b34fb',
-      133);
-
-  /// This is deprecated use [weightMeasurement] instead.
-  static const WEIGHT_MEASUREMENT = weightMeasurement;
+  weightMeasurement(
+      'Weight Measurement', '2a9d', '00002a9d-0000-1000-8000-00805f9b34fb'),
 
   /// The default characteristic for Weight Scale Feature
-  static const weightScaleFeature = BluetoothDefaultCharacteristicUUIDS._(
-      'Weight Scale Feature',
-      '2a9e',
-      '00002a9e-0000-1000-8000-00805f9b34fb',
-      134);
-
-  /// This is deprecated use [weightScaleFeature] instead.
-  static const WEIGHT_SCALE_FEATURE = weightScaleFeature;
+  weightScaleFeature(
+      'Weight Scale Feature', '2a9e', '00002a9e-0000-1000-8000-00805f9b34fb'),
 
   /// The default characteristic for User Control Point
-  static const userControlPoint = BluetoothDefaultCharacteristicUUIDS._(
-      'User Control Point',
-      '2a9f',
-      '00002a9f-0000-1000-8000-00805f9b34fb',
-      135);
-
-  /// This is deprecated use [userControlPoint] instead.
-  static const USER_CONTROL_POINT = userControlPoint;
+  userControlPoint(
+      'User Control Point', '2a9f', '00002a9f-0000-1000-8000-00805f9b34fb'),
 
   /// The default characteristic for Magnetic Flux Density - 2D
-  static const magneticFluxDensity_2d = BluetoothDefaultCharacteristicUUIDS._(
-      'Magnetic Flux Density - 2D',
-      '2aa0',
-      '00002aa0-0000-1000-8000-00805f9b34fb',
-      136);
-
-  /// This is deprecated use [magneticFluxDensity_2d] instead.
-  static const MAGNETIC_FLUX_DENSITY___2D = magneticFluxDensity_2d;
+  magneticFluxDensity2d('Magnetic Flux Density - 2D', '2aa0',
+      '00002aa0-0000-1000-8000-00805f9b34fb'),
 
   /// The default characteristic for Magnetic Flux Density - 3D
-  static const magneticFluxDensity_3d = BluetoothDefaultCharacteristicUUIDS._(
-      'Magnetic Flux Density - 3D',
-      '2aa1',
-      '00002aa1-0000-1000-8000-00805f9b34fb',
-      137);
-
-  /// This is deprecated use [magneticFluxDensity_3d] instead.
-  static const MAGNETIC_FLUX_DENSITY___3D = magneticFluxDensity_3d;
+  magneticFluxDensity3d('Magnetic Flux Density - 3D', '2aa1',
+      '00002aa1-0000-1000-8000-00805f9b34fb'),
 
   /// The default characteristic for Language
-  static const language = BluetoothDefaultCharacteristicUUIDS._(
-      'Language', '2aa2', '00002aa2-0000-1000-8000-00805f9b34fb', 138);
-
-  /// This is deprecated use [language] instead.
-  static const LANGUAGE = language;
+  language('Language', '2aa2', '00002aa2-0000-1000-8000-00805f9b34fb'),
 
   /// The default characteristic for Barometric Pressure Trend
-  static const barometricPressureTrend = BluetoothDefaultCharacteristicUUIDS._(
-      'Barometric Pressure Trend',
-      '2aa3',
-      '00002aa3-0000-1000-8000-00805f9b34fb',
-      139);
-
-  /// This is deprecated use [barometricPressureTrend] instead.
-  static const BAROMETRIC_PRESSURE_TREND = barometricPressureTrend;
+  barometricPressureTrend('Barometric Pressure Trend', '2aa3',
+      '00002aa3-0000-1000-8000-00805f9b34fb'),
 
   /// The default characteristic for Bond Management Control Point
-  static const bondManagementControlPoint =
-      BluetoothDefaultCharacteristicUUIDS._('Bond Management Control Point',
-          '2aa4', '00002aa4-0000-1000-8000-00805f9b34fb', 140);
-
-  /// This is deprecated use [bondManagementControlPoint] instead.
-  static const BOND_MANAGEMENT_CONTROL_POINT = bondManagementControlPoint;
+  bondManagementControlPoint('Bond Management Control Point', '2aa4',
+      '00002aa4-0000-1000-8000-00805f9b34fb'),
 
   /// The default characteristic for Bond Management Feature
-  static const bondManagementFeature = BluetoothDefaultCharacteristicUUIDS._(
-      'Bond Management Feature',
-      '2aa5',
-      '00002aa5-0000-1000-8000-00805f9b34fb',
-      141);
-
-  /// This is deprecated use [bondManagementFeature] instead.
-  static const BOND_MANAGEMENT_FEATURE = bondManagementFeature;
+  bondManagementFeature('Bond Management Feature', '2aa5',
+      '00002aa5-0000-1000-8000-00805f9b34fb'),
 
   /// The default characteristic for Central Address Resolution
-  static const centralAddressResolution = BluetoothDefaultCharacteristicUUIDS._(
-      'Central Address Resolution',
-      '2aa6',
-      '00002aa6-0000-1000-8000-00805f9b34fb',
-      142);
-
-  /// This is deprecated use [centralAddressResolution] instead.
-  static const CENTRAL_ADDRESS_RESOLUTION = centralAddressResolution;
+  centralAddressResolution('Central Address Resolution', '2aa6',
+      '00002aa6-0000-1000-8000-00805f9b34fb'),
 
   /// The default characteristic for CGM Measurement
-  static const cgmMeasurement = BluetoothDefaultCharacteristicUUIDS._(
-      'CGM Measurement', '2aa7', '00002aa7-0000-1000-8000-00805f9b34fb', 143);
-
-  /// This is deprecated use [cgmMeasurement] instead.
-  static const CGM_MEASUREMENT = cgmMeasurement;
+  cgmMeasurement(
+      'CGM Measurement', '2aa7', '00002aa7-0000-1000-8000-00805f9b34fb'),
 
   /// The default characteristic for CGM Feature
-  static const cgmFeature = BluetoothDefaultCharacteristicUUIDS._(
-      'CGM Feature', '2aa8', '00002aa8-0000-1000-8000-00805f9b34fb', 144);
-
-  /// This is deprecated use [cgmFeature] instead.
-  static const CGM_FEATURE = cgmFeature;
+  cgmFeature('CGM Feature', '2aa8', '00002aa8-0000-1000-8000-00805f9b34fb'),
 
   /// The default characteristic for CGM Status
-  static const cgmStatus = BluetoothDefaultCharacteristicUUIDS._(
-      'CGM Status', '2aa9', '00002aa9-0000-1000-8000-00805f9b34fb', 145);
-
-  /// This is deprecated use [cgmStatus] instead.
-  static const CGM_STATUS = cgmStatus;
+  cgmStatus('CGM Status', '2aa9', '00002aa9-0000-1000-8000-00805f9b34fb'),
 
   /// The default characteristic for CGM Session Start Time
-  static const cgmSessionStartTime = BluetoothDefaultCharacteristicUUIDS._(
-      'CGM Session Start Time',
-      '2aaa',
-      '00002aaa-0000-1000-8000-00805f9b34fb',
-      146);
-
-  /// This is deprecated use [cgmSessionStartTime] instead.
-  static const CGM_SESSION_START_TIME = cgmSessionStartTime;
+  cgmSessionStartTime(
+      'CGM Session Start Time', '2aaa', '00002aaa-0000-1000-8000-00805f9b34fb'),
 
   /// The default characteristic for CGM Session Run Time
-  static const cgmSessionRunTime = BluetoothDefaultCharacteristicUUIDS._(
-      'CGM Session Run Time',
-      '2aab',
-      '00002aab-0000-1000-8000-00805f9b34fb',
-      147);
-
-  /// This is deprecated use [cgmSessionRunTime] instead.
-  static const CGM_SESSION_RUN_TIME = cgmSessionRunTime;
+  cgmSessionRunTime(
+      'CGM Session Run Time', '2aab', '00002aab-0000-1000-8000-00805f9b34fb'),
 
   /// The default characteristic for CGM Specific Ops Control Point
-  static const cgmSpecificOpsControlPoint =
-      BluetoothDefaultCharacteristicUUIDS._('CGM Specific Ops Control Point',
-          '2aac', '00002aac-0000-1000-8000-00805f9b34fb', 148);
-
-  /// This is deprecated use [cgmSpecificOpsControlPoint] instead.
-  static const CGM_SPECIFIC_OPS_CONTROL_POINT = cgmSpecificOpsControlPoint;
+  cgmSpecificOpsControlPoint('CGM Specific Ops Control Point', '2aac',
+      '00002aac-0000-1000-8000-00805f9b34fb'),
 
   /// The default characteristic for Indoor Positioning Configuration
-  static const indoorPositioningConfiguration =
-      BluetoothDefaultCharacteristicUUIDS._('Indoor Positioning Configuration',
-          '2aad', '00002aad-0000-1000-8000-00805f9b34fb', 149);
-
-  /// This is deprecated use [indoorPositioningConfiguration] instead.
-  static const INDOOR_POSITIONING_CONFIGURATION =
-      indoorPositioningConfiguration;
+  indoorPositioningConfiguration('Indoor Positioning Configuration', '2aad',
+      '00002aad-0000-1000-8000-00805f9b34fb'),
 
   /// The default characteristic for Latitude
-  static const latitude = BluetoothDefaultCharacteristicUUIDS._(
-      'Latitude', '2aae', '00002aae-0000-1000-8000-00805f9b34fb', 150);
-
-  /// This is deprecated use [latitude] instead.
-  static const LATITUDE = latitude;
+  latitude('Latitude', '2aae', '00002aae-0000-1000-8000-00805f9b34fb'),
 
   /// The default characteristic for Longitude
-  static const longitude = BluetoothDefaultCharacteristicUUIDS._(
-      'Longitude', '2aaf', '00002aaf-0000-1000-8000-00805f9b34fb', 151);
-
-  /// This is deprecated use [longitude] instead.
-  static const LONGITUDE = longitude;
+  longitude('Longitude', '2aaf', '00002aaf-0000-1000-8000-00805f9b34fb'),
 
   /// The default characteristic for Local North Coordinate
-  static const localNorthCoordinate = BluetoothDefaultCharacteristicUUIDS._(
-      'Local North Coordinate',
-      '2ab0',
-      '00002ab0-0000-1000-8000-00805f9b34fb',
-      152);
-
-  /// This is deprecated use [localNorthCoordinate] instead.
-  static const LOCAL_NORTH_COORDINATE = localNorthCoordinate;
+  localNorthCoordinate(
+      'Local North Coordinate', '2ab0', '00002ab0-0000-1000-8000-00805f9b34fb'),
 
   /// The default characteristic for Local East Coordinate
-  static const localEastCoordinate = BluetoothDefaultCharacteristicUUIDS._(
-      'Local East Coordinate',
-      '2ab1',
-      '00002ab1-0000-1000-8000-00805f9b34fb',
-      153);
-
-  /// This is deprecated use [localEastCoordinate] instead.
-  static const LOCAL_EAST_COORDINATE = localEastCoordinate;
+  localEastCoordinate(
+      'Local East Coordinate', '2ab1', '00002ab1-0000-1000-8000-00805f9b34fb'),
 
   /// The default characteristic for Floor Number
-  static const floorNumber = BluetoothDefaultCharacteristicUUIDS._(
-      'Floor Number', '2ab2', '00002ab2-0000-1000-8000-00805f9b34fb', 154);
-
-  /// This is deprecated use [floorNumber] instead.
-  static const FLOOR_NUMBER = floorNumber;
+  floorNumber('Floor Number', '2ab2', '00002ab2-0000-1000-8000-00805f9b34fb'),
 
   /// The default characteristic for Altitude
-  static const altitude = BluetoothDefaultCharacteristicUUIDS._(
-      'Altitude', '2ab3', '00002ab3-0000-1000-8000-00805f9b34fb', 155);
-
-  /// This is deprecated use [altitude] instead.
-  static const ALTITUDE = altitude;
+  altitude('Altitude', '2ab3', '00002ab3-0000-1000-8000-00805f9b34fb'),
 
   /// The default characteristic for Uncertainty
-  static const uncertainty = BluetoothDefaultCharacteristicUUIDS._(
-      'Uncertainty', '2ab4', '00002ab4-0000-1000-8000-00805f9b34fb', 156);
-
-  /// This is deprecated use [uncertainty] instead.
-  static const UNCERTAINTY = uncertainty;
+  uncertainty('Uncertainty', '2ab4', '00002ab4-0000-1000-8000-00805f9b34fb'),
 
   /// The default characteristic for Location Name
-  static const locationName = BluetoothDefaultCharacteristicUUIDS._(
-      'Location Name', '2ab5', '00002ab5-0000-1000-8000-00805f9b34fb', 157);
-
-  /// This is deprecated use [locationName] instead.
-  static const LOCATION_NAME = locationName;
+  locationName('Location Name', '2ab5', '00002ab5-0000-1000-8000-00805f9b34fb'),
 
   /// The default characteristic for URI
-  static const uri = BluetoothDefaultCharacteristicUUIDS._(
-      'URI', '2ab6', '00002ab6-0000-1000-8000-00805f9b34fb', 158);
-
-  /// This is deprecated use [uri] instead.
-  static const URI = uri;
+  uri('URI', '2ab6', '00002ab6-0000-1000-8000-00805f9b34fb'),
 
   /// The default characteristic for HTTP Headers
-  static const httpHeaders = BluetoothDefaultCharacteristicUUIDS._(
-      'HTTP Headers', '2ab7', '00002ab7-0000-1000-8000-00805f9b34fb', 159);
-
-  /// This is deprecated use [httpHeaders] instead.
-  static const HTTP_HEADERS = httpHeaders;
+  httpHeaders('HTTP Headers', '2ab7', '00002ab7-0000-1000-8000-00805f9b34fb'),
 
   /// The default characteristic for HTTP Status Code
-  static const httpStatusCode = BluetoothDefaultCharacteristicUUIDS._(
-      'HTTP Status Code', '2ab8', '00002ab8-0000-1000-8000-00805f9b34fb', 160);
-
-  /// This is deprecated use [httpStatusCode] instead.
-  static const HTTP_STATUS_CODE = httpStatusCode;
+  httpStatusCode(
+      'HTTP Status Code', '2ab8', '00002ab8-0000-1000-8000-00805f9b34fb'),
 
   /// The default characteristic for HTTP Entity Body
-  static const httpEntityBody = BluetoothDefaultCharacteristicUUIDS._(
-      'HTTP Entity Body', '2ab9', '00002ab9-0000-1000-8000-00805f9b34fb', 161);
-
-  /// This is deprecated use [httpEntityBody] instead.
-  static const HTTP_ENTITY_BODY = httpEntityBody;
+  httpEntityBody(
+      'HTTP Entity Body', '2ab9', '00002ab9-0000-1000-8000-00805f9b34fb'),
 
   /// The default characteristic for HTTP Control Point
-  static const httpControlPoint = BluetoothDefaultCharacteristicUUIDS._(
-      'HTTP Control Point',
-      '2aba',
-      '00002aba-0000-1000-8000-00805f9b34fb',
-      162);
-
-  /// This is deprecated use [httpControlPoint] instead.
-  static const HTTP_CONTROL_POINT = httpControlPoint;
+  httpControlPoint(
+      'HTTP Control Point', '2aba', '00002aba-0000-1000-8000-00805f9b34fb'),
 
   /// The default characteristic for HTTPS Security
-  static const httpsSecurity = BluetoothDefaultCharacteristicUUIDS._(
-      'HTTPS Security', '2abb', '00002abb-0000-1000-8000-00805f9b34fb', 163);
-
-  /// This is deprecated use [httpsSecurity] instead.
-  static const HTTPS_SECURITY = httpsSecurity;
+  httpsSecurity(
+      'HTTPS Security', '2abb', '00002abb-0000-1000-8000-00805f9b34fb'),
 
   /// The default characteristic for TDS Control Point
-  static const tdsControlPoint = BluetoothDefaultCharacteristicUUIDS._(
-      'TDS Control Point', '2abc', '00002abc-0000-1000-8000-00805f9b34fb', 164);
-
-  /// This is deprecated use [tdsControlPoint] instead.
-  static const TDS_CONTROL_POINT = tdsControlPoint;
+  tdsControlPoint(
+      'TDS Control Point', '2abc', '00002abc-0000-1000-8000-00805f9b34fb'),
 
   /// The default characteristic for OTS Feature
-  static const otsFeature = BluetoothDefaultCharacteristicUUIDS._(
-      'OTS Feature', '2abd', '00002abd-0000-1000-8000-00805f9b34fb', 165);
-
-  /// This is deprecated use [otsFeature] instead.
-  static const OTS_FEATURE = otsFeature;
+  otsFeature('OTS Feature', '2abd', '00002abd-0000-1000-8000-00805f9b34fb'),
 
   /// The default characteristic for object name
-  static const objectName = BluetoothDefaultCharacteristicUUIDS._(
-      'object name', '2abe', '00002abe-0000-1000-8000-00805f9b34fb', 166);
-
-  /// This is deprecated use [objectName] instead.
-  static const OBJECT_NAME = objectName;
+  objectName('object name', '2abe', '00002abe-0000-1000-8000-00805f9b34fb'),
 
   /// The default characteristic for object type
-  static const objectType = BluetoothDefaultCharacteristicUUIDS._(
-      'object type', '2abf', '00002abf-0000-1000-8000-00805f9b34fb', 167);
-
-  /// This is deprecated use [objectType] instead.
-  static const OBJECT_TYPE = objectType;
+  objectType('object type', '2abf', '00002abf-0000-1000-8000-00805f9b34fb'),
 
   /// The default characteristic for object size
-  static const objectSize = BluetoothDefaultCharacteristicUUIDS._(
-      'object size', '2ac0', '00002ac0-0000-1000-8000-00805f9b34fb', 168);
-
-  /// This is deprecated use [objectSize] instead.
-  static const OBJECT_SIZE = objectSize;
+  objectSize('object size', '2ac0', '00002ac0-0000-1000-8000-00805f9b34fb'),
 
   /// The default characteristic for object first created
-  static const objectFirstCreated = BluetoothDefaultCharacteristicUUIDS._(
-      'object first created',
-      '2ac1',
-      '00002ac1-0000-1000-8000-00805f9b34fb',
-      169);
-
-  /// This is deprecated use [objectFirstCreated] instead.
-  static const OBJECT_FIRST_CREATED = objectFirstCreated;
+  objectFirstCreated(
+      'object first created', '2ac1', '00002ac1-0000-1000-8000-00805f9b34fb'),
 
   /// The default characteristic for object last modified
-  static const objectLastModified = BluetoothDefaultCharacteristicUUIDS._(
-      'object last modified',
-      '2ac2',
-      '00002ac2-0000-1000-8000-00805f9b34fb',
-      170);
-
-  /// This is deprecated use [objectLastModified] instead.
-  static const OBJECT_LAST_MODIFIED = objectLastModified;
+  objectLastModified(
+      'object last modified', '2ac2', '00002ac2-0000-1000-8000-00805f9b34fb'),
 
   /// The default characteristic for object ID
-  static const objectId = BluetoothDefaultCharacteristicUUIDS._(
-      'object ID', '2ac3', '00002ac3-0000-1000-8000-00805f9b34fb', 171);
-
-  /// This is deprecated use [objectId] instead.
-  static const OBJECT_ID = objectId;
+  objectId('object ID', '2ac3', '00002ac3-0000-1000-8000-00805f9b34fb'),
 
   /// The default characteristic for object properties
-  static const objectProperties = BluetoothDefaultCharacteristicUUIDS._(
-      'object properties', '2ac4', '00002ac4-0000-1000-8000-00805f9b34fb', 172);
-
-  /// This is deprecated use [objectProperties] instead.
-  static const OBJECT_PROPERTIES = objectProperties;
+  objectProperties(
+      'object properties', '2ac4', '00002ac4-0000-1000-8000-00805f9b34fb'),
 
   /// The default characteristic for object actioncontrol point
-  static const objectActioncontrolPoint = BluetoothDefaultCharacteristicUUIDS._(
-      'object actioncontrol point',
-      '2ac5',
-      '00002ac5-0000-1000-8000-00805f9b34fb',
-      173);
-
-  /// This is deprecated use [objectActioncontrolPoint] instead.
-  static const OBJECT_ACTIONCONTROL_POINT = objectActioncontrolPoint;
+  objectActioncontrolPoint('object actioncontrol point', '2ac5',
+      '00002ac5-0000-1000-8000-00805f9b34fb'),
 
   /// The default characteristic for object list control point
-  static const objectListControlPoint = BluetoothDefaultCharacteristicUUIDS._(
-      'object list control point',
-      '2ac6',
-      '00002ac6-0000-1000-8000-00805f9b34fb',
-      174);
-
-  /// This is deprecated use [objectListControlPoint] instead.
-  static const OBJECT_LIST_CONTROL_POINT = objectListControlPoint;
+  objectListControlPoint('object list control point', '2ac6',
+      '00002ac6-0000-1000-8000-00805f9b34fb'),
 
   /// The default characteristic for object list filter
-  static const objectListFilter = BluetoothDefaultCharacteristicUUIDS._(
-      'object list filter',
-      '2ac7',
-      '00002ac7-0000-1000-8000-00805f9b34fb',
-      175);
-
-  /// This is deprecated use [objectListFilter] instead.
-  static const OBJECT_LIST_FILTER = objectListFilter;
+  objectListFilter(
+      'object list filter', '2ac7', '00002ac7-0000-1000-8000-00805f9b34fb'),
 
   /// The default characteristic for object changed
-  static const objectChanged = BluetoothDefaultCharacteristicUUIDS._(
-      'object changed', '2ac8', '00002ac8-0000-1000-8000-00805f9b34fb', 176);
-
-  /// This is deprecated use [objectChanged] instead.
-  static const OBJECT_CHANGED = objectChanged;
+  objectChanged(
+      'object changed', '2ac8', '00002ac8-0000-1000-8000-00805f9b34fb'),
 
   /// The default characteristic for Resolvable Private Address Only
-  static const resolvablePrivateAddressOnly =
-      BluetoothDefaultCharacteristicUUIDS._('Resolvable Private Address Only',
-          '2ac9', '00002ac9-0000-1000-8000-00805f9b34fb', 177);
-
-  /// This is deprecated use [resolvablePrivateAddressOnly] instead.
-  static const RESOLVABLE_PRIVATE_ADDRESS_ONLY = resolvablePrivateAddressOnly;
+  resolvablePrivateAddressOnly('Resolvable Private Address Only', '2ac9',
+      '00002ac9-0000-1000-8000-00805f9b34fb'),
 
   /// The default characteristic for Unspecified
-  static const unspecified = BluetoothDefaultCharacteristicUUIDS._(
-      'Unspecified', '2aca', '00002aca-0000-1000-8000-00805f9b34fb', 178);
-
-  /// This is deprecated use [unspecified] instead.
-  static const UNSPECIFIED = unspecified;
+  unspecified('Unspecified', '2aca', '00002aca-0000-1000-8000-00805f9b34fb'),
 
   /// The default characteristic for Directory Listing
-  static const directoryListing = BluetoothDefaultCharacteristicUUIDS._(
-      'Directory Listing', '2acb', '00002acb-0000-1000-8000-00805f9b34fb', 179);
-
-  /// This is deprecated use [directoryListing] instead.
-  static const DIRECTORY_LISTING = directoryListing;
+  directoryListing(
+      'Directory Listing', '2acb', '00002acb-0000-1000-8000-00805f9b34fb'),
 
   /// The default characteristic for Fitness Machine Feature
-  static const fitnessMachineFeature = BluetoothDefaultCharacteristicUUIDS._(
-      'Fitness Machine Feature',
-      '2acc',
-      '00002acc-0000-1000-8000-00805f9b34fb',
-      180);
-
-  /// This is deprecated use [fitnessMachineFeature] instead.
-  static const FITNESS_MACHINE_FEATURE = fitnessMachineFeature;
+  fitnessMachineFeature('Fitness Machine Feature', '2acc',
+      '00002acc-0000-1000-8000-00805f9b34fb'),
 
   /// The default characteristic for Treadmill Data
-  static const treadmillData = BluetoothDefaultCharacteristicUUIDS._(
-      'Treadmill Data', '2acd', '00002acd-0000-1000-8000-00805f9b34fb', 181);
-
-  /// This is deprecated use [treadmillData] instead.
-  static const TREADMILL_DATA = treadmillData;
+  treadmillData(
+      'Treadmill Data', '2acd', '00002acd-0000-1000-8000-00805f9b34fb'),
 
   /// The default characteristic for Cross Trainer Data
-  static const crossTrainerData = BluetoothDefaultCharacteristicUUIDS._(
-      'Cross Trainer Data',
-      '2ace',
-      '00002ace-0000-1000-8000-00805f9b34fb',
-      182);
-
-  /// This is deprecated use [crossTrainerData] instead.
-  static const CROSS_TRAINER_DATA = crossTrainerData;
+  crossTrainerData(
+      'Cross Trainer Data', '2ace', '00002ace-0000-1000-8000-00805f9b34fb'),
 
   /// The default characteristic for Step Climber Data
-  static const stepClimberData = BluetoothDefaultCharacteristicUUIDS._(
-      'Step Climber Data', '2acf', '00002acf-0000-1000-8000-00805f9b34fb', 183);
-
-  /// This is deprecated use [stepClimberData] instead.
-  static const STEP_CLIMBER_DATA = stepClimberData;
+  stepClimberData(
+      'Step Climber Data', '2acf', '00002acf-0000-1000-8000-00805f9b34fb'),
 
   /// The default characteristic for Stair Climber Data
-  static const stairClimberData = BluetoothDefaultCharacteristicUUIDS._(
-      'Stair Climber Data',
-      '2ad0',
-      '00002ad0-0000-1000-8000-00805f9b34fb',
-      184);
-
-  /// This is deprecated use [stairClimberData] instead.
-  static const STAIR_CLIMBER_DATA = stairClimberData;
+  stairClimberData(
+      'Stair Climber Data', '2ad0', '00002ad0-0000-1000-8000-00805f9b34fb'),
 
   /// The default characteristic for Rower Data
-  static const rowerData = BluetoothDefaultCharacteristicUUIDS._(
-      'Rower Data', '2ad1', '00002ad1-0000-1000-8000-00805f9b34fb', 185);
-
-  /// This is deprecated use [rowerData] instead.
-  static const ROWER_DATA = rowerData;
+  rowerData('Rower Data', '2ad1', '00002ad1-0000-1000-8000-00805f9b34fb'),
 
   /// The default characteristic for Indoor Bike Data
-  static const indoorBikeData = BluetoothDefaultCharacteristicUUIDS._(
-      'Indoor Bike Data', '2ad2', '00002ad2-0000-1000-8000-00805f9b34fb', 186);
-
-  /// This is deprecated use [indoorBikeData] instead.
-  static const INDOOR_BIKE_DATA = indoorBikeData;
+  indoorBikeData(
+      'Indoor Bike Data', '2ad2', '00002ad2-0000-1000-8000-00805f9b34fb'),
 
   /// The default characteristic for Training Status
-  static const trainingStatus = BluetoothDefaultCharacteristicUUIDS._(
-      'Training Status', '2ad3', '00002ad3-0000-1000-8000-00805f9b34fb', 187);
-
-  /// This is deprecated use [trainingStatus] instead.
-  static const TRAINING_STATUS = trainingStatus;
+  trainingStatus(
+      'Training Status', '2ad3', '00002ad3-0000-1000-8000-00805f9b34fb'),
 
   /// The default characteristic for Supported Speed Range
-  static const supportedSpeedRange = BluetoothDefaultCharacteristicUUIDS._(
-      'Supported Speed Range',
-      '2ad4',
-      '00002ad4-0000-1000-8000-00805f9b34fb',
-      188);
-
-  /// This is deprecated use [supportedSpeedRange] instead.
-  static const SUPPORTED_SPEED_RANGE = supportedSpeedRange;
+  supportedSpeedRange(
+      'Supported Speed Range', '2ad4', '00002ad4-0000-1000-8000-00805f9b34fb'),
 
   /// The default characteristic for Supported Inclination Range
-  static const supportedInclinationRange =
-      BluetoothDefaultCharacteristicUUIDS._('Supported Inclination Range',
-          '2ad5', '00002ad5-0000-1000-8000-00805f9b34fb', 189);
-
-  /// This is deprecated use [supportedInclinationRange] instead.
-  static const SUPPORTED_INCLINATION_RANGE = supportedInclinationRange;
+  supportedInclinationRange('Supported Inclination Range', '2ad5',
+      '00002ad5-0000-1000-8000-00805f9b34fb'),
 
   /// The default characteristic for Supported Resistance Level Range
-  static const supportedResistanceLevelRange =
-      BluetoothDefaultCharacteristicUUIDS._('Supported Resistance Level Range',
-          '2ad6', '00002ad6-0000-1000-8000-00805f9b34fb', 190);
-
-  /// This is deprecated use [supportedResistanceLevelRange] instead.
-  static const SUPPORTED_RESISTANCE_LEVEL_RANGE = supportedResistanceLevelRange;
+  supportedResistanceLevelRange('Supported Resistance Level Range', '2ad6',
+      '00002ad6-0000-1000-8000-00805f9b34fb'),
 
   /// The default characteristic for Supported Heart Rate Range
-  static const supportedHeartRateRange = BluetoothDefaultCharacteristicUUIDS._(
-      'Supported Heart Rate Range',
-      '2ad7',
-      '00002ad7-0000-1000-8000-00805f9b34fb',
-      191);
-
-  /// This is deprecated use [supportedHeartRateRange] instead.
-  static const SUPPORTED_HEART_RATE_RANGE = supportedHeartRateRange;
+  supportedHeartRateRange('Supported Heart Rate Range', '2ad7',
+      '00002ad7-0000-1000-8000-00805f9b34fb'),
 
   /// The default characteristic for Supported Power Range
-  static const supportedPowerRange = BluetoothDefaultCharacteristicUUIDS._(
-      'Supported Power Range',
-      '2ad8',
-      '00002ad8-0000-1000-8000-00805f9b34fb',
-      192);
-
-  /// This is deprecated use [supportedPowerRange] instead.
-  static const SUPPORTED_POWER_RANGE = supportedPowerRange;
+  supportedPowerRange(
+      'Supported Power Range', '2ad8', '00002ad8-0000-1000-8000-00805f9b34fb'),
 
   /// The default characteristic for Fitness Machine Control Point
-  static const fitnessMachineControlPoint =
-      BluetoothDefaultCharacteristicUUIDS._('Fitness Machine Control Point',
-          '2ad9', '00002ad9-0000-1000-8000-00805f9b34fb', 193);
-
-  /// This is deprecated use [fitnessMachineControlPoint] instead.
-  static const FITNESS_MACHINE_CONTROL_POINT = fitnessMachineControlPoint;
+  fitnessMachineControlPoint('Fitness Machine Control Point', '2ad9',
+      '00002ad9-0000-1000-8000-00805f9b34fb'),
 
   /// The default characteristic for Fitness Machine Status
-  static const fitnessMachineStatus = BluetoothDefaultCharacteristicUUIDS._(
-      'Fitness Machine Status',
-      '2ada',
-      '00002ada-0000-1000-8000-00805f9b34fb',
-      194);
-
-  /// This is deprecated use [fitnessMachineStatus] instead.
-  static const FITNESS_MACHINE_STATUS = fitnessMachineStatus;
+  fitnessMachineStatus(
+      'Fitness Machine Status', '2ada', '00002ada-0000-1000-8000-00805f9b34fb'),
 
   /// The default characteristic for Mesh Provisioning Data In
-  static const meshProvisioningDataIn = BluetoothDefaultCharacteristicUUIDS._(
-      'Mesh Provisioning Data In',
-      '2adb',
-      '00002adb-0000-1000-8000-00805f9b34fb',
-      195);
-
-  /// This is deprecated use [meshProvisioningDataIn] instead.
-  static const MESH_PROVISIONING_DATA_IN = meshProvisioningDataIn;
+  meshProvisioningDataIn('Mesh Provisioning Data In', '2adb',
+      '00002adb-0000-1000-8000-00805f9b34fb'),
 
   /// The default characteristic for Mesh Provisioning Data Out
-  static const meshProvisioningDataOut = BluetoothDefaultCharacteristicUUIDS._(
-      'Mesh Provisioning Data Out',
-      '2adc',
-      '00002adc-0000-1000-8000-00805f9b34fb',
-      196);
-
-  /// This is deprecated use [meshProvisioningDataOut] instead.
-  static const MESH_PROVISIONING_DATA_OUT = meshProvisioningDataOut;
+  meshProvisioningDataOut('Mesh Provisioning Data Out', '2adc',
+      '00002adc-0000-1000-8000-00805f9b34fb'),
 
   /// The default characteristic for Mesh Proxy Data In
-  static const meshProxyDataIn = BluetoothDefaultCharacteristicUUIDS._(
-      'Mesh Proxy Data In',
-      '2add',
-      '00002add-0000-1000-8000-00805f9b34fb',
-      197);
-
-  /// This is deprecated use [meshProxyDataIn] instead.
-  static const MESH_PROXY_DATA_IN = meshProxyDataIn;
+  meshProxyDataIn(
+      'Mesh Proxy Data In', '2add', '00002add-0000-1000-8000-00805f9b34fb'),
 
   /// The default characteristic for Mesh Proxy Data Out
-  static const meshProxyDataOut = BluetoothDefaultCharacteristicUUIDS._(
-      'Mesh Proxy Data Out',
-      '2ade',
-      '00002ade-0000-1000-8000-00805f9b34fb',
-      198);
-
-  /// This is deprecated use [meshProxyDataOut] instead.
-  static const MESH_PROXY_DATA_OUT = meshProxyDataOut;
+  meshProxyDataOut(
+      'Mesh Proxy Data Out', '2ade', '00002ade-0000-1000-8000-00805f9b34fb'),
 
   /// The default characteristic for Average Current
-  static const averageCurrent = BluetoothDefaultCharacteristicUUIDS._(
-      'Average Current', '2ae0', '00002ae0-0000-1000-8000-00805f9b34fb', 199);
-
-  /// This is deprecated use [averageCurrent] instead.
-  static const AVERAGE_CURRENT = averageCurrent;
+  averageCurrent(
+      'Average Current', '2ae0', '00002ae0-0000-1000-8000-00805f9b34fb'),
 
   /// The default characteristic for Average Voltage
-  static const averageVoltage = BluetoothDefaultCharacteristicUUIDS._(
-      'Average Voltage', '2ae1', '00002ae1-0000-1000-8000-00805f9b34fb', 200);
-
-  /// This is deprecated use [averageVoltage] instead.
-  static const AVERAGE_VOLTAGE = averageVoltage;
+  averageVoltage(
+      'Average Voltage', '2ae1', '00002ae1-0000-1000-8000-00805f9b34fb'),
 
   /// The default characteristic for Boolean
-  static const boolean = BluetoothDefaultCharacteristicUUIDS._(
-      'Boolean', '2ae2', '00002ae2-0000-1000-8000-00805f9b34fb', 201);
-
-  /// This is deprecated use [boolean] instead.
-  static const BOOLEAN = boolean;
+  boolean('Boolean', '2ae2', '00002ae2-0000-1000-8000-00805f9b34fb'),
 
   /// The default characteristic for Chromatic Distance From Planckian
-  static const chromaticDistanceFromPlanckian =
-      BluetoothDefaultCharacteristicUUIDS._('Chromatic Distance From Planckian',
-          '2ae3', '00002ae3-0000-1000-8000-00805f9b34fb', 202);
-
-  /// This is deprecated use [chromaticDistanceFromPlanckian] instead.
-  static const CHROMATIC_DISTANCE_FROM_PLANCKIAN =
-      chromaticDistanceFromPlanckian;
+  chromaticDistanceFromPlanckian('Chromatic Distance From Planckian', '2ae3',
+      '00002ae3-0000-1000-8000-00805f9b34fb'),
 
   /// The default characteristic for Chromaticity Coordinates
-  static const chromaticityCoordinates = BluetoothDefaultCharacteristicUUIDS._(
-      'Chromaticity Coordinates',
-      '2ae4',
-      '00002ae4-0000-1000-8000-00805f9b34fb',
-      203);
-
-  /// This is deprecated use [chromaticityCoordinates] instead.
-  static const CHROMATICITY_COORDINATES = chromaticityCoordinates;
+  chromaticityCoordinates('Chromaticity Coordinates', '2ae4',
+      '00002ae4-0000-1000-8000-00805f9b34fb'),
 
   /// The default characteristic for Chromaticity in CCT And Duv Values
-  static const chromaticityInCctAndDuvValues =
-      BluetoothDefaultCharacteristicUUIDS._(
-          'Chromaticity in CCT And Duv Values',
-          '2ae5',
-          '00002ae5-0000-1000-8000-00805f9b34fb',
-          204);
-
-  /// This is deprecated use [chromaticityInCctAndDuvValues] instead.
-  static const CHROMATICITY_IN_CCT_AND_DUV_VALUES =
-      chromaticityInCctAndDuvValues;
+  chromaticityInCctAndDuvValues('Chromaticity in CCT And Duv Values', '2ae5',
+      '00002ae5-0000-1000-8000-00805f9b34fb'),
 
   /// The default characteristic for Chromaticity Tolerance
-  static const chromaticityTolerance = BluetoothDefaultCharacteristicUUIDS._(
-      'Chromaticity Tolerance',
-      '2ae6',
-      '00002ae6-0000-1000-8000-00805f9b34fb',
-      205);
-
-  /// This is deprecated use [chromaticityTolerance] instead.
-  static const CHROMATICITY_TOLERANCE = chromaticityTolerance;
+  chromaticityTolerance(
+      'Chromaticity Tolerance', '2ae6', '00002ae6-0000-1000-8000-00805f9b34fb'),
 
   /// The default characteristic for CIE 13.3-1995 Color Rendering Index
-  static const cie13_3_1995ColorRenderingIndex =
-      BluetoothDefaultCharacteristicUUIDS._(
-          'CIE 13.3-1995 Color Rendering Index',
-          '2ae7',
-          '00002ae7-0000-1000-8000-00805f9b34fb',
-          206);
-
-  /// This is deprecated use [cie13_3_1995ColorRenderingIndex] instead.
-  static const CIE_13_3_1995_COLOR_RENDERING_INDEX =
-      cie13_3_1995ColorRenderingIndex;
+  cie1331995ColorRenderingIndex('CIE 13.3-1995 Color Rendering Index', '2ae7',
+      '00002ae7-0000-1000-8000-00805f9b34fb'),
 
   /// The default characteristic for Coefficient
-  static const coefficient = BluetoothDefaultCharacteristicUUIDS._(
-      'Coefficient', '2ae8', '00002ae8-0000-1000-8000-00805f9b34fb', 207);
-
-  /// This is deprecated use [coefficient] instead.
-  static const COEFFICIENT = coefficient;
+  coefficient('Coefficient', '2ae8', '00002ae8-0000-1000-8000-00805f9b34fb'),
 
   /// The default characteristic for Correlated Color Temperature
-  static const correlatedColorTemperature =
-      BluetoothDefaultCharacteristicUUIDS._('Correlated Color Temperature',
-          '2ae9', '00002ae9-0000-1000-8000-00805f9b34fb', 208);
-
-  /// This is deprecated use [correlatedColorTemperature] instead.
-  static const CORRELATED_COLOR_TEMPERATURE = correlatedColorTemperature;
+  correlatedColorTemperature('Correlated Color Temperature', '2ae9',
+      '00002ae9-0000-1000-8000-00805f9b34fb'),
 
   /// The default characteristic for Count 16
-  static const count16 = BluetoothDefaultCharacteristicUUIDS._(
-      'Count 16', '2aea', '00002aea-0000-1000-8000-00805f9b34fb', 209);
-
-  /// This is deprecated use [count16] instead.
-  static const COUNT_16 = count16;
+  count16('Count 16', '2aea', '00002aea-0000-1000-8000-00805f9b34fb'),
 
   /// The default characteristic for Count 24
-  static const count24 = BluetoothDefaultCharacteristicUUIDS._(
-      'Count 24', '2aeb', '00002aeb-0000-1000-8000-00805f9b34fb', 210);
-
-  /// This is deprecated use [count24] instead.
-  static const COUNT_24 = count24;
+  count24('Count 24', '2aeb', '00002aeb-0000-1000-8000-00805f9b34fb'),
 
   /// The default characteristic for Country Code
-  static const countryCode = BluetoothDefaultCharacteristicUUIDS._(
-      'Country Code', '2aec', '00002aec-0000-1000-8000-00805f9b34fb', 211);
-
-  /// This is deprecated use [countryCode] instead.
-  static const COUNTRY_CODE = countryCode;
+  countryCode('Country Code', '2aec', '00002aec-0000-1000-8000-00805f9b34fb'),
 
   /// The default characteristic for Date UTC
-  static const dateUtc = BluetoothDefaultCharacteristicUUIDS._(
-      'Date UTC', '2aed', '00002aed-0000-1000-8000-00805f9b34fb', 212);
-
-  /// This is deprecated use [dateUtc] instead.
-  static const DATE_UTC = dateUtc;
+  dateUtc('Date UTC', '2aed', '00002aed-0000-1000-8000-00805f9b34fb'),
 
   /// The default characteristic for Electric Current
-  static const electricCurrent = BluetoothDefaultCharacteristicUUIDS._(
-      'Electric Current', '2aee', '00002aee-0000-1000-8000-00805f9b34fb', 213);
-
-  /// This is deprecated use [electricCurrent] instead.
-  static const ELECTRIC_CURRENT = electricCurrent;
+  electricCurrent(
+      'Electric Current', '2aee', '00002aee-0000-1000-8000-00805f9b34fb'),
 
   /// The default characteristic for Electric Current Range
-  static const electricCurrentRange = BluetoothDefaultCharacteristicUUIDS._(
-      'Electric Current Range',
-      '2aef',
-      '00002aef-0000-1000-8000-00805f9b34fb',
-      214);
-
-  /// This is deprecated use [electricCurrentRange] instead.
-  static const ELECTRIC_CURRENT_RANGE = electricCurrentRange;
+  electricCurrentRange(
+      'Electric Current Range', '2aef', '00002aef-0000-1000-8000-00805f9b34fb'),
 
   /// The default characteristic for Electric Current Specification
-  static const electricCurrentSpecification =
-      BluetoothDefaultCharacteristicUUIDS._('Electric Current Specification',
-          '2af0', '00002af0-0000-1000-8000-00805f9b34fb', 215);
-
-  /// This is deprecated use [electricCurrentSpecification] instead.
-  static const ELECTRIC_CURRENT_SPECIFICATION = electricCurrentSpecification;
+  electricCurrentSpecification('Electric Current Specification', '2af0',
+      '00002af0-0000-1000-8000-00805f9b34fb'),
 
   /// The default characteristic for Electric Current Statistics
-  static const electricCurrentStatistics =
-      BluetoothDefaultCharacteristicUUIDS._('Electric Current Statistics',
-          '2af1', '00002af1-0000-1000-8000-00805f9b34fb', 216);
-
-  /// This is deprecated use [electricCurrentStatistics] instead.
-  static const ELECTRIC_CURRENT_STATISTICS = electricCurrentStatistics;
+  electricCurrentStatistics('Electric Current Statistics', '2af1',
+      '00002af1-0000-1000-8000-00805f9b34fb'),
 
   /// The default characteristic for Energy
-  static const energy = BluetoothDefaultCharacteristicUUIDS._(
-      'Energy', '2af2', '00002af2-0000-1000-8000-00805f9b34fb', 217);
-
-  /// This is deprecated use [energy] instead.
-  static const ENERGY = energy;
+  energy('Energy', '2af2', '00002af2-0000-1000-8000-00805f9b34fb'),
 
   /// The default characteristic for Energy In A Period Of Day
-  static const energyInAPeriodOfDay = BluetoothDefaultCharacteristicUUIDS._(
-      'Energy In A Period Of Day',
-      '2af3',
-      '00002af3-0000-1000-8000-00805f9b34fb',
-      218);
-
-  /// This is deprecated use [energyInAPeriodOfDay] instead.
-  static const ENERGY_IN_A_PERIOD_OF_DAY = energyInAPeriodOfDay;
+  energyInAPeriodOfDay('Energy In A Period Of Day', '2af3',
+      '00002af3-0000-1000-8000-00805f9b34fb'),
 
   /// The default characteristic for Event Statistics
-  static const eventStatistics = BluetoothDefaultCharacteristicUUIDS._(
-      'Event Statistics', '2af4', '00002af4-0000-1000-8000-00805f9b34fb', 219);
-
-  /// This is deprecated use [eventStatistics] instead.
-  static const EVENT_STATISTICS = eventStatistics;
+  eventStatistics(
+      'Event Statistics', '2af4', '00002af4-0000-1000-8000-00805f9b34fb'),
 
   /// The default characteristic for Fixed String 16
-  static const fixedString16 = BluetoothDefaultCharacteristicUUIDS._(
-      'Fixed String 16', '2af5', '00002af5-0000-1000-8000-00805f9b34fb', 220);
-
-  /// This is deprecated use [fixedString16] instead.
-  static const FIXED_STRING_16 = fixedString16;
+  fixedString16(
+      'Fixed String 16', '2af5', '00002af5-0000-1000-8000-00805f9b34fb'),
 
   /// The default characteristic for Fixed String 24
-  static const fixedString24 = BluetoothDefaultCharacteristicUUIDS._(
-      'Fixed String 24', '2af6', '00002af6-0000-1000-8000-00805f9b34fb', 221);
-
-  /// This is deprecated use [fixedString24] instead.
-  static const FIXED_STRING_24 = fixedString24;
+  fixedString24(
+      'Fixed String 24', '2af6', '00002af6-0000-1000-8000-00805f9b34fb'),
 
   /// The default characteristic for Fixed String 36
-  static const fixedString36 = BluetoothDefaultCharacteristicUUIDS._(
-      'Fixed String 36', '2af7', '00002af7-0000-1000-8000-00805f9b34fb', 222);
-
-  /// This is deprecated use [fixedString36] instead.
-  static const FIXED_STRING_36 = fixedString36;
+  fixedString36(
+      'Fixed String 36', '2af7', '00002af7-0000-1000-8000-00805f9b34fb'),
 
   /// The default characteristic for Fixed String 8
-  static const fixedString8 = BluetoothDefaultCharacteristicUUIDS._(
-      'Fixed String 8', '2af8', '00002af8-0000-1000-8000-00805f9b34fb', 223);
-
-  /// This is deprecated use [fixedString8] instead.
-  static const FIXED_STRING_8 = fixedString8;
+  fixedString8(
+      'Fixed String 8', '2af8', '00002af8-0000-1000-8000-00805f9b34fb'),
 
   /// The default characteristic for Generic Level
-  static const genericLevel = BluetoothDefaultCharacteristicUUIDS._(
-      'Generic Level', '2af9', '00002af9-0000-1000-8000-00805f9b34fb', 224);
-
-  /// This is deprecated use [genericLevel] instead.
-  static const GENERIC_LEVEL = genericLevel;
+  genericLevel('Generic Level', '2af9', '00002af9-0000-1000-8000-00805f9b34fb'),
 
   /// The default characteristic for Global Trade Item Number
-  static const globalTradeItemNumber = BluetoothDefaultCharacteristicUUIDS._(
-      'Global Trade Item Number',
-      '2afa',
-      '00002afa-0000-1000-8000-00805f9b34fb',
-      225);
-
-  /// This is deprecated use [globalTradeItemNumber] instead.
-  static const GLOBAL_TRADE_ITEM_NUMBER = globalTradeItemNumber;
+  globalTradeItemNumber('Global Trade Item Number', '2afa',
+      '00002afa-0000-1000-8000-00805f9b34fb'),
 
   /// The default characteristic for Illuminance
-  static const illuminance = BluetoothDefaultCharacteristicUUIDS._(
-      'Illuminance', '2afb', '00002afb-0000-1000-8000-00805f9b34fb', 226);
-
-  /// This is deprecated use [illuminance] instead.
-  static const ILLUMINANCE = illuminance;
+  illuminance('Illuminance', '2afb', '00002afb-0000-1000-8000-00805f9b34fb'),
 
   /// The default characteristic for Luminous Efficacy
-  static const luminousEfficacy = BluetoothDefaultCharacteristicUUIDS._(
-      'Luminous Efficacy', '2afc', '00002afc-0000-1000-8000-00805f9b34fb', 227);
-
-  /// This is deprecated use [luminousEfficacy] instead.
-  static const LUMINOUS_EFFICACY = luminousEfficacy;
+  luminousEfficacy(
+      'Luminous Efficacy', '2afc', '00002afc-0000-1000-8000-00805f9b34fb'),
 
   /// The default characteristic for Luminous Energy
-  static const luminousEnergy = BluetoothDefaultCharacteristicUUIDS._(
-      'Luminous Energy', '2afd', '00002afd-0000-1000-8000-00805f9b34fb', 228);
-
-  /// This is deprecated use [luminousEnergy] instead.
-  static const LUMINOUS_ENERGY = luminousEnergy;
+  luminousEnergy(
+      'Luminous Energy', '2afd', '00002afd-0000-1000-8000-00805f9b34fb'),
 
   /// The default characteristic for Luminous Exposure
-  static const luminousExposure = BluetoothDefaultCharacteristicUUIDS._(
-      'Luminous Exposure', '2afe', '00002afe-0000-1000-8000-00805f9b34fb', 229);
-
-  /// This is deprecated use [luminousExposure] instead.
-  static const LUMINOUS_EXPOSURE = luminousExposure;
+  luminousExposure(
+      'Luminous Exposure', '2afe', '00002afe-0000-1000-8000-00805f9b34fb'),
 
   /// The default characteristic for Luminous Flux
-  static const luminousFlux = BluetoothDefaultCharacteristicUUIDS._(
-      'Luminous Flux', '2aff', '00002aff-0000-1000-8000-00805f9b34fb', 230);
-
-  /// This is deprecated use [luminousFlux] instead.
-  static const LUMINOUS_FLUX = luminousFlux;
+  luminousFlux('Luminous Flux', '2aff', '00002aff-0000-1000-8000-00805f9b34fb'),
 
   /// The default characteristic for Luminous Flux Range
-  static const luminousFluxRange = BluetoothDefaultCharacteristicUUIDS._(
-      'Luminous Flux Range',
-      '2b00',
-      '00002b00-0000-1000-8000-00805f9b34fb',
-      231);
-
-  /// This is deprecated use [luminousFluxRange] instead.
-  static const LUMINOUS_FLUX_RANGE = luminousFluxRange;
+  luminousFluxRange(
+      'Luminous Flux Range', '2b00', '00002b00-0000-1000-8000-00805f9b34fb'),
 
   /// The default characteristic for Luminous Intensity
-  static const luminousIntensity = BluetoothDefaultCharacteristicUUIDS._(
-      'Luminous Intensity',
-      '2b01',
-      '00002b01-0000-1000-8000-00805f9b34fb',
-      232);
-
-  /// This is deprecated use [luminousIntensity] instead.
-  static const LUMINOUS_INTENSITY = luminousIntensity;
+  luminousIntensity(
+      'Luminous Intensity', '2b01', '00002b01-0000-1000-8000-00805f9b34fb'),
 
   /// The default characteristic for Mass Flow
-  static const massFlow = BluetoothDefaultCharacteristicUUIDS._(
-      'Mass Flow', '2b02', '00002b02-0000-1000-8000-00805f9b34fb', 233);
-
-  /// This is deprecated use [massFlow] instead.
-  static const MASS_FLOW = massFlow;
+  massFlow('Mass Flow', '2b02', '00002b02-0000-1000-8000-00805f9b34fb'),
 
   /// The default characteristic for Perceived Lightness
-  static const perceivedLightness = BluetoothDefaultCharacteristicUUIDS._(
-      'Perceived Lightness',
-      '2b03',
-      '00002b03-0000-1000-8000-00805f9b34fb',
-      234);
-
-  /// This is deprecated use [perceivedLightness] instead.
-  static const PERCEIVED_LIGHTNESS = perceivedLightness;
+  perceivedLightness(
+      'Perceived Lightness', '2b03', '00002b03-0000-1000-8000-00805f9b34fb'),
 
   /// The default characteristic for Percentage 8
-  static const percentage8 = BluetoothDefaultCharacteristicUUIDS._(
-      'Percentage 8', '2b04', '00002b04-0000-1000-8000-00805f9b34fb', 235);
-
-  /// This is deprecated use [percentage8] instead.
-  static const PERCENTAGE_8 = percentage8;
+  percentage8('Percentage 8', '2b04', '00002b04-0000-1000-8000-00805f9b34fb'),
 
   /// The default characteristic for Power
-  static const power = BluetoothDefaultCharacteristicUUIDS._(
-      'Power', '2b05', '00002b05-0000-1000-8000-00805f9b34fb', 236);
-
-  /// This is deprecated use [power] instead.
-  static const POWER = power;
+  power('Power', '2b05', '00002b05-0000-1000-8000-00805f9b34fb'),
 
   /// The default characteristic for Power Specification
-  static const powerSpecification = BluetoothDefaultCharacteristicUUIDS._(
-      'Power Specification',
-      '2b06',
-      '00002b06-0000-1000-8000-00805f9b34fb',
-      237);
-
-  /// This is deprecated use [powerSpecification] instead.
-  static const POWER_SPECIFICATION = powerSpecification;
+  powerSpecification(
+      'Power Specification', '2b06', '00002b06-0000-1000-8000-00805f9b34fb'),
 
   /// The default characteristic for Relative Runtime In A Current Range
-  static const relativeRuntimeInACurrentRange =
-      BluetoothDefaultCharacteristicUUIDS._(
-          'Relative Runtime In A Current Range',
-          '2b07',
-          '00002b07-0000-1000-8000-00805f9b34fb',
-          238);
-
-  /// This is deprecated use [relativeRuntimeInACurrentRange] instead.
-  static const RELATIVE_RUNTIME_IN_A_CURRENT_RANGE =
-      relativeRuntimeInACurrentRange;
+  relativeRuntimeInACurrentRange('Relative Runtime In A Current Range', '2b07',
+      '00002b07-0000-1000-8000-00805f9b34fb'),
 
   /// The default characteristic for Relative Runtime In A Generic Level Range
-  static const relativeRuntimeInAGenericLevelRange =
-      BluetoothDefaultCharacteristicUUIDS._(
-          'Relative Runtime In A Generic Level Range',
-          '2b08',
-          '00002b08-0000-1000-8000-00805f9b34fb',
-          239);
-
-  /// This is deprecated use [relativeRuntimeInAGenericLevelRange] instead.
-  static const RELATIVE_RUNTIME_IN_A_GENERIC_LEVEL_RANGE =
-      relativeRuntimeInAGenericLevelRange;
+  relativeRuntimeInAGenericLevelRange(
+      'Relative Runtime In A Generic Level Range',
+      '2b08',
+      '00002b08-0000-1000-8000-00805f9b34fb'),
 
   /// The default characteristic for Relative Value In A Voltage Range
-  static const relativeValueInAVoltageRange =
-      BluetoothDefaultCharacteristicUUIDS._('Relative Value In A Voltage Range',
-          '2b09', '00002b09-0000-1000-8000-00805f9b34fb', 240);
-
-  /// This is deprecated use [relativeValueInAVoltageRange] instead.
-  static const RELATIVE_VALUE_IN_A_VOLTAGE_RANGE = relativeValueInAVoltageRange;
+  relativeValueInAVoltageRange('Relative Value In A Voltage Range', '2b09',
+      '00002b09-0000-1000-8000-00805f9b34fb'),
 
   /// The default characteristic for Relative Value In An Illuminance Range
-  static const relativeValueInAnIlluminanceRange =
-      BluetoothDefaultCharacteristicUUIDS._(
-          'Relative Value In An Illuminance Range',
-          '2b0a',
-          '00002b0a-0000-1000-8000-00805f9b34fb',
-          241);
-
-  /// This is deprecated use [relativeValueInAnIlluminanceRange] instead.
-  static const RELATIVE_VALUE_IN_AN_ILLUMINANCE_RANGE =
-      relativeValueInAnIlluminanceRange;
+  relativeValueInAnIlluminanceRange('Relative Value In An Illuminance Range',
+      '2b0a', '00002b0a-0000-1000-8000-00805f9b34fb'),
 
   /// The default characteristic for Relative Value In A Period Of Day
-  static const relativeValueInAPeriodOfDay =
-      BluetoothDefaultCharacteristicUUIDS._('Relative Value In A Period Of Day',
-          '2b0b', '00002b0b-0000-1000-8000-00805f9b34fb', 242);
-
-  /// This is deprecated use [relativeValueInAPeriodOfDay] instead.
-  static const RELATIVE_VALUE_IN_A_PERIOD_OF_DAY = relativeValueInAPeriodOfDay;
+  relativeValueInAPeriodOfDay('Relative Value In A Period Of Day', '2b0b',
+      '00002b0b-0000-1000-8000-00805f9b34fb'),
 
   /// The default characteristic for Relative Value In A Temperature Range
-  static const relativeValueInATemperatureRange =
-      BluetoothDefaultCharacteristicUUIDS._(
-          'Relative Value In A Temperature Range',
-          '2b0c',
-          '00002b0c-0000-1000-8000-00805f9b34fb',
-          243);
-
-  /// This is deprecated use [relativeValueInATemperatureRange] instead.
-  static const RELATIVE_VALUE_IN_A_TEMPERATURE_RANGE =
-      relativeValueInATemperatureRange;
+  relativeValueInATemperatureRange('Relative Value In A Temperature Range',
+      '2b0c', '00002b0c-0000-1000-8000-00805f9b34fb'),
 
   /// The default characteristic for Temperature 8
-  static const temperature8 = BluetoothDefaultCharacteristicUUIDS._(
-      'Temperature 8', '2b0d', '00002b0d-0000-1000-8000-00805f9b34fb', 244);
-
-  /// This is deprecated use [temperature8] instead.
-  static const TEMPERATURE_8 = temperature8;
+  temperature8('Temperature 8', '2b0d', '00002b0d-0000-1000-8000-00805f9b34fb'),
 
   /// The default characteristic for Temperature 8 In A Period Of Day
-  static const temperature8InAPeriodOfDay =
-      BluetoothDefaultCharacteristicUUIDS._('Temperature 8 In A Period Of Day',
-          '2b0e', '00002b0e-0000-1000-8000-00805f9b34fb', 245);
-
-  /// This is deprecated use [temperature8InAPeriodOfDay] instead.
-  static const TEMPERATURE_8_IN_A_PERIOD_OF_DAY = temperature8InAPeriodOfDay;
+  temperature8InAPeriodOfDay('Temperature 8 In A Period Of Day', '2b0e',
+      '00002b0e-0000-1000-8000-00805f9b34fb'),
 
   /// The default characteristic for Temperature 8 Statistics
-  static const temperature8Statistics = BluetoothDefaultCharacteristicUUIDS._(
-      'Temperature 8 Statistics',
-      '2b0f',
-      '00002b0f-0000-1000-8000-00805f9b34fb',
-      246);
-
-  /// This is deprecated use [temperature8Statistics] instead.
-  static const TEMPERATURE_8_STATISTICS = temperature8Statistics;
+  temperature8Statistics('Temperature 8 Statistics', '2b0f',
+      '00002b0f-0000-1000-8000-00805f9b34fb'),
 
   /// The default characteristic for Temperature Range
-  static const temperatureRange = BluetoothDefaultCharacteristicUUIDS._(
-      'Temperature Range', '2b10', '00002b10-0000-1000-8000-00805f9b34fb', 247);
-
-  /// This is deprecated use [temperatureRange] instead.
-  static const TEMPERATURE_RANGE = temperatureRange;
+  temperatureRange(
+      'Temperature Range', '2b10', '00002b10-0000-1000-8000-00805f9b34fb'),
 
   /// The default characteristic for Temperature Statistics
-  static const temperatureStatistics = BluetoothDefaultCharacteristicUUIDS._(
-      'Temperature Statistics',
-      '2b11',
-      '00002b11-0000-1000-8000-00805f9b34fb',
-      248);
-
-  /// This is deprecated use [temperatureStatistics] instead.
-  static const TEMPERATURE_STATISTICS = temperatureStatistics;
+  temperatureStatistics(
+      'Temperature Statistics', '2b11', '00002b11-0000-1000-8000-00805f9b34fb'),
 
   /// The default characteristic for Time Decihour 8
-  static const timeDecihour8 = BluetoothDefaultCharacteristicUUIDS._(
-      'Time Decihour 8', '2b12', '00002b12-0000-1000-8000-00805f9b34fb', 249);
-
-  /// This is deprecated use [timeDecihour8] instead.
-  static const TIME_DECIHOUR_8 = timeDecihour8;
+  timeDecihour8(
+      'Time Decihour 8', '2b12', '00002b12-0000-1000-8000-00805f9b34fb'),
 
   /// The default characteristic for Time Exponential 8
-  static const timeExponential8 = BluetoothDefaultCharacteristicUUIDS._(
-      'Time Exponential 8',
-      '2b13',
-      '00002b13-0000-1000-8000-00805f9b34fb',
-      250);
-
-  /// This is deprecated use [timeExponential8] instead.
-  static const TIME_EXPONENTIAL_8 = timeExponential8;
+  timeExponential8(
+      'Time Exponential 8', '2b13', '00002b13-0000-1000-8000-00805f9b34fb'),
 
   /// The default characteristic for Time Hour 24
-  static const timeHour24 = BluetoothDefaultCharacteristicUUIDS._(
-      'Time Hour 24', '2b14', '00002b14-0000-1000-8000-00805f9b34fb', 251);
-
-  /// This is deprecated use [timeHour24] instead.
-  static const TIME_HOUR_24 = timeHour24;
+  timeHour24('Time Hour 24', '2b14', '00002b14-0000-1000-8000-00805f9b34fb'),
 
   /// The default characteristic for Time Millisecond 24
-  static const timeMillisecond24 = BluetoothDefaultCharacteristicUUIDS._(
-      'Time Millisecond 24',
-      '2b15',
-      '00002b15-0000-1000-8000-00805f9b34fb',
-      252);
-
-  /// This is deprecated use [timeMillisecond24] instead.
-  static const TIME_MILLISECOND_24 = timeMillisecond24;
+  timeMillisecond24(
+      'Time Millisecond 24', '2b15', '00002b15-0000-1000-8000-00805f9b34fb'),
 
   /// The default characteristic for Time Second 16
-  static const timeSecond16 = BluetoothDefaultCharacteristicUUIDS._(
-      'Time Second 16', '2b16', '00002b16-0000-1000-8000-00805f9b34fb', 253);
-
-  /// This is deprecated use [timeSecond16] instead.
-  static const TIME_SECOND_16 = timeSecond16;
+  timeSecond16(
+      'Time Second 16', '2b16', '00002b16-0000-1000-8000-00805f9b34fb'),
 
   /// The default characteristic for Time Second 8
-  static const timeSecond8 = BluetoothDefaultCharacteristicUUIDS._(
-      'Time Second 8', '2b17', '00002b17-0000-1000-8000-00805f9b34fb', 254);
-
-  /// This is deprecated use [timeSecond8] instead.
-  static const TIME_SECOND_8 = timeSecond8;
+  timeSecond8('Time Second 8', '2b17', '00002b17-0000-1000-8000-00805f9b34fb'),
 
   /// The default characteristic for Voltage
-  static const voltage = BluetoothDefaultCharacteristicUUIDS._(
-      'Voltage', '2b18', '00002b18-0000-1000-8000-00805f9b34fb', 255);
-
-  /// This is deprecated use [voltage] instead.
-  static const VOLTAGE = voltage;
+  voltage('Voltage', '2b18', '00002b18-0000-1000-8000-00805f9b34fb'),
 
   /// The default characteristic for Voltage Specification
-  static const voltageSpecification = BluetoothDefaultCharacteristicUUIDS._(
-      'Voltage Specification',
-      '2b19',
-      '00002b19-0000-1000-8000-00805f9b34fb',
-      256);
-
-  /// This is deprecated use [voltageSpecification] instead.
-  static const VOLTAGE_SPECIFICATION = voltageSpecification;
+  voltageSpecification(
+      'Voltage Specification', '2b19', '00002b19-0000-1000-8000-00805f9b34fb'),
 
   /// The default characteristic for Voltage Statistics
-  static const voltageStatistics = BluetoothDefaultCharacteristicUUIDS._(
-      'Voltage Statistics',
-      '2b1a',
-      '00002b1a-0000-1000-8000-00805f9b34fb',
-      257);
-
-  /// This is deprecated use [voltageStatistics] instead.
-  static const VOLTAGE_STATISTICS = voltageStatistics;
+  voltageStatistics(
+      'Voltage Statistics', '2b1a', '00002b1a-0000-1000-8000-00805f9b34fb'),
 
   /// The default characteristic for Volume Flow
-  static const volumeFlow = BluetoothDefaultCharacteristicUUIDS._(
-      'Volume Flow', '2b1b', '00002b1b-0000-1000-8000-00805f9b34fb', 258);
-
-  /// This is deprecated use [volumeFlow] instead.
-  static const VOLUME_FLOW = volumeFlow;
+  volumeFlow('Volume Flow', '2b1b', '00002b1b-0000-1000-8000-00805f9b34fb'),
 
   /// The default characteristic for Chromaticity Coordinate
-  static const chromaticityCoordinate = BluetoothDefaultCharacteristicUUIDS._(
-      'Chromaticity Coordinate',
-      '2b1c',
-      '00002b1c-0000-1000-8000-00805f9b34fb',
-      259);
-
-  /// This is deprecated use [chromaticityCoordinate] instead.
-  static const CHROMATICITY_COORDINATE = chromaticityCoordinate;
+  chromaticityCoordinate('Chromaticity Coordinate', '2b1c',
+      '00002b1c-0000-1000-8000-00805f9b34fb'),
 
   /// The default characteristic for RC Feature
-  static const rcFeature = BluetoothDefaultCharacteristicUUIDS._(
-      'RC Feature', '2b1d', '00002b1d-0000-1000-8000-00805f9b34fb', 260);
-
-  /// This is deprecated use [rcFeature] instead.
-  static const RC_FEATURE = rcFeature;
+  rcFeature('RC Feature', '2b1d', '00002b1d-0000-1000-8000-00805f9b34fb'),
 
   /// The default characteristic for RC Settings
-  static const rcSettings = BluetoothDefaultCharacteristicUUIDS._(
-      'RC Settings', '2b1e', '00002b1e-0000-1000-8000-00805f9b34fb', 261);
-
-  /// This is deprecated use [rcSettings] instead.
-  static const RC_SETTINGS = rcSettings;
+  rcSettings('RC Settings', '2b1e', '00002b1e-0000-1000-8000-00805f9b34fb'),
 
   /// The default characteristic for Reconnection Configuration Control Point
-  static const reconnectionConfigurationControlPoint =
-      BluetoothDefaultCharacteristicUUIDS._(
-          'Reconnection Configuration Control Point',
-          '2b1f',
-          '00002b1f-0000-1000-8000-00805f9b34fb',
-          262);
-
-  /// This is deprecated use [reconnectionConfigurationControlPoint] instead.
-  static const RECONNECTION_CONFIGURATION_CONTROL_POINT =
-      reconnectionConfigurationControlPoint;
+  reconnectionConfigurationControlPoint(
+      'Reconnection Configuration Control Point',
+      '2b1f',
+      '00002b1f-0000-1000-8000-00805f9b34fb'),
 
   /// The default characteristic for IDD Status Changed
-  static const iddStatusChanged = BluetoothDefaultCharacteristicUUIDS._(
-      'IDD Status Changed',
-      '2b20',
-      '00002b20-0000-1000-8000-00805f9b34fb',
-      263);
-
-  /// This is deprecated use [iddStatusChanged] instead.
-  static const IDD_STATUS_CHANGED = iddStatusChanged;
+  iddStatusChanged(
+      'IDD Status Changed', '2b20', '00002b20-0000-1000-8000-00805f9b34fb'),
 
   /// The default characteristic for IDD Status
-  static const iddStatus = BluetoothDefaultCharacteristicUUIDS._(
-      'IDD Status', '2b21', '00002b21-0000-1000-8000-00805f9b34fb', 264);
-
-  /// This is deprecated use [iddStatus] instead.
-  static const IDD_STATUS = iddStatus;
+  iddStatus('IDD Status', '2b21', '00002b21-0000-1000-8000-00805f9b34fb'),
 
   /// The default characteristic for IDD Annunciation Status
-  static const iddAnnunciationStatus = BluetoothDefaultCharacteristicUUIDS._(
-      'IDD Annunciation Status',
-      '2b22',
-      '00002b22-0000-1000-8000-00805f9b34fb',
-      265);
-
-  /// This is deprecated use [iddAnnunciationStatus] instead.
-  static const IDD_ANNUNCIATION_STATUS = iddAnnunciationStatus;
+  iddAnnunciationStatus('IDD Annunciation Status', '2b22',
+      '00002b22-0000-1000-8000-00805f9b34fb'),
 
   /// The default characteristic for IDD Features
-  static const iddFeatures = BluetoothDefaultCharacteristicUUIDS._(
-      'IDD Features', '2b23', '00002b23-0000-1000-8000-00805f9b34fb', 266);
-
-  /// This is deprecated use [iddFeatures] instead.
-  static const IDD_FEATURES = iddFeatures;
+  iddFeatures('IDD Features', '2b23', '00002b23-0000-1000-8000-00805f9b34fb'),
 
   /// The default characteristic for IDD Status Reader Control Point
-  static const iddStatusReaderControlPoint =
-      BluetoothDefaultCharacteristicUUIDS._('IDD Status Reader Control Point',
-          '2b24', '00002b24-0000-1000-8000-00805f9b34fb', 267);
-
-  /// This is deprecated use [iddStatusReaderControlPoint] instead.
-  static const IDD_STATUS_READER_CONTROL_POINT = iddStatusReaderControlPoint;
+  iddStatusReaderControlPoint('IDD Status Reader Control Point', '2b24',
+      '00002b24-0000-1000-8000-00805f9b34fb'),
 
   /// The default characteristic for IDD Command Control Point
-  static const iddCommandControlPoint = BluetoothDefaultCharacteristicUUIDS._(
-      'IDD Command Control Point',
-      '2b25',
-      '00002b25-0000-1000-8000-00805f9b34fb',
-      268);
-
-  /// This is deprecated use [iddCommandControlPoint] instead.
-  static const IDD_COMMAND_CONTROL_POINT = iddCommandControlPoint;
+  iddCommandControlPoint('IDD Command Control Point', '2b25',
+      '00002b25-0000-1000-8000-00805f9b34fb'),
 
   /// The default characteristic for IDD Command Data
-  static const iddCommandData = BluetoothDefaultCharacteristicUUIDS._(
-      'IDD Command Data', '2b26', '00002b26-0000-1000-8000-00805f9b34fb', 269);
-
-  /// This is deprecated use [iddCommandData] instead.
-  static const IDD_COMMAND_DATA = iddCommandData;
+  iddCommandData(
+      'IDD Command Data', '2b26', '00002b26-0000-1000-8000-00805f9b34fb'),
 
   /// The default characteristic for IDD Record Access Control Point
-  static const iddRecordAccessControlPoint =
-      BluetoothDefaultCharacteristicUUIDS._('IDD Record Access Control Point',
-          '2b27', '00002b27-0000-1000-8000-00805f9b34fb', 270);
-
-  /// This is deprecated use [iddRecordAccessControlPoint] instead.
-  static const IDD_RECORD_ACCESS_CONTROL_POINT = iddRecordAccessControlPoint;
+  iddRecordAccessControlPoint('IDD Record Access Control Point', '2b27',
+      '00002b27-0000-1000-8000-00805f9b34fb'),
 
   /// The default characteristic for IDD History Data
-  static const iddHistoryData = BluetoothDefaultCharacteristicUUIDS._(
-      'IDD History Data', '2b28', '00002b28-0000-1000-8000-00805f9b34fb', 271);
-
-  /// This is deprecated use [iddHistoryData] instead.
-  static const IDD_HISTORY_DATA = iddHistoryData;
+  iddHistoryData(
+      'IDD History Data', '2b28', '00002b28-0000-1000-8000-00805f9b34fb'),
 
   /// The default characteristic for Client Supported Features
-  static const clientSupportedFeatures = BluetoothDefaultCharacteristicUUIDS._(
-      'Client Supported Features',
-      '2b29',
-      '00002b29-0000-1000-8000-00805f9b34fb',
-      272);
-
-  /// This is deprecated use [clientSupportedFeatures] instead.
-  static const CLIENT_SUPPORTED_FEATURES = clientSupportedFeatures;
+  clientSupportedFeatures('Client Supported Features', '2b29',
+      '00002b29-0000-1000-8000-00805f9b34fb'),
 
   /// The default characteristic for Database Hash
-  static const databaseHash = BluetoothDefaultCharacteristicUUIDS._(
-      'Database Hash', '2b2a', '00002b2a-0000-1000-8000-00805f9b34fb', 273);
-
-  /// This is deprecated use [databaseHash] instead.
-  static const DATABASE_HASH = databaseHash;
+  databaseHash('Database Hash', '2b2a', '00002b2a-0000-1000-8000-00805f9b34fb'),
 
   /// The default characteristic for BSS Control Point
-  static const bssControlPoint = BluetoothDefaultCharacteristicUUIDS._(
-      'BSS Control Point', '2b2b', '00002b2b-0000-1000-8000-00805f9b34fb', 274);
-
-  /// This is deprecated use [bssControlPoint] instead.
-  static const BSS_CONTROL_POINT = bssControlPoint;
+  bssControlPoint(
+      'BSS Control Point', '2b2b', '00002b2b-0000-1000-8000-00805f9b34fb'),
 
   /// The default characteristic for BSS Response
-  static const bssResponse = BluetoothDefaultCharacteristicUUIDS._(
-      'BSS Response', '2b2c', '00002b2c-0000-1000-8000-00805f9b34fb', 275);
-
-  /// This is deprecated use [bssResponse] instead.
-  static const BSS_RESPONSE = bssResponse;
+  bssResponse('BSS Response', '2b2c', '00002b2c-0000-1000-8000-00805f9b34fb'),
 
   /// The default characteristic for Emergency ID
-  static const emergencyId = BluetoothDefaultCharacteristicUUIDS._(
-      'Emergency ID', '2b2d', '00002b2d-0000-1000-8000-00805f9b34fb', 276);
-
-  /// This is deprecated use [emergencyId] instead.
-  static const EMERGENCY_ID = emergencyId;
+  emergencyId('Emergency ID', '2b2d', '00002b2d-0000-1000-8000-00805f9b34fb'),
 
   /// The default characteristic for Emergency Text
-  static const emergencyText = BluetoothDefaultCharacteristicUUIDS._(
-      'Emergency Text', '2b2e', '00002b2e-0000-1000-8000-00805f9b34fb', 277);
-
-  /// This is deprecated use [emergencyText] instead.
-  static const EMERGENCY_TEXT = emergencyText;
+  emergencyText(
+      'Emergency Text', '2b2e', '00002b2e-0000-1000-8000-00805f9b34fb'),
 
   /// The default characteristic for Enhanced Blood Pressure Measurement
-  static const enhancedBloodPressureMeasurement =
-      BluetoothDefaultCharacteristicUUIDS._(
-          'Enhanced Blood Pressure Measurement',
-          '2b34',
-          '00002b34-0000-1000-8000-00805f9b34fb',
-          278);
-
-  /// This is deprecated use [enhancedBloodPressureMeasurement] instead.
-  static const ENHANCED_BLOOD_PRESSURE_MEASUREMENT =
-      enhancedBloodPressureMeasurement;
+  enhancedBloodPressureMeasurement('Enhanced Blood Pressure Measurement',
+      '2b34', '00002b34-0000-1000-8000-00805f9b34fb'),
 
   /// The default characteristic for Enhanced Intermediate Cuff Pressure
-  static const enhancedIntermediateCuffPressure =
-      BluetoothDefaultCharacteristicUUIDS._(
-          'Enhanced Intermediate Cuff Pressure',
-          '2b35',
-          '00002b35-0000-1000-8000-00805f9b34fb',
-          279);
-
-  /// This is deprecated use [enhancedIntermediateCuffPressure] instead.
-  static const ENHANCED_INTERMEDIATE_CUFF_PRESSURE =
-      enhancedIntermediateCuffPressure;
+  enhancedIntermediateCuffPressure('Enhanced Intermediate Cuff Pressure',
+      '2b35', '00002b35-0000-1000-8000-00805f9b34fb'),
 
   /// The default characteristic for Blood Pressure Record
-  static const bloodPressureRecord = BluetoothDefaultCharacteristicUUIDS._(
-      'Blood Pressure Record',
-      '2b36',
-      '00002b36-0000-1000-8000-00805f9b34fb',
-      280);
-
-  /// This is deprecated use [bloodPressureRecord] instead.
-  static const BLOOD_PRESSURE_RECORD = bloodPressureRecord;
+  bloodPressureRecord(
+      'Blood Pressure Record', '2b36', '00002b36-0000-1000-8000-00805f9b34fb'),
 
   /// The default characteristic for BR-EDR Handover Data
-  static const br_edrHandoverData = BluetoothDefaultCharacteristicUUIDS._(
-      'BR-EDR Handover Data',
-      '2b38',
-      '00002b38-0000-1000-8000-00805f9b34fb',
-      281);
-
-  /// This is deprecated use [br_edrHandoverData] instead.
-  static const BR_EDR_HANDOVER_DATA = br_edrHandoverData;
+  brEdrHandoverData(
+      'BR-EDR Handover Data', '2b38', '00002b38-0000-1000-8000-00805f9b34fb'),
 
   /// The default characteristic for Bluetooth SIG Data
-  static const bluetoothSigData = BluetoothDefaultCharacteristicUUIDS._(
-      'Bluetooth SIG Data',
-      '2b39',
-      '00002b39-0000-1000-8000-00805f9b34fb',
-      282);
-
-  /// This is deprecated use [bluetoothSigData] instead.
-  static const BLUETOOTH_SIG_DATA = bluetoothSigData;
+  bluetoothSigData(
+      'Bluetooth SIG Data', '2b39', '00002b39-0000-1000-8000-00805f9b34fb'),
 
   /// The default characteristic for Server Supported Features
-  static const serverSupportedFeatures = BluetoothDefaultCharacteristicUUIDS._(
-      'Server Supported Features',
-      '2b3a',
-      '00002b3a-0000-1000-8000-00805f9b34fb',
-      283);
-
-  /// This is deprecated use [serverSupportedFeatures] instead.
-  static const SERVER_SUPPORTED_FEATURES = serverSupportedFeatures;
+  serverSupportedFeatures('Server Supported Features', '2b3a',
+      '00002b3a-0000-1000-8000-00805f9b34fb'),
 
   /// The default characteristic for Physical Activity Monitor Features
-  static const physicalActivityMonitorFeatures =
-      BluetoothDefaultCharacteristicUUIDS._(
-          'Physical Activity Monitor Features',
-          '2b3b',
-          '00002b3b-0000-1000-8000-00805f9b34fb',
-          284);
-
-  /// This is deprecated use [physicalActivityMonitorFeatures] instead.
-  static const PHYSICAL_ACTIVITY_MONITOR_FEATURES =
-      physicalActivityMonitorFeatures;
+  physicalActivityMonitorFeatures('Physical Activity Monitor Features', '2b3b',
+      '00002b3b-0000-1000-8000-00805f9b34fb'),
 
   /// The default characteristic for General Activity Instantaneous Data
-  static const generalActivityInstantaneousData =
-      BluetoothDefaultCharacteristicUUIDS._(
-          'General Activity Instantaneous Data',
-          '2b3c',
-          '00002b3c-0000-1000-8000-00805f9b34fb',
-          285);
-
-  /// This is deprecated use [generalActivityInstantaneousData] instead.
-  static const GENERAL_ACTIVITY_INSTANTANEOUS_DATA =
-      generalActivityInstantaneousData;
+  generalActivityInstantaneousData('General Activity Instantaneous Data',
+      '2b3c', '00002b3c-0000-1000-8000-00805f9b34fb'),
 
   /// The default characteristic for General Activity Summary Data
-  static const generalActivitySummaryData =
-      BluetoothDefaultCharacteristicUUIDS._('General Activity Summary Data',
-          '2b3d', '00002b3d-0000-1000-8000-00805f9b34fb', 286);
-
-  /// This is deprecated use [generalActivitySummaryData] instead.
-  static const GENERAL_ACTIVITY_SUMMARY_DATA = generalActivitySummaryData;
+  generalActivitySummaryData('General Activity Summary Data', '2b3d',
+      '00002b3d-0000-1000-8000-00805f9b34fb'),
 
   /// The default characteristic for CardioRespiratory Activity Instantaneous Data
-  static const cardiorespiratoryActivityInstantaneousData =
-      BluetoothDefaultCharacteristicUUIDS._(
-          'CardioRespiratory Activity Instantaneous Data',
-          '2b3e',
-          '00002b3e-0000-1000-8000-00805f9b34fb',
-          287);
-
-  /// This is deprecated use [cardiorespiratoryActivityInstantaneousData] instead.
-  static const CARDIORESPIRATORY_ACTIVITY_INSTANTANEOUS_DATA =
-      cardiorespiratoryActivityInstantaneousData;
+  cardiorespiratoryActivityInstantaneousData(
+      'CardioRespiratory Activity Instantaneous Data',
+      '2b3e',
+      '00002b3e-0000-1000-8000-00805f9b34fb'),
 
   /// The default characteristic for CardioRespiratory Activity Summary Data
-  static const cardiorespiratoryActivitySummaryData =
-      BluetoothDefaultCharacteristicUUIDS._(
-          'CardioRespiratory Activity Summary Data',
-          '2b3f',
-          '00002b3f-0000-1000-8000-00805f9b34fb',
-          288);
-
-  /// This is deprecated use [cardiorespiratoryActivitySummaryData] instead.
-  static const CARDIORESPIRATORY_ACTIVITY_SUMMARY_DATA =
-      cardiorespiratoryActivitySummaryData;
+  cardiorespiratoryActivitySummaryData(
+      'CardioRespiratory Activity Summary Data',
+      '2b3f',
+      '00002b3f-0000-1000-8000-00805f9b34fb'),
 
   /// The default characteristic for Step Counter Activity Summary Data
-  static const stepCounterActivitySummaryData =
-      BluetoothDefaultCharacteristicUUIDS._(
-          'Step Counter Activity Summary Data',
-          '2b40',
-          '00002b40-0000-1000-8000-00805f9b34fb',
-          289);
-
-  /// This is deprecated use [stepCounterActivitySummaryData] instead.
-  static const STEP_COUNTER_ACTIVITY_SUMMARY_DATA =
-      stepCounterActivitySummaryData;
+  stepCounterActivitySummaryData('Step Counter Activity Summary Data', '2b40',
+      '00002b40-0000-1000-8000-00805f9b34fb'),
 
   /// The default characteristic for Sleep Activity Instantaneous Data
-  static const sleepActivityInstantaneousData =
-      BluetoothDefaultCharacteristicUUIDS._('Sleep Activity Instantaneous Data',
-          '2b41', '00002b41-0000-1000-8000-00805f9b34fb', 290);
-
-  /// This is deprecated use [sleepActivityInstantaneousData] instead.
-  static const SLEEP_ACTIVITY_INSTANTANEOUS_DATA =
-      sleepActivityInstantaneousData;
+  sleepActivityInstantaneousData('Sleep Activity Instantaneous Data', '2b41',
+      '00002b41-0000-1000-8000-00805f9b34fb'),
 
   /// The default characteristic for Sleep Activity Summary Data
-  static const sleepActivitySummaryData = BluetoothDefaultCharacteristicUUIDS._(
-      'Sleep Activity Summary Data',
-      '2b42',
-      '00002b42-0000-1000-8000-00805f9b34fb',
-      291);
-
-  /// This is deprecated use [sleepActivitySummaryData] instead.
-  static const SLEEP_ACTIVITY_SUMMARY_DATA = sleepActivitySummaryData;
+  sleepActivitySummaryData('Sleep Activity Summary Data', '2b42',
+      '00002b42-0000-1000-8000-00805f9b34fb'),
 
   /// The default characteristic for Physical Activity Monitor Control Point
-  static const physicalActivityMonitorControlPoint =
-      BluetoothDefaultCharacteristicUUIDS._(
-          'Physical Activity Monitor Control Point',
-          '2b43',
-          '00002b43-0000-1000-8000-00805f9b34fb',
-          292);
-
-  /// This is deprecated use [physicalActivityMonitorControlPoint] instead.
-  static const PHYSICAL_ACTIVITY_MONITOR_CONTROL_POINT =
-      physicalActivityMonitorControlPoint;
+  physicalActivityMonitorControlPoint('Physical Activity Monitor Control Point',
+      '2b43', '00002b43-0000-1000-8000-00805f9b34fb'),
 
   /// The default characteristic for Current Session
-  static const currentSession = BluetoothDefaultCharacteristicUUIDS._(
-      'Current Session', '2b44', '00002b44-0000-1000-8000-00805f9b34fb', 293);
-
-  /// This is deprecated use [currentSession] instead.
-  static const CURRENT_SESSION = currentSession;
+  currentSession(
+      'Current Session', '2b44', '00002b44-0000-1000-8000-00805f9b34fb'),
 
   /// The default characteristic for Session
-  static const session = BluetoothDefaultCharacteristicUUIDS._(
-      'Session', '2b45', '00002b45-0000-1000-8000-00805f9b34fb', 294);
-
-  /// This is deprecated use [session] instead.
-  static const SESSION = session;
+  session('Session', '2b45', '00002b45-0000-1000-8000-00805f9b34fb'),
 
   /// The default characteristic for Preferred Units
-  static const preferredUnits = BluetoothDefaultCharacteristicUUIDS._(
-      'Preferred Units', '2b46', '00002b46-0000-1000-8000-00805f9b34fb', 295);
-
-  /// This is deprecated use [preferredUnits] instead.
-  static const PREFERRED_UNITS = preferredUnits;
+  preferredUnits(
+      'Preferred Units', '2b46', '00002b46-0000-1000-8000-00805f9b34fb'),
 
   /// The default characteristic for High Resolution Height
-  static const highResolutionHeight = BluetoothDefaultCharacteristicUUIDS._(
-      'High Resolution Height',
-      '2b47',
-      '00002b47-0000-1000-8000-00805f9b34fb',
-      296);
-
-  /// This is deprecated use [highResolutionHeight] instead.
-  static const HIGH_RESOLUTION_HEIGHT = highResolutionHeight;
+  highResolutionHeight(
+      'High Resolution Height', '2b47', '00002b47-0000-1000-8000-00805f9b34fb'),
 
   /// The default characteristic for Middle Name
-  static const middleName = BluetoothDefaultCharacteristicUUIDS._(
-      'Middle Name', '2b48', '00002b48-0000-1000-8000-00805f9b34fb', 297);
-
-  /// This is deprecated use [middleName] instead.
-  static const MIDDLE_NAME = middleName;
+  middleName('Middle Name', '2b48', '00002b48-0000-1000-8000-00805f9b34fb'),
 
   /// The default characteristic for Stride Length
-  static const strideLength = BluetoothDefaultCharacteristicUUIDS._(
-      'Stride Length', '2b49', '00002b49-0000-1000-8000-00805f9b34fb', 298);
-
-  /// This is deprecated use [strideLength] instead.
-  static const STRIDE_LENGTH = strideLength;
+  strideLength('Stride Length', '2b49', '00002b49-0000-1000-8000-00805f9b34fb'),
 
   /// The default characteristic for Handedness
-  static const handedness = BluetoothDefaultCharacteristicUUIDS._(
-      'Handedness', '2b4a', '00002b4a-0000-1000-8000-00805f9b34fb', 299);
-
-  /// This is deprecated use [handedness] instead.
-  static const HANDEDNESS = handedness;
+  handedness('Handedness', '2b4a', '00002b4a-0000-1000-8000-00805f9b34fb'),
 
   /// The default characteristic for Device Wearing Position
-  static const deviceWearingPosition = BluetoothDefaultCharacteristicUUIDS._(
-      'Device Wearing Position',
-      '2b4b',
-      '00002b4b-0000-1000-8000-00805f9b34fb',
-      300);
-
-  /// This is deprecated use [deviceWearingPosition] instead.
-  static const DEVICE_WEARING_POSITION = deviceWearingPosition;
+  deviceWearingPosition('Device Wearing Position', '2b4b',
+      '00002b4b-0000-1000-8000-00805f9b34fb'),
 
   /// The default characteristic for Four Zone Heart Rate Limits
-  static const fourZoneHeartRateLimits = BluetoothDefaultCharacteristicUUIDS._(
-      'Four Zone Heart Rate Limits',
-      '2b4c',
-      '00002b4c-0000-1000-8000-00805f9b34fb',
-      301);
-
-  /// This is deprecated use [fourZoneHeartRateLimits] instead.
-  static const FOUR_ZONE_HEART_RATE_LIMITS = fourZoneHeartRateLimits;
+  fourZoneHeartRateLimits('Four Zone Heart Rate Limits', '2b4c',
+      '00002b4c-0000-1000-8000-00805f9b34fb'),
 
   /// The default characteristic for High Intensity Exercise Threshold
-  static const highIntensityExerciseThreshold =
-      BluetoothDefaultCharacteristicUUIDS._('High Intensity Exercise Threshold',
-          '2b4d', '00002b4d-0000-1000-8000-00805f9b34fb', 302);
-
-  /// This is deprecated use [highIntensityExerciseThreshold] instead.
-  static const HIGH_INTENSITY_EXERCISE_THRESHOLD =
-      highIntensityExerciseThreshold;
+  highIntensityExerciseThreshold('High Intensity Exercise Threshold', '2b4d',
+      '00002b4d-0000-1000-8000-00805f9b34fb'),
 
   /// The default characteristic for Activity Goal
-  static const activityGoal = BluetoothDefaultCharacteristicUUIDS._(
-      'Activity Goal', '2b4e', '00002b4e-0000-1000-8000-00805f9b34fb', 303);
-
-  /// This is deprecated use [activityGoal] instead.
-  static const ACTIVITY_GOAL = activityGoal;
+  activityGoal('Activity Goal', '2b4e', '00002b4e-0000-1000-8000-00805f9b34fb'),
 
   /// The default characteristic for Sedentary Interval Notification
-  static const sedentaryIntervalNotification =
-      BluetoothDefaultCharacteristicUUIDS._('Sedentary Interval Notification',
-          '2b4f', '00002b4f-0000-1000-8000-00805f9b34fb', 304);
-
-  /// This is deprecated use [sedentaryIntervalNotification] instead.
-  static const SEDENTARY_INTERVAL_NOTIFICATION = sedentaryIntervalNotification;
+  sedentaryIntervalNotification('Sedentary Interval Notification', '2b4f',
+      '00002b4f-0000-1000-8000-00805f9b34fb'),
 
   /// The default characteristic for Caloric Intake
-  static const caloricIntake = BluetoothDefaultCharacteristicUUIDS._(
-      'Caloric Intake', '2b50', '00002b50-0000-1000-8000-00805f9b34fb', 305);
-
-  /// This is deprecated use [caloricIntake] instead.
-  static const CALORIC_INTAKE = caloricIntake;
+  caloricIntake(
+      'Caloric Intake', '2b50', '00002b50-0000-1000-8000-00805f9b34fb'),
 
   /// The default characteristic for Audio Input State
-  static const audioInputState = BluetoothDefaultCharacteristicUUIDS._(
-      'Audio Input State', '2b77', '00002b77-0000-1000-8000-00805f9b34fb', 306);
-
-  /// This is deprecated use [audioInputState] instead.
-  static const AUDIO_INPUT_STATE = audioInputState;
+  audioInputState(
+      'Audio Input State', '2b77', '00002b77-0000-1000-8000-00805f9b34fb'),
 
   /// The default characteristic for Gain Settings Attribute
-  static const gainSettingsAttribute = BluetoothDefaultCharacteristicUUIDS._(
-      'Gain Settings Attribute',
-      '2b78',
-      '00002b78-0000-1000-8000-00805f9b34fb',
-      307);
-
-  /// This is deprecated use [gainSettingsAttribute] instead.
-  static const GAIN_SETTINGS_ATTRIBUTE = gainSettingsAttribute;
+  gainSettingsAttribute('Gain Settings Attribute', '2b78',
+      '00002b78-0000-1000-8000-00805f9b34fb'),
 
   /// The default characteristic for Audio Input Type
-  static const audioInputType = BluetoothDefaultCharacteristicUUIDS._(
-      'Audio Input Type', '2b79', '00002b79-0000-1000-8000-00805f9b34fb', 308);
-
-  /// This is deprecated use [audioInputType] instead.
-  static const AUDIO_INPUT_TYPE = audioInputType;
+  audioInputType(
+      'Audio Input Type', '2b79', '00002b79-0000-1000-8000-00805f9b34fb'),
 
   /// The default characteristic for Audio Input Status
-  static const audioInputStatus = BluetoothDefaultCharacteristicUUIDS._(
-      'Audio Input Status',
-      '2b7a',
-      '00002b7a-0000-1000-8000-00805f9b34fb',
-      309);
-
-  /// This is deprecated use [audioInputStatus] instead.
-  static const AUDIO_INPUT_STATUS = audioInputStatus;
+  audioInputStatus(
+      'Audio Input Status', '2b7a', '00002b7a-0000-1000-8000-00805f9b34fb'),
 
   /// The default characteristic for Audio Input Control Point
-  static const audioInputControlPoint = BluetoothDefaultCharacteristicUUIDS._(
-      'Audio Input Control Point',
-      '2b7b',
-      '00002b7b-0000-1000-8000-00805f9b34fb',
-      310);
-
-  /// This is deprecated use [audioInputControlPoint] instead.
-  static const AUDIO_INPUT_CONTROL_POINT = audioInputControlPoint;
+  audioInputControlPoint('Audio Input Control Point', '2b7b',
+      '00002b7b-0000-1000-8000-00805f9b34fb'),
 
   /// The default characteristic for Audio Input Description
-  static const audioInputDescription = BluetoothDefaultCharacteristicUUIDS._(
-      'Audio Input Description',
-      '2b7c',
-      '00002b7c-0000-1000-8000-00805f9b34fb',
-      311);
-
-  /// This is deprecated use [audioInputDescription] instead.
-  static const AUDIO_INPUT_DESCRIPTION = audioInputDescription;
+  audioInputDescription('Audio Input Description', '2b7c',
+      '00002b7c-0000-1000-8000-00805f9b34fb'),
 
   /// The default characteristic for Volume State
-  static const volumeState = BluetoothDefaultCharacteristicUUIDS._(
-      'Volume State', '2b7d', '00002b7d-0000-1000-8000-00805f9b34fb', 312);
-
-  /// This is deprecated use [volumeState] instead.
-  static const VOLUME_STATE = volumeState;
+  volumeState('Volume State', '2b7d', '00002b7d-0000-1000-8000-00805f9b34fb'),
 
   /// The default characteristic for Volume Control Point
-  static const volumeControlPoint = BluetoothDefaultCharacteristicUUIDS._(
-      'Volume Control Point',
-      '2b7e',
-      '00002b7e-0000-1000-8000-00805f9b34fb',
-      313);
-
-  /// This is deprecated use [volumeControlPoint] instead.
-  static const VOLUME_CONTROL_POINT = volumeControlPoint;
+  volumeControlPoint(
+      'Volume Control Point', '2b7e', '00002b7e-0000-1000-8000-00805f9b34fb'),
 
   /// The default characteristic for Volume Flags
-  static const volumeFlags = BluetoothDefaultCharacteristicUUIDS._(
-      'Volume Flags', '2b7f', '00002b7f-0000-1000-8000-00805f9b34fb', 314);
-
-  /// This is deprecated use [volumeFlags] instead.
-  static const VOLUME_FLAGS = volumeFlags;
+  volumeFlags('Volume Flags', '2b7f', '00002b7f-0000-1000-8000-00805f9b34fb'),
 
   /// The default characteristic for Offset State
-  static const offsetState = BluetoothDefaultCharacteristicUUIDS._(
-      'Offset State', '2b80', '00002b80-0000-1000-8000-00805f9b34fb', 315);
-
-  /// This is deprecated use [offsetState] instead.
-  static const OFFSET_STATE = offsetState;
+  offsetState('Offset State', '2b80', '00002b80-0000-1000-8000-00805f9b34fb'),
 
   /// The default characteristic for Audio Location
-  static const audioLocation = BluetoothDefaultCharacteristicUUIDS._(
-      'Audio Location', '2b81', '00002b81-0000-1000-8000-00805f9b34fb', 316);
-
-  /// This is deprecated use [audioLocation] instead.
-  static const AUDIO_LOCATION = audioLocation;
+  audioLocation(
+      'Audio Location', '2b81', '00002b81-0000-1000-8000-00805f9b34fb'),
 
   /// The default characteristic for Volume Offset Control Point
-  static const volumeOffsetControlPoint = BluetoothDefaultCharacteristicUUIDS._(
-      'Volume Offset Control Point',
-      '2b82',
-      '00002b82-0000-1000-8000-00805f9b34fb',
-      317);
-
-  /// This is deprecated use [volumeOffsetControlPoint] instead.
-  static const VOLUME_OFFSET_CONTROL_POINT = volumeOffsetControlPoint;
+  volumeOffsetControlPoint('Volume Offset Control Point', '2b82',
+      '00002b82-0000-1000-8000-00805f9b34fb'),
 
   /// The default characteristic for Audio Output Description
-  static const audioOutputDescription = BluetoothDefaultCharacteristicUUIDS._(
-      'Audio Output Description',
-      '2b83',
-      '00002b83-0000-1000-8000-00805f9b34fb',
-      318);
-
-  /// This is deprecated use [audioOutputDescription] instead.
-  static const AUDIO_OUTPUT_DESCRIPTION = audioOutputDescription;
+  audioOutputDescription('Audio Output Description', '2b83',
+      '00002b83-0000-1000-8000-00805f9b34fb'),
 
   /// The default characteristic for Set Identity Resolving Key Characteristic
-  static const setIdentityResolvingKeyCharacteristic =
-      BluetoothDefaultCharacteristicUUIDS._(
-          'Set Identity Resolving Key Characteristic',
-          '2b84',
-          '00002b84-0000-1000-8000-00805f9b34fb',
-          319);
-
-  /// This is deprecated use [setIdentityResolvingKeyCharacteristic] instead.
-  static const SET_IDENTITY_RESOLVING_KEY_CHARACTERISTIC =
-      setIdentityResolvingKeyCharacteristic;
+  setIdentityResolvingKeyCharacteristic(
+      'Set Identity Resolving Key Characteristic',
+      '2b84',
+      '00002b84-0000-1000-8000-00805f9b34fb'),
 
   /// The default characteristic for Size Characteristic
-  static const sizeCharacteristic = BluetoothDefaultCharacteristicUUIDS._(
-      'Size Characteristic',
-      '2b85',
-      '00002b85-0000-1000-8000-00805f9b34fb',
-      320);
-
-  /// This is deprecated use [sizeCharacteristic] instead.
-  static const SIZE_CHARACTERISTIC = sizeCharacteristic;
+  sizeCharacteristic(
+      'Size Characteristic', '2b85', '00002b85-0000-1000-8000-00805f9b34fb'),
 
   /// The default characteristic for Lock Characteristic
-  static const lockCharacteristic = BluetoothDefaultCharacteristicUUIDS._(
-      'Lock Characteristic',
-      '2b86',
-      '00002b86-0000-1000-8000-00805f9b34fb',
-      321);
-
-  /// This is deprecated use [lockCharacteristic] instead.
-  static const LOCK_CHARACTERISTIC = lockCharacteristic;
+  lockCharacteristic(
+      'Lock Characteristic', '2b86', '00002b86-0000-1000-8000-00805f9b34fb'),
 
   /// The default characteristic for Rank Characteristic
-  static const rankCharacteristic = BluetoothDefaultCharacteristicUUIDS._(
-      'Rank Characteristic',
-      '2b87',
-      '00002b87-0000-1000-8000-00805f9b34fb',
-      322);
-
-  /// This is deprecated use [rankCharacteristic] instead.
-  static const RANK_CHARACTERISTIC = rankCharacteristic;
+  rankCharacteristic(
+      'Rank Characteristic', '2b87', '00002b87-0000-1000-8000-00805f9b34fb'),
 
   /// The default characteristic for Device Time Feature
-  static const deviceTimeFeature = BluetoothDefaultCharacteristicUUIDS._(
-      'Device Time Feature',
-      '2b8e',
-      '00002b8e-0000-1000-8000-00805f9b34fb',
-      323);
-
-  /// This is deprecated use [deviceTimeFeature] instead.
-  static const DEVICE_TIME_FEATURE = deviceTimeFeature;
+  deviceTimeFeature(
+      'Device Time Feature', '2b8e', '00002b8e-0000-1000-8000-00805f9b34fb'),
 
   /// The default characteristic for Device Time Parameters
-  static const deviceTimeParameters = BluetoothDefaultCharacteristicUUIDS._(
-      'Device Time Parameters',
-      '2b8f',
-      '00002b8f-0000-1000-8000-00805f9b34fb',
-      324);
-
-  /// This is deprecated use [deviceTimeParameters] instead.
-  static const DEVICE_TIME_PARAMETERS = deviceTimeParameters;
+  deviceTimeParameters(
+      'Device Time Parameters', '2b8f', '00002b8f-0000-1000-8000-00805f9b34fb'),
 
   /// The default characteristic for Device Time
-  static const deviceTime = BluetoothDefaultCharacteristicUUIDS._(
-      'Device Time', '2b90', '00002b90-0000-1000-8000-00805f9b34fb', 325);
-
-  /// This is deprecated use [deviceTime] instead.
-  static const DEVICE_TIME = deviceTime;
+  deviceTime('Device Time', '2b90', '00002b90-0000-1000-8000-00805f9b34fb'),
 
   /// The default characteristic for Device Time Control Point
-  static const deviceTimeControlPoint = BluetoothDefaultCharacteristicUUIDS._(
-      'Device Time Control Point',
-      '2b91',
-      '00002b91-0000-1000-8000-00805f9b34fb',
-      326);
-
-  /// This is deprecated use [deviceTimeControlPoint] instead.
-  static const DEVICE_TIME_CONTROL_POINT = deviceTimeControlPoint;
+  deviceTimeControlPoint('Device Time Control Point', '2b91',
+      '00002b91-0000-1000-8000-00805f9b34fb'),
 
   /// The default characteristic for Time Change Log Data
-  static const timeChangeLogData = BluetoothDefaultCharacteristicUUIDS._(
-      'Time Change Log Data',
-      '2b92',
-      '00002b92-0000-1000-8000-00805f9b34fb',
-      327);
-
-  /// This is deprecated use [timeChangeLogData] instead.
-  static const TIME_CHANGE_LOG_DATA = timeChangeLogData;
+  timeChangeLogData(
+      'Time Change Log Data', '2b92', '00002b92-0000-1000-8000-00805f9b34fb'),
 
   /// The default characteristic for Media Player Name
-  static const mediaPlayerName = BluetoothDefaultCharacteristicUUIDS._(
-      'Media Player Name', '2b93', '00002b93-0000-1000-8000-00805f9b34fb', 328);
-
-  /// This is deprecated use [mediaPlayerName] instead.
-  static const MEDIA_PLAYER_NAME = mediaPlayerName;
+  mediaPlayerName(
+      'Media Player Name', '2b93', '00002b93-0000-1000-8000-00805f9b34fb'),
 
   /// The default characteristic for Media Player Icon Object ID
-  static const mediaPlayerIconObjectId = BluetoothDefaultCharacteristicUUIDS._(
-      'Media Player Icon Object ID',
-      '2b94',
-      '00002b94-0000-1000-8000-00805f9b34fb',
-      329);
-
-  /// This is deprecated use [mediaPlayerIconObjectId] instead.
-  static const MEDIA_PLAYER_ICON_OBJECT_ID = mediaPlayerIconObjectId;
+  mediaPlayerIconObjectId('Media Player Icon Object ID', '2b94',
+      '00002b94-0000-1000-8000-00805f9b34fb'),
 
   /// The default characteristic for Media Player Icon URL
-  static const mediaPlayerIconUrl = BluetoothDefaultCharacteristicUUIDS._(
-      'Media Player Icon URL',
-      '2b95',
-      '00002b95-0000-1000-8000-00805f9b34fb',
-      330);
-
-  /// This is deprecated use [mediaPlayerIconUrl] instead.
-  static const MEDIA_PLAYER_ICON_URL = mediaPlayerIconUrl;
+  mediaPlayerIconUrl(
+      'Media Player Icon URL', '2b95', '00002b95-0000-1000-8000-00805f9b34fb'),
 
   /// The default characteristic for Track Changed
-  static const trackChanged = BluetoothDefaultCharacteristicUUIDS._(
-      'Track Changed', '2b96', '00002b96-0000-1000-8000-00805f9b34fb', 331);
-
-  /// This is deprecated use [trackChanged] instead.
-  static const TRACK_CHANGED = trackChanged;
+  trackChanged('Track Changed', '2b96', '00002b96-0000-1000-8000-00805f9b34fb'),
 
   /// The default characteristic for Track Title
-  static const trackTitle = BluetoothDefaultCharacteristicUUIDS._(
-      'Track Title', '2b97', '00002b97-0000-1000-8000-00805f9b34fb', 332);
-
-  /// This is deprecated use [trackTitle] instead.
-  static const TRACK_TITLE = trackTitle;
+  trackTitle('Track Title', '2b97', '00002b97-0000-1000-8000-00805f9b34fb'),
 
   /// The default characteristic for Track Duration
-  static const trackDuration = BluetoothDefaultCharacteristicUUIDS._(
-      'Track Duration', '2b98', '00002b98-0000-1000-8000-00805f9b34fb', 333);
-
-  /// This is deprecated use [trackDuration] instead.
-  static const TRACK_DURATION = trackDuration;
+  trackDuration(
+      'Track Duration', '2b98', '00002b98-0000-1000-8000-00805f9b34fb'),
 
   /// The default characteristic for Track Position
-  static const trackPosition = BluetoothDefaultCharacteristicUUIDS._(
-      'Track Position', '2b99', '00002b99-0000-1000-8000-00805f9b34fb', 334);
-
-  /// This is deprecated use [trackPosition] instead.
-  static const TRACK_POSITION = trackPosition;
+  trackPosition(
+      'Track Position', '2b99', '00002b99-0000-1000-8000-00805f9b34fb'),
 
   /// The default characteristic for Playback Speed
-  static const playbackSpeed = BluetoothDefaultCharacteristicUUIDS._(
-      'Playback Speed', '2b9a', '00002b9a-0000-1000-8000-00805f9b34fb', 335);
-
-  /// This is deprecated use [playbackSpeed] instead.
-  static const PLAYBACK_SPEED = playbackSpeed;
+  playbackSpeed(
+      'Playback Speed', '2b9a', '00002b9a-0000-1000-8000-00805f9b34fb'),
 
   /// The default characteristic for Seeking Speed
-  static const seekingSpeed = BluetoothDefaultCharacteristicUUIDS._(
-      'Seeking Speed', '2b9b', '00002b9b-0000-1000-8000-00805f9b34fb', 336);
-
-  /// This is deprecated use [seekingSpeed] instead.
-  static const SEEKING_SPEED = seekingSpeed;
+  seekingSpeed('Seeking Speed', '2b9b', '00002b9b-0000-1000-8000-00805f9b34fb'),
 
   /// The default characteristic for Current Track Segments Object ID
-  static const currentTrackSegmentsObjectId =
-      BluetoothDefaultCharacteristicUUIDS._('Current Track Segments Object ID',
-          '2b9c', '00002b9c-0000-1000-8000-00805f9b34fb', 337);
-
-  /// This is deprecated use [currentTrackSegmentsObjectId] instead.
-  static const CURRENT_TRACK_SEGMENTS_OBJECT_ID = currentTrackSegmentsObjectId;
+  currentTrackSegmentsObjectId('Current Track Segments Object ID', '2b9c',
+      '00002b9c-0000-1000-8000-00805f9b34fb'),
 
   /// The default characteristic for Current Track Object ID
-  static const currentTrackObjectId = BluetoothDefaultCharacteristicUUIDS._(
-      'Current Track Object ID',
-      '2b9d',
-      '00002b9d-0000-1000-8000-00805f9b34fb',
-      338);
-
-  /// This is deprecated use [currentTrackObjectId] instead.
-  static const CURRENT_TRACK_OBJECT_ID = currentTrackObjectId;
+  currentTrackObjectId('Current Track Object ID', '2b9d',
+      '00002b9d-0000-1000-8000-00805f9b34fb'),
 
   /// The default characteristic for Next Track Object ID
-  static const nextTrackObjectId = BluetoothDefaultCharacteristicUUIDS._(
-      'Next Track Object ID',
-      '2b9e',
-      '00002b9e-0000-1000-8000-00805f9b34fb',
-      339);
-
-  /// This is deprecated use [nextTrackObjectId] instead.
-  static const NEXT_TRACK_OBJECT_ID = nextTrackObjectId;
+  nextTrackObjectId(
+      'Next Track Object ID', '2b9e', '00002b9e-0000-1000-8000-00805f9b34fb'),
 
   /// The default characteristic for Parent Group Object ID
-  static const parentGroupObjectId = BluetoothDefaultCharacteristicUUIDS._(
-      'Parent Group Object ID',
-      '2b9f',
-      '00002b9f-0000-1000-8000-00805f9b34fb',
-      340);
-
-  /// This is deprecated use [parentGroupObjectId] instead.
-  static const PARENT_GROUP_OBJECT_ID = parentGroupObjectId;
+  parentGroupObjectId(
+      'Parent Group Object ID', '2b9f', '00002b9f-0000-1000-8000-00805f9b34fb'),
 
   /// The default characteristic for Current Group Object ID
-  static const currentGroupObjectId = BluetoothDefaultCharacteristicUUIDS._(
-      'Current Group Object ID',
-      '2ba0',
-      '00002ba0-0000-1000-8000-00805f9b34fb',
-      341);
-
-  /// This is deprecated use [currentGroupObjectId] instead.
-  static const CURRENT_GROUP_OBJECT_ID = currentGroupObjectId;
+  currentGroupObjectId('Current Group Object ID', '2ba0',
+      '00002ba0-0000-1000-8000-00805f9b34fb'),
 
   /// The default characteristic for Playing Order
-  static const playingOrder = BluetoothDefaultCharacteristicUUIDS._(
-      'Playing Order', '2ba1', '00002ba1-0000-1000-8000-00805f9b34fb', 342);
-
-  /// This is deprecated use [playingOrder] instead.
-  static const PLAYING_ORDER = playingOrder;
+  playingOrder('Playing Order', '2ba1', '00002ba1-0000-1000-8000-00805f9b34fb'),
 
   /// The default characteristic for Playing Orders Supported
-  static const playingOrdersSupported = BluetoothDefaultCharacteristicUUIDS._(
-      'Playing Orders Supported',
-      '2ba2',
-      '00002ba2-0000-1000-8000-00805f9b34fb',
-      343);
-
-  /// This is deprecated use [playingOrdersSupported] instead.
-  static const PLAYING_ORDERS_SUPPORTED = playingOrdersSupported;
+  playingOrdersSupported('Playing Orders Supported', '2ba2',
+      '00002ba2-0000-1000-8000-00805f9b34fb'),
 
   /// The default characteristic for Media State
-  static const mediaState = BluetoothDefaultCharacteristicUUIDS._(
-      'Media State', '2ba3', '00002ba3-0000-1000-8000-00805f9b34fb', 344);
-
-  /// This is deprecated use [mediaState] instead.
-  static const MEDIA_STATE = mediaState;
+  mediaState('Media State', '2ba3', '00002ba3-0000-1000-8000-00805f9b34fb'),
 
   /// The default characteristic for Media Control Point
-  static const mediaControlPoint = BluetoothDefaultCharacteristicUUIDS._(
-      'Media Control Point',
-      '2ba4',
-      '00002ba4-0000-1000-8000-00805f9b34fb',
-      345);
-
-  /// This is deprecated use [mediaControlPoint] instead.
-  static const MEDIA_CONTROL_POINT = mediaControlPoint;
+  mediaControlPoint(
+      'Media Control Point', '2ba4', '00002ba4-0000-1000-8000-00805f9b34fb'),
 
   /// The default characteristic for Media Control Point Opcodes Supported
-  static const mediaControlPointOpcodesSupported =
-      BluetoothDefaultCharacteristicUUIDS._(
-          'Media Control Point Opcodes Supported',
-          '2ba5',
-          '00002ba5-0000-1000-8000-00805f9b34fb',
-          346);
-
-  /// This is deprecated use [mediaControlPointOpcodesSupported] instead.
-  static const MEDIA_CONTROL_POINT_OPCODES_SUPPORTED =
-      mediaControlPointOpcodesSupported;
+  mediaControlPointOpcodesSupported('Media Control Point Opcodes Supported',
+      '2ba5', '00002ba5-0000-1000-8000-00805f9b34fb'),
 
   /// The default characteristic for Search Results Object ID
-  static const searchResultsObjectId = BluetoothDefaultCharacteristicUUIDS._(
-      'Search Results Object ID',
-      '2ba6',
-      '00002ba6-0000-1000-8000-00805f9b34fb',
-      347);
-
-  /// This is deprecated use [searchResultsObjectId] instead.
-  static const SEARCH_RESULTS_OBJECT_ID = searchResultsObjectId;
+  searchResultsObjectId('Search Results Object ID', '2ba6',
+      '00002ba6-0000-1000-8000-00805f9b34fb'),
 
   /// The default characteristic for Search Control Point
-  static const searchControlPoint = BluetoothDefaultCharacteristicUUIDS._(
-      'Search Control Point',
-      '2ba7',
-      '00002ba7-0000-1000-8000-00805f9b34fb',
-      348);
-
-  /// This is deprecated use [searchControlPoint] instead.
-  static const SEARCH_CONTROL_POINT = searchControlPoint;
+  searchControlPoint(
+      'Search Control Point', '2ba7', '00002ba7-0000-1000-8000-00805f9b34fb'),
 
   /// The default characteristic for Media Player Icon Object Type
-  static const mediaPlayerIconObjectType =
-      BluetoothDefaultCharacteristicUUIDS._('Media Player Icon Object Type',
-          '2ba9', '00002ba9-0000-1000-8000-00805f9b34fb', 349);
-
-  /// This is deprecated use [mediaPlayerIconObjectType] instead.
-  static const MEDIA_PLAYER_ICON_OBJECT_TYPE = mediaPlayerIconObjectType;
+  mediaPlayerIconObjectType('Media Player Icon Object Type', '2ba9',
+      '00002ba9-0000-1000-8000-00805f9b34fb'),
 
   /// The default characteristic for Track Segments Object Type
-  static const trackSegmentsObjectType = BluetoothDefaultCharacteristicUUIDS._(
-      'Track Segments Object Type',
-      '2baa',
-      '00002baa-0000-1000-8000-00805f9b34fb',
-      350);
-
-  /// This is deprecated use [trackSegmentsObjectType] instead.
-  static const TRACK_SEGMENTS_OBJECT_TYPE = trackSegmentsObjectType;
+  trackSegmentsObjectType('Track Segments Object Type', '2baa',
+      '00002baa-0000-1000-8000-00805f9b34fb'),
 
   /// The default characteristic for Track Object Type
-  static const trackObjectType = BluetoothDefaultCharacteristicUUIDS._(
-      'Track Object Type', '2bab', '00002bab-0000-1000-8000-00805f9b34fb', 351);
-
-  /// This is deprecated use [trackObjectType] instead.
-  static const TRACK_OBJECT_TYPE = trackObjectType;
+  trackObjectType(
+      'Track Object Type', '2bab', '00002bab-0000-1000-8000-00805f9b34fb'),
 
   /// The default characteristic for Group Object Type
-  static const groupObjectType = BluetoothDefaultCharacteristicUUIDS._(
-      'Group Object Type', '2bac', '00002bac-0000-1000-8000-00805f9b34fb', 352);
-
-  /// This is deprecated use [groupObjectType] instead.
-  static const GROUP_OBJECT_TYPE = groupObjectType;
+  groupObjectType(
+      'Group Object Type', '2bac', '00002bac-0000-1000-8000-00805f9b34fb'),
 
   /// The default characteristic for Constant Tone Extension Enable
-  static const constantToneExtensionEnable =
-      BluetoothDefaultCharacteristicUUIDS._('Constant Tone Extension Enable',
-          '2bad', '00002bad-0000-1000-8000-00805f9b34fb', 353);
-
-  /// This is deprecated use [constantToneExtensionEnable] instead.
-  static const CONSTANT_TONE_EXTENSION_ENABLE = constantToneExtensionEnable;
+  constantToneExtensionEnable('Constant Tone Extension Enable', '2bad',
+      '00002bad-0000-1000-8000-00805f9b34fb'),
 
   /// The default characteristic for Advertising Constant Tone Extension Minimum Length
-  static const advertisingConstantToneExtensionMinimumLength =
-      BluetoothDefaultCharacteristicUUIDS._(
-          'Advertising Constant Tone Extension Minimum Length',
-          '2bae',
-          '00002bae-0000-1000-8000-00805f9b34fb',
-          354);
-
-  /// This is deprecated use [advertisingConstantToneExtensionMinimumLength] instead.
-  static const ADVERTISING_CONSTANT_TONE_EXTENSION_MINIMUM_LENGTH =
-      advertisingConstantToneExtensionMinimumLength;
+  advertisingConstantToneExtensionMinimumLength(
+      'Advertising Constant Tone Extension Minimum Length',
+      '2bae',
+      '00002bae-0000-1000-8000-00805f9b34fb'),
 
   /// The default characteristic for Advertising Constant Tone Extension Minimum Transmit Count
-  static const advertisingConstantToneExtensionMinimumTransmitCount =
-      BluetoothDefaultCharacteristicUUIDS._(
-          'Advertising Constant Tone Extension Minimum Transmit Count',
-          '2baf',
-          '00002baf-0000-1000-8000-00805f9b34fb',
-          355);
-
-  /// This is deprecated use [advertisingConstantToneExtensionMinimumTransmitCount] instead.
-  static const ADVERTISING_CONSTANT_TONE_EXTENSION_MINIMUM_TRANSMIT_COUNT =
-      advertisingConstantToneExtensionMinimumTransmitCount;
+  advertisingConstantToneExtensionMinimumTransmitCount(
+      'Advertising Constant Tone Extension Minimum Transmit Count',
+      '2baf',
+      '00002baf-0000-1000-8000-00805f9b34fb'),
 
   /// The default characteristic for Advertising Constant Tone Extension Transmit Duration
-  static const advertisingConstantToneExtensionTransmitDuration =
-      BluetoothDefaultCharacteristicUUIDS._(
-          'Advertising Constant Tone Extension Transmit Duration',
-          '2bb0',
-          '00002bb0-0000-1000-8000-00805f9b34fb',
-          356);
-
-  /// This is deprecated use [advertisingConstantToneExtensionTransmitDuration] instead.
-  static const ADVERTISING_CONSTANT_TONE_EXTENSION_TRANSMIT_DURATION =
-      advertisingConstantToneExtensionTransmitDuration;
+  advertisingConstantToneExtensionTransmitDuration(
+      'Advertising Constant Tone Extension Transmit Duration',
+      '2bb0',
+      '00002bb0-0000-1000-8000-00805f9b34fb'),
 
   /// The default characteristic for Advertising Constant Tone Extension Interval
-  static const advertisingConstantToneExtensionInterval =
-      BluetoothDefaultCharacteristicUUIDS._(
-          'Advertising Constant Tone Extension Interval',
-          '2bb1',
-          '00002bb1-0000-1000-8000-00805f9b34fb',
-          357);
-
-  /// This is deprecated use [advertisingConstantToneExtensionInterval] instead.
-  static const ADVERTISING_CONSTANT_TONE_EXTENSION_INTERVAL =
-      advertisingConstantToneExtensionInterval;
+  advertisingConstantToneExtensionInterval(
+      'Advertising Constant Tone Extension Interval',
+      '2bb1',
+      '00002bb1-0000-1000-8000-00805f9b34fb'),
 
   /// The default characteristic for Advertising Constant Tone Extension PHY
-  static const advertisingConstantToneExtensionPhy =
-      BluetoothDefaultCharacteristicUUIDS._(
-          'Advertising Constant Tone Extension PHY',
-          '2bb2',
-          '00002bb2-0000-1000-8000-00805f9b34fb',
-          358);
-
-  /// This is deprecated use [advertisingConstantToneExtensionPhy] instead.
-  static const ADVERTISING_CONSTANT_TONE_EXTENSION_PHY =
-      advertisingConstantToneExtensionPhy;
+  advertisingConstantToneExtensionPhy('Advertising Constant Tone Extension PHY',
+      '2bb2', '00002bb2-0000-1000-8000-00805f9b34fb'),
 
   /// The default characteristic for Bearer Provider Name
-  static const bearerProviderName = BluetoothDefaultCharacteristicUUIDS._(
-      'Bearer Provider Name',
-      '2bb3',
-      '00002bb3-0000-1000-8000-00805f9b34fb',
-      359);
-
-  /// This is deprecated use [bearerProviderName] instead.
-  static const BEARER_PROVIDER_NAME = bearerProviderName;
+  bearerProviderName(
+      'Bearer Provider Name', '2bb3', '00002bb3-0000-1000-8000-00805f9b34fb'),
 
   /// The default characteristic for Bearer UCI
-  static const bearerUci = BluetoothDefaultCharacteristicUUIDS._(
-      'Bearer UCI', '2bb4', '00002bb4-0000-1000-8000-00805f9b34fb', 360);
-
-  /// This is deprecated use [bearerUci] instead.
-  static const BEARER_UCI = bearerUci;
+  bearerUci('Bearer UCI', '2bb4', '00002bb4-0000-1000-8000-00805f9b34fb'),
 
   /// The default characteristic for Bearer Technology
-  static const bearerTechnology = BluetoothDefaultCharacteristicUUIDS._(
-      'Bearer Technology', '2bb5', '00002bb5-0000-1000-8000-00805f9b34fb', 361);
-
-  /// This is deprecated use [bearerTechnology] instead.
-  static const BEARER_TECHNOLOGY = bearerTechnology;
+  bearerTechnology(
+      'Bearer Technology', '2bb5', '00002bb5-0000-1000-8000-00805f9b34fb'),
 
   /// The default characteristic for Bearer URI Schemes Supported List
-  static const bearerUriSchemesSupportedList =
-      BluetoothDefaultCharacteristicUUIDS._('Bearer URI Schemes Supported List',
-          '2bb6', '00002bb6-0000-1000-8000-00805f9b34fb', 362);
-
-  /// This is deprecated use [bearerUriSchemesSupportedList] instead.
-  static const BEARER_URI_SCHEMES_SUPPORTED_LIST =
-      bearerUriSchemesSupportedList;
+  bearerUriSchemesSupportedList('Bearer URI Schemes Supported List', '2bb6',
+      '00002bb6-0000-1000-8000-00805f9b34fb'),
 
   /// The default characteristic for Bearer Signal Strength
-  static const bearerSignalStrength = BluetoothDefaultCharacteristicUUIDS._(
-      'Bearer Signal Strength',
-      '2bb7',
-      '00002bb7-0000-1000-8000-00805f9b34fb',
-      363);
-
-  /// This is deprecated use [bearerSignalStrength] instead.
-  static const BEARER_SIGNAL_STRENGTH = bearerSignalStrength;
+  bearerSignalStrength(
+      'Bearer Signal Strength', '2bb7', '00002bb7-0000-1000-8000-00805f9b34fb'),
 
   /// The default characteristic for Bearer Signal Strength Reporting Interval
-  static const bearerSignalStrengthReportingInterval =
-      BluetoothDefaultCharacteristicUUIDS._(
-          'Bearer Signal Strength Reporting Interval',
-          '2bb8',
-          '00002bb8-0000-1000-8000-00805f9b34fb',
-          364);
-
-  /// This is deprecated use [bearerSignalStrengthReportingInterval] instead.
-  static const BEARER_SIGNAL_STRENGTH_REPORTING_INTERVAL =
-      bearerSignalStrengthReportingInterval;
+  bearerSignalStrengthReportingInterval(
+      'Bearer Signal Strength Reporting Interval',
+      '2bb8',
+      '00002bb8-0000-1000-8000-00805f9b34fb'),
 
   /// The default characteristic for Bearer List Current Calls
-  static const bearerListCurrentCalls = BluetoothDefaultCharacteristicUUIDS._(
-      'Bearer List Current Calls',
-      '2bb9',
-      '00002bb9-0000-1000-8000-00805f9b34fb',
-      365);
-
-  /// This is deprecated use [bearerListCurrentCalls] instead.
-  static const BEARER_LIST_CURRENT_CALLS = bearerListCurrentCalls;
+  bearerListCurrentCalls('Bearer List Current Calls', '2bb9',
+      '00002bb9-0000-1000-8000-00805f9b34fb'),
 
   /// The default characteristic for Content Control ID
-  static const contentControlId = BluetoothDefaultCharacteristicUUIDS._(
-      'Content Control ID',
-      '2bba',
-      '00002bba-0000-1000-8000-00805f9b34fb',
-      366);
-
-  /// This is deprecated use [contentControlId] instead.
-  static const CONTENT_CONTROL_ID = contentControlId;
+  contentControlId(
+      'Content Control ID', '2bba', '00002bba-0000-1000-8000-00805f9b34fb'),
 
   /// The default characteristic for Status Flags
-  static const statusFlags = BluetoothDefaultCharacteristicUUIDS._(
-      'Status Flags', '2bbb', '00002bbb-0000-1000-8000-00805f9b34fb', 367);
-
-  /// This is deprecated use [statusFlags] instead.
-  static const STATUS_FLAGS = statusFlags;
+  statusFlags('Status Flags', '2bbb', '00002bbb-0000-1000-8000-00805f9b34fb'),
 
   /// The default characteristic for Incoming Call Target Bearer URI
-  static const incomingCallTargetBearerUri =
-      BluetoothDefaultCharacteristicUUIDS._('Incoming Call Target Bearer URI',
-          '2bbc', '00002bbc-0000-1000-8000-00805f9b34fb', 368);
-
-  /// This is deprecated use [incomingCallTargetBearerUri] instead.
-  static const INCOMING_CALL_TARGET_BEARER_URI = incomingCallTargetBearerUri;
+  incomingCallTargetBearerUri('Incoming Call Target Bearer URI', '2bbc',
+      '00002bbc-0000-1000-8000-00805f9b34fb'),
 
   /// The default characteristic for Call State
-  static const callState = BluetoothDefaultCharacteristicUUIDS._(
-      'Call State', '2bbd', '00002bbd-0000-1000-8000-00805f9b34fb', 369);
-
-  /// This is deprecated use [callState] instead.
-  static const CALL_STATE = callState;
+  callState('Call State', '2bbd', '00002bbd-0000-1000-8000-00805f9b34fb'),
 
   /// The default characteristic for Call Control Point
-  static const callControlPoint = BluetoothDefaultCharacteristicUUIDS._(
-      'Call Control Point',
-      '2bbe',
-      '00002bbe-0000-1000-8000-00805f9b34fb',
-      370);
-
-  /// This is deprecated use [callControlPoint] instead.
-  static const CALL_CONTROL_POINT = callControlPoint;
+  callControlPoint(
+      'Call Control Point', '2bbe', '00002bbe-0000-1000-8000-00805f9b34fb'),
 
   /// The default characteristic for Call Control Point Optional Opcodes
-  static const callControlPointOptionalOpcodes =
-      BluetoothDefaultCharacteristicUUIDS._(
-          'Call Control Point Optional Opcodes',
-          '2bbf',
-          '00002bbf-0000-1000-8000-00805f9b34fb',
-          371);
-
-  /// This is deprecated use [callControlPointOptionalOpcodes] instead.
-  static const CALL_CONTROL_POINT_OPTIONAL_OPCODES =
-      callControlPointOptionalOpcodes;
+  callControlPointOptionalOpcodes('Call Control Point Optional Opcodes', '2bbf',
+      '00002bbf-0000-1000-8000-00805f9b34fb'),
 
   /// The default characteristic for Termination Reason
-  static const terminationReason = BluetoothDefaultCharacteristicUUIDS._(
-      'Termination Reason',
-      '2bc0',
-      '00002bc0-0000-1000-8000-00805f9b34fb',
-      372);
-
-  /// This is deprecated use [terminationReason] instead.
-  static const TERMINATION_REASON = terminationReason;
+  terminationReason(
+      'Termination Reason', '2bc0', '00002bc0-0000-1000-8000-00805f9b34fb'),
 
   /// The default characteristic for Incoming Call
-  static const incomingCall = BluetoothDefaultCharacteristicUUIDS._(
-      'Incoming Call', '2bc1', '00002bc1-0000-1000-8000-00805f9b34fb', 373);
-
-  /// This is deprecated use [incomingCall] instead.
-  static const INCOMING_CALL = incomingCall;
+  incomingCall('Incoming Call', '2bc1', '00002bc1-0000-1000-8000-00805f9b34fb'),
 
   /// The default characteristic for Call Friendly Name
-  static const callFriendlyName = BluetoothDefaultCharacteristicUUIDS._(
-      'Call Friendly Name',
-      '2bc2',
-      '00002bc2-0000-1000-8000-00805f9b34fb',
-      374);
-
-  /// This is deprecated use [callFriendlyName] instead.
-  static const CALL_FRIENDLY_NAME = callFriendlyName;
+  callFriendlyName(
+      'Call Friendly Name', '2bc2', '00002bc2-0000-1000-8000-00805f9b34fb'),
 
   /// The default characteristic for Mute
-  static const mute = BluetoothDefaultCharacteristicUUIDS._(
-      'Mute', '2bc3', '00002bc3-0000-1000-8000-00805f9b34fb', 375);
+  mute('Mute', '2bc3', '00002bc3-0000-1000-8000-00805f9b34fb');
 
-  /// This is deprecated use [mute] instead.
-  static const MUTE = mute;
+  ///
+  /// A characteristic UUID consists of a human readable name of the service, as well
+  /// as its uuid represented as a 16 bit uuid and a full 128 bit uuid.
+  ///
+  const BluetoothDefaultCharacteristicUUIDS(this.name, this.uuid16, this.uuid);
 
-  /// All the default characteristics.
-  static const values = [
-    deviceName,
-    appearance,
-    peripheralPrivacyFlag,
-    reconnectionAddress,
-    peripheralPreferredConnectionParameters,
-    serviceChanged,
-    alertLevel,
-    txPowerLevel,
-    dateTime,
-    dayOfWeek,
-    dayDateTime,
-    exactTime256,
-    dstOffset,
-    timeZone,
-    localTimeInformation,
-    timeWithDst,
-    timeAccuracy,
-    timeSource,
-    referenceTimeInformation,
-    timeUpdateControlPoint,
-    timeUpdateState,
-    glucoseMeasurement,
-    batteryLevel,
-    temperatureMeasurement,
-    temperatureType,
-    intermediateTemperature,
-    measurementInterval,
-    bootKeyboardInputReport,
-    systemId,
-    modelNumberString,
-    serialNumberString,
-    firmwareRevisionString,
-    hardwareRevisionString,
-    softwareRevisionString,
-    manufacturerNameString,
-    ieee11073_20601RegulatoryCertificationDataList,
-    currentTime,
-    scanRefresh,
-    bootKeyboardOutputReport,
-    bootMouseInputReport,
-    glucoseMeasurementContext,
-    bloodPressureMeasurement,
-    intermediateCuffPressure,
-    heartRateMeasurement,
-    bodySensorLocation,
-    heartRateControlPoint,
-    alertStatus,
-    ringerControlPoint,
-    ringerSetting,
-    alertCategoryIdBitMask,
-    alertCategoryId,
-    alertNotificationControlPoint,
-    unreadAlertStatus,
-    newAlert,
-    supportedNewAlertCategory,
-    supportedUnreadAlertCategory,
-    bloodPressureFeature,
-    hidInformation,
-    reportMap,
-    hidControlPoint,
-    report,
-    protocolMode,
-    scanIntervalWindow,
-    pnpId,
-    glucoseFeature,
-    recordAccessControlPoint,
-    rscMeasurement,
-    rscFeature,
-    scControlPoint,
-    aggregate,
-    cscMeasurement,
-    cscFeature,
-    sensorLocation,
-    plxSpot_checkMeasurement,
-    plxContinuousMeasurement,
-    plxFeatures,
-    cyclingPowerMeasurement,
-    cyclingPowerVector,
-    cyclingPowerFeature,
-    cyclingPowerControlPoint,
-    locationAndSpeed,
-    navigation,
-    positionQuality,
-    lnFeature,
-    lnControlPoint,
-    elevation,
-    pressure,
-    temperature,
-    humidity,
-    trueWindSpeed,
-    trueWindDirection,
-    apparentWindSpeed,
-    apparentWindDirection,
-    gustFactor,
-    pollenConcentration,
-    uvIndex,
-    irradiance,
-    rainfall,
-    windChill,
-    heatIndex,
-    dewPoint,
-    descriptorValueChanged,
-    aerobicHeartRateLowerLimit,
-    aerobicThreshold,
-    age,
-    anaerobicHeartRateLowerLimit,
-    anaerobicHeartRateUpperLimit,
-    anaerobicThreshold,
-    aerobicHeartRateUpperLimit,
-    dateOfBirth,
-    dateOfThresholdAssessment,
-    emailAddress,
-    fatBurnHeartRateLowerLimit,
-    fatBurnHeartRateUpperLimit,
-    firstName,
-    fiveZoneHeartRateLimits,
-    gender,
-    heartRateMax,
-    height,
-    hipCircumference,
-    lastName,
-    maximumRecommendedHeartRate,
-    restingHeartRate,
-    sportTypeForAerobicAndAnaerobicThresholds,
-    threeZoneHeartRateLimits,
-    twoZoneHeartRateLimits,
-    vo2Max,
-    waistCircumference,
-    weight,
-    databaseChangeIncrement,
-    userIndex,
-    bodyCompositionFeature,
-    bodyCompositionMeasurement,
-    weightMeasurement,
-    weightScaleFeature,
-    userControlPoint,
-    magneticFluxDensity_2d,
-    magneticFluxDensity_3d,
-    language,
-    barometricPressureTrend,
-    bondManagementControlPoint,
-    bondManagementFeature,
-    centralAddressResolution,
-    cgmMeasurement,
-    cgmFeature,
-    cgmStatus,
-    cgmSessionStartTime,
-    cgmSessionRunTime,
-    cgmSpecificOpsControlPoint,
-    indoorPositioningConfiguration,
-    latitude,
-    longitude,
-    localNorthCoordinate,
-    localEastCoordinate,
-    floorNumber,
-    altitude,
-    uncertainty,
-    locationName,
-    uri,
-    httpHeaders,
-    httpStatusCode,
-    httpEntityBody,
-    httpControlPoint,
-    httpsSecurity,
-    tdsControlPoint,
-    otsFeature,
-    objectName,
-    objectType,
-    objectSize,
-    objectFirstCreated,
-    objectLastModified,
-    objectId,
-    objectProperties,
-    objectActioncontrolPoint,
-    objectListControlPoint,
-    objectListFilter,
-    objectChanged,
-    resolvablePrivateAddressOnly,
-    unspecified,
-    directoryListing,
-    fitnessMachineFeature,
-    treadmillData,
-    crossTrainerData,
-    stepClimberData,
-    stairClimberData,
-    rowerData,
-    indoorBikeData,
-    trainingStatus,
-    supportedSpeedRange,
-    supportedInclinationRange,
-    supportedResistanceLevelRange,
-    supportedHeartRateRange,
-    supportedPowerRange,
-    fitnessMachineControlPoint,
-    fitnessMachineStatus,
-    meshProvisioningDataIn,
-    meshProvisioningDataOut,
-    meshProxyDataIn,
-    meshProxyDataOut,
-    averageCurrent,
-    averageVoltage,
-    boolean,
-    chromaticDistanceFromPlanckian,
-    chromaticityCoordinates,
-    chromaticityInCctAndDuvValues,
-    chromaticityTolerance,
-    cie13_3_1995ColorRenderingIndex,
-    coefficient,
-    correlatedColorTemperature,
-    count16,
-    count24,
-    countryCode,
-    dateUtc,
-    electricCurrent,
-    electricCurrentRange,
-    electricCurrentSpecification,
-    electricCurrentStatistics,
-    energy,
-    energyInAPeriodOfDay,
-    eventStatistics,
-    fixedString16,
-    fixedString24,
-    fixedString36,
-    fixedString8,
-    genericLevel,
-    globalTradeItemNumber,
-    illuminance,
-    luminousEfficacy,
-    luminousEnergy,
-    luminousExposure,
-    luminousFlux,
-    luminousFluxRange,
-    luminousIntensity,
-    massFlow,
-    perceivedLightness,
-    percentage8,
-    power,
-    powerSpecification,
-    relativeRuntimeInACurrentRange,
-    relativeRuntimeInAGenericLevelRange,
-    relativeValueInAVoltageRange,
-    relativeValueInAnIlluminanceRange,
-    relativeValueInAPeriodOfDay,
-    relativeValueInATemperatureRange,
-    temperature8,
-    temperature8InAPeriodOfDay,
-    temperature8Statistics,
-    temperatureRange,
-    temperatureStatistics,
-    timeDecihour8,
-    timeExponential8,
-    timeHour24,
-    timeMillisecond24,
-    timeSecond16,
-    timeSecond8,
-    voltage,
-    voltageSpecification,
-    voltageStatistics,
-    volumeFlow,
-    chromaticityCoordinate,
-    rcFeature,
-    rcSettings,
-    reconnectionConfigurationControlPoint,
-    iddStatusChanged,
-    iddStatus,
-    iddAnnunciationStatus,
-    iddFeatures,
-    iddStatusReaderControlPoint,
-    iddCommandControlPoint,
-    iddCommandData,
-    iddRecordAccessControlPoint,
-    iddHistoryData,
-    clientSupportedFeatures,
-    databaseHash,
-    bssControlPoint,
-    bssResponse,
-    emergencyId,
-    emergencyText,
-    enhancedBloodPressureMeasurement,
-    enhancedIntermediateCuffPressure,
-    bloodPressureRecord,
-    br_edrHandoverData,
-    bluetoothSigData,
-    serverSupportedFeatures,
-    physicalActivityMonitorFeatures,
-    generalActivityInstantaneousData,
-    generalActivitySummaryData,
-    cardiorespiratoryActivityInstantaneousData,
-    cardiorespiratoryActivitySummaryData,
-    stepCounterActivitySummaryData,
-    sleepActivityInstantaneousData,
-    sleepActivitySummaryData,
-    physicalActivityMonitorControlPoint,
-    currentSession,
-    session,
-    preferredUnits,
-    highResolutionHeight,
-    middleName,
-    strideLength,
-    handedness,
-    deviceWearingPosition,
-    fourZoneHeartRateLimits,
-    highIntensityExerciseThreshold,
-    activityGoal,
-    sedentaryIntervalNotification,
-    caloricIntake,
-    audioInputState,
-    gainSettingsAttribute,
-    audioInputType,
-    audioInputStatus,
-    audioInputControlPoint,
-    audioInputDescription,
-    volumeState,
-    volumeControlPoint,
-    volumeFlags,
-    offsetState,
-    audioLocation,
-    volumeOffsetControlPoint,
-    audioOutputDescription,
-    setIdentityResolvingKeyCharacteristic,
-    sizeCharacteristic,
-    lockCharacteristic,
-    rankCharacteristic,
-    deviceTimeFeature,
-    deviceTimeParameters,
-    deviceTime,
-    deviceTimeControlPoint,
-    timeChangeLogData,
-    mediaPlayerName,
-    mediaPlayerIconObjectId,
-    mediaPlayerIconUrl,
-    trackChanged,
-    trackTitle,
-    trackDuration,
-    trackPosition,
-    playbackSpeed,
-    seekingSpeed,
-    currentTrackSegmentsObjectId,
-    currentTrackObjectId,
-    nextTrackObjectId,
-    parentGroupObjectId,
-    currentGroupObjectId,
-    playingOrder,
-    playingOrdersSupported,
-    mediaState,
-    mediaControlPoint,
-    mediaControlPointOpcodesSupported,
-    searchResultsObjectId,
-    searchControlPoint,
-    mediaPlayerIconObjectType,
-    trackSegmentsObjectType,
-    trackObjectType,
-    groupObjectType,
-    constantToneExtensionEnable,
-    advertisingConstantToneExtensionMinimumLength,
-    advertisingConstantToneExtensionMinimumTransmitCount,
-    advertisingConstantToneExtensionTransmitDuration,
-    advertisingConstantToneExtensionInterval,
-    advertisingConstantToneExtensionPhy,
-    bearerProviderName,
-    bearerUci,
-    bearerTechnology,
-    bearerUriSchemesSupportedList,
-    bearerSignalStrength,
-    bearerSignalStrengthReportingInterval,
-    bearerListCurrentCalls,
-    contentControlId,
-    statusFlags,
-    incomingCallTargetBearerUri,
-    callState,
-    callControlPoint,
-    callControlPointOptionalOpcodes,
-    terminationReason,
-    incomingCall,
-    callFriendlyName,
-    mute,
-  ];
+  /// The name of the characteristic.
+  final String name;
 
-  /// All the default characteristics. Deprecated use [values] instead.
-  static const VALUES = [
-    DEVICE_NAME,
-    APPEARANCE,
-    PERIPHERAL_PRIVACY_FLAG,
-    RECONNECTION_ADDRESS,
-    PERIPHERAL_PREFERRED_CONNECTION_PARAMETERS,
-    SERVICE_CHANGED,
-    ALERT_LEVEL,
-    TX_POWER_LEVEL,
-    DATE_TIME,
-    DAY_OF_WEEK,
-    DAY_DATE_TIME,
-    EXACT_TIME_256,
-    DST_OFFSET,
-    TIME_ZONE,
-    LOCAL_TIME_INFORMATION,
-    TIME_WITH_DST,
-    TIME_ACCURACY,
-    TIME_SOURCE,
-    REFERENCE_TIME_INFORMATION,
-    TIME_UPDATE_CONTROL_POINT,
-    TIME_UPDATE_STATE,
-    GLUCOSE_MEASUREMENT,
-    BATTERY_LEVEL,
-    TEMPERATURE_MEASUREMENT,
-    TEMPERATURE_TYPE,
-    INTERMEDIATE_TEMPERATURE,
-    MEASUREMENT_INTERVAL,
-    BOOT_KEYBOARD_INPUT_REPORT,
-    SYSTEM_ID,
-    MODEL_NUMBER_STRING,
-    SERIAL_NUMBER_STRING,
-    FIRMWARE_REVISION_STRING,
-    HARDWARE_REVISION_STRING,
-    SOFTWARE_REVISION_STRING,
-    MANUFACTURER_NAME_STRING,
-    IEEE_11073_20601_REGULATORY_CERTIFICATION_DATA_LIST,
-    CURRENT_TIME,
-    SCAN_REFRESH,
-    BOOT_KEYBOARD_OUTPUT_REPORT,
-    BOOT_MOUSE_INPUT_REPORT,
-    GLUCOSE_MEASUREMENT_CONTEXT,
-    BLOOD_PRESSURE_MEASUREMENT,
-    INTERMEDIATE_CUFF_PRESSURE,
-    HEART_RATE_MEASUREMENT,
-    BODY_SENSOR_LOCATION,
-    HEART_RATE_CONTROL_POINT,
-    ALERT_STATUS,
-    RINGER_CONTROL_POINT,
-    RINGER_SETTING,
-    ALERT_CATEGORY_ID_BIT_MASK,
-    ALERT_CATEGORY_ID,
-    ALERT_NOTIFICATION_CONTROL_POINT,
-    UNREAD_ALERT_STATUS,
-    NEW_ALERT,
-    SUPPORTED_NEW_ALERT_CATEGORY,
-    SUPPORTED_UNREAD_ALERT_CATEGORY,
-    BLOOD_PRESSURE_FEATURE,
-    HID_INFORMATION,
-    REPORT_MAP,
-    HID_CONTROL_POINT,
-    REPORT,
-    PROTOCOL_MODE,
-    SCAN_INTERVAL_WINDOW,
-    PNP_ID,
-    GLUCOSE_FEATURE,
-    RECORD_ACCESS_CONTROL_POINT,
-    RSC_MEASUREMENT,
-    RSC_FEATURE,
-    SC_CONTROL_POINT,
-    AGGREGATE,
-    CSC_MEASUREMENT,
-    CSC_FEATURE,
-    SENSOR_LOCATION,
-    PLX_SPOT_CHECK_MEASUREMENT,
-    PLX_CONTINUOUS_MEASUREMENT,
-    PLX_FEATURES,
-    CYCLING_POWER_MEASUREMENT,
-    CYCLING_POWER_VECTOR,
-    CYCLING_POWER_FEATURE,
-    CYCLING_POWER_CONTROL_POINT,
-    LOCATION_AND_SPEED,
-    NAVIGATION,
-    POSITION_QUALITY,
-    LN_FEATURE,
-    LN_CONTROL_POINT,
-    ELEVATION,
-    PRESSURE,
-    TEMPERATURE,
-    HUMIDITY,
-    TRUE_WIND_SPEED,
-    TRUE_WIND_DIRECTION,
-    APPARENT_WIND_SPEED,
-    APPARENT_WIND_DIRECTION,
-    GUST_FACTOR,
-    POLLEN_CONCENTRATION,
-    UV_INDEX,
-    IRRADIANCE,
-    RAINFALL,
-    WIND_CHILL,
-    HEAT_INDEX,
-    DEW_POINT,
-    DESCRIPTOR_VALUE_CHANGED,
-    AEROBIC_HEART_RATE_LOWER_LIMIT,
-    AEROBIC_THRESHOLD,
-    AGE,
-    ANAEROBIC_HEART_RATE_LOWER_LIMIT,
-    ANAEROBIC_HEART_RATE_UPPER_LIMIT,
-    ANAEROBIC_THRESHOLD,
-    AEROBIC_HEART_RATE_UPPER_LIMIT,
-    DATE_OF_BIRTH,
-    DATE_OF_THRESHOLD_ASSESSMENT,
-    EMAIL_ADDRESS,
-    FAT_BURN_HEART_RATE_LOWER_LIMIT,
-    FAT_BURN_HEART_RATE_UPPER_LIMIT,
-    FIRST_NAME,
-    FIVE_ZONE_HEART_RATE_LIMITS,
-    GENDER,
-    HEART_RATE_MAX,
-    HEIGHT,
-    HIP_CIRCUMFERENCE,
-    LAST_NAME,
-    MAXIMUM_RECOMMENDED_HEART_RATE,
-    RESTING_HEART_RATE,
-    SPORT_TYPE_FOR_AEROBIC_AND_ANAEROBIC_THRESHOLDS,
-    THREE_ZONE_HEART_RATE_LIMITS,
-    TWO_ZONE_HEART_RATE_LIMITS,
-    VO2_MAX,
-    WAIST_CIRCUMFERENCE,
-    WEIGHT,
-    DATABASE_CHANGE_INCREMENT,
-    USER_INDEX,
-    BODY_COMPOSITION_FEATURE,
-    BODY_COMPOSITION_MEASUREMENT,
-    WEIGHT_MEASUREMENT,
-    WEIGHT_SCALE_FEATURE,
-    USER_CONTROL_POINT,
-    MAGNETIC_FLUX_DENSITY___2D,
-    MAGNETIC_FLUX_DENSITY___3D,
-    LANGUAGE,
-    BAROMETRIC_PRESSURE_TREND,
-    BOND_MANAGEMENT_CONTROL_POINT,
-    BOND_MANAGEMENT_FEATURE,
-    CENTRAL_ADDRESS_RESOLUTION,
-    CGM_MEASUREMENT,
-    CGM_FEATURE,
-    CGM_STATUS,
-    CGM_SESSION_START_TIME,
-    CGM_SESSION_RUN_TIME,
-    CGM_SPECIFIC_OPS_CONTROL_POINT,
-    INDOOR_POSITIONING_CONFIGURATION,
-    LATITUDE,
-    LONGITUDE,
-    LOCAL_NORTH_COORDINATE,
-    LOCAL_EAST_COORDINATE,
-    FLOOR_NUMBER,
-    ALTITUDE,
-    UNCERTAINTY,
-    LOCATION_NAME,
-    URI,
-    HTTP_HEADERS,
-    HTTP_STATUS_CODE,
-    HTTP_ENTITY_BODY,
-    HTTP_CONTROL_POINT,
-    HTTPS_SECURITY,
-    TDS_CONTROL_POINT,
-    OTS_FEATURE,
-    OBJECT_NAME,
-    OBJECT_TYPE,
-    OBJECT_SIZE,
-    OBJECT_FIRST_CREATED,
-    OBJECT_LAST_MODIFIED,
-    OBJECT_ID,
-    OBJECT_PROPERTIES,
-    OBJECT_ACTIONCONTROL_POINT,
-    OBJECT_LIST_CONTROL_POINT,
-    OBJECT_LIST_FILTER,
-    OBJECT_CHANGED,
-    RESOLVABLE_PRIVATE_ADDRESS_ONLY,
-    UNSPECIFIED,
-    DIRECTORY_LISTING,
-    FITNESS_MACHINE_FEATURE,
-    TREADMILL_DATA,
-    CROSS_TRAINER_DATA,
-    STEP_CLIMBER_DATA,
-    STAIR_CLIMBER_DATA,
-    ROWER_DATA,
-    INDOOR_BIKE_DATA,
-    TRAINING_STATUS,
-    SUPPORTED_SPEED_RANGE,
-    SUPPORTED_INCLINATION_RANGE,
-    SUPPORTED_RESISTANCE_LEVEL_RANGE,
-    SUPPORTED_HEART_RATE_RANGE,
-    SUPPORTED_POWER_RANGE,
-    FITNESS_MACHINE_CONTROL_POINT,
-    FITNESS_MACHINE_STATUS,
-    MESH_PROVISIONING_DATA_IN,
-    MESH_PROVISIONING_DATA_OUT,
-    MESH_PROXY_DATA_IN,
-    MESH_PROXY_DATA_OUT,
-    AVERAGE_CURRENT,
-    AVERAGE_VOLTAGE,
-    BOOLEAN,
-    CHROMATIC_DISTANCE_FROM_PLANCKIAN,
-    CHROMATICITY_COORDINATES,
-    CHROMATICITY_IN_CCT_AND_DUV_VALUES,
-    CHROMATICITY_TOLERANCE,
-    CIE_13_3_1995_COLOR_RENDERING_INDEX,
-    COEFFICIENT,
-    CORRELATED_COLOR_TEMPERATURE,
-    COUNT_16,
-    COUNT_24,
-    COUNTRY_CODE,
-    DATE_UTC,
-    ELECTRIC_CURRENT,
-    ELECTRIC_CURRENT_RANGE,
-    ELECTRIC_CURRENT_SPECIFICATION,
-    ELECTRIC_CURRENT_STATISTICS,
-    ENERGY,
-    ENERGY_IN_A_PERIOD_OF_DAY,
-    EVENT_STATISTICS,
-    FIXED_STRING_16,
-    FIXED_STRING_24,
-    FIXED_STRING_36,
-    FIXED_STRING_8,
-    GENERIC_LEVEL,
-    GLOBAL_TRADE_ITEM_NUMBER,
-    ILLUMINANCE,
-    LUMINOUS_EFFICACY,
-    LUMINOUS_ENERGY,
-    LUMINOUS_EXPOSURE,
-    LUMINOUS_FLUX,
-    LUMINOUS_FLUX_RANGE,
-    LUMINOUS_INTENSITY,
-    MASS_FLOW,
-    PERCEIVED_LIGHTNESS,
-    PERCENTAGE_8,
-    POWER,
-    POWER_SPECIFICATION,
-    RELATIVE_RUNTIME_IN_A_CURRENT_RANGE,
-    RELATIVE_RUNTIME_IN_A_GENERIC_LEVEL_RANGE,
-    RELATIVE_VALUE_IN_A_VOLTAGE_RANGE,
-    RELATIVE_VALUE_IN_AN_ILLUMINANCE_RANGE,
-    RELATIVE_VALUE_IN_A_PERIOD_OF_DAY,
-    RELATIVE_VALUE_IN_A_TEMPERATURE_RANGE,
-    TEMPERATURE_8,
-    TEMPERATURE_8_IN_A_PERIOD_OF_DAY,
-    TEMPERATURE_8_STATISTICS,
-    TEMPERATURE_RANGE,
-    TEMPERATURE_STATISTICS,
-    TIME_DECIHOUR_8,
-    TIME_EXPONENTIAL_8,
-    TIME_HOUR_24,
-    TIME_MILLISECOND_24,
-    TIME_SECOND_16,
-    TIME_SECOND_8,
-    VOLTAGE,
-    VOLTAGE_SPECIFICATION,
-    VOLTAGE_STATISTICS,
-    VOLUME_FLOW,
-    CHROMATICITY_COORDINATE,
-    RC_FEATURE,
-    RC_SETTINGS,
-    RECONNECTION_CONFIGURATION_CONTROL_POINT,
-    IDD_STATUS_CHANGED,
-    IDD_STATUS,
-    IDD_ANNUNCIATION_STATUS,
-    IDD_FEATURES,
-    IDD_STATUS_READER_CONTROL_POINT,
-    IDD_COMMAND_CONTROL_POINT,
-    IDD_COMMAND_DATA,
-    IDD_RECORD_ACCESS_CONTROL_POINT,
-    IDD_HISTORY_DATA,
-    CLIENT_SUPPORTED_FEATURES,
-    DATABASE_HASH,
-    BSS_CONTROL_POINT,
-    BSS_RESPONSE,
-    EMERGENCY_ID,
-    EMERGENCY_TEXT,
-    ENHANCED_BLOOD_PRESSURE_MEASUREMENT,
-    ENHANCED_INTERMEDIATE_CUFF_PRESSURE,
-    BLOOD_PRESSURE_RECORD,
-    BR_EDR_HANDOVER_DATA,
-    BLUETOOTH_SIG_DATA,
-    SERVER_SUPPORTED_FEATURES,
-    PHYSICAL_ACTIVITY_MONITOR_FEATURES,
-    GENERAL_ACTIVITY_INSTANTANEOUS_DATA,
-    GENERAL_ACTIVITY_SUMMARY_DATA,
-    CARDIORESPIRATORY_ACTIVITY_INSTANTANEOUS_DATA,
-    CARDIORESPIRATORY_ACTIVITY_SUMMARY_DATA,
-    STEP_COUNTER_ACTIVITY_SUMMARY_DATA,
-    SLEEP_ACTIVITY_INSTANTANEOUS_DATA,
-    SLEEP_ACTIVITY_SUMMARY_DATA,
-    PHYSICAL_ACTIVITY_MONITOR_CONTROL_POINT,
-    CURRENT_SESSION,
-    SESSION,
-    PREFERRED_UNITS,
-    HIGH_RESOLUTION_HEIGHT,
-    MIDDLE_NAME,
-    STRIDE_LENGTH,
-    HANDEDNESS,
-    DEVICE_WEARING_POSITION,
-    FOUR_ZONE_HEART_RATE_LIMITS,
-    HIGH_INTENSITY_EXERCISE_THRESHOLD,
-    ACTIVITY_GOAL,
-    SEDENTARY_INTERVAL_NOTIFICATION,
-    CALORIC_INTAKE,
-    AUDIO_INPUT_STATE,
-    GAIN_SETTINGS_ATTRIBUTE,
-    AUDIO_INPUT_TYPE,
-    AUDIO_INPUT_STATUS,
-    AUDIO_INPUT_CONTROL_POINT,
-    AUDIO_INPUT_DESCRIPTION,
-    VOLUME_STATE,
-    VOLUME_CONTROL_POINT,
-    VOLUME_FLAGS,
-    OFFSET_STATE,
-    AUDIO_LOCATION,
-    VOLUME_OFFSET_CONTROL_POINT,
-    AUDIO_OUTPUT_DESCRIPTION,
-    SET_IDENTITY_RESOLVING_KEY_CHARACTERISTIC,
-    SIZE_CHARACTERISTIC,
-    LOCK_CHARACTERISTIC,
-    RANK_CHARACTERISTIC,
-    DEVICE_TIME_FEATURE,
-    DEVICE_TIME_PARAMETERS,
-    DEVICE_TIME,
-    DEVICE_TIME_CONTROL_POINT,
-    TIME_CHANGE_LOG_DATA,
-    MEDIA_PLAYER_NAME,
-    MEDIA_PLAYER_ICON_OBJECT_ID,
-    MEDIA_PLAYER_ICON_URL,
-    TRACK_CHANGED,
-    TRACK_TITLE,
-    TRACK_DURATION,
-    TRACK_POSITION,
-    PLAYBACK_SPEED,
-    SEEKING_SPEED,
-    CURRENT_TRACK_SEGMENTS_OBJECT_ID,
-    CURRENT_TRACK_OBJECT_ID,
-    NEXT_TRACK_OBJECT_ID,
-    PARENT_GROUP_OBJECT_ID,
-    CURRENT_GROUP_OBJECT_ID,
-    PLAYING_ORDER,
-    PLAYING_ORDERS_SUPPORTED,
-    MEDIA_STATE,
-    MEDIA_CONTROL_POINT,
-    MEDIA_CONTROL_POINT_OPCODES_SUPPORTED,
-    SEARCH_RESULTS_OBJECT_ID,
-    SEARCH_CONTROL_POINT,
-    MEDIA_PLAYER_ICON_OBJECT_TYPE,
-    TRACK_SEGMENTS_OBJECT_TYPE,
-    TRACK_OBJECT_TYPE,
-    GROUP_OBJECT_TYPE,
-    CONSTANT_TONE_EXTENSION_ENABLE,
-    ADVERTISING_CONSTANT_TONE_EXTENSION_MINIMUM_LENGTH,
-    ADVERTISING_CONSTANT_TONE_EXTENSION_MINIMUM_TRANSMIT_COUNT,
-    ADVERTISING_CONSTANT_TONE_EXTENSION_TRANSMIT_DURATION,
-    ADVERTISING_CONSTANT_TONE_EXTENSION_INTERVAL,
-    ADVERTISING_CONSTANT_TONE_EXTENSION_PHY,
-    BEARER_PROVIDER_NAME,
-    BEARER_UCI,
-    BEARER_TECHNOLOGY,
-    BEARER_URI_SCHEMES_SUPPORTED_LIST,
-    BEARER_SIGNAL_STRENGTH,
-    BEARER_SIGNAL_STRENGTH_REPORTING_INTERVAL,
-    BEARER_LIST_CURRENT_CALLS,
-    CONTENT_CONTROL_ID,
-    STATUS_FLAGS,
-    INCOMING_CALL_TARGET_BEARER_URI,
-    CALL_STATE,
-    CALL_CONTROL_POINT,
-    CALL_CONTROL_POINT_OPTIONAL_OPCODES,
-    TERMINATION_REASON,
-    INCOMING_CALL,
-    CALL_FRIENDLY_NAME,
-    MUTE,
-  ];
+  /// The shorter 16 bit uuid of the characteristic.
+  final String uuid16;
+
+  /// The full uuid of the characteristic.
+  final String uuid;
 }

@@ -41,7 +41,7 @@ class AdvertisementBluetoothDevice {
   ///
   /// This name comes straight from the device itself.
   ///
-  /// You could also use the [BluetoothDefaultCharacteristicUUIDS.DEVICE_NAME]
+  /// You could also use the [BluetoothDefaultCharacteristicUUIDS.deviceName]
   /// to get the same value (if it exists).
   ///
   /// And maybe even rename it if it allows for writing.

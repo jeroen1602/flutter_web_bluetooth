@@ -1,12 +1,14 @@
+#!/bin/env dart
+
 import 'dart:io';
 
 // source: https://www.bluetooth.com/specifications/assigned-numbers/
 
 Future<int> main() async {
   final dir = File(Platform.script.toFilePath()).parent;
-  final servicesFile = File(dir.path + "/services_uuids.csv");
-  final characteristicsFile = File(dir.path + "/characteristics_uuids.csv");
-  final outputFile = File(dir.path + "/output.dart");
+  final servicesFile = File("${dir.path}/services_uuids.csv");
+  final characteristicsFile = File("${dir.path}/characteristics_uuids.csv");
+  final outputFile = File("${dir.path}/output.dart");
 
   if (await outputFile.exists()) {
     stderr.writeln("Output file already exists!");
@@ -23,93 +25,91 @@ Future<int> main() async {
       "/// scripts/generate_default_uuids.dart. If you need more uuids please change\n"
       "/// the csv files and regenerate the file.\n"
       "\n"
-      "// ignore_for_file: constant_identifier_names\n"
-      "\n"
       "part of flutter_web_bluetooth;\n"
-      "\n"
-      "/// A generated class for holding default characteristics/ services.\n"
-      "abstract class BluetoothDefaultUUIDS {\n"
-      "    /// The name of the service/ characteristic\n"
+      "\n";
+
+  var servicesUuidEnum =
+      "/// All the default Bluetooth low energy services are defined in this enum.\n"
+      "/// See: [values] for a list of all the services.\n"
+      "enum BluetoothDefaultServiceUUIDS {\n";
+
+  bool first = true;
+  await readThroughFile(servicesFile, (holder) {
+    if (first) {
+      first = false;
+    } else {
+      servicesUuidEnum += ",\n";
+    }
+    servicesUuidEnum += "    /// The default service for ${holder.name}\n"
+        "    ${holder.variableName}('${holder.name}', "
+        "'${holder.uuid16}', "
+        "'${holder.uuid}')";
+  });
+
+  servicesUuidEnum += ";\n\n"
+      "    ///\n"
+      "    /// A service UUID consists of a human readable name of the service, as well\n"
+      "    /// as its uuid represented as a 16 bit uuid and a full 128 bit uuid.\n"
+      "    ///\n"
+      "    const BluetoothDefaultServiceUUIDS(this.name, this.uuid16, this.uuid);\n"
+      "    /// The name of the service.\n"
       "    final String name;\n"
-      "    /// The shorter 16 bit uuid of the service/ characteristic.\n"
+      "    /// The shorter 16 bit uuid of the service.\n"
       "    final String uuid16;\n"
-      "    /// The full uuid of the service/ characteristic.\n"
+      "    /// The full uuid of the service.\n"
       "    final String uuid;\n"
-      "    /// The ordinal (place in the list)\n"
-      "    final int ordinal;\n"
-      "\n"
-      "    /// The constructor for a new default characteristic or service.\n"
-      "    const BluetoothDefaultUUIDS._(this.name, this.uuid16, this.uuid, this.ordinal);\n"
       "}\n\n";
 
-  var servicesUuidClass =
-      "/// All the default Bluetooth low energy services are statically defined in this class.\n"
-      "/// See: [values] for a list of all the services.\n"
-      "class BluetoothDefaultServiceUUIDS extends BluetoothDefaultUUIDS {\n"
-      "\n"
-      "    const BluetoothDefaultServiceUUIDS._(String name, String uuid16, String uuid, int ordinal): super._(name, uuid16, uuid, ordinal);\n"
-      "\n";
-
-  var serviceUuidValuesLower = "[\n";
-  var servicesUuidValuesUpper = "[\n";
-  await readThroughFile(servicesFile, (holder) {
-    servicesUuidClass += "    /// The default service for ${holder.name}\n"
-        "    static const ${holder.variableNameLower} = BluetoothDefaultServiceUUIDS._('${holder.name}', "
-        "'${holder.uuid16}', "
-        "'${holder.uuid}', "
-        "${holder.ordinal});\n"
-        "    /// This is deprecated use [${holder.variableNameLower}] instead.\n"
-        "    static const ${holder.variableNameUpper} = ${holder.variableNameLower};\n";
-    serviceUuidValuesLower += "        ${holder.variableNameLower},\n";
-    servicesUuidValuesUpper += "        ${holder.variableNameUpper},\n";
-  });
-
-  serviceUuidValuesLower += "    ];\n";
-  servicesUuidValuesUpper += "    ];\n";
-  servicesUuidClass +=
-      "\n\n    /// All the default services.\n    static const values = $serviceUuidValuesLower";
-  servicesUuidClass +=
-      "\n    /// All the default services. Deprecated use [values] instead.\n    static const VALUES = $servicesUuidValuesUpper";
-  servicesUuidClass += "}\n\n";
-
-  var characteristicUuidClass =
-      "/// All the default Bluetooth low energy characteristics are statically defined in this class.\n"
+  var characteristicUuidEnum =
+      "/// All the default Bluetooth low energy characteristics are defined in this enum.\n"
       "/// See: [values] for a list of all the characteristics.\n"
-      "class BluetoothDefaultCharacteristicUUIDS extends BluetoothDefaultUUIDS {\n"
-      "\n"
-      "    const BluetoothDefaultCharacteristicUUIDS._(String name, String uuid16, String uuid, int ordinal): super._(name, uuid16, uuid, ordinal);\n"
-      "\n";
+      "enum BluetoothDefaultCharacteristicUUIDS {\n";
 
-  var characteristicUuidValuesUpper = "[\n";
-  var characteristicUuidValuesLower = "[\n";
+  first = true;
   await readThroughFile(characteristicsFile, (holder) {
-    characteristicUuidClass +=
+    if (first) {
+      first = false;
+    } else {
+      characteristicUuidEnum += ",\n";
+    }
+    characteristicUuidEnum +=
         "    /// The default characteristic for ${holder.name}\n"
-        "    static const ${holder.variableNameLower} = BluetoothDefaultCharacteristicUUIDS._('${holder.name}', "
+        "    ${holder.variableName}('${holder.name}', "
         "'${holder.uuid16}', "
-        "'${holder.uuid}', "
-        "${holder.ordinal});\n"
-        "    /// This is deprecated use [${holder.variableNameLower}] instead.\n"
-        "    static const ${holder.variableNameUpper} = ${holder.variableNameLower};\n";
-    characteristicUuidValuesLower += "        ${holder.variableNameLower},\n";
-    characteristicUuidValuesUpper += "        ${holder.variableNameUpper},\n";
+        "'${holder.uuid}')";
   });
 
-  characteristicUuidValuesUpper += "    ];\n";
-  characteristicUuidValuesLower += "    ];\n";
-  characteristicUuidClass +=
-      "\n\n    /// All the default characteristics.\n    static const values = $characteristicUuidValuesLower"
-      "\n    /// All the default characteristics. Deprecated use [values] instead.\n    static const VALUES = $characteristicUuidValuesUpper";
-  characteristicUuidClass += "}\n\n";
+  characteristicUuidEnum += ";\n\n"
+      "    ///\n"
+      "    /// A characteristic UUID consists of a human readable name of the service, as well\n"
+      "    /// as its uuid represented as a 16 bit uuid and a full 128 bit uuid.\n"
+      "    ///\n"
+      "    const BluetoothDefaultCharacteristicUUIDS(this.name, this.uuid16, this.uuid);\n"
+      "    /// The name of the characteristic.\n"
+      "    final String name;\n"
+      "    /// The shorter 16 bit uuid of the characteristic.\n"
+      "    final String uuid16;\n"
+      "    /// The full uuid of the characteristic.\n"
+      "    final String uuid;\n"
+      "}\n\n";
 
   await outputFile.create();
   await outputFile.writeAsString(outputFileHeader, mode: FileMode.writeOnly);
-  await outputFile.writeAsString(servicesUuidClass,
+  await outputFile.writeAsString(servicesUuidEnum,
       mode: FileMode.writeOnlyAppend);
-  await outputFile.writeAsString(characteristicUuidClass,
+  await outputFile.writeAsString(characteristicUuidEnum,
       mode: FileMode.writeOnlyAppend);
   print('Done');
   return 0;
+}
+
+String camelCaseName(final String name) {
+  final words =
+      name.replaceAll("-", " ").replaceAll(".", " ").toLowerCase().split(" ");
+  words.retainWhere((element) => element.isNotEmpty);
+  return words.reduce((value, element) {
+    return "$value${element[0].toUpperCase()}${element.substring(1)}";
+  });
 }
 
 Future<void> readThroughFile(
@@ -123,35 +123,19 @@ Future<void> readThroughFile(
     }
     final uuidInt = int.parse(columns[0].replaceFirst("0x", ""), radix: 16);
     final name = columns[1].replaceAll("\r", "").replaceAll("\n", "").trim();
-    final variableNameUpper = name
-        .toUpperCase()
-        .replaceAll(" ", "_")
-        .replaceAll("-", "_")
-        .replaceAll(".", "_");
-    final variableNameLower = name
-        .replaceAll("-", "_")
-        .replaceAll(".", "_")
-        .toLowerCase()
-        .split(" ")
-        .reduce((value, element) {
-      return value + '${element[0].toUpperCase()}${element.substring(1)}';
-    });
+    final variableName = camelCaseName(name);
     final uuid16 = uuidInt.toRadixString(16).toLowerCase().padLeft(4, '0');
     final uuid =
         '${uuidInt.toRadixString(16).toLowerCase().padLeft(8, '0')}-0000-1000-8000-00805f9b34fb';
-    forEach(CharacteristicHolder(
-        variableNameUpper, variableNameLower, name, uuid16, uuid, i));
+    forEach(CharacteristicHolder(variableName, name, uuid16, uuid));
   }
 }
 
 class CharacteristicHolder {
-  final String variableNameUpper;
-  final String variableNameLower;
+  final String variableName;
   final String name;
   final String uuid16;
   final String uuid;
-  final int ordinal;
 
-  CharacteristicHolder(this.variableNameUpper, this.variableNameLower,
-      this.name, this.uuid16, this.uuid, this.ordinal);
+  CharacteristicHolder(this.variableName, this.name, this.uuid16, this.uuid);
 }

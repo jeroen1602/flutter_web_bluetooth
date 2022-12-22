@@ -1,3 +1,11 @@
+## 0.2.0
+
+* **Breaking** Removed SNAKE_CASE uuids.
+  * The default uuids are now an enum since dart supports enums with values.
+  * If you were using `defaultUuid.ordinal` then you should now use `defaultUuid.index`.
+  * Some names may slightly differ.
+* **Breaking** Upgraded minimum dart sdk to `2.17`
+
 ## 0.1.0
 
 * **Breaking** in `Bluetooth.requestDevice()` the `RequestOptions` are no longer nullable.
