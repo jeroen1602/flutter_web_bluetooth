@@ -4,7 +4,7 @@ part of js_web_bluetooth;
 /// The js object for request options. This is used for [Bluetooth.requestLEScan].
 ///
 /// Either [filters] or [acceptAllAdvertisements] must have something meaningful set
-/// in them, they can't be at the same time.
+/// in them, they can't be set at the same time.
 /// If for example [acceptAllAdvertisements] is `true` and [filters] is not an empty
 /// list. Then an Error will be thrown when trying to request devices.
 ///

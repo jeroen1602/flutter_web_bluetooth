@@ -165,7 +165,7 @@ abstract class FlutterWebBluetoothInterface {
   ///
   /// Even if the browser doesn't support [requestLEScan] this stream will not
   /// throw an [Error]. It will just never emit any events since you can't start
-  /// scan.
+  /// a scan.
   ///
   Stream<AdvertisementReceivedEvent<AdvertisementBluetoothDevice>>
       get advertisements;

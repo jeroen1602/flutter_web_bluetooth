@@ -253,8 +253,8 @@ class FlutterWebBluetooth extends FlutterWebBluetoothInterface {
     } else {
       webBluetoothLogger.warning(
           "Requesting access to an advertisement device (id: ${device.id})"
-              "without identifying information (either a name or required"
-              "services), so `acceptAllDevices` is used.");
+          "without identifying information (either a name or required"
+          "services), so `acceptAllDevices` is used.");
       return RequestOptionsBuilder.acceptAllDevices(
           optionalServices: optionalServices.isEmpty ? null : optionalServices);
     }
@@ -340,7 +340,7 @@ class FlutterWebBluetooth extends FlutterWebBluetoothInterface {
   ///
   /// Even if the browser doesn't support [requestLEScan] this stream will not
   /// throw an [Error]. It will just never emit any events since you can't start
-  /// scan.
+  /// a scan.
   ///
   @override
   Stream<AdvertisementReceivedEvent<AdvertisementBluetoothDevice>>

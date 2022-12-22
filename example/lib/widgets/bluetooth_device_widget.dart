@@ -1,7 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_web_bluetooth/flutter_web_bluetooth.dart';
-
-import '../model/main_page_device.dart';
+import 'package:flutter_web_bluetooth_example/model/main_page_device.dart';
 
 class BluetoothDeviceWidget<D extends AdvertisementBluetoothDevice>
     extends StatefulWidget {

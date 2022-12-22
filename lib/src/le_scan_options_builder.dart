@@ -12,8 +12,8 @@ class LEScanOptionsBuilder {
 
   ///
   /// Tell the browser to only accept devices matching the [requestFilters].
-  /// A device has to only match one filter, so fi you support multiple device
-  /// types then you add a filter for each device type.
+  /// A device has to only match one filter, so if you support multiple device
+  /// types then you need to add a filter for each device type.
   ///
   /// Normally scans will discard the second and subsequent advertisements from
   /// a single device to save power. If you need to receive them, set

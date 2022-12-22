@@ -1,21 +1,18 @@
 part of js_web_bluetooth;
 
 ///
-/// An error thrown if a permission ahs been denied by the user.
+/// An administrator may disable Bluetooth in the browser via a policy. If this
+/// is the case this error may get returned.
 ///
-class PermissionError extends BrowserError {
+class PolicyError extends BrowserError {
   ///
   /// Create a new instance.
   /// [method] is the method where the error occurred.
   ///
-  PermissionError(this.method) : super("Permission denied for \"$method\"");
-
-  ///
-  /// The method that the error occurred in.
-  ///
-  final String method;
+  PolicyError(String method)
+      : super("The browser's policy doesn't allow the method \"$method\"");
 
   @protected
   @override
-  String get errorName => 'PermissionError';
+  String get errorName => 'PolicyError';
 }

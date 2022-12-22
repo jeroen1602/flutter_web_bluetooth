@@ -75,7 +75,7 @@ class BluetoothLEScan {
   /// If this Bluetooth LE scan is (still) active. Meaning that it will generate
   /// new `advertisementreceived` events.
   ///
-  /// If this is `false` then this object can be safely throw away without
+  /// If this is `false` then this object can safely be thrown away without
   /// risking that the scan can never be stopped. See [stop].
   ///
   /// https://webbluetoothcg.github.io/web-bluetooth/scanning.html#dom-bluetoothlescan-active
@@ -87,9 +87,9 @@ class BluetoothLEScan {
   ///
   /// Stop the currently running Bluetooth LE scan.
   ///
-  /// This will result in [active] to be `false`.
+  /// This will result in [active] being set to `false`.
   ///
-  /// If [active] is already `false` the nothing will happen.
+  /// If [active] is already `false` then nothing will happen.
   ///
   /// https://webbluetoothcg.github.io/web-bluetooth/scanning.html#dom-bluetoothlescan-stop
   ///

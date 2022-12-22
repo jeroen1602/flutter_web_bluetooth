@@ -136,7 +136,6 @@ class BluetoothScanFilter {
   /// device should support.
   ///
   /// **Note** this is not stable yet and my not be implemented.
-  /// ignore: deprecated_member_use_from_same_package
   ///
   external List<BluetoothServiceDataFilter>? get serviceData;
 
