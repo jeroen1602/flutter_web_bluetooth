@@ -3,6 +3,7 @@ import 'dart:typed_data';
 
 import 'package:flutter/material.dart';
 import 'package:flutter_web_bluetooth/flutter_web_bluetooth.dart';
+import 'package:flutter_web_bluetooth_example/widgets/characteristic_actions.dart';
 
 class CharacteristicWidget extends StatefulWidget {
   CharacteristicWidget({required this.characteristic, Key? key})
@@ -49,27 +50,8 @@ class CharacteristicWidgetState extends State<CharacteristicWidget> {
             }),
         Padding(
           padding: const EdgeInsets.all(8.0),
-          child: Row(
-            children: [
-              OutlinedButton(
-                  onPressed: () async {
-                    await widget.characteristic.readValue();
-                  },
-                  child: const Text('Get value')),
-              OutlinedButton(
-                  onPressed: () async {
-                    if (widget.characteristic.isNotifying) {
-                      await widget.characteristic.stopNotifications();
-                    } else {
-                      await widget.characteristic.startNotifications();
-                    }
-                    setState(() {});
-                  },
-                  child: Text(widget.characteristic.isNotifying
-                      ? 'Stop notifying'
-                      : 'Start notifying'))
-            ],
-          ),
+          child: ActionsWidget(widget.characteristic.properties,
+              CharacteristicActions(widget.characteristic)),
         ),
       ],
     );
