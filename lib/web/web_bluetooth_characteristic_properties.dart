@@ -20,11 +20,16 @@ class WebBluetoothCharacteristicProperties {
   ///
   /// Check to see if broadcast is available in this characteristic.
   ///
+  /// Will return `false` if the field doesn't exist.
+  ///
   /// See:
   ///
   /// - https://developer.mozilla.org/en-US/docs/Web/API/BluetoothCharacteristicProperties/broadcast
   ///
   bool get broadcast {
+    if (!hasBroadcast) {
+      return false;
+    }
     final result = _JSUtil.getProperty(_jsObject, 'broadcast');
     if (result is bool) {
       return result;
@@ -33,7 +38,18 @@ class WebBluetoothCharacteristicProperties {
   }
 
   ///
+  /// Check to see if the current implementation has the [broadcast] field.
+  ///
+  /// This may return `false` on the bluefy browser.
+  ///
+  bool get hasBroadcast {
+    return _JSUtil.hasProperty(_jsObject, 'broadcast');
+  }
+
+  ///
   /// Check to see if read is available in this characteristic.
+  ///
+  /// Will return `false` if the field doesn't exist.
   ///
   /// If this is `true` then you can use
   /// [WebBluetoothRemoteGATTCharacteristic.readValue].
@@ -46,6 +62,9 @@ class WebBluetoothCharacteristicProperties {
   /// - https://developer.mozilla.org/en-US/docs/Web/API/BluetoothCharacteristicProperties/read
   ///
   bool get read {
+    if (!hasRead) {
+      return false;
+    }
     final result = _JSUtil.getProperty(_jsObject, 'read');
     if (result is bool) {
       return result;
@@ -54,8 +73,19 @@ class WebBluetoothCharacteristicProperties {
   }
 
   ///
+  /// Check to see if the current implementation has the [read] field.
+  ///
+  /// This may return `false` on the bluefy browser.
+  ///
+  bool get hasRead {
+    return _JSUtil.hasProperty(_jsObject, 'read');
+  }
+
+  ///
   /// Check to see if write without response is available in this
   /// characteristic.
+  ///
+  /// Will return `false` if the field doesn't exist.
   ///
   /// If this is `true` then you can use
   /// [WebBluetoothRemoteGATTCharacteristic.writeValueWithoutResponse].
@@ -87,7 +117,7 @@ class WebBluetoothCharacteristicProperties {
   /// - https://developer.mozilla.org/en-US/docs/Web/API/BluetoothCharacteristicProperties/writeWithoutResponse
   ///
   bool get writeWithoutResponse {
-    if (!_JSUtil.hasProperty(_jsObject, 'writeWithoutResponse')) {
+    if (!hasWriteWithoutResponse) {
       return false;
     }
     final result = _JSUtil.getProperty(_jsObject, 'writeWithoutResponse');
@@ -98,7 +128,18 @@ class WebBluetoothCharacteristicProperties {
   }
 
   ///
+  /// Check to see if the current implementation has the [writeWithoutResponse] field.
+  ///
+  /// This may return `false` on the bluefy browser.
+  ///
+  bool get hasWriteWithoutResponse {
+    return _JSUtil.hasProperty(_jsObject, 'writeWithoutResponse');
+  }
+
+  ///
   /// Check to see if write is available in this characteristic.
+  ///
+  /// Will return `false` if the field doesn't exist.
   ///
   /// If this is `true` then you can use
   /// [BluetoothCharacteristic.writeValueWithResponse]. Check
@@ -130,6 +171,9 @@ class WebBluetoothCharacteristicProperties {
   /// - https://developer.mozilla.org/en-US/docs/Web/API/BluetoothCharacteristicProperties/write
   ///
   bool get write {
+    if (!hasWrite) {
+      return false;
+    }
     final result = _JSUtil.getProperty(_jsObject, 'write');
     if (result is bool) {
       return result;
@@ -138,10 +182,24 @@ class WebBluetoothCharacteristicProperties {
   }
 
   ///
+  /// Check to see if the current implementation has the [write] field.
+  ///
+  /// Will return `false` if the field doesn't exist.
+  ///
+  /// This may return `false` on the bluefy browser.
+  ///
+  bool get hasWrite {
+    return _JSUtil.hasProperty(_jsObject, 'write');
+  }
+
+  ///
   /// Check to see if notify is available in this characteristic. If this
   /// is `true` then you can use
   /// [WebBluetoothRemoteGATTCharacteristic.startNotifications].
   /// Though it may still throw a [SecurityError]
+  ///
+  /// Will return `false` if the field doesn't exist.
+  ///
   /// See:
   ///
   /// - [WebBluetoothRemoteGATTCharacteristic.startNotifications]
@@ -149,6 +207,9 @@ class WebBluetoothCharacteristicProperties {
   /// - https://developer.mozilla.org/en-US/docs/Web/API/BluetoothCharacteristicProperties/notify
   ///
   bool get notify {
+    if (!hasNotify) {
+      return false;
+    }
     final result = _JSUtil.getProperty(_jsObject, 'notify');
     if (result is bool) {
       return result;
@@ -157,13 +218,27 @@ class WebBluetoothCharacteristicProperties {
   }
 
   ///
+  /// Check to see if the current implementation has the [notify] field.
+  ///
+  /// This may return `false` on the bluefy browser.
+  ///
+  bool get hasNotify {
+    return _JSUtil.hasProperty(_jsObject, 'notify');
+  }
+
+  ///
   /// Check to see if indicate is available in this characteristic.
+  ///
+  /// Will return `false` if the field doesn't exist.
   ///
   /// See:
   ///
   /// - https://developer.mozilla.org/en-US/docs/Web/API/BluetoothCharacteristicProperties/indicate
   ///
   bool get indicate {
+    if (!hasIndicate) {
+      return false;
+    }
     final result = _JSUtil.getProperty(_jsObject, 'indicate');
     if (result is bool) {
       return result;
@@ -172,14 +247,28 @@ class WebBluetoothCharacteristicProperties {
   }
 
   ///
+  /// Check to see if the current implementation has the [indicate] field.
+  ///
+  /// This may return `false` on the bluefy browser.
+  ///
+  bool get hasIndicate {
+    return _JSUtil.hasProperty(_jsObject, 'indicate');
+  }
+
+  ///
   /// Check to see if authenticated signed writes is available in this
   /// characteristic.
+  ///
+  /// Will return `false` if the field doesn't exist.
   ///
   /// See:
   ///
   /// - https://developer.mozilla.org/en-US/docs/Web/API/BluetoothCharacteristicProperties/authenticatedSignedWrites
   ///
   bool get authenticatedSignedWrites {
+    if (!hasAuthenticatedSignedWrites) {
+      return false;
+    }
     final result = _JSUtil.getProperty(_jsObject, 'authenticatedSignedWrites');
     if (result is bool) {
       return result;
@@ -188,13 +277,27 @@ class WebBluetoothCharacteristicProperties {
   }
 
   ///
+  /// Check to see if the current implementation has the [authenticatedSignedWrites] field.
+  ///
+  /// This may return `false` on the bluefy browser.
+  ///
+  bool get hasAuthenticatedSignedWrites {
+    return _JSUtil.hasProperty(_jsObject, 'authenticatedSignedWrites');
+  }
+
+  ///
   /// Check to see if reliable write is available in this characteristic.
+  ///
+  /// Will return `false` if the field doesn't exist.
   ///
   /// See:
   ///
   /// - https://developer.mozilla.org/en-US/docs/Web/API/BluetoothCharacteristicProperties/reliableWrite
   ///
   bool get reliableWrite {
+    if (!hasReliableWrite) {
+      return false;
+    }
     final result = _JSUtil.getProperty(_jsObject, 'reliableWrite');
     if (result is bool) {
       return result;
@@ -203,18 +306,60 @@ class WebBluetoothCharacteristicProperties {
   }
 
   ///
+  /// Check to see if the current implementation has the [reliableWrite] field.
+  ///
+  /// This may return `false` on the bluefy browser.
+  ///
+  bool get hasReliableWrite {
+    return _JSUtil.hasProperty(_jsObject, 'reliableWrite');
+  }
+
+  ///
   /// Check to see if writable auxiliaries is available in this characteristic.
+  ///
+  /// Will return `false` if the field doesn't exist.
   ///
   /// See:
   ///
   /// - https://developer.mozilla.org/en-US/docs/Web/API/BluetoothCharacteristicProperties/writableAuxiliaries
   ///
   bool get writableAuxiliaries {
+    if (!hasWritableAuxiliaries) {
+      return false;
+    }
     final result = _JSUtil.getProperty(_jsObject, 'writableAuxiliaries');
     if (result is bool) {
       return result;
     }
     return false;
+  }
+
+  ///
+  /// Check to see if the current implementation has the [writableAuxiliaries] field.
+  ///
+  /// This may return `false` on the bluefy browser.
+  ///
+  bool get hasWritableAuxiliaries {
+    return _JSUtil.hasProperty(_jsObject, 'writableAuxiliaries');
+  }
+
+  ///
+  /// Check to see if there is this characteristic has any property at all.
+  ///
+  /// If this returns `false` then the implementation of the browser probably
+  /// hasn't implemented this and the values returned from the fields will
+  /// always be `false` thus not being reliable.
+  ///
+  bool get hasProperties {
+    return hasBroadcast ||
+        hasRead ||
+        hasWriteWithoutResponse ||
+        hasWrite ||
+        hasNotify ||
+        hasIndicate ||
+        hasAuthenticatedSignedWrites ||
+        hasReliableWrite ||
+        hasWritableAuxiliaries;
   }
 
   ///
@@ -224,31 +369,5 @@ class WebBluetoothCharacteristicProperties {
   ///
   /// To get an instance use [WebBluetoothRemoteGATTCharacteristic.properties].
   ///
-  WebBluetoothCharacteristicProperties.fromJSObject(this._jsObject) {
-    // if (!_JSUtil.hasProperty(_jsObject, 'broadcast')) {
-    //   throw UnsupportedError('JSObject does not have broadcast');
-    // }
-    // if (!_JSUtil.hasProperty(_jsObject, 'read')) {
-    //   throw UnsupportedError('JSObject does not have read');
-    // }
-    // if (!_JSUtil.hasProperty(_jsObject, 'write')) {
-    //   throw UnsupportedError('JSObject does not have write');
-    // }
-    // if (!_JSUtil.hasProperty(_jsObject, 'notify')) {
-    //   throw UnsupportedError('JSObject does not have notify');
-    // }
-    // if (!_JSUtil.hasProperty(_jsObject, 'indicate')) {
-    //   throw UnsupportedError('JSObject does not have indicate');
-    // }
-    // if (!_JSUtil.hasProperty(_jsObject, 'authenticatedSignedWrites')) {
-    //   throw UnsupportedError(
-    //       'JSObject does not have authenticatedSignedWrites');
-    // }
-    // if (!_JSUtil.hasProperty(_jsObject, 'reliableWrite')) {
-    //   throw UnsupportedError('JSObject does not have reliableWrite');
-    // }
-    // if (!_JSUtil.hasProperty(_jsObject, 'writableAuxiliaries')) {
-    //   throw UnsupportedError('JSObject does not have writableAuxiliaries');
-    // }
-  }
+  WebBluetoothCharacteristicProperties.fromJSObject(this._jsObject);
 }

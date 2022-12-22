@@ -74,7 +74,21 @@ class BluetoothCharacteristic {
   /// the properties of what the [BluetoothCharacteristic] does and doesn't
   /// support.
   ///
+  /// See [hasProperties] or [BluetoothCharacteristicProperties.hasProperties]
+  /// to see if the current browser has properties implemented
+  ///
   BluetoothCharacteristicProperties get properties => _properties;
+
+  ///
+  /// Check to see if [properties] has any properties at all. Some browsers
+  /// don't have this feature implemented yet.
+  ///
+  /// If this is `false` then reading any of the properties will also return
+  /// `false`. It will not throw any errors.
+  ///
+  bool get hasProperties {
+    return properties.hasProperties;
+  }
 
   ///
   /// Return a [BluetoothDescriptor] for this characteristic.

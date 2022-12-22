@@ -6,6 +6,12 @@
 * Added `requestLEScan` to `Bluetooth` and `FlutterWebBluetooth`. You can now scan for devices advertisements without
   needing to pair with each device. However, a normal pair does need to happen before characteristics can be used.
 * **Breaking** `BluetoothDevice.gatt` is no longer marked as deprecated, it is still marked as `visibleForTesting`.
+* Continuing with the IOS Bluefy browser fix for characteristic properties.
+    * Added `has` methods for all the fields in characteristic properties.
+    * Return `false` as default value when a property doesn't exist.
+    * Added `hasProperties` method to check if there are any properties at all. Use this to test if the properties are
+      even reliable.
+    * You can remove any try-catch logic around reading properties if you added those for the mitigation.
 
 ## 0.0.9
 
