@@ -6,10 +6,11 @@ part of flutter_web_bluetooth;
 /// form the basic javascript [Event] (target field and all that stuff).
 ///
 /// This class is almost the same as [WebAdvertisementReceivedEvent] however
-/// instead of holding a [WebBluetoothDevice] it holds a [BluetoothDevice].
+/// instead of holding a [WebBluetoothDevice] it holds either a
+/// [BluetoothDevice], or a [AdvertisementBluetoothDevice].
 ///
-class AdvertisementReceivedEvent
-    extends AdvertisementReceivedEventInterface<BluetoothDevice> {
+class AdvertisementReceivedEvent<D extends AdvertisementBluetoothDevice>
+    extends AdvertisementReceivedEventInterface<D> {
   final AdvertisementReceivedEventInterface<dynamic>
       _advertisementReceivedEvent;
 
@@ -48,7 +49,6 @@ class AdvertisementReceivedEvent
     return _advertisementReceivedEvent.appearance;
   }
 
-  AdvertisementReceivedEvent._(
-      this._advertisementReceivedEvent, BluetoothDevice device)
+  AdvertisementReceivedEvent._(this._advertisementReceivedEvent, D device)
       : super(device);
 }

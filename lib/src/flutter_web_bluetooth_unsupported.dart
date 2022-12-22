@@ -44,6 +44,8 @@ part 'errors/security_error.dart';
 
 part 'flutter_web_bluetooth_interface.dart';
 
+part 'le_scan_options_builder.dart';
+
 part 'request_options_builder.dart';
 
 ///
@@ -75,7 +77,7 @@ class FlutterWebBluetooth extends FlutterWebBluetoothInterface {
   }
 
   @override
-  bool get isBluetoothApiSupported => false;
+  final bool isBluetoothApiSupported = false;
 
   @override
   Stream<bool> get isAvailable => Stream.value(false);
@@ -85,7 +87,29 @@ class FlutterWebBluetooth extends FlutterWebBluetoothInterface {
 
   @override
   @alwaysThrows
-  Future<BluetoothDevice> requestDevice(RequestOptionsBuilder options) {
+  Future<BluetoothDevice> requestDevice(final RequestOptionsBuilder options) {
     throw NativeAPINotImplementedError('requestDevice');
   }
+
+  @override
+  @alwaysThrows
+  Future<BluetoothDevice> requestAdvertisementDevice(
+      AdvertisementBluetoothDevice device,
+      {List<String> requiredServices = const [],
+      List<String> optionalServices = const []}) {
+    throw NativeAPINotImplementedError('requestAdvertisementDevice');
+  }
+
+  @override
+  final bool hasRequestLEScan = false;
+
+  @override
+  @alwaysThrows
+  Future<BluetoothLEScan> requestLEScan(final LEScanOptionsBuilder options) {
+    throw NativeAPINotImplementedError('requestLEScan');
+  }
+
+  @override
+  Stream<AdvertisementReceivedEvent<AdvertisementBluetoothDevice>>
+      get advertisements => Stream.empty();
 }

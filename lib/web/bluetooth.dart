@@ -55,7 +55,12 @@ class _NativeBluetooth {
   ///
   /// - https://webbluetoothcg.github.io/web-bluetooth/#dom-bluetooth-requestdevice
   ///
-  external static Object requestDevice(RequestOptions? options);
+  external static Object requestDevice(RequestOptions options);
+
+  ///
+  /// https://webbluetoothcg.github.io/web-bluetooth/scanning.html#dom-bluetooth-requestlescan
+  ///
+  external static Object requestLEScan(BluetoothLEScanOptions options);
 
   ///
   /// Add a new event listener to the navigation.
@@ -66,25 +71,11 @@ class _NativeBluetooth {
   ///
   /// - onadvertisementreceived
   ///
-  /// - ongattserverdisconnected
-  ///
-  /// - oncharacteristicvaluechanged
-  ///
-  /// - onserviceadded
-  ///
-  /// - onservicechanged
-  ///
-  /// - onserviceremoved
-  ///
   /// See:
   ///
   /// - [removeEventListener]
   ///
-  /// - https://webbluetoothcg.github.io/web-bluetooth/#bluetoothdeviceeventhandlers
-  ///
-  /// - https://webbluetoothcg.github.io/web-bluetooth/#characteristiceventhandlers
-  ///
-  /// - https://webbluetoothcg.github.io/web-bluetooth/#serviceeventhandlers
+  /// - https://webbluetoothcg.github.io/web-bluetooth/#fire-an-advertisementreceived-event
   ///
   external static void addEventListener(
       String type, void Function(dynamic) listener);
@@ -173,8 +164,20 @@ class NativeBluetooth {
   ///
   /// - https://webbluetoothcg.github.io/web-bluetooth/#dom-bluetooth-requestdevice
   ///
-  Object requestDevice(RequestOptions? options) {
+  Object requestDevice(RequestOptions options) {
     return _NativeBluetooth.requestDevice(options);
+  }
+
+  ///
+  /// Request the user to start scanning for Bluetooth LE devices in the
+  /// area.
+  ///
+  /// See [BluetoothLEScanOptions] for the options available.
+  ///
+  /// https://webbluetoothcg.github.io/web-bluetooth/scanning.html#dom-bluetooth-requestlescan
+  ///
+  Object requestLEScan(BluetoothLEScanOptions options) {
+    return _NativeBluetooth.requestLEScan(options);
   }
 
   ///
@@ -186,25 +189,11 @@ class NativeBluetooth {
   ///
   /// - onadvertisementreceived
   ///
-  /// - ongattserverdisconnected
-  ///
-  /// - oncharacteristicvaluechanged
-  ///
-  /// - onserviceadded
-  ///
-  /// - onservicechanged
-  ///
-  /// - onserviceremoved
-  ///
   /// See:
   ///
   /// - [removeEventListener]
   ///
-  /// - https://webbluetoothcg.github.io/web-bluetooth/#bluetoothdeviceeventhandlers
-  ///
-  /// - https://webbluetoothcg.github.io/web-bluetooth/#characteristiceventhandlers
-  ///
-  /// - https://webbluetoothcg.github.io/web-bluetooth/#serviceeventhandlers
+  /// https://webbluetoothcg.github.io/web-bluetooth/#fire-an-advertisementreceived-event
   ///
   void addEventListener(String type, void Function(dynamic) listener) {
     _NativeBluetooth.addEventListener(type, listener);
@@ -234,312 +223,6 @@ NativeBluetooth _nativeBluetooth = NativeBluetooth();
 @visibleForTesting
 void setNativeBluetooth(NativeBluetooth nativeBluetooth) {
   _nativeBluetooth = nativeBluetooth;
-}
-
-///
-/// The js object for Bluetooth scan filters.
-/// At least one of the filter must be set, the rest can be left
-/// `undefined`.
-///
-/// See:
-///
-/// - https://webbluetoothcg.github.io/web-bluetooth/#dictdef-bluetoothservicedatafilterinit
-///
-@JS()
-@anonymous
-class BluetoothServiceDataFilter {
-  ///
-  /// may be a UUID of the service that should exist.
-  ///
-  external String? get service;
-
-  ///
-  /// is a uint8 (or byte) array of the first n bytes of the UUID
-  /// that should exist for the service. For example if you have the UUID
-  /// `D273346A-...` then the prefix of `D273` should match
-  ///
-  external Object? get dataPrefix;
-
-  ///
-  /// Is a uint8 (or byte) array of the bits that should be matched against.
-  /// The original UUID will be bit wise and (&) as well as the [dataPrefix] to
-  /// the same [mask]. These two will then be compared to be equal.
-  ///
-  external Object? get mask;
-
-  ///
-  /// The constructor of the request filter.
-  ///
-  /// Because of how the js conversion works setting a value to null is not
-  /// the same as leaving it undefined. Use
-  /// [BluetoothScanFilterHelper.createServiceDataObject]
-  /// to get around this problem.
-  ///
-  external factory BluetoothServiceDataFilter(
-      {String? service, Object? dataPrefix, Object? mask});
-}
-
-///
-/// The js object for Bluetooth scan filters.
-/// At least one of the filter must be set, the rest can be left
-/// `undefined`.
-///
-/// See:
-///
-/// - https://webbluetoothcg.github.io/web-bluetooth/#dictdef-bluetoothmanufacturerdatafilterinit
-///
-@JS()
-@anonymous
-class BluetoothManufacturerDataFilter {
-  ///
-  /// is a 16 bit identifier of the company that either made
-  /// the device, or made the bluetooth chip that the device uses.
-  ///
-  /// See the full list of company identifiers
-  /// [here](https://www.bluetooth.com/specifications/assigned-numbers/company-identifiers/).
-  ///
-  external int? get companyIdentifier;
-
-  ///
-  /// is a uint8 (or byte) array of the first n bytes of the
-  /// manufacturer data of the device. For example if you have the UUID
-  /// `D273346A-...` then the prefix of `D273` should match
-  ///
-  external Object? get dataPrefix;
-
-  ///
-  /// is a uint8 (or byte) array of the bits that should be matched against.
-  /// The manufacturer data will be bit wise and (&) as well as the [dataPrefix] to
-  /// the same [mask]. These two will then be compared to be equal.
-  ///
-  external Object? get mask;
-
-  ///
-  /// The constructor of the request filter.
-  ///
-  /// Because of how the js conversion works setting a value to null is not
-  /// the same as leaving it undefined. Use
-  /// [BluetoothScanFilterHelper.createManufacturerDataObject]
-  /// to get around this problem.
-  ///
-  external factory BluetoothManufacturerDataFilter(
-      {int? companyIdentifier, Object? dataPrefix, Object? mask});
-}
-
-///
-/// The js object for Bluetooth scan filters.
-/// At least one of the filter must be set, the rest can be left
-/// `undefined`.
-///
-/// See:
-///
-/// - https://developer.mozilla.org/en-US/docs/Web/API/Bluetooth/requestDevice
-///
-/// - https://webbluetoothcg.github.io/web-bluetooth/#dictdef-bluetoothlescanfilterinit
-///
-@JS()
-@anonymous
-class BluetoothScanFilter {
-  ///
-  /// A list of UUIDS (should be lower case) of the services that the device
-  /// must have. A device is only allowed if it has all the services.
-  ///
-  external List<String>? get services;
-
-  ///
-  /// The name of the device. The name must be the exact same for the device
-  /// to be allowed.
-  ///
-  external String? get name;
-
-  ///
-  /// A name prefix. The name of the device must
-  /// have the same prefix. For example: a device with the name "ABCDEF" will
-  /// be allowed with the prefix "ABC" and not with the prefix "DEF".
-  ///
-  external String? get namePrefix;
-
-  ///
-  /// A [List] of [BluetoothManufacturerDataFilter]s
-  /// for what the manufacture data of the device should match before it shows
-  /// up in the available devices list. Note that if you set multiple manufacturer
-  /// data filters then a single device must match all of them.
-  ///
-  external List<BluetoothManufacturerDataFilter>? get manufacturerData;
-
-  ///
-  /// A [List] of [BluetoothServiceDataFilter]s for the services that the
-  /// device should support.
-  ///
-  /// **Note** this is not stable yet and my not be implemented.
-  /// ignore: deprecated_member_use_from_same_package
-  ///
-  external List<BluetoothServiceDataFilter>? get serviceData;
-
-  ///
-  /// The constructor of the request filter.
-  ///
-  /// Because of how the js conversion works setting a value to null is not
-  /// the same as leaving it undefined. Use [BluetoothScanFilterHelper.createScanFilterObject]
-  /// to get around this problem.
-  ///
-  external factory BluetoothScanFilter(
-      {List<String>? services,
-      String? name,
-      String? namePrefix,
-      List<BluetoothManufacturerDataFilter>? manufacturerData,
-      List<BluetoothServiceDataFilter>? serviceData});
-}
-
-///
-/// A class with a helper function to create the correct js object from a filter.
-///
-/// Because of how the JS translation works leaving an item blank in
-/// [BluetoothScanFilter]'s constructor. Would set these values to null instead
-/// of keeping them undefined. This would cause the API to complain. So to keep
-/// it at peace this workaround is used.
-///
-class BluetoothScanFilterHelper {
-  BluetoothScanFilterHelper._();
-
-  ///
-  /// Create a [BluetoothManufacturerDataFilter] only setting the fields that
-  /// are not `null` this exists because Dart isn't able to set items to
-  /// `undefined`.
-  ///
-  /// No check is done here so you may end up with an empty object.
-  ///
-  static Object createManufacturerDataObject(int? companyIdentifier,
-      final Uint8List? dataPrefix, final Uint8List? mask) {
-    final jsObject = _JSUtil.newObject();
-    if (companyIdentifier != null) {
-      _JSUtil.setProperty(jsObject, 'companyIdentifier', companyIdentifier);
-    }
-    _fillDataFilter(jsObject, dataPrefix, mask);
-    return jsObject;
-  }
-
-  ///
-  /// Create a [BluetoothServiceDataFilter] only setting the fields that
-  /// are not `null` this exists because Dart isn't able to set items to
-  /// `undefined`.
-  ///
-  /// No check is done here so you may end up with an empty object.
-  ///
-  static Object createServiceDataObject(final String? service,
-      final Uint8List? dataPrefix, final Uint8List? mask) {
-    final jsObject = _JSUtil.newObject();
-    if (service != null) {
-      _JSUtil.setProperty(jsObject, 'service', service);
-    }
-    _fillDataFilter(jsObject, dataPrefix, mask);
-    return jsObject;
-  }
-
-  ///
-  /// Fill the data filter part of the [createManufacturerDataObject] or
-  /// [createServiceDataObject] object.
-  ///
-  static void _fillDataFilter(
-      dynamic jsObject, final Uint8List? dataPrefix, final Uint8List? mask) {
-    if (dataPrefix != null) {
-      var convertedDataPrefix =
-          WebBluetoothConverters.convertUint8ListToJSArrayBuffer(dataPrefix);
-      _JSUtil.setProperty(jsObject, 'dataPrefix', convertedDataPrefix);
-    }
-    if (mask != null) {
-      var convertedMask =
-          WebBluetoothConverters.convertUint8ListToJSArrayBuffer(mask);
-      _JSUtil.setProperty(jsObject, 'mask', convertedMask);
-    }
-  }
-
-  ///
-  /// Create a new JS object with the fields for [BluetoothScanFilter]. But
-  /// instead of setting all the values to `null` it will just not add them
-  /// keeping them `undefined`.
-  ///
-  /// No check is done here so you may end up with an empty object.
-  ///
-  /// You may need to cast it to a [BluetoothScanFilter] but this is allowed
-  /// without any complaints as long as the code is run in the browser.
-  ///
-  static Object createScanFilterObject(
-      List<String>? services,
-      String? name,
-      String? namePrefix,
-      List<BluetoothManufacturerDataFilter>? manufacturerData,
-      List<BluetoothServiceDataFilter>? serviceData) {
-    final jsObject = _JSUtil.newObject();
-    if (services != null) {
-      _JSUtil.setProperty(
-          jsObject, 'services', services.map((e) => e.toLowerCase()).toList());
-    }
-    if (name != null) {
-      _JSUtil.setProperty(jsObject, 'name', name);
-    }
-    if (namePrefix != null) {
-      _JSUtil.setProperty(jsObject, 'namePrefix', namePrefix);
-    }
-    if (manufacturerData != null) {
-      _JSUtil.setProperty(jsObject, 'manufacturerData', manufacturerData);
-    }
-    if (serviceData != null) {
-      _JSUtil.setProperty(jsObject, 'serviceData', serviceData);
-    }
-    return jsObject;
-  }
-}
-
-///
-/// The js object for request options. This is used for [Bluetooth.requestDevice].
-///
-/// Either [filters] or [acceptAllDevices] must have something meaningful set
-/// in them, they can't be at the same time.
-/// If for example [acceptAllDevices] is `true` and [filters] is not an empty
-/// list. Then an Error will be thrown when trying to request devices.
-///
-@JS()
-@anonymous
-class RequestOptions {
-  ///
-  /// A list of filters that the accepted device must meet.
-  ///
-  /// A device must meet at least one filter before the browser will show it
-  /// as pairable.
-  ///
-  /// *NOTE:** You **NEED** to define a service in either the [filters]
-  /// or [optionalServices] if you want to be able to communicate with a
-  /// characteristic in it.
-  ///
-  external List<BluetoothScanFilter> get filters;
-
-  ///
-  /// A list of service UUIDS that a device may have or may not have.
-  ///
-  /// *NOTE:** You **NEED** to define a service in either the [filters]
-  /// or [optionalServices] if you want to be able to communicate with a
-  /// characteristic in it.
-  ///
-  external List<String> get optionalServices;
-
-  ///
-  /// If all device can are allowed to to connect.
-  ///
-  /// This cannot be true why a [filters] list is set.
-  ///
-  external bool get acceptAllDevices;
-
-  ///
-  /// A constructor for new request options.
-  ///
-  /// Because of how the conversion to JS works, there is a difference between
-  /// leaving an item blank in this constructor and setting it to `null`.
-  ///
-  external factory RequestOptions(
-      {List<BluetoothScanFilter> filters,
-      List<dynamic> optionalServices,
-      bool acceptAllDevices});
 }
 
 ///
@@ -726,7 +409,7 @@ class Bluetooth {
   /// - https://webbluetoothcg.github.io/web-bluetooth/#dom-bluetooth-requestdevice
   ///
   static Future<WebBluetoothDevice> requestDevice(
-      RequestOptions? options) async {
+      RequestOptions options) async {
     final promise = _nativeBluetooth.requestDevice(options);
     try {
       final result = await _JSUtil.promiseToFuture(promise);
@@ -736,7 +419,7 @@ class Bluetooth {
       final error = e.toString();
       if (error.startsWith('NotFoundError')) {
         // No devices found or cancelled by the user.
-        if (error.toLowerCase().contains('user cancelled')) {
+        if (error.toLowerCase().contains('user cancel')) {
           // TODO: check if this is also the message on other browsers!
           throw UserCancelledDialogError(
               error.replaceFirst('NotFoundError', '').replaceFirst(': ', ''));
@@ -744,23 +427,129 @@ class Bluetooth {
         throw DeviceNotFoundError(
             error.replaceFirst('NotFoundError', '').replaceFirst(': ', ''));
       }
-      rethrow;
+      if (e is Error) {
+        rethrow;
+      }
+      throw BrowserError(error);
     }
   }
 
   ///
-  /// This is a setting for (new) devices if it should use memory for advertisements.
+  /// Check to see if the current browser has the [requestLEScan] method.
   ///
-  /// Not every device sends a completely filled out advertisement packet for
-  /// each advertisements. For example every other packet might have the name
-  /// field missing. If this setting is set to `true` it will use the last received
-  /// event to fill in the missing data on the current new event.
+  /// Use this to avoid the [NativeAPINotImplementedError].
   ///
-  /// You may want to disable this for certain projects in that case set this
-  /// option to `false`.
+  static bool hasRequestLEScan() {
+    if (!isBluetoothAPISupported()) {
+      return false;
+    }
+    final bluetooth = _JSUtil.getProperty(_getNavigator(), 'bluetooth');
+    final hasProperty = _JSUtil.hasProperty(bluetooth, 'requestLEScan');
+    return hasProperty;
+  }
+
   ///
-  /// It can also be set on a per device level if that is desirable.
-  /// [BluetoothDevice.advertisementsUseMemory].
+  /// Request the user to start scanning for Bluetooth LE devices in the
+  /// area. Not every browser supports this method yet so check it using
+  /// [hasRequestLEScan]. However even if the browser supports it, the [Future]
+  /// may never complete on browsers. This has been the case for Chrome on linux
+  /// and windows even with the correct flag enabled. Chrome on Android does
+  /// seem to work. Add a [Future.timeout] to combat this.
   ///
-  static bool defaultAdvertisementsMemory = true;
+  /// The devices found through this are emitted using the
+  /// 'advertisementreceived' event on [addEventListener].
+  ///
+  /// It will only emit devices that match the [options] so it could happen
+  /// that there are no devices in range while the scan is running.
+  /// See [BluetoothLEScanOptions] for details on the options.
+  ///
+  /// Once a scan is running (and there were no errors) it can be stopped by
+  /// calling [BluetoothLEScan.stop] on the returned object from the [Future].
+  /// If this object doesn't get saved then there is no way to stop the scan,
+  /// it should be able to start multiple scans with different scan options.
+  ///
+  /// - May throw [UserCancelledDialogError] if the user cancelled the dialog.
+  ///
+  /// - May throw [NativeAPINotImplementedError] if the browser/ user agent
+  /// doesn't support this method. This may still be thrown even if
+  /// [hasRequestLEScan] is checked first.
+  ///
+  /// - May throw [StateError] for any state error that the method may throw.
+  ///
+  /// - May throw [PolicyError] if Bluetooth has been disabled by an
+  /// administrator via a policy.
+  ///
+  /// - May throw [PermissionError] if the user has disallowed the permission.
+  ///
+  /// - May throw [BrowserError] for every other browser error.
+  ///
+  static Future<BluetoothLEScan> requestLEScan(
+      BluetoothLEScanOptions options) async {
+    if (!hasRequestLEScan()) {
+      throw NativeAPINotImplementedError('requestLEScan');
+    }
+    final promise = _nativeBluetooth.requestLEScan(options);
+    try {
+      final result = await _JSUtil.promiseToFuture(promise);
+      return BluetoothLEScan.fromJSObject(result);
+    } catch (e) {
+      final error = e.toString();
+      if (error.startsWith('InvalidStateError')) {
+        // The user probably canceled the permission dialog
+        if (error.toLowerCase().contains('user cancel')) {
+          // TODO: check if this is also the message on other browsers!
+          throw UserCancelledDialogError(error
+              .replaceFirst('InvalidStateError', '')
+              .replaceFirst(': ', ''));
+        }
+        throw StateError(
+            error.replaceFirst('InvalidStateError', '').replaceFirst(': ', ''));
+      } else if (error.startsWith('NotSupportedError')) {
+        throw NativeAPINotImplementedError('requestLEScan');
+      } else if (error.startsWith('NotAllowedError')) {
+        throw PermissionError('requestLEScan');
+      } else if (error.startsWith('SecurityError')) {
+        throw PolicyError('requestLEScan');
+      }
+
+      if (e is Error) {
+        rethrow;
+      }
+      throw BrowserError(error);
+    }
+  }
+
+  ///
+  /// Add a new event listener to the device.
+  ///
+  /// Marking the method with [JSUtils.allowInterop] will be done automatically
+  /// for you.
+  ///
+  /// Events to be handled are:
+  ///
+  /// - onadvertisementreceived
+  ///
+  ///
+  /// See:
+  ///
+  /// - [removeEventListener]
+  ///
+  static void addEventListener(String type, void Function(dynamic) listener) {
+    _nativeBluetooth.addEventListener(type, _JSUtil.allowInterop(listener));
+  }
+
+  ///
+  /// Remove an event listener that has previously been added.
+  ///
+  /// Marking the method with [JSUtils.allowInterop] will be done automatically
+  /// for you.
+  ///
+  /// See: [addEventListener].
+  ///
+  static void removeEventListener(
+      String type, void Function(dynamic) listener) {
+    /// TODO: may need to tell the developer to store the listener that you get
+    /// after throwing it through _JSUtil.allowInterop.
+    _nativeBluetooth.removeEventListener(type, _JSUtil.allowInterop(listener));
+  }
 }

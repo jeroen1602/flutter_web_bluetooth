@@ -37,16 +37,38 @@ effect.
 
 to do this delete the `bin/cache/flutter_tools.snapshot` file.
 
+## Windows
+
+This patch also works on Windows to launch browsers with the experimental flag enabled.
+However, Windows doesn't have the patch command. You could install patch from other sources, or even just apply the 
+patch manually. My preference is to use WSL and just use the linux patch command.
+
+To do this open bash on Windows and cd into the same folder as the other steps above.
+
+Now because the patch was made on Linux and not Windows it doesn't like the different line endings that Windows has as
+compared to Linux. So use the following command instead to apply the patch.
+
+```bash
+patch -p1 --binary < Add-experimental-launch-flag.patch
+```
+
+Now continue with the steps as in the original steps of checking the `git diff` and removing the
+`bin/cache/flutter_tools.snapshot` file.
+
 ## Versions:
 
 This patch was originally written for Flutter 2.0.4.
 
-Also works with:
+Also, (has been verified to) works with:
  - 2.0.5
  - 2.2.0
  - 2.8.1
  - 3.0.1
  - 3.3.0
+ - 3.3.8
+
+The versions in between will probably also work. If a future version of flutter breaks the compatibility then please
+open up an issue.
 
 # Running as a webserver
 

@@ -24,6 +24,10 @@ part 'web/errors/device_not_found_error.dart';
 
 part 'web/errors/native_api_not_implemented_error.dart';
 
+part 'web/errors/permission_error.dart';
+
+part 'web/errors/policy_error.dart';
+
 part 'web/errors/user_cancelled_dialog_error.dart';
 
 part 'web/js/abort_controller.dart';
@@ -38,11 +42,19 @@ part 'web/web_bluetooth_converters.dart';
 
 part 'web/web_bluetooth_device.dart';
 
+part 'web/web_bluetooth_le_scan.dart';
+
+part 'web/web_bluetooth_le_scan_options.dart';
+
 part 'web/web_bluetooth_remote_gatt_characteristic.dart';
 
 part 'web/web_bluetooth_remote_gatt_descriptor.dart';
 
 part 'web/web_bluetooth_remote_gatt_service.dart';
+
+part 'web/web_bluetooth_request_options.dart';
+
+part 'web/web_bluetooth_scan_filters.dart';
 
 // ignore: non_constant_identifier_names
 JSUtilsInterface _JSUtil = JSUtils();
