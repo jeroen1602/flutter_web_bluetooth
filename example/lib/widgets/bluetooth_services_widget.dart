@@ -1,6 +1,6 @@
-import 'package:flutter/material.dart';
-import 'package:flutter_web_bluetooth/flutter_web_bluetooth.dart';
-import 'package:flutter_web_bluetooth_example/widgets/service_widget.dart';
+import "package:flutter/material.dart";
+import "package:flutter_web_bluetooth/flutter_web_bluetooth.dart";
+import "package:flutter_web_bluetooth_example/widgets/service_widget.dart";
 
 class BluetoothServicesWidget extends StatefulWidget {
   const BluetoothServicesWidget(this.device, this.minHeight, {super.key});
@@ -17,16 +17,16 @@ class BluetoothServicesWidget extends StatefulWidget {
 
 class _BluetoothServicesState extends State<BluetoothServicesWidget> {
   @override
-  Widget build(BuildContext context) {
+  Widget build(final BuildContext context) {
     return StreamBuilder(
       stream: widget.device.connected,
-      builder: (context, connectedSnapshot) {
+      builder: (final context, final connectedSnapshot) {
         final connected = connectedSnapshot.data ?? false;
 
         return Column(children: [
           AppBar(
               automaticallyImplyLeading: false,
-              title: const Text('Services'),
+              title: const Text("Services"),
               actions: [
                 ElevatedButton(
                     onPressed: () async {
@@ -36,13 +36,14 @@ class _BluetoothServicesState extends State<BluetoothServicesWidget> {
                         await widget.device.connect();
                       }
                     },
-                    child: Text(connected ? 'Disconnect' : 'Connect'))
+                    child: Text(connected ? "Disconnect" : "Connect"))
               ]),
           Container(
               constraints: BoxConstraints(
                   minHeight:
                       widget.minHeight - BluetoothServicesWidget.appbarHeight),
-              child: BluetoothServiceBody(connected, widget.device))
+              child:
+                  BluetoothServiceBody(widget.device, isConnected: connected))
         ]);
       },
     );
@@ -50,17 +51,18 @@ class _BluetoothServicesState extends State<BluetoothServicesWidget> {
 }
 
 class BluetoothServiceBody extends StatelessWidget {
-  const BluetoothServiceBody(this.isConnected, this.device, {super.key});
+  const BluetoothServiceBody(this.device,
+      {required this.isConnected, super.key});
 
   final BluetoothDevice device;
   final bool isConnected;
 
   @override
-  Widget build(BuildContext context) {
+  Widget build(final BuildContext context) {
     if (isConnected) {
       return BluetoothServicesOverview(device);
     } else {
-      return const Center(child: Text('Click connect first'));
+      return const Center(child: Text("Click connect first"));
     }
   }
 }
@@ -71,29 +73,29 @@ class BluetoothServicesOverview extends StatelessWidget {
   final BluetoothDevice device;
 
   @override
-  Widget build(BuildContext context) {
+  Widget build(final BuildContext context) {
     return StreamBuilder(
       stream: device.services,
-      builder: (context, servicesSnapshot) {
+      builder: (final context, final servicesSnapshot) {
         if (servicesSnapshot.hasError) {
           final error = servicesSnapshot.error.toString();
-          debugPrint('Error: $error');
+          debugPrint("Error: $error");
           return Center(child: Text(error));
         }
         final services = servicesSnapshot.data;
         if (services == null) {
           return const Center(
-            child: Text('Loading services!'),
+            child: Text("Loading services!"),
           );
         }
         if (services.isEmpty) {
           return const Center(
-            child: Text('No services found!'),
+            child: Text("No services found!"),
           );
         }
 
         final serviceWidgets = List.generate(services.length,
-            (index) => ServiceWidget(service: services[index]));
+            (final index) => ServiceWidget(service: services[index]));
 
         return Column(
           children: serviceWidgets,

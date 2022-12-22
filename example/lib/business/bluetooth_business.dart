@@ -1,11 +1,11 @@
-import 'dart:async';
-import 'dart:collection';
+import "dart:async";
+import "dart:collection";
 
-import 'package:flutter/foundation.dart';
-import 'package:flutter_web_bluetooth/flutter_web_bluetooth.dart';
-import 'package:flutter_web_bluetooth/js_web_bluetooth.dart';
-import 'package:flutter_web_bluetooth_example/model/main_page_device.dart';
-import 'package:rxdart/rxdart.dart';
+import "package:flutter/foundation.dart";
+import "package:flutter_web_bluetooth/flutter_web_bluetooth.dart";
+import "package:flutter_web_bluetooth/js_web_bluetooth.dart";
+import "package:flutter_web_bluetooth_example/model/main_page_device.dart";
+import "package:rxdart/rxdart.dart";
 
 enum RequestDeviceState {
   ok,
@@ -49,7 +49,7 @@ class BluetoothBusiness {
       final device = await FlutterWebBluetooth.instance.requestDevice(
           RequestOptionsBuilder.acceptAllDevices(
               optionalServices: BluetoothDefaultServiceUUIDS.values
-                  .map((e) => e.uuid)
+                  .map((final e) => e.uuid)
                   .toList()));
       debugPrint("Device got! ${device.name}, ${device.id}");
       return RequestDeviceState.ok;
@@ -74,7 +74,7 @@ class BluetoothBusiness {
       final newDevice = await FlutterWebBluetooth.instance
           .requestAdvertisementDevice(device,
               optionalServices: BluetoothDefaultServiceUUIDS.values
-                  .map((e) => e.uuid)
+                  .map((final e) => e.uuid)
                   .toList());
       debugPrint("Device got! ${newDevice.name}, ${newDevice.id}");
       return RequestAdvertisementDeviceState(RequestDeviceState.ok,
@@ -94,7 +94,7 @@ class BluetoothBusiness {
 
   static Future<RequestLEState> requestLEScan() async {
     if (_currentScan?.active ?? false) {
-      debugPrint('Stopping the LE scan');
+      debugPrint("Stopping the LE scan");
       _currentScan!.stop();
       _currentScan = null;
       return RequestLEState.stopped;
@@ -108,7 +108,7 @@ class BluetoothBusiness {
       final scan = await FlutterWebBluetooth.instance
           .requestLEScan(options)
           .timeout(const Duration(seconds: 10));
-      debugPrint('Started the LE scan ${scan.active}');
+      debugPrint("Started the LE scan ${scan.active}");
       _currentScan = scan;
       return RequestLEState.ok;
     } on NativeAPINotImplementedError {
@@ -124,7 +124,7 @@ class BluetoothBusiness {
     } on TimeoutException {
       return RequestLEState.timeoutException;
     } catch (e, s) {
-      debugPrint('$e\n$s');
+      debugPrint("$e\n$s");
       return RequestLEState.other;
     }
   }
@@ -133,11 +133,12 @@ class BluetoothBusiness {
   /// Create a stream that combines the device returned from advertisements and
   /// from normal device requests.
   static Stream<Set<MainPageDevice>>? createDeviceStream() {
-    List<AdvertisementReceivedEvent<AdvertisementBluetoothDevice>>
+    final List<AdvertisementReceivedEvent<AdvertisementBluetoothDevice>>
         advertisementDevices = [];
 
-    sortMethod(AdvertisementReceivedEvent<AdvertisementBluetoothDevice> a,
-        AdvertisementReceivedEvent<AdvertisementBluetoothDevice> b) {
+    int sortMethod(
+        final AdvertisementReceivedEvent<AdvertisementBluetoothDevice> a,
+        final AdvertisementReceivedEvent<AdvertisementBluetoothDevice> b) {
       final nameA = a.name;
       final nameB = b.name;
       int compare = 0;
@@ -150,7 +151,8 @@ class BluetoothBusiness {
       return compare;
     }
 
-    Set<BluetoothDevice> pairedDevice = SplayTreeSet.from({}, (a, b) {
+    final Set<BluetoothDevice> pairedDevice =
+        SplayTreeSet.from({}, (final a, final b) {
       final nameA = a.name;
       final nameB = b.name;
       int compare = 0;
@@ -164,14 +166,14 @@ class BluetoothBusiness {
     });
 
     return MergeStream([
-      FlutterWebBluetooth.instance.devices.map((event) {
+      FlutterWebBluetooth.instance.devices.map((final event) {
         pairedDevice.clear();
         pairedDevice.addAll(event);
         return 0;
       }),
       FlutterWebBluetooth.instance.advertisements.map((final event) {
         final index = advertisementDevices
-            .indexWhere((element) => element.device == event.device);
+            .indexWhere((final element) => element.device == event.device);
         if (index > 0) {
           advertisementDevices.removeAt(index);
         }
@@ -180,16 +182,16 @@ class BluetoothBusiness {
         advertisementDevices.sort(sortMethod);
         return 1;
       })
-    ]).map((event) {
-      Set<MainPageDevice> devices = SplayTreeSet<MainPageDevice>.from(
-          pairedDevice.map((e) => MainPageDevice(
+    ]).map((final event) {
+      final Set<MainPageDevice> devices = SplayTreeSet<MainPageDevice>.from(
+          pairedDevice.map((final e) => MainPageDevice(
               device: e,
               event: advertisementDevices
                   .cast<
                       AdvertisementReceivedEvent<
                           AdvertisementBluetoothDevice>?>()
-                  .firstWhere((element) => element?.device.id == e.id,
-                      orElse: () => null))), (a, b) {
+                  .firstWhere((final element) => element?.device.id == e.id,
+                      orElse: () => null))), (final a, final b) {
         final nameA = a.device.name;
         final nameB = b.device.name;
         int compare = 0;
@@ -202,8 +204,8 @@ class BluetoothBusiness {
         return compare;
       });
 
-      devices.addAll(
-          advertisementDevices.map((e) => MainPageDevice.fromEvent(event: e)));
+      devices.addAll(advertisementDevices
+          .map((final e) => MainPageDevice.fromEvent(event: e)));
       return devices;
     });
   }

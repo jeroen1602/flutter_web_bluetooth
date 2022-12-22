@@ -1,12 +1,12 @@
-import 'dart:math';
+import "dart:math";
 
-import 'package:flutter/material.dart';
-import 'package:flutter_web_bluetooth/flutter_web_bluetooth.dart';
-import 'package:flutter_web_bluetooth_example/widgets/bluetooth_advertisements_widget.dart';
-import 'package:flutter_web_bluetooth_example/widgets/bluetooth_services_widget.dart';
+import "package:flutter/material.dart";
+import "package:flutter_web_bluetooth/flutter_web_bluetooth.dart";
+import "package:flutter_web_bluetooth_example/widgets/bluetooth_advertisements_widget.dart";
+import "package:flutter_web_bluetooth_example/widgets/bluetooth_services_widget.dart";
 
 class DeviceServicesPage extends StatefulWidget {
-  const DeviceServicesPage({super.key, required this.bluetoothDevice});
+  const DeviceServicesPage({required this.bluetoothDevice, super.key});
 
   final BluetoothDevice bluetoothDevice;
 
@@ -18,7 +18,7 @@ class DeviceServicesPage extends StatefulWidget {
 
 class DeviceServicesState extends State<DeviceServicesPage> {
   @override
-  Widget build(BuildContext context) {
+  Widget build(final BuildContext context) {
     const appbarHeight = 56.0;
     final height = max(
         0.0, (MediaQuery.maybeOf(context)?.size.height ?? 0.0) - appbarHeight);
@@ -26,7 +26,7 @@ class DeviceServicesState extends State<DeviceServicesPage> {
 
     return Scaffold(
         appBar: AppBar(
-          title: SelectableText(widget.bluetoothDevice.name ?? 'No name set'),
+          title: SelectableText(widget.bluetoothDevice.name ?? "No name set"),
         ),
         body: SingleChildScrollView(
             scrollDirection: Axis.vertical,

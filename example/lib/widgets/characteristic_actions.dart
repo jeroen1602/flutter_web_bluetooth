@@ -1,7 +1,7 @@
-import 'dart:async';
+import "dart:async";
 
-import 'package:flutter/material.dart';
-import 'package:flutter_web_bluetooth/flutter_web_bluetooth.dart';
+import "package:flutter/material.dart";
+import "package:flutter_web_bluetooth/flutter_web_bluetooth.dart";
 
 abstract class Actions {
   Future<void> readValue();
@@ -10,11 +10,11 @@ abstract class Actions {
 
   bool get isNotifying;
 
-  Future<void> writeValue(BuildContext? context);
+  Future<void> writeValue(final BuildContext? context);
 }
 
 class CharacteristicActions extends Actions {
-  CharacteristicActions(BluetoothCharacteristic characteristic)
+  CharacteristicActions(final BluetoothCharacteristic characteristic)
       : _characteristic = characteristic;
 
   final BluetoothCharacteristic _characteristic;
@@ -40,7 +40,7 @@ class CharacteristicActions extends Actions {
   Future<void> writeValue(final BuildContext? context) async {
     if (context != null) {
       ScaffoldMessenger.maybeOf(context)?.showSnackBar(const SnackBar(
-        content: Text('Write is supported just not implemented in the example'),
+        content: Text("Write is supported just not implemented in the example"),
       ));
     }
   }
@@ -77,7 +77,7 @@ class ActionsSate extends State<ActionsWidget> {
     if (!widget.properties.hasProperties || widget.properties.read) {
       return OutlinedButton(
           onPressed: handlePressed(widget.actions.readValue),
-          child: const Text('Read value'));
+          child: const Text("Read value"));
     }
     return null;
   }
@@ -87,8 +87,8 @@ class ActionsSate extends State<ActionsWidget> {
       return OutlinedButton(
           onPressed: handlePressed(widget.actions.toggleNotify),
           child: Text(widget.actions.isNotifying
-              ? 'Stop notifying'
-              : 'Start notifying'));
+              ? "Stop notifying"
+              : "Start notifying"));
     }
     return null;
   }
@@ -97,12 +97,13 @@ class ActionsSate extends State<ActionsWidget> {
     if (!widget.properties.hasProperties || widget.properties.write) {
       return OutlinedButton(
           onPressed: handlePressedWithContext(widget.actions.writeValue),
-          child: const Text('Write value'));
+          child: const Text("Write value"));
     }
     return null;
   }
 
-  FutureOr<void> Function() handlePressed(FutureOr<void> Function() method) {
+  FutureOr<void> Function() handlePressed(
+      final FutureOr<void> Function() method) {
     return () async {
       try {
         await method.call();
@@ -110,7 +111,7 @@ class ActionsSate extends State<ActionsWidget> {
         debugPrint("$e\n$s");
         if (mounted) {
           ScaffoldMessenger.maybeOf(context)?.showSnackBar(SnackBar(
-            content: Text('Something went wrong: $e'),
+            content: Text("Something went wrong: $e"),
             backgroundColor: _getErrorColor(),
           ));
         }
@@ -119,7 +120,7 @@ class ActionsSate extends State<ActionsWidget> {
   }
 
   FutureOr<void> Function() handlePressedWithContext(
-      FutureOr<void> Function(BuildContext?) method) {
+      final FutureOr<void> Function(BuildContext?) method) {
     return () async {
       try {
         if (mounted) {
@@ -131,7 +132,7 @@ class ActionsSate extends State<ActionsWidget> {
         debugPrint("$e\n$s");
         if (mounted) {
           ScaffoldMessenger.maybeOf(context)?.showSnackBar(SnackBar(
-            content: Text('Something went wrong: $e'),
+            content: Text("Something went wrong: $e"),
             backgroundColor: _getErrorColor(),
           ));
         }
@@ -139,7 +140,7 @@ class ActionsSate extends State<ActionsWidget> {
     };
   }
 
-  bool _hasValueSet<T>([List<T?> args = const []]) {
+  bool _hasValueSet<T>([final List<T?> args = const []]) {
     for (final arg in args) {
       if (arg != null) {
         return true;

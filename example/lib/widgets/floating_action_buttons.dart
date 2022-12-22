@@ -1,8 +1,8 @@
-import 'dart:async';
+import "dart:async";
 
-import 'package:flutter/material.dart';
-import 'package:flutter_web_bluetooth_example/business/bluetooth_business.dart';
-import 'package:flutter_web_bluetooth_example/widgets/browser_not_supported_alert_widget.dart';
+import "package:flutter/material.dart";
+import "package:flutter_web_bluetooth_example/business/bluetooth_business.dart";
+import "package:flutter_web_bluetooth_example/widgets/browser_not_supported_alert_widget.dart";
 
 ///
 /// The floating action buttons that are used inside of the web app.
@@ -40,20 +40,20 @@ class FABSState extends State<FABS> {
     late String message;
     switch (state) {
       case RequestDeviceState.adapterNotAvailable:
-        message = 'No bluetooth adapter available';
+        message = "No bluetooth adapter available";
         break;
       case RequestDeviceState.userCancelled:
-        message = 'User canceled the dialog';
+        message = "User canceled the dialog";
         break;
       case RequestDeviceState.deviceNotFound:
-        message = 'No devices found';
+        message = "No devices found";
         break;
       case RequestDeviceState.ok:
-        message = '';
+        message = "";
         break;
       case RequestDeviceState.other:
       default:
-        message = 'Unknown error';
+        message = "Unknown error";
         break;
     }
 
@@ -78,31 +78,31 @@ class FABSState extends State<FABS> {
     late String message;
     switch (state) {
       case RequestLEState.apiNotSupported:
-        message = 'Request LE scan is not implemented in this browser';
+        message = "Request LE scan is not implemented in this browser";
         break;
       case RequestLEState.adapterNotAvailable:
-        message = 'No bluetooth adapter available';
+        message = "No bluetooth adapter available";
         break;
       case RequestLEState.userCancelled:
-        message = 'User canceled the dialog';
+        message = "User canceled the dialog";
         break;
       case RequestLEState.deviceNotFound:
-        message = 'No devices found';
+        message = "No devices found";
         break;
       case RequestLEState.permissionError:
-        message = 'Permission denied';
+        message = "Permission denied";
         break;
       case RequestLEState.timeoutException:
         message =
-            'Scan did not start within the timeout; it may not be fully supported on this platform.';
+            "Scan did not start within the timeout; it may not be fully supported on this platform.";
         break;
       case RequestLEState.stopped:
       case RequestLEState.ok:
-        message = '';
+        message = "";
         break;
       case RequestLEState.other:
       default:
-        message = 'Unknown error';
+        message = "Unknown error";
         break;
     }
 
@@ -119,14 +119,14 @@ class FABSState extends State<FABS> {
   }
 
   @override
-  Widget build(BuildContext context) {
+  Widget build(final BuildContext context) {
     return Padding(
       padding: const EdgeInsets.all(8.0),
       child: Column(
         mainAxisAlignment: MainAxisAlignment.end,
         children: [
           FloatingActionButton(
-              tooltip: 'Pair a new device',
+              tooltip: "Pair a new device",
               heroTag: null,
               onPressed: _clickRequestDevice,
               child: const Icon(Icons.add)),
@@ -135,7 +135,7 @@ class FABSState extends State<FABS> {
           ),
           if (isScanning)
             FloatingActionButton(
-              tooltip: 'Stop watching advertisements',
+              tooltip: "Stop watching advertisements",
               heroTag: null,
               onPressed: _clickRequestLEScan,
               backgroundColor: _getErrorColor(),
@@ -143,7 +143,7 @@ class FABSState extends State<FABS> {
             )
           else
             FloatingActionButton(
-              tooltip: 'Start watching advertisements',
+              tooltip: "Start watching advertisements",
               heroTag: null,
               onPressed: _clickRequestLEScan,
               child: const Icon(Icons.bluetooth_searching),

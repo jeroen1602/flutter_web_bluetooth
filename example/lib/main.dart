@@ -1,15 +1,15 @@
-import 'dart:async';
+import "dart:async";
 
-import 'package:flutter/material.dart';
-import 'package:flutter_web_bluetooth/flutter_web_bluetooth.dart';
-import 'package:flutter_web_bluetooth_example/business/bluetooth_business.dart';
-import 'package:flutter_web_bluetooth_example/model/main_page_device.dart';
-import 'package:flutter_web_bluetooth_example/pages/device_services_page.dart';
-import 'package:flutter_web_bluetooth_example/web_helpers/web_helpers.dart';
-import 'package:flutter_web_bluetooth_example/widgets/bluetooth_device_widget.dart';
-import 'package:flutter_web_bluetooth_example/widgets/floating_action_buttons.dart';
+import "package:flutter/material.dart";
+import "package:flutter_web_bluetooth/flutter_web_bluetooth.dart";
+import "package:flutter_web_bluetooth_example/business/bluetooth_business.dart";
+import "package:flutter_web_bluetooth_example/model/main_page_device.dart";
+import "package:flutter_web_bluetooth_example/pages/device_services_page.dart";
+import "package:flutter_web_bluetooth_example/web_helpers/web_helpers.dart";
+import "package:flutter_web_bluetooth_example/widgets/bluetooth_device_widget.dart";
+import "package:flutter_web_bluetooth_example/widgets/floating_action_buttons.dart";
 
-const redirect = bool.fromEnvironment('redirectToHttps', defaultValue: false);
+const redirect = bool.fromEnvironment("redirectToHttps", defaultValue: false);
 
 void main() {
   if (redirect) {
@@ -32,16 +32,17 @@ class _MyAppState extends State<MyApp> {
   }
 
   @override
-  Widget build(BuildContext context) {
+  Widget build(final BuildContext context) {
     return StreamBuilder<bool>(
       stream: FlutterWebBluetooth.instance.isAvailable,
       initialData: false,
-      builder: (BuildContext context, AsyncSnapshot<bool> snapshot) {
+      builder:
+          (final BuildContext context, final AsyncSnapshot<bool> snapshot) {
         final available = snapshot.requireData;
         return MaterialApp(
             home: Scaffold(
           appBar: AppBar(
-            title: const SelectableText('Bluetooth web example app'),
+            title: const SelectableText("Bluetooth web example app"),
           ),
           body: MainPage(
             isBluetoothAvailable: available,
@@ -58,9 +59,9 @@ class MainPage extends StatefulWidget {
   final bool isBluetoothAvailable;
 
   const MainPage({
-    Key? key,
     required this.isBluetoothAvailable,
-  }) : super(key: key);
+    super.key,
+  });
 
   @override
   State<StatefulWidget> createState() {
@@ -97,25 +98,25 @@ class MainPageState extends State<MainPage> {
       late String message;
       switch (state.state) {
         case RequestDeviceState.adapterNotAvailable:
-          message = 'No bluetooth adapter available';
+          message = "No bluetooth adapter available";
           break;
         case RequestDeviceState.userCancelled:
-          message = 'User canceled the dialog';
+          message = "User canceled the dialog";
           break;
         case RequestDeviceState.deviceNotFound:
-          message = 'No devices found';
+          message = "No devices found";
           break;
         case RequestDeviceState.ok:
-          message = '';
+          message = "";
           break;
         case RequestDeviceState.other:
         default:
-          message = 'Unknown error';
+          message = "Unknown error";
           break;
       }
 
       if (state.state == RequestDeviceState.ok && state.device == null) {
-        message = 'Unknown error';
+        message = "Unknown error";
       }
 
       if (message.isNotEmpty && mounted) {
@@ -131,16 +132,16 @@ class MainPageState extends State<MainPage> {
     if (page != null && mounted) {
       final finalPage = page;
       Navigator.push(context,
-          MaterialPageRoute(builder: (BuildContext context) {
+          MaterialPageRoute(builder: (final BuildContext context) {
         return finalPage;
       }));
     } else {
-      debugPrint('Could not open the page because not mounted anymore');
+      debugPrint("Could not open the page because not mounted anymore");
     }
   }
 
   @override
-  Widget build(BuildContext context) {
+  Widget build(final BuildContext context) {
     return Column(children: [
       MainPageHeader(
         isBluetoothAvailable: widget.isBluetoothAvailable,
@@ -154,7 +155,7 @@ class MainPageState extends State<MainPage> {
             final devices = snapshot.requireData;
             return ListView.builder(
               itemCount: devices.length,
-              itemBuilder: (BuildContext context, int index) {
+              itemBuilder: (final BuildContext context, final int index) {
                 final device = devices.toList()[index];
 
                 return BluetoothDeviceWidget(
@@ -173,14 +174,13 @@ class MainPageState extends State<MainPage> {
 }
 
 class MainPageHeader extends StatelessWidget {
-  const MainPageHeader({Key? key, required this.isBluetoothAvailable})
-      : super(key: key);
+  const MainPageHeader({required this.isBluetoothAvailable, super.key});
 
   final bool isBluetoothAvailable;
 
   @override
-  Widget build(BuildContext context) {
-    final text = isBluetoothAvailable ? 'supported' : 'unsupported';
+  Widget build(final BuildContext context) {
+    final text = isBluetoothAvailable ? "supported" : "unsupported";
 
     final screenWidth = MediaQuery.of(context).size.width;
     final phoneSize = screenWidth <= 620.0;
@@ -189,16 +189,16 @@ class MainPageHeader extends StatelessWidget {
       SizedBox(
           width: phoneSize ? screenWidth : screenWidth * 0.5,
           child: ListTile(
-            title: const SelectableText('Bluetooth api available'),
+            title: const SelectableText("Bluetooth api available"),
             subtitle: SelectableText(
                 FlutterWebBluetooth.instance.isBluetoothApiSupported
-                    ? 'true'
-                    : 'false'),
+                    ? "true"
+                    : "false"),
           )),
       SizedBox(
           width: phoneSize ? screenWidth : screenWidth * 0.5,
           child: ListTile(
-            title: const SelectableText('Bluetooth available'),
+            title: const SelectableText("Bluetooth available"),
             subtitle: SelectableText(text),
           )),
     ];

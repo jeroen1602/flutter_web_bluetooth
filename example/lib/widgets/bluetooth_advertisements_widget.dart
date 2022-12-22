@@ -1,6 +1,6 @@
-import 'package:flutter/material.dart';
-import 'package:flutter_web_bluetooth/flutter_web_bluetooth.dart';
-import 'package:rxdart/rxdart.dart';
+import "package:flutter/material.dart";
+import "package:flutter_web_bluetooth/flutter_web_bluetooth.dart";
+import "package:rxdart/rxdart.dart";
 
 class BluetoothAdvertisementsWidget extends StatefulWidget {
   BluetoothAdvertisementsWidget(this.device, this.minHeight, {super.key})
@@ -20,8 +20,8 @@ class BluetoothAdvertisementsWidget extends StatefulWidget {
 
   Stream<bool> _isWatchingAdvertisements() {
     return MergeStream<bool>([
-      Stream<bool>.fromFuture((() async => device.watchingAdvertisements)()),
-      Stream.periodic(const Duration(seconds: 2)).map((event) {
+      Stream<bool>.value(device.watchingAdvertisements),
+      Stream.periodic(const Duration(seconds: 2)).map((final event) {
         return device.watchingAdvertisements;
       }),
       updateAdvertisingStream.stream
@@ -37,7 +37,7 @@ class _BluetoothAdvertisementsState
     if (!widget.device.hasWatchAdvertisements()) {
       ScaffoldMessenger.maybeOf(context)?.showSnackBar(SnackBar(
         content:
-            const Text('Advertisements are not supported for this browser'),
+            const Text("Advertisements are not supported for this browser"),
         backgroundColor: errorColor,
       ));
     } else {
@@ -59,29 +59,30 @@ class _BluetoothAdvertisementsState
   }
 
   @override
-  Widget build(BuildContext context) {
+  Widget build(final BuildContext context) {
     return StreamBuilder(
       initialData: widget.device.watchingAdvertisements,
       stream: _isWatchingAdvertisements,
-      builder: (context, snapshot) {
+      builder: (final context, final snapshot) {
         final isWatching = snapshot.data ?? false;
 
         return Column(
           children: [
             AppBar(
                 automaticallyImplyLeading: false,
-                title: const Text('Advertisements'),
+                title: const Text("Advertisements"),
                 actions: [
                   ElevatedButton(
                       onPressed: advertisingPressed,
                       child:
-                          Text(isWatching ? 'Stop watching' : 'Start watching'))
+                          Text(isWatching ? "Stop watching" : "Start watching"))
                 ]),
             Container(
                 constraints: BoxConstraints(
                     minHeight: widget.minHeight -
                         BluetoothAdvertisementsWidget.appbarHeight),
-                child: BluetoothAdvertisementsBody(isWatching, widget.device)),
+                child: BluetoothAdvertisementsBody(widget.device,
+                    isWatching: isWatching)),
           ],
         );
       },
@@ -91,8 +92,8 @@ class _BluetoothAdvertisementsState
 
 class BluetoothAdvertisementsBody extends StatefulWidget {
   const BluetoothAdvertisementsBody(
-    this.isWatching,
     this.device, {
+    required this.isWatching,
     super.key,
   });
 
@@ -118,16 +119,16 @@ class BluetoothAdvertisementsBodySate
   }
 
   @override
-  Widget build(BuildContext context) {
+  Widget build(final BuildContext context) {
     if (widget.device.hasWatchAdvertisements()) {
       return StreamBuilder(
         stream: _advertisements,
         initialData: null,
-        builder: (context, snapshot) {
+        builder: (final context, final snapshot) {
           final event = snapshot.data;
           if (event == null) {
             return const Center(
-              child: Text('First click on start watching!'),
+              child: Text("First click on start watching!"),
             );
           }
           return BluetoothAdvertisementsCard(event);
@@ -143,15 +144,15 @@ class BluetoothAdvertisementsNotSupported extends StatelessWidget {
   const BluetoothAdvertisementsNotSupported({super.key});
 
   @override
-  Widget build(BuildContext context) {
+  Widget build(final BuildContext context) {
     return const Expanded(
       child: Center(
         child: Card(
           child: ListTile(
             title: SelectableText(
-                'Bluetooth advertisements are not supported on this browser'),
+                "Bluetooth advertisements are not supported on this browser"),
             subtitle: SelectableText(
-                'Enable the chrome://flags/#enable-experimental-web-platform-features flag to enable support.'),
+                "Enable the chrome://flags/#enable-experimental-web-platform-features flag to enable support."),
           ),
         ),
       ),
@@ -172,22 +173,22 @@ class BluetoothAdvertisementsCard extends StatefulWidget {
 
 class BluetoothAdvertisementsCardState
     extends State<BluetoothAdvertisementsCard> {
-  final List<bool> _openPanels = List.generate(3, (index) => false);
+  final List<bool> _openPanels = List.generate(3, (final index) => false);
 
-  void _expansionCallback(int index, bool isExpanded) {
+  void _expansionCallback(final int index, final bool isExpanded) {
     setState(() {
       _openPanels[index] = isExpanded;
     });
   }
 
   @override
-  Widget build(BuildContext context) {
+  Widget build(final BuildContext context) {
     return Card(
       child: Column(
         children: [
           Row(
             children: [
-              SelectableText(widget.event.name ?? 'not set'),
+              SelectableText(widget.event.name ?? "not set"),
               const VerticalDivider(),
               Text(DateTime.now().toIso8601String()),
             ],
@@ -195,19 +196,19 @@ class BluetoothAdvertisementsCardState
           const Divider(),
           Row(
             children: [
-              const Text('tx power'),
+              const Text("tx power"),
               const VerticalDivider(),
-              SelectableText(widget.event.txPower?.toString() ?? 'not set'),
+              SelectableText(widget.event.txPower?.toString() ?? "not set"),
               const VerticalDivider(),
-              const Text('RSSI'),
+              const Text("RSSI"),
               const VerticalDivider(),
-              SelectableText(widget.event.rssi?.toString() ?? 'not set')
+              SelectableText(widget.event.rssi?.toString() ?? "not set")
             ],
           ),
           const Divider(),
           Row(
             children: [
-              const Text('Appearance'),
+              const Text("Appearance"),
               const VerticalDivider(),
               SelectableText(
                   '0x${widget.event.appearance?.toRadixString(16).padLeft(4, '0') ?? 'not set'}')
@@ -218,10 +219,11 @@ class BluetoothAdvertisementsCardState
             expansionCallback: _expansionCallback,
             children: [
               ExpansionPanel(
-                  headerBuilder: (BuildContext context, bool isExpanded) {
+                  headerBuilder:
+                      (final BuildContext context, final bool isExpanded) {
                     return ListTile(
-                      title: const Text('UUIDS'),
-                      subtitle: Text('Size: ${widget.event.uuids.length}'),
+                      title: const Text("UUIDS"),
+                      subtitle: Text("Size: ${widget.event.uuids.length}"),
                     );
                   },
                   body: Column(
@@ -233,15 +235,16 @@ class BluetoothAdvertisementsCardState
                   ),
                   isExpanded: _openPanels[0]),
               ExpansionPanel(
-                  headerBuilder: (BuildContext context, bool isExpanded) {
+                  headerBuilder:
+                      (final BuildContext context, final bool isExpanded) {
                     return ListTile(
-                      title: const Text('Service data'),
+                      title: const Text("Service data"),
                       subtitle:
-                          Text('Size: ${widget.event.serviceData.length}'),
+                          Text("Size: ${widget.event.serviceData.length}"),
                     );
                   },
                   body: Column(
-                    children: widget.event.serviceData.entries.map((e) {
+                    children: widget.event.serviceData.entries.map((final e) {
                       return ListTile(
                           title: Text(e.key),
                           subtitle: Text(e.value.toString()));
@@ -249,17 +252,19 @@ class BluetoothAdvertisementsCardState
                   ),
                   isExpanded: _openPanels[1]),
               ExpansionPanel(
-                  headerBuilder: (BuildContext context, bool isExpanded) {
+                  headerBuilder:
+                      (final BuildContext context, final bool isExpanded) {
                     return ListTile(
-                      title: const Text('Manufacturer data'),
+                      title: const Text("Manufacturer data"),
                       subtitle:
-                          Text('Size: ${widget.event.manufacturerData.length}'),
+                          Text("Size: ${widget.event.manufacturerData.length}"),
                     );
                   },
                   body: Column(
-                    children: widget.event.manufacturerData.entries.map((e) {
+                    children:
+                        widget.event.manufacturerData.entries.map((final e) {
                       return ListTile(
-                          title: Text('0x${e.key.toRadixString(16)}'),
+                          title: Text("0x${e.key.toRadixString(16)}"),
                           subtitle: Text(e.value.toString()));
                     }).toList(),
                   ),
