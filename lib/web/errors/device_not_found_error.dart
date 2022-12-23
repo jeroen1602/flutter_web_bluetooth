@@ -8,7 +8,7 @@ class DeviceNotFoundError extends BrowserError {
   ///
   /// Create an instance of the error with the message of the error.
   ///
-  DeviceNotFoundError(String message) : super(message);
+  DeviceNotFoundError(super.message);
 
   ///
   /// A protected value for the sub classes to change the [errorName] for the
@@ -16,5 +16,5 @@ class DeviceNotFoundError extends BrowserError {
   ///
   @override
   @protected
-  String get errorName => 'DeviceNotFoundError';
+  String get errorName => "DeviceNotFoundError";
 }

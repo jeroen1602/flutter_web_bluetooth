@@ -40,7 +40,7 @@ class BluetoothServiceDataFilter {
   /// to get around this problem.
   ///
   external factory BluetoothServiceDataFilter(
-      {String? service, Object? dataPrefix, Object? mask});
+      {final String? service, final Object? dataPrefix, final Object? mask});
 }
 
 ///
@@ -87,7 +87,9 @@ class BluetoothManufacturerDataFilter {
   /// to get around this problem.
   ///
   external factory BluetoothManufacturerDataFilter(
-      {int? companyIdentifier, Object? dataPrefix, Object? mask});
+      {final int? companyIdentifier,
+      final Object? dataPrefix,
+      final Object? mask});
 }
 
 ///
@@ -147,11 +149,11 @@ class BluetoothScanFilter {
   /// to get around this problem.
   ///
   external factory BluetoothScanFilter(
-      {List<String>? services,
-      String? name,
-      String? namePrefix,
-      List<BluetoothManufacturerDataFilter>? manufacturerData,
-      List<BluetoothServiceDataFilter>? serviceData});
+      {final List<String>? services,
+      final String? name,
+      final String? namePrefix,
+      final List<BluetoothManufacturerDataFilter>? manufacturerData,
+      final List<BluetoothServiceDataFilter>? serviceData});
 }
 
 ///
@@ -172,11 +174,11 @@ class BluetoothScanFilterHelper {
   ///
   /// No check is done here so you may end up with an empty object.
   ///
-  static Object createManufacturerDataObject(int? companyIdentifier,
+  static Object createManufacturerDataObject(final int? companyIdentifier,
       final Uint8List? dataPrefix, final Uint8List? mask) {
     final jsObject = _JSUtil.newObject();
     if (companyIdentifier != null) {
-      _JSUtil.setProperty(jsObject, 'companyIdentifier', companyIdentifier);
+      _JSUtil.setProperty(jsObject, "companyIdentifier", companyIdentifier);
     }
     _fillDataFilter(jsObject, dataPrefix, mask);
     return jsObject;
@@ -193,7 +195,7 @@ class BluetoothScanFilterHelper {
       final Uint8List? dataPrefix, final Uint8List? mask) {
     final jsObject = _JSUtil.newObject();
     if (service != null) {
-      _JSUtil.setProperty(jsObject, 'service', service);
+      _JSUtil.setProperty(jsObject, "service", service);
     }
     _fillDataFilter(jsObject, dataPrefix, mask);
     return jsObject;
@@ -203,17 +205,17 @@ class BluetoothScanFilterHelper {
   /// Fill the data filter part of the [createManufacturerDataObject] or
   /// [createServiceDataObject] object.
   ///
-  static void _fillDataFilter(
-      dynamic jsObject, final Uint8List? dataPrefix, final Uint8List? mask) {
+  static void _fillDataFilter(final dynamic jsObject,
+      final Uint8List? dataPrefix, final Uint8List? mask) {
     if (dataPrefix != null) {
-      var convertedDataPrefix =
+      final convertedDataPrefix =
           WebBluetoothConverters.convertUint8ListToJSArrayBuffer(dataPrefix);
-      _JSUtil.setProperty(jsObject, 'dataPrefix', convertedDataPrefix);
+      _JSUtil.setProperty(jsObject, "dataPrefix", convertedDataPrefix);
     }
     if (mask != null) {
-      var convertedMask =
+      final convertedMask =
           WebBluetoothConverters.convertUint8ListToJSArrayBuffer(mask);
-      _JSUtil.setProperty(jsObject, 'mask', convertedMask);
+      _JSUtil.setProperty(jsObject, "mask", convertedMask);
     }
   }
 
@@ -228,27 +230,27 @@ class BluetoothScanFilterHelper {
   /// without any complaints as long as the code is run in the browser.
   ///
   static Object createScanFilterObject(
-      List<String>? services,
-      String? name,
-      String? namePrefix,
-      List<BluetoothManufacturerDataFilter>? manufacturerData,
-      List<BluetoothServiceDataFilter>? serviceData) {
+      final List<String>? services,
+      final String? name,
+      final String? namePrefix,
+      final List<BluetoothManufacturerDataFilter>? manufacturerData,
+      final List<BluetoothServiceDataFilter>? serviceData) {
     final jsObject = _JSUtil.newObject();
     if (services != null) {
-      _JSUtil.setProperty(
-          jsObject, 'services', services.map((e) => e.toLowerCase()).toList());
+      _JSUtil.setProperty(jsObject, "services",
+          services.map((final e) => e.toLowerCase()).toList());
     }
     if (name != null) {
-      _JSUtil.setProperty(jsObject, 'name', name);
+      _JSUtil.setProperty(jsObject, "name", name);
     }
     if (namePrefix != null) {
-      _JSUtil.setProperty(jsObject, 'namePrefix', namePrefix);
+      _JSUtil.setProperty(jsObject, "namePrefix", namePrefix);
     }
     if (manufacturerData != null) {
-      _JSUtil.setProperty(jsObject, 'manufacturerData', manufacturerData);
+      _JSUtil.setProperty(jsObject, "manufacturerData", manufacturerData);
     }
     if (serviceData != null) {
-      _JSUtil.setProperty(jsObject, 'serviceData', serviceData);
+      _JSUtil.setProperty(jsObject, "serviceData", serviceData);
     }
     return jsObject;
   }

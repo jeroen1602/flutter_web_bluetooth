@@ -46,7 +46,7 @@ class RequestOptions {
   /// leaving an item blank in this constructor and setting it to `null`.
   ///
   external factory RequestOptions(
-      {List<BluetoothScanFilter> filters,
-      List<dynamic> optionalServices,
-      bool acceptAllDevices});
+      {final List<BluetoothScanFilter> filters,
+      final List<dynamic> optionalServices,
+      final bool acceptAllDevices});
 }

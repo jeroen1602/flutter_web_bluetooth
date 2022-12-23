@@ -1,20 +1,24 @@
-import 'package:flutter_web_bluetooth/web/js/js_utils.dart';
+import "package:flutter_web_bluetooth/web/js/js_utils.dart";
+import "package:meta/meta.dart";
 
 class JSUtilsTesting extends JSUtilsInterface {
   @override
-  callConstructor(Object constr, List<Object?>? arguments) {
+  @alwaysThrows // for now
+  dynamic callConstructor(final Object constr, final List<Object?>? arguments) {
     // TODO: implement callConstructor
     throw UnimplementedError();
   }
 
   @override
-  callMethod(Object o, String method, List<Object?> args) {
+  @alwaysThrows // for now
+  dynamic callMethod(
+      final Object o, final String method, final List<Object?> args) {
     // TODO: implement callMethod
     throw UnimplementedError();
   }
 
   @override
-  getProperty(Object o, Object name) {
+  dynamic getProperty(final Object o, final Object name) {
     if (o is Map<dynamic, dynamic>) {
       return o[name];
     }
@@ -22,7 +26,7 @@ class JSUtilsTesting extends JSUtilsInterface {
   }
 
   @override
-  bool hasProperty(Object o, Object name) {
+  bool hasProperty(final Object o, final Object name) {
     if (o is Map<String, dynamic>) {
       return o.containsKey(name);
     }
@@ -30,36 +34,34 @@ class JSUtilsTesting extends JSUtilsInterface {
   }
 
   @override
-  bool instanceof(Object? o, Object type) {
+  bool instanceof(final Object? o, final Object type) {
     // TODO: implement instanceof
     throw UnimplementedError();
   }
 
   @override
-  newObject() {
-    return <String, dynamic>{};
-  }
+  Map<String, dynamic> newObject() => <String, dynamic>{};
 
   @override
-  Future<T> promiseToFuture<T>(Object jsPromise) {
+  Future<T> promiseToFuture<T>(final Object jsPromise) {
     if (jsPromise is Future) {
       if (jsPromise is! Future<T>) {
-        print('Warning the input "promise" (future for testing) didn\'t '
-            'have the correct generic.');
+        // ignore: avoid_print
+        print("Warning the input \"promise\" (future for testing) didn't "
+            "have the correct generic.");
       }
       return jsPromise as Future<T>;
     }
-    throw StateError('Input wasn\'t a Future for testing');
+    throw StateError("Input wasn't a Future for testing");
   }
 
   @override
-  setProperty(Object o, Object name, Object? value) {
+  @alwaysThrows // for now
+  dynamic setProperty(final Object o, final Object name, final Object? value) {
     // TODO: implement setProperty
     throw UnimplementedError();
   }
 
   @override
-  F allowInterop<F extends Function>(F f) {
-    return f;
-  }
+  F allowInterop<F extends Function>(final F f) => f;
 }

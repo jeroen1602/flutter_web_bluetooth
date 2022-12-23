@@ -17,5 +17,5 @@ class PermissionError extends BrowserError {
 
   @protected
   @override
-  String get errorName => 'PermissionError';
+  String get errorName => "PermissionError";
 }

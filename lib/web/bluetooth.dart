@@ -9,7 +9,7 @@ part of js_web_bluetooth;
 ///
 /// - https://webbluetoothcg.github.io/web-bluetooth/#bluetooth
 ///
-@JS('navigator.bluetooth')
+@JS("navigator.bluetooth")
 class _NativeBluetooth {
   ///
   /// Should return a promise (which will be converted to a future using
@@ -55,12 +55,12 @@ class _NativeBluetooth {
   ///
   /// - https://webbluetoothcg.github.io/web-bluetooth/#dom-bluetooth-requestdevice
   ///
-  external static Object requestDevice(RequestOptions options);
+  external static Object requestDevice(final RequestOptions options);
 
   ///
   /// https://webbluetoothcg.github.io/web-bluetooth/scanning.html#dom-bluetooth-requestlescan
   ///
-  external static Object requestLEScan(BluetoothLEScanOptions options);
+  external static Object requestLEScan(final BluetoothLEScanOptions options);
 
   ///
   /// Add a new event listener to the navigation.
@@ -78,7 +78,7 @@ class _NativeBluetooth {
   /// - https://webbluetoothcg.github.io/web-bluetooth/#fire-an-advertisementreceived-event
   ///
   external static void addEventListener(
-      String type, void Function(dynamic) listener);
+      final String type, final void Function(dynamic) listener);
 
   ///
   /// Remove an event listener that had previously been added.
@@ -88,7 +88,7 @@ class _NativeBluetooth {
   /// See: [addEventListener]
   ///
   external static void removeEventListener(
-      String type, void Function(dynamic) listener);
+      final String type, final void Function(dynamic) listener);
 }
 
 ///
@@ -127,9 +127,7 @@ class NativeBluetooth {
   ///
   /// - https://webbluetoothcg.github.io/web-bluetooth/#dom-bluetooth-getavailability
   ///
-  Object getAvailability() {
-    return _NativeBluetooth.getAvailability();
-  }
+  Object getAvailability() => _NativeBluetooth.getAvailability();
 
   ///
   /// should return a promise (which will be converted to a future using
@@ -146,9 +144,7 @@ class NativeBluetooth {
   ///
   /// - https://webbluetoothcg.github.io/web-bluetooth/#dom-bluetooth-getdevices
   ///
-  Object getDevices() {
-    return _NativeBluetooth.getDevices();
-  }
+  Object getDevices() => _NativeBluetooth.getDevices();
 
   ///
   /// should return a promise (which will be converted to a future using
@@ -164,9 +160,8 @@ class NativeBluetooth {
   ///
   /// - https://webbluetoothcg.github.io/web-bluetooth/#dom-bluetooth-requestdevice
   ///
-  Object requestDevice(RequestOptions options) {
-    return _NativeBluetooth.requestDevice(options);
-  }
+  Object requestDevice(final RequestOptions options) =>
+      _NativeBluetooth.requestDevice(options);
 
   ///
   /// Request the user to start scanning for Bluetooth LE devices in the
@@ -176,9 +171,8 @@ class NativeBluetooth {
   ///
   /// https://webbluetoothcg.github.io/web-bluetooth/scanning.html#dom-bluetooth-requestlescan
   ///
-  Object requestLEScan(BluetoothLEScanOptions options) {
-    return _NativeBluetooth.requestLEScan(options);
-  }
+  Object requestLEScan(final BluetoothLEScanOptions options) =>
+      _NativeBluetooth.requestLEScan(options);
 
   ///
   /// Add a new event listener to the navigation.
@@ -195,7 +189,8 @@ class NativeBluetooth {
   ///
   /// https://webbluetoothcg.github.io/web-bluetooth/#fire-an-advertisementreceived-event
   ///
-  void addEventListener(String type, void Function(dynamic) listener) {
+  void addEventListener(
+      final String type, final void Function(dynamic) listener) {
     _NativeBluetooth.addEventListener(type, listener);
   }
 
@@ -206,7 +201,8 @@ class NativeBluetooth {
   ///
   /// See: [addEventListener]
   ///
-  void removeEventListener(String type, void Function(dynamic) listener) {
+  void removeEventListener(
+      final String type, final void Function(dynamic) listener) {
     _NativeBluetooth.removeEventListener(type, listener);
   }
 }
@@ -221,14 +217,14 @@ NativeBluetooth _nativeBluetooth = NativeBluetooth();
 /// the [testingSetJSUtils].
 ///
 @visibleForTesting
-void setNativeBluetooth(NativeBluetooth nativeBluetooth) {
+void setNativeBluetooth(final NativeBluetooth nativeBluetooth) {
   _nativeBluetooth = nativeBluetooth;
 }
 
 ///
 /// A reference to the navigator object of the browser.
 ///
-@JS('navigator')
+@JS("navigator")
 external Object _navigator;
 
 ///
@@ -243,7 +239,7 @@ Object? _navigatorTesting;
 /// Also check out [setNativeBluetooth] and [testingSetJSUtils].
 ///
 @visibleForTesting
-void testingSetNavigator(Object? navigatorObject) {
+void testingSetNavigator(final Object? navigatorObject) {
   _navigatorTesting = navigatorObject;
 }
 
@@ -252,9 +248,7 @@ void testingSetNavigator(Object? navigatorObject) {
 ///
 /// Will return [_navigatorTesting] if it is not null.
 ///
-Object _getNavigator() {
-  return _navigatorTesting ?? _navigator;
-}
+Object _getNavigator() => _navigatorTesting ?? _navigator;
 
 ///
 /// The main Bluetooth class. This is the entrypoint to the library.
@@ -275,7 +269,7 @@ class Bluetooth {
   /// isn't available in the browser.
   ///
   static bool isBluetoothAPISupported() {
-    final hasProperty = _JSUtil.hasProperty(_getNavigator(), 'bluetooth');
+    final hasProperty = _JSUtil.hasProperty(_getNavigator(), "bluetooth");
     return hasProperty;
   }
 
@@ -322,13 +316,14 @@ class Bluetooth {
       return _availabilityStream!.stream;
     }
     _availabilityStream = WebBehaviorSubject();
-    _nativeBluetooth.addEventListener('availabilitychanged',
-        _JSUtil.allowInterop((event) {
-      final value = _JSUtil.getProperty(event, 'value');
+    _nativeBluetooth.addEventListener("availabilitychanged",
+        _JSUtil.allowInterop((final event) {
+      final value = _JSUtil.getProperty(event, "value");
       if (value is bool) {
         _availabilityStream?.add(value);
       }
     }));
+    //ignore: discarded_futures
     getAvailability();
     return _availabilityStream!.stream;
   }
@@ -342,8 +337,8 @@ class Bluetooth {
     if (!isBluetoothAPISupported()) {
       return false;
     }
-    final bluetooth = _JSUtil.getProperty(_getNavigator(), 'bluetooth');
-    return _JSUtil.hasProperty(bluetooth, 'getDevices');
+    final bluetooth = _JSUtil.getProperty(_getNavigator(), "bluetooth");
+    return _JSUtil.hasProperty(bluetooth, "getDevices");
   }
 
   ///
@@ -372,7 +367,7 @@ class Bluetooth {
         } catch (e, stack) {
           if (e is UnsupportedError) {
             webBluetoothLogger.severe(
-                'Could not convert known device to BluetoothDevice.', e, stack);
+                "Could not convert known device to BluetoothDevice.", e, stack);
           } else {
             rethrow;
           }
@@ -409,7 +404,7 @@ class Bluetooth {
   /// - https://webbluetoothcg.github.io/web-bluetooth/#dom-bluetooth-requestdevice
   ///
   static Future<WebBluetoothDevice> requestDevice(
-      RequestOptions options) async {
+      final RequestOptions options) async {
     final promise = _nativeBluetooth.requestDevice(options);
     try {
       final result = await _JSUtil.promiseToFuture(promise);
@@ -417,15 +412,15 @@ class Bluetooth {
       return device;
     } catch (e) {
       final error = e.toString();
-      if (error.startsWith('NotFoundError')) {
+      if (error.startsWith("NotFoundError")) {
         // No devices found or cancelled by the user.
-        if (error.toLowerCase().contains('user cancel')) {
+        if (error.toLowerCase().contains("user cancel")) {
           // TODO: check if this is also the message on other browsers!
           throw UserCancelledDialogError(
-              error.replaceFirst('NotFoundError', '').replaceFirst(': ', ''));
+              error.replaceFirst("NotFoundError", "").replaceFirst(": ", ""));
         }
         throw DeviceNotFoundError(
-            error.replaceFirst('NotFoundError', '').replaceFirst(': ', ''));
+            error.replaceFirst("NotFoundError", "").replaceFirst(": ", ""));
       }
       if (e is Error) {
         rethrow;
@@ -443,8 +438,8 @@ class Bluetooth {
     if (!isBluetoothAPISupported()) {
       return false;
     }
-    final bluetooth = _JSUtil.getProperty(_getNavigator(), 'bluetooth');
-    final hasProperty = _JSUtil.hasProperty(bluetooth, 'requestLEScan');
+    final bluetooth = _JSUtil.getProperty(_getNavigator(), "bluetooth");
+    final hasProperty = _JSUtil.hasProperty(bluetooth, "requestLEScan");
     return hasProperty;
   }
 
@@ -484,9 +479,9 @@ class Bluetooth {
   /// - May throw [BrowserError] for every other browser error.
   ///
   static Future<BluetoothLEScan> requestLEScan(
-      BluetoothLEScanOptions options) async {
+      final BluetoothLEScanOptions options) async {
     if (!hasRequestLEScan()) {
-      throw NativeAPINotImplementedError('requestLEScan');
+      throw NativeAPINotImplementedError("requestLEScan");
     }
     final promise = _nativeBluetooth.requestLEScan(options);
     try {
@@ -494,22 +489,22 @@ class Bluetooth {
       return BluetoothLEScan.fromJSObject(result);
     } catch (e) {
       final error = e.toString();
-      if (error.startsWith('InvalidStateError')) {
+      if (error.startsWith("InvalidStateError")) {
         // The user probably canceled the permission dialog
-        if (error.toLowerCase().contains('user cancel')) {
+        if (error.toLowerCase().contains("user cancel")) {
           // TODO: check if this is also the message on other browsers!
           throw UserCancelledDialogError(error
-              .replaceFirst('InvalidStateError', '')
-              .replaceFirst(': ', ''));
+              .replaceFirst("InvalidStateError", "")
+              .replaceFirst(": ", ""));
         }
         throw StateError(
-            error.replaceFirst('InvalidStateError', '').replaceFirst(': ', ''));
-      } else if (error.startsWith('NotSupportedError')) {
-        throw NativeAPINotImplementedError('requestLEScan');
-      } else if (error.startsWith('NotAllowedError')) {
-        throw PermissionError('requestLEScan');
-      } else if (error.startsWith('SecurityError')) {
-        throw PolicyError('requestLEScan');
+            error.replaceFirst("InvalidStateError", "").replaceFirst(": ", ""));
+      } else if (error.startsWith("NotSupportedError")) {
+        throw NativeAPINotImplementedError("requestLEScan");
+      } else if (error.startsWith("NotAllowedError")) {
+        throw PermissionError("requestLEScan");
+      } else if (error.startsWith("SecurityError")) {
+        throw PolicyError("requestLEScan");
       }
 
       if (e is Error) {
@@ -534,7 +529,8 @@ class Bluetooth {
   ///
   /// - [removeEventListener]
   ///
-  static void addEventListener(String type, void Function(dynamic) listener) {
+  static void addEventListener(
+      final String type, final void Function(dynamic) listener) {
     _nativeBluetooth.addEventListener(type, _JSUtil.allowInterop(listener));
   }
 
@@ -547,7 +543,7 @@ class Bluetooth {
   /// See: [addEventListener].
   ///
   static void removeEventListener(
-      String type, void Function(dynamic) listener) {
+      final String type, final void Function(dynamic) listener) {
     /// TODO: may need to tell the developer to store the listener that you get
     /// after throwing it through _JSUtil.allowInterop.
     _nativeBluetooth.removeEventListener(type, _JSUtil.allowInterop(listener));

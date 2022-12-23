@@ -1,6 +1,6 @@
-import 'package:flutter/material.dart';
-import 'package:flutter_web_bluetooth/flutter_web_bluetooth.dart';
-import 'package:flutter_web_bluetooth_example/widgets/characteristic_widget.dart';
+import "package:flutter/material.dart";
+import "package:flutter_web_bluetooth/flutter_web_bluetooth.dart";
+import "package:flutter_web_bluetooth_example/widgets/characteristic_widget.dart";
 
 class _ServiceAndCharacteristic {
   final List<BluetoothService> services;
@@ -9,24 +9,39 @@ class _ServiceAndCharacteristic {
   const _ServiceAndCharacteristic(this.services, this.characteristics);
 }
 
-class ServiceWidget extends StatelessWidget {
+class ServiceWidget extends StatefulWidget {
+  ServiceWidget({required this.service, super.key}) {
+    serviceName = BluetoothDefaultServiceUUIDS.values
+        .cast<BluetoothDefaultServiceUUIDS?>()
+        .firstWhere((final element) => element?.uuid == service.uuid)
+        ?.name;
+  }
+
   final BluetoothService service;
   late final String? serviceName;
 
-  ServiceWidget({Key? key, required this.service}) : super(key: key) {
-    serviceName = BluetoothDefaultServiceUUIDS.values
-        .cast<BluetoothDefaultServiceUUIDS?>()
-        .firstWhere((element) => element?.uuid == service.uuid)
-        ?.name;
+  @override
+  State<StatefulWidget> createState() {
+    return ServiceState();
+  }
+}
+
+class ServiceState extends State<ServiceWidget> {
+  Future<_ServiceAndCharacteristic>? _serviceAndCharacteristics;
+
+  @override
+  Future<void> initState() async {
+    super.initState();
+    _serviceAndCharacteristics = _getServicesAndCharacteristics();
   }
 
   Future<_ServiceAndCharacteristic> _getServicesAndCharacteristics() async {
     final List<BluetoothService> services = [];
-    if (service.hasIncludedService) {
+    if (widget.service.hasIncludedService) {
       for (final defaultService in BluetoothDefaultServiceUUIDS.values) {
         try {
           final service =
-              await this.service.getIncludedService(defaultService.uuid);
+              await widget.service.getIncludedService(defaultService.uuid);
           services.add(service);
         } catch (e) {
           if (e is NotFoundError) {
@@ -39,7 +54,7 @@ class ServiceWidget extends StatelessWidget {
     }
     List<BluetoothCharacteristic> characteristics = [];
     try {
-      characteristics = await service.getCharacteristics();
+      characteristics = await widget.service.getCharacteristics();
     } catch (e) {
       debugPrint("$e");
     }
@@ -48,18 +63,18 @@ class ServiceWidget extends StatelessWidget {
   }
 
   @override
-  Widget build(BuildContext context) {
+  Widget build(final BuildContext context) {
     return FutureBuilder(
-        future: _getServicesAndCharacteristics(),
+        future: _serviceAndCharacteristics,
         initialData: const _ServiceAndCharacteristic([], []),
-        builder: (BuildContext context,
-            AsyncSnapshot<_ServiceAndCharacteristic> snapshot) {
+        builder: (final BuildContext context,
+            final AsyncSnapshot<_ServiceAndCharacteristic> snapshot) {
           final data = snapshot.requireData;
 
           final subServices = <Widget>[];
           for (final service in data.services) {
             subServices.addAll([
-              Text('Service with uuid: ${service.uuid}'),
+              Text("Service with uuid: ${service.uuid}"),
               const Divider(),
             ]);
           }
@@ -80,10 +95,10 @@ class ServiceWidget extends StatelessWidget {
           return Column(
             children: [
               ListTile(
-                title: const Text('Service'),
-                subtitle: SelectableText(serviceName == null
-                    ? service.uuid
-                    : '${service.uuid} ($serviceName)'),
+                title: const Text("Service"),
+                subtitle: SelectableText(widget.serviceName == null
+                    ? widget.service.uuid
+                    : "${widget.service.uuid} (${widget.serviceName})"),
               ),
               const Divider(
                 thickness: 1.5,

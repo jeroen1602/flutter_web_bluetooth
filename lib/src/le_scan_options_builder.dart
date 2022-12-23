@@ -24,14 +24,14 @@ class LEScanOptionsBuilder {
   /// May throw [StateError] if no filters are set, consider using
   /// [LEScanOptionsBuilder.acceptAllAdvertisements].
   ///
-  LEScanOptionsBuilder(List<RequestFilterBuilder> requestFilters,
-      {bool keepRepeatedDevices = false})
+  LEScanOptionsBuilder(final List<RequestFilterBuilder> requestFilters,
+      {final bool keepRepeatedDevices = false})
       : _acceptAllAdvertisements = false,
         _keepRepeatedDevices = keepRepeatedDevices,
         _requestFilters = requestFilters {
     if (_requestFilters.isEmpty) {
-      throw StateError('No filters have been set, consider using '
-          'LEScanOptionsBuilder.acceptAllAdvertisements() instead.');
+      throw StateError("No filters have been set, consider using "
+          "LEScanOptionsBuilder.acceptAllAdvertisements() instead.");
     }
   }
 
@@ -45,7 +45,7 @@ class LEScanOptionsBuilder {
   /// It just allows the UA to save power by omitting them.
   ///
   LEScanOptionsBuilder.acceptAllAdvertisements(
-      {bool keepRepeatedDevices = false})
+      {final bool keepRepeatedDevices = false})
       : _acceptAllAdvertisements = true,
         _keepRepeatedDevices = keepRepeatedDevices,
         _requestFilters = [];

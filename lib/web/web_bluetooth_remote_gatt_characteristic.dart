@@ -45,12 +45,12 @@ class WebBluetoothRemoteGATTCharacteristic {
       return uuid;
     }
 
-    uuid = _JSUtil.getProperty(_jsObject, 'uuid');
+    uuid = _JSUtil.getProperty(_jsObject, "uuid");
     if (uuid != null) {
       _uuid = uuid;
       return uuid;
     }
-    return 'UNKNOWN';
+    return "UNKNOWN";
   }
 
   WebBluetoothCharacteristicProperties? _properties;
@@ -74,7 +74,7 @@ class WebBluetoothRemoteGATTCharacteristic {
       return properties;
     }
 
-    final newProperties = _JSUtil.getProperty(_jsObject, 'properties');
+    final newProperties = _JSUtil.getProperty(_jsObject, "properties");
     _properties =
         WebBluetoothCharacteristicProperties.fromJSObject(newProperties);
     return _properties!;
@@ -92,10 +92,10 @@ class WebBluetoothRemoteGATTCharacteristic {
   /// - https://webbluetoothcg.github.io/web-bluetooth/#dom-bluetoothremotegattcharacteristic-value
   ///
   ByteData? get value {
-    if (!_JSUtil.hasProperty(_jsObject, 'value')) {
+    if (!_JSUtil.hasProperty(_jsObject, "value")) {
       return null;
     }
-    final data = _JSUtil.getProperty(_jsObject, 'value');
+    final data = _JSUtil.getProperty(_jsObject, "value");
     if (data == null) {
       return null;
     }
@@ -128,9 +128,9 @@ class WebBluetoothRemoteGATTCharacteristic {
   /// - https://webbluetoothcg.github.io/web-bluetooth/#dom-bluetoothremotegattcharacteristic-getdescriptor
   ///
   Future<WebBluetoothRemoteGATTDescriptor> getDescriptor(
-      String descriptorUUID) async {
+      final String descriptorUUID) async {
     final promise =
-        _JSUtil.callMethod(_jsObject, 'getDescriptor', [descriptorUUID]);
+        _JSUtil.callMethod(_jsObject, "getDescriptor", [descriptorUUID]);
     final result = await _JSUtil.promiseToFuture(promise);
     return WebBluetoothRemoteGATTDescriptor.fromJSObject(result, this);
   }
@@ -163,9 +163,9 @@ class WebBluetoothRemoteGATTCharacteristic {
   /// - https://webbluetoothcg.github.io/web-bluetooth/#dom-bluetoothremotegattcharacteristic-getdescriptors
   ///
   Future<List<WebBluetoothRemoteGATTDescriptor>> getDescriptors(
-      [String? descriptorUUID]) async {
+      [final String? descriptorUUID]) async {
     final arguments = descriptorUUID == null ? [] : [descriptorUUID];
-    final promise = _JSUtil.callMethod(_jsObject, 'getDescriptors', arguments);
+    final promise = _JSUtil.callMethod(_jsObject, "getDescriptors", arguments);
     final result = await _JSUtil.promiseToFuture(promise);
     if (result is List) {
       final items = <WebBluetoothRemoteGATTDescriptor>[];
@@ -175,7 +175,7 @@ class WebBluetoothRemoteGATTCharacteristic {
         } catch (e, stack) {
           if (e is UnsupportedError) {
             webBluetoothLogger.severe(
-                'Could not convert descriptor to BluetoothRemoteGATTDescriptor',
+                "Could not convert descriptor to BluetoothRemoteGATTDescriptor",
                 e,
                 stack);
           } else {
@@ -209,7 +209,7 @@ class WebBluetoothRemoteGATTCharacteristic {
   /// - https://webbluetoothcg.github.io/web-bluetooth/#dom-bluetoothremotegattcharacteristic-readvalue
   ///
   Future<ByteData> readValue() async {
-    final promise = _JSUtil.callMethod(_jsObject, 'readValue', []);
+    final promise = _JSUtil.callMethod(_jsObject, "readValue", []);
     final result = await _JSUtil.promiseToFuture(promise);
     final data = WebBluetoothConverters.convertJSDataViewToByteData(result);
     return data;
@@ -250,12 +250,12 @@ class WebBluetoothRemoteGATTCharacteristic {
   /// - https://webbluetoothcg.github.io/web-bluetooth/#dom-bluetoothremotegattcharacteristic-writevalue
   ///
   @Deprecated(
-      'This method is technically deprecated in the Web Bluetooth spec, '
-      'but not every browser supports the new `writeValueWithResponse` '
-      'and `writeValueWithoutResponse` yet.')
-  Future<void> writeValue(Uint8List value) async {
+      "This method is technically deprecated in the Web Bluetooth spec, "
+      "but not every browser supports the new `writeValueWithResponse` "
+      "and `writeValueWithoutResponse` yet.")
+  Future<void> writeValue(final Uint8List value) async {
     final data = WebBluetoothConverters.convertUint8ListToJSArrayBuffer(value);
-    final promise = _JSUtil.callMethod(_jsObject, 'writeValue', [data]);
+    final promise = _JSUtil.callMethod(_jsObject, "writeValue", [data]);
     await _JSUtil.promiseToFuture(promise);
   }
 
@@ -273,9 +273,8 @@ class WebBluetoothRemoteGATTCharacteristic {
   ///
   /// - [writeValueWithResponse]
   ///
-  bool hasWriteValueWithResponse() {
-    return _JSUtil.hasProperty(_jsObject, 'writeValueWithResponse');
-  }
+  bool hasWriteValueWithResponse() =>
+      _JSUtil.hasProperty(_jsObject, "writeValueWithResponse");
 
   ///
   /// Check to see if the [writeValueWithoutResponse] function exists.
@@ -291,9 +290,8 @@ class WebBluetoothRemoteGATTCharacteristic {
   ///
   /// - [writeValueWithResponse]
   ///
-  bool hasWriteValueWithoutResponse() {
-    return _JSUtil.hasProperty(_jsObject, 'writeValueWithoutResponse');
-  }
+  bool hasWriteValueWithoutResponse() =>
+      _JSUtil.hasProperty(_jsObject, "writeValueWithoutResponse");
 
   ///
   /// Will write a new value to the characteristic.
@@ -335,13 +333,13 @@ class WebBluetoothRemoteGATTCharacteristic {
   ///
   /// - https://webbluetoothcg.github.io/web-bluetooth/#dom-bluetoothremotegattcharacteristic-writevaluewithresponse
   ///
-  Future<void> writeValueWithResponse(Uint8List value) async {
+  Future<void> writeValueWithResponse(final Uint8List value) async {
     if (!hasWriteValueWithResponse()) {
-      throw NativeAPINotImplementedError('writeValueWithResponse');
+      throw NativeAPINotImplementedError("writeValueWithResponse");
     }
     final data = WebBluetoothConverters.convertUint8ListToJSArrayBuffer(value);
     final promise =
-        _JSUtil.callMethod(_jsObject, 'writeValueWithResponse', [data]);
+        _JSUtil.callMethod(_jsObject, "writeValueWithResponse", [data]);
     await _JSUtil.promiseToFuture(promise);
   }
 
@@ -385,13 +383,13 @@ class WebBluetoothRemoteGATTCharacteristic {
   ///
   /// - https://webbluetoothcg.github.io/web-bluetooth/#dom-bluetoothremotegattcharacteristic-writevaluewithoutresponse
   ///
-  Future<void> writeValueWithoutResponse(Uint8List value) async {
+  Future<void> writeValueWithoutResponse(final Uint8List value) async {
     if (!hasWriteValueWithoutResponse()) {
-      throw NativeAPINotImplementedError('writeValueWithoutResponse');
+      throw NativeAPINotImplementedError("writeValueWithoutResponse");
     }
     final data = WebBluetoothConverters.convertUint8ListToJSArrayBuffer(value);
     final promise =
-        _JSUtil.callMethod(_jsObject, 'writeValueWithoutResponse', [data]);
+        _JSUtil.callMethod(_jsObject, "writeValueWithoutResponse", [data]);
     await _JSUtil.promiseToFuture(promise);
   }
 
@@ -428,7 +426,7 @@ class WebBluetoothRemoteGATTCharacteristic {
   /// - https://webbluetoothcg.github.io/web-bluetooth/#dom-bluetoothremotegattcharacteristic-startnotifications
   ///
   Future<void> startNotifications() async {
-    final promise = _JSUtil.callMethod(_jsObject, 'startNotifications', []);
+    final promise = _JSUtil.callMethod(_jsObject, "startNotifications", []);
     await _JSUtil.promiseToFuture(promise);
   }
 
@@ -452,7 +450,7 @@ class WebBluetoothRemoteGATTCharacteristic {
   /// - https://webbluetoothcg.github.io/web-bluetooth/#dom-bluetoothremotegattcharacteristic-stopnotifications
   ///
   Future<void> stopNotifications() async {
-    final promise = _JSUtil.callMethod(_jsObject, 'stopNotifications', []);
+    final promise = _JSUtil.callMethod(_jsObject, "stopNotifications", []);
     await _JSUtil.promiseToFuture(promise);
   }
 
@@ -472,9 +470,10 @@ class WebBluetoothRemoteGATTCharacteristic {
   ///
   /// - https://webbluetoothcg.github.io/web-bluetooth/#characteristiceventhandlers
   ///
-  void addEventListener(String type, void Function(dynamic) listener) {
+  void addEventListener(
+      final String type, final void Function(dynamic) listener) {
     _JSUtil.callMethod(
-        _jsObject, 'addEventListener', [type, _JSUtil.allowInterop(listener)]);
+        _jsObject, "addEventListener", [type, _JSUtil.allowInterop(listener)]);
   }
 
   ///
@@ -487,35 +486,35 @@ class WebBluetoothRemoteGATTCharacteristic {
   ///
   WebBluetoothRemoteGATTCharacteristic.fromJSObject(
       this._jsObject, this.service) {
-    if (!_JSUtil.hasProperty(_jsObject, 'service')) {
-      throw UnsupportedError('JSObject does not have service');
+    if (!_JSUtil.hasProperty(_jsObject, "service")) {
+      throw UnsupportedError("JSObject does not have service");
     }
-    if (!_JSUtil.hasProperty(_jsObject, 'uuid')) {
-      throw UnsupportedError('JSObject does not have uuid');
+    if (!_JSUtil.hasProperty(_jsObject, "uuid")) {
+      throw UnsupportedError("JSObject does not have uuid");
     }
-    if (!_JSUtil.hasProperty(_jsObject, 'properties')) {
-      throw UnsupportedError('JSObject does not have properties');
+    if (!_JSUtil.hasProperty(_jsObject, "properties")) {
+      throw UnsupportedError("JSObject does not have properties");
     }
-    if (!_JSUtil.hasProperty(_jsObject, 'getDescriptor')) {
-      throw UnsupportedError('JSObject does not have getDescriptor');
+    if (!_JSUtil.hasProperty(_jsObject, "getDescriptor")) {
+      throw UnsupportedError("JSObject does not have getDescriptor");
     }
-    if (!_JSUtil.hasProperty(_jsObject, 'getDescriptors')) {
-      throw UnsupportedError('JSObject does not have getDescriptors');
+    if (!_JSUtil.hasProperty(_jsObject, "getDescriptors")) {
+      throw UnsupportedError("JSObject does not have getDescriptors");
     }
-    if (!_JSUtil.hasProperty(_jsObject, 'readValue')) {
-      throw UnsupportedError('JSObject does not have readValue');
+    if (!_JSUtil.hasProperty(_jsObject, "readValue")) {
+      throw UnsupportedError("JSObject does not have readValue");
     }
-    if (!_JSUtil.hasProperty(_jsObject, 'writeValue')) {
-      throw UnsupportedError('JSObject does not have writeValue');
+    if (!_JSUtil.hasProperty(_jsObject, "writeValue")) {
+      throw UnsupportedError("JSObject does not have writeValue");
     }
-    if (!_JSUtil.hasProperty(_jsObject, 'startNotifications')) {
-      throw UnsupportedError('JSObject does not have startNotifications');
+    if (!_JSUtil.hasProperty(_jsObject, "startNotifications")) {
+      throw UnsupportedError("JSObject does not have startNotifications");
     }
-    if (!_JSUtil.hasProperty(_jsObject, 'stopNotifications')) {
-      throw UnsupportedError('JSObject does not have stopNotifications');
+    if (!_JSUtil.hasProperty(_jsObject, "stopNotifications")) {
+      throw UnsupportedError("JSObject does not have stopNotifications");
     }
-    if (!_JSUtil.hasProperty(_jsObject, 'addEventListener')) {
-      throw UnsupportedError('JSObject does not have addEventListener');
+    if (!_JSUtil.hasProperty(_jsObject, "addEventListener")) {
+      throw UnsupportedError("JSObject does not have addEventListener");
     }
   }
 }

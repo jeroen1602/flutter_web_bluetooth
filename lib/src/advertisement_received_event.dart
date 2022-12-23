@@ -15,40 +15,28 @@ class AdvertisementReceivedEvent<D extends AdvertisementBluetoothDevice>
       _advertisementReceivedEvent;
 
   @override
-  List<String> get uuids {
-    return _advertisementReceivedEvent.uuids;
-  }
+  List<String> get uuids => _advertisementReceivedEvent.uuids;
 
   @override
-  UnmodifiableMapView<int, ByteData> get manufacturerData {
-    return _advertisementReceivedEvent.manufacturerData;
-  }
+  UnmodifiableMapView<int, ByteData> get manufacturerData =>
+      _advertisementReceivedEvent.manufacturerData;
 
   @override
-  UnmodifiableMapView<String, ByteData> get serviceData {
-    return _advertisementReceivedEvent.serviceData;
-  }
+  UnmodifiableMapView<String, ByteData> get serviceData =>
+      _advertisementReceivedEvent.serviceData;
 
   @override
-  String? get name {
-    return _advertisementReceivedEvent.name;
-  }
+  String? get name => _advertisementReceivedEvent.name;
 
   @override
-  int? get rssi {
-    return _advertisementReceivedEvent.rssi;
-  }
+  int? get rssi => _advertisementReceivedEvent.rssi;
 
   @override
-  int? get txPower {
-    return _advertisementReceivedEvent.txPower;
-  }
+  int? get txPower => _advertisementReceivedEvent.txPower;
 
   @override
-  int? get appearance {
-    return _advertisementReceivedEvent.appearance;
-  }
+  int? get appearance => _advertisementReceivedEvent.appearance;
 
-  AdvertisementReceivedEvent._(this._advertisementReceivedEvent, D device)
+  AdvertisementReceivedEvent._(this._advertisementReceivedEvent, final D device)
       : super(device);
 }

@@ -1,4 +1,4 @@
-import 'package:flutter_web_bluetooth/flutter_web_bluetooth.dart';
+import "package:flutter_web_bluetooth/flutter_web_bluetooth.dart";
 
 ///
 /// A model to hold the data that is shown for a device on the main screen.
@@ -8,10 +8,10 @@ import 'package:flutter_web_bluetooth/flutter_web_bluetooth.dart';
 class MainPageDevice<D extends AdvertisementBluetoothDevice> {
   MainPageDevice(
       {required this.device,
-      AdvertisementReceivedEvent<AdvertisementBluetoothDevice>? event})
+      final AdvertisementReceivedEvent<AdvertisementBluetoothDevice>? event})
       : _event = event;
 
-  MainPageDevice.fromEvent({required AdvertisementReceivedEvent<D> event})
+  MainPageDevice.fromEvent({required final AdvertisementReceivedEvent<D> event})
       : device = event.device,
         _event = event;
 
@@ -31,7 +31,7 @@ class MainPageDevice<D extends AdvertisementBluetoothDevice> {
   /// Check to see if two device have the same id.
   ///
   @override
-  bool operator ==(Object other) {
+  bool operator ==(final Object other) {
     if (other is! MainPageDevice) {
       return false;
     }

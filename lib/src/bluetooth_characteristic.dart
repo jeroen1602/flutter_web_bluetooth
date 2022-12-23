@@ -24,7 +24,8 @@ class BluetoothCharacteristic {
   BluetoothCharacteristic(this._characteristic)
       : _properties =
             BluetoothCharacteristicProperties(_characteristic.properties) {
-    _characteristic.addEventListener('characteristicvaluechanged', (event) {
+    _characteristic.addEventListener("characteristicvaluechanged",
+        (final event) {
       final data = _characteristic.value;
       if (data != null) {
         _value.add(data);
@@ -86,9 +87,7 @@ class BluetoothCharacteristic {
   /// If this is `false` then reading any of the properties will also return
   /// `false`. It will not throw any errors.
   ///
-  bool get hasProperties {
-    return properties.hasProperties;
-  }
+  bool get hasProperties => properties.hasProperties;
 
   ///
   /// Return a [BluetoothDescriptor] for this characteristic.
@@ -106,17 +105,17 @@ class BluetoothCharacteristic {
   ///
   /// See: [BluetoothDescriptor].
   ///
-  Future<BluetoothDescriptor> getDescriptor(String descriptorUUID) async {
+  Future<BluetoothDescriptor> getDescriptor(final String descriptorUUID) async {
     try {
       final descriptor = await _characteristic.getDescriptor(descriptorUUID);
       return BluetoothDescriptor(descriptor);
     } catch (e) {
       final error = e.toString().trim();
-      if (error.startsWith('NetworkError')) {
+      if (error.startsWith("NetworkError")) {
         throw NetworkError.withUUid(uuid);
-      } else if (error.startsWith('SecurityError')) {
+      } else if (error.startsWith("SecurityError")) {
         throw SecurityError(uuid, error);
-      } else if (error.startsWith('InvalidStateError')) {
+      } else if (error.startsWith("InvalidStateError")) {
         throw StateError("Characteristic is null");
       } else if (error.startsWith("NotFoundError")) {
         throw NotFoundError.forDescriptor(descriptorUUID, uuid);
@@ -142,14 +141,14 @@ class BluetoothCharacteristic {
   Future<List<BluetoothDescriptor>> getDescriptors() async {
     try {
       final descriptors = await _characteristic.getDescriptors();
-      return descriptors.map((e) => BluetoothDescriptor(e)).toList();
+      return descriptors.map(BluetoothDescriptor.new).toList();
     } catch (e) {
       final error = e.toString().trim();
-      if (error.startsWith('NetworkError')) {
+      if (error.startsWith("NetworkError")) {
         throw NetworkError.withUUid(uuid);
-      } else if (error.startsWith('SecurityError')) {
+      } else if (error.startsWith("SecurityError")) {
         throw SecurityError(uuid, error);
-      } else if (error.startsWith('InvalidStateError')) {
+      } else if (error.startsWith("InvalidStateError")) {
         throw StateError("Characteristic is null");
       } else if (error.startsWith("NotFoundError")) {
         throw NotFoundError.forDescriptor("ALL", uuid);
@@ -182,13 +181,13 @@ class BluetoothCharacteristic {
       _isNotifying = true;
     } catch (e) {
       final error = e.toString().trim();
-      if (error.startsWith('NotSupportedError')) {
+      if (error.startsWith("NotSupportedError")) {
         throw NotSupportedError(uuid);
-      } else if (error.startsWith('NetworkError')) {
+      } else if (error.startsWith("NetworkError")) {
         throw NetworkError.withUUid(uuid);
-      } else if (error.startsWith('SecurityError')) {
+      } else if (error.startsWith("SecurityError")) {
         throw SecurityError(uuid, error);
-      } else if (error.startsWith('InvalidStateError')) {
+      } else if (error.startsWith("InvalidStateError")) {
         throw StateError("Characteristic is null");
       }
       rethrow;
@@ -209,7 +208,7 @@ class BluetoothCharacteristic {
       _isNotifying = false;
     } catch (e) {
       final error = e.toString().trim();
-      if (error.startsWith('InvalidStateError')) {
+      if (error.startsWith("InvalidStateError")) {
         throw StateError("Characteristic is null");
       }
       rethrow;
@@ -239,7 +238,7 @@ class BluetoothCharacteristic {
   ///
   /// See: [writeValueWithResponse].
   ///
-  Future<void> writeValueWithoutResponse(Uint8List data) async {
+  Future<void> writeValueWithoutResponse(final Uint8List data) async {
     try {
       if (_characteristic.hasWriteValueWithoutResponse()) {
         return _characteristic.writeValueWithoutResponse(data);
@@ -253,11 +252,11 @@ class BluetoothCharacteristic {
       return _characteristic.writeValue(data);
     } catch (e) {
       final error = e.toString().trim();
-      if (error.startsWith('NotSupportedError')) {
+      if (error.startsWith("NotSupportedError")) {
         throw NotSupportedError(uuid);
-      } else if (error.startsWith('NetworkError')) {
+      } else if (error.startsWith("NetworkError")) {
         throw NetworkError.withUUid(uuid);
-      } else if (error.startsWith('InvalidStateError')) {
+      } else if (error.startsWith("InvalidStateError")) {
         throw StateError("Characteristic is null");
       }
       rethrow;
@@ -287,7 +286,7 @@ class BluetoothCharacteristic {
   ///
   /// See: [writeValueWithResponse].
   ///
-  Future<void> writeValueWithResponse(Uint8List data) async {
+  Future<void> writeValueWithResponse(final Uint8List data) async {
     try {
       if (_characteristic.hasWriteValueWithResponse()) {
         return _characteristic.writeValueWithResponse(data);
@@ -301,11 +300,11 @@ class BluetoothCharacteristic {
       return _characteristic.writeValue(data);
     } catch (e) {
       final error = e.toString().trim();
-      if (error.startsWith('NotSupportedError')) {
+      if (error.startsWith("NotSupportedError")) {
         throw NotSupportedError(uuid);
-      } else if (error.startsWith('NetworkError')) {
+      } else if (error.startsWith("NetworkError")) {
         throw NetworkError.withUUid(uuid);
-      } else if (error.startsWith('InvalidStateError')) {
+      } else if (error.startsWith("InvalidStateError")) {
         throw StateError("Characteristic is null");
       }
       rethrow;
@@ -332,20 +331,20 @@ class BluetoothCharacteristic {
   /// See: [value] and [lastValue].
   ///
   Future<ByteData> readValue(
-      {Duration timeout = const Duration(seconds: 5)}) async {
+      {final Duration timeout = const Duration(seconds: 5)}) async {
     try {
       final value = await _characteristic.readValue().timeout(timeout);
       _value.add(value);
       return value;
     } catch (e) {
       final error = e.toString().trim();
-      if (error.startsWith('NotSupportedError')) {
+      if (error.startsWith("NotSupportedError")) {
         throw NotSupportedError(uuid);
-      } else if (error.startsWith('NetworkError')) {
+      } else if (error.startsWith("NetworkError")) {
         throw NetworkError.withUUid(uuid);
-      } else if (error.startsWith('SecurityError')) {
+      } else if (error.startsWith("SecurityError")) {
         throw SecurityError(uuid, error);
-      } else if (error.startsWith('InvalidStateError')) {
+      } else if (error.startsWith("InvalidStateError")) {
         throw StateError("Characteristic is null");
       }
       rethrow;

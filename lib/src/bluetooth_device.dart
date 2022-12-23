@@ -52,7 +52,7 @@ class AdvertisementBluetoothDevice {
   /// Check to see if two device have the same id.
   ///
   @override
-  bool operator ==(Object other) {
+  bool operator ==(final Object other) {
     if (other is! AdvertisementBluetoothDevice) {
       return false;
     }
@@ -82,7 +82,7 @@ class BluetoothDevice extends AdvertisementBluetoothDevice {
   ///
   /// To get an instance use [FlutterWebBluetooth.requestDevice].
   ///
-  BluetoothDevice(WebBluetoothDevice bluetoothDevice) : super(bluetoothDevice);
+  BluetoothDevice(super.bluetoothDevice);
 
   WebBehaviorSubject<bool>? _connectionSubject;
 
@@ -138,10 +138,10 @@ class BluetoothDevice extends AdvertisementBluetoothDevice {
       return;
     }
 
-    _connectionSubject = WebBehaviorSubject.seeded(gatt?.connected == true);
+    _connectionSubject = WebBehaviorSubject.seeded(gatt?.connected ?? false);
 
-    _bluetoothDevice.addEventListener('gattserverdisconnected',
-        (dynamic event) {
+    _bluetoothDevice.addEventListener("gattserverdisconnected",
+        (final dynamic event) {
       _connectionSubject?.add(false);
       if (_servicesSubject.hasValue) {
         _servicesSubject.add([]);
@@ -157,7 +157,8 @@ class BluetoothDevice extends AdvertisementBluetoothDevice {
     _advertisementSubject = WebBehaviorSubject();
 
     WebAdvertisementReceivedEvent? memory;
-    _bluetoothDevice.addEventListener('advertisementreceived', (dynamic event) {
+    _bluetoothDevice.addEventListener("advertisementreceived",
+        (final dynamic event) {
       try {
         final convertedEvent =
             WebAdvertisementReceivedEvent.fromJSObject(event, _bluetoothDevice);
@@ -214,7 +215,8 @@ class BluetoothDevice extends AdvertisementBluetoothDevice {
   ///
   /// - May throw [StateError] if the connection was aborted. TODO: use a better error.
   ///
-  Future<void> connect({Duration? timeout = const Duration(seconds: 5)}) async {
+  Future<void> connect(
+      {final Duration? timeout = const Duration(seconds: 5)}) async {
     final gatt = this.gatt!;
     _startConnectedStream();
     // No timeout.
@@ -230,10 +232,10 @@ class BluetoothDevice extends AdvertisementBluetoothDevice {
         rethrow;
       }
       final error = e.toString().trim();
-      if (error.startsWith('NetworkError')) {
+      if (error.startsWith("NetworkError")) {
         throw NetworkError.withDeviceId(id);
-      } else if (error.startsWith('AbortError')) {
-        throw StateError('Connection attempt was aborted!');
+      } else if (error.startsWith("AbortError")) {
+        throw StateError("Connection attempt was aborted!");
       }
       rethrow;
     }
@@ -246,9 +248,7 @@ class BluetoothDevice extends AdvertisementBluetoothDevice {
   /// call.
   /// This can be used to avoid the [NativeAPINotImplementedError].
   ///
-  bool hasWatchAdvertisements() {
-    return _bluetoothDevice.hasWatchAdvertisements();
-  }
+  bool hasWatchAdvertisements() => _bluetoothDevice.hasWatchAdvertisements();
 
   ///
   /// Watch for advertisements from this device. The advertisements will
@@ -272,7 +272,7 @@ class BluetoothDevice extends AdvertisementBluetoothDevice {
   /// again then nothing special will happen and it will request the device
   /// again to send advertisements.
   ///
-  Future<void> watchAdvertisements([Duration? timeout]) async {
+  Future<void> watchAdvertisements([final Duration? timeout]) async {
     if (!_bluetoothDevice.hasWatchAdvertisements()) {
       // Throw the error
       return await _bluetoothDevice.watchAdvertisements();
@@ -338,9 +338,7 @@ class BluetoothDevice extends AdvertisementBluetoothDevice {
   /// If the device is watching for advertisements.
   /// If advertisements are not unsupported then it will always return `false`.
   ///
-  bool get watchingAdvertisements {
-    return _bluetoothDevice.watchingAdvertisements;
-  }
+  bool get watchingAdvertisements => _bluetoothDevice.watchingAdvertisements;
 
   final WebBehaviorSubject<List<BluetoothService>> _servicesSubject =
       WebBehaviorSubject.seeded([]);
@@ -357,7 +355,7 @@ class BluetoothDevice extends AdvertisementBluetoothDevice {
         _connectionSubject?.hasValue == false) {
       yield [];
     }
-    if (_servicesSubject.value?.isEmpty == true) {
+    if (_servicesSubject.value?.isEmpty ?? false) {
       yield await discoverServices();
     }
     yield* _servicesSubject.stream;
@@ -380,25 +378,24 @@ class BluetoothDevice extends AdvertisementBluetoothDevice {
     final gatt = this.gatt;
     if (gatt == null || !gatt.connected) {
       throw StateError(
-          'Cannot discover services if the device is not connected.');
+          "Cannot discover services if the device is not connected.");
     }
 
     try {
       final services = await gatt.getPrimaryServices();
-      final convertedServices =
-          services.map((e) => BluetoothService(e)).toList();
+      final convertedServices = services.map(BluetoothService.new).toList();
       _servicesSubject.add(convertedServices);
       return convertedServices;
     } catch (e) {
       final error = e.toString().trim();
-      if (error.startsWith('SecurityError')) {
+      if (error.startsWith("SecurityError")) {
         throw SecurityError("getPrimaryServices", error);
-      } else if (error.startsWith('NetworkError')) {
+      } else if (error.startsWith("NetworkError")) {
         throw StateError(
-            'Cannot discover services if the device is not connected.');
-      } else if (error.startsWith('InvalidStateError')) {
-        throw StateError('GATT is null');
-      } else if (error.startsWith('NotFoundError')) {
+            "Cannot discover services if the device is not connected.");
+      } else if (error.startsWith("InvalidStateError")) {
+        throw StateError("GATT is null");
+      } else if (error.startsWith("NotFoundError")) {
         _servicesSubject.add([]);
         return [];
       }
@@ -413,7 +410,7 @@ class BluetoothDevice extends AdvertisementBluetoothDevice {
   ///
   /// Get the underlying native (web) bluetooth device.
   ///
-  @Deprecated('This is here for debugging and will be removed once web '
-      'bluetooth is actually released.')
+  @Deprecated("This is here for debugging and will be removed once web "
+      "bluetooth is actually released.")
   WebBluetoothDevice get nativeDevice => _bluetoothDevice;
 }

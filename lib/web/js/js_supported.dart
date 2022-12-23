@@ -1,3 +1,3 @@
-export 'dart:js';
+export "dart:js";
 
-export 'package:js/js.dart';
+export "package:js/js.dart";

@@ -25,11 +25,9 @@ class BluetoothLEScan {
   ///
   /// https://webbluetoothcg.github.io/web-bluetooth/scanning.html#dom-bluetoothlescan-filters
   ///
-  List<BluetoothLEScanOptions> get filters {
-    return _filters ??=
-        WebBluetoothConverters.convertJSObjectToList<BluetoothLEScanOptions>(
-            _JSUtil.getProperty(_jsObject, 'filters'));
-  }
+  List<BluetoothLEScanOptions> get filters => _filters ??=
+      WebBluetoothConverters.convertJSObjectToList<BluetoothLEScanOptions>(
+          _JSUtil.getProperty(_jsObject, "filters"));
 
   bool? _keepRepeatedDevices;
 
@@ -46,7 +44,7 @@ class BluetoothLEScan {
       return keep;
     }
     keep =
-        _JSUtil.getProperty(_jsObject, 'keepRepeatedDevices') as bool? ?? false;
+        _JSUtil.getProperty(_jsObject, "keepRepeatedDevices") as bool? ?? false;
     _keepRepeatedDevices = keep;
     return keep;
   }
@@ -65,7 +63,7 @@ class BluetoothLEScan {
     if (all != null) {
       return all;
     }
-    all = _JSUtil.getProperty(_jsObject, 'acceptAllAdvertisements') as bool? ??
+    all = _JSUtil.getProperty(_jsObject, "acceptAllAdvertisements") as bool? ??
         false;
     _acceptAllAdvertisements = all;
     return all;
@@ -80,9 +78,7 @@ class BluetoothLEScan {
   ///
   /// https://webbluetoothcg.github.io/web-bluetooth/scanning.html#dom-bluetoothlescan-active
   ///
-  bool get active {
-    return _JSUtil.getProperty(_jsObject, 'active') as bool? ?? false;
-  }
+  bool get active => _JSUtil.getProperty(_jsObject, "active") as bool? ?? false;
 
   ///
   /// Stop the currently running Bluetooth LE scan.
@@ -94,7 +90,7 @@ class BluetoothLEScan {
   /// https://webbluetoothcg.github.io/web-bluetooth/scanning.html#dom-bluetoothlescan-stop
   ///
   void stop() {
-    _JSUtil.callMethod(_jsObject, 'stop', []);
+    _JSUtil.callMethod(_jsObject, "stop", []);
   }
 
   ///
@@ -103,20 +99,20 @@ class BluetoothLEScan {
   /// To get an instance use [Bluetooth.requestLEScan].
   ///
   BluetoothLEScan.fromJSObject(this._jsObject) {
-    if (!_JSUtil.hasProperty(_jsObject, 'filters')) {
-      throw UnsupportedError('JSObject does not have filters.');
+    if (!_JSUtil.hasProperty(_jsObject, "filters")) {
+      throw UnsupportedError("JSObject does not have filters.");
     }
-    if (!_JSUtil.hasProperty(_jsObject, 'keepRepeatedDevices')) {
-      throw UnsupportedError('JSObject does not have keepRepeatedDevices.');
+    if (!_JSUtil.hasProperty(_jsObject, "keepRepeatedDevices")) {
+      throw UnsupportedError("JSObject does not have keepRepeatedDevices.");
     }
-    if (!_JSUtil.hasProperty(_jsObject, 'acceptAllAdvertisements')) {
-      throw UnsupportedError('JSObject does not have acceptAllAdvertisements.');
+    if (!_JSUtil.hasProperty(_jsObject, "acceptAllAdvertisements")) {
+      throw UnsupportedError("JSObject does not have acceptAllAdvertisements.");
     }
-    if (!_JSUtil.hasProperty(_jsObject, 'active')) {
-      throw UnsupportedError('JSObject does not have active.');
+    if (!_JSUtil.hasProperty(_jsObject, "active")) {
+      throw UnsupportedError("JSObject does not have active.");
     }
-    if (!_JSUtil.hasProperty(_jsObject, 'stop')) {
-      throw UnsupportedError('JSObject does not have stop.');
+    if (!_JSUtil.hasProperty(_jsObject, "stop")) {
+      throw UnsupportedError("JSObject does not have stop.");
     }
   }
 }

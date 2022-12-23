@@ -1,6 +1,6 @@
-import 'package:flutter/material.dart';
-import 'package:flutter_web_bluetooth/flutter_web_bluetooth.dart';
-import 'package:flutter_web_bluetooth_example/model/main_page_device.dart';
+import "package:flutter/material.dart";
+import "package:flutter_web_bluetooth/flutter_web_bluetooth.dart";
+import "package:flutter_web_bluetooth_example/model/main_page_device.dart";
 
 class BluetoothDeviceWidget<D extends AdvertisementBluetoothDevice>
     extends StatefulWidget {
@@ -12,8 +12,8 @@ class BluetoothDeviceWidget<D extends AdvertisementBluetoothDevice>
   final bool _hasAppearance;
 
   BluetoothDeviceWidget({
-    super.key,
     required this.bluetoothDevice,
+    super.key,
     this.onTap,
   })  : _canConnect = bluetoothDevice.device is BluetoothDevice,
         _hasRSSI = bluetoothDevice.rssi != null,
@@ -40,7 +40,7 @@ class BluetoothDeviceState<D extends AdvertisementBluetoothDevice>
   }
 
   @override
-  Widget build(BuildContext context) {
+  Widget build(final BuildContext context) {
     final cursive = Theme.of(context)
         .textTheme
         .bodyLarge
@@ -63,13 +63,13 @@ class BluetoothDeviceState<D extends AdvertisementBluetoothDevice>
                 StreamBuilder(
                     stream: _connectedStream,
                     initialData: false,
-                    builder:
-                        (BuildContext context, AsyncSnapshot<bool> snapshot) {
+                    builder: (final BuildContext context,
+                        final AsyncSnapshot<bool> snapshot) {
                       return Icon(Icons.circle,
                           color:
                               snapshot.requireData ? Colors.green : Colors.red);
                     }),
-              SelectableText(widget.bluetoothDevice.device.name ?? 'null',
+              SelectableText(widget.bluetoothDevice.device.name ?? "null",
                   style: widget.bluetoothDevice.device.name == null
                       ? cursive
                       : null),
@@ -84,7 +84,7 @@ class BluetoothDeviceState<D extends AdvertisementBluetoothDevice>
               if (widget._hasTxPower)
                 Row(
                   children: [
-                    const Text('TxPower: '),
+                    const Text("TxPower: "),
                     SelectableText(
                         widget.bluetoothDevice.txPower!.toRadixString(10)),
                   ],
@@ -92,14 +92,14 @@ class BluetoothDeviceState<D extends AdvertisementBluetoothDevice>
               if (widget._hasRSSI)
                 Row(
                   children: [
-                    const Text('RSSI: '),
+                    const Text("RSSI: "),
                     SelectableText(
                         widget.bluetoothDevice.rssi!.toRadixString(10)),
                   ],
                 ),
               if (widget._hasAppearance)
                 Row(children: [
-                  const Text('Appearance: '),
+                  const Text("Appearance: "),
                   SelectableText(
                       '0x${widget.bluetoothDevice.appearance!.toRadixString(16).padLeft(4, '0')}'),
                 ]),

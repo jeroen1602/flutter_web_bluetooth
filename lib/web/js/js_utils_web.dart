@@ -6,12 +6,12 @@
 library bluetooth_web_js_utils;
 
 // ignore: library_prefixes
-import 'dart:js' as JS;
+import "dart:js" as JS;
 
 // ignore: library_prefixes
-import 'dart:js_util' as JSUtil;
+import "dart:js_util" as JSUtil;
 
-part 'js_utils_interface.dart';
+part "js_utils_interface.dart";
 
 ///
 /// An implementation of [JSUtilsInterface] that will call the actual methods
@@ -21,35 +21,38 @@ part 'js_utils_interface.dart';
 ///
 class JSUtils extends JSUtilsInterface {
   @override
-  dynamic callConstructor(Object constr, List<Object?>? arguments) =>
+  dynamic callConstructor(
+          final Object constr, final List<Object?>? arguments) =>
       JSUtil.callConstructor(constr, arguments);
 
   @override
-  dynamic callMethod(Object o, String method, List<Object?> args) =>
+  dynamic callMethod(
+          final Object o, final String method, final List<Object?> args) =>
       JSUtil.callMethod(o, method, args);
 
   @override
-  dynamic getProperty(Object o, Object name) => JSUtil.getProperty(o, name);
+  dynamic getProperty(final Object o, final Object name) =>
+      JSUtil.getProperty(o, name);
 
   @override
-  bool hasProperty(Object o, Object name) => JSUtil.hasProperty(o, name);
+  bool hasProperty(final Object o, final Object name) =>
+      JSUtil.hasProperty(o, name);
 
   @override
-  bool instanceof(Object? o, Object type) => JSUtil.instanceof(o, type);
+  bool instanceof(final Object? o, final Object type) =>
+      JSUtil.instanceof(o, type);
 
   @override
   dynamic newObject() => JSUtil.newObject();
 
   @override
-  Future<T> promiseToFuture<T>(Object jsPromise) =>
+  Future<T> promiseToFuture<T>(final Object jsPromise) =>
       JSUtil.promiseToFuture(jsPromise);
 
   @override
-  dynamic setProperty(Object o, Object name, Object? value) =>
+  dynamic setProperty(final Object o, final Object name, final Object? value) =>
       JSUtil.setProperty(o, name, value);
 
   @override
-  F allowInterop<F extends Function>(F f) {
-    return JS.allowInterop(f);
-  }
+  F allowInterop<F extends Function>(final F f) => JS.allowInterop(f);
 }

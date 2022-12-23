@@ -1,4 +1,4 @@
-import 'dart:async';
+import "dart:async";
 
 ///
 /// A custom implementation for rxdart's behavior subject.
@@ -8,18 +8,37 @@ import 'dart:async';
 /// This should not be used in your own project!.
 ///
 class WebBehaviorSubject<T> {
+  ///
+  /// The underlying stream controller that goes with this [WebBehaviorSubject].
+  ///
   final StreamController<T> controller = StreamController.broadcast();
   T? _value;
 
+  ///
+  /// The last value that was emitted.
+  ///
   T? get value => _value;
 
-  WebBehaviorSubject.seeded(T seed) {
+  ///
+  /// Create a new [WebBehaviorSubject] with a starting value [seed].
+  /// Otherwise it would start without a value.
+  ///
+  WebBehaviorSubject.seeded(final T seed) {
     add(seed);
   }
 
+  ///
+  /// Create a new [WebBehaviorSubject] without a starting value.
+  /// See [WebBehaviorSubject.seeded] to start with an existing value.
+  ///
   WebBehaviorSubject();
 
-  void add(T event) {
+  ///
+  /// Add a new value to emit.
+  ///
+  /// The old value will be replaced.
+  ///
+  void add(final T event) {
     _value = event;
     controller.add(event);
   }
@@ -37,5 +56,8 @@ class WebBehaviorSubject<T> {
     yield* controller.stream;
   }
 
+  ///
+  /// Check to see if the [WebBehaviorSubject] has a value in [value].
+  ///
   bool get hasValue => _value != null;
 }

@@ -1,6 +1,6 @@
 #!/bin/env dart
 
-import 'dart:io';
+import "dart:io";
 
 // source: https://www.bluetooth.com/specifications/assigned-numbers/
 
@@ -28,25 +28,26 @@ Future<int> main() async {
       "part of flutter_web_bluetooth;\n"
       "\n";
 
-  var servicesUuidEnum =
+  final servicesUuidEnum = StringBuffer();
+  servicesUuidEnum.write(
       "/// All the default Bluetooth low energy services are defined in this enum.\n"
       "/// See: [values] for a list of all the services.\n"
-      "enum BluetoothDefaultServiceUUIDS {\n";
+      "enum BluetoothDefaultServiceUUIDS {\n");
 
   bool first = true;
-  await readThroughFile(servicesFile, (holder) {
+  await readThroughFile(servicesFile, (final holder) {
     if (first) {
       first = false;
     } else {
-      servicesUuidEnum += ",\n";
+      servicesUuidEnum.write(",\n");
     }
-    servicesUuidEnum += "    /// The default service for ${holder.name}\n"
-        "    ${holder.variableName}('${holder.name}', "
-        "'${holder.uuid16}', "
-        "'${holder.uuid}')";
+    servicesUuidEnum.write("    /// The default service for ${holder.name}\n"
+        "    ${holder.variableName}(\"${holder.name}\", "
+        "\"${holder.uuid16}\", "
+        "\"${holder.uuid}\")");
   });
 
-  servicesUuidEnum += ";\n\n"
+  servicesUuidEnum.write(";\n\n"
       "    ///\n"
       "    /// A service UUID consists of a human readable name of the service, as well\n"
       "    /// as its uuid represented as a 16 bit uuid and a full 128 bit uuid.\n"
@@ -58,28 +59,29 @@ Future<int> main() async {
       "    final String uuid16;\n"
       "    /// The full uuid of the service.\n"
       "    final String uuid;\n"
-      "}\n\n";
+      "}\n\n");
 
-  var characteristicUuidEnum =
+  final characteristicUuidEnum = StringBuffer();
+  characteristicUuidEnum.write(
       "/// All the default Bluetooth low energy characteristics are defined in this enum.\n"
       "/// See: [values] for a list of all the characteristics.\n"
-      "enum BluetoothDefaultCharacteristicUUIDS {\n";
+      "enum BluetoothDefaultCharacteristicUUIDS {\n");
 
   first = true;
-  await readThroughFile(characteristicsFile, (holder) {
+  await readThroughFile(characteristicsFile, (final holder) {
     if (first) {
       first = false;
     } else {
-      characteristicUuidEnum += ",\n";
+      characteristicUuidEnum.write(",\n");
     }
-    characteristicUuidEnum +=
-        "    /// The default characteristic for ${holder.name}\n"
-        "    ${holder.variableName}('${holder.name}', "
-        "'${holder.uuid16}', "
-        "'${holder.uuid}')";
+    characteristicUuidEnum
+        .write("    /// The default characteristic for ${holder.name}\n"
+            "    ${holder.variableName}(\"${holder.name}\", "
+            "\"${holder.uuid16}\", "
+            "\"${holder.uuid}\")");
   });
 
-  characteristicUuidEnum += ";\n\n"
+  characteristicUuidEnum.write(";\n\n"
       "    ///\n"
       "    /// A characteristic UUID consists of a human readable name of the service, as well\n"
       "    /// as its uuid represented as a 16 bit uuid and a full 128 bit uuid.\n"
@@ -91,29 +93,29 @@ Future<int> main() async {
       "    final String uuid16;\n"
       "    /// The full uuid of the characteristic.\n"
       "    final String uuid;\n"
-      "}\n\n";
+      "}\n\n");
 
   await outputFile.create();
   await outputFile.writeAsString(outputFileHeader, mode: FileMode.writeOnly);
-  await outputFile.writeAsString(servicesUuidEnum,
+  await outputFile.writeAsString(servicesUuidEnum.toString(),
       mode: FileMode.writeOnlyAppend);
-  await outputFile.writeAsString(characteristicUuidEnum,
+  await outputFile.writeAsString(characteristicUuidEnum.toString(),
       mode: FileMode.writeOnlyAppend);
-  print('Done');
+  // ignore: avoid_print
+  print("Done");
   return 0;
 }
 
 String camelCaseName(final String name) {
   final words =
       name.replaceAll("-", " ").replaceAll(".", " ").toLowerCase().split(" ");
-  words.retainWhere((element) => element.isNotEmpty);
-  return words.reduce((value, element) {
-    return "$value${element[0].toUpperCase()}${element.substring(1)}";
-  });
+  words.retainWhere((final element) => element.isNotEmpty);
+  return words.reduce((final value, final element) =>
+      "$value${element[0].toUpperCase()}${element.substring(1)}");
 }
 
-Future<void> readThroughFile(
-    File inputFile, void Function(CharacteristicHolder holder) forEach) async {
+Future<void> readThroughFile(final File inputFile,
+    final void Function(CharacteristicHolder holder) forEach) async {
   final lines = await inputFile.readAsLines();
   for (int i = 0; i < lines.length; i++) {
     final columns = lines[i].split(",");
@@ -124,9 +126,9 @@ Future<void> readThroughFile(
     final uuidInt = int.parse(columns[0].replaceFirst("0x", ""), radix: 16);
     final name = columns[1].replaceAll("\r", "").replaceAll("\n", "").trim();
     final variableName = camelCaseName(name);
-    final uuid16 = uuidInt.toRadixString(16).toLowerCase().padLeft(4, '0');
+    final uuid16 = uuidInt.toRadixString(16).toLowerCase().padLeft(4, "0");
     final uuid =
-        '${uuidInt.toRadixString(16).toLowerCase().padLeft(8, '0')}-0000-1000-8000-00805f9b34fb';
+        "${uuidInt.toRadixString(16).toLowerCase().padLeft(8, "0")}-0000-1000-8000-00805f9b34fb";
     forEach(CharacteristicHolder(variableName, name, uuid16, uuid));
   }
 }

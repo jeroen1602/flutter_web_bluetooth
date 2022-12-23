@@ -25,14 +25,14 @@ class RequestOptionsBuilder {
   /// May throw [StateError] if no filters are set, consider using
   /// [RequestOptionsBuilder.acceptAllDevices].
   ///
-  RequestOptionsBuilder(List<RequestFilterBuilder> requestFilters,
-      {List<String>? optionalServices})
+  RequestOptionsBuilder(final List<RequestFilterBuilder> requestFilters,
+      {final List<String>? optionalServices})
       : _requestFilters = requestFilters,
         _acceptAllDevices = false,
         _optionalServices = optionalServices {
     if (_requestFilters.isEmpty) {
-      throw StateError('No filters have been set, consider using '
-          'RequestOptionsBuilder.acceptAllDevices() instead.');
+      throw StateError("No filters have been set, consider using "
+          "RequestOptionsBuilder.acceptAllDevices() instead.");
     }
   }
 
@@ -43,7 +43,7 @@ class RequestOptionsBuilder {
   /// want to be able to communicate communicate with a
   /// characteristic in it.
   ///
-  RequestOptionsBuilder.acceptAllDevices({List<String>? optionalServices})
+  RequestOptionsBuilder.acceptAllDevices({final List<String>? optionalServices})
       : _acceptAllDevices = true,
         _requestFilters = [],
         _optionalServices = optionalServices;
@@ -61,17 +61,19 @@ class RequestOptionsBuilder {
         return RequestOptions(
             acceptAllDevices: true,
             optionalServices:
-                optionalService.map((e) => e.toLowerCase()).toList());
+                optionalService.map((final e) => e.toLowerCase()).toList());
       }
     } else {
       if (optionalService == null) {
         return RequestOptions(
-            filters: _requestFilters.map((e) => e.toScanFilter()).toList());
+            filters:
+                _requestFilters.map((final e) => e.toScanFilter()).toList());
       } else {
         return RequestOptions(
-            filters: _requestFilters.map((e) => e.toScanFilter()).toList(),
+            filters:
+                _requestFilters.map((final e) => e.toScanFilter()).toList(),
             optionalServices:
-                optionalService.map((e) => e.toLowerCase()).toList());
+                optionalService.map((final e) => e.toLowerCase()).toList());
       }
     }
   }
@@ -83,7 +85,7 @@ class RequestOptionsBuilder {
 /// being able to communicate with it.
 ///
 @Deprecated(
-    'These filters are not yet stable, so may change or not work at all')
+    "These filters are not yet stable, so may change or not work at all")
 class ServiceDataFilterBuilder {
   final String? _service;
   final Uint8List? _dataPrefix;
@@ -102,14 +104,18 @@ class ServiceDataFilterBuilder {
   /// The original UUID will be bit wise and (&) as well as the [dataPrefix] to
   /// the same [mask]. These two will then be compared to be equal.
   ///
+  @Deprecated(
+      "These filters are not yet stable, so may change or not work at all")
   ServiceDataFilterBuilder(
-      {String? service, Uint8List? dataPrefix, Uint8List? mask})
+      {final String? service,
+      final Uint8List? dataPrefix,
+      final Uint8List? mask})
       : _service = service,
         _dataPrefix = dataPrefix,
         _mask = mask {
     if (_service == null && _dataPrefix == null && _mask == null) {
       throw StateError(
-          'service, dataPrefix, and mask have not been set. Set at least one of them');
+          "service, dataPrefix, and mask have not been set. Set at least one of them");
     }
   }
 
@@ -117,10 +123,9 @@ class ServiceDataFilterBuilder {
   /// Convert the filter to an actual [BluetoothServiceDataFilter] for the
   /// [RequestOptions].
   ///
-  BluetoothServiceDataFilter toServiceDataFilter() {
-    return BluetoothScanFilterHelper.createServiceDataObject(
-        _service, _dataPrefix, _mask) as BluetoothServiceDataFilter;
-  }
+  BluetoothServiceDataFilter toServiceDataFilter() =>
+      BluetoothScanFilterHelper.createServiceDataObject(
+          _service, _dataPrefix, _mask) as BluetoothServiceDataFilter;
 }
 
 ///
@@ -158,19 +163,21 @@ class ManufacturerDataFilterBuilder {
   /// the same [mask]. These two will then be compared to be equal.
   ///
   ManufacturerDataFilterBuilder(
-      {int? companyIdentifier, Uint8List? dataPrefix, Uint8List? mask})
+      {final int? companyIdentifier,
+      final Uint8List? dataPrefix,
+      final Uint8List? mask})
       : _companyIdentifier = companyIdentifier,
         _dataPrefix = dataPrefix,
         _mask = mask {
     if (companyIdentifier != null &&
         (companyIdentifier < 0 || companyIdentifier > 0xFFFF)) {
       throw ArgumentError(
-          'The company identifier must fit in 16-bits, so greater than 0 and smaller than 0xFFFF (65535)',
-          'companyIdentifier');
+          "The company identifier must fit in 16-bits, so greater than 0 and smaller than 0xFFFF (65535)",
+          "companyIdentifier");
     }
     if (_companyIdentifier == null && _dataPrefix == null && _mask == null) {
       throw StateError(
-          'companyIdentifier, dataPrefix, and mask have not been set. Set at least one of them');
+          "companyIdentifier, dataPrefix, and mask have not been set. Set at least one of them");
     }
   }
 
@@ -178,11 +185,10 @@ class ManufacturerDataFilterBuilder {
   /// Convert the filter to an actual [BluetoothManufacturerDataFilter] for the
   /// [RequestOptions].
   ///
-  BluetoothManufacturerDataFilter toManufacturerDataFilter() {
-    return BluetoothScanFilterHelper.createManufacturerDataObject(
-            _companyIdentifier, _dataPrefix, _mask)
-        as BluetoothManufacturerDataFilter;
-  }
+  BluetoothManufacturerDataFilter toManufacturerDataFilter() =>
+      BluetoothScanFilterHelper.createManufacturerDataObject(
+              _companyIdentifier, _dataPrefix, _mask)
+          as BluetoothManufacturerDataFilter;
 }
 
 ///
@@ -225,12 +231,12 @@ class RequestFilterBuilder {
   ///
   /// TODO: change this API to force the developer to enter at least one filter item
   RequestFilterBuilder(
-      {String? name,
-      String? namePrefix,
-      List<String>? services,
-      List<ManufacturerDataFilterBuilder>? manufacturerData,
+      {final String? name,
+      final String? namePrefix,
+      final List<String>? services,
+      final List<ManufacturerDataFilterBuilder>? manufacturerData,
       //ignore: deprecated_member_use_from_same_package
-      List<ServiceDataFilterBuilder>? serviceData})
+      final List<ServiceDataFilterBuilder>? serviceData})
       : _name = name,
         _namePrefix = namePrefix,
         _services = services,
@@ -238,16 +244,16 @@ class RequestFilterBuilder {
         _serviceData = serviceData {
     if (_name == null &&
         _namePrefix == null &&
-        (_services == null || _services?.isEmpty == true) &&
-        (_manufacturerData == null || _manufacturerData?.isEmpty == true) &&
-        (_serviceData == null || _serviceData?.isEmpty == true)) {
+        (_services == null || (_services?.isEmpty ?? false)) &&
+        (_manufacturerData == null || (_manufacturerData?.isEmpty ?? false)) &&
+        (_serviceData == null || (_serviceData?.isEmpty ?? false))) {
       throw StateError(
-          'No filter parameters have been set, you may want to use '
-          '[RequestOptionsBuilder.acceptAllDevices()]!');
+          "No filter parameters have been set, you may want to use "
+          "[RequestOptionsBuilder.acceptAllDevices()]!");
     }
-    if (_services?.isEmpty == true) {
+    if (_services?.isEmpty ?? false) {
       throw StateError(
-          'Filter service is empty, consider setting it to null instead.');
+          "Filter service is empty, consider setting it to null instead.");
     }
   }
 
@@ -255,14 +261,14 @@ class RequestFilterBuilder {
   /// convert to an actual [BluetoothScanFilter] Javascript object for the web
   /// api call.
   ///
-  BluetoothScanFilter toScanFilter() {
-    return BluetoothScanFilterHelper.createScanFilterObject(
-        _services,
-        _name,
-        _namePrefix,
-        _manufacturerData?.map((e) => e.toManufacturerDataFilter()).toList(),
-        _serviceData
-            ?.map((e) => e.toServiceDataFilter())
-            .toList()) as BluetoothScanFilter;
-  }
+  BluetoothScanFilter toScanFilter() =>
+      BluetoothScanFilterHelper.createScanFilterObject(
+              _services,
+              _name,
+              _namePrefix,
+              _manufacturerData
+                  ?.map((final e) => e.toManufacturerDataFilter())
+                  .toList(),
+              _serviceData?.map((final e) => e.toServiceDataFilter()).toList())
+          as BluetoothScanFilter;
 }
