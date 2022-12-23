@@ -280,11 +280,11 @@ class BluetoothCharacteristic {
   /// - May throw [StateError] if the characteristic is null.
   ///
   /// ignore: deprecated_member_use_from_same_package
-  /// Will call [WebBluetoothRemoteGATTCharacteristic.writeValue] if
+  /// - Will call [WebBluetoothRemoteGATTCharacteristic.writeValue] if
   /// [WebBluetoothRemoteGATTCharacteristic.writeValueWithoutResponse] is not
   /// supported on the browser.
   ///
-  /// See: [writeValueWithResponse].
+  /// See: [writeValueWithoutResponse].
   ///
   Future<void> writeValueWithResponse(final Uint8List data) async {
     try {
