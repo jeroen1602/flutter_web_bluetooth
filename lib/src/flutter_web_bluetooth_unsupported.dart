@@ -96,4 +96,9 @@ class FlutterWebBluetooth extends FlutterWebBluetoothInterface {
   @override
   Stream<AdvertisementReceivedEvent<AdvertisementBluetoothDevice>>
       get advertisements => const Stream.empty();
+
+  @override
+  Future<void> _forgetDevice(final BluetoothDevice device) async {
+    // Do nothing
+  }
 }

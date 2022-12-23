@@ -305,7 +305,8 @@ class FlutterWebBluetooth extends FlutterWebBluetoothInterface {
       final convertedOptions = options.toRequestOptions();
       return await Bluetooth.requestLEScan(convertedOptions);
     } on BrowserError catch (e) {
-      if (e.message.startsWith("InvalidStateError")) {
+      if (e.message.startsWith("InvalidStateError") ||
+          e.message.startsWith("NotFoundError")) {
         throw BluetoothAdapterNotAvailable("requestLEScan");
       }
       rethrow;
@@ -330,5 +331,19 @@ class FlutterWebBluetooth extends FlutterWebBluetoothInterface {
       get advertisements {
     _startAdvertisementStream();
     return _advertisementSubject!.stream;
+  }
+
+  ///
+  /// The [devices] stream has a [Set] of [BluetoothDevice]s. If the
+  /// [BluetoothDevice.forget] method is used then it should also be removed
+  /// from the [devices] stream. This method takes in a [BluetoothDevice] to
+  /// be removed from this stream.
+  ///
+  @override
+  Future<void> _forgetDevice(final BluetoothDevice device) async {
+    final set = _knownDevicesStream.value ?? <BluetoothDevice>{};
+    if (set.remove(device)) {
+      _knownDevicesStream.add(set);
+    }
   }
 }

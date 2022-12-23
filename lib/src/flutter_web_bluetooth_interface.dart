@@ -185,4 +185,12 @@ abstract class FlutterWebBluetoothInterface {
   /// [BluetoothDevice.advertisementsUseMemory].
   ///
   bool defaultAdvertisementsMemory = true;
+
+  ///
+  /// The [devices] stream has a [Set] of [BluetoothDevice]s. If the
+  /// [BluetoothDevice.forget] method is used then it should also be removed
+  /// from the [devices] stream. This method takes in a [BluetoothDevice] to
+  /// be removed from this stream.
+  ///
+  Future<void> _forgetDevice(final BluetoothDevice device);
 }

@@ -5,6 +5,7 @@
   * If you were using `defaultUuid.ordinal` then you should now use `defaultUuid.index`.
   * Some names may slightly differ.
 * **Breaking** Upgraded minimum dart sdk to `2.17`
+* Added `forget` to a `BluetoothDevice`, to forget a device.
 
 ## 0.1.0
 
