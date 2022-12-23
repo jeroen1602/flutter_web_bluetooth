@@ -1,0 +1,11 @@
+version: 2
+enable-beta-ecosystems: true #Needed for pub support
+updates:
+  - package-ecosystem: "pub"
+    directory: "/"
+    schedule:
+      interval: "weekly"
+  - package-ecosystem: "github-actions"
+    directory: "/.github/workflows/"
+    schedule:
+      interval: "weekly"
