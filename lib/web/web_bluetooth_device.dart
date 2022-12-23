@@ -150,6 +150,41 @@ class WebBluetoothDevice {
       _JSUtil.hasProperty(_jsObject, "watchAdvertisements");
 
   ///
+  /// Forget the device. This means that the device will be forgotten by the
+  /// browser and no longer shows up in [Bluetooth.getDevices].
+  ///
+  /// Once forget has been called you won't be able to communicate with the
+  /// device anymore.
+  ///
+  /// May throw:
+  ///
+  /// - [NativeAPINotImplementedError] if the user agent doesn't have the
+  ///   forget method. Use [hasForget] to mitigate this.
+  ///
+  /// **NOTE:** Calling forget on a device retrieved via
+  /// [Bluetooth.requestLEScan] will cause chrome to crash
+  /// (last tested on 2022-12-23).
+  ///
+  /// **NOTE:** Forgetting a device twice will cause chrome to crash
+  /// (last tested on 2022-12-23).
+  ///
+  /// See:
+  ///
+  /// - https://webbluetoothcg.github.io/web-bluetooth/#dom-bluetoothdevice-forget
+  ///
+  Future<void> forget() async {
+    if (!hasForget) {
+      throw NativeAPINotImplementedError("forget");
+    }
+    await _JSUtil.promiseToFuture(_JSUtil.callMethod(_jsObject, "forget", []));
+  }
+
+  ///
+  /// Check to see if the browser/ user agent has the forget method.
+  ///
+  bool get hasForget => _JSUtil.hasProperty(_jsObject, "forget");
+
+  ///
   /// If the device is watching for advertisements.
   /// If advertisements are not unsupported then it will always return `false`.
   ///

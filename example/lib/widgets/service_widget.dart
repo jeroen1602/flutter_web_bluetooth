@@ -30,8 +30,9 @@ class ServiceState extends State<ServiceWidget> {
   Future<_ServiceAndCharacteristic>? _serviceAndCharacteristics;
 
   @override
-  Future<void> initState() async {
+  void initState() {
     super.initState();
+    // ignore: discarded_futures
     _serviceAndCharacteristics = _getServicesAndCharacteristics();
   }
 

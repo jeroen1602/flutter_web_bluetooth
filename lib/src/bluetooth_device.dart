@@ -90,6 +90,8 @@ class BluetoothDevice extends AdvertisementBluetoothDevice {
       _advertisementSubject;
   AbortController? _advertisementAbortController;
 
+  bool _forgotten = false;
+
   ///
   /// A stream which will emit all the advertisements received.
   ///
@@ -242,6 +244,41 @@ class BluetoothDevice extends AdvertisementBluetoothDevice {
 
     _connectionSubject?.add(true);
   }
+
+  ///
+  /// Forget the device. This means that the device will no longer show up
+  /// in [FlutterWebBluetooth.devices] stream.
+  ///
+  /// You can no longer communicate with the device after calling [forget].
+  /// It basically reverts into a [AdvertisementBluetoothDevice].
+  ///
+  /// Will throw [NativeAPINotImplementedError] if the browser/ user agent
+  /// doesn't have the method implemented.
+  ///
+  /// Will throw [StateError] if the device has already been forgotten.
+  ///
+  Future<void> forget() async {
+    if (_forgotten) {
+      // Stops you from crashing the browser by forgetting a device twice.
+      throw StateError("The device has already been forgotten");
+    }
+    await _bluetoothDevice.forget();
+    _forgotten = true;
+    // Remove the device from the list of devices.
+    await FlutterWebBluetooth.instance._forgetDevice(this);
+  }
+
+  ///
+  /// A bool representing if the device has already been forgotten.
+  ///
+  /// Will be `true` after calling [forget]. Otherwise it will be `false`.
+  ///
+  bool get isForgotten => _forgotten;
+
+  ///
+  /// Check to see if the browser/ user agent has [forget].
+  ///
+  bool get hasForget => _bluetoothDevice.hasForget;
 
   ///
   /// Check to see if the current browser supports the [watchAdvertisements]

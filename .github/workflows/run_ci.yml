@@ -2,13 +2,13 @@ name: Run CI
 on:
   push:
     paths:
-      - /lib/**
-      - /test/**
-      - /pubspec.yaml
-      - /.github/workflows/run_ci.yml
-      - /example/lib/**
-      - /example/test/**
-      - /example/pubspec.yaml
+      - lib/**
+      - test/**
+      - pubspec.yaml
+      - .github/workflows/run_ci.yml
+      - example/lib/**
+      - example/test/**
+      - example/pubspec.yaml
   workflow_dispatch:
 
 jobs:
