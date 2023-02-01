@@ -5,8 +5,6 @@
 ///
 library bluetooth_web_js_utils;
 
-import "package:meta/meta.dart";
-
 part "js_utils_interface.dart";
 
 ///
@@ -19,58 +17,49 @@ part "js_utils_interface.dart";
 /// The actually used implementation can be overwritten by calling [testingSetJSUtils].
 ///
 class JSUtils extends JSUtilsInterface {
-  @alwaysThrows
   @override
-  dynamic callConstructor(final Object constr, final List<Object?>? arguments) {
+  Never callConstructor(final Object constr, final List<Object?>? arguments) {
     throw UnimplementedError();
   }
 
-  @alwaysThrows
   @override
-  dynamic callMethod(
+  Never callMethod(
       final Object o, final String method, final List<Object?> args) {
     throw UnimplementedError();
   }
 
-  @alwaysThrows
   @override
-  dynamic getProperty(final Object o, final Object name) {
+  Never getProperty(final Object o, final Object name) {
     throw UnimplementedError();
   }
 
-  @alwaysThrows
   @override
-  bool hasProperty(final Object o, final Object name) {
+  Never hasProperty(final Object o, final Object name) {
     throw UnimplementedError();
   }
 
-  @alwaysThrows
   @override
-  bool instanceof(final Object? o, final Object type) {
+  Never instanceof(final Object? o, final Object type) {
     throw UnimplementedError();
   }
 
-  @alwaysThrows
   @override
-  dynamic newObject() {
+  Never newObject() {
     throw UnimplementedError();
   }
 
-  @alwaysThrows
   @override
-  Future<T> promiseToFuture<T>(final Object jsPromise) {
+  Never promiseToFuture<T>(final Object jsPromise) {
     throw UnimplementedError();
   }
 
-  @alwaysThrows
   @override
-  dynamic setProperty(final Object o, final Object name, final Object? value) {
+  Never setProperty(final Object o, final Object name, final Object? value) {
     throw UnimplementedError();
   }
 
-  @alwaysThrows
   @override
-  F allowInterop<F extends Function>(final F f) {
+  Never allowInterop<F extends Function>(final F f) {
     throw UnimplementedError();
   }
 }
