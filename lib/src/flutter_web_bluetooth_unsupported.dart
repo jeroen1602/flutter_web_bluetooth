@@ -70,15 +70,12 @@ class FlutterWebBluetooth extends FlutterWebBluetoothInterface {
   Stream<Set<BluetoothDevice>> get devices => Stream.value(<BluetoothDevice>{});
 
   @override
-  @alwaysThrows
-  Future<BluetoothDevice> requestDevice(final RequestOptionsBuilder options) {
+  Never requestDevice(final RequestOptionsBuilder options) {
     throw NativeAPINotImplementedError("requestDevice");
   }
 
   @override
-  @alwaysThrows
-  Future<BluetoothDevice> requestAdvertisementDevice(
-      final AdvertisementBluetoothDevice device,
+  Never requestAdvertisementDevice(final AdvertisementBluetoothDevice device,
       {final List<String> requiredServices = const [],
       final List<String> optionalServices = const []}) {
     throw NativeAPINotImplementedError("requestAdvertisementDevice");
@@ -88,8 +85,7 @@ class FlutterWebBluetooth extends FlutterWebBluetoothInterface {
   final bool hasRequestLEScan = false;
 
   @override
-  @alwaysThrows
-  Future<BluetoothLEScan> requestLEScan(final LEScanOptionsBuilder options) {
+  Never requestLEScan(final LEScanOptionsBuilder options) {
     throw NativeAPINotImplementedError("requestLEScan");
   }
 

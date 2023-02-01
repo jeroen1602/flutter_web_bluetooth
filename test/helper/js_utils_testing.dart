@@ -1,17 +1,16 @@
 import "package:flutter_web_bluetooth/web/js/js_utils.dart";
-import "package:meta/meta.dart";
 
 class JSUtilsTesting extends JSUtilsInterface {
+  // Return Never for now
   @override
-  @alwaysThrows // for now
-  dynamic callConstructor(final Object constr, final List<Object?>? arguments) {
+  Never callConstructor(final Object constr, final List<Object?>? arguments) {
     // TODO: implement callConstructor
     throw UnimplementedError();
   }
 
+  // Return Never for now
   @override
-  @alwaysThrows // for now
-  dynamic callMethod(
+  Never callMethod(
       final Object o, final String method, final List<Object?> args) {
     // TODO: implement callMethod
     throw UnimplementedError();
@@ -55,9 +54,9 @@ class JSUtilsTesting extends JSUtilsInterface {
     throw StateError("Input wasn't a Future for testing");
   }
 
+  // Return Never for now
   @override
-  @alwaysThrows // for now
-  dynamic setProperty(final Object o, final Object name, final Object? value) {
+  Never setProperty(final Object o, final Object name, final Object? value) {
     // TODO: implement setProperty
     throw UnimplementedError();
   }
