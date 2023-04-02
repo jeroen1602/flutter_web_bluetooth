@@ -1,3 +1,5 @@
+[![pub package](https://img.shields.io/pub/v/flutter_web_bluetooth.svg)](https://pub.dev/packages/flutter_web_bluetooth)
+
 # Introduction
 
 Flutter web bluetooth is a ~~Flutter~~ [Dart](https://dart.dev/) plugin to add support for the 
