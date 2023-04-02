@@ -8,6 +8,7 @@ import "package:flutter_web_bluetooth_example/pages/device_services_page.dart";
 import "package:flutter_web_bluetooth_example/web_helpers/web_helpers.dart";
 import "package:flutter_web_bluetooth_example/widgets/bluetooth_device_widget.dart";
 import "package:flutter_web_bluetooth_example/widgets/floating_action_buttons.dart";
+import "package:flutter_web_bluetooth_example/widgets/info_dialog.dart";
 
 const redirect = bool.fromEnvironment("redirectToHttps", defaultValue: false);
 
@@ -42,8 +43,16 @@ class _MyAppState extends State<MyApp> {
         return MaterialApp(
             home: Scaffold(
           appBar: AppBar(
-            title: const SelectableText("Bluetooth web example app"),
-          ),
+              title: const SelectableText("Bluetooth web example app"),
+              actions: [
+                Builder(builder: (final BuildContext context) {
+                  return IconButton(
+                      onPressed: () async {
+                        await InfoDialog.showInfoDialog(context);
+                      },
+                      icon: const Icon(Icons.info));
+                }),
+              ]),
           body: MainPage(
             isBluetoothAvailable: available,
           ),

@@ -132,7 +132,13 @@ class BluetoothBusiness {
   ///
   /// Create a stream that combines the device returned from advertisements and
   /// from normal device requests.
+  ///
+  /// Will return `null` if bluetooth web is not supported.
+  ///
   static Stream<Set<MainPageDevice>>? createDeviceStream() {
+    if (!Bluetooth.isBluetoothAPISupported()) {
+      return null;
+    }
     final List<AdvertisementReceivedEvent<AdvertisementBluetoothDevice>>
         advertisementDevices = [];
 
