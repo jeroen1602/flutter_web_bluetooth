@@ -23,7 +23,7 @@ dependencies:
     # the parent directory to use the current plugin's version.
     path: ../
   rxdart: ^0.27.7
-  url_launcher: ^6.1.8
+  url_launcher: ^6.1.10
   web_browser_detect: ^2.0.3
 
 dev_dependencies:
