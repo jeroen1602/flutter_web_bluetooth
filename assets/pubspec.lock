@@ -1,0 +1,4 @@
+packages:
+  flutter_web_bluetooth:
+    version: "0.2.0"
+
