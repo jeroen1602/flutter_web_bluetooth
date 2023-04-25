@@ -5,10 +5,12 @@ on:
       - lib/**
       - test/**
       - pubspec.yaml
+      - pubspec.lock
       - .github/workflows/run_ci.yml
       - example/lib/**
       - example/test/**
       - example/pubspec.yaml
+      - example/pubspec.lock
   workflow_dispatch:
 
 jobs:
