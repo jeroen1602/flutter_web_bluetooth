@@ -23,7 +23,7 @@ flutter/
  |-...
 ```
 
-Now that hte file is in the flutter folder we need to apply the patch.
+Now that the file is in the flutter folder we need to apply the patch.
 
 ```bash
 patch -p1 < Add-experimental-launch-flag.patch
