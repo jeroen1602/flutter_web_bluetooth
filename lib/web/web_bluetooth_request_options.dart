@@ -24,6 +24,19 @@ class RequestOptions {
   external List<BluetoothScanFilter> get filters;
 
   ///
+  /// A device may not have enough distinct information. To solve this you may
+  /// add [exclusionFilters]. These are the same as the [filters], if a
+  /// device matches **ANY** of these filters then it will not be available.
+  ///
+  /// **NOTE:** [exclusionFilters] cannot be used together with
+  /// [acceptAllDevices]. It may also not be an empty list.
+  ///
+  /// **NOTE:** [exclusionFilters] are only supported from Chrome 114 and above
+  /// as well other browsers based on chromium.
+  ///
+  external List<BluetoothScanFilter> get exclusionFilters;
+
+  ///
   /// A list of service UUIDS that a device may have or may not have.
   ///
   /// *NOTE:** You **NEED** to define a service in either the [filters]
@@ -47,6 +60,7 @@ class RequestOptions {
   ///
   external factory RequestOptions(
       {final List<BluetoothScanFilter> filters,
+      final List<BluetoothScanFilter> exclusionFilters,
       final List<dynamic> optionalServices,
       final bool acceptAllDevices});
 }

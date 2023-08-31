@@ -8,12 +8,17 @@ part of flutter_web_bluetooth;
 class RequestOptionsBuilder {
   final bool _acceptAllDevices;
   final List<RequestFilterBuilder> _requestFilters;
+  final List<RequestFilterBuilder>? _exclusionFilters;
   final List<String>? _optionalServices;
 
   ///
   /// Tell the browser to only accept device matching the [requestFilters].
   /// A device has to only match one filter, so if you support multiple device
   /// types then you add a filter for each device type.
+  ///
+  /// A device may not have enough distinct information. To solve this you may
+  /// add [exclusionFilters]. These are the same as the [requestFilters], if a
+  /// device matches **ANY** of these filters then it will not be available.
   ///
   /// [optionalServices] is a list of services that are a nice to have. If a
   /// device doesn't have this service then the browser won't reject it.
@@ -22,13 +27,18 @@ class RequestOptionsBuilder {
   /// or [optionalServices] if you want to be able to communicate with a
   /// characteristic in it.
   ///
+  /// **NOTE:** [exclusionFilters] are only supported from Chrome 114 and above
+  /// as well other browsers based on chromium.
+  ///
   /// May throw [StateError] if no filters are set, consider using
   /// [RequestOptionsBuilder.acceptAllDevices].
   ///
   RequestOptionsBuilder(final List<RequestFilterBuilder> requestFilters,
-      {final List<String>? optionalServices})
+      {final List<RequestFilterBuilder>? exclusionFilters,
+      final List<String>? optionalServices})
       : _requestFilters = requestFilters,
         _acceptAllDevices = false,
+        _exclusionFilters = exclusionFilters,
         _optionalServices = optionalServices {
     if (_requestFilters.isEmpty) {
       throw StateError("No filters have been set, consider using "
@@ -46,6 +56,7 @@ class RequestOptionsBuilder {
   RequestOptionsBuilder.acceptAllDevices({final List<String>? optionalServices})
       : _acceptAllDevices = true,
         _requestFilters = [],
+        _exclusionFilters = null,
         _optionalServices = optionalServices;
 
   ///
@@ -53,27 +64,47 @@ class RequestOptionsBuilder {
   /// web navigator request.
   ///
   RequestOptions toRequestOptions() {
-    final optionalService = _optionalServices;
+    final filters = _requestFilters.map((final e) => e.toScanFilter()).toList();
+    final optionalServices = _optionalServices?.isNotEmpty ?? false
+        ? _optionalServices?.map((final e) => e.toLowerCase()).toList()
+        : null;
+    final exclusionFilters = _exclusionFilters?.isNotEmpty ?? false
+        ? _exclusionFilters?.map((final e) => e.toScanFilter()).toList()
+        : null;
     if (_acceptAllDevices) {
-      if (optionalService == null) {
+      if (optionalServices == null) {
         return RequestOptions(acceptAllDevices: true);
       } else {
         return RequestOptions(
-            acceptAllDevices: true,
-            optionalServices:
-                optionalService.map((final e) => e.toLowerCase()).toList());
+          acceptAllDevices: true,
+          optionalServices: optionalServices,
+        );
       }
     } else {
-      if (optionalService == null) {
-        return RequestOptions(
-            filters:
-                _requestFilters.map((final e) => e.toScanFilter()).toList());
+      if (optionalServices == null) {
+        if (exclusionFilters == null) {
+          return RequestOptions(
+            filters: filters,
+          );
+        } else {
+          return RequestOptions(
+            filters: filters,
+            exclusionFilters: exclusionFilters,
+          );
+        }
       } else {
-        return RequestOptions(
-            filters:
-                _requestFilters.map((final e) => e.toScanFilter()).toList(),
-            optionalServices:
-                optionalService.map((final e) => e.toLowerCase()).toList());
+        if (exclusionFilters == null) {
+          return RequestOptions(
+            filters: filters,
+            optionalServices: optionalServices,
+          );
+        } else {
+          return RequestOptions(
+            filters: filters,
+            optionalServices: optionalServices,
+            exclusionFilters: exclusionFilters,
+          );
+        }
       }
     }
   }
