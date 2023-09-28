@@ -1,6 +1,5 @@
 part of js_web_bluetooth;
 
-
 ///
 /// An error thrown if a method has not been called from a user gesture.
 /// Some actions require a user gesture before they can be run. This stops
@@ -12,7 +11,8 @@ class MissingUserGestureError extends BrowserError {
   /// Create a new instance.
   /// [method] is the method where the error occurred.
   ///
-  MissingUserGestureError(this.method) : super("\"$method\" must be called from a user gesture");
+  MissingUserGestureError(this.method)
+      : super("\"$method\" must be called from a user gesture");
 
   ///
   /// The method that the error occurred in.
@@ -23,4 +23,3 @@ class MissingUserGestureError extends BrowserError {
   @override
   String get errorName => "MissingUserGestureError";
 }
-

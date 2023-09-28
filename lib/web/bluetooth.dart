@@ -424,7 +424,8 @@ class Bluetooth {
         }
         throw DeviceNotFoundError(
             error.replaceFirst("NotFoundError", "").replaceFirst(": ", ""));
-      } else if (error.startsWith("SecurityError") && error.toLowerCase().contains("gesture")) {
+      } else if (error.startsWith("SecurityError") &&
+          error.toLowerCase().contains("gesture")) {
         throw MissingUserGestureError("requestDevice");
       }
       if (e is Error) {

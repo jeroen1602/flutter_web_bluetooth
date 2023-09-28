@@ -1,11 +1,12 @@
 ## 0.2.2
 
-* Added `exclusionFilters` to `RequestOptionsBuilder`
-* Added new MissingUserGestureError that you may need to handle
+* Added `exclusionFilters` to `RequestOptionsBuilder`.
+* Added new MissingUserGestureError that you may need to handle.
+* Updated dependencies to be more broad. (The minimum versions are still supported.)
 
 ## 0.2.1
 
-* Updated dependencies
+* Updated dependencies.
 
 ## 0.2.0
 
