@@ -395,6 +395,9 @@ class Bluetooth {
   ///
   /// - May throw TypeError if the [RequestOptions] are malformed.
   ///
+  /// - May throw [MissingUserGestureError] if the method is not called from
+  /// a user gesture.
+  ///
   /// See:
   ///
   /// - [RequestOptions]
@@ -421,6 +424,8 @@ class Bluetooth {
         }
         throw DeviceNotFoundError(
             error.replaceFirst("NotFoundError", "").replaceFirst(": ", ""));
+      } else if (error.startsWith("SecurityError") && error.toLowerCase().contains("gesture")) {
+        throw MissingUserGestureError("requestDevice");
       }
       if (e is Error) {
         rethrow;
@@ -476,6 +481,9 @@ class Bluetooth {
   ///
   /// - May throw [PermissionError] if the user has disallowed the permission.
   ///
+  /// - May throw [MissingUserGestureError] if the method is not called from
+  /// a user gesture.
+  ///
   /// - May throw [BrowserError] for every other browser error.
   ///
   static Future<BluetoothLEScan> requestLEScan(
@@ -504,6 +512,9 @@ class Bluetooth {
       } else if (error.startsWith("NotAllowedError")) {
         throw PermissionError("requestLEScan");
       } else if (error.startsWith("SecurityError")) {
+        if (error.toLowerCase().contains("gesture")) {
+          throw MissingUserGestureError("requestLEScan");
+        }
         throw PolicyError("requestLEScan");
       }
 

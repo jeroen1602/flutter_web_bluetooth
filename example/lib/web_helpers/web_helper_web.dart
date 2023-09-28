@@ -7,6 +7,7 @@ class WebHelpers {
   static bool get isSecureContext {
     return window.location.protocol.startsWith("https") == true ||
         window.location.hostname == "localhost" ||
+        (window.location.hostname?.endsWith(".localhost") ?? false) ||
         (window.location.hostname?.startsWith("127.") ?? false) ||
         window.location.hostname == "[::1]";
   }

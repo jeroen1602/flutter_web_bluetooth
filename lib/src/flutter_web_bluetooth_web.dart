@@ -172,6 +172,9 @@ class FlutterWebBluetooth extends FlutterWebBluetoothInterface {
   /// - May throw [DeviceNotFoundError] if the device could not be found with the
   /// current request filters.
   ///
+  /// - May throw [MissingUserGestureError] if the method is not called from
+  /// a user gesture.
+  ///
   /// See: [RequestOptionsBuilder]
   ///
   @override
@@ -288,6 +291,9 @@ class FlutterWebBluetooth extends FlutterWebBluetoothInterface {
   ///
   /// - May throw [BluetoothAdapterNotAvailable] if there is no Bluetooth
   /// adapter available.
+  ///
+  /// - May throw [MissingUserGestureError] if the method is not called from
+  /// a user gesture.
   ///
   /// - May throw [BrowserError] for every other browser error.
   ///

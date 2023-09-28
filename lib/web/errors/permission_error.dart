@@ -1,7 +1,7 @@
 part of js_web_bluetooth;
 
 ///
-/// An error thrown if a permission ahs been denied by the user.
+/// An error thrown if a permission has been denied by the user.
 ///
 class PermissionError extends BrowserError {
   ///

@@ -16,6 +16,7 @@ import "package:flutter_web_bluetooth/web_bluetooth_logger.dart";
 import "package:meta/meta.dart";
 
 part "web/bluetooth.dart";
+part "web/errors/missing_user_gesture_error.dart";
 part "web/errors/browser_error.dart";
 part "web/errors/device_not_found_error.dart";
 part "web/errors/native_api_not_implemented_error.dart";
