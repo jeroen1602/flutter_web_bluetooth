@@ -1,4 +1,4 @@
-part of js_web_bluetooth;
+part of "../js_web_bluetooth.dart";
 
 ///
 /// An interface for the `advertisementreceived` event.

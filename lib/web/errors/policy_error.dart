@@ -1,4 +1,4 @@
-part of js_web_bluetooth;
+part of "../../js_web_bluetooth.dart";
 
 ///
 /// An administrator may disable Bluetooth in the browser via a policy. If this

@@ -1,4 +1,4 @@
-part of js_web_bluetooth;
+part of "../js_web_bluetooth.dart";
 
 ///
 /// A class for calling methods and values for a [NativeBluetoothRemoteGATTServer].

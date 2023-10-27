@@ -1,4 +1,4 @@
-part of js_web_bluetooth;
+part of "../../js_web_bluetooth.dart";
 
 ///
 /// An error thrown if a method has not been called from a user gesture.

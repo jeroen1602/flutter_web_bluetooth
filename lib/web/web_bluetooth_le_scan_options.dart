@@ -1,4 +1,4 @@
-part of js_web_bluetooth;
+part of "../js_web_bluetooth.dart";
 
 ///
 /// The js object for request options. This is used for [Bluetooth.requestLEScan].

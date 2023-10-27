@@ -1,3 +1,4 @@
+// ignore: use_string_in_part_of_directives
 part of bluetooth_web_js_utils;
 
 ///

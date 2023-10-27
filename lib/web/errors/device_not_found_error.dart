@@ -1,4 +1,4 @@
-part of js_web_bluetooth;
+part of "../../js_web_bluetooth.dart";
 
 ///
 /// An [Error] that is thrown if no device could be found to match the
