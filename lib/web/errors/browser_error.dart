@@ -1,4 +1,4 @@
-part of js_web_bluetooth;
+part of "../../js_web_bluetooth.dart";
 
 ///
 /// This error is the base error for any error that the browser may throw.

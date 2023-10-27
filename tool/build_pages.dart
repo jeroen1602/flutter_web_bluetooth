@@ -37,7 +37,7 @@ Future<int> main() async {
   final serviceWorker = await serviceWorkerFile.readAsString();
   await serviceWorkerFile.writeAsString(
       serviceWorker.replaceFirst(
-          RegExp("\"/\":"), "\"/flutter_web_bluetooth/\""),
+          RegExp("\"/\":"), "\"/flutter_web_bluetooth/\":"),
       flush: true);
 
   print("Updating provided pubspec");
@@ -59,10 +59,10 @@ Future<int> main() async {
     throw ArgumentError("Version was not set");
   }
   final newPubspecContent = """
-  packages:
-    flutter_web_bluetooth:
-      version: "$version"
-  """;
+packages:
+  flutter_web_bluetooth:
+    version: "$version"
+""";
 
   await pubspecFile.writeAsString(newPubspecContent);
 

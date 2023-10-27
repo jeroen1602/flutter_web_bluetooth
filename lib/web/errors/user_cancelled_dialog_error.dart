@@ -1,4 +1,4 @@
-part of js_web_bluetooth;
+part of "../../js_web_bluetooth.dart";
 
 ///
 /// A subclass of [DeviceNotFoundError] for the case where the user has
