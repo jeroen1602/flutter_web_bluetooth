@@ -24,7 +24,6 @@ linter:
   rules:
     - always_use_package_imports
     - avoid_print
-    - avoid_returning_null_for_future
     - avoid_type_to_string
     - cancel_subscriptions
     - close_sinks

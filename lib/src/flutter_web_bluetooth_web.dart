@@ -18,6 +18,7 @@ part "advertisement_received_event.dart";
 part "bluetooth_characteristic.dart";
 part "bluetooth_characteristic_properties.dart";
 part "bluetooth_default_uuids.dart";
+part "bluetooth_default_manufacturer_identifiers.dart";
 part "bluetooth_descriptor.dart";
 part "bluetooth_device.dart";
 part "bluetooth_service.dart";

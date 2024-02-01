@@ -22,3 +22,6 @@ doc/
 .idea/
 *.iml
 .vscode/
+
+# Tool ignore
+/tool/company_identifiers.yaml

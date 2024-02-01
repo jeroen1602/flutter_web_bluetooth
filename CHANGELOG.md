@@ -1,3 +1,10 @@
+## 0.2.3
+
+* Added `optionalManufacturerData` to `RequestOptions`. This is needed to get the manufacture data when watching
+  advertisements.
+* Added `BluetoothDefaultManufacturerIdentifiers` enum with all the registered manufacturer identifiers
+* Update dependencies.
+
 ## 0.2.2
 
 * Added `exclusionFilters` to `RequestOptionsBuilder`.
@@ -11,9 +18,9 @@
 ## 0.2.0
 
 * **Breaking** Removed SNAKE_CASE uuids.
-  * The default uuids are now an enum since dart supports enums with values.
-  * If you were using `defaultUuid.ordinal` then you should now use `defaultUuid.index`.
-  * Some names may slightly differ.
+    * The default uuids are now an enum since dart supports enums with values.
+    * If you were using `defaultUuid.ordinal` then you should now use `defaultUuid.index`.
+    * Some names may slightly differ.
 * **Breaking** Upgraded minimum dart sdk to `2.17`
 * Added `forget` to a `BluetoothDevice`, to forget a device.
 

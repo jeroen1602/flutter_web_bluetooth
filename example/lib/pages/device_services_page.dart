@@ -52,7 +52,7 @@ class DeviceServicesState extends State<DeviceServicesPage> {
                     message = "Unknown error: $e";
                   }
 
-                  if (mounted) {
+                  if (context.mounted) {
                     if (message.isNotEmpty) {
                       ScaffoldMessenger.maybeOf(context)?.showSnackBar(SnackBar(
                         content: Text(message),
