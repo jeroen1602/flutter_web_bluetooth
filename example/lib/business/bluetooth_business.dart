@@ -50,7 +50,11 @@ class BluetoothBusiness {
           RequestOptionsBuilder.acceptAllDevices(
               optionalServices: BluetoothDefaultServiceUUIDS.values
                   .map((final e) => e.uuid)
-                  .toList()));
+                  .toList(),
+              optionalManufacturerData: BluetoothDefaultManufacturerIdentifiers
+                  .values
+                  .map((final e) => e.identifier)
+                  .toList(growable: false)));
       debugPrint("Device got! ${device.name}, ${device.id}");
       return RequestDeviceState.ok;
     } on BluetoothAdapterNotAvailable {

@@ -11,6 +11,7 @@ class RequestOptionsBuilder {
   final List<RequestFilterBuilder> _requestFilters;
   final List<RequestFilterBuilder>? _exclusionFilters;
   final List<String>? _optionalServices;
+  final List<int>? _optionalManufacturerData;
 
   ///
   /// Tell the browser to only accept device matching the [requestFilters].
@@ -24,9 +25,17 @@ class RequestOptionsBuilder {
   /// [optionalServices] is a list of services that are a nice to have. If a
   /// device doesn't have this service then the browser won't reject it.
   ///
+  /// [optionalManufacturerData] is a list of manufacturer codes. These codes
+  /// are then used to grand access to specific manufacturer data. This can
+  /// be a list of either strings in hexadecimal or ints. **NOTE** these values
+  /// can be a maximum of unsigned 16 bits.
+  ///
   /// **NOTE:** You **NEED** to define a service in either the [requestFilters]
   /// or [optionalServices] if you want to be able to communicate with a
   /// characteristic in it.
+  ///
+  /// **NOTE:** You **NEED** to define [optionalManufacturerData] if you want
+  /// to get this manufacturer data later.
   ///
   /// **NOTE:** [exclusionFilters] are only supported from Chrome 114 and above
   /// as well other browsers based on chromium.
@@ -34,13 +43,18 @@ class RequestOptionsBuilder {
   /// May throw [StateError] if no filters are set, consider using
   /// [RequestOptionsBuilder.acceptAllDevices].
   ///
-  RequestOptionsBuilder(final List<RequestFilterBuilder> requestFilters,
-      {final List<RequestFilterBuilder>? exclusionFilters,
-      final List<String>? optionalServices})
-      : _requestFilters = requestFilters,
+  RequestOptionsBuilder(
+    final List<RequestFilterBuilder> requestFilters, {
+    final List<RequestFilterBuilder>? exclusionFilters,
+    final List<String>? optionalServices,
+    final List<dynamic>? optionalManufacturerData,
+  })  : _requestFilters = requestFilters,
         _acceptAllDevices = false,
         _exclusionFilters = exclusionFilters,
-        _optionalServices = optionalServices {
+        _optionalServices = optionalServices,
+        _optionalManufacturerData =
+            RequestOptionsBuilder._convertOptionalManufacturerData(
+                optionalManufacturerData) {
     if (_requestFilters.isEmpty) {
       throw StateError("No filters have been set, consider using "
           "RequestOptionsBuilder.acceptAllDevices() instead.");
@@ -50,15 +64,60 @@ class RequestOptionsBuilder {
   ///
   /// Tell the browser to just accept all devices.
   ///
+  /// [optionalServices] is a list of services that are a nice to have. If a
+  /// device doesn't have this service then the browser won't reject it.
+  ///
+  /// [optionalManufacturerData] is a list of manufacturer codes. These codes
+  /// are then used to grand access to specific manufacturer data. This can
+  /// be a list of either strings in hexadecimal or ints. **NOTE** these values
+  /// can be a maximum of unsigned 16 bits.
+  ///
   /// **NOTE:** You **NEED** to define a service in [optionalServices] if you
   /// want to be able to communicate communicate with a
   /// characteristic in it.
   ///
-  RequestOptionsBuilder.acceptAllDevices({final List<String>? optionalServices})
-      : _acceptAllDevices = true,
+  /// **NOTE:** You **NEED** to define [optionalManufacturerData] if you want
+  /// to get this manufacturer data later.
+  ///
+  RequestOptionsBuilder.acceptAllDevices({
+    final List<String>? optionalServices,
+    final List<dynamic>? optionalManufacturerData,
+  })  : _acceptAllDevices = true,
         _requestFilters = [],
         _exclusionFilters = null,
-        _optionalServices = optionalServices;
+        _optionalServices = optionalServices,
+        _optionalManufacturerData =
+            RequestOptionsBuilder._convertOptionalManufacturerData(
+                optionalManufacturerData);
+
+  static List<int>? _convertOptionalManufacturerData(
+          final List<dynamic>? optionalManufacturerData) =>
+      optionalManufacturerData?.map((final manufacturer) {
+        if (manufacturer is String) {
+          var code = manufacturer.toLowerCase();
+          if (code.startsWith("0x")) {
+            code = code.substring(2);
+          }
+          if (code.isEmpty) {
+            throw ArgumentError("manufacturer code is an empty string");
+          }
+          return int.parse(code, radix: 16);
+        } else if (manufacturer is int) {
+          return manufacturer;
+        } else {
+          throw ArgumentError("Unsupported type in optional manufacturer data");
+        }
+      }).map((final manufacturer) {
+        if (manufacturer < 0) {
+          throw ArgumentError(
+              "manufacturer code in optional manufacturer data cannot be negative");
+        }
+        if (manufacturer & ~0xFFFF != 0) {
+          throw ArgumentError(
+              "manufacturer code in optional manufacturer data does not fit in 1 bits");
+        }
+        return manufacturer;
+      }).toList(growable: false);
 
   ///
   /// Convert the input requests to a [RequestOptions] object needed for the
@@ -72,40 +131,89 @@ class RequestOptionsBuilder {
     final exclusionFilters = _exclusionFilters?.isNotEmpty ?? false
         ? _exclusionFilters?.map((final e) => e.toScanFilter()).toList()
         : null;
+    final optionalManufacturerData =
+        _optionalManufacturerData?.isNotEmpty ?? false
+            ? _optionalManufacturerData
+            : null;
     if (_acceptAllDevices) {
-      if (optionalServices == null) {
+      if (optionalServices == null && optionalManufacturerData == null) {
         return RequestOptions(acceptAllDevices: true);
-      } else {
+      } else if (optionalServices != null && optionalManufacturerData == null) {
         return RequestOptions(
           acceptAllDevices: true,
           optionalServices: optionalServices,
         );
+      } else if (optionalServices == null && optionalManufacturerData != null) {
+        return RequestOptions(
+          acceptAllDevices: true,
+          optionalManufacturerData: optionalManufacturerData,
+        );
+      } else {
+        return RequestOptions(
+          acceptAllDevices: true,
+          optionalServices: optionalServices!,
+          optionalManufacturerData: optionalManufacturerData!,
+        );
       }
     } else {
-      if (optionalServices == null) {
-        if (exclusionFilters == null) {
-          return RequestOptions(
-            filters: filters,
-          );
-        } else {
-          return RequestOptions(
-            filters: filters,
-            exclusionFilters: exclusionFilters,
-          );
-        }
+      if (optionalServices == null &&
+          exclusionFilters == null &&
+          optionalManufacturerData == null) {
+        return RequestOptions(
+          filters: filters,
+        );
+      } else if (optionalServices != null &&
+          exclusionFilters == null &&
+          optionalManufacturerData == null) {
+        return RequestOptions(
+          filters: filters,
+          optionalServices: optionalServices,
+        );
+      } else if (optionalServices == null &&
+          exclusionFilters != null &&
+          optionalManufacturerData == null) {
+        return RequestOptions(
+          filters: filters,
+          exclusionFilters: exclusionFilters,
+        );
+      } else if (optionalServices == null &&
+          exclusionFilters == null &&
+          optionalManufacturerData != null) {
+        return RequestOptions(
+          filters: filters,
+          optionalManufacturerData: optionalManufacturerData,
+        );
+      } else if (optionalServices != null &&
+          exclusionFilters != null &&
+          optionalManufacturerData == null) {
+        return RequestOptions(
+          filters: filters,
+          optionalServices: optionalServices,
+          exclusionFilters: exclusionFilters,
+        );
+      } else if (optionalServices == null &&
+          exclusionFilters != null &&
+          optionalManufacturerData != null) {
+        return RequestOptions(
+          filters: filters,
+          optionalManufacturerData: optionalManufacturerData,
+          exclusionFilters: exclusionFilters,
+        );
+      } else if (optionalServices != null &&
+          exclusionFilters == null &&
+          optionalManufacturerData != null) {
+        return RequestOptions(
+          filters: filters,
+          optionalServices: optionalServices,
+          optionalManufacturerData: optionalManufacturerData,
+        );
       } else {
-        if (exclusionFilters == null) {
-          return RequestOptions(
-            filters: filters,
-            optionalServices: optionalServices,
-          );
-        } else {
-          return RequestOptions(
-            filters: filters,
-            optionalServices: optionalServices,
-            exclusionFilters: exclusionFilters,
-          );
-        }
+        return RequestOptions(
+          filters: filters,
+          optionalServices: optionalServices!,
+          optionalManufacturerData: optionalManufacturerData!,
+          exclusionFilters: exclusionFilters!,
+        );
       }
     }
   }
@@ -234,6 +342,7 @@ class RequestFilterBuilder {
   final String? _namePrefix;
   final List<String>? _services;
   final List<ManufacturerDataFilterBuilder>? _manufacturerData;
+
   //ignore: deprecated_member_use_from_same_package
   final List<ServiceDataFilterBuilder>? _serviceData;
 

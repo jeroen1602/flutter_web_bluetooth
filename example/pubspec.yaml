@@ -22,14 +22,14 @@ dependencies:
     # The example app is bundled with the plugin so we use a path dependency on
     # the parent directory to use the current plugin's version.
     path: ../
-  package_info_plus: ^4.1.0
+  package_info_plus: ^5.0.1
   rxdart: ^0.27.7
-  url_launcher: ^6.1.11
+  url_launcher: ^6.2.4
   web_browser_detect: ^2.0.3
   yaml: ^3.1.2
 
 dev_dependencies:
-  flutter_lints: ^2.0.3
+  flutter_lints: ^3.0.1
   flutter_test:
     sdk: flutter
 

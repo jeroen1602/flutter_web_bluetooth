@@ -46,6 +46,14 @@ class RequestOptions {
   external List<String> get optionalServices;
 
   ///
+  /// A list of manufacturer codes that a device may or may not have.
+  ///
+  /// *NOTE:** You **NEED** to define a manufacturer's code in either the [filters]
+  /// or [optionalManufacturerData] if you want to be able to get its data.
+  ///
+  external List<int> get optionalManufacturerData;
+
+  ///
   /// If all device can are allowed to to connect.
   ///
   /// This cannot be true why a [filters] list is set.
@@ -62,5 +70,6 @@ class RequestOptions {
       {final List<BluetoothScanFilter> filters,
       final List<BluetoothScanFilter> exclusionFilters,
       final List<dynamic> optionalServices,
+      final List<dynamic> optionalManufacturerData,
       final bool acceptAllDevices});
 }
