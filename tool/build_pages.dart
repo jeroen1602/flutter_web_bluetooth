@@ -1,7 +1,9 @@
 #!/bin/env dart
 // ignore_for_file: avoid_print
 
+import "dart:convert";
 import "dart:io";
+
 import "package:path/path.dart";
 import "package:yaml/yaml.dart";
 
@@ -22,8 +24,14 @@ Future<int> main() async {
         "--dart-define=redirectToHttps=true"
       ],
       workingDirectory: exampleDir);
-  process.stdout.pipe(stdout);
-  process.stderr.pipe(stderr);
+  await Future.wait([
+    process.stdout.forEach((final element) {
+      stdout.write(utf8.decode(element));
+    }),
+    process.stderr.forEach((final element) {
+      stderr.write(utf8.decode(element));
+    }),
+  ]);
   final exitCode = await process.exitCode;
   if (exitCode != 0) {
     return exitCode;
@@ -31,7 +39,7 @@ Future<int> main() async {
 
   final buildFolder = join(exampleDir, "build/web");
 
-  print("updating service working");
+  print("Updating service working");
   final serviceWorkerPath = join(buildFolder, "flutter_service_worker.js");
   final serviceWorkerFile = File(serviceWorkerPath);
   final serviceWorker = await serviceWorkerFile.readAsString();
