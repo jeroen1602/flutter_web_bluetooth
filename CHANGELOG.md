@@ -3,6 +3,8 @@
 * Added `optionalManufacturerData` to `RequestOptions`. This is needed to get the manufacture data when watching
   advertisements.
 * Added `BluetoothDefaultManufacturerIdentifiers` enum with all the registered manufacturer identifiers
+* Fixed the conversion from a JS map to a dart map for manufacturer data and service data.
+  If you are listening to advertisements then these values will now be returned correctly. 
 * Update dependencies.
 
 ## 0.2.2

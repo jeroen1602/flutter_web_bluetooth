@@ -53,13 +53,31 @@ class WebBluetoothConverters {
   ///
   static List<T> convertJSObjectToList<T>(final Object list,
       [final T Function(Object)? converter]) {
-    final length = _JSUtil.getProperty(list, "length") as int? ?? 0;
-    final List<T> output = List.generate(
-        length,
-        (final index) => converter != null
-            ? converter.call(_JSUtil.callMethod(list, "at", [index]))
-            : castConverter<T>(_JSUtil.callMethod(list, "at", [index])));
-    return output;
+    // Test if the input is an iterator.
+    if (_JSUtil.hasProperty(list, "next")) {
+      var result = _JSUtil.callMethod(list, "next", []);
+      final List<T> output = [];
+      while (!_JSUtil.getProperty(result, "done")) {
+        final value = _JSUtil.getProperty(result, "value");
+        output.add(converter != null
+            ? converter.call(value)
+            : castConverter<T>(value));
+        if (!_JSUtil.hasProperty(result, "next")) {
+          break;
+        }
+        result = _JSUtil.callMethod(result, "next", []);
+      }
+      return output;
+    } else {
+      // Assume it is a normal JS array otherwise
+      final length = _JSUtil.getProperty(list, "length") as int? ?? 0;
+      final List<T> output = List.generate(
+          length,
+          (final index) => converter != null
+              ? converter.call(_JSUtil.callMethod(list, "at", [index]))
+              : castConverter<T>(_JSUtil.callMethod(list, "at", [index])));
+      return output;
+    }
   }
 
   ///
