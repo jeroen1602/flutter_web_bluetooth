@@ -245,9 +245,17 @@ class BluetoothAdvertisementsCardState
                   },
                   body: Column(
                     children: widget.event.serviceData.entries.map((final e) {
+                      final hex = StringBuffer();
+                      for (var i = 0; i < e.value.lengthInBytes; i++) {
+                        hex.write(e.value
+                            .getUint8(i)
+                            .toRadixString(16)
+                            .toUpperCase()
+                            .padLeft(2, "0"));
+                      }
                       return ListTile(
                           title: Text(e.key),
-                          subtitle: Text(e.value.toString()));
+                          subtitle: Text("${e.value.lengthInBytes}: 0x$hex"));
                     }).toList(),
                   ),
                   isExpanded: _openPanels[1]),
@@ -263,9 +271,17 @@ class BluetoothAdvertisementsCardState
                   body: Column(
                     children:
                         widget.event.manufacturerData.entries.map((final e) {
+                      final hex = StringBuffer();
+                      for (var i = 0; i < e.value.lengthInBytes; i++) {
+                        hex.write(e.value
+                            .getUint8(i)
+                            .toRadixString(16)
+                            .toUpperCase()
+                            .padLeft(2, "0"));
+                      }
                       return ListTile(
                           title: Text("0x${e.key.toRadixString(16)}"),
-                          subtitle: Text(e.value.toString()));
+                          subtitle: Text("${e.value.lengthInBytes}: 0x$hex"));
                     }).toList(),
                   ),
                   isExpanded: _openPanels[2])
