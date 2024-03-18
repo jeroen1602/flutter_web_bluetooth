@@ -13,7 +13,8 @@ class ServiceWidget extends StatefulWidget {
   ServiceWidget({required this.service, super.key}) {
     serviceName = BluetoothDefaultServiceUUIDS.values
         .cast<BluetoothDefaultServiceUUIDS?>()
-        .firstWhere((final element) => element?.uuid == service.uuid)
+        .firstWhere((final element) => element?.uuid == service.uuid,
+            orElse: () => null)
         ?.name;
   }
 

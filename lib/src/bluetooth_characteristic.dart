@@ -32,6 +32,13 @@ class BluetoothCharacteristic {
         _value.add(data);
       }
     });
+    _characteristic.addEventListener("oncharacteristicvaluechanged",
+        (final event) {
+      final data = _characteristic.value;
+      if (data != null) {
+        _value.add(data);
+      }
+    });
   }
 
   final WebBluetoothRemoteGATTCharacteristic _characteristic;

@@ -9,7 +9,8 @@ class CharacteristicWidget extends StatefulWidget {
   CharacteristicWidget({required this.characteristic, super.key}) {
     characteristicName = BluetoothDefaultCharacteristicUUIDS.values
         .cast<BluetoothDefaultCharacteristicUUIDS?>()
-        .firstWhere((final element) => element?.uuid == characteristic.uuid)
+        .firstWhere((final element) => element?.uuid == characteristic.uuid,
+            orElse: () => null)
         ?.name;
   }
 

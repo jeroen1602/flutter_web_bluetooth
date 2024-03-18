@@ -107,6 +107,9 @@ class ActionsSate extends State<ActionsWidget> {
     return () async {
       try {
         await method.call();
+        setState(() {
+          // Make sure `isNotifying` is updated.
+        });
       } catch (e, s) {
         debugPrint("$e\n$s");
         if (mounted) {
