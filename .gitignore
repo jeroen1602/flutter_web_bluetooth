@@ -23,5 +23,3 @@ doc/
 *.iml
 .vscode/
 
-# Tool ignore
-/tool/company_identifiers.yaml

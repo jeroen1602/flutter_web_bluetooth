@@ -34,7 +34,11 @@ jobs:
       - run: flutter --version
 
       - name: Restore packages
-        run: dart pub get
+        run: |
+          dart pub get
+          cd builder
+          dart pub get
+          cd ../
 
       - name: Analyze
         run: dart analyze
