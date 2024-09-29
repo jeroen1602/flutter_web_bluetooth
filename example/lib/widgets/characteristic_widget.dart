@@ -7,7 +7,7 @@ import "package:flutter_web_bluetooth_example/widgets/characteristic_actions.dar
 
 class CharacteristicWidget extends StatefulWidget {
   CharacteristicWidget({required this.characteristic, super.key}) {
-    characteristicName = BluetoothDefaultCharacteristicUUIDS.values
+    characteristicName = BluetoothDefaultCharacteristicUUIDS.characteristics
         .cast<BluetoothDefaultCharacteristicUUIDS?>()
         .firstWhere((final element) => element?.uuid == characteristic.uuid,
             orElse: () => null)

@@ -11,7 +11,7 @@ class _ServiceAndCharacteristic {
 
 class ServiceWidget extends StatefulWidget {
   ServiceWidget({required this.service, super.key}) {
-    serviceName = BluetoothDefaultServiceUUIDS.values
+    serviceName = BluetoothDefaultServiceUUIDS.services
         .cast<BluetoothDefaultServiceUUIDS?>()
         .firstWhere((final element) => element?.uuid == service.uuid,
             orElse: () => null)
@@ -40,7 +40,7 @@ class ServiceState extends State<ServiceWidget> {
   Future<_ServiceAndCharacteristic> _getServicesAndCharacteristics() async {
     final List<BluetoothService> services = [];
     if (widget.service.hasIncludedService) {
-      for (final defaultService in BluetoothDefaultServiceUUIDS.values) {
+      for (final defaultService in BluetoothDefaultServiceUUIDS.services) {
         try {
           final service =
               await widget.service.getIncludedService(defaultService.uuid);
