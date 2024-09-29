@@ -1,10 +1,27 @@
+## 0.2.4
+
+* Updated `BluetoothDefaultManufacturerIdentifiers`, some identifiers have been renamed, the old names have been marked
+  as deprecated.
+    * Use `BluetoothDefaultManufacturerIdentifiers.manufacturerIdentifiers` to get a list of all the non-deprecated
+      identifiers.
+* Updated `BluetoothDefaultServiceUUIDS` with the latest service UUIDS. Some services now use the official name from the
+  Bluetooth SIG, the old names have been marked as deprecated.
+    * Use `BluetoothDefaultServiceUUIDS.services` to get a list of all the non-deprecated service UUIDS.
+    * Added the `id` field to the enum, this contains the official Bluetooth SIG id of the UUID.
+* Updated `BluetoothDefaultCharacteristicUUIDS` with the latest characteristic UUIDS. Some characteristic now use the
+  official name from the Bluetooth SIG, some characteristics no longer exist in the spec. The old names and values have
+  been marked as deprecated
+    * Use `BluetoothDefaultCharacteristicUUIDS.characteristics` to get a list of all the non-deprecated characteristic
+      UUIDS.
+    * Added the `id` field to the enum, this contains the official Bluetooth SIG id of the UUID.
+
 ## 0.2.3
 
 * Added `optionalManufacturerData` to `RequestOptions`. This is needed to get the manufacture data when watching
   advertisements.
 * Added `BluetoothDefaultManufacturerIdentifiers` enum with all the registered manufacturer identifiers
 * Fixed the conversion from a JS map to a dart map for manufacturer data and service data.
-  If you are listening to advertisements then these values will now be returned correctly. 
+  If you are listening to advertisements then these values will now be returned correctly.
 * Update dependencies.
 
 ## 0.2.2
