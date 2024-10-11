@@ -59,13 +59,14 @@ Now continue with the steps as in the original steps of checking the `git diff` 
 
 This patch was originally written for Flutter 2.0.4.
 
-Also, (has been verified to) works with:
+Also, works with dart version (flutter version):
  - 2.0.5
  - 2.2.0
  - 2.8.1
  - 3.0.1
  - 3.3.0
  - 3.3.8
+ - 3.5.3 (3.24.3)
 
 The versions in between will probably also work. If a future version of flutter breaks the compatibility then please
 open up an issue.
@@ -74,3 +75,5 @@ open up an issue.
 
 Another option is using `flutter run -d web-server --web-port 8080`. And then opening your normal Chrome browser where
 you have already enabled the experimental flag.
+
+If you want to combine this with VS-Code. Then check out this issue more detailed steps: [#97](https://github.com/jeroen1602/flutter_web_bluetooth/issues/97)

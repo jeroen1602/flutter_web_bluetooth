@@ -8,7 +8,7 @@ publish_to: 'none' # Remove this line if you wish to publish to pub.dev
 version: 14.0.0+14
 
 environment:
-  sdk: ">=2.18.1 <4.0.0"
+  sdk: ">=3.5.3 <4.0.0"
 
 dependencies:
   convert: ^3.1.1
@@ -22,14 +22,14 @@ dependencies:
     # The example app is bundled with the plugin so we use a path dependency on
     # the parent directory to use the current plugin's version.
     path: ../
-  package_info_plus: ^5.0.1
-  rxdart: ^0.27.7
-  url_launcher: ^6.2.4
+  package_info_plus: ^8.0.2
+  rxdart: ^0.28.0
+  url_launcher: ^6.3.0
   web_browser_detect: ^2.0.3
   yaml: ^3.1.2
 
 dev_dependencies:
-  flutter_lints: ^3.0.1
+  flutter_lints: ^5.0.0
   flutter_test:
     sdk: flutter
 
