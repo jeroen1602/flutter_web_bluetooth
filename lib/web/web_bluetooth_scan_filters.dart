@@ -110,6 +110,10 @@ class BluetoothScanFilter {
   /// A list of UUIDS (should be lower case) of the services that the device
   /// must have. A device is only allowed if it has all the services.
   ///
+  /// **NOTE:** Some services are on a block list, and are thus not available.
+  /// The complete blocklist can be found here:
+  /// https://github.com/WebBluetoothCG/registries/blob/master/gatt_blocklist.txt
+  ///
   external List<String>? get services;
 
   ///
@@ -130,6 +134,10 @@ class BluetoothScanFilter {
   /// for what the manufacture data of the device should match before it shows
   /// up in the available devices list. Note that if you set multiple manufacturer
   /// data filters then a single device must match all of them.
+  ///
+  /// **NOTE:** Some manufacturer data is on a block list, and is thus not available.
+  /// The complete blocklist can be found here:
+  /// https://github.com/WebBluetoothCG/registries/blob/master/manufacturer_data_blocklist.txt
   ///
   external List<BluetoothManufacturerDataFilter>? get manufacturerData;
 

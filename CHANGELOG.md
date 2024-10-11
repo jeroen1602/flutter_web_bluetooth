@@ -14,6 +14,9 @@
     * Use `BluetoothDefaultCharacteristicUUIDS.characteristics` to get a list of all the non-deprecated characteristic
       UUIDS.
     * Added the `id` field to the enum, this contains the official Bluetooth SIG id of the UUID.
+* Updated docs to link to the current version of the `service`, `characteristic`, and `manufacturer data` blocklists
+  * https://github.com/WebBluetoothCG/registries/blob/master/gatt_blocklist.txt
+  * https://github.com/WebBluetoothCG/registries/blob/master/manufacturer_data_blocklist.txt
 
 ## 0.2.3
 

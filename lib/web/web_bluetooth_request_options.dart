@@ -43,6 +43,10 @@ class RequestOptions {
   /// or [optionalServices] if you want to be able to communicate with a
   /// characteristic in it.
   ///
+  /// **NOTE:** Some services are on a block list, and are thus not available.
+  /// The complete blocklist can be found here:
+  /// https://github.com/WebBluetoothCG/registries/blob/master/gatt_blocklist.txt
+  ///
   external List<String> get optionalServices;
 
   ///
@@ -50,6 +54,10 @@ class RequestOptions {
   ///
   /// *NOTE:** You **NEED** to define a manufacturer's code in either the [filters]
   /// or [optionalManufacturerData] if you want to be able to get its data.
+  ///
+  /// **NOTE:** Some manufacturer data is on a block list, and is thus not available.
+  /// The complete blocklist can be found here:
+  /// https://github.com/WebBluetoothCG/registries/blob/master/manufacturer_data_blocklist.txt
   ///
   external List<int> get optionalManufacturerData;
 

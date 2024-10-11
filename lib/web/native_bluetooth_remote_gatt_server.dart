@@ -101,6 +101,10 @@ class NativeBluetoothRemoteGATTServer {
   ///
   /// - May throw NotFoundError if the services was found.
   ///
+  /// **NOTE:** Some services are on a block list, and are thus not available.
+  /// The complete blocklist can be found here:
+  /// https://github.com/WebBluetoothCG/registries/blob/master/gatt_blocklist.txt
+  ///
   /// See:
   ///
   /// - [getPrimaryServices]
@@ -133,6 +137,10 @@ class NativeBluetoothRemoteGATTServer {
   /// - May throw InvalidStateError if GATT is `null`.
   ///
   /// - May throw NotFoundError if no services were found.
+  ///
+  /// **NOTE:** Some services are on a block list, and are thus not available.
+  /// The complete blocklist can be found here:
+  /// https://github.com/WebBluetoothCG/registries/blob/master/gatt_blocklist.txt
   ///
   /// See:
   ///

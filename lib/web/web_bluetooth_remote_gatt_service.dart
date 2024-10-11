@@ -116,6 +116,10 @@ class WebBluetoothRemoteGATTService {
   ///
   /// - May throw NotFoundError if the characteristic was not found.
   ///
+  /// **NOTE:** Some characteristics are on a block list, and are thus not available.
+  /// The complete blocklist can be found here:
+  /// https://github.com/WebBluetoothCG/registries/blob/master/gatt_blocklist.txt
+  ///
   /// See:
   ///
   /// - [getCharacteristics]
@@ -161,6 +165,10 @@ class WebBluetoothRemoteGATTService {
   /// - May throw InvalidStateError if service is `null`.
   ///
   /// - May throw NotFoundError if the characteristic was not found.
+  ///
+  /// **NOTE:** Some characteristics are on a block list, and are thus not available.
+  /// The complete blocklist can be found here:
+  /// https://github.com/WebBluetoothCG/registries/blob/master/gatt_blocklist.txt
   ///
   /// See:
   ///
@@ -236,6 +244,10 @@ class WebBluetoothRemoteGATTService {
   ///
   /// - May throw NotFoundError if the service was not found.
   ///
+  /// **NOTE:** Some services are on a block list, and are thus not available.
+  /// The complete blocklist can be found here:
+  /// https://github.com/WebBluetoothCG/registries/blob/master/gatt_blocklist.txt
+  ///
   /// See:
   ///
   /// - [hasGetIncludedServiceFunction]
@@ -294,6 +306,10 @@ class WebBluetoothRemoteGATTService {
   /// - May throw InvalidStateError if service is `null`.
   ///
   /// - May throw NotFoundError if the service was not found.
+  ///
+  /// **NOTE:** Some services are on a block list, and are thus not available.
+  /// The complete blocklist can be found here:
+  /// https://github.com/WebBluetoothCG/registries/blob/master/gatt_blocklist.txt
   ///
   /// See:
   ///

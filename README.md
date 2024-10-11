@@ -61,7 +61,8 @@ You must beforehand specify which services you want to connect to! If you do not
 access to a specific service then you won't be able to discover the service!
 
 Some services are also part of a so called blocklist. This is different per browsers and these services are just off 
-limit.
+limit. The Web Bluetooth Community Group has a [list](https://github.com/WebBluetoothCG/registries/blob/master/gatt_blocklist.txt) 
+of all block services and characteristics.
 
 ```dart
 // Define the services you want to communicate with here!

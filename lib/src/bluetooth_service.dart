@@ -72,6 +72,10 @@ class BluetoothService {
   /// for this browser. Check [hasIncludedService] to make sure you don't get
   /// this error.
   ///
+  /// **NOTE:** Some services are on a block list, and are thus not available.
+  /// The complete blocklist can be found here:
+  /// https://github.com/WebBluetoothCG/registries/blob/master/gatt_blocklist.txt
+  ///
   Future<BluetoothService> getIncludedService(final String uuid) async {
     try {
       final service = await _bluetoothService.getIncludedService(uuid);
@@ -104,6 +108,10 @@ class BluetoothService {
   /// there is an error with the communication.
   ///
   /// - May throw [StateError] if the service is null.
+  ///
+  /// **NOTE:** Some characteristics are on a block list, and are thus not available.
+  /// The complete blocklist can be found here:
+  /// https://github.com/WebBluetoothCG/registries/blob/master/gatt_blocklist.txt
   ///
   Future<BluetoothCharacteristic> getCharacteristic(final String uuid) async {
     try {
@@ -138,6 +146,9 @@ class BluetoothService {
   ///
   /// - May throw [StateError] if the service is null.
   ///
+  /// **NOTE:** Some characteristics are on a block list, and are thus not available.
+  /// The complete blocklist can be found here:
+  /// https://github.com/WebBluetoothCG/registries/blob/master/gatt_blocklist.txt
   ///
   Future<List<BluetoothCharacteristic>> getCharacteristics(
       {final String? uuid}) async {

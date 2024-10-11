@@ -25,10 +25,18 @@ class RequestOptionsBuilder {
   /// [optionalServices] is a list of services that are a nice to have. If a
   /// device doesn't have this service then the browser won't reject it.
   ///
+  /// **NOTE:** For [optionalServices]\: Some services are on a block list,
+  /// and are thus not available. The complete blocklist can be found here:
+  /// https://github.com/WebBluetoothCG/registries/blob/master/gatt_blocklist.txt
+  ///
   /// [optionalManufacturerData] is a list of manufacturer codes. These codes
   /// are then used to grand access to specific manufacturer data. This can
   /// be a list of either strings in hexadecimal or ints. **NOTE** these values
   /// can be a maximum of unsigned 16 bits.
+  ///
+  /// **NOTE:** For [optionalManufacturerData]\: Some manufacturer data is on a
+  /// block list, and is thus not available. The complete blocklist can be found here:
+  /// https://github.com/WebBluetoothCG/registries/blob/master/manufacturer_data_blocklist.txt
   ///
   /// **NOTE:** You **NEED** to define a service in either the [requestFilters]
   /// or [optionalServices] if you want to be able to communicate with a
@@ -67,10 +75,18 @@ class RequestOptionsBuilder {
   /// [optionalServices] is a list of services that are a nice to have. If a
   /// device doesn't have this service then the browser won't reject it.
   ///
+  /// **NOTE:** For [optionalServices]\: Some services are on a block list,
+  /// and are thus not available. The complete blocklist can be found here:
+  /// https://github.com/WebBluetoothCG/registries/blob/master/gatt_blocklist.txt
+  ///
   /// [optionalManufacturerData] is a list of manufacturer codes. These codes
   /// are then used to grand access to specific manufacturer data. This can
   /// be a list of either strings in hexadecimal or ints. **NOTE** these values
   /// can be a maximum of unsigned 16 bits.
+  ///
+  /// **NOTE:** For [optionalManufacturerData]\: Some manufacturer data is on a
+  /// block list, and is thus not available. The complete blocklist can be found here:
+  /// https://github.com/WebBluetoothCG/registries/blob/master/manufacturer_data_blocklist.txt
   ///
   /// **NOTE:** You **NEED** to define a service in [optionalServices] if you
   /// want to be able to communicate communicate with a
@@ -273,6 +289,11 @@ class ServiceDataFilterBuilder {
 /// This can be used to define the services that the device should have before
 /// being able to communicate with it.
 ///
+///
+///  **NOTE:** Some manufacturer data is on a block list, and is thus not available.
+///  The complete blocklist can be found here:
+///  https://github.com/WebBluetoothCG/registries/blob/master/manufacturer_data_blocklist.txt
+///
 class ManufacturerDataFilterBuilder {
   ///
   /// The 16 bit identifier of the company that either made the device, or more
@@ -357,10 +378,18 @@ class RequestFilterBuilder {
   /// [services] is a list of service UUIDS. The device must have all the
   /// services advertised in the list or it won't be allowed access.
   ///
+  /// **NOTE:** For [services]\: Some services are on a block list,
+  /// and are thus not available. The complete blocklist can be found here:
+  /// https://github.com/WebBluetoothCG/registries/blob/master/gatt_blocklist.txt
+  ///
   /// [manufacturerData] is a list of [ManufacturerDataFilterBuilder]
   /// for what the manufacture data of the device should match before it shows
   /// up in the available devices list. Note that if you set multiple manufacturer
   /// data filters then a single device must match all of them.
+  ///
+  ///  **NOTE:** For [manufacturerData]\: Some manufacturer data is on a
+  ///  block list, and is thus not available. The complete blocklist can be found here:
+  ///  https://github.com/WebBluetoothCG/registries/blob/master/manufacturer_data_blocklist.txt
   ///
   /// [serviceData] **Note** this is not stable yet and my not be implemented.
   /// ignore: deprecated_member_use_from_same_package
