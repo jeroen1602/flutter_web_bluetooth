@@ -1,0 +1,7 @@
+platforms: [ chrome, firefox,vm ]
+compilers: [ vm:kernel,dart2wasm,dart2js ]
+
+override_platforms:
+  firefox:
+    settings:
+      arguments: -headless

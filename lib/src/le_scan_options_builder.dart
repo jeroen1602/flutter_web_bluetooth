@@ -56,14 +56,14 @@ class LEScanOptionsBuilder {
   /// to start a Bluetooth LE scan.
   ///
   BluetoothLEScanOptions toRequestOptions() {
-    if (_acceptAllAdvertisements) {
-      return BluetoothLEScanOptions(
-          keepRepeatedDevices: _keepRepeatedDevices,
-          acceptAllAdvertisements: _acceptAllAdvertisements);
-    } else {
-      return BluetoothLEScanOptions(
-          keepRepeatedDevices: _keepRepeatedDevices,
-          filters: _requestFilters.map((final e) => e.toScanFilter()).toList());
-    }
+    final filters = _requestFilters.isEmpty
+        ? null
+        : _requestFilters
+            .map((final x) => x.toScanFilter())
+            .toList(growable: false);
+    return BluetoothLEScanOptions.create(
+        filters: filters,
+        keepRepeatedDevices: _keepRepeatedDevices,
+        acceptAllAdvertisements: _acceptAllAdvertisements);
   }
 }

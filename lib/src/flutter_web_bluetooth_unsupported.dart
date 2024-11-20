@@ -6,6 +6,7 @@
 /// See:
 /// [flutter_web_bluetooth_web] file for the actual web implementation.
 ///
+// ignore: unnecessary_library_name
 library flutter_web_bluetooth;
 
 import "dart:async";
@@ -14,6 +15,7 @@ import "dart:typed_data";
 
 import "package:flutter_web_bluetooth/js_web_bluetooth.dart";
 import "package:flutter_web_bluetooth/shared/web_behavior_subject.dart";
+import "package:flutter_web_bluetooth/web/js/js.dart";
 import "package:flutter_web_bluetooth/web_bluetooth_logger.dart";
 import "package:meta/meta.dart";
 

@@ -1,3 +1,4 @@
-export "dart:js";
+export "dart:js_interop";
+export "dart:js_interop_unsafe";
 
-export "package:js/js.dart";
+export "package:web/web.dart";

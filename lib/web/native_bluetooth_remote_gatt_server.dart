@@ -13,9 +13,9 @@ part of "../js_web_bluetooth.dart";
 ///
 /// - https://webbluetoothcg.github.io/web-bluetooth/#bluetoothgattremoteserver-interface
 ///
-class NativeBluetoothRemoteGATTServer {
-  final Object _jsObject;
-
+@JS()
+extension type NativeBluetoothRemoteGATTServer._(JSObject _)
+    implements JSObject {
   ///
   /// The device that this gatt server belongs too.
   ///
@@ -25,7 +25,10 @@ class NativeBluetoothRemoteGATTServer {
   ///
   /// - https://webbluetoothcg.github.io/web-bluetooth/#dom-bluetoothremotegattserver-device
   ///
-  final WebBluetoothDevice device;
+  external WebBluetoothDevice get device;
+
+  @JS("connected")
+  external JSBoolean get _connected;
 
   ///
   /// Check to see if the gatt server is connected to the device.
@@ -36,13 +39,10 @@ class NativeBluetoothRemoteGATTServer {
   ///
   /// - https://webbluetoothcg.github.io/web-bluetooth/#dom-bluetoothremotegattserver-connected
   ///
-  bool get connected {
-    final value = _JSUtil.getProperty(_jsObject, "connected");
-    if (value is bool) {
-      return value;
-    }
-    return false;
-  }
+  bool get connected => _connected.isDefinedAndNotNull && _connected.toDart;
+
+  @JS("connect")
+  external JSPromise<NativeBluetoothRemoteGATTServer> _connect();
 
   ///
   /// Connect the GATT server to the device.
@@ -65,8 +65,7 @@ class NativeBluetoothRemoteGATTServer {
   /// - https://webbluetoothcg.github.io/web-bluetooth/#dom-bluetoothremotegattserver-connect
   ///
   Future<NativeBluetoothRemoteGATTServer> connect() async {
-    final promise = _JSUtil.callMethod(_jsObject, "connect", []);
-    await _JSUtil.promiseToFuture(promise);
+    await _connect().toDart;
     return this;
   }
 
@@ -81,9 +80,11 @@ class NativeBluetoothRemoteGATTServer {
   ///
   /// - https://webbluetoothcg.github.io/web-bluetooth/#dom-bluetoothremotegattserver-disconnect
   ///
-  void disconnect() {
-    _JSUtil.callMethod(_jsObject, "disconnect", []);
-  }
+  external void disconnect();
+
+  @JS("getPrimaryService")
+  external JSPromise<WebBluetoothRemoteGATTService> _getPrimaryService(
+      final JSString serviceUUID);
 
   ///
   /// Get a the primary services on the current device.
@@ -114,12 +115,12 @@ class NativeBluetoothRemoteGATTServer {
   /// - https://webbluetoothcg.github.io/web-bluetooth/#dom-bluetoothremotegattserver-getprimaryservice
   ///
   Future<WebBluetoothRemoteGATTService> getPrimaryService(
-      final String serviceUUID) async {
-    final promise = _JSUtil.callMethod(
-        _jsObject, "getPrimaryService", [serviceUUID.toLowerCase()]);
-    final result = await _JSUtil.promiseToFuture(promise);
-    return WebBluetoothRemoteGATTService.fromJSObject(result, device);
-  }
+          final String serviceUUID) async =>
+      await _getPrimaryService(serviceUUID.toLowerCase().toJS).toDart;
+
+  @JS("getPrimaryServices")
+  external JSPromise<JSArray<WebBluetoothRemoteGATTService>>
+      _getPrimaryServices([final JSString? serviceUUID]);
 
   ///
   /// Get all the primary services on the current device.
@@ -152,56 +153,11 @@ class NativeBluetoothRemoteGATTServer {
   ///
   Future<List<WebBluetoothRemoteGATTService>> getPrimaryServices(
       [final String? serviceUUID]) async {
-    final arguments = serviceUUID == null ? [] : [serviceUUID.toLowerCase()];
-    final promise =
-        _JSUtil.callMethod(_jsObject, "getPrimaryServices", arguments);
-    final result = await _JSUtil.promiseToFuture(promise);
-    if (result is List) {
-      final items = <WebBluetoothRemoteGATTService>[];
-      for (final item in result) {
-        try {
-          items.add(WebBluetoothRemoteGATTService.fromJSObject(item, device));
-        } catch (e, stack) {
-          if (e is UnsupportedError) {
-            webBluetoothLogger.severe(
-                "Could not convert primary service to BluetoothRemoteGATTService",
-                e,
-                stack);
-          } else {
-            rethrow;
-          }
-        }
-      }
-      return items;
-    }
-    return [];
-  }
-
-  ///
-  /// Create a new instance from a js object.
-  ///
-  /// **This should only be done by the library or if you're testing.**
-  ///
-  /// To get an instance use [WebBluetoothDevice.gatt].
-  ///
-  NativeBluetoothRemoteGATTServer.fromJSObject(this._jsObject, this.device) {
-    if (!_JSUtil.hasProperty(_jsObject, "connected")) {
-      throw UnsupportedError("JSObject does not have connected");
-    }
-    if (!_JSUtil.hasProperty(_jsObject, "device")) {
-      throw UnsupportedError("JSObject does not have device");
-    }
-    if (!_JSUtil.hasProperty(_jsObject, "connect")) {
-      throw UnsupportedError("JSObject does not have connect");
-    }
-    if (!_JSUtil.hasProperty(_jsObject, "disconnect")) {
-      throw UnsupportedError("JSObject does not have disconnect");
-    }
-    if (!_JSUtil.hasProperty(_jsObject, "getPrimaryService")) {
-      throw UnsupportedError("JSObject does not have getPrimaryService");
-    }
-    if (!_JSUtil.hasProperty(_jsObject, "getPrimaryServices")) {
-      throw UnsupportedError("JSObject does not have getPrimaryServices");
+    final argument = serviceUUID?.toLowerCase().toJS;
+    if (argument == null) {
+      return (await _getPrimaryServices().toDart).toDart;
+    } else {
+      return (await _getPrimaryServices(argument).toDart).toDart;
     }
   }
 }

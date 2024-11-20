@@ -16,9 +16,9 @@ part of "../js_web_bluetooth.dart";
 ///
 /// - https://webbluetoothcg.github.io/web-bluetooth/#bluetoothgattservice-interface
 ///
-class WebBluetoothRemoteGATTService {
-  final Object _jsObject;
-
+@JS()
+extension type WebBluetoothRemoteGATTService._(JSObject _)
+    implements EventTarget, JSObject {
   ///
   /// The device that this gatt server belongs too.
   ///
@@ -28,7 +28,7 @@ class WebBluetoothRemoteGATTService {
   ///
   /// - https://webbluetoothcg.github.io/web-bluetooth/#dom-bluetoothremotegattservice-device
   ///
-  final WebBluetoothDevice device;
+  external WebBluetoothDevice get device;
 
   ///
   /// Check to see if the [isPrimary] exists on the js object.
@@ -39,9 +39,10 @@ class WebBluetoothRemoteGATTService {
   ///
   /// - [isPrimary]
   ///
-  bool hasIsPrimary() => _JSUtil.hasProperty(_jsObject, "isPrimary");
+  bool hasIsPrimary() => has("isPrimary");
 
-  bool? _isPrimary;
+  @JS("isPrimary")
+  external JSBoolean get _isPrimary;
 
   ///
   /// Check if the service is a primary service (top level).
@@ -60,24 +61,16 @@ class WebBluetoothRemoteGATTService {
   /// - https://webbluetoothcg.github.io/web-bluetooth/#dom-bluetoothremotegattservice-isprimary
   ///
   bool get isPrimary {
-    var isPrimary = _isPrimary;
-    if (isPrimary != null) {
-      return isPrimary;
-    }
     if (!hasIsPrimary()) {
       throw NativeAPINotImplementedError(
           "BluetoothRemoteGATTService.isPrimary");
     }
 
-    isPrimary = _JSUtil.getProperty(_jsObject, "isPrimary");
-    if (isPrimary != null) {
-      _isPrimary = isPrimary;
-      return isPrimary;
-    }
-    return false;
+    return _isPrimary.isDefinedAndNotNull && _isPrimary.toDart;
   }
 
-  String? _uuid;
+  @JS("uuid")
+  external JSString _uuid;
 
   ///
   /// The uuid of the service.
@@ -88,19 +81,11 @@ class WebBluetoothRemoteGATTService {
   ///
   /// - https://webbluetoothcg.github.io/web-bluetooth/#dom-bluetoothremotegattservice-uuid
   ///
-  String get uuid {
-    var uuid = _uuid;
-    if (uuid != null) {
-      return uuid;
-    }
+  String get uuid => _uuid.toDart;
 
-    uuid = _JSUtil.getProperty(_jsObject, "uuid");
-    if (uuid != null) {
-      _uuid = uuid;
-      return uuid;
-    }
-    return "UNKNOWN";
-  }
+  @JS("getCharacteristic")
+  external JSPromise<WebBluetoothRemoteGATTCharacteristic> _getCharacteristic(
+      final JSString characteristicUUID);
 
   ///
   /// Get a characteristic from this service.
@@ -129,12 +114,8 @@ class WebBluetoothRemoteGATTService {
   /// - https://webbluetoothcg.github.io/web-bluetooth/#dom-bluetoothremotegattservice-getcharacteristic
   ///
   Future<WebBluetoothRemoteGATTCharacteristic> getCharacteristic(
-      final String characteristicUUID) async {
-    final promise = _JSUtil.callMethod(
-        _jsObject, "getCharacteristic", [characteristicUUID.toLowerCase()]);
-    final result = await _JSUtil.promiseToFuture(promise);
-    return WebBluetoothRemoteGATTCharacteristic.fromJSObject(result, this);
-  }
+          final String characteristicUUID) async =>
+      await _getCharacteristic(characteristicUUID.toLowerCase().toJS).toDart;
 
   ///
   /// Check to see if the [getCharacteristics] function exists on the js object.
@@ -145,8 +126,11 @@ class WebBluetoothRemoteGATTService {
   ///
   /// - [getCharacteristics]
   ///
-  bool hasGetCharacteristicsFunction() =>
-      _JSUtil.hasProperty(_jsObject, "getCharacteristics");
+  bool hasGetCharacteristicsFunction() => has("getCharacteristics");
+
+  @JS("getCharacteristics")
+  external JSPromise<JSArray<WebBluetoothRemoteGATTCharacteristic>>
+      _getCharacteristics([final JSString? characteristicUUID]);
 
   ///
   /// Get a characteristic from this service.
@@ -186,31 +170,12 @@ class WebBluetoothRemoteGATTService {
       throw NativeAPINotImplementedError(
           "BluetoothRemoteGATTService.getCharacteristics");
     }
-    final arguments =
-        characteristicUUID == null ? [] : [characteristicUUID.toLowerCase()];
-    final promise =
-        _JSUtil.callMethod(_jsObject, "getCharacteristics", arguments);
-    final result = await _JSUtil.promiseToFuture(promise);
-    if (result is List) {
-      final items = <WebBluetoothRemoteGATTCharacteristic>[];
-      for (final item in result) {
-        try {
-          items.add(
-              WebBluetoothRemoteGATTCharacteristic.fromJSObject(item, this));
-        } catch (e, stack) {
-          if (e is UnsupportedError) {
-            webBluetoothLogger.severe(
-                "Could not convert known device to BluetoothRemoteGATTCharacteristic",
-                e,
-                stack);
-          } else {
-            rethrow;
-          }
-        }
-      }
-      return items;
+    final argument = characteristicUUID?.toLowerCase().toJS;
+    if (argument == null) {
+      return (await _getCharacteristics().toDart).toDart;
+    } else {
+      return (await _getCharacteristics(argument).toDart).toDart;
     }
-    return [];
   }
 
   ///
@@ -223,8 +188,11 @@ class WebBluetoothRemoteGATTService {
   ///
   /// - [getIncludedService]
   ///
-  bool hasGetIncludedServiceFunction() =>
-      _JSUtil.hasProperty(_jsObject, "getIncludedService");
+  bool hasGetIncludedServiceFunction() => has("getIncludedService");
+
+  @JS("getIncludedService")
+  external JSPromise<WebBluetoothRemoteGATTService> _getIncludedService(
+      final JSString serviceUUID);
 
   ///
   /// Get an included service from this service.
@@ -262,10 +230,7 @@ class WebBluetoothRemoteGATTService {
     if (!hasGetIncludedServiceFunction()) {
       throw NativeAPINotImplementedError("getIncludedService");
     }
-    final promise = _JSUtil.callMethod(
-        _jsObject, "getIncludedService", [serviceUUID.toLowerCase()]);
-    final result = await _JSUtil.promiseToFuture(promise);
-    return WebBluetoothRemoteGATTService.fromJSObject(result, device);
+    return await _getIncludedService(serviceUUID.toLowerCase().toJS).toDart;
   }
 
   ///
@@ -282,8 +247,11 @@ class WebBluetoothRemoteGATTService {
   /// ignore: deprecated_member_use_from_same_package
   /// - [getIncludedServices]
   ///
-  bool hasGetIncludedServicesFunction() =>
-      _JSUtil.hasProperty(_jsObject, "getIncludedServices");
+  bool hasGetIncludedServicesFunction() => has("getIncludedServices");
+
+  @JS("getIncludedServices")
+  external JSPromise<JSArray<WebBluetoothRemoteGATTService>>
+      _getIncludedServices([final JSString? serviceUUID]);
 
   ///
   /// Get all included services from this service.
@@ -327,49 +295,11 @@ class WebBluetoothRemoteGATTService {
     if (!hasGetIncludedServicesFunction()) {
       throw NativeAPINotImplementedError("getIncludedServices");
     }
-    final arguments = serviceUUID == null ? [] : [serviceUUID.toLowerCase()];
-    final promise =
-        _JSUtil.callMethod(_jsObject, "getIncludedServices", arguments);
-    final result = await _JSUtil.promiseToFuture(promise);
-    if (result is List) {
-      final items = <WebBluetoothRemoteGATTService>[];
-      for (final item in result) {
-        try {
-          items.add(WebBluetoothRemoteGATTService.fromJSObject(item, device));
-        } catch (e, stack) {
-          if (e is UnsupportedError) {
-            webBluetoothLogger.severe(
-                "Could not convert included service to BluetoothRemoteGATTService",
-                e,
-                stack);
-          } else {
-            rethrow;
-          }
-        }
-      }
-      return items;
-    }
-    return [];
-  }
-
-  ///
-  /// Create a new instance from a js object.
-  ///
-  /// **This should only be done by the library or if you're testing.**
-  ///
-  /// To get an instance use
-  /// [NativeBluetoothRemoteGATTServer.getPrimaryService],
-  /// [NativeBluetoothRemoteGATTServer.getPrimaryServices],
-  /// [WebBluetoothRemoteGATTService.getIncludedService], and
-  /// ignore: deprecated_member_use_from_same_package
-  /// [WebBluetoothRemoteGATTService.getIncludedServices].
-  ///
-  WebBluetoothRemoteGATTService.fromJSObject(this._jsObject, this.device) {
-    if (!_JSUtil.hasProperty(_jsObject, "uuid")) {
-      throw UnsupportedError("JSObject does not have uuid");
-    }
-    if (!_JSUtil.hasProperty(_jsObject, "getCharacteristic")) {
-      throw UnsupportedError("JSObject does not have getCharacteristic");
+    final argument = serviceUUID?.toLowerCase().toJS;
+    if (argument == null) {
+      return (await _getIncludedServices().toDart).toDart;
+    } else {
+      return (await _getIncludedServices(argument).toDart).toDart;
     }
   }
 }

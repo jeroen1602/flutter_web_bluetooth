@@ -15,9 +15,9 @@ part of "../js_web_bluetooth.dart";
 ///
 /// - https://webbluetoothcg.github.io/web-bluetooth/#bluetoothgattdescriptor-interface
 ///
-class WebBluetoothRemoteGATTDescriptor {
-  final Object _jsObject;
-
+@JS()
+extension type WebBluetoothRemoteGATTDescriptor._(JSObject _)
+    implements JSObject {
   ///
   /// The characteristic that this descriptor belongs to.
   ///
@@ -27,9 +27,10 @@ class WebBluetoothRemoteGATTDescriptor {
   ///
   /// - https://webbluetoothcg.github.io/web-bluetooth/#dom-bluetoothremotegattdescriptor-characteristic
   ///
-  final WebBluetoothRemoteGATTCharacteristic characteristic;
+  external WebBluetoothRemoteGATTCharacteristic get characteristic;
 
-  String? _uuid;
+  @JS("uuid")
+  external JSString get _uuid;
 
   ///
   /// The uuid of the descriptor.
@@ -40,19 +41,10 @@ class WebBluetoothRemoteGATTDescriptor {
   ///
   /// - https://webbluetoothcg.github.io/web-bluetooth/#dom-bluetoothremotegattdescriptor-uuid
   ///
-  String get uuid {
-    var uuid = _uuid;
-    if (uuid != null) {
-      return uuid;
-    }
+  String get uuid => _uuid.toDart;
 
-    uuid = _JSUtil.getProperty(_jsObject, "uuid");
-    if (uuid != null) {
-      _uuid = uuid;
-      return uuid;
-    }
-    return "UNKNOWN";
-  }
+  @JS("value")
+  external JSDataView? get _value;
 
   ///
   /// Get the last value retrieved from the [WebBluetoothRemoteGATTDescriptor].
@@ -66,16 +58,14 @@ class WebBluetoothRemoteGATTDescriptor {
   /// - https://webbluetoothcg.github.io/web-bluetooth/#dom-bluetoothremotegattdescriptor-value
   ///
   ByteData? get value {
-    if (!_JSUtil.hasProperty(_jsObject, "value")) {
+    if (_value == null || _value.isUndefinedOrNull) {
       return null;
     }
-    final result = _JSUtil.getProperty(_jsObject, "value");
-    if (result == null) {
-      return null;
-    }
-    final data = WebBluetoothConverters.convertJSDataViewToByteData(result);
-    return data;
+    return _value!.toDart;
   }
+
+  @JS("readValue")
+  external JSPromise<JSDataView> _readValue();
 
   ///
   /// Will read the value of the descriptor.
@@ -94,12 +84,10 @@ class WebBluetoothRemoteGATTDescriptor {
   ///
   /// - https://webbluetoothcg.github.io/web-bluetooth/#dom-bluetoothremotegattdescriptor-readvalue
   ///
-  Future<ByteData> readValue() async {
-    final promise = _JSUtil.callMethod(_jsObject, "readValue", []);
-    final result = await _JSUtil.promiseToFuture(promise);
-    final data = WebBluetoothConverters.convertJSDataViewToByteData(result);
-    return data;
-  }
+  Future<ByteData> readValue() async => (await _readValue().toDart).toDart;
+
+  @JS("writeValue")
+  external JSPromise _writeValue(final JSArrayBuffer value);
 
   ///
   /// Will write a new value to the characteristic.
@@ -123,36 +111,6 @@ class WebBluetoothRemoteGATTDescriptor {
   /// - https://webbluetoothcg.github.io/web-bluetooth/#dom-bluetoothremotegattdescriptor-writevalue
   ///
   Future<void> writeValue(final Uint8List value) async {
-    final data = WebBluetoothConverters.convertUint8ListToJSArrayBuffer(value);
-    final promise = _JSUtil.callMethod(_jsObject, "writeValue", [data]);
-    await _JSUtil.promiseToFuture(promise);
-  }
-
-  ///
-  /// Create a new instance from a js object.
-  ///
-  /// **This should only be done by the library or if you're testing.**
-  ///
-  /// To get an instance use
-  /// [WebBluetoothRemoteGATTCharacteristic.getDescriptor], and
-  /// [WebBluetoothRemoteGATTCharacteristic.getDescriptors].
-  ///
-  WebBluetoothRemoteGATTDescriptor.fromJSObject(
-      this._jsObject, this.characteristic) {
-    if (!_JSUtil.hasProperty(_jsObject, "characteristic")) {
-      throw UnsupportedError("JSObject does not have characteristic");
-    }
-    if (!_JSUtil.hasProperty(_jsObject, "uuid")) {
-      throw UnsupportedError("JSObject does not have uuid");
-    }
-    if (!_JSUtil.hasProperty(_jsObject, "value")) {
-      throw UnsupportedError("JSObject does not have value");
-    }
-    if (!_JSUtil.hasProperty(_jsObject, "readValue")) {
-      throw UnsupportedError("JSObject does not have readValue");
-    }
-    if (!_JSUtil.hasProperty(_jsObject, "writeValue")) {
-      throw UnsupportedError("JSObject does not have writeValue");
-    }
+    await _writeValue(value.buffer.toJS).toDart;
   }
 }

@@ -13,10 +13,10 @@ part of "../js_web_bluetooth.dart";
 ///
 /// https://webbluetoothcg.github.io/web-bluetooth/scanning.html#bluetoothlescan
 ///
-class BluetoothLEScan {
-  final Object _jsObject;
-
-  List<BluetoothLEScanOptions>? _filters;
+@JS()
+extension type BluetoothLEScan._(JSObject _) implements JSObject {
+  @JS("filters")
+  external JSArray<BluetoothScanFilter> get _filters;
 
   ///
   /// A list of filters that were used to start (request) this Bluetooth LE scan.
@@ -25,11 +25,10 @@ class BluetoothLEScan {
   ///
   /// https://webbluetoothcg.github.io/web-bluetooth/scanning.html#dom-bluetoothlescan-filters
   ///
-  List<BluetoothLEScanOptions> get filters => _filters ??=
-      WebBluetoothConverters.convertJSObjectToList<BluetoothLEScanOptions>(
-          _JSUtil.getProperty(_jsObject, "filters"));
+  List<BluetoothScanFilter> get filters => _filters.toDart;
 
-  bool? _keepRepeatedDevices;
+  @JS("keepRepeatedDevices")
+  external JSBoolean? get _keepRepeatedDevices;
 
   ///
   /// If this Bluetooth LE scan should keep repeated devices or just discard them.
@@ -38,18 +37,13 @@ class BluetoothLEScan {
   ///
   /// https://webbluetoothcg.github.io/web-bluetooth/scanning.html#dom-bluetoothlescan-keeprepeateddevices
   ///
-  bool get keepRepeatedDevices {
-    var keep = _keepRepeatedDevices;
-    if (keep != null) {
-      return keep;
-    }
-    keep =
-        _JSUtil.getProperty(_jsObject, "keepRepeatedDevices") as bool? ?? false;
-    _keepRepeatedDevices = keep;
-    return keep;
-  }
+  bool get keepRepeatedDevices =>
+      _keepRepeatedDevices != null &&
+      _keepRepeatedDevices.isDefinedAndNotNull &&
+      _keepRepeatedDevices!.toDart;
 
-  bool? _acceptAllAdvertisements;
+  @JS("acceptAllAdvertisements")
+  external JSBoolean? get _acceptAllAdvertisements;
 
   ///
   /// If this Bluetooth LE scan accepts all advertisements.
@@ -58,16 +52,13 @@ class BluetoothLEScan {
   ///
   /// https://webbluetoothcg.github.io/web-bluetooth/scanning.html#dom-bluetoothlescan-acceptalladvertisements
   ///
-  bool get acceptAllAdvertisements {
-    var all = _acceptAllAdvertisements;
-    if (all != null) {
-      return all;
-    }
-    all = _JSUtil.getProperty(_jsObject, "acceptAllAdvertisements") as bool? ??
-        false;
-    _acceptAllAdvertisements = all;
-    return all;
-  }
+  bool get acceptAllAdvertisements =>
+      _acceptAllAdvertisements != null &&
+      _acceptAllAdvertisements.isDefinedAndNotNull &&
+      _acceptAllAdvertisements!.toDart;
+
+  @JS("active")
+  external JSBoolean? get _active;
 
   ///
   /// If this Bluetooth LE scan is (still) active. Meaning that it will generate
@@ -78,7 +69,8 @@ class BluetoothLEScan {
   ///
   /// https://webbluetoothcg.github.io/web-bluetooth/scanning.html#dom-bluetoothlescan-active
   ///
-  bool get active => _JSUtil.getProperty(_jsObject, "active") as bool? ?? false;
+  bool get active =>
+      _active != null && _active.isDefinedAndNotNull && _active!.toDart;
 
   ///
   /// Stop the currently running Bluetooth LE scan.
@@ -89,30 +81,5 @@ class BluetoothLEScan {
   ///
   /// https://webbluetoothcg.github.io/web-bluetooth/scanning.html#dom-bluetoothlescan-stop
   ///
-  void stop() {
-    _JSUtil.callMethod(_jsObject, "stop", []);
-  }
-
-  ///
-  /// Construct a new instance.
-  ///
-  /// To get an instance use [Bluetooth.requestLEScan].
-  ///
-  BluetoothLEScan.fromJSObject(this._jsObject) {
-    if (!_JSUtil.hasProperty(_jsObject, "filters")) {
-      throw UnsupportedError("JSObject does not have filters.");
-    }
-    if (!_JSUtil.hasProperty(_jsObject, "keepRepeatedDevices")) {
-      throw UnsupportedError("JSObject does not have keepRepeatedDevices.");
-    }
-    if (!_JSUtil.hasProperty(_jsObject, "acceptAllAdvertisements")) {
-      throw UnsupportedError("JSObject does not have acceptAllAdvertisements.");
-    }
-    if (!_JSUtil.hasProperty(_jsObject, "active")) {
-      throw UnsupportedError("JSObject does not have active.");
-    }
-    if (!_JSUtil.hasProperty(_jsObject, "stop")) {
-      throw UnsupportedError("JSObject does not have stop.");
-    }
-  }
+  external void stop();
 }

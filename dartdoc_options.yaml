@@ -1,3 +1,3 @@
 dartdoc:
-  nodoc: [ 'lib/web/js/*.dart' ]
-  exclude: [ 'js', 'jsSupported', 'jsUnsupported', 'JSUtils', 'bluetooth_web_js_utils', 'web_behavior_subject']
+  nodoc: [ 'lib/web/js/*.dart', 'lib/shared/*.dart' ]
+  exclude: [ 'js', 'js_iterator', 'js_map', 'js_supported', 'js_unsupported', 'web_behavior_subject' ]
