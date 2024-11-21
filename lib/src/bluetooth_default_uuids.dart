@@ -11,10 +11,6 @@ part of flutter_web_bluetooth;
 /// ignore: deprecated_member_use_from_same_package
 /// See: [deprecatedServices] for a list of all old deprecated services.
 enum BluetoothDefaultServiceUUIDS {
-  /// The default service for Generic Access
-  @Deprecated("UUID has been renamed; use gap instead")
-  genericAccess("Generic Access", "1800",
-      "00001800-0000-1000-8000-00805f9b34fb", "org.bluetooth.service.gap"),
 
   /// The default service for GAP
   gap("GAP", "1800", "00001800-0000-1000-8000-00805f9b34fb",
@@ -23,11 +19,6 @@ enum BluetoothDefaultServiceUUIDS {
   /// The default service for GATT
   gatt("GATT", "1801", "00001801-0000-1000-8000-00805f9b34fb",
       "org.bluetooth.service.gatt"),
-
-  /// The default service for Generic Attribute
-  @Deprecated("UUID has been renamed; use gatt instead")
-  genericAttribute("Generic Attribute", "1801",
-      "00001801-0000-1000-8000-00805f9b34fb", "org.bluetooth.service.gatt"),
 
   /// The default service for Immediate Alert
   immediateAlert(
@@ -316,14 +307,6 @@ enum BluetoothDefaultServiceUUIDS {
       "00001845-0000-1000-8000-00805f9b34fb",
       "org.bluetooth.service.volume_offset"),
 
-  /// The default service for Coordinated Set Identification Service
-  @Deprecated("UUID has been renamed; use coordinatedSetIdentification instead")
-  coordinatedSetIdentificationService(
-      "Coordinated Set Identification Service",
-      "1846",
-      "00001846-0000-1000-8000-00805f9b34fb",
-      "org.bluetooth.service.coordinated_set_identification"),
-
   /// The default service for Coordinated Set Identification
   coordinatedSetIdentification(
       "Coordinated Set Identification",
@@ -338,22 +321,6 @@ enum BluetoothDefaultServiceUUIDS {
   /// The default service for Media Control
   mediaControl("Media Control", "1848", "00001848-0000-1000-8000-00805f9b34fb",
       "org.bluetooth.service.media_control"),
-
-  /// The default service for Media Control Service
-  @Deprecated("UUID has been renamed; use mediaControl instead")
-  mediaControlService(
-      "Media Control Service",
-      "1848",
-      "00001848-0000-1000-8000-00805f9b34fb",
-      "org.bluetooth.service.media_control"),
-
-  /// The default service for Generic Media Control Service
-  @Deprecated("UUID has been renamed; use genericMediaControl instead")
-  genericMediaControlService(
-      "Generic Media Control Service",
-      "1849",
-      "00001849-0000-1000-8000-00805f9b34fb",
-      "org.bluetooth.service.generic_media_control"),
 
   /// The default service for Generic Media Control
   genericMediaControl(
@@ -376,25 +343,9 @@ enum BluetoothDefaultServiceUUIDS {
       "0000184b-0000-1000-8000-00805f9b34fb",
       "org.bluetooth.service.telephone_bearer"),
 
-  /// The default service for Telephone Bearer Service
-  @Deprecated("UUID has been renamed; use telephoneBearer instead")
-  telephoneBearerService(
-      "Telephone Bearer Service",
-      "184b",
-      "0000184b-0000-1000-8000-00805f9b34fb",
-      "org.bluetooth.service.telephone_bearer"),
-
   /// The default service for Generic Telephone Bearer
   genericTelephoneBearer(
       "Generic Telephone Bearer",
-      "184c",
-      "0000184c-0000-1000-8000-00805f9b34fb",
-      "org.bluetooth.service.generic_telephone_bearer"),
-
-  /// The default service for Generic Telephone Bearer Service
-  @Deprecated("UUID has been renamed; use genericTelephoneBearer instead")
-  genericTelephoneBearerService(
-      "Generic Telephone Bearer Service",
       "184c",
       "0000184c-0000-1000-8000-00805f9b34fb",
       "org.bluetooth.service.generic_telephone_bearer"),
@@ -585,13 +536,6 @@ enum BluetoothDefaultServiceUUIDS {
   @Deprecated(
       "This contains all deprecated services and should thus not be relied on")
   static const List<BluetoothDefaultServiceUUIDS> deprecatedServices = [
-    genericAccess,
-    genericAttribute,
-    coordinatedSetIdentificationService,
-    mediaControlService,
-    genericMediaControlService,
-    telephoneBearerService,
-    genericTelephoneBearerService
   ];
 }
 
@@ -1625,14 +1569,6 @@ enum BluetoothDefaultCharacteristicUUIDS {
       "00002ac5-0000-1000-8000-00805f9b34fb",
       "org.bluetooth.characteristic.object_action_control_point"),
 
-  /// The default characteristic for object actioncontrol point
-  @Deprecated("UUID has been renamed; use objectActionControlPoint instead")
-  objectActioncontrolPoint(
-      "object actioncontrol point",
-      "2ac5",
-      "00002ac5-0000-1000-8000-00805f9b34fb",
-      "org.bluetooth.characteristic.object_action_control_point"),
-
   /// The default characteristic for Object List Control Point
   objectListControlPoint(
       "Object List Control Point",
@@ -1660,16 +1596,6 @@ enum BluetoothDefaultCharacteristicUUIDS {
       "2ac9",
       "00002ac9-0000-1000-8000-00805f9b34fb",
       "org.bluetooth.characteristic.resolvable_private_address_only"),
-
-  /// The default characteristic for Unspecified
-  @Deprecated("UUID no longer exists in the Bluetooth spec")
-  unspecified(
-      "Unspecified", "2aca", "00002aca-0000-1000-8000-00805f9b34fb", ""),
-
-  /// The default characteristic for Directory Listing
-  @Deprecated("UUID no longer exists in the Bluetooth spec")
-  directoryListing(
-      "Directory Listing", "2acb", "00002acb-0000-1000-8000-00805f9b34fb", ""),
 
   /// The default characteristic for Fitness Machine Feature
   fitnessMachineFeature(
@@ -2414,27 +2340,12 @@ enum BluetoothDefaultCharacteristicUUIDS {
       "00002b43-0000-1000-8000-00805f9b34fb",
       "org.bluetooth.characteristic.physical_activity_monitor_control_point"),
 
-  /// The default characteristic for Current Session
-  @Deprecated(
-      "UUID has been renamed; use physicalActivityCurrentSession instead")
-  currentSession(
-      "Current Session",
-      "2b44",
-      "00002b44-0000-1000-8000-00805f9b34fb",
-      "org.bluetooth.characteristic.physical_activity_current_session"),
-
   /// The default characteristic for Physical Activity Current Session
   physicalActivityCurrentSession(
       "Physical Activity Current Session",
       "2b44",
       "00002b44-0000-1000-8000-00805f9b34fb",
       "org.bluetooth.characteristic.physical_activity_current_session"),
-
-  /// The default characteristic for Session
-  @Deprecated(
-      "UUID has been renamed; use physicalActivitySessionDescriptor instead")
-  session("Session", "2b45", "00002b45-0000-1000-8000-00805f9b34fb",
-      "org.bluetooth.characteristic.physical_activity_session_descriptor"),
 
   /// The default characteristic for Physical Activity Session Descriptor
   physicalActivitySessionDescriptor(
@@ -2576,11 +2487,6 @@ enum BluetoothDefaultCharacteristicUUIDS {
       "00002b80-0000-1000-8000-00805f9b34fb",
       "org.bluetooth.characteristic.volume_offset_state"),
 
-  /// The default characteristic for Offset State
-  @Deprecated("UUID has been renamed; use volumeOffsetState instead")
-  offsetState("Offset State", "2b80", "00002b80-0000-1000-8000-00805f9b34fb",
-      "org.bluetooth.characteristic.volume_offset_state"),
-
   /// The default characteristic for Audio Location
   audioLocation(
       "Audio Location",
@@ -2609,25 +2515,9 @@ enum BluetoothDefaultCharacteristicUUIDS {
       "00002b84-0000-1000-8000-00805f9b34fb",
       "org.bluetooth.characteristic.set_identity_resolving_key"),
 
-  /// The default characteristic for Set Identity Resolving Key Characteristic
-  @Deprecated("UUID has been renamed; use setIdentityResolvingKey instead")
-  setIdentityResolvingKeyCharacteristic(
-      "Set Identity Resolving Key Characteristic",
-      "2b84",
-      "00002b84-0000-1000-8000-00805f9b34fb",
-      "org.bluetooth.characteristic.set_identity_resolving_key"),
-
   /// The default characteristic for Coordinated Set Size
   coordinatedSetSize(
       "Coordinated Set Size",
-      "2b85",
-      "00002b85-0000-1000-8000-00805f9b34fb",
-      "org.bluetooth.characteristic.size_characteristic"),
-
-  /// The default characteristic for Size Characteristic
-  @Deprecated("UUID has been renamed; use coordinatedSetSize instead")
-  sizeCharacteristic(
-      "Size Characteristic",
       "2b85",
       "00002b85-0000-1000-8000-00805f9b34fb",
       "org.bluetooth.characteristic.size_characteristic"),
@@ -2639,25 +2529,9 @@ enum BluetoothDefaultCharacteristicUUIDS {
       "00002b86-0000-1000-8000-00805f9b34fb",
       "org.bluetooth.characteristic.lock_characteristic"),
 
-  /// The default characteristic for Lock Characteristic
-  @Deprecated("UUID has been renamed; use setMemberLock instead")
-  lockCharacteristic(
-      "Lock Characteristic",
-      "2b86",
-      "00002b86-0000-1000-8000-00805f9b34fb",
-      "org.bluetooth.characteristic.lock_characteristic"),
-
   /// The default characteristic for Set Member Rank
   setMemberRank(
       "Set Member Rank",
-      "2b87",
-      "00002b87-0000-1000-8000-00805f9b34fb",
-      "org.bluetooth.characteristic.rank_characteristic"),
-
-  /// The default characteristic for Rank Characteristic
-  @Deprecated("UUID has been renamed; use setMemberRank instead")
-  rankCharacteristic(
-      "Rank Characteristic",
       "2b87",
       "00002b87-0000-1000-8000-00805f9b34fb",
       "org.bluetooth.characteristic.rank_characteristic"),
@@ -2871,38 +2745,6 @@ enum BluetoothDefaultCharacteristicUUIDS {
   /// The default characteristic for Energy 32
   energy32("Energy 32", "2ba8", "00002ba8-0000-1000-8000-00805f9b34fb",
       "org.bluetooth.characteristic.energy_32"),
-
-  /// The default characteristic for Media Player Icon Object Type
-  @Deprecated("UUID no longer exists in the Bluetooth spec")
-  mediaPlayerIconObjectType(
-      "Media Player Icon Object Type",
-      "2ba9",
-      "00002ba9-0000-1000-8000-00805f9b34fb",
-      "org.bluetooth.characteristic.media_player_icon_object_type"),
-
-  /// The default characteristic for Track Segments Object Type
-  @Deprecated("UUID no longer exists in the Bluetooth spec")
-  trackSegmentsObjectType(
-      "Track Segments Object Type",
-      "2baa",
-      "00002baa-0000-1000-8000-00805f9b34fb",
-      "org.bluetooth.characteristic.track_segments_object_type"),
-
-  /// The default characteristic for Track Object Type
-  @Deprecated("UUID no longer exists in the Bluetooth spec")
-  trackObjectType(
-      "Track Object Type",
-      "2bab",
-      "00002bab-0000-1000-8000-00805f9b34fb",
-      "org.bluetooth.characteristic.track_object_type"),
-
-  /// The default characteristic for Group Object Type
-  @Deprecated("UUID no longer exists in the Bluetooth spec")
-  groupObjectType(
-      "Group Object Type",
-      "2bac",
-      "00002bac-0000-1000-8000-00805f9b34fb",
-      "org.bluetooth.characteristic.group_object_type"),
 
   /// The default characteristic for Constant Tone Extension Enable
   constantToneExtensionEnable(
@@ -3954,19 +3796,5 @@ enum BluetoothDefaultCharacteristicUUIDS {
       "This contains all deprecated characteristics and should thus not be relied on")
   static const List<BluetoothDefaultCharacteristicUUIDS>
       deprecatedCharacteristics = [
-    objectActioncontrolPoint,
-    unspecified,
-    directoryListing,
-    currentSession,
-    session,
-    offsetState,
-    setIdentityResolvingKeyCharacteristic,
-    sizeCharacteristic,
-    lockCharacteristic,
-    rankCharacteristic,
-    mediaPlayerIconObjectType,
-    trackSegmentsObjectType,
-    trackObjectType,
-    groupObjectType
   ];
 }

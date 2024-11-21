@@ -1435,12 +1435,6 @@ enum BluetoothDefaultManufacturerIdentifiers {
   /// The manufacturer identifier for KEBA Energy Automation GmbH
   kebaEnergyAutomationGmbh("KEBA Energy Automation GmbH", 0xC60),
 
-  /// The manufacturer identifier for Nanjing Linkpower Microelectronics Co.,Ltd
-  @Deprecated(
-      "Identifier has been renamed; use wuxiLinkpowerMicroelectronicsCoLtd instead")
-  nanjingLinkpowerMicroelectronicsCoLtd(
-      "Nanjing Linkpower Microelectronics Co.,Ltd", 0xC5F),
-
   /// The manufacturer identifier for Wuxi Linkpower Microelectronics Co.,Ltd
   wuxiLinkpowerMicroelectronicsCoLtd(
       "Wuxi Linkpower Microelectronics Co.,Ltd", 0xC5F),
@@ -5535,10 +5529,6 @@ enum BluetoothDefaultManufacturerIdentifiers {
   /// The manufacturer identifier for Dairy Tech, LLC
   dairyTechLlc("Dairy Tech, LLC", 0x732),
 
-  /// The manufacturer identifier for Dairy Tech, Inc.
-  @Deprecated("Identifier has been renamed; use dairyTechLlc instead")
-  dairyTechInc("Dairy Tech, Inc.", 0x732),
-
   /// The manufacturer identifier for ABLIC Inc.
   ablicInc("ABLIC Inc.", 0x731),
 
@@ -7739,11 +7729,6 @@ enum BluetoothDefaultManufacturerIdentifiers {
   /// The manufacturer identifier for Bellman & Symfon Group AB
   bellmanAndSymfonGroupAb("Bellman & Symfon Group AB", 0x464),
 
-  /// The manufacturer identifier for Bellman & Symfon
-  @Deprecated(
-      "Identifier has been renamed; use bellmanAndSymfonGroupAb instead")
-  bellmanAndSymfon("Bellman & Symfon", 0x464),
-
   /// The manufacturer identifier for Fathom Systems Inc.
   fathomSystemsInc("Fathom Systems Inc.", 0x463),
 
@@ -8811,10 +8796,6 @@ enum BluetoothDefaultManufacturerIdentifiers {
 
   /// The manufacturer identifier for Oura Health Ltd
   ouraHealthLtd("Oura Health Ltd", 0x304),
-
-  /// The manufacturer identifier for Proxy Technologies, Inc.
-  @Deprecated("Identifier has been renamed; use ouraHealthLtd instead")
-  proxyTechnologiesInc("Proxy Technologies, Inc.", 0x304),
 
   /// The manufacturer identifier for IACA electronique
   iacaElectronique("IACA electronique", 0x303),
@@ -9951,10 +9932,6 @@ enum BluetoothDefaultManufacturerIdentifiers {
   /// The manufacturer identifier for Google LLC
   googleLlc("Google LLC", 0x18E),
 
-  /// The manufacturer identifier for Fitbit, Inc.
-  @Deprecated("Identifier has been renamed; use googleLlc instead")
-  fitbitInc("Fitbit, Inc.", 0x18E),
-
   /// The manufacturer identifier for Extron Design Services
   extronDesignServices("Extron Design Services", 0x18D),
 
@@ -9996,11 +9973,6 @@ enum BluetoothDefaultManufacturerIdentifiers {
 
   /// The manufacturer identifier for Gigaset Technologies GmbH
   gigasetTechnologiesGmbh("Gigaset Technologies GmbH", 0x180),
-
-  /// The manufacturer identifier for Gigaset Communications GmbH
-  @Deprecated(
-      "Identifier has been renamed; use gigasetTechnologiesGmbh instead")
-  gigasetCommunicationsGmbh("Gigaset Communications GmbH", 0x180),
 
   /// The manufacturer identifier for XTel Wireless ApS
   xtelWirelessAps("XTel Wireless ApS", 0x17F),
@@ -10068,10 +10040,6 @@ enum BluetoothDefaultManufacturerIdentifiers {
 
   /// The manufacturer identifier for Copeland Cold Chain LP
   copelandColdChainLp("Copeland Cold Chain LP", 0x16A),
-
-  /// The manufacturer identifier for Emerson Digital Cold Chain, Inc.
-  @Deprecated("Identifier has been renamed; use copelandColdChainLp instead")
-  emersonDigitalColdChainInc("Emerson Digital Cold Chain, Inc.", 0x16A),
 
   /// The manufacturer identifier for emberlight
   emberlight("emberlight", 0x169),
@@ -10849,10 +10817,6 @@ enum BluetoothDefaultManufacturerIdentifiers {
 
   /// The manufacturer identifier for LTIMINDTREE LIMITED
   ltimindtreeLimited("LTIMINDTREE LIMITED", 0x6A),
-
-  /// The manufacturer identifier for MindTree Ltd.
-  @Deprecated("Identifier has been renamed; use ltimindtreeLimited instead")
-  mindtreeLtd("MindTree Ltd.", 0x6A),
 
   /// The manufacturer identifier for A&D Engineering, Inc.
   aanddEngineeringInc("A&D Engineering, Inc.", 0x69),
@@ -14820,13 +14784,5 @@ enum BluetoothDefaultManufacturerIdentifiers {
       "This contains all deprecated manufacturer identifiers and should thus not be relied on")
   static const List<BluetoothDefaultManufacturerIdentifiers>
       deprecatedManufacturerIdentifiers = [
-    nanjingLinkpowerMicroelectronicsCoLtd,
-    dairyTechInc,
-    bellmanAndSymfon,
-    proxyTechnologiesInc,
-    fitbitInc,
-    gigasetCommunicationsGmbh,
-    emersonDigitalColdChainInc,
-    mindtreeLtd
   ];
 }
