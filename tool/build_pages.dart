@@ -21,7 +21,7 @@ Future<int> main() async {
         "/flutter_web_bluetooth/",
         "--release",
         "--source-maps",
-        "--dart-define=redirectToHttps=true"
+        "--dart-define=redirectToHttps=true",
       ],
       workingDirectory: exampleDir);
   await Future.wait([
@@ -66,13 +66,43 @@ Future<int> main() async {
   if (version == null) {
     throw ArgumentError("Version was not set");
   }
+
+  final flutterAndDartVersion = await getFlutterAndDartVersion();
+
   final newPubspecContent = """
 packages:
   flutter_web_bluetooth:
     version: "$version"
+  flutter:
+    version: "${flutterAndDartVersion.flutter}"
+  dart:
+    version: "${flutterAndDartVersion.dart}"
 """;
 
   await pubspecFile.writeAsString(newPubspecContent);
 
   return 0;
+}
+
+Future<({String flutter, String dart})> getFlutterAndDartVersion() async {
+  final process =
+      await Process.start("flutter", ["--version"], workingDirectory: "/");
+  final exitCode = await process.exitCode;
+  if (exitCode != 0) {
+    exit(exitCode);
+  }
+
+  final text = await utf8.decodeStream(process.stdout);
+
+  final flutterRegex = RegExp(r"Flutter (\d+\.\d+\.\d+)");
+  final flutterMatch = flutterRegex.firstMatch(text);
+
+  final flutterVersion = flutterMatch?.group(1) ?? "unknown";
+
+  final dartRegex = RegExp(r"Dart (\d+\.\d+\.\d+)");
+  final dartMatch = dartRegex.firstMatch(text);
+
+  final dartVersion = dartMatch?.group(1) ?? "unknown";
+
+  return (flutter: flutterVersion, dart: dartVersion);
 }
