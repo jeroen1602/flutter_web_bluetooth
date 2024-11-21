@@ -23,7 +23,8 @@ class InfoDialog extends StatefulWidget {
 }
 
 class _InfoDialogState extends State<InfoDialog> {
-  Future<String>? _libraryVersion;
+  Future<({String flutterVersion, String dartVersion, String libVersion})>?
+      _pubspecVersions;
   Future<String>? _appVersion;
 
   @override
@@ -31,7 +32,7 @@ class _InfoDialogState extends State<InfoDialog> {
     super.initState();
 
     // ignore: discarded_futures
-    _libraryVersion = _getLibraryVersion();
+    _pubspecVersions = _getPubspecVersions();
     // ignore: discarded_futures
     _appVersion = _getExampleAppVersion();
   }
@@ -50,12 +51,31 @@ class _InfoDialogState extends State<InfoDialog> {
                   return Text(
                       "Example app version: ${snapshot.data ?? "loading"}");
                 }),
-            FutureBuilder<String>(
-                future: _libraryVersion,
+            FutureBuilder<
+                    ({
+                      String flutterVersion,
+                      String dartVersion,
+                      String libVersion
+                    })>(
+                future: _pubspecVersions,
                 builder: (final BuildContext context,
-                    final AsyncSnapshot<String> snapshot) {
-                  return Text(
-                      "Using library version: ${snapshot.data ?? "Loading"}");
+                    final AsyncSnapshot<
+                            ({
+                              String flutterVersion,
+                              String dartVersion,
+                              String libVersion
+                            })>
+                        snapshot) {
+                  return Column(
+                    children: [
+                      Text(
+                          "Using library version: ${snapshot.data?.libVersion ?? "Loading"}"),
+                      Text(
+                          "Using Flutter version: ${snapshot.data?.flutterVersion ?? "Loading"}"),
+                      Text(
+                          "Using Dart version: ${snapshot.data?.dartVersion ?? "Loading"}"),
+                    ],
+                  );
                 }),
           ],
         ),
@@ -78,7 +98,7 @@ class _InfoDialogState extends State<InfoDialog> {
     );
   }
 
-  Future<String> _getLibraryVersion() async {
+  Future<dynamic> _getPubspecPackages() async {
     final data = await rootBundle.loadString("pubspec.lock");
 
     try {
@@ -87,6 +107,52 @@ class _InfoDialogState extends State<InfoDialog> {
       if (packages == null) {
         throw ArgumentError();
       }
+      return packages;
+    } on YamlException {
+      return null;
+    } on ArgumentError {
+      return null;
+    }
+  }
+
+  String _getPackageVersion(final dynamic packages, final String packageName) {
+    if (packages == null) {
+      return "Could not be loaded";
+    }
+    try {
+      final library = packages[packageName];
+      if (library == null) {
+        throw ArgumentError();
+      }
+      final version = library["version"];
+      if (version == null) {
+        throw ArgumentError();
+      }
+      return version.toString();
+    } on ArgumentError {
+      return "Could not be loaded";
+    }
+  }
+
+  Future<({String flutterVersion, String dartVersion, String libVersion})>
+      _getPubspecVersions() async {
+    final packages = await _getPubspecPackages();
+
+    final libVersion = _getPackageVersion(packages, "flutter_web_bluetooth");
+    final flutterVersion = _getPackageVersion(packages, "flutter");
+    final dartVersion = _getPackageVersion(packages, "dart");
+
+    return (
+      flutterVersion: flutterVersion,
+      dartVersion: dartVersion,
+      libVersion: libVersion
+    );
+  }
+
+  Future<String> _getLibraryVersion(final dynamic packages) async {
+    final data = await rootBundle.loadString("pubspec.lock");
+
+    try {
       final library = packages["flutter_web_bluetooth"];
       if (library == null) {
         throw ArgumentError();
