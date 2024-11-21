@@ -87,6 +87,7 @@ const _numberMap = {
   20: "twenty",
   70: "seventy",
   701: "seven hundred one",
+  9313: "nine thousand three hundred thirteen",
   9374: "nine thousand three hundred seventy four",
   9512: "nine thousand five hundred twelve",
   2048450: "two million forty eight thousand four hundred fifty",

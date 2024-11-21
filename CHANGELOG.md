@@ -32,6 +32,9 @@
 * `web/*` created event streams using `BluetoothEventStreamProviders`.
 * created `web/WebBluetoothValueEvent` for the `availabilitychanged` event.
 * Changed example project to also use `dart:js_interop` instead of `dart:html`.
+* **Breaking:** Removed all deprecated `BluetoothDefaultManufacturerIdentifiers` cases. That were deprecated pre this
+  release.
+* **Breaking:** Removed all deprecated `BluetoothDefaultServiceUUIDS` cases. That were deprecated pre this release.
 
 ## 0.2.4
 
