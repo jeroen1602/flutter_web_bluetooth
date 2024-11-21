@@ -23,8 +23,8 @@ jobs:
     strategy:
       fail-fast: false
       matrix:
-        os: [ubuntu-latest, windows-latest, macos-latest]
-        flutter: [stable, beta]
+        os: [ ubuntu-latest, windows-latest, macos-latest ]
+        flutter: [ stable, beta ]
     steps:
       - uses: actions/checkout@v4
       - uses: subosito/flutter-action@v2
@@ -46,5 +46,12 @@ jobs:
       - name: Formatted
         run: dart format --set-exit-if-changed .
 
-      - name: Run tests
-        run: dart test
+      - name: Run tests ubuntu
+        if: matrix.os == 'ubuntu-latest'
+        run: dart test ./test
+      - name: Run tests macos
+        if: matrix.os == 'macos-latest'
+        run: dart test -p vm,chrome ./test
+      - name: Run tests windows
+        if: matrix.os == 'windows-latest'
+        run: dart test -c vm:kernel,dart2js ./test

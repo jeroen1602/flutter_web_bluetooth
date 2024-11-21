@@ -1,3 +1,38 @@
+## 1.0.0
+
+* Changed from `dart:html` to `dart:js_interop` to support wasm builds.
+* Dependencies:
+    * Updated min dart version to `3.3.0`
+    * No longer require [js](https://pub.dev/packages/js)
+    * Require [web](https://pub.dev/packages/web) package `0.5.0` or higher
+* Bluetooth advertisements
+    * **Breaking:** `src/AdvertisementReceivedEvent` no longer extends `web/AdvertisementReceivedEventInterface`
+    * `src/AdvertisementReceivedEvent` now has a `withMemory` constructor
+    * **Breaking:** `web/AdvertisementReceivedEventInterface` no longer exists
+    * **Breaking:** `web/WebAdvertisementReceivedEvent` has been renamed to `web/BluetoothAdvertisementReceivedEvent`
+    * **Breaking:** `web/WebAdvertisementReceivedEvent.fromJSObject` constructor no longer exists
+    * **Breaking:** `web/WebAdvertisementReceivedEvent.withMemory` constructor no longer exists
+* Bluetooth filters:
+    * `web/BluetoothScanFilterHelper` is now deprecated. Use `web/BluetoothManufacturerDataFilter.create()`,
+      `web/BluetoothServiceDataFilter.create()`, and `web/BluetoothScanFilter.create()` instead.
+    * **Breaking:** `web/BluetoothServiceDataFilter` now requires a service UUID. Following spec
+    * **Breaking:** `web/BluetoothManufacturerDataFilter` now requires a company identifier. Following spec
+    * **Breaking:** `src/ServiceDataFilterBuilder` now requires a service UUID. Following spec
+    * **Breaking:** `src/ManufacturerDataFilterBuilder` now requires a company identifier. Following spec
+* **Breaking:** `web/js/AbortController` has been removed in favor of the implementation form the `web` package
+* **Breaking:** `web/js/JSUtils` has been removed (this was an internal library so it shouldn't have any impact on most
+  projects)
+* **Breaking:** `web/NativeBluetooth` now returns `JSPromises` and other native objects instead of `object`
+* **Breaking:** `web/testingSetNavigator()` now requires that you set a `web` navigator object.
+* **Breaking:** `web/*` all `addEventListener` and `removeEventListener` functions now extend from `web/EventTarget`
+* **Breaking:** `web/*` all objects now implement `JSObject` and have been marked with `@JS`. This also removes all
+  `fromJSObject` constructors.
+* **Breaking:** removed `web/WebBluetoothConverters`
+* `web/WatchAdvertisementsOptions` the signal property is now nullable. Following the spec.
+* `web/*` created event streams using `BluetoothEventStreamProviders`.
+* created `web/WebBluetoothValueEvent` for the `availabilitychanged` event.
+* Changed example project to also use `dart:js_interop` instead of `dart:html`.
+
 ## 0.2.4
 
 * Updated `BluetoothDefaultManufacturerIdentifiers`, some identifiers have been renamed, the old names have been marked
@@ -15,8 +50,8 @@
       UUIDS.
     * Added the `id` field to the enum, this contains the official Bluetooth SIG id of the UUID.
 * Updated docs to link to the current version of the `service`, `characteristic`, and `manufacturer data` blocklists
-  * https://github.com/WebBluetoothCG/registries/blob/master/gatt_blocklist.txt
-  * https://github.com/WebBluetoothCG/registries/blob/master/manufacturer_data_blocklist.txt
+    * https://github.com/WebBluetoothCG/registries/blob/master/gatt_blocklist.txt
+    * https://github.com/WebBluetoothCG/registries/blob/master/manufacturer_data_blocklist.txt
 
 ## 0.2.3
 

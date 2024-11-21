@@ -5,7 +5,7 @@
 /// but if you want to do something special then you can overwrite the logger
 /// using [setWebBluetoothLogger].
 ///
-library web_bluetooth_logger;
+library;
 
 import "dart:async";
 

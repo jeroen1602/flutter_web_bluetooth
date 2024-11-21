@@ -3,6 +3,7 @@
 /// Changes event listeners into [Stream]s and Javascript promises into
 /// [Future]s.
 ///
+// ignore: unnecessary_library_name
 library flutter_web_bluetooth;
 
 import "dart:async";
@@ -11,6 +12,7 @@ import "dart:typed_data";
 
 import "package:flutter_web_bluetooth/js_web_bluetooth.dart";
 import "package:flutter_web_bluetooth/shared/web_behavior_subject.dart";
+import "package:flutter_web_bluetooth/web/js/js.dart";
 import "package:flutter_web_bluetooth/web_bluetooth_logger.dart";
 import "package:meta/meta.dart";
 
@@ -48,17 +50,14 @@ class FlutterWebBluetooth extends FlutterWebBluetoothInterface {
     }
 
     _advertisementSubject = WebBehaviorSubject();
-
-    Bluetooth.addEventListener("advertisementreceived", (final dynamic event) {
+    Bluetooth.onAdvertisementReceived
+        .listen((final BluetoothAdvertisementReceivedEvent event) {
       try {
-        final webDevice = WebBluetoothDevice.fromEvent(event);
-        final convertedEvent =
-            WebAdvertisementReceivedEvent.fromJSObject(event, webDevice);
-        final device = AdvertisementBluetoothDevice(webDevice);
+        final device = AdvertisementBluetoothDevice(event.device);
 
         _advertisementSubject?.add(
-            AdvertisementReceivedEvent<AdvertisementBluetoothDevice>._(
-                convertedEvent, device));
+            AdvertisementReceivedEvent<AdvertisementBluetoothDevice>(
+                event, device));
       } catch (e, s) {
         if (e is Error) {
           _advertisementSubject?.controller.addError(e, s);

@@ -1,6 +1,63 @@
 part of "../js_web_bluetooth.dart";
 
 ///
+/// The base type for a bluetooth data filter.
+///
+/// This filter contains an optional [dataPrefix] and an optional [mask].
+///
+/// See:
+///
+/// - https://webbluetoothcg.github.io/web-bluetooth/#dictdef-bluetoothdatafilterinit
+///
+@JS()
+@anonymous
+extension type BluetoothDataFilter._(JSObject _) implements JSObject {
+  @JS("dataPrefix")
+  external JSArrayBuffer? get _dataPrefix;
+
+  ///
+  /// is a uint8 (or byte) array of the first n bytes of the UUID
+  /// that should exist for the service. For example if you have the UUID
+  /// `D273346A-...` then the prefix of `D273` should match
+  ///
+  ByteBuffer? get dataPrefix {
+    if (_dataPrefix == null || _dataPrefix.isUndefinedOrNull) {
+      return null;
+    }
+    return _dataPrefix!.toDart;
+  }
+
+  @JS("mask")
+  external JSArrayBuffer? get _mask;
+
+  ///
+  /// Is a uint8 (or byte) array of the bits that should be matched against.
+  /// The original UUID will be bit wise and (&) as well as the [dataPrefix] to
+  /// the same [mask]. These two will then be compared to be equal.
+  ///
+  ByteBuffer? get mask {
+    if (_mask == null || _mask.isUndefinedOrNull) {
+      return null;
+    }
+    return _mask!.toDart;
+  }
+
+  ///
+  /// Fill the data needed for this init type. Will only set it if the values
+  /// aren't `null`. (leaving the missing values as `undefined`)
+  ///
+  static void _fillDataFilter<T extends BluetoothDataFilter>(
+      final T jsObject, final Uint8List? dataPrefix, final Uint8List? mask) {
+    if (dataPrefix != null) {
+      jsObject.setProperty("dataPrefix".toJS, dataPrefix.buffer.toJS);
+    }
+    if (mask != null) {
+      jsObject.setProperty("mask".toJS, mask.buffer.toJS);
+    }
+  }
+}
+
+///
 /// The js object for Bluetooth scan filters.
 /// At least one of the filter must be set, the rest can be left
 /// `undefined`.
@@ -11,36 +68,42 @@ part of "../js_web_bluetooth.dart";
 ///
 @JS()
 @anonymous
-class BluetoothServiceDataFilter {
+extension type BluetoothServiceDataFilter._(JSObject _)
+    implements JSObject, BluetoothDataFilter {
+  @JS("service")
+  external JSString get _service;
+
   ///
   /// may be a UUID of the service that should exist.
   ///
-  external String? get service;
-
-  ///
-  /// is a uint8 (or byte) array of the first n bytes of the UUID
-  /// that should exist for the service. For example if you have the UUID
-  /// `D273346A-...` then the prefix of `D273` should match
-  ///
-  external Object? get dataPrefix;
-
-  ///
-  /// Is a uint8 (or byte) array of the bits that should be matched against.
-  /// The original UUID will be bit wise and (&) as well as the [dataPrefix] to
-  /// the same [mask]. These two will then be compared to be equal.
-  ///
-  external Object? get mask;
+  String get service => _service.toDart;
 
   ///
   /// The constructor of the request filter.
   ///
   /// Because of how the js conversion works setting a value to null is not
   /// the same as leaving it undefined. Use
-  /// [BluetoothScanFilterHelper.createServiceDataObject]
+  /// [BluetoothServiceDataFilter.create]
   /// to get around this problem.
   ///
   external factory BluetoothServiceDataFilter(
-      {final String? service, final Object? dataPrefix, final Object? mask});
+      {required final JSString? service,
+      final JSArrayBuffer? dataPrefix,
+      final JSArrayBuffer? mask});
+
+  ///
+  /// Create a [BluetoothServiceDataFilter] only setting the fields that
+  /// are not `null` this exists because Dart isn't able to set items to
+  /// `undefined`.
+  ///
+  factory BluetoothServiceDataFilter.create(
+      {required final String service,
+      final Uint8List? dataPrefix,
+      final Uint8List? mask}) {
+    final jsObject = BluetoothServiceDataFilter(service: service.toJS);
+    BluetoothDataFilter._fillDataFilter(jsObject, dataPrefix, mask);
+    return jsObject;
+  }
 }
 
 ///
@@ -54,7 +117,11 @@ class BluetoothServiceDataFilter {
 ///
 @JS()
 @anonymous
-class BluetoothManufacturerDataFilter {
+extension type BluetoothManufacturerDataFilter._(JSObject _)
+    implements JSObject, BluetoothDataFilter {
+  @JS("companyIdentifier")
+  external JSNumber get _companyIdentifier;
+
   ///
   /// is a 16 bit identifier of the company that either made
   /// the device, or made the bluetooth chip that the device uses.
@@ -62,34 +129,35 @@ class BluetoothManufacturerDataFilter {
   /// See the full list of company identifiers
   /// [here](https://www.bluetooth.com/specifications/assigned-numbers/company-identifiers/).
   ///
-  external int? get companyIdentifier;
-
-  ///
-  /// is a uint8 (or byte) array of the first n bytes of the
-  /// manufacturer data of the device. For example if you have the UUID
-  /// `D273346A-...` then the prefix of `D273` should match
-  ///
-  external Object? get dataPrefix;
-
-  ///
-  /// is a uint8 (or byte) array of the bits that should be matched against.
-  /// The manufacturer data will be bit wise and (&) as well as the [dataPrefix] to
-  /// the same [mask]. These two will then be compared to be equal.
-  ///
-  external Object? get mask;
+  int get companyIdentifier => _companyIdentifier.toDartInt;
 
   ///
   /// The constructor of the request filter.
   ///
   /// Because of how the js conversion works setting a value to null is not
   /// the same as leaving it undefined. Use
-  /// [BluetoothScanFilterHelper.createManufacturerDataObject]
+  /// [BluetoothManufacturerDataFilter.create]
   /// to get around this problem.
   ///
   external factory BluetoothManufacturerDataFilter(
-      {final int? companyIdentifier,
-      final Object? dataPrefix,
-      final Object? mask});
+      {required final JSNumber companyIdentifier,
+      final JSArrayBuffer? dataPrefix,
+      final JSArrayBuffer? mask});
+
+  ///
+  /// Create a [BluetoothManufacturerDataFilter] only setting the fields that
+  /// are not `null` this exists because Dart isn't able to set items to
+  /// `undefined`.
+  ///
+  factory BluetoothManufacturerDataFilter.create(
+      {required final int companyIdentifier,
+      final Uint8List? dataPrefix,
+      final Uint8List? mask}) {
+    final jsObject = BluetoothManufacturerDataFilter(
+        companyIdentifier: companyIdentifier.toJS);
+    BluetoothDataFilter._fillDataFilter(jsObject, dataPrefix, mask);
+    return jsObject;
+  }
 }
 
 ///
@@ -105,7 +173,30 @@ class BluetoothManufacturerDataFilter {
 ///
 @JS()
 @anonymous
-class BluetoothScanFilter {
+extension type BluetoothScanFilter._(JSObject _) implements JSObject {
+  @JS("name")
+  external JSString get _name;
+
+  ///
+  /// The name of the device. The name must be the exact same for the device
+  /// to be allowed.
+  ///
+  String? get name => _name.isDefinedAndNotNull ? _name.toDart : null;
+
+  @JS("namePrefix")
+  external JSString get _namePrefix;
+
+  ///
+  /// A name prefix. The name of the device must
+  /// have the same prefix. For example: a device with the name "ABCDEF" will
+  /// be allowed with the prefix "ABC" and not with the prefix "DEF".
+  ///
+  String? get namePrefix =>
+      _namePrefix.isDefinedAndNotNull ? _namePrefix.toDart : null;
+
+  @JS("services")
+  external JSArray<JSString> get _services;
+
   ///
   /// A list of UUIDS (should be lower case) of the services that the device
   /// must have. A device is only allowed if it has all the services.
@@ -114,20 +205,15 @@ class BluetoothScanFilter {
   /// The complete blocklist can be found here:
   /// https://github.com/WebBluetoothCG/registries/blob/master/gatt_blocklist.txt
   ///
-  external List<String>? get services;
+  List<String>? get services {
+    if (_services.isUndefinedOrNull) {
+      return null;
+    }
+    return List.unmodifiable(_services.toDart.map((final x) => x.toDart));
+  }
 
-  ///
-  /// The name of the device. The name must be the exact same for the device
-  /// to be allowed.
-  ///
-  external String? get name;
-
-  ///
-  /// A name prefix. The name of the device must
-  /// have the same prefix. For example: a device with the name "ABCDEF" will
-  /// be allowed with the prefix "ABC" and not with the prefix "DEF".
-  ///
-  external String? get namePrefix;
+  @JS("manufacturerData")
+  external JSArray<BluetoothManufacturerDataFilter> get _manufacturerData;
 
   ///
   /// A [List] of [BluetoothManufacturerDataFilter]s
@@ -139,7 +225,15 @@ class BluetoothScanFilter {
   /// The complete blocklist can be found here:
   /// https://github.com/WebBluetoothCG/registries/blob/master/manufacturer_data_blocklist.txt
   ///
-  external List<BluetoothManufacturerDataFilter>? get manufacturerData;
+  List<BluetoothManufacturerDataFilter>? get manufacturerData {
+    if (_manufacturerData.isUndefinedOrNull) {
+      return null;
+    }
+    return _manufacturerData.toDart;
+  }
+
+  @JS("serviceData")
+  external JSArray<BluetoothServiceDataFilter> get _serviceData;
 
   ///
   /// A [List] of [BluetoothServiceDataFilter]s for the services that the
@@ -147,21 +241,64 @@ class BluetoothScanFilter {
   ///
   /// **Note** this is not stable yet and my not be implemented.
   ///
-  external List<BluetoothServiceDataFilter>? get serviceData;
+  List<BluetoothServiceDataFilter>? get serviceData {
+    if (_serviceData.isUndefinedOrNull) {
+      return null;
+    }
+    return _serviceData.toDart;
+  }
 
   ///
   /// The constructor of the request filter.
   ///
   /// Because of how the js conversion works setting a value to null is not
-  /// the same as leaving it undefined. Use [BluetoothScanFilterHelper.createScanFilterObject]
+  /// the same as leaving it undefined. Use [BluetoothScanFilter.create]
   /// to get around this problem.
   ///
   external factory BluetoothScanFilter(
+      {final JSArray<JSString>? services,
+      final JSString? name,
+      final JSString? namePrefix,
+      final JSArray<BluetoothManufacturerDataFilter>? manufacturerData,
+      final JSArray<BluetoothServiceDataFilter>? serviceData});
+
+  ///
+  /// Create a new JS object with the fields for [BluetoothScanFilter]. But
+  /// instead of setting all the values to `null` it will just not add them
+  /// keeping them `undefined`.
+  ///
+  /// No check is done here so you may end up with an empty object.
+  ///
+  factory BluetoothScanFilter.create(
       {final List<String>? services,
       final String? name,
       final String? namePrefix,
       final List<BluetoothManufacturerDataFilter>? manufacturerData,
-      final List<BluetoothServiceDataFilter>? serviceData});
+      final List<BluetoothServiceDataFilter>? serviceData}) {
+    final jsObject = BluetoothScanFilter();
+
+    if (services != null) {
+      jsObject.setProperty(
+          "services".toJS,
+          services
+              .map((final x) => x.toLowerCase().toJS)
+              .toList(growable: false)
+              .toJS);
+    }
+    if (name != null) {
+      jsObject.setProperty("name".toJS, name.toJS);
+    }
+    if (namePrefix != null) {
+      jsObject.setProperty("namePrefix".toJS, namePrefix.toJS);
+    }
+    if (manufacturerData != null && manufacturerData.isNotEmpty) {
+      jsObject.setProperty("manufacturerData".toJS, manufacturerData.toJS);
+    }
+    if (serviceData != null && serviceData.isNotEmpty) {
+      jsObject.setProperty("serviceData".toJS, serviceData.toJS);
+    }
+    return jsObject;
+  }
 }
 
 ///
@@ -172,7 +309,9 @@ class BluetoothScanFilter {
 /// of keeping them undefined. This would cause the API to complain. So to keep
 /// it at peace this workaround is used.
 ///
+@Deprecated("Use the classes create method instead. Since 1.0.0")
 class BluetoothScanFilterHelper {
+  @Deprecated("since 1.0.0")
   BluetoothScanFilterHelper._();
 
   ///
@@ -182,15 +321,15 @@ class BluetoothScanFilterHelper {
   ///
   /// No check is done here so you may end up with an empty object.
   ///
-  static Object createManufacturerDataObject(final int? companyIdentifier,
-      final Uint8List? dataPrefix, final Uint8List? mask) {
-    final jsObject = _JSUtil.newObject();
-    if (companyIdentifier != null) {
-      _JSUtil.setProperty(jsObject, "companyIdentifier", companyIdentifier);
-    }
-    _fillDataFilter(jsObject, dataPrefix, mask);
-    return jsObject;
-  }
+  @Deprecated("Use BluetoothManufacturerDataFilter.create instead. Since 1.0.0")
+  static BluetoothManufacturerDataFilter createManufacturerDataObject(
+          final int companyIdentifier,
+          final Uint8List? dataPrefix,
+          final Uint8List? mask) =>
+      BluetoothManufacturerDataFilter.create(
+          companyIdentifier: companyIdentifier,
+          dataPrefix: dataPrefix,
+          mask: mask);
 
   ///
   /// Create a [BluetoothServiceDataFilter] only setting the fields that
@@ -199,33 +338,13 @@ class BluetoothScanFilterHelper {
   ///
   /// No check is done here so you may end up with an empty object.
   ///
-  static Object createServiceDataObject(final String? service,
-      final Uint8List? dataPrefix, final Uint8List? mask) {
-    final jsObject = _JSUtil.newObject();
-    if (service != null) {
-      _JSUtil.setProperty(jsObject, "service", service);
-    }
-    _fillDataFilter(jsObject, dataPrefix, mask);
-    return jsObject;
-  }
-
-  ///
-  /// Fill the data filter part of the [createManufacturerDataObject] or
-  /// [createServiceDataObject] object.
-  ///
-  static void _fillDataFilter(final dynamic jsObject,
-      final Uint8List? dataPrefix, final Uint8List? mask) {
-    if (dataPrefix != null) {
-      final convertedDataPrefix =
-          WebBluetoothConverters.convertUint8ListToJSArrayBuffer(dataPrefix);
-      _JSUtil.setProperty(jsObject, "dataPrefix", convertedDataPrefix);
-    }
-    if (mask != null) {
-      final convertedMask =
-          WebBluetoothConverters.convertUint8ListToJSArrayBuffer(mask);
-      _JSUtil.setProperty(jsObject, "mask", convertedMask);
-    }
-  }
+  @Deprecated("Use BluetoothServiceDataFilter.create instead. Since 1.0.0")
+  static BluetoothServiceDataFilter createServiceDataObject(
+          final String service,
+          final Uint8List? dataPrefix,
+          final Uint8List? mask) =>
+      BluetoothServiceDataFilter.create(
+          service: service, dataPrefix: dataPrefix, mask: mask);
 
   ///
   /// Create a new JS object with the fields for [BluetoothScanFilter]. But
@@ -234,32 +353,17 @@ class BluetoothScanFilterHelper {
   ///
   /// No check is done here so you may end up with an empty object.
   ///
-  /// You may need to cast it to a [BluetoothScanFilter] but this is allowed
-  /// without any complaints as long as the code is run in the browser.
-  ///
-  static Object createScanFilterObject(
-      final List<String>? services,
-      final String? name,
-      final String? namePrefix,
-      final List<BluetoothManufacturerDataFilter>? manufacturerData,
-      final List<BluetoothServiceDataFilter>? serviceData) {
-    final jsObject = _JSUtil.newObject();
-    if (services != null) {
-      _JSUtil.setProperty(jsObject, "services",
-          services.map((final e) => e.toLowerCase()).toList());
-    }
-    if (name != null) {
-      _JSUtil.setProperty(jsObject, "name", name);
-    }
-    if (namePrefix != null) {
-      _JSUtil.setProperty(jsObject, "namePrefix", namePrefix);
-    }
-    if (manufacturerData != null) {
-      _JSUtil.setProperty(jsObject, "manufacturerData", manufacturerData);
-    }
-    if (serviceData != null) {
-      _JSUtil.setProperty(jsObject, "serviceData", serviceData);
-    }
-    return jsObject;
-  }
+  @Deprecated("Use BluetoothScanFilter.create instead. Since 1.0.0")
+  static BluetoothScanFilter createScanFilterObject(
+          final List<String>? services,
+          final String? name,
+          final String? namePrefix,
+          final List<BluetoothManufacturerDataFilter>? manufacturerData,
+          final List<BluetoothServiceDataFilter>? serviceData) =>
+      BluetoothScanFilter.create(
+          services: services,
+          name: name,
+          namePrefix: namePrefix,
+          manufacturerData: manufacturerData,
+          serviceData: serviceData);
 }

@@ -143,8 +143,7 @@ class BluetoothDevice extends AdvertisementBluetoothDevice {
 
     _connectionSubject = WebBehaviorSubject.seeded(gatt?.connected ?? false);
 
-    _bluetoothDevice.addEventListener("gattserverdisconnected",
-        (final dynamic event) {
+    _bluetoothDevice.onGattServerDisconnected.listen((final dynamic _) {
       _connectionSubject?.add(false);
       if (_servicesSubject.hasValue) {
         _servicesSubject.add([]);
@@ -159,23 +158,18 @@ class BluetoothDevice extends AdvertisementBluetoothDevice {
 
     _advertisementSubject = WebBehaviorSubject();
 
-    WebAdvertisementReceivedEvent? memory;
-    _bluetoothDevice.addEventListener("advertisementreceived",
-        (final dynamic event) {
+    AdvertisementReceivedEvent<BluetoothDevice>? memory;
+    _bluetoothDevice.onAdvertisementReceived.listen((final event) {
       try {
-        final convertedEvent =
-            WebAdvertisementReceivedEvent.fromJSObject(event, _bluetoothDevice);
-
+        final convertedEvent = AdvertisementReceivedEvent(event, this);
         var combined = convertedEvent;
         final storedMemory = memory;
         if (storedMemory != null && advertisementsUseMemory) {
-          combined = WebAdvertisementReceivedEvent.withMemory(
+          combined = AdvertisementReceivedEvent.withMemory(
               storedMemory, convertedEvent);
         }
         memory = combined;
-
-        _advertisementSubject?.add(
-            AdvertisementReceivedEvent<BluetoothDevice>._(combined, this));
+        _advertisementSubject?.add(combined);
       } catch (e, s) {
         if (e is Error) {
           _advertisementSubject?.controller.addError(e, s);
@@ -316,7 +310,7 @@ class BluetoothDevice extends AdvertisementBluetoothDevice {
       return await _bluetoothDevice.watchAdvertisements();
     }
     _advertisementAbortController
-        ?.abort(StateError("Can only watch the advertisements once"));
+        ?.abort("Can only watch the advertisements once".toJS);
 
     _startAdvertisementStream();
     final controller = timeout != null ? null : AbortController();
@@ -350,15 +344,14 @@ class BluetoothDevice extends AdvertisementBluetoothDevice {
   ///
   Future<void> unwatchAdvertisements() async {
     _advertisementAbortController
-        ?.abort(StateError("Watching advertisements has been aborted"));
+        ?.abort("Watching advertisements has been aborted".toJS);
     _advertisementAbortController = null;
     if (_bluetoothDevice.watchingAdvertisements &&
         _bluetoothDevice.hasWatchAdvertisements()) {
       try {
         // It seems that the device is still watching for advertisements even
         // though it should have already stopped. Stop it anyways.
-        final signal =
-            AbortSignal.abort(StateError("Stop the advertisements!"));
+        final signal = AbortSignal.abort("Stop the advertisements!".toJS);
         final options = WatchAdvertisementsOptions(signal: signal);
         await _bluetoothDevice.watchAdvertisements(options);
       } catch (e) {

@@ -1,30 +1,45 @@
 import "package:flutter_web_bluetooth/js_web_bluetooth.dart";
+import "package:flutter_web_bluetooth/web/js/js.dart";
 
 class NativeBluetoothTesting extends NativeBluetooth {
   NativeBluetoothTesting({this.available = true});
 
   bool available;
-  Map<String, dynamic>? bluetoothDevice;
+  WebBluetoothDevice? bluetoothDevice;
 
   @override
-  Object getAvailability() => Future.value(available);
+  JSPromise<JSBoolean> getAvailability() => Future.value(available.toJS).toJS;
 
   @override
-  Object requestDevice(final RequestOptions? options) =>
-      Future.value(bluetoothDevice ?? <String, dynamic>{});
+  JSPromise<WebBluetoothDevice> requestDevice(final RequestOptions? options) {
+    if (bluetoothDevice != null) {
+      return Future.value(bluetoothDevice!).toJS;
+    } else {
+      return Future.error("No bluetooth device set".toJS).toJS
+          as JSPromise<WebBluetoothDevice>;
+    }
+  }
 
   @override
-  void removeEventListener(final String type, final Function listener) {
+  void removeEventListener(
+    final String type,
+    final EventListener? callback, [
+    final JSAny? options,
+  ]) {
     throw UnimplementedError();
   }
 
   @override
-  void addEventListener(final String type, final Function listener) {
+  void addEventListener(
+    final String type,
+    final EventListener? callback, [
+    final JSAny? options,
+  ]) {
     throw UnimplementedError();
   }
 
   @override
-  Object getDevices() {
+  JSPromise<JSArray<WebBluetoothDevice>> getDevices() {
     throw UnimplementedError();
   }
 }

@@ -16,7 +16,7 @@ For example:
 
 ```dart
 export 'src/unsupported_library.dart'
-    if (dart.library.html) 'src/web_library.dart';
+    if (dart.library.js_interop) 'src/web_library.dart';
 ```
 
 It will (of course) not work when not used in a browser, but it will compile! 

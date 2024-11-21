@@ -140,98 +140,31 @@ class RequestOptionsBuilder {
   /// web navigator request.
   ///
   RequestOptions toRequestOptions() {
-    final filters = _requestFilters.map((final e) => e.toScanFilter()).toList();
-    final optionalServices = _optionalServices?.isNotEmpty ?? false
-        ? _optionalServices?.map((final e) => e.toLowerCase()).toList()
-        : null;
+    final filters = _requestFilters
+        .map((final e) => e.toScanFilter())
+        .toList(growable: false);
     final exclusionFilters = _exclusionFilters?.isNotEmpty ?? false
-        ? _exclusionFilters?.map((final e) => e.toScanFilter()).toList()
+        ? _exclusionFilters
+            ?.map((final e) => e.toScanFilter())
+            .toList(growable: false)
+        : null;
+    final optionalServices = _optionalServices?.isNotEmpty ?? false
+        ? _optionalServices
+            ?.map((final e) => e.toLowerCase())
+            .toList(growable: false)
         : null;
     final optionalManufacturerData =
         _optionalManufacturerData?.isNotEmpty ?? false
             ? _optionalManufacturerData
             : null;
-    if (_acceptAllDevices) {
-      if (optionalServices == null && optionalManufacturerData == null) {
-        return RequestOptions(acceptAllDevices: true);
-      } else if (optionalServices != null && optionalManufacturerData == null) {
-        return RequestOptions(
-          acceptAllDevices: true,
-          optionalServices: optionalServices,
-        );
-      } else if (optionalServices == null && optionalManufacturerData != null) {
-        return RequestOptions(
-          acceptAllDevices: true,
-          optionalManufacturerData: optionalManufacturerData,
-        );
-      } else {
-        return RequestOptions(
-          acceptAllDevices: true,
-          optionalServices: optionalServices!,
-          optionalManufacturerData: optionalManufacturerData!,
-        );
-      }
-    } else {
-      if (optionalServices == null &&
-          exclusionFilters == null &&
-          optionalManufacturerData == null) {
-        return RequestOptions(
-          filters: filters,
-        );
-      } else if (optionalServices != null &&
-          exclusionFilters == null &&
-          optionalManufacturerData == null) {
-        return RequestOptions(
-          filters: filters,
-          optionalServices: optionalServices,
-        );
-      } else if (optionalServices == null &&
-          exclusionFilters != null &&
-          optionalManufacturerData == null) {
-        return RequestOptions(
-          filters: filters,
-          exclusionFilters: exclusionFilters,
-        );
-      } else if (optionalServices == null &&
-          exclusionFilters == null &&
-          optionalManufacturerData != null) {
-        return RequestOptions(
-          filters: filters,
-          optionalManufacturerData: optionalManufacturerData,
-        );
-      } else if (optionalServices != null &&
-          exclusionFilters != null &&
-          optionalManufacturerData == null) {
-        return RequestOptions(
-          filters: filters,
-          optionalServices: optionalServices,
-          exclusionFilters: exclusionFilters,
-        );
-      } else if (optionalServices == null &&
-          exclusionFilters != null &&
-          optionalManufacturerData != null) {
-        return RequestOptions(
-          filters: filters,
-          optionalManufacturerData: optionalManufacturerData,
-          exclusionFilters: exclusionFilters,
-        );
-      } else if (optionalServices != null &&
-          exclusionFilters == null &&
-          optionalManufacturerData != null) {
-        return RequestOptions(
-          filters: filters,
-          optionalServices: optionalServices,
-          optionalManufacturerData: optionalManufacturerData,
-        );
-      } else {
-        return RequestOptions(
-          filters: filters,
-          optionalServices: optionalServices!,
-          optionalManufacturerData: optionalManufacturerData!,
-          exclusionFilters: exclusionFilters!,
-        );
-      }
-    }
+
+    return RequestOptions.create(
+      filters: filters,
+      exclusionFilters: exclusionFilters,
+      optionalServices: optionalServices,
+      optionalManufacturerData: optionalManufacturerData,
+      acceptAllDevices: _acceptAllDevices,
+    );
   }
 }
 
@@ -243,14 +176,14 @@ class RequestOptionsBuilder {
 @Deprecated(
     "These filters are not yet stable, so may change or not work at all")
 class ServiceDataFilterBuilder {
-  final String? _service;
+  final String _service;
   final Uint8List? _dataPrefix;
   final Uint8List? _mask;
 
   ///
   /// Create a new service filter.
   ///
-  /// [service] may be a UUID of the service that should exist.
+  /// [service] must be a UUID of the service that should exist.
   ///
   /// [dataPrefix] is a uint8 (or byte) array of the first n bytes of the UUID
   /// that should exist for the service. For example if you have the UUID
@@ -263,25 +196,20 @@ class ServiceDataFilterBuilder {
   @Deprecated(
       "These filters are not yet stable, so may change or not work at all")
   ServiceDataFilterBuilder(
-      {final String? service,
+      {required final String service,
       final Uint8List? dataPrefix,
       final Uint8List? mask})
       : _service = service,
         _dataPrefix = dataPrefix,
-        _mask = mask {
-    if (_service == null && _dataPrefix == null && _mask == null) {
-      throw StateError(
-          "service, dataPrefix, and mask have not been set. Set at least one of them");
-    }
-  }
+        _mask = mask;
 
   ///
   /// Convert the filter to an actual [BluetoothServiceDataFilter] for the
   /// [RequestOptions].
   ///
   BluetoothServiceDataFilter toServiceDataFilter() =>
-      BluetoothScanFilterHelper.createServiceDataObject(
-          _service, _dataPrefix, _mask) as BluetoothServiceDataFilter;
+      BluetoothServiceDataFilter.create(
+          service: _service, dataPrefix: _dataPrefix, mask: _mask);
 }
 
 ///
@@ -302,7 +230,7 @@ class ManufacturerDataFilterBuilder {
   /// See the full list of company identifiers
   /// [here](https://www.bluetooth.com/specifications/assigned-numbers/company-identifiers/).
   ///
-  final int? _companyIdentifier;
+  final int _companyIdentifier;
   final Uint8List? _dataPrefix;
   final Uint8List? _mask;
 
@@ -324,21 +252,16 @@ class ManufacturerDataFilterBuilder {
   /// the same [mask]. These two will then be compared to be equal.
   ///
   ManufacturerDataFilterBuilder(
-      {final int? companyIdentifier,
+      {required final int companyIdentifier,
       final Uint8List? dataPrefix,
       final Uint8List? mask})
       : _companyIdentifier = companyIdentifier,
         _dataPrefix = dataPrefix,
         _mask = mask {
-    if (companyIdentifier != null &&
-        (companyIdentifier < 0 || companyIdentifier > 0xFFFF)) {
+    if (companyIdentifier < 0 || companyIdentifier > 0xFFFF) {
       throw ArgumentError(
           "The company identifier must fit in 16-bits, so greater than 0 and smaller than 0xFFFF (65535)",
           "companyIdentifier");
-    }
-    if (_companyIdentifier == null && _dataPrefix == null && _mask == null) {
-      throw StateError(
-          "companyIdentifier, dataPrefix, and mask have not been set. Set at least one of them");
     }
   }
 
@@ -347,9 +270,10 @@ class ManufacturerDataFilterBuilder {
   /// [RequestOptions].
   ///
   BluetoothManufacturerDataFilter toManufacturerDataFilter() =>
-      BluetoothScanFilterHelper.createManufacturerDataObject(
-              _companyIdentifier, _dataPrefix, _mask)
-          as BluetoothManufacturerDataFilter;
+      BluetoothManufacturerDataFilter.create(
+          companyIdentifier: _companyIdentifier,
+          dataPrefix: _dataPrefix,
+          mask: _mask);
 }
 
 ///
@@ -414,9 +338,9 @@ class RequestFilterBuilder {
         _serviceData = serviceData {
     if (_name == null &&
         _namePrefix == null &&
-        (_services == null || (_services?.isEmpty ?? false)) &&
-        (_manufacturerData == null || (_manufacturerData?.isEmpty ?? false)) &&
-        (_serviceData == null || (_serviceData?.isEmpty ?? false))) {
+        (_services == null || _services.isEmpty) &&
+        (_manufacturerData == null || _manufacturerData.isEmpty) &&
+        (_serviceData == null || _serviceData.isEmpty)) {
       throw StateError(
           "No filter parameters have been set, you may want to use "
           "[RequestOptionsBuilder.acceptAllDevices()]!");
@@ -431,14 +355,13 @@ class RequestFilterBuilder {
   /// convert to an actual [BluetoothScanFilter] Javascript object for the web
   /// api call.
   ///
-  BluetoothScanFilter toScanFilter() =>
-      BluetoothScanFilterHelper.createScanFilterObject(
-              _services,
-              _name,
-              _namePrefix,
-              _manufacturerData
-                  ?.map((final e) => e.toManufacturerDataFilter())
-                  .toList(),
-              _serviceData?.map((final e) => e.toServiceDataFilter()).toList())
-          as BluetoothScanFilter;
+  BluetoothScanFilter toScanFilter() => BluetoothScanFilter.create(
+      services: _services,
+      name: _name,
+      namePrefix: _namePrefix,
+      manufacturerData: _manufacturerData
+          ?.map((final e) => e.toManufacturerDataFilter())
+          .toList(),
+      serviceData:
+          _serviceData?.map((final e) => e.toServiceDataFilter()).toList());
 }

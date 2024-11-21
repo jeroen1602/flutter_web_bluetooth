@@ -14,8 +14,11 @@ part of "../js_web_bluetooth.dart";
 ///
 /// - https://webbluetoothcg.github.io/web-bluetooth/#characteristicproperties-interface
 ///
-class WebBluetoothCharacteristicProperties {
-  final Object _jsObject;
+@JS()
+extension type WebBluetoothCharacteristicProperties._(JSObject _)
+    implements JSObject {
+  @JS("broadcast")
+  external JSBoolean? get _broadcast;
 
   ///
   /// Check to see if broadcast is available in this characteristic.
@@ -30,11 +33,9 @@ class WebBluetoothCharacteristicProperties {
     if (!hasBroadcast) {
       return false;
     }
-    final result = _JSUtil.getProperty(_jsObject, "broadcast");
-    if (result is bool) {
-      return result;
-    }
-    return false;
+    return _broadcast != null &&
+        _broadcast.isDefinedAndNotNull &&
+        _broadcast!.toDart;
   }
 
   ///
@@ -42,7 +43,10 @@ class WebBluetoothCharacteristicProperties {
   ///
   /// This may return `false` on the bluefy browser.
   ///
-  bool get hasBroadcast => _JSUtil.hasProperty(_jsObject, "broadcast");
+  bool get hasBroadcast => has("broadcast");
+
+  @JS("read")
+  external JSBoolean? get _read;
 
   ///
   /// Check to see if read is available in this characteristic.
@@ -63,11 +67,7 @@ class WebBluetoothCharacteristicProperties {
     if (!hasRead) {
       return false;
     }
-    final result = _JSUtil.getProperty(_jsObject, "read");
-    if (result is bool) {
-      return result;
-    }
-    return false;
+    return _read != null && _read.isDefinedAndNotNull && _read!.toDart;
   }
 
   ///
@@ -75,7 +75,10 @@ class WebBluetoothCharacteristicProperties {
   ///
   /// This may return `false` on the bluefy browser.
   ///
-  bool get hasRead => _JSUtil.hasProperty(_jsObject, "read");
+  bool get hasRead => has("read");
+
+  @JS("writeWithoutResponse")
+  external JSBoolean? get _writeWithoutResponse;
 
   ///
   /// Check to see if write without response is available in this
@@ -116,11 +119,9 @@ class WebBluetoothCharacteristicProperties {
     if (!hasWriteWithoutResponse) {
       return false;
     }
-    final result = _JSUtil.getProperty(_jsObject, "writeWithoutResponse");
-    if (result is bool) {
-      return result;
-    }
-    return false;
+    return _writeWithoutResponse != null &&
+        _writeWithoutResponse.isDefinedAndNotNull &&
+        _writeWithoutResponse!.toDart;
   }
 
   ///
@@ -128,8 +129,10 @@ class WebBluetoothCharacteristicProperties {
   ///
   /// This may return `false` on the bluefy browser.
   ///
-  bool get hasWriteWithoutResponse =>
-      _JSUtil.hasProperty(_jsObject, "writeWithoutResponse");
+  bool get hasWriteWithoutResponse => has("writeWithoutResponse");
+
+  @JS("write")
+  external JSBoolean? get _write;
 
   ///
   /// Check to see if write is available in this characteristic.
@@ -169,11 +172,7 @@ class WebBluetoothCharacteristicProperties {
     if (!hasWrite) {
       return false;
     }
-    final result = _JSUtil.getProperty(_jsObject, "write");
-    if (result is bool) {
-      return result;
-    }
-    return false;
+    return _write != null && _write.isDefinedAndNotNull && _write!.toDart;
   }
 
   ///
@@ -183,7 +182,10 @@ class WebBluetoothCharacteristicProperties {
   ///
   /// This may return `false` on the bluefy browser.
   ///
-  bool get hasWrite => _JSUtil.hasProperty(_jsObject, "write");
+  bool get hasWrite => has("write");
+
+  @JS("notify")
+  external JSBoolean? get _notify;
 
   ///
   /// Check to see if notify is available in this characteristic. If this
@@ -203,11 +205,7 @@ class WebBluetoothCharacteristicProperties {
     if (!hasNotify) {
       return false;
     }
-    final result = _JSUtil.getProperty(_jsObject, "notify");
-    if (result is bool) {
-      return result;
-    }
-    return false;
+    return _notify != null && _notify.isDefinedAndNotNull && _notify!.toDart;
   }
 
   ///
@@ -215,7 +213,10 @@ class WebBluetoothCharacteristicProperties {
   ///
   /// This may return `false` on the bluefy browser.
   ///
-  bool get hasNotify => _JSUtil.hasProperty(_jsObject, "notify");
+  bool get hasNotify => has("notify");
+
+  @JS("indicate")
+  external JSBoolean? get _indicate;
 
   ///
   /// Check to see if indicate is available in this characteristic.
@@ -230,11 +231,9 @@ class WebBluetoothCharacteristicProperties {
     if (!hasIndicate) {
       return false;
     }
-    final result = _JSUtil.getProperty(_jsObject, "indicate");
-    if (result is bool) {
-      return result;
-    }
-    return false;
+    return _indicate != null &&
+        _indicate.isDefinedAndNotNull &&
+        _indicate!.toDart;
   }
 
   ///
@@ -242,7 +241,10 @@ class WebBluetoothCharacteristicProperties {
   ///
   /// This may return `false` on the bluefy browser.
   ///
-  bool get hasIndicate => _JSUtil.hasProperty(_jsObject, "indicate");
+  bool get hasIndicate => has("indicate");
+
+  @JS("authenticatedSignedWrites")
+  external JSBoolean? get _authenticatedSignedWrites;
 
   ///
   /// Check to see if authenticated signed writes is available in this
@@ -258,11 +260,9 @@ class WebBluetoothCharacteristicProperties {
     if (!hasAuthenticatedSignedWrites) {
       return false;
     }
-    final result = _JSUtil.getProperty(_jsObject, "authenticatedSignedWrites");
-    if (result is bool) {
-      return result;
-    }
-    return false;
+    return _authenticatedSignedWrites != null &&
+        _authenticatedSignedWrites.isDefinedAndNotNull &&
+        _authenticatedSignedWrites!.toDart;
   }
 
   ///
@@ -270,8 +270,10 @@ class WebBluetoothCharacteristicProperties {
   ///
   /// This may return `false` on the bluefy browser.
   ///
-  bool get hasAuthenticatedSignedWrites =>
-      _JSUtil.hasProperty(_jsObject, "authenticatedSignedWrites");
+  bool get hasAuthenticatedSignedWrites => has("authenticatedSignedWrites");
+
+  @JS("reliableWrite")
+  external JSBoolean? get _reliableWrite;
 
   ///
   /// Check to see if reliable write is available in this characteristic.
@@ -286,11 +288,9 @@ class WebBluetoothCharacteristicProperties {
     if (!hasReliableWrite) {
       return false;
     }
-    final result = _JSUtil.getProperty(_jsObject, "reliableWrite");
-    if (result is bool) {
-      return result;
-    }
-    return false;
+    return _reliableWrite != null &&
+        _reliableWrite.isDefinedAndNotNull &&
+        _reliableWrite!.toDart;
   }
 
   ///
@@ -298,7 +298,10 @@ class WebBluetoothCharacteristicProperties {
   ///
   /// This may return `false` on the bluefy browser.
   ///
-  bool get hasReliableWrite => _JSUtil.hasProperty(_jsObject, "reliableWrite");
+  bool get hasReliableWrite => has("reliableWrite");
+
+  @JS("writableAuxiliaries")
+  external JSBoolean? get _writableAuxiliaries;
 
   ///
   /// Check to see if writable auxiliaries is available in this characteristic.
@@ -313,11 +316,9 @@ class WebBluetoothCharacteristicProperties {
     if (!hasWritableAuxiliaries) {
       return false;
     }
-    final result = _JSUtil.getProperty(_jsObject, "writableAuxiliaries");
-    if (result is bool) {
-      return result;
-    }
-    return false;
+    return _writableAuxiliaries != null &&
+        _writableAuxiliaries.isDefinedAndNotNull &&
+        _writableAuxiliaries!.toDart;
   }
 
   ///
@@ -325,8 +326,7 @@ class WebBluetoothCharacteristicProperties {
   ///
   /// This may return `false` on the bluefy browser.
   ///
-  bool get hasWritableAuxiliaries =>
-      _JSUtil.hasProperty(_jsObject, "writableAuxiliaries");
+  bool get hasWritableAuxiliaries => has("writableAuxiliaries");
 
   ///
   /// Check to see if there is this characteristic has any property at all.
@@ -345,13 +345,4 @@ class WebBluetoothCharacteristicProperties {
       hasAuthenticatedSignedWrites ||
       hasReliableWrite ||
       hasWritableAuxiliaries;
-
-  ///
-  /// Create a new instance from a js object.
-  ///
-  /// **This should only be done by the library or if you're testing.**
-  ///
-  /// To get an instance use [WebBluetoothRemoteGATTCharacteristic.properties].
-  ///
-  WebBluetoothCharacteristicProperties.fromJSObject(this._jsObject);
 }

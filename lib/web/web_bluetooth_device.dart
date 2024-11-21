@@ -13,10 +13,11 @@ part of "../js_web_bluetooth.dart";
 ///
 /// - https://webbluetoothcg.github.io/web-bluetooth/#bluetoothdevice-interface
 ///
-class WebBluetoothDevice {
-  final Object _jsObject;
-
-  String? _id;
+@JS()
+extension type WebBluetoothDevice._(JSObject _)
+    implements EventTarget, JSObject {
+  @JS("id")
+  external JSString get _id;
 
   ///
   /// Get the id of the device.
@@ -34,17 +35,10 @@ class WebBluetoothDevice {
   ///
   /// - https://webbluetoothcg.github.io/web-bluetooth/#dom-bluetoothdevice-id
   ///
-  String get id {
-    var id = _id;
-    if (id != null) {
-      return id;
-    }
-    id = _JSUtil.getProperty(_jsObject, "id") as String;
-    _id = id;
-    return id;
-  }
+  String get id => _id.toDart;
 
-  String? _name;
+  @JS("name")
+  external JSString? get _name;
 
   ///
   /// A human readable name of the device.
@@ -58,19 +52,11 @@ class WebBluetoothDevice {
   /// - https://webbluetoothcg.github.io/web-bluetooth/#dom-bluetoothdevice-name
   ///
   String? get name {
-    var name = _name;
-    if (name != null) {
-      return name;
-    }
-    if (!_JSUtil.hasProperty(_jsObject, "name")) {
+    if (_name == null || _name.isUndefinedOrNull) {
       return null;
     }
-    name = _JSUtil.getProperty(_jsObject, "name") as String?;
-    _name = name;
-    return name;
+    return _name!.toDart;
   }
-
-  NativeBluetoothRemoteGATTServer? _gatt;
 
   ///
   /// Get a reference to the [NativeBluetoothRemoteGATTServer] to communicate
@@ -86,33 +72,12 @@ class WebBluetoothDevice {
   ///
   /// - https://webbluetoothcg.github.io/web-bluetooth/#dom-bluetoothdevice-gatt
   ///
-  NativeBluetoothRemoteGATTServer? get gatt {
-    final gatt = _gatt;
-    if (gatt != null) {
-      return gatt;
-    }
-    if (!_JSUtil.hasProperty(_jsObject, "gatt")) {
-      return null;
-    }
-    final newGatt = _JSUtil.getProperty(_jsObject, "gatt");
-    if (newGatt != null) {
-      try {
-        _gatt = NativeBluetoothRemoteGATTServer.fromJSObject(newGatt, this);
-      } catch (e, stack) {
-        if (e is UnsupportedError) {
-          webBluetoothLogger.severe(
-              "Could not convert gatt to BluetoothRemoteGattServer", e, stack);
-        } else {
-          rethrow;
-        }
-      }
-    }
-    return _gatt;
-  }
+  @JS("gatt")
+  external NativeBluetoothRemoteGATTServer? get gatt;
 
   ///
   /// Start watching for advertisements. The advertisements will be received
-  /// on the `advertisementreceived` event. See [WebAdvertisementReceivedEvent]
+  /// on the `advertisementreceived` event. See [BluetoothAdvertisementReceivedEvent]
   /// for the object that is emitted every time the event fires.
   ///
   /// Not very browser has this implemented yet without the
@@ -134,20 +99,21 @@ class WebBluetoothDevice {
       throw NativeAPINotImplementedError("watchAdvertisements");
     }
     if (options == null) {
-      await _JSUtil.promiseToFuture(
-          _JSUtil.callMethod(_jsObject, "watchAdvertisements", []));
+      await _watchAdvertisements().toDart;
     } else {
-      await _JSUtil.promiseToFuture(
-          _JSUtil.callMethod(_jsObject, "watchAdvertisements", [options]));
+      await _watchAdvertisements(options).toDart;
     }
   }
+
+  @JS("watchAdvertisements")
+  external JSPromise _watchAdvertisements(
+      [final WatchAdvertisementsOptions? options]);
 
   ///
   /// Check to see if the current browser has the watch advertisements method
   /// implemented
   ///
-  bool hasWatchAdvertisements() =>
-      _JSUtil.hasProperty(_jsObject, "watchAdvertisements");
+  bool hasWatchAdvertisements() => has("watchAdvertisements");
 
   ///
   /// Forget the device. This means that the device will be forgotten by the
@@ -176,27 +142,34 @@ class WebBluetoothDevice {
     if (!hasForget) {
       throw NativeAPINotImplementedError("forget");
     }
-    await _JSUtil.promiseToFuture(_JSUtil.callMethod(_jsObject, "forget", []));
+    await _forget().toDart;
   }
+
+  @JS("forget")
+  external JSPromise _forget();
 
   ///
   /// Check to see if the browser/ user agent has the forget method.
   ///
-  bool get hasForget => _JSUtil.hasProperty(_jsObject, "forget");
+  bool get hasForget => has("forget");
+
+  @JS("watchingAdvertisements")
+  external JSBoolean? get _watchingAdvertisements;
 
   ///
   /// If the device is watching for advertisements.
   /// If advertisements are not unsupported then it will always return `false`.
   ///
   bool get watchingAdvertisements =>
-      _JSUtil.getProperty(_jsObject, "watchingAdvertisements") as bool? ??
-      false;
+      _watchingAdvertisements != null &&
+      _watchingAdvertisements.isDefinedAndNotNull &&
+      _watchingAdvertisements!.toDart;
 
   ///
   /// Add a new event listener to the device.
   ///
-  /// Marking the method with [JSUtils.allowInterop] will be done automatically
-  /// for you.
+  /// Converting the method to a [JSFunction] will be done automatically for you.
+  /// This function is then returned so that you can later call [removeEventListener].
   ///
   /// Events to be handled are:
   ///
@@ -222,50 +195,17 @@ class WebBluetoothDevice {
   ///
   /// - https://webbluetoothcg.github.io/web-bluetooth/#characteristiceventhandlers
   ///
-  void addEventListener(
-      final String type, final void Function(dynamic) listener) {
-    _JSUtil.callMethod(
-        _jsObject, "addEventListener", [type, _JSUtil.allowInterop(listener)]);
-  }
-
-  ///
-  /// Remove an event listener that has previously been added.
-  ///
-  /// Marking the method with [JSUtils.allowInterop] will be done automatically
-  /// for you.
-  ///
-  /// See: [addEventListener].
-  ///
-  void removeEventListener(
-      final String type, final void Function(dynamic) listener) {
-    /// TODO: may need to tell the developer to store the listener that you get
-    /// after throwing it through _JSUtil.allowInterop.
-    _JSUtil.callMethod(_jsObject, "removeEventListener",
-        [type, _JSUtil.allowInterop(listener)]);
-  }
-
-  ///
-  /// Create a new instance from a js object.
-  ///
-  /// **This should only be done by the library or if you're testing.**
-  ///
-  /// To get an instance use [Bluetooth.requestDevice].
-  ///
-  WebBluetoothDevice.fromJSObject(this._jsObject) {
-    if (!_JSUtil.hasProperty(_jsObject, "id")) {
-      throw UnsupportedError("JSObject does not have an id.");
+  JSFunction addEventListenerDart<T extends JSAny?>(
+      final String type, final void Function(T) listener,
+      [final AddEventListenerOptions? options]) {
+    final callback = listener.toJS;
+    if (options?.isDefinedAndNotNull ?? false) {
+      addEventListener(type, callback, options!);
+    } else {
+      addEventListener(type, callback);
     }
+    return callback;
   }
-
-  ///
-  /// Create a new instance form an `advertisementreceived` event.
-  ///
-  /// **This should only be done by the library of if you're testing.**
-  ///
-  /// To get an instance use [Bluetooth.requestDevice].
-  ///
-  factory WebBluetoothDevice.fromEvent(final Object event) =>
-      WebBluetoothDevice.fromJSObject(_JSUtil.getProperty(event, "device"));
 }
 
 ///
@@ -277,16 +217,16 @@ class WebBluetoothDevice {
 ///
 @JS()
 @anonymous
-class WatchAdvertisementsOptions {
+extension type WatchAdvertisementsOptions._(JSObject _) implements JSObject {
   ///
   /// This signal can be used to abort watching later on in the program.
   ///
   /// See [AbortController] and [AbortSignal] on how to create these signals.
   ///
-  external final AbortSignal signal;
+  external AbortSignal? get signal;
 
   ///
   /// The constructor for the options.
   ///
-  external factory WatchAdvertisementsOptions({final AbortSignal signal});
+  external factory WatchAdvertisementsOptions({final AbortSignal? signal});
 }

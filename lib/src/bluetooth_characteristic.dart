@@ -25,15 +25,7 @@ class BluetoothCharacteristic {
   BluetoothCharacteristic(this._characteristic)
       : _properties =
             BluetoothCharacteristicProperties(_characteristic.properties) {
-    _characteristic.addEventListener("characteristicvaluechanged",
-        (final event) {
-      final data = _characteristic.value;
-      if (data != null) {
-        _value.add(data);
-      }
-    });
-    _characteristic.addEventListener("oncharacteristicvaluechanged",
-        (final event) {
+    _characteristic.onCharacteristicValueChanged.listen((final event) {
       final data = _characteristic.value;
       if (data != null) {
         _value.add(data);

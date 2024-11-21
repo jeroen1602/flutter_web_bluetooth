@@ -12,7 +12,7 @@ part of "../js_web_bluetooth.dart";
 ///
 @JS()
 @anonymous
-class BluetoothLEScanOptions {
+extension type BluetoothLEScanOptions._(JSObject _) implements JSObject {
   ///
   /// A list of filters that the accepted device must meet.
   ///
@@ -21,7 +21,7 @@ class BluetoothLEScanOptions {
   ///
   /// A [filters] list cannot be set while [acceptAllAdvertisements] is `true`.
   ///
-  external List<BluetoothScanFilter> get filters;
+  external JSArray<BluetoothScanFilter>? get filters;
 
   ///
   /// Normally scans will discard the second and subsequent advertisements from
@@ -32,7 +32,7 @@ class BluetoothLEScanOptions {
   ///
   /// Defaults to `false`.
   ///
-  external bool get keepRepeatedDevices;
+  external JSBoolean? get keepRepeatedDevices;
 
   ///
   /// If all advertisements should be received.
@@ -41,7 +41,7 @@ class BluetoothLEScanOptions {
   ///
   /// Defaults to `false`.
   ///
-  external bool get acceptAllAdvertisements;
+  external JSBoolean? get acceptAllAdvertisements;
 
   ///
   /// A constructor for Bluetooth LE scan options.
@@ -49,8 +49,37 @@ class BluetoothLEScanOptions {
   /// Because of how the conversion to JS works, there is a difference between
   /// leaving an item blank in this constructor and setting it to `null`.
   ///
+  /// Use [BluetoothLEScanOptions.create] to fix this problem.
+  ///
   external factory BluetoothLEScanOptions(
-      {final List<BluetoothScanFilter> filters,
-      final bool keepRepeatedDevices,
-      final bool acceptAllAdvertisements});
+      {final JSArray<BluetoothScanFilter>? filters,
+      final JSBoolean? keepRepeatedDevices,
+      final JSBoolean? acceptAllAdvertisements});
+
+  ///
+  /// Create an instance of BluetoothLEScanOptions keeping all `null` values
+  /// as `undefined` in js.
+  ///
+  factory BluetoothLEScanOptions.create(
+      {final List<BluetoothScanFilter>? filters,
+      final bool? keepRepeatedDevices,
+      final bool? acceptAllAdvertisements}) {
+    final scanOptions = BluetoothLEScanOptions();
+
+    if (filters != null) {
+      scanOptions.setProperty("filters".toJS, filters.toJS);
+    }
+
+    if (keepRepeatedDevices != null) {
+      scanOptions.setProperty(
+          "keepRepeatedDevices".toJS, keepRepeatedDevices.toJS);
+    }
+
+    if (acceptAllAdvertisements != null) {
+      scanOptions.setProperty(
+          "acceptAllAdvertisements".toJS, acceptAllAdvertisements.toJS);
+    }
+
+    return scanOptions;
+  }
 }

@@ -1,5 +1,6 @@
-// ignore: library_annotations
 @TestOn("vm")
+library;
+
 import "package:flutter_web_bluetooth/flutter_web_bluetooth.dart";
 import "package:flutter_web_bluetooth/js_web_bluetooth.dart";
 import "package:test/fake.dart";

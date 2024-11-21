@@ -9,11 +9,10 @@ part of "../js_web_bluetooth.dart";
 ///
 /// - https://webbluetoothcg.github.io/web-bluetooth/#bluetooth
 ///
-@JS("navigator.bluetooth")
-class _NativeBluetooth {
+@JS()
+extension type _NativeBluetooth._(JSObject _) implements JSObject, EventTarget {
   ///
-  /// Should return a promise (which will be converted to a future using
-  /// [JSUtils.promiseToFuture]) with a [bool] if bluetooth is available on
+  /// Returns a [JSPromise] with a [JSBoolean] if bluetooth is available on
   /// the current device.
   ///
   /// See:
@@ -22,13 +21,15 @@ class _NativeBluetooth {
   ///
   /// - https://webbluetoothcg.github.io/web-bluetooth/#dom-bluetooth-getavailability
   ///
-  external static Object getAvailability();
+  external JSPromise<JSBoolean> getAvailability();
 
   ///
-  /// should return a promise (which will be converted to a future using
-  /// [JSUtils.promiseToFuture]) with a list of [Object]s. These objects
-  /// should then be able to be converted to a [WebBluetoothDevice] using
-  /// [WebBluetoothDevice.fromJSObject].
+  /// Returns a [JSPromise] with an [JSArray] of [WebBluetoothDevice]s.
+  ///
+  /// This method returns all the allowed devices that the user has granted
+  /// access to. Even if the devices are not in range.
+  ///
+  /// Devices can be removed from this list using [WebBluetoothDevice.forget].
   ///
   /// **NOTE:** Currently no browser supports this without a flag needing
   /// to be set!
@@ -39,13 +40,10 @@ class _NativeBluetooth {
   ///
   /// - https://webbluetoothcg.github.io/web-bluetooth/#dom-bluetooth-getdevices
   ///
-  external static Object getDevices();
+  external JSPromise<JSArray<WebBluetoothDevice>> getDevices();
 
   ///
-  /// should return a promise (which will be converted to a future using
-  /// [JSUtils.promiseToFuture]) with an [Object]. This object
-  /// should then be able to be converted to a [WebBluetoothDevice] using
-  /// [WebBluetoothDevice.fromJSObject].
+  /// Returns a [JSPromise] with a [WebBluetoothDevice].
   ///
   /// This method may throw a TypeError or a NotFoundError.
   ///
@@ -55,41 +53,19 @@ class _NativeBluetooth {
   ///
   /// - https://webbluetoothcg.github.io/web-bluetooth/#dom-bluetooth-requestdevice
   ///
-  external static Object requestDevice(final RequestOptions options);
+  external JSPromise<WebBluetoothDevice> requestDevice(
+      final RequestOptions options);
 
+  ///
+  /// Request the user to start scanning for Bluetooth LE devices in the area
   ///
   /// https://webbluetoothcg.github.io/web-bluetooth/scanning.html#dom-bluetooth-requestlescan
   ///
-  external static Object requestLEScan(final BluetoothLEScanOptions options);
-
-  ///
-  /// Add a new event listener to the navigation.
-  ///
-  /// Make sure to mark the listener as interoperable using [JSUtils.allowInterop].
-  ///
-  /// Events to be handled are:
-  ///
-  /// - onadvertisementreceived
-  ///
-  /// See:
-  ///
-  /// - [removeEventListener]
-  ///
-  /// - https://webbluetoothcg.github.io/web-bluetooth/#fire-an-advertisementreceived-event
-  ///
-  external static void addEventListener(
-      final String type, final void Function(dynamic) listener);
-
-  ///
-  /// Remove an event listener that had previously been added.
-  ///
-  /// Make sure to mark the listener as interoperable using [JSUtils.allowInterop].
-  ///
-  /// See: [addEventListener]
-  ///
-  external static void removeEventListener(
-      final String type, final void Function(dynamic) listener);
+  external JSPromise<BluetoothLEScan> requestLEScan(
+      final BluetoothLEScanOptions options);
 }
+
+_NativeBluetooth get _nativeBluetoothInstance => _navigator._bluetooth;
 
 ///
 /// The native interface to the browser's navigator.bluetooth object.
@@ -117,8 +93,7 @@ class NativeBluetooth {
   NativeBluetooth();
 
   ///
-  /// Should return a promise (which will be converted to a future using
-  /// [JSUtils.promiseToFuture]) with a [bool] if bluetooth is available on
+  /// Returns a [JSPromise] with a [JSBoolean] if bluetooth is available on
   /// the current device.
   ///
   /// See:
@@ -127,13 +102,16 @@ class NativeBluetooth {
   ///
   /// - https://webbluetoothcg.github.io/web-bluetooth/#dom-bluetooth-getavailability
   ///
-  Object getAvailability() => _NativeBluetooth.getAvailability();
+  JSPromise<JSBoolean> getAvailability() =>
+      _nativeBluetoothInstance.getAvailability();
 
   ///
-  /// should return a promise (which will be converted to a future using
-  /// [JSUtils.promiseToFuture]) with a list of [Object]s. These objects
-  /// should then be able to be converted to a [WebBluetoothDevice] using
-  /// [WebBluetoothDevice.fromJSObject].
+  /// Returns a [JSPromise] with an [JSArray] of [WebBluetoothDevice]s.
+  ///
+  /// This method returns all the allowed devices that the user has granted
+  /// access to. Even if the devices are not in range.
+  ///
+  /// Devices can be removed from this list using [WebBluetoothDevice.forget].
   ///
   /// **NOTE:** Currently no browser supports this without a flag needing
   /// to be set!
@@ -144,13 +122,17 @@ class NativeBluetooth {
   ///
   /// - https://webbluetoothcg.github.io/web-bluetooth/#dom-bluetooth-getdevices
   ///
-  Object getDevices() => _NativeBluetooth.getDevices();
+  JSPromise<JSArray<WebBluetoothDevice>> getDevices() =>
+      _nativeBluetoothInstance.getDevices();
 
   ///
-  /// should return a promise (which will be converted to a future using
-  /// [JSUtils.promiseToFuture]) with an [Object]. This object
-  /// should then be able to be converted to a [WebBluetoothDevice] using
-  /// [WebBluetoothDevice.fromJSObject].
+  /// Check to see if current [NativeBluetooth] implementation has the [getDevices]
+  /// method.
+  ///
+  bool hasGetDevices() => _nativeBluetoothInstance.has("getDevices");
+
+  ///
+  /// Returns a [JSPromise] with a [WebBluetoothDevice].
   ///
   /// This method may throw a TypeError or a NotFoundError.
   ///
@@ -160,8 +142,8 @@ class NativeBluetooth {
   ///
   /// - https://webbluetoothcg.github.io/web-bluetooth/#dom-bluetooth-requestdevice
   ///
-  Object requestDevice(final RequestOptions options) =>
-      _NativeBluetooth.requestDevice(options);
+  JSPromise<WebBluetoothDevice> requestDevice(final RequestOptions options) =>
+      _nativeBluetoothInstance.requestDevice(options);
 
   ///
   /// Request the user to start scanning for Bluetooth LE devices in the
@@ -171,8 +153,15 @@ class NativeBluetooth {
   ///
   /// https://webbluetoothcg.github.io/web-bluetooth/scanning.html#dom-bluetooth-requestlescan
   ///
-  Object requestLEScan(final BluetoothLEScanOptions options) =>
-      _NativeBluetooth.requestLEScan(options);
+  JSPromise<BluetoothLEScan> requestLEScan(
+          final BluetoothLEScanOptions options) =>
+      _nativeBluetoothInstance.requestLEScan(options);
+
+  ///
+  /// Check to see if current [NativeBluetooth] implementation has the [hasRequestLEScan]
+  /// method.
+  ///
+  bool hasRequestLEScan() => _nativeBluetoothInstance.has("requestLEScan");
 
   ///
   /// Add a new event listener to the navigation.
@@ -190,8 +179,15 @@ class NativeBluetooth {
   /// https://webbluetoothcg.github.io/web-bluetooth/#fire-an-advertisementreceived-event
   ///
   void addEventListener(
-      final String type, final void Function(dynamic) listener) {
-    _NativeBluetooth.addEventListener(type, listener);
+    final String type,
+    final EventListener? callback, [
+    final AddEventListenerOptions? options,
+  ]) {
+    if (options?.isDefinedAndNotNull ?? false) {
+      _nativeBluetoothInstance.addEventListener(type, callback, options!);
+    } else {
+      _nativeBluetoothInstance.addEventListener(type, callback);
+    }
   }
 
   ///
@@ -202,9 +198,100 @@ class NativeBluetooth {
   /// See: [addEventListener]
   ///
   void removeEventListener(
-      final String type, final void Function(dynamic) listener) {
-    _NativeBluetooth.removeEventListener(type, listener);
+    final String type,
+    final EventListener? callback, [
+    final EventListenerOptions? options,
+  ]) {
+    if (options?.isDefinedAndNotNull ?? false) {
+      _nativeBluetoothInstance.removeEventListener(type, callback, options!);
+    } else {
+      _nativeBluetoothInstance.removeEventListener(type, callback);
+    }
   }
+
+  // region NavigatorBluetoothEventHandlers
+
+  ///
+  /// An event fired when the bluetooth adapter becomes available or unavailable.
+  ///
+  /// this is fired either on [Bluetooth.getAvailability] or when the adapter
+  /// becomes available.
+  ///
+  Stream<WebBluetoothValueEvent<JSBoolean>> get availabilityChanged =>
+      _nativeBluetoothInstance.availabilityChanged;
+
+  // endregion
+
+  // region: BluetoothDeviceEventHandlers
+
+  ///
+  /// An event fired when the gatt server disconnects. Either the
+  /// [NativeBluetoothRemoteGATTServer.disconnect] method was called. Or the
+  /// device is out of range/ turned off.
+  ///
+  /// This event will bubble through the [WebBluetoothDevice] to the root
+  /// [Bluetooth] instance.
+  ///
+  Stream<Event> get onGattServerDisconnected =>
+      _nativeBluetoothInstance.onGattServerDisconnected;
+
+  ///
+  /// An event fired when an advertisement packet is received.
+  ///
+  /// These events are fired after calling [WebBluetoothDevice.watchAdvertisements].
+  ///
+  /// This event will bubble through the [WebBluetoothDevice] to the root
+  /// [Bluetooth] instance.
+  ///
+  Stream<BluetoothAdvertisementReceivedEvent> get onAdvertisementReceived =>
+      _nativeBluetoothInstance.onAdvertisementReceived;
+
+  // endregion
+
+  // region: CharacteristicEventHandlers
+  ///
+  /// An event fired on an characteristic when the characteristic value has changed.
+  ///
+  /// This event is fired after calling [WebBluetoothRemoteGATTCharacteristic.readValue]
+  /// or [WebBluetoothRemoteGATTCharacteristic.startNotifications] is used to
+  /// start receiving these events.
+  ///
+  /// This event will bubble through the [WebBluetoothRemoteGATTCharacteristic],
+  /// then [WebBluetoothRemoteGATTService], then the [WebBluetoothDevice],
+  /// and finally the root [Bluetooth] instance.
+  ///
+  Stream<Event> get onCharacteristicValueChanged =>
+      _nativeBluetoothInstance.onCharacteristicValueChanged;
+
+  // endregion
+
+  // region: ServiceEventHandlers
+  ///
+  /// An event fired on a device when a service has been added.
+  ///
+  /// This event will bubble through the [WebBluetoothRemoteGATTService], then
+  /// the [WebBluetoothDevice] and finally the root [Bluetooth] instance.
+  ///
+  Stream<Event> get onServiceAdded => _nativeBluetoothInstance.onServiceAdded;
+
+  ///
+  /// An event fired on a device when a service has changed.
+  ///
+  /// This event will bubble through the [WebBluetoothRemoteGATTService] to
+  /// the [WebBluetoothDevice] and finally root [Bluetooth] instance.
+  ///
+  Stream<Event> get onServiceChanged =>
+      _nativeBluetoothInstance.onServiceChanged;
+
+  ///
+  /// An event fired on a device when a service has been removed.
+  ///
+  /// This event will bubble through the [WebBluetoothRemoteGATTService] to
+  /// the [WebBluetoothDevice] and finally root [Bluetooth] instance.
+  ///
+  Stream<Event> get onServiceRemoved =>
+      _nativeBluetoothInstance.onServiceRemoved;
+// endregion
 }
 
 NativeBluetooth _nativeBluetooth = NativeBluetooth();
@@ -212,9 +299,6 @@ NativeBluetooth _nativeBluetooth = NativeBluetooth();
 ///
 /// Replace the [NativeBluetooth] api interface to allow for testing.
 /// This shouldn't be done for production code.
-///
-/// If you do replace the [NativeBluetooth] then you may also want to change
-/// the [testingSetJSUtils].
 ///
 @visibleForTesting
 void setNativeBluetooth(final NativeBluetooth nativeBluetooth) {
@@ -224,22 +308,21 @@ void setNativeBluetooth(final NativeBluetooth nativeBluetooth) {
 ///
 /// A reference to the navigator object of the browser.
 ///
-@JS("navigator")
-external Object _navigator;
+Navigator get _navigator => window.navigator;
 
 ///
 /// An optional overwrite of [_navigator] for testing.
 ///
-Object? _navigatorTesting;
+Navigator? _navigatorTesting;
 
 ///
 /// Change the navigator object used.
 /// This method is meant for testing!
 ///
-/// Also check out [setNativeBluetooth] and [testingSetJSUtils].
+/// Also check out [setNativeBluetooth].
 ///
 @visibleForTesting
-void testingSetNavigator(final Object? navigatorObject) {
+void testingSetNavigator(final Navigator? navigatorObject) {
   _navigatorTesting = navigatorObject;
 }
 
@@ -248,7 +331,7 @@ void testingSetNavigator(final Object? navigatorObject) {
 ///
 /// Will return [_navigatorTesting] if it is not null.
 ///
-Object _getNavigator() => _navigatorTesting ?? _navigator;
+Navigator _getNavigator() => _navigatorTesting ?? _navigator;
 
 ///
 /// The main Bluetooth class. This is the entrypoint to the library.
@@ -268,10 +351,7 @@ class Bluetooth {
   /// This can happen if the site isn't viewed in a secure context or the api
   /// isn't available in the browser.
   ///
-  static bool isBluetoothAPISupported() {
-    final hasProperty = _JSUtil.hasProperty(_getNavigator(), "bluetooth");
-    return hasProperty;
-  }
+  static bool isBluetoothAPISupported() => _getNavigator().has("bluetooth");
 
   ///
   /// Check if a bluetooth adapter is available for the browser (user agent)
@@ -290,9 +370,8 @@ class Bluetooth {
     if (!isBluetoothAPISupported()) {
       return false;
     }
-    final promise = _nativeBluetooth.getAvailability();
-    final result = await _JSUtil.promiseToFuture(promise);
-    if (result is bool) {
+    final result = (await _nativeBluetooth.getAvailability().toDart).toDart;
+    if (result) {
       _availabilityStream?.add(result);
       return result;
     }
@@ -316,15 +395,11 @@ class Bluetooth {
       return _availabilityStream!.stream;
     }
     _availabilityStream = WebBehaviorSubject();
-    _nativeBluetooth.addEventListener("availabilitychanged",
-        _JSUtil.allowInterop((final event) {
-      final value = _JSUtil.getProperty(event, "value");
-      if (value is bool) {
-        _availabilityStream?.add(value);
-      }
-    }));
-    //ignore: discarded_futures
-    getAvailability();
+    _nativeBluetooth.availabilityChanged.listen((final event) {
+      final value = event.value.toDart;
+      _availabilityStream?.add(value);
+    });
+    unawaited(getAvailability());
     return _availabilityStream!.stream;
   }
 
@@ -337,8 +412,7 @@ class Bluetooth {
     if (!isBluetoothAPISupported()) {
       return false;
     }
-    final bluetooth = _JSUtil.getProperty(_getNavigator(), "bluetooth");
-    return _JSUtil.hasProperty(bluetooth, "getDevices");
+    return _nativeBluetooth.hasGetDevices();
   }
 
   ///
@@ -353,29 +427,13 @@ class Bluetooth {
   /// Will return an empty list if [hasGetDevices] returns false.
   /// See [hasGetDevices].
   ///
+  /// Devices can be removed from this list by calling [WebBluetoothDevice.forget] on the device.
+  ///
   static Future<List<WebBluetoothDevice>> getDevices() async {
     if (!hasGetDevices()) {
       return [];
     }
-    final promise = _nativeBluetooth.getDevices();
-    final result = await _JSUtil.promiseToFuture(promise);
-    if (result is List) {
-      final items = <WebBluetoothDevice>[];
-      for (final item in result) {
-        try {
-          items.add(WebBluetoothDevice.fromJSObject(item));
-        } catch (e, stack) {
-          if (e is UnsupportedError) {
-            webBluetoothLogger.severe(
-                "Could not convert known device to BluetoothDevice.", e, stack);
-          } else {
-            rethrow;
-          }
-        }
-      }
-      return items;
-    }
-    return [];
+    return (await _nativeBluetooth.getDevices().toDart).toDart;
   }
 
   ///
@@ -408,11 +466,8 @@ class Bluetooth {
   ///
   static Future<WebBluetoothDevice> requestDevice(
       final RequestOptions options) async {
-    final promise = _nativeBluetooth.requestDevice(options);
     try {
-      final result = await _JSUtil.promiseToFuture(promise);
-      final device = WebBluetoothDevice.fromJSObject(result);
-      return device;
+      return await _nativeBluetooth.requestDevice(options).toDart;
     } catch (e) {
       final error = e.toString();
       if (error.startsWith("NotFoundError")) {
@@ -444,9 +499,7 @@ class Bluetooth {
     if (!isBluetoothAPISupported()) {
       return false;
     }
-    final bluetooth = _JSUtil.getProperty(_getNavigator(), "bluetooth");
-    final hasProperty = _JSUtil.hasProperty(bluetooth, "requestLEScan");
-    return hasProperty;
+    return _nativeBluetooth.hasRequestLEScan();
   }
 
   ///
@@ -492,10 +545,8 @@ class Bluetooth {
     if (!hasRequestLEScan()) {
       throw NativeAPINotImplementedError("requestLEScan");
     }
-    final promise = _nativeBluetooth.requestLEScan(options);
     try {
-      final result = await _JSUtil.promiseToFuture(promise);
-      return BluetoothLEScan.fromJSObject(result);
+      return await _nativeBluetooth.requestLEScan(options).toDart;
     } catch (e) {
       final error = e.toString();
       if (error.startsWith("InvalidStateError")) {
@@ -529,8 +580,8 @@ class Bluetooth {
   ///
   /// Add a new event listener to the device.
   ///
-  /// Marking the method with [JSUtils.allowInterop] will be done automatically
-  /// for you.
+  /// Converting the method to a [JSFunction] will be done automatically for you.
+  /// This function is then returned so that you can later call [removeEventListener].
   ///
   /// Events to be handled are:
   ///
@@ -541,23 +592,105 @@ class Bluetooth {
   ///
   /// - [removeEventListener]
   ///
-  static void addEventListener(
-      final String type, final void Function(dynamic) listener) {
-    _nativeBluetooth.addEventListener(type, _JSUtil.allowInterop(listener));
+  static JSFunction addEventListener<T extends JSAny?>(
+      final String type, final void Function(T) listener,
+      [final AddEventListenerOptions? options]) {
+    final function = listener.toJS;
+    _nativeBluetooth.addEventListener(type, function, options);
+    return function;
   }
 
   ///
   /// Remove an event listener that has previously been added.
   ///
-  /// Marking the method with [JSUtils.allowInterop] will be done automatically
-  /// for you.
-  ///
   /// See: [addEventListener].
   ///
-  static void removeEventListener(
-      final String type, final void Function(dynamic) listener) {
-    /// TODO: may need to tell the developer to store the listener that you get
-    /// after throwing it through _JSUtil.allowInterop.
-    _nativeBluetooth.removeEventListener(type, _JSUtil.allowInterop(listener));
+  static void removeEventListener(final String type, final JSFunction listener,
+      [final EventListenerOptions? options]) {
+    _nativeBluetooth.removeEventListener(type, listener, options);
   }
+
+  // region NavigatorBluetoothEventHandlers
+
+  ///
+  /// An event fired when the bluetooth adapter becomes available or unavailable.
+  ///
+  /// this is fired either on [Bluetooth.getAvailability] or when the adapter
+  /// becomes available.
+  ///
+  Stream<WebBluetoothValueEvent<JSBoolean>> get availabilityChanged =>
+      _nativeBluetooth.availabilityChanged;
+
+  // endregion
+
+  // region: BluetoothDeviceEventHandlers
+
+  ///
+  /// An event fired when the gatt server disconnects. Either the
+  /// [NativeBluetoothRemoteGATTServer.disconnect] method was called. Or the
+  /// device is out of range/ turned off.
+  ///
+  /// This event will bubble through the [WebBluetoothDevice] to the root
+  /// [Bluetooth] instance.
+  ///
+  static Stream<Event> get onGattServerDisconnected =>
+      _nativeBluetooth.onGattServerDisconnected;
+
+  ///
+  /// An event fired when an advertisement packet is received.
+  ///
+  /// These events are fired after calling [WebBluetoothDevice.watchAdvertisements].
+  ///
+  /// This event will bubble through the [WebBluetoothDevice] to the root
+  /// [Bluetooth] instance.
+  ///
+  static Stream<BluetoothAdvertisementReceivedEvent>
+      get onAdvertisementReceived => _nativeBluetooth.onAdvertisementReceived;
+
+  // endregion
+
+  // region: CharacteristicEventHandlers
+  ///
+  /// An event fired on an characteristic when the characteristic value has changed.
+  ///
+  /// This event is fired after calling [WebBluetoothRemoteGATTCharacteristic.readValue]
+  /// or [WebBluetoothRemoteGATTCharacteristic.startNotifications] is used to
+  /// start receiving these events.
+  ///
+  /// This event will bubble through the [WebBluetoothRemoteGATTCharacteristic],
+  /// then [WebBluetoothRemoteGATTService], then the [WebBluetoothDevice],
+  /// and finally the root [Bluetooth] instance.
+  ///
+  static Stream<Event> get onCharacteristicValueChanged =>
+      _nativeBluetooth.onCharacteristicValueChanged;
+
+  // endregion
+
+  // region: ServiceEventHandlers
+  ///
+  /// An event fired on a device when a service has been added.
+  ///
+  /// This event will bubble through the [WebBluetoothRemoteGATTService], then
+  /// the [WebBluetoothDevice] and finally the root [Bluetooth] instance.
+  ///
+  static Stream<Event> get onServiceAdded => _nativeBluetooth.onServiceAdded;
+
+  ///
+  /// An event fired on a device when a service has changed.
+  ///
+  /// This event will bubble through the [WebBluetoothRemoteGATTService] to
+  /// the [WebBluetoothDevice] and finally root [Bluetooth] instance.
+  ///
+  static Stream<Event> get onServiceChanged =>
+      _nativeBluetooth.onServiceChanged;
+
+  ///
+  /// An event fired on a device when a service has been removed.
+  ///
+  /// This event will bubble through the [WebBluetoothRemoteGATTService] to
+  /// the [WebBluetoothDevice] and finally root [Bluetooth] instance.
+  ///
+  static Stream<Event> get onServiceRemoved =>
+      _nativeBluetooth.onServiceRemoved;
+// endregion
 }

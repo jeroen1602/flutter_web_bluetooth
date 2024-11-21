@@ -170,12 +170,8 @@ class ActionsSate extends State<ActionsWidget> {
         ],
       );
     } else {
-      // TODO: The beta version of Flutter made `Row` const, the current version
-      // however didn't. So convert this once the beta version becomes the
-      // main version.
-      // ignore: prefer_const_constructors
-      return Row(
-        children: const [
+      return const Row(
+        children: [
           Text("No actions for this characteristic"),
         ],
       );

@@ -10,7 +10,7 @@ part of "../js_web_bluetooth.dart";
 ///
 @JS()
 @anonymous
-class RequestOptions {
+extension type RequestOptions._(JSObject _) implements JSObject {
   ///
   /// A list of filters that the accepted device must meet.
   ///
@@ -21,7 +21,7 @@ class RequestOptions {
   /// or [optionalServices] if you want to be able to communicate with a
   /// characteristic in it.
   ///
-  external List<BluetoothScanFilter> get filters;
+  external JSArray<BluetoothScanFilter>? get filters;
 
   ///
   /// A device may not have enough distinct information. To solve this you may
@@ -34,7 +34,7 @@ class RequestOptions {
   /// **NOTE:** [exclusionFilters] are only supported from Chrome 114 and above
   /// as well other browsers based on chromium.
   ///
-  external List<BluetoothScanFilter> get exclusionFilters;
+  external JSArray<BluetoothScanFilter>? get exclusionFilters;
 
   ///
   /// A list of service UUIDS that a device may have or may not have.
@@ -47,7 +47,7 @@ class RequestOptions {
   /// The complete blocklist can be found here:
   /// https://github.com/WebBluetoothCG/registries/blob/master/gatt_blocklist.txt
   ///
-  external List<String> get optionalServices;
+  external JSArray<JSString>? get optionalServices;
 
   ///
   /// A list of manufacturer codes that a device may or may not have.
@@ -59,25 +59,77 @@ class RequestOptions {
   /// The complete blocklist can be found here:
   /// https://github.com/WebBluetoothCG/registries/blob/master/manufacturer_data_blocklist.txt
   ///
-  external List<int> get optionalManufacturerData;
+  external JSArray<JSNumber>? get optionalManufacturerData;
 
   ///
   /// If all device can are allowed to to connect.
   ///
   /// This cannot be true why a [filters] list is set.
   ///
-  external bool get acceptAllDevices;
+  external JSBoolean? get acceptAllDevices;
 
   ///
   /// A constructor for new request options.
   ///
   /// Because of how the conversion to JS works, there is a difference between
   /// leaving an item blank in this constructor and setting it to `null`.
+  /// To solve this use [RequestOptions.create].
   ///
   external factory RequestOptions(
-      {final List<BluetoothScanFilter> filters,
-      final List<BluetoothScanFilter> exclusionFilters,
-      final List<dynamic> optionalServices,
-      final List<dynamic> optionalManufacturerData,
-      final bool acceptAllDevices});
+      {final JSArray<BluetoothScanFilter>? filters,
+      final JSArray<BluetoothScanFilter>? exclusionFilters,
+      final JSArray<JSString>? optionalServices,
+      final JSArray<JSNumber>? optionalManufacturerData,
+      final JSBoolean? acceptAllDevices});
+
+  ///
+  /// Create a new JS object with the fields for [RequestOptions]. But
+  /// instead of setting all the values to `null` it will just not add them
+  /// keeping them `undefined`.
+  ///
+  /// No check is done here so you may end up with an empty object.
+  ///
+  factory RequestOptions.create(
+      {final List<BluetoothScanFilter>? filters,
+      final List<BluetoothScanFilter>? exclusionFilters,
+      final List<String>? optionalServices,
+      final List<int>? optionalManufacturerData,
+      final bool? acceptAllDevices}) {
+    final requestOptions = RequestOptions();
+
+    if (acceptAllDevices != null && acceptAllDevices) {
+      requestOptions.setProperty(
+          "acceptAllDevices".toJS, acceptAllDevices.toJS);
+    }
+
+    if (filters != null && filters.isNotEmpty) {
+      requestOptions.setProperty("filters".toJS, filters.toJS);
+    }
+
+    if (exclusionFilters != null && exclusionFilters.isNotEmpty) {
+      requestOptions.setProperty(
+          "exclusionFilters".toJS, exclusionFilters.toJS);
+    }
+
+    if (optionalServices != null && optionalServices.isNotEmpty) {
+      requestOptions.setProperty(
+          "optionalServices".toJS,
+          optionalServices
+              .map((final x) => x.toJS)
+              .toList(growable: false)
+              .toJS);
+    }
+
+    if (optionalManufacturerData != null &&
+        optionalManufacturerData.isNotEmpty) {
+      requestOptions.setProperty(
+          "optionalManufacturerData".toJS,
+          optionalManufacturerData
+              .map((final x) => x.toJS)
+              .toList(growable: false)
+              .toJS);
+    }
+
+    return requestOptions;
+  }
 }
