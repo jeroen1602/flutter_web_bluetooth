@@ -11,7 +11,6 @@ part of flutter_web_bluetooth;
 /// ignore: deprecated_member_use_from_same_package
 /// See: [deprecatedServices] for a list of all old deprecated services.
 enum BluetoothDefaultServiceUUIDS {
-
   /// The default service for GAP
   gap("GAP", "1800", "00001800-0000-1000-8000-00805f9b34fb",
       "org.bluetooth.service.gap"),
@@ -433,7 +432,18 @@ enum BluetoothDefaultServiceUUIDS {
       "Mesh Proxy Solicitation",
       "1859",
       "00001859-0000-1000-8000-00805f9b34fb",
-      "org.bluetooth.service.mesh_proxy_solicitation");
+      "org.bluetooth.service.mesh_proxy_solicitation"),
+
+  /// The default service for Industrial Measurement Device
+  industrialMeasurementDevice(
+      "Industrial Measurement Device",
+      "185a",
+      "0000185a-0000-1000-8000-00805f9b34fb",
+      "org.bluetooth.service.industrial_measurement_device"),
+
+  /// The default service for Ranging
+  ranging("Ranging", "185b", "0000185b-0000-1000-8000-00805f9b34fb",
+      "org.bluetooth.service.ranging");
 
   ///
   /// A service UUID consists of a human readable name of the service,
@@ -529,14 +539,15 @@ enum BluetoothDefaultServiceUUIDS {
     publicBroadcastAnnouncement,
     electronicShelfLabel,
     gamingAudio,
-    meshProxySolicitation
+    meshProxySolicitation,
+    industrialMeasurementDevice,
+    ranging
   ];
 
   /// All deprecated characteristics.
   @Deprecated(
       "This contains all deprecated services and should thus not be relied on")
-  static const List<BluetoothDefaultServiceUUIDS> deprecatedServices = [
-  ];
+  static const List<BluetoothDefaultServiceUUIDS> deprecatedServices = [];
 }
 
 /// All the default Bluetooth low energy characteristics are defined in this enum.
@@ -3310,7 +3321,123 @@ enum BluetoothDefaultCharacteristicUUIDS {
       "Percentage 8 Steps",
       "2c05",
       "00002c05-0000-1000-8000-00805f9b34fb",
-      "org.bluetooth.characteristic.percentage_8_steps");
+      "org.bluetooth.characteristic.percentage_8_steps"),
+
+  /// The default characteristic for Acceleration
+  acceleration("Acceleration", "2c06", "00002c06-0000-1000-8000-00805f9b34fb",
+      "org.bluetooth.characteristic.acceleration"),
+
+  /// The default characteristic for Force
+  force("Force", "2c07", "00002c07-0000-1000-8000-00805f9b34fb",
+      "org.bluetooth.characteristic.force"),
+
+  /// The default characteristic for Linear Position
+  linearPosition(
+      "Linear Position",
+      "2c08",
+      "00002c08-0000-1000-8000-00805f9b34fb",
+      "org.bluetooth.characteristic.linear_position"),
+
+  /// The default characteristic for Rotational Speed
+  rotationalSpeed(
+      "Rotational Speed",
+      "2c09",
+      "00002c09-0000-1000-8000-00805f9b34fb",
+      "org.bluetooth.characteristic.rotational_speed"),
+
+  /// The default characteristic for Length
+  length("Length", "2c0a", "00002c0a-0000-1000-8000-00805f9b34fb",
+      "org.bluetooth.characteristic.length"),
+
+  /// The default characteristic for Torque
+  torque("Torque", "2c0b", "00002c0b-0000-1000-8000-00805f9b34fb",
+      "org.bluetooth.characteristic.torque"),
+
+  /// The default characteristic for IMD Status
+  imdStatus("IMD Status", "2c0c", "00002c0c-0000-1000-8000-00805f9b34fb",
+      "org.bluetooth.characteristic.imd_status"),
+
+  /// The default characteristic for IMDS Descriptor Value Changed
+  imdsDescriptorValueChanged(
+      "IMDS Descriptor Value Changed",
+      "2c0d",
+      "00002c0d-0000-1000-8000-00805f9b34fb",
+      "org.bluetooth.characteristic.imds_descriptor_value_changed"),
+
+  /// The default characteristic for First Use Date
+  firstUseDate("First Use Date", "2c0e", "00002c0e-0000-1000-8000-00805f9b34fb",
+      "org.bluetooth.characteristic.first_use_date"),
+
+  /// The default characteristic for Life Cycle Data
+  lifeCycleData(
+      "Life Cycle Data",
+      "2c0f",
+      "00002c0f-0000-1000-8000-00805f9b34fb",
+      "org.bluetooth.characteristic.life_cycle_data"),
+
+  /// The default characteristic for Work Cycle Data
+  workCycleData(
+      "Work Cycle Data",
+      "2c10",
+      "00002c10-0000-1000-8000-00805f9b34fb",
+      "org.bluetooth.characteristic.work_cycle_data"),
+
+  /// The default characteristic for Service Cycle Data
+  serviceCycleData(
+      "Service Cycle Data",
+      "2c11",
+      "00002c11-0000-1000-8000-00805f9b34fb",
+      "org.bluetooth.characteristic.service_cycle_data"),
+
+  /// The default characteristic for IMD Control
+  imdControl("IMD Control", "2c12", "00002c12-0000-1000-8000-00805f9b34fb",
+      "org.bluetooth.characteristic.imd_control"),
+
+  /// The default characteristic for IMD Historical Data
+  imdHistoricalData(
+      "IMD Historical Data",
+      "2c13",
+      "00002c13-0000-1000-8000-00805f9b34fb",
+      "org.bluetooth.characteristic.imd_historical_data"),
+
+  /// The default characteristic for RAS Features
+  rasFeatures("RAS Features", "2c14", "00002c14-0000-1000-8000-00805f9b34fb",
+      "org.bluetooth.characteristic.ras_features"),
+
+  /// The default characteristic for Real-time Ranging Data
+  realTimeRangingData(
+      "Real-time Ranging Data",
+      "2c15",
+      "00002c15-0000-1000-8000-00805f9b34fb",
+      "org.bluetooth.characteristic.real-time_ranging_data"),
+
+  /// The default characteristic for On-demand Ranging Data
+  onDemandRangingData(
+      "On-demand Ranging Data",
+      "2c16",
+      "00002c16-0000-1000-8000-00805f9b34fb",
+      "org.bluetooth.characteristic.on-demand_ranging_data"),
+
+  /// The default characteristic for RAS Control Point
+  rasControlPoint(
+      "RAS Control Point",
+      "2c17",
+      "00002c17-0000-1000-8000-00805f9b34fb",
+      "org.bluetooth.characteristic.ras_control_point"),
+
+  /// The default characteristic for Ranging Data Ready
+  rangingDataReady(
+      "Ranging Data Ready",
+      "2c18",
+      "00002c18-0000-1000-8000-00805f9b34fb",
+      "org.bluetooth.characteristic.ranging_data_ready"),
+
+  /// The default characteristic for Ranging Data Overwritten
+  rangingDataOverwritten(
+      "Ranging Data Overwritten",
+      "2c19",
+      "00002c19-0000-1000-8000-00805f9b34fb",
+      "org.bluetooth.characteristic.ranging_data_overwritten");
 
   ///
   /// A characteristic UUID consists of a human readable name of the characteristic,
@@ -3788,13 +3915,32 @@ enum BluetoothDefaultCharacteristicUUIDS {
     ugtFeatures,
     bgsFeatures,
     bgrFeatures,
-    percentage8Steps
+    percentage8Steps,
+    acceleration,
+    force,
+    linearPosition,
+    rotationalSpeed,
+    length,
+    torque,
+    imdStatus,
+    imdsDescriptorValueChanged,
+    firstUseDate,
+    lifeCycleData,
+    workCycleData,
+    serviceCycleData,
+    imdControl,
+    imdHistoricalData,
+    rasFeatures,
+    realTimeRangingData,
+    onDemandRangingData,
+    rasControlPoint,
+    rangingDataReady,
+    rangingDataOverwritten
   ];
 
   /// All deprecated characteristics.
   @Deprecated(
       "This contains all deprecated characteristics and should thus not be relied on")
   static const List<BluetoothDefaultCharacteristicUUIDS>
-      deprecatedCharacteristics = [
-  ];
+      deprecatedCharacteristics = [];
 }

@@ -11,6 +11,142 @@ part of flutter_web_bluetooth;
 /// ignore: deprecated_member_use_from_same_package
 /// See: [deprecatedManufacturerIdentifiers] for a list of all old deprecated identifiers.
 enum BluetoothDefaultManufacturerIdentifiers {
+  /// The manufacturer identifier for Dyaco International Inc.
+  dyacoInternationalInc("Dyaco International Inc.", 0xE51),
+
+  /// The manufacturer identifier for Zhejiang Desman Intelligent Technology Co., Ltd.
+  zhejiangDesmanIntelligentTechnologyCoLtd(
+      "Zhejiang Desman Intelligent Technology Co., Ltd.", 0xE50),
+
+  /// The manufacturer identifier for eBet Gaming Sytems Pty Limited
+  ebetGamingSytemsPtyLimited("eBet Gaming Sytems Pty Limited", 0xE4F),
+
+  /// The manufacturer identifier for QSC, LLC
+  qscLlc("QSC, LLC", 0xE4E),
+
+  /// The manufacturer identifier for Brooksee, Inc.
+  brookseeInc("Brooksee, Inc.", 0xE4D),
+
+  /// The manufacturer identifier for Luxshare Precision Industry Co., Ltd.
+  luxsharePrecisionIndustryCoLtd(
+      "Luxshare Precision Industry Co., Ltd.", 0xE4C),
+
+  /// The manufacturer identifier for PUDSEY DIAMOND ENGINEERING LIMITED
+  pudseyDiamondEngineeringLimited("PUDSEY DIAMOND ENGINEERING LIMITED", 0xE4B),
+
+  /// The manufacturer identifier for Nitto Denko Corporation
+  nittoDenkoCorporation("Nitto Denko Corporation", 0xE4A),
+
+  /// The manufacturer identifier for Deone (Shanghai) Communication & Technology Co., Ltd
+  deoneShanghaiCommunicationAndTechnologyCoLtd(
+      "Deone (Shanghai) Communication & Technology Co., Ltd", 0xE49),
+
+  /// The manufacturer identifier for KARLUNA MUHENDISLIK SANAYI VE TICARET ANONIM SIRKETI
+  karlunaMuhendislikSanayiVeTicaretAnonimSirketi(
+      "KARLUNA MUHENDISLIK SANAYI VE TICARET ANONIM SIRKETI", 0xE48),
+
+  /// The manufacturer identifier for Hosiden Besson Limited
+  hosidenBessonLimited("Hosiden Besson Limited", 0xE47),
+
+  /// The manufacturer identifier for SOUNDUCT
+  sounduct("SOUNDUCT", 0xE46),
+
+  /// The manufacturer identifier for Filo Srl
+  filoSrl("Filo Srl", 0xE45),
+
+  /// The manufacturer identifier for QUANTATEC
+  quantatec("QUANTATEC", 0xE44),
+
+  /// The manufacturer identifier for InnoVision Medical Technologies, LLC
+  innovisionMedicalTechnologiesLlc(
+      "InnoVision Medical Technologies, LLC", 0xE43),
+
+  /// The manufacturer identifier for Z-ONE Technology Co., Ltd.
+  zOneTechnologyCoLtd("Z-ONE Technology Co., Ltd.", 0xE42),
+
+  /// The manufacturer identifier for Asustek Computer Inc.
+  asustekComputerInc("Asustek Computer Inc.", 0xE41),
+
+  /// The manufacturer identifier for WKD Labs Ltd
+  wkdLabsLtd("WKD Labs Ltd", 0xE40),
+
+  /// The manufacturer identifier for Wiser Devices, LLC
+  wiserDevicesLlc("Wiser Devices, LLC", 0xE3F),
+
+  /// The manufacturer identifier for VANBOX
+  vanbox("VANBOX", 0xE3E),
+
+  /// The manufacturer identifier for Walmart Inc.
+  walmartInc("Walmart Inc.", 0xE3D),
+
+  /// The manufacturer identifier for Viselabs
+  viselabs("Viselabs", 0xE3C),
+
+  /// The manufacturer identifier for Swift IOT Tech (Shenzhen) Co., LTD.
+  swiftIotTechShenzhenCoLtd("Swift IOT Tech (Shenzhen) Co., LTD.", 0xE3B),
+
+  /// The manufacturer identifier for OFIVE LIMITED
+  ofiveLimited("OFIVE LIMITED", 0xE3A),
+
+  /// The manufacturer identifier for IRES Infrarot Energie Systeme GmbH
+  iresInfrarotEnergieSystemeGmbh("IRES Infrarot Energie Systeme GmbH", 0xE39),
+
+  /// The manufacturer identifier for SLOC GmbH
+  slocGmbh("SLOC GmbH", 0xE38),
+
+  /// The manufacturer identifier for CESYS Gesellschaft für angewandte Mikroelektronik mbH
+  cesysGesellschaftFurAngewandteMikroelektronikMbh(
+      "CESYS Gesellschaft für angewandte Mikroelektronik mbH", 0xE37),
+
+  /// The manufacturer identifier for Cousins and Sears LLC
+  cousinsAndSearsLlc("Cousins and Sears LLC", 0xE36),
+
+  /// The manufacturer identifier for SNAPPWISH LLC
+  snappwishLlc("SNAPPWISH LLC", 0xE35),
+
+  /// The manufacturer identifier for Vermis, software solutions llc
+  vermisSoftwareSolutionsLlc("Vermis, software solutions llc", 0xE34),
+
+  /// The manufacturer identifier for Crescent NV
+  crescentNv("Crescent NV", 0xE33),
+
+  /// The manufacturer identifier for PACIFIC INDUSTRIAL CO., LTD.
+  pacificIndustrialCoLtd("PACIFIC INDUSTRIAL CO., LTD.", 0xE32),
+
+  /// The manufacturer identifier for AlphaTheta Corporation
+  alphathetaCorporation("AlphaTheta Corporation", 0xE31),
+
+  /// The manufacturer identifier for Primax Electronics Ltd.
+  primaxElectronicsLtd("Primax Electronics Ltd.", 0xE30),
+
+  /// The manufacturer identifier for ONWI
+  onwi("ONWI", 0xE2F),
+
+  /// The manufacturer identifier for NIHON KOHDEN CORPORATION
+  nihonKohdenCorporation("NIHON KOHDEN CORPORATION", 0xE2E),
+
+  /// The manufacturer identifier for ECARX (Hubei) Tech Co.,Ltd.
+  ecarxHubeiTechCoLtd("ECARX (Hubei) Tech Co.,Ltd.", 0xE2D),
+
+  /// The manufacturer identifier for 9313-7263 Quebec inc.
+  nineThousandThreeHundredThirteen7263QuebecInc("9313-7263 Quebec inc.", 0xE2C),
+
+  /// The manufacturer identifier for JE electronic a/s
+  jeElectronicAS("JE electronic a/s", 0xE2B),
+
+  /// The manufacturer identifier for Huizhou Foryou General Electronics Co., Ltd.
+  huizhouForyouGeneralElectronicsCoLtd(
+      "Huizhou Foryou General Electronics Co., Ltd.", 0xE2A),
+
+  /// The manufacturer identifier for Flipper Devices Inc.
+  flipperDevicesInc("Flipper Devices Inc.", 0xE29),
+
+  /// The manufacturer identifier for PatchRx, Inc.
+  patchrxInc("PatchRx, Inc.", 0xE28),
+
+  /// The manufacturer identifier for NextSense, Inc.
+  nextsenseInc("NextSense, Inc.", 0xE27),
+
   /// The manufacturer identifier for LIHJOEN SPEED METER CO., LTD.
   lihjoenSpeedMeterCoLtd("LIHJOEN SPEED METER CO., LTD.", 0xE26),
 
@@ -6760,7 +6896,12 @@ enum BluetoothDefaultManufacturerIdentifiers {
   shanghaiXiaoyiTechnologyCoLtd("Shanghai Xiaoyi Technology Co.,Ltd.", 0x5A1),
 
   /// The manufacturer identifier for RCP Software Oy
+  @Deprecated(
+      "Identifier has been renamed; use dreamDevicesTechnologiesOy instead")
   rcpSoftwareOy("RCP Software Oy", 0x5A0),
+
+  /// The manufacturer identifier for Dream Devices Technologies Oy
+  dreamDevicesTechnologiesOy("Dream Devices Technologies Oy", 0x5A0),
 
   /// The manufacturer identifier for Fisher & Paykel Healthcare
   fisherAndPaykelHealthcare("Fisher & Paykel Healthcare", 0x59F),
@@ -8125,7 +8266,11 @@ enum BluetoothDefaultManufacturerIdentifiers {
   /// The manufacturer identifier for SPD Development Company Ltd
   spdDevelopmentCompanyLtd("SPD Development Company Ltd", 0x3E1),
 
+  /// The manufacturer identifier for Actions Technology Co.,Ltd
+  actionsTechnologyCoLtd("Actions Technology Co.,Ltd", 0x3E0),
+
   /// The manufacturer identifier for Actions (Zhuhai) Technology Co., Limited
+  @Deprecated("Identifier has been renamed; use actionsTechnologyCoLtd instead")
   actionsZhuhaiTechnologyCoLimited(
       "Actions (Zhuhai) Technology Co., Limited", 0x3E0),
 
@@ -10498,7 +10643,12 @@ enum BluetoothDefaultManufacturerIdentifiers {
   taixingbangTechnologyHkCoLtd("Taixingbang Technology (HK) Co,. LTD.", 0xD3),
 
   /// The manufacturer identifier for Dialog Semiconductor B.V.
+  @Deprecated(
+      "Identifier has been renamed; use renesasDesignNetherlandsBV instead")
   dialogSemiconductorBV("Dialog Semiconductor B.V.", 0xD2),
+
+  /// The manufacturer identifier for Renesas Design Netherlands B.V.
+  renesasDesignNetherlandsBV("Renesas Design Netherlands B.V.", 0xD2),
 
   /// The manufacturer identifier for Polar Electro Europe B.V.
   polarElectroEuropeBV("Polar Electro Europe B.V.", 0xD1),
@@ -11158,6 +11308,49 @@ enum BluetoothDefaultManufacturerIdentifiers {
   /// All non-deprecated manufacturer identifiers
   static const List<BluetoothDefaultManufacturerIdentifiers>
       manufacturerIdentifiers = [
+    dyacoInternationalInc,
+    zhejiangDesmanIntelligentTechnologyCoLtd,
+    ebetGamingSytemsPtyLimited,
+    qscLlc,
+    brookseeInc,
+    luxsharePrecisionIndustryCoLtd,
+    pudseyDiamondEngineeringLimited,
+    nittoDenkoCorporation,
+    deoneShanghaiCommunicationAndTechnologyCoLtd,
+    karlunaMuhendislikSanayiVeTicaretAnonimSirketi,
+    hosidenBessonLimited,
+    sounduct,
+    filoSrl,
+    quantatec,
+    innovisionMedicalTechnologiesLlc,
+    zOneTechnologyCoLtd,
+    asustekComputerInc,
+    wkdLabsLtd,
+    wiserDevicesLlc,
+    vanbox,
+    walmartInc,
+    viselabs,
+    swiftIotTechShenzhenCoLtd,
+    ofiveLimited,
+    iresInfrarotEnergieSystemeGmbh,
+    slocGmbh,
+    cesysGesellschaftFurAngewandteMikroelektronikMbh,
+    cousinsAndSearsLlc,
+    snappwishLlc,
+    vermisSoftwareSolutionsLlc,
+    crescentNv,
+    pacificIndustrialCoLtd,
+    alphathetaCorporation,
+    primaxElectronicsLtd,
+    onwi,
+    nihonKohdenCorporation,
+    ecarxHubeiTechCoLtd,
+    nineThousandThreeHundredThirteen7263QuebecInc,
+    jeElectronicAS,
+    huizhouForyouGeneralElectronicsCoLtd,
+    flipperDevicesInc,
+    patchrxInc,
+    nextsenseInc,
     lihjoenSpeedMeterCoLtd,
     hangzhouHikvisionDigitalTechnologyCoLtd,
     msKajak7UgLimitedLiability,
@@ -13337,7 +13530,7 @@ enum BluetoothDefaultManufacturerIdentifiers {
     axiomwareSystemsIncorporated,
     adheriumNzLimited,
     shanghaiXiaoyiTechnologyCoLtd,
-    rcpSoftwareOy,
+    dreamDevicesTechnologiesOy,
     fisherAndPaykelHealthcare,
     polycomInc,
     tandemDiabetesCare,
@@ -13784,7 +13977,7 @@ enum BluetoothDefaultManufacturerIdentifiers {
     qualcommLifeInc,
     sensoanOy,
     spdDevelopmentCompanyLtd,
-    actionsZhuhaiTechnologyCoLimited,
+    actionsTechnologyCoLtd,
     grobTechnologiesLlc,
     nathanRhoadesLlc,
     andreasStihlAgAndCoKg,
@@ -14566,7 +14759,7 @@ enum BluetoothDefaultManufacturerIdentifiers {
     austcoCommunicationSystems,
     kawantech,
     taixingbangTechnologyHkCoLtd,
-    dialogSemiconductorBV,
+    renesasDesignNetherlandsBV,
     polarElectroEuropeBV,
     dexcomInc,
     archosSa,
@@ -14784,5 +14977,8 @@ enum BluetoothDefaultManufacturerIdentifiers {
       "This contains all deprecated manufacturer identifiers and should thus not be relied on")
   static const List<BluetoothDefaultManufacturerIdentifiers>
       deprecatedManufacturerIdentifiers = [
+    rcpSoftwareOy,
+    actionsZhuhaiTechnologyCoLimited,
+    dialogSemiconductorBV
   ];
 }

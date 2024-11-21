@@ -1,3 +1,5 @@
+#!/usr/bin/env dart
+
 import "dart:async";
 
 import "package:args/command_runner.dart";
