@@ -5,13 +5,13 @@ description: Demonstrates how to use the flutter_web_bluetooth plugin.
 # pub.dev using `pub publish`. This is preferred for private packages.
 publish_to: 'none' # Remove this line if you wish to publish to pub.dev
 
-version: 15.0.0+15
+version: 16.0.0+16
 
 environment:
-  sdk: ">=3.5.3 <4.0.0"
+  sdk: ">=3.5.4 <4.0.0"
 
 dependencies:
-  convert: ^3.1.1
+  convert: ^3.1.2
   flutter:
     sdk: flutter
   flutter_linkify: ^6.0.0
@@ -22,9 +22,9 @@ dependencies:
     # The example app is bundled with the plugin so we use a path dependency on
     # the parent directory to use the current plugin's version.
     path: ../
-  package_info_plus: ^8.0.2
+  package_info_plus: ^8.1.1
   rxdart: ^0.28.0
-  url_launcher: ^6.3.0
+  url_launcher: ^6.3.1
   web: ^1.1.0
   web_browser_detect: ^2.0.3
   yaml: ^3.1.2
