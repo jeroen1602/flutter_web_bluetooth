@@ -6,6 +6,7 @@ import "package:analyzer/dart/ast/ast.dart" as ast;
 import "package:code_builder/code_builder.dart";
 import "package:dart_style/dart_style.dart";
 import "package:flutter_web_bluetooth_builder/helpers/custom_code_builder_literals.dart";
+import "package:flutter_web_bluetooth_builder/helpers/sdk_min_version.dart";
 import "package:flutter_web_bluetooth_builder/helpers/variable_name.dart";
 import "package:flutter_web_bluetooth_builder/helpers/yaml_utils.dart";
 import "package:path/path.dart";
@@ -162,7 +163,9 @@ ${buildLibrary.accept(emitter)}
 
   final outFile = File(manufacturerIdentifiersFile);
   await outFile.create();
-  await outFile.writeAsString(DartFormatter().format(libraryCode));
+  await outFile.writeAsString(
+      DartFormatter(languageVersion: await getDartMinVersion())
+          .format(libraryCode));
   // ignore: avoid_print
   print("Done");
 }

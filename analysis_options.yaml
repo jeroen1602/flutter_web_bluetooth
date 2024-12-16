@@ -29,7 +29,6 @@ linter:
     - test_types_in_equals
     - throw_in_finally
     - unnecessary_statements
-    - unsafe_html # Probably not needed since the library doesn't interact directly with HTML
 #    Style rules
     - always_declare_return_types
     - always_put_control_body_on_new_line
@@ -52,7 +51,6 @@ linter:
     - noop_primitive_operations
     - one_member_abstracts
     - only_throw_errors
-    - package_api_docs
     - public_member_api_docs
     - prefer_asserts_in_initializer_lists
     - prefer_asserts_with_message
