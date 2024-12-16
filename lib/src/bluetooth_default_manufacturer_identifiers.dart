@@ -11,6 +11,75 @@ part of flutter_web_bluetooth;
 /// ignore: deprecated_member_use_from_same_package
 /// See: [deprecatedManufacturerIdentifiers] for a list of all old deprecated identifiers.
 enum BluetoothDefaultManufacturerIdentifiers {
+  /// The manufacturer identifier for NEXT DEVICES LTDA
+  nextDevicesLtda("NEXT DEVICES LTDA", 0xE67),
+
+  /// The manufacturer identifier for Shenzhen Baseus Technology Co., Ltd.
+  shenzhenBaseusTechnologyCoLtd("Shenzhen Baseus Technology Co., Ltd.", 0xE66),
+
+  /// The manufacturer identifier for Daikin Industries, LTD
+  daikinIndustriesLtd("Daikin Industries, LTD", 0xE65),
+
+  /// The manufacturer identifier for HuiTong intelligence Company Limited
+  huitongIntelligenceCompanyLimited(
+      "HuiTong intelligence Company Limited", 0xE64),
+
+  /// The manufacturer identifier for LAST LOCK INC.
+  lastLockInc("LAST LOCK INC.", 0xE63),
+
+  /// The manufacturer identifier for GOKI PTY LTD
+  gokiPtyLtd("GOKI PTY LTD", 0xE62),
+
+  /// The manufacturer identifier for Queclink Wireless Solutions Co., Ltd.
+  queclinkWirelessSolutionsCoLtd(
+      "Queclink Wireless Solutions Co., Ltd.", 0xE61),
+
+  /// The manufacturer identifier for Ant Group Co., Ltd.
+  antGroupCoLtd("Ant Group Co., Ltd.", 0xE60),
+
+  /// The manufacturer identifier for Ruptela
+  ruptela("Ruptela", 0xE5F),
+
+  /// The manufacturer identifier for SHAPER TOOLS, INC.
+  shaperToolsInc("SHAPER TOOLS, INC.", 0xE5E),
+
+  /// The manufacturer identifier for L.T.H. Electronics Limited
+  lTHElectronicsLimited("L.T.H. Electronics Limited", 0xE5D),
+
+  /// The manufacturer identifier for Amimon Ltd.
+  amimonLtd("Amimon Ltd.", 0xE5C),
+
+  /// The manufacturer identifier for Wuhu Hongjing Electronic Co.,Ltd
+  wuhuHongjingElectronicCoLtd("Wuhu Hongjing Electronic Co.,Ltd", 0xE5B),
+
+  /// The manufacturer identifier for OmniWave Microelectronics Shanghai Co., Ltd
+  omniwaveMicroelectronicsShanghaiCoLtd(
+      "OmniWave Microelectronics Shanghai Co., Ltd", 0xE5A),
+
+  /// The manufacturer identifier for Loewe Technology GmbH
+  loeweTechnologyGmbh("Loewe Technology GmbH", 0xE59),
+
+  /// The manufacturer identifier for Urban Armor Gear, LLC
+  urbanArmorGearLlc("Urban Armor Gear, LLC", 0xE58),
+
+  /// The manufacturer identifier for Altina Inc.
+  altinaInc("Altina Inc.", 0xE57),
+
+  /// The manufacturer identifier for INEPRO Metering B.V.
+  ineproMeteringBV("INEPRO Metering B.V.", 0xE56),
+
+  /// The manufacturer identifier for New Cosmos Electric Co., Ltd.
+  newCosmosElectricCoLtd("New Cosmos Electric Co., Ltd.", 0xE55),
+
+  /// The manufacturer identifier for Relief Technologies AS
+  reliefTechnologiesAs("Relief Technologies AS", 0xE54),
+
+  /// The manufacturer identifier for MINIRIG
+  minirig("MINIRIG", 0xE53),
+
+  /// The manufacturer identifier for Aquana, LLC
+  aquanaLlc("Aquana, LLC", 0xE52),
+
   /// The manufacturer identifier for Dyaco International Inc.
   dyacoInternationalInc("Dyaco International Inc.", 0xE51),
 
@@ -8266,13 +8335,13 @@ enum BluetoothDefaultManufacturerIdentifiers {
   /// The manufacturer identifier for SPD Development Company Ltd
   spdDevelopmentCompanyLtd("SPD Development Company Ltd", 0x3E1),
 
-  /// The manufacturer identifier for Actions Technology Co.,Ltd
-  actionsTechnologyCoLtd("Actions Technology Co.,Ltd", 0x3E0),
-
   /// The manufacturer identifier for Actions (Zhuhai) Technology Co., Limited
   @Deprecated("Identifier has been renamed; use actionsTechnologyCoLtd instead")
   actionsZhuhaiTechnologyCoLimited(
       "Actions (Zhuhai) Technology Co., Limited", 0x3E0),
+
+  /// The manufacturer identifier for Actions Technology Co.,Ltd
+  actionsTechnologyCoLtd("Actions Technology Co.,Ltd", 0x3E0),
 
   /// The manufacturer identifier for Grob Technologies, LLC
   grobTechnologiesLlc("Grob Technologies, LLC", 0x3DF),
@@ -11308,6 +11377,28 @@ enum BluetoothDefaultManufacturerIdentifiers {
   /// All non-deprecated manufacturer identifiers
   static const List<BluetoothDefaultManufacturerIdentifiers>
       manufacturerIdentifiers = [
+    nextDevicesLtda,
+    shenzhenBaseusTechnologyCoLtd,
+    daikinIndustriesLtd,
+    huitongIntelligenceCompanyLimited,
+    lastLockInc,
+    gokiPtyLtd,
+    queclinkWirelessSolutionsCoLtd,
+    antGroupCoLtd,
+    ruptela,
+    shaperToolsInc,
+    lTHElectronicsLimited,
+    amimonLtd,
+    wuhuHongjingElectronicCoLtd,
+    omniwaveMicroelectronicsShanghaiCoLtd,
+    loeweTechnologyGmbh,
+    urbanArmorGearLlc,
+    altinaInc,
+    ineproMeteringBV,
+    newCosmosElectricCoLtd,
+    reliefTechnologiesAs,
+    minirig,
+    aquanaLlc,
     dyacoInternationalInc,
     zhejiangDesmanIntelligentTechnologyCoLtd,
     ebetGamingSytemsPtyLimited,
