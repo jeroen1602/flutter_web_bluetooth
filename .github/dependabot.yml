@@ -5,6 +5,14 @@ updates:
     directory: "/"
     schedule:
       interval: "weekly"
+  - package-ecosystem: "pub"
+    directory: "/builder/"
+    schedule:
+      interval: "weekly"
+  - package-ecosystem: "pub"
+    directory: "/example/"
+    schedule:
+      interval: "weekly"
   - package-ecosystem: "github-actions"
     directory: "/.github/workflows/"
     schedule:

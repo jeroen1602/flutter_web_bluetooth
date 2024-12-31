@@ -11,6 +11,76 @@ part of flutter_web_bluetooth;
 /// ignore: deprecated_member_use_from_same_package
 /// See: [deprecatedManufacturerIdentifiers] for a list of all old deprecated identifiers.
 enum BluetoothDefaultManufacturerIdentifiers {
+  /// The manufacturer identifier for final Inc.
+  finalInc("final Inc.", 0xE7C),
+
+  /// The manufacturer identifier for Circular
+  circular("Circular", 0xE7B),
+
+  /// The manufacturer identifier for Vivago Oy
+  vivagoOy("Vivago Oy", 0xE7A),
+
+  /// The manufacturer identifier for Neptune First OU
+  neptuneFirstOu("Neptune First OU", 0xE79),
+
+  /// The manufacturer identifier for HONG KONG COMMUNICATIONS COMPANY LIMITED
+  hongKongCommunicationsCompanyLimited(
+      "HONG KONG COMMUNICATIONS COMPANY LIMITED", 0xE78),
+
+  /// The manufacturer identifier for MOBILE TECH, INC.
+  mobileTechInc("MOBILE TECH, INC.", 0xE77),
+
+  /// The manufacturer identifier for Guangdong Nanguang Photo&Video Systems Co., Ltd.
+  guangdongNanguangPhotoandvideoSystemsCoLtd(
+      "Guangdong Nanguang Photo&Video Systems Co., Ltd.", 0xE76),
+
+  /// The manufacturer identifier for Le Touch (Shenzhen) Electronics Co., Ltd.
+  leTouchShenzhenElectronicsCoLtd(
+      "Le Touch (Shenzhen) Electronics Co., Ltd.", 0xE75),
+
+  /// The manufacturer identifier for Rocky Radios LLC
+  rockyRadiosLlc("Rocky Radios LLC", 0xE74),
+
+  /// The manufacturer identifier for Adventures of the Persistently Impaired (and other tales) Limited
+  adventuresOfThePersistentlyImpairedAndOtherTalesLimited(
+      "Adventures of the Persistently Impaired (and other tales) Limited",
+      0xE73),
+
+  /// The manufacturer identifier for TOR.AI LIMITED
+  torAiLimited("TOR.AI LIMITED", 0xE72),
+
+  /// The manufacturer identifier for ENABLEWEAR LLC
+  enablewearLlc("ENABLEWEAR LLC", 0xE71),
+
+  /// The manufacturer identifier for Powerstick.com
+  powerstickCom("Powerstick.com", 0xE70),
+
+  /// The manufacturer identifier for OpConnect, Inc.
+  opconnectInc("OpConnect, Inc.", 0xE6F),
+
+  /// The manufacturer identifier for I.M.LAB Inc
+  iMLabInc("I.M.LAB Inc", 0xE6E),
+
+  /// The manufacturer identifier for FEVOS LIMITED
+  fevosLimited("FEVOS LIMITED", 0xE6D),
+
+  /// The manufacturer identifier for RIGH, INC.
+  righInc("RIGH, INC.", 0xE6C),
+
+  /// The manufacturer identifier for Shenzhen Goodocom Information Technology Co., Ltd.
+  shenzhenGoodocomInformationTechnologyCoLtd(
+      "Shenzhen Goodocom Information Technology Co., Ltd.", 0xE6B),
+
+  /// The manufacturer identifier for Hyena Inc.
+  hyenaInc("Hyena Inc.", 0xE6A),
+
+  /// The manufacturer identifier for Megatronix (Beijing) Technology Co., Ltd
+  megatronixBeijingTechnologyCoLtd(
+      "Megatronix (Beijing) Technology Co., Ltd", 0xE69),
+
+  /// The manufacturer identifier for EarTex Ltd
+  eartexLtd("EarTex Ltd", 0xE68),
+
   /// The manufacturer identifier for NEXT DEVICES LTDA
   nextDevicesLtda("NEXT DEVICES LTDA", 0xE67),
 
@@ -6964,13 +7034,13 @@ enum BluetoothDefaultManufacturerIdentifiers {
   /// The manufacturer identifier for Shanghai Xiaoyi Technology Co.,Ltd.
   shanghaiXiaoyiTechnologyCoLtd("Shanghai Xiaoyi Technology Co.,Ltd.", 0x5A1),
 
+  /// The manufacturer identifier for Dream Devices Technologies Oy
+  dreamDevicesTechnologiesOy("Dream Devices Technologies Oy", 0x5A0),
+
   /// The manufacturer identifier for RCP Software Oy
   @Deprecated(
       "Identifier has been renamed; use dreamDevicesTechnologiesOy instead")
   rcpSoftwareOy("RCP Software Oy", 0x5A0),
-
-  /// The manufacturer identifier for Dream Devices Technologies Oy
-  dreamDevicesTechnologiesOy("Dream Devices Technologies Oy", 0x5A0),
 
   /// The manufacturer identifier for Fisher & Paykel Healthcare
   fisherAndPaykelHealthcare("Fisher & Paykel Healthcare", 0x59F),
@@ -11377,6 +11447,27 @@ enum BluetoothDefaultManufacturerIdentifiers {
   /// All non-deprecated manufacturer identifiers
   static const List<BluetoothDefaultManufacturerIdentifiers>
       manufacturerIdentifiers = [
+    finalInc,
+    circular,
+    vivagoOy,
+    neptuneFirstOu,
+    hongKongCommunicationsCompanyLimited,
+    mobileTechInc,
+    guangdongNanguangPhotoandvideoSystemsCoLtd,
+    leTouchShenzhenElectronicsCoLtd,
+    rockyRadiosLlc,
+    adventuresOfThePersistentlyImpairedAndOtherTalesLimited,
+    torAiLimited,
+    enablewearLlc,
+    powerstickCom,
+    opconnectInc,
+    iMLabInc,
+    fevosLimited,
+    righInc,
+    shenzhenGoodocomInformationTechnologyCoLtd,
+    hyenaInc,
+    megatronixBeijingTechnologyCoLtd,
+    eartexLtd,
     nextDevicesLtda,
     shenzhenBaseusTechnologyCoLtd,
     daikinIndustriesLtd,
