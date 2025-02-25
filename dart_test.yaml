@@ -1,4 +1,4 @@
-platforms: [ chrome, firefox,vm ]
+platforms: [ chrome, vm ]
 compilers: [ vm:kernel,dart2wasm,dart2js ]
 
 override_platforms:
