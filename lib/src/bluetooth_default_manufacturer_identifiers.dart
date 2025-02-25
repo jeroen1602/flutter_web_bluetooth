@@ -11,6 +11,135 @@ part of flutter_web_bluetooth;
 /// ignore: deprecated_member_use_from_same_package
 /// See: [deprecatedManufacturerIdentifiers] for a list of all old deprecated identifiers.
 enum BluetoothDefaultManufacturerIdentifiers {
+  /// The manufacturer identifier for EasyReach Solutions Private Limited
+  easyreachSolutionsPrivateLimited(
+      "EasyReach Solutions Private Limited", 0xEA5),
+
+  /// The manufacturer identifier for BiTECH Automotive (Wuhu) Co.,Ltd
+  bitechAutomotiveWuhuCoLtd("BiTECH Automotive (Wuhu) Co.,Ltd", 0xEA4),
+
+  /// The manufacturer identifier for OLIS ELECTRONICS, LLC
+  olisElectronicsLlc("OLIS ELECTRONICS, LLC", 0xEA3),
+
+  /// The manufacturer identifier for QIKCONNEX LLC
+  qikconnexLlc("QIKCONNEX LLC", 0xEA2),
+
+  /// The manufacturer identifier for Culligan International Company
+  culliganInternationalCompany("Culligan International Company", 0xEA1),
+
+  /// The manufacturer identifier for ENLESS WIRELESS
+  enlessWireless("ENLESS WIRELESS", 0xEA0),
+
+  /// The manufacturer identifier for Owlet Baby Care Inc.
+  owletBabyCareInc("Owlet Baby Care Inc.", 0xE9F),
+
+  /// The manufacturer identifier for Travelxp India Private Limited
+  travelxpIndiaPrivateLimited("Travelxp India Private Limited", 0xE9E),
+
+  /// The manufacturer identifier for Audinor ApS
+  audinorAps("Audinor ApS", 0xE9D),
+
+  /// The manufacturer identifier for Andrews & Arnold Ltd
+  andrewsAndArnoldLtd("Andrews & Arnold Ltd", 0xE9C),
+
+  /// The manufacturer identifier for Panasonic Automotive Systems Co., Ltd.
+  panasonicAutomotiveSystemsCoLtd(
+      "Panasonic Automotive Systems Co., Ltd.", 0xE9B),
+
+  /// The manufacturer identifier for Scanbro OU
+  scanbroOu("Scanbro OU", 0xE9A),
+
+  /// The manufacturer identifier for Medibound, Inc.
+  mediboundInc("Medibound, Inc.", 0xE99),
+
+  /// The manufacturer identifier for Chromatic Inc.
+  chromaticInc("Chromatic Inc.", 0xE98),
+
+  /// The manufacturer identifier for kokoromil Inc.
+  kokoromilInc("kokoromil Inc.", 0xE97),
+
+  /// The manufacturer identifier for Skeed,co,Ltd.
+  skeedCoLtd("Skeed,co,Ltd.", 0xE96),
+
+  /// The manufacturer identifier for Viaanix, Inc.
+  viaanixInc("Viaanix, Inc.", 0xE95),
+
+  /// The manufacturer identifier for Tactrix
+  tactrix("Tactrix", 0xE94),
+
+  /// The manufacturer identifier for MIV ELECTRONICS, LTD
+  mivElectronicsLtd("MIV ELECTRONICS, LTD", 0xE93),
+
+  /// The manufacturer identifier for Glutz AG
+  glutzAg("Glutz AG", 0xE92),
+
+  /// The manufacturer identifier for Identita Inc.
+  identitaInc("Identita Inc.", 0xE91),
+
+  /// The manufacturer identifier for RainMaker Solutions, Inc.
+  rainmakerSolutionsInc("RainMaker Solutions, Inc.", 0xE90),
+
+  /// The manufacturer identifier for Avetos Design LLC
+  avetosDesignLlc("Avetos Design LLC", 0xE8F),
+
+  /// The manufacturer identifier for Nobest Inc
+  nobestInc("Nobest Inc", 0xE8E),
+
+  /// The manufacturer identifier for Celebrities Management Private Limited
+  celebritiesManagementPrivateLimited(
+      "Celebrities Management Private Limited", 0xE8D),
+
+  /// The manufacturer identifier for Gopod Group Holding Limited
+  gopodGroupHoldingLimited("Gopod Group Holding Limited", 0xE8C),
+
+  /// The manufacturer identifier for Allgon AB
+  allgonAb("Allgon AB", 0xE8B),
+
+  /// The manufacturer identifier for Tele-Radio i Lysekil AB
+  teleRadioILysekilAb("Tele-Radio i Lysekil AB", 0xE8A),
+
+  /// The manufacturer identifier for Brudden
+  brudden("Brudden", 0xE89),
+
+  /// The manufacturer identifier for Skewered Fencing, LLC
+  skeweredFencingLlc("Skewered Fencing, LLC", 0xE88),
+
+  /// The manufacturer identifier for OpenTech Alliance, Inc.
+  opentechAllianceInc("OpenTech Alliance, Inc.", 0xE87),
+
+  /// The manufacturer identifier for Mercury Marine, a division of Brunswick Corporation
+  mercuryMarineADivisionOfBrunswickCorporation(
+      "Mercury Marine, a division of Brunswick Corporation", 0xE86),
+
+  /// The manufacturer identifier for TigerLight, Inc.
+  tigerlightInc("TigerLight, Inc.", 0xE85),
+
+  /// The manufacturer identifier for Tymphany HK Ltd
+  tymphanyHkLtd("Tymphany HK Ltd", 0xE84),
+
+  /// The manufacturer identifier for SPRiNTUS GmbH
+  sprintusGmbh("SPRiNTUS GmbH", 0xE83),
+
+  /// The manufacturer identifier for CHEVALIER TECH LIMITED
+  chevalierTechLimited("CHEVALIER TECH LIMITED", 0xE82),
+
+  /// The manufacturer identifier for Guangdong Hengqin Xingtong Technology Co.,ltd.
+  guangdongHengqinXingtongTechnologyCoLtd(
+      "Guangdong Hengqin Xingtong Technology Co.,ltd.", 0xE81),
+
+  /// The manufacturer identifier for IQNEXXT Solutions GmbH
+  iqnexxtSolutionsGmbh("IQNEXXT Solutions GmbH", 0xE80),
+
+  /// The manufacturer identifier for SZR-Dev UG
+  szrDevUg("SZR-Dev UG", 0xE7F),
+
+  /// The manufacturer identifier for Archon Controls LLC
+  archonControlsLlc("Archon Controls LLC", 0xE7E),
+
+  /// The manufacturer identifier for Jiangsu XinTongda Electric Technology Co.,Ltd.
+  jiangsuXintongdaElectricTechnologyCoLtd(
+      "Jiangsu XinTongda Electric Technology Co.,Ltd.", 0xE7D),
+
   /// The manufacturer identifier for final Inc.
   finalInc("final Inc.", 0xE7C),
 
@@ -8405,13 +8534,13 @@ enum BluetoothDefaultManufacturerIdentifiers {
   /// The manufacturer identifier for SPD Development Company Ltd
   spdDevelopmentCompanyLtd("SPD Development Company Ltd", 0x3E1),
 
+  /// The manufacturer identifier for Actions Technology Co.,Ltd
+  actionsTechnologyCoLtd("Actions Technology Co.,Ltd", 0x3E0),
+
   /// The manufacturer identifier for Actions (Zhuhai) Technology Co., Limited
   @Deprecated("Identifier has been renamed; use actionsTechnologyCoLtd instead")
   actionsZhuhaiTechnologyCoLimited(
       "Actions (Zhuhai) Technology Co., Limited", 0x3E0),
-
-  /// The manufacturer identifier for Actions Technology Co.,Ltd
-  actionsTechnologyCoLtd("Actions Technology Co.,Ltd", 0x3E0),
 
   /// The manufacturer identifier for Grob Technologies, LLC
   grobTechnologiesLlc("Grob Technologies, LLC", 0x3DF),
@@ -11447,6 +11576,47 @@ enum BluetoothDefaultManufacturerIdentifiers {
   /// All non-deprecated manufacturer identifiers
   static const List<BluetoothDefaultManufacturerIdentifiers>
       manufacturerIdentifiers = [
+    easyreachSolutionsPrivateLimited,
+    bitechAutomotiveWuhuCoLtd,
+    olisElectronicsLlc,
+    qikconnexLlc,
+    culliganInternationalCompany,
+    enlessWireless,
+    owletBabyCareInc,
+    travelxpIndiaPrivateLimited,
+    audinorAps,
+    andrewsAndArnoldLtd,
+    panasonicAutomotiveSystemsCoLtd,
+    scanbroOu,
+    mediboundInc,
+    chromaticInc,
+    kokoromilInc,
+    skeedCoLtd,
+    viaanixInc,
+    tactrix,
+    mivElectronicsLtd,
+    glutzAg,
+    identitaInc,
+    rainmakerSolutionsInc,
+    avetosDesignLlc,
+    nobestInc,
+    celebritiesManagementPrivateLimited,
+    gopodGroupHoldingLimited,
+    allgonAb,
+    teleRadioILysekilAb,
+    brudden,
+    skeweredFencingLlc,
+    opentechAllianceInc,
+    mercuryMarineADivisionOfBrunswickCorporation,
+    tigerlightInc,
+    tymphanyHkLtd,
+    sprintusGmbh,
+    chevalierTechLimited,
+    guangdongHengqinXingtongTechnologyCoLtd,
+    iqnexxtSolutionsGmbh,
+    szrDevUg,
+    archonControlsLlc,
+    jiangsuXintongdaElectricTechnologyCoLtd,
     finalInc,
     circular,
     vivagoOy,
