@@ -11,6 +11,47 @@ part of flutter_web_bluetooth;
 /// ignore: deprecated_member_use_from_same_package
 /// See: [deprecatedManufacturerIdentifiers] for a list of all old deprecated identifiers.
 enum BluetoothDefaultManufacturerIdentifiers {
+  /// The manufacturer identifier for PRADCO Outdoor Brands
+  pradcoOutdoorBrands("PRADCO Outdoor Brands", 0xEB2),
+
+  /// The manufacturer identifier for WearNex Limited
+  wearnexLimited("WearNex Limited", 0xEB1),
+
+  /// The manufacturer identifier for FactorySense
+  factorysense("FactorySense", 0xEB0),
+
+  /// The manufacturer identifier for Unfolded Circle ApS
+  unfoldedCircleAps("Unfolded Circle ApS", 0xEAF),
+
+  /// The manufacturer identifier for BHClears Microelectronics (Shanghai) Co., Ltd.
+  bhclearsMicroelectronicsShanghaiCoLtd(
+      "BHClears Microelectronics (Shanghai) Co., Ltd.", 0xEAE),
+
+  /// The manufacturer identifier for OPTRON Co., Ltd.
+  optronCoLtd("OPTRON Co., Ltd.", 0xEAD),
+
+  /// The manufacturer identifier for Dynetrex Solutions Inc.
+  dynetrexSolutionsInc("Dynetrex Solutions Inc.", 0xEAC),
+
+  /// The manufacturer identifier for STEYR Sport GmbH
+  steyrSportGmbh("STEYR Sport GmbH", 0xEAB),
+
+  /// The manufacturer identifier for Hive Soundz inc.
+  hiveSoundzInc("Hive Soundz inc.", 0xEAA),
+
+  /// The manufacturer identifier for Makichie Co., ltd.
+  makichieCoLtd("Makichie Co., ltd.", 0xEA9),
+
+  /// The manufacturer identifier for Dongguan Trangjan Industrial Co., Ltd
+  dongguanTrangjanIndustrialCoLtd(
+      "Dongguan Trangjan Industrial Co., Ltd", 0xEA8),
+
+  /// The manufacturer identifier for BrickXter GmbH
+  brickxterGmbh("BrickXter GmbH", 0xEA7),
+
+  /// The manufacturer identifier for AMG Lab LLC
+  amgLabLlc("AMG Lab LLC", 0xEA6),
+
   /// The manufacturer identifier for EasyReach Solutions Private Limited
   easyreachSolutionsPrivateLimited(
       "EasyReach Solutions Private Limited", 0xEA5),
@@ -11576,6 +11617,19 @@ enum BluetoothDefaultManufacturerIdentifiers {
   /// All non-deprecated manufacturer identifiers
   static const List<BluetoothDefaultManufacturerIdentifiers>
       manufacturerIdentifiers = [
+    pradcoOutdoorBrands,
+    wearnexLimited,
+    factorysense,
+    unfoldedCircleAps,
+    bhclearsMicroelectronicsShanghaiCoLtd,
+    optronCoLtd,
+    dynetrexSolutionsInc,
+    steyrSportGmbh,
+    hiveSoundzInc,
+    makichieCoLtd,
+    dongguanTrangjanIndustrialCoLtd,
+    brickxterGmbh,
+    amgLabLlc,
     easyreachSolutionsPrivateLimited,
     bitechAutomotiveWuhuCoLtd,
     olisElectronicsLlc,
