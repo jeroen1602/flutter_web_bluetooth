@@ -11,14 +11,11 @@ class BluetoothDeviceWidget<D extends AdvertisementBluetoothDevice>
   final bool _hasTxPower;
   final bool _hasAppearance;
 
-  BluetoothDeviceWidget({
-    required this.bluetoothDevice,
-    super.key,
-    this.onTap,
-  })  : _canConnect = bluetoothDevice.device is BluetoothDevice,
-        _hasRSSI = bluetoothDevice.rssi != null,
-        _hasTxPower = bluetoothDevice.txPower != null,
-        _hasAppearance = bluetoothDevice.appearance != null;
+  BluetoothDeviceWidget({required this.bluetoothDevice, super.key, this.onTap})
+    : _canConnect = bluetoothDevice.device is BluetoothDevice,
+      _hasRSSI = bluetoothDevice.rssi != null,
+      _hasTxPower = bluetoothDevice.txPower != null,
+      _hasAppearance = bluetoothDevice.appearance != null;
 
   @override
   State<StatefulWidget> createState() {
@@ -41,10 +38,9 @@ class BluetoothDeviceState<D extends AdvertisementBluetoothDevice>
 
   @override
   Widget build(final BuildContext context) {
-    final cursive = Theme.of(context)
-        .textTheme
-        .bodyLarge
-        ?.copyWith(fontStyle: FontStyle.italic);
+    final cursive = Theme.of(
+      context,
+    ).textTheme.bodyLarge?.copyWith(fontStyle: FontStyle.italic);
 
     final IconData actionIcon;
     if (widget._canConnect) {
@@ -61,32 +57,36 @@ class BluetoothDeviceState<D extends AdvertisementBluetoothDevice>
             children: [
               if (widget._canConnect)
                 StreamBuilder(
-                    stream: _connectedStream,
-                    initialData: false,
-                    builder: (final BuildContext context,
-                        final AsyncSnapshot<bool> snapshot) {
-                      return Icon(Icons.circle,
-                          color:
-                              snapshot.requireData ? Colors.green : Colors.red);
-                    }),
-              SelectableText(widget.bluetoothDevice.device.name ?? "null",
-                  style: widget.bluetoothDevice.device.name == null
-                      ? cursive
-                      : null),
+                  stream: _connectedStream,
+                  initialData: false,
+                  builder: (
+                    final BuildContext context,
+                    final AsyncSnapshot<bool> snapshot,
+                  ) {
+                    return Icon(
+                      Icons.circle,
+                      color: snapshot.requireData ? Colors.green : Colors.red,
+                    );
+                  },
+                ),
+              SelectableText(
+                widget.bluetoothDevice.device.name ?? "null",
+                style:
+                    widget.bluetoothDevice.device.name == null ? cursive : null,
+              ),
             ],
           ),
           subtitle: Column(
             mainAxisAlignment: MainAxisAlignment.start,
             children: [
-              Row(children: [
-                SelectableText(widget.bluetoothDevice.device.id),
-              ]),
+              Row(children: [SelectableText(widget.bluetoothDevice.device.id)]),
               if (widget._hasTxPower)
                 Row(
                   children: [
                     const Text("TxPower: "),
                     SelectableText(
-                        widget.bluetoothDevice.txPower!.toRadixString(10)),
+                      widget.bluetoothDevice.txPower!.toRadixString(10),
+                    ),
                   ],
                 ),
               if (widget._hasRSSI)
@@ -94,15 +94,19 @@ class BluetoothDeviceState<D extends AdvertisementBluetoothDevice>
                   children: [
                     const Text("RSSI: "),
                     SelectableText(
-                        widget.bluetoothDevice.rssi!.toRadixString(10)),
+                      widget.bluetoothDevice.rssi!.toRadixString(10),
+                    ),
                   ],
                 ),
               if (widget._hasAppearance)
-                Row(children: [
-                  const Text("Appearance: "),
-                  SelectableText(
-                      '0x${widget.bluetoothDevice.appearance!.toRadixString(16).padLeft(4, '0')}'),
-                ]),
+                Row(
+                  children: [
+                    const Text("Appearance: "),
+                    SelectableText(
+                      '0x${widget.bluetoothDevice.appearance!.toRadixString(16).padLeft(4, '0')}',
+                    ),
+                  ],
+                ),
             ],
           ),
           trailing: widget.onTap != null ? Icon(actionIcon) : null,

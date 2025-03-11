@@ -23,36 +23,47 @@ class _BluetoothServicesState extends State<BluetoothServicesWidget> {
       builder: (final context, final connectedSnapshot) {
         final connected = connectedSnapshot.data ?? false;
 
-        return Column(children: [
-          AppBar(
+        return Column(
+          children: [
+            AppBar(
               automaticallyImplyLeading: false,
               title: const Text("Services"),
               actions: [
                 ElevatedButton(
-                    onPressed: () async {
-                      if (connected) {
-                        widget.device.disconnect();
-                      } else {
-                        await widget.device.connect();
-                      }
-                    },
-                    child: Text(connected ? "Disconnect" : "Connect"))
-              ]),
-          Container(
+                  onPressed: () async {
+                    if (connected) {
+                      widget.device.disconnect();
+                    } else {
+                      await widget.device.connect();
+                    }
+                  },
+                  child: Text(connected ? "Disconnect" : "Connect"),
+                ),
+              ],
+            ),
+            Container(
               constraints: BoxConstraints(
-                  minHeight:
-                      widget.minHeight - BluetoothServicesWidget.appbarHeight),
-              child:
-                  BluetoothServiceBody(widget.device, isConnected: connected))
-        ]);
+                minHeight:
+                    widget.minHeight - BluetoothServicesWidget.appbarHeight,
+              ),
+              child: BluetoothServiceBody(
+                widget.device,
+                isConnected: connected,
+              ),
+            ),
+          ],
+        );
       },
     );
   }
 }
 
 class BluetoothServiceBody extends StatelessWidget {
-  const BluetoothServiceBody(this.device,
-      {required this.isConnected, super.key});
+  const BluetoothServiceBody(
+    this.device, {
+    required this.isConnected,
+    super.key,
+  });
 
   final BluetoothDevice device;
   final bool isConnected;
@@ -84,22 +95,18 @@ class BluetoothServicesOverview extends StatelessWidget {
         }
         final services = servicesSnapshot.data;
         if (services == null) {
-          return const Center(
-            child: Text("Loading services!"),
-          );
+          return const Center(child: Text("Loading services!"));
         }
         if (services.isEmpty) {
-          return const Center(
-            child: Text("No services found!"),
-          );
+          return const Center(child: Text("No services found!"));
         }
 
-        final serviceWidgets = List.generate(services.length,
-            (final index) => ServiceWidget(service: services[index]));
-
-        return Column(
-          children: serviceWidgets,
+        final serviceWidgets = List.generate(
+          services.length,
+          (final index) => ServiceWidget(service: services[index]),
         );
+
+        return Column(children: serviceWidgets);
       },
     );
   }

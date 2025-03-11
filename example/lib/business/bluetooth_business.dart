@@ -13,7 +13,7 @@ enum RequestDeviceState {
   adapterNotAvailable,
   userCancelled,
   deviceNotFound,
-  other
+  other,
 }
 
 enum RequestLEState {
@@ -47,14 +47,17 @@ class BluetoothBusiness {
     }
     try {
       final device = await FlutterWebBluetooth.instance.requestDevice(
-          RequestOptionsBuilder.acceptAllDevices(
-              optionalServices: BluetoothDefaultServiceUUIDS.services
+        RequestOptionsBuilder.acceptAllDevices(
+          optionalServices:
+              BluetoothDefaultServiceUUIDS.services
                   .map((final e) => e.uuid)
                   .toList(),
-              optionalManufacturerData: BluetoothDefaultManufacturerIdentifiers
-                  .manufacturerIdentifiers
-                  .map((final e) => e.identifier)
-                  .toList(growable: false)));
+          optionalManufacturerData: BluetoothDefaultManufacturerIdentifiers
+              .manufacturerIdentifiers
+              .map((final e) => e.identifier)
+              .toList(growable: false),
+        ),
+      );
       debugPrint("Device got! ${device.name}, ${device.id}");
       return RequestDeviceState.ok;
     } on BluetoothAdapterNotAvailable {
@@ -70,22 +73,29 @@ class BluetoothBusiness {
   }
 
   static Future<RequestAdvertisementDeviceState> requestAdvertisementDevice(
-      final AdvertisementBluetoothDevice device) async {
+    final AdvertisementBluetoothDevice device,
+  ) async {
     if (!FlutterWebBluetooth.instance.isBluetoothApiSupported) {
       return RequestAdvertisementDeviceState(RequestDeviceState.notSupported);
     }
     try {
       final newDevice = await FlutterWebBluetooth.instance
-          .requestAdvertisementDevice(device,
-              optionalServices: BluetoothDefaultServiceUUIDS.services
-                  .map((final e) => e.uuid)
-                  .toList());
+          .requestAdvertisementDevice(
+            device,
+            optionalServices:
+                BluetoothDefaultServiceUUIDS.services
+                    .map((final e) => e.uuid)
+                    .toList(),
+          );
       debugPrint("Device got! ${newDevice.name}, ${newDevice.id}");
-      return RequestAdvertisementDeviceState(RequestDeviceState.ok,
-          device: newDevice);
+      return RequestAdvertisementDeviceState(
+        RequestDeviceState.ok,
+        device: newDevice,
+      );
     } on BluetoothAdapterNotAvailable {
       return RequestAdvertisementDeviceState(
-          RequestDeviceState.adapterNotAvailable);
+        RequestDeviceState.adapterNotAvailable,
+      );
     } on UserCancelledDialogError {
       return RequestAdvertisementDeviceState(RequestDeviceState.userCancelled);
     } on DeviceNotFoundError {
@@ -144,11 +154,12 @@ class BluetoothBusiness {
       return null;
     }
     final List<AdvertisementReceivedEvent<AdvertisementBluetoothDevice>>
-        advertisementDevices = [];
+    advertisementDevices = [];
 
     int sortMethod(
-        final AdvertisementReceivedEvent<AdvertisementBluetoothDevice> a,
-        final AdvertisementReceivedEvent<AdvertisementBluetoothDevice> b) {
+      final AdvertisementReceivedEvent<AdvertisementBluetoothDevice> a,
+      final AdvertisementReceivedEvent<AdvertisementBluetoothDevice> b,
+    ) {
       final nameA = a.name;
       final nameB = b.name;
       int compare = 0;
@@ -161,8 +172,10 @@ class BluetoothBusiness {
       return compare;
     }
 
-    final Set<BluetoothDevice> pairedDevice =
-        SplayTreeSet.from({}, (final a, final b) {
+    final Set<BluetoothDevice> pairedDevice = SplayTreeSet.from({}, (
+      final a,
+      final b,
+    ) {
       final nameA = a.name;
       final nameB = b.name;
       int compare = 0;
@@ -182,8 +195,9 @@ class BluetoothBusiness {
         return 0;
       }),
       FlutterWebBluetooth.instance.advertisements.map((final event) {
-        final index = advertisementDevices
-            .indexWhere((final element) => element.device == event.device);
+        final index = advertisementDevices.indexWhere(
+          (final element) => element.device == event.device,
+        );
         if (index > 0) {
           advertisementDevices.removeAt(index);
         }
@@ -191,31 +205,41 @@ class BluetoothBusiness {
         advertisementDevices.add(event);
         advertisementDevices.sort(sortMethod);
         return 1;
-      })
+      }),
     ]).map((final event) {
       final Set<MainPageDevice> devices = SplayTreeSet<MainPageDevice>.from(
-          pairedDevice.map((final e) => MainPageDevice(
-              device: e,
-              event: advertisementDevices
-                  .cast<
-                      AdvertisementReceivedEvent<
-                          AdvertisementBluetoothDevice>?>()
-                  .firstWhere((final element) => element?.device.id == e.id,
-                      orElse: () => null))), (final a, final b) {
-        final nameA = a.device.name;
-        final nameB = b.device.name;
-        int compare = 0;
-        if (nameA != null && nameB != null) {
-          compare = nameA.compareTo(nameB);
-        }
-        if (compare == 0) {
-          compare = a.device.id.compareTo(b.device.id);
-        }
-        return compare;
-      });
+        pairedDevice.map(
+          (final e) => MainPageDevice(
+            device: e,
+            event: advertisementDevices
+                .cast<
+                  AdvertisementReceivedEvent<AdvertisementBluetoothDevice>?
+                >()
+                .firstWhere(
+                  (final element) => element?.device.id == e.id,
+                  orElse: () => null,
+                ),
+          ),
+        ),
+        (final a, final b) {
+          final nameA = a.device.name;
+          final nameB = b.device.name;
+          int compare = 0;
+          if (nameA != null && nameB != null) {
+            compare = nameA.compareTo(nameB);
+          }
+          if (compare == 0) {
+            compare = a.device.id.compareTo(b.device.id);
+          }
+          return compare;
+        },
+      );
 
-      devices.addAll(advertisementDevices
-          .map((final e) => MainPageDevice.fromEvent(event: e)));
+      devices.addAll(
+        advertisementDevices.map(
+          (final e) => MainPageDevice.fromEvent(event: e),
+        ),
+      );
       return devices;
     });
   }

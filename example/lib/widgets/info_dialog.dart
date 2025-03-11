@@ -15,16 +15,17 @@ class InfoDialog extends StatefulWidget {
 
   static Future<void> showInfoDialog(final BuildContext context) async {
     await showDialog(
-        context: context,
-        builder: (final BuildContext dialogContext) {
-          return const InfoDialog();
-        });
+      context: context,
+      builder: (final BuildContext dialogContext) {
+        return const InfoDialog();
+      },
+    );
   }
 }
 
 class _InfoDialogState extends State<InfoDialog> {
   Future<({String flutterVersion, String dartVersion, String libVersion})>?
-      _pubspecVersions;
+  _pubspecVersions;
   Future<String>? _appVersion;
 
   @override
@@ -45,55 +46,65 @@ class _InfoDialogState extends State<InfoDialog> {
         child: ListBody(
           children: [
             FutureBuilder<String>(
-                future: _appVersion,
-                builder: (final BuildContext context,
-                    final AsyncSnapshot<String> snapshot) {
-                  return Text(
-                      "Example app version: ${snapshot.data ?? "loading"}");
-                }),
+              future: _appVersion,
+              builder: (
+                final BuildContext context,
+                final AsyncSnapshot<String> snapshot,
+              ) {
+                return Text(
+                  "Example app version: ${snapshot.data ?? "loading"}",
+                );
+              },
+            ),
             FutureBuilder<
-                    ({
-                      String flutterVersion,
-                      String dartVersion,
-                      String libVersion
-                    })>(
-                future: _pubspecVersions,
-                builder: (final BuildContext context,
-                    final AsyncSnapshot<
-                            ({
-                              String flutterVersion,
-                              String dartVersion,
-                              String libVersion
-                            })>
-                        snapshot) {
-                  return Column(
-                    children: [
-                      Text(
-                          "Using library version: ${snapshot.data?.libVersion ?? "Loading"}"),
-                      Text(
-                          "Using Flutter version: ${snapshot.data?.flutterVersion ?? "Loading"}"),
-                      Text(
-                          "Using Dart version: ${snapshot.data?.dartVersion ?? "Loading"}"),
-                    ],
-                  );
-                }),
+              ({String flutterVersion, String dartVersion, String libVersion})
+            >(
+              future: _pubspecVersions,
+              builder: (
+                final BuildContext context,
+                final AsyncSnapshot<
+                  ({
+                    String flutterVersion,
+                    String dartVersion,
+                    String libVersion,
+                  })
+                >
+                snapshot,
+              ) {
+                return Column(
+                  children: [
+                    Text(
+                      "Using library version: ${snapshot.data?.libVersion ?? "Loading"}",
+                    ),
+                    Text(
+                      "Using Flutter version: ${snapshot.data?.flutterVersion ?? "Loading"}",
+                    ),
+                    Text(
+                      "Using Dart version: ${snapshot.data?.dartVersion ?? "Loading"}",
+                    ),
+                  ],
+                );
+              },
+            ),
           ],
         ),
       ),
       actions: <Widget>[
         TextButton(
-            onPressed: () {
-              showLicensePage(
-                  context: context,
-                  applicationName: "Flutter web bluetooth example");
-            },
-            child: const Text("Licenses")),
+          onPressed: () {
+            showLicensePage(
+              context: context,
+              applicationName: "Flutter web bluetooth example",
+            );
+          },
+          child: const Text("Licenses"),
+        ),
         TextButton(
           onPressed: () {
             Navigator.pop(context);
           },
           child: const Text("Close"),
-        )
+        ),
       ],
     );
   }
@@ -135,7 +146,7 @@ class _InfoDialogState extends State<InfoDialog> {
   }
 
   Future<({String flutterVersion, String dartVersion, String libVersion})>
-      _getPubspecVersions() async {
+  _getPubspecVersions() async {
     final packages = await _getPubspecPackages();
 
     final libVersion = _getPackageVersion(packages, "flutter_web_bluetooth");
@@ -145,7 +156,7 @@ class _InfoDialogState extends State<InfoDialog> {
     return (
       flutterVersion: flutterVersion,
       dartVersion: dartVersion,
-      libVersion: libVersion
+      libVersion: libVersion,
     );
   }
 

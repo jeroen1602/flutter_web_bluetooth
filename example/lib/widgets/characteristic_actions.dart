@@ -15,7 +15,7 @@ abstract class Actions {
 
 class CharacteristicActions extends Actions {
   CharacteristicActions(final BluetoothCharacteristic characteristic)
-      : _characteristic = characteristic;
+    : _characteristic = characteristic;
 
   final BluetoothCharacteristic _characteristic;
 
@@ -39,9 +39,13 @@ class CharacteristicActions extends Actions {
   @override
   Future<void> writeValue(final BuildContext? context) async {
     if (context != null) {
-      ScaffoldMessenger.maybeOf(context)?.showSnackBar(const SnackBar(
-        content: Text("Write is supported just not implemented in the example"),
-      ));
+      ScaffoldMessenger.maybeOf(context)?.showSnackBar(
+        const SnackBar(
+          content: Text(
+            "Write is supported just not implemented in the example",
+          ),
+        ),
+      );
     }
   }
 }
@@ -76,8 +80,9 @@ class ActionsSate extends State<ActionsWidget> {
   Widget? getReadValueAction() {
     if (!widget.properties.hasProperties || widget.properties.read) {
       return OutlinedButton(
-          onPressed: handlePressed(widget.actions.readValue),
-          child: const Text("Read value"));
+        onPressed: handlePressed(widget.actions.readValue),
+        child: const Text("Read value"),
+      );
     }
     return null;
   }
@@ -85,10 +90,11 @@ class ActionsSate extends State<ActionsWidget> {
   Widget? getNotifyAction() {
     if (!widget.properties.hasProperties || widget.properties.notify) {
       return OutlinedButton(
-          onPressed: handlePressed(widget.actions.toggleNotify),
-          child: Text(widget.actions.isNotifying
-              ? "Stop notifying"
-              : "Start notifying"));
+        onPressed: handlePressed(widget.actions.toggleNotify),
+        child: Text(
+          widget.actions.isNotifying ? "Stop notifying" : "Start notifying",
+        ),
+      );
     }
     return null;
   }
@@ -96,14 +102,16 @@ class ActionsSate extends State<ActionsWidget> {
   Widget? getWriteAction() {
     if (!widget.properties.hasProperties || widget.properties.write) {
       return OutlinedButton(
-          onPressed: handlePressedWithContext(widget.actions.writeValue),
-          child: const Text("Write value"));
+        onPressed: handlePressedWithContext(widget.actions.writeValue),
+        child: const Text("Write value"),
+      );
     }
     return null;
   }
 
   FutureOr<void> Function() handlePressed(
-      final FutureOr<void> Function() method) {
+    final FutureOr<void> Function() method,
+  ) {
     return () async {
       try {
         await method.call();
@@ -113,17 +121,20 @@ class ActionsSate extends State<ActionsWidget> {
       } catch (e, s) {
         debugPrint("$e\n$s");
         if (mounted) {
-          ScaffoldMessenger.maybeOf(context)?.showSnackBar(SnackBar(
-            content: Text("Something went wrong: $e"),
-            backgroundColor: _getErrorColor(),
-          ));
+          ScaffoldMessenger.maybeOf(context)?.showSnackBar(
+            SnackBar(
+              content: Text("Something went wrong: $e"),
+              backgroundColor: _getErrorColor(),
+            ),
+          );
         }
       }
     };
   }
 
   FutureOr<void> Function() handlePressedWithContext(
-      final FutureOr<void> Function(BuildContext?) method) {
+    final FutureOr<void> Function(BuildContext?) method,
+  ) {
     return () async {
       try {
         if (mounted) {
@@ -134,10 +145,12 @@ class ActionsSate extends State<ActionsWidget> {
       } catch (e, s) {
         debugPrint("$e\n$s");
         if (mounted) {
-          ScaffoldMessenger.maybeOf(context)?.showSnackBar(SnackBar(
-            content: Text("Something went wrong: $e"),
-            backgroundColor: _getErrorColor(),
-          ));
+          ScaffoldMessenger.maybeOf(context)?.showSnackBar(
+            SnackBar(
+              content: Text("Something went wrong: $e"),
+              backgroundColor: _getErrorColor(),
+            ),
+          );
         }
       }
     };
@@ -158,8 +171,11 @@ class ActionsSate extends State<ActionsWidget> {
     final actionNotify = getNotifyAction();
     final actionWrite = getWriteAction();
 
-    final hasAction =
-        _hasValueSet([actionReadValue, actionNotify, actionWrite]);
+    final hasAction = _hasValueSet([
+      actionReadValue,
+      actionNotify,
+      actionWrite,
+    ]);
 
     if (hasAction) {
       return Row(
@@ -170,11 +186,7 @@ class ActionsSate extends State<ActionsWidget> {
         ],
       );
     } else {
-      return const Row(
-        children: [
-          Text("No actions for this characteristic"),
-        ],
-      );
+      return const Row(children: [Text("No actions for this characteristic")]);
     }
   }
 }

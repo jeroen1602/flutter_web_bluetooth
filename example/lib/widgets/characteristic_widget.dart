@@ -7,11 +7,14 @@ import "package:flutter_web_bluetooth_example/widgets/characteristic_actions.dar
 
 class CharacteristicWidget extends StatefulWidget {
   CharacteristicWidget({required this.characteristic, super.key}) {
-    characteristicName = BluetoothDefaultCharacteristicUUIDS.characteristics
-        .cast<BluetoothDefaultCharacteristicUUIDS?>()
-        .firstWhere((final element) => element?.uuid == characteristic.uuid,
-            orElse: () => null)
-        ?.name;
+    characteristicName =
+        BluetoothDefaultCharacteristicUUIDS.characteristics
+            .cast<BluetoothDefaultCharacteristicUUIDS?>()
+            .firstWhere(
+              (final element) => element?.uuid == characteristic.uuid,
+              orElse: () => null,
+            )
+            ?.name;
   }
 
   final BluetoothCharacteristic characteristic;
@@ -29,30 +32,39 @@ class CharacteristicWidgetState extends State<CharacteristicWidget> {
     return Column(
       children: [
         ListTile(
-          title: Text(widget.characteristicName == null
-              ? "Characteristic"
-              : "Characteristic (${widget.characteristicName})"),
-          subtitle: SelectableText(widget.characteristicName == null
-              ? widget.characteristic.uuid
-              : "${widget.characteristic.uuid} (${widget.characteristicName})"),
+          title: Text(
+            widget.characteristicName == null
+                ? "Characteristic"
+                : "Characteristic (${widget.characteristicName})",
+          ),
+          subtitle: SelectableText(
+            widget.characteristicName == null
+                ? widget.characteristic.uuid
+                : "${widget.characteristic.uuid} (${widget.characteristicName})",
+          ),
         ),
         StreamBuilder<ByteData>(
-            stream: widget.characteristic.value,
-            builder: (final BuildContext context,
-                final AsyncSnapshot<ByteData> snapshot) {
-              if (snapshot.hasError) {
-                return Text("Error: ${snapshot.error}");
-              }
-              final data = snapshot.data;
-              if (data != null) {
-                return DataWidget(data: data);
-              }
-              return const Text("No data retrieved!");
-            }),
+          stream: widget.characteristic.value,
+          builder: (
+            final BuildContext context,
+            final AsyncSnapshot<ByteData> snapshot,
+          ) {
+            if (snapshot.hasError) {
+              return Text("Error: ${snapshot.error}");
+            }
+            final data = snapshot.data;
+            if (data != null) {
+              return DataWidget(data: data);
+            }
+            return const Text("No data retrieved!");
+          },
+        ),
         Padding(
           padding: const EdgeInsets.all(8.0),
-          child: ActionsWidget(widget.characteristic.properties,
-              CharacteristicActions(widget.characteristic)),
+          child: ActionsWidget(
+            widget.characteristic.properties,
+            CharacteristicActions(widget.characteristic),
+          ),
         ),
       ],
     );
@@ -97,14 +109,14 @@ class DataWidget extends StatelessWidget {
             children: [
               const Text("Data as hex:"),
               const VerticalDivider(),
-              SelectableText(_toHex())
+              SelectableText(_toHex()),
             ],
           ),
           Row(
             children: [
               const Text("Data as UTF-8 String:"),
               const VerticalDivider(),
-              SelectableText(_asUTF8String())
+              SelectableText(_asUTF8String()),
             ],
           ),
         ],

@@ -37,28 +37,34 @@ class _MyAppState extends State<MyApp> {
     return StreamBuilder<bool>(
       stream: FlutterWebBluetooth.instance.isAvailable,
       initialData: false,
-      builder:
-          (final BuildContext context, final AsyncSnapshot<bool> snapshot) {
+      builder: (
+        final BuildContext context,
+        final AsyncSnapshot<bool> snapshot,
+      ) {
         final available = snapshot.requireData;
         return MaterialApp(
-            home: Scaffold(
-          appBar: AppBar(
+          home: Scaffold(
+            appBar: AppBar(
               title: const SelectableText("Bluetooth web example app"),
               actions: [
-                Builder(builder: (final BuildContext context) {
-                  return IconButton(
+                Builder(
+                  builder: (final BuildContext context) {
+                    return IconButton(
                       onPressed: () async {
                         await InfoDialog.showInfoDialog(context);
                       },
-                      icon: const Icon(Icons.info));
-                }),
-              ]),
-          body: MainPage(
-            isBluetoothAvailable: available,
+                      icon: const Icon(Icons.info),
+                    );
+                  },
+                ),
+              ],
+            ),
+            body: MainPage(isBluetoothAvailable: available),
+            floatingActionButtonLocation:
+                FloatingActionButtonLocation.endDocked,
+            floatingActionButton: const FABS(),
           ),
-          floatingActionButtonLocation: FloatingActionButtonLocation.endDocked,
-          floatingActionButton: const FABS(),
-        ));
+        );
       },
     );
   }
@@ -67,10 +73,7 @@ class _MyAppState extends State<MyApp> {
 class MainPage extends StatefulWidget {
   final bool isBluetoothAvailable;
 
-  const MainPage({
-    required this.isBluetoothAvailable,
-    super.key,
-  });
+  const MainPage({required this.isBluetoothAvailable, super.key});
 
   @override
   State<StatefulWidget> createState() {
@@ -101,8 +104,9 @@ class MainPageState extends State<MainPage> {
     if (device is MainPageDevice<BluetoothDevice>) {
       page = DeviceServicesPage(bluetoothDevice: device.device);
     } else {
-      final state =
-          await BluetoothBusiness.requestAdvertisementDevice(device.device);
+      final state = await BluetoothBusiness.requestAdvertisementDevice(
+        device.device,
+      );
 
       late String message;
       switch (state.state) {
@@ -129,10 +133,9 @@ class MainPageState extends State<MainPage> {
       }
 
       if (message.isNotEmpty && mounted) {
-        ScaffoldMessenger.maybeOf(context)?.showSnackBar(SnackBar(
-          content: Text(message),
-          backgroundColor: _getErrorColor(),
-        ));
+        ScaffoldMessenger.maybeOf(context)?.showSnackBar(
+          SnackBar(content: Text(message), backgroundColor: _getErrorColor()),
+        );
       } else {
         page = DeviceServicesPage(bluetoothDevice: state.device!);
       }
@@ -140,10 +143,14 @@ class MainPageState extends State<MainPage> {
 
     if (page != null && mounted) {
       final finalPage = page;
-      Navigator.push(context,
-          MaterialPageRoute(builder: (final BuildContext context) {
-        return finalPage;
-      }));
+      Navigator.push(
+        context,
+        MaterialPageRoute(
+          builder: (final BuildContext context) {
+            return finalPage;
+          },
+        ),
+      );
     } else {
       debugPrint("Could not open the page because not mounted anymore");
     }
@@ -151,34 +158,37 @@ class MainPageState extends State<MainPage> {
 
   @override
   Widget build(final BuildContext context) {
-    return Column(children: [
-      MainPageHeader(
-        isBluetoothAvailable: widget.isBluetoothAvailable,
-      ),
-      const Divider(),
-      Expanded(
-        child: StreamBuilder(
-          stream: _devicesStream,
-          initialData: const {},
-          builder: (final BuildContext context, final AsyncSnapshot snapshot) {
-            final devices = snapshot.requireData;
-            return ListView.builder(
-              itemCount: devices.length,
-              itemBuilder: (final BuildContext context, final int index) {
-                final device = devices.toList()[index];
+    return Column(
+      children: [
+        MainPageHeader(isBluetoothAvailable: widget.isBluetoothAvailable),
+        const Divider(),
+        Expanded(
+          child: StreamBuilder(
+            stream: _devicesStream,
+            initialData: const {},
+            builder: (
+              final BuildContext context,
+              final AsyncSnapshot snapshot,
+            ) {
+              final devices = snapshot.requireData;
+              return ListView.builder(
+                itemCount: devices.length,
+                itemBuilder: (final BuildContext context, final int index) {
+                  final device = devices.toList()[index];
 
-                return BluetoothDeviceWidget(
-                  bluetoothDevice: device,
-                  onTap: () async {
-                    await handleDeviceTap(device);
-                  },
-                );
-              },
-            );
-          },
+                  return BluetoothDeviceWidget(
+                    bluetoothDevice: device,
+                    onTap: () async {
+                      await handleDeviceTap(device);
+                    },
+                  );
+                },
+              );
+            },
+          ),
         ),
-      ),
-    ]);
+      ],
+    );
   }
 }
 
@@ -196,27 +206,28 @@ class MainPageHeader extends StatelessWidget {
 
     final children = <Widget>[
       SizedBox(
-          width: phoneSize ? screenWidth : screenWidth * 0.5,
-          child: ListTile(
-            title: const SelectableText("Bluetooth api available"),
-            subtitle: SelectableText(
-                FlutterWebBluetooth.instance.isBluetoothApiSupported
-                    ? "true"
-                    : "false"),
-          )),
+        width: phoneSize ? screenWidth : screenWidth * 0.5,
+        child: ListTile(
+          title: const SelectableText("Bluetooth api available"),
+          subtitle: SelectableText(
+            FlutterWebBluetooth.instance.isBluetoothApiSupported
+                ? "true"
+                : "false",
+          ),
+        ),
+      ),
       SizedBox(
-          width: phoneSize ? screenWidth : screenWidth * 0.5,
-          child: ListTile(
-            title: const SelectableText("Bluetooth available"),
-            subtitle: SelectableText(text),
-          )),
+        width: phoneSize ? screenWidth : screenWidth * 0.5,
+        child: ListTile(
+          title: const SelectableText("Bluetooth available"),
+          subtitle: SelectableText(text),
+        ),
+      ),
     ];
 
     if (phoneSize) {
       children.insert(1, const Divider());
-      return Column(
-        children: children,
-      );
+      return Column(children: children);
     } else {
       return Row(children: children);
     }

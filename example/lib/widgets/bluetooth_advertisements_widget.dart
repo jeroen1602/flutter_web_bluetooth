@@ -4,8 +4,9 @@ import "package:rxdart/rxdart.dart";
 
 class BluetoothAdvertisementsWidget extends StatefulWidget {
   BluetoothAdvertisementsWidget(this.device, this.minHeight, {super.key})
-      : updateAdvertisingStream =
-            BehaviorSubject.seeded(device.watchingAdvertisements);
+    : updateAdvertisingStream = BehaviorSubject.seeded(
+        device.watchingAdvertisements,
+      );
 
   final BluetoothDevice device;
   final double minHeight;
@@ -24,7 +25,7 @@ class BluetoothAdvertisementsWidget extends StatefulWidget {
       Stream.periodic(const Duration(seconds: 2)).map((final event) {
         return device.watchingAdvertisements;
       }),
-      updateAdvertisingStream.stream
+      updateAdvertisingStream.stream,
     ]).distinct();
   }
 }
@@ -35,11 +36,14 @@ class _BluetoothAdvertisementsState
     final theme = Theme.of(context);
     final errorColor = theme.colorScheme.error;
     if (!widget.device.hasWatchAdvertisements()) {
-      ScaffoldMessenger.maybeOf(context)?.showSnackBar(SnackBar(
-        content:
-            const Text("Advertisements are not supported for this browser"),
-        backgroundColor: errorColor,
-      ));
+      ScaffoldMessenger.maybeOf(context)?.showSnackBar(
+        SnackBar(
+          content: const Text(
+            "Advertisements are not supported for this browser",
+          ),
+          backgroundColor: errorColor,
+        ),
+      );
     } else {
       if (widget.device.watchingAdvertisements) {
         await widget.device.unwatchAdvertisements();
@@ -69,20 +73,26 @@ class _BluetoothAdvertisementsState
         return Column(
           children: [
             AppBar(
-                automaticallyImplyLeading: false,
-                title: const Text("Advertisements"),
-                actions: [
-                  ElevatedButton(
-                      onPressed: advertisingPressed,
-                      child:
-                          Text(isWatching ? "Stop watching" : "Start watching"))
-                ]),
+              automaticallyImplyLeading: false,
+              title: const Text("Advertisements"),
+              actions: [
+                ElevatedButton(
+                  onPressed: advertisingPressed,
+                  child: Text(isWatching ? "Stop watching" : "Start watching"),
+                ),
+              ],
+            ),
             Container(
-                constraints: BoxConstraints(
-                    minHeight: widget.minHeight -
-                        BluetoothAdvertisementsWidget.appbarHeight),
-                child: BluetoothAdvertisementsBody(widget.device,
-                    isWatching: isWatching)),
+              constraints: BoxConstraints(
+                minHeight:
+                    widget.minHeight -
+                    BluetoothAdvertisementsWidget.appbarHeight,
+              ),
+              child: BluetoothAdvertisementsBody(
+                widget.device,
+                isWatching: isWatching,
+              ),
+            ),
           ],
         );
       },
@@ -127,9 +137,7 @@ class BluetoothAdvertisementsBodySate
         builder: (final context, final snapshot) {
           final event = snapshot.data;
           if (event == null) {
-            return const Center(
-              child: Text("First click on start watching!"),
-            );
+            return const Center(child: Text("First click on start watching!"));
           }
           return BluetoothAdvertisementsCard(event);
         },
@@ -150,9 +158,11 @@ class BluetoothAdvertisementsNotSupported extends StatelessWidget {
         child: Card(
           child: ListTile(
             title: SelectableText(
-                "Bluetooth advertisements are not supported on this browser"),
+              "Bluetooth advertisements are not supported on this browser",
+            ),
             subtitle: SelectableText(
-                "Enable the chrome://flags/#enable-experimental-web-platform-features flag to enable support."),
+              "Enable the chrome://flags/#enable-experimental-web-platform-features flag to enable support.",
+            ),
           ),
         ),
       ),
@@ -202,7 +212,7 @@ class BluetoothAdvertisementsCardState
               const VerticalDivider(),
               const Text("RSSI"),
               const VerticalDivider(),
-              SelectableText(widget.event.rssi?.toString() ?? "not set")
+              SelectableText(widget.event.rssi?.toString() ?? "not set"),
             ],
           ),
           const Divider(),
@@ -211,7 +221,8 @@ class BluetoothAdvertisementsCardState
               const Text("Appearance"),
               const VerticalDivider(),
               SelectableText(
-                  '0x${widget.event.appearance?.toRadixString(16).padLeft(4, '0') ?? 'not set'}')
+                '0x${widget.event.appearance?.toRadixString(16).padLeft(4, '0') ?? 'not set'}',
+              ),
             ],
           ),
           const Divider(),
@@ -219,74 +230,89 @@ class BluetoothAdvertisementsCardState
             expansionCallback: _expansionCallback,
             children: [
               ExpansionPanel(
-                  headerBuilder:
-                      (final BuildContext context, final bool isExpanded) {
-                    return ListTile(
-                      title: const Text("UUIDS"),
-                      subtitle: Text("Size: ${widget.event.uuids.length}"),
-                    );
-                  },
-                  body: Column(
-                    children: widget.event.uuids
-                        .map((final e) => ListTile(
-                              title: Text(e),
-                            ))
-                        .toList(),
-                  ),
-                  isExpanded: _openPanels[0]),
+                headerBuilder: (
+                  final BuildContext context,
+                  final bool isExpanded,
+                ) {
+                  return ListTile(
+                    title: const Text("UUIDS"),
+                    subtitle: Text("Size: ${widget.event.uuids.length}"),
+                  );
+                },
+                body: Column(
+                  children:
+                      widget.event.uuids
+                          .map((final e) => ListTile(title: Text(e)))
+                          .toList(),
+                ),
+                isExpanded: _openPanels[0],
+              ),
               ExpansionPanel(
-                  headerBuilder:
-                      (final BuildContext context, final bool isExpanded) {
-                    return ListTile(
-                      title: const Text("Service data"),
-                      subtitle:
-                          Text("Size: ${widget.event.serviceData.length}"),
-                    );
-                  },
-                  body: Column(
-                    children: widget.event.serviceData.entries.map((final e) {
-                      final hex = StringBuffer();
-                      for (var i = 0; i < e.value.lengthInBytes; i++) {
-                        hex.write(e.value
-                            .getUint8(i)
-                            .toRadixString(16)
-                            .toUpperCase()
-                            .padLeft(2, "0"));
-                      }
-                      return ListTile(
+                headerBuilder: (
+                  final BuildContext context,
+                  final bool isExpanded,
+                ) {
+                  return ListTile(
+                    title: const Text("Service data"),
+                    subtitle: Text("Size: ${widget.event.serviceData.length}"),
+                  );
+                },
+                body: Column(
+                  children:
+                      widget.event.serviceData.entries.map((final e) {
+                        final hex = StringBuffer();
+                        for (var i = 0; i < e.value.lengthInBytes; i++) {
+                          hex.write(
+                            e.value
+                                .getUint8(i)
+                                .toRadixString(16)
+                                .toUpperCase()
+                                .padLeft(2, "0"),
+                          );
+                        }
+                        return ListTile(
                           title: Text(e.key),
-                          subtitle: Text("${e.value.lengthInBytes}: 0x$hex"));
-                    }).toList(),
-                  ),
-                  isExpanded: _openPanels[1]),
+                          subtitle: Text("${e.value.lengthInBytes}: 0x$hex"),
+                        );
+                      }).toList(),
+                ),
+                isExpanded: _openPanels[1],
+              ),
               ExpansionPanel(
-                  headerBuilder:
-                      (final BuildContext context, final bool isExpanded) {
-                    return ListTile(
-                      title: const Text("Manufacturer data"),
-                      subtitle:
-                          Text("Size: ${widget.event.manufacturerData.length}"),
-                    );
-                  },
-                  body: Column(
-                    children:
-                        widget.event.manufacturerData.entries.map((final e) {
-                      final hex = StringBuffer();
-                      for (var i = 0; i < e.value.lengthInBytes; i++) {
-                        hex.write(e.value
-                            .getUint8(i)
-                            .toRadixString(16)
-                            .toUpperCase()
-                            .padLeft(2, "0"));
-                      }
-                      return ListTile(
+                headerBuilder: (
+                  final BuildContext context,
+                  final bool isExpanded,
+                ) {
+                  return ListTile(
+                    title: const Text("Manufacturer data"),
+                    subtitle: Text(
+                      "Size: ${widget.event.manufacturerData.length}",
+                    ),
+                  );
+                },
+                body: Column(
+                  children:
+                      widget.event.manufacturerData.entries.map((final e) {
+                        final hex = StringBuffer();
+                        for (var i = 0; i < e.value.lengthInBytes; i++) {
+                          hex.write(
+                            e.value
+                                .getUint8(i)
+                                .toRadixString(16)
+                                .toUpperCase()
+                                .padLeft(2, "0"),
+                          );
+                        }
+                        return ListTile(
                           title: Text("0x${e.key.toRadixString(16)}"),
-                          subtitle: Text("${e.value.lengthInBytes}: 0x$hex"));
-                    }).toList(),
-                  ),
-                  isExpanded: _openPanels[2])
+                          subtitle: Text("${e.value.lengthInBytes}: 0x$hex"),
+                        );
+                      }).toList(),
+                ),
+                isExpanded: _openPanels[2],
+              ),
             ],
-          )
+          ),
         ],
       ),
     );

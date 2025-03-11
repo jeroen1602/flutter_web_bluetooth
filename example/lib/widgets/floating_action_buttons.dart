@@ -58,10 +58,9 @@ class FABSState extends State<FABS> {
     }
 
     if (message.isNotEmpty && mounted) {
-      ScaffoldMessenger.maybeOf(context)?.showSnackBar(SnackBar(
-        content: Text(message),
-        backgroundColor: _getErrorColor(),
-      ));
+      ScaffoldMessenger.maybeOf(context)?.showSnackBar(
+        SnackBar(content: Text(message), backgroundColor: _getErrorColor()),
+      );
     }
   }
 
@@ -111,10 +110,9 @@ class FABSState extends State<FABS> {
     });
 
     if (message.isNotEmpty && mounted) {
-      ScaffoldMessenger.maybeOf(context)?.showSnackBar(SnackBar(
-        content: Text(message),
-        backgroundColor: _getErrorColor(),
-      ));
+      ScaffoldMessenger.maybeOf(context)?.showSnackBar(
+        SnackBar(content: Text(message), backgroundColor: _getErrorColor()),
+      );
     }
   }
 
@@ -126,13 +124,12 @@ class FABSState extends State<FABS> {
         mainAxisAlignment: MainAxisAlignment.end,
         children: [
           FloatingActionButton(
-              tooltip: "Pair a new device",
-              heroTag: null,
-              onPressed: _clickRequestDevice,
-              child: const Icon(Icons.add)),
-          const SizedBox(
-            height: 12.0,
+            tooltip: "Pair a new device",
+            heroTag: null,
+            onPressed: _clickRequestDevice,
+            child: const Icon(Icons.add),
           ),
+          const SizedBox(height: 12.0),
           if (isScanning)
             FloatingActionButton(
               tooltip: "Stop watching advertisements",
