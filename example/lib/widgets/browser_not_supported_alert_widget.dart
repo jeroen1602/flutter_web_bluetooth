@@ -39,7 +39,10 @@ class BrowserNotSupportedAlertWidget extends StatelessWidget {
               ),
               const TextSpan(text: "This may be the cause of your problem!\n"),
             ],
-            if (browser?.browserAgent == BrowserAgent.Chrome) ...[
+            if (browser?.browserAgent == BrowserAgent.chrome ||
+                browser?.browserAgent == BrowserAgent.brave ||
+                browser?.browserAgent == BrowserAgent.edgeChromium ||
+                browser?.browserAgent == BrowserAgent.opera) ...[
               const TextSpan(
                 text:
                     "You may need to enable a browser flag for this to work "
