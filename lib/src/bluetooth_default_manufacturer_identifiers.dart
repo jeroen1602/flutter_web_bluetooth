@@ -11,6 +11,87 @@ part of flutter_web_bluetooth;
 /// ignore: deprecated_member_use_from_same_package
 /// See: [deprecatedManufacturerIdentifiers] for a list of all old deprecated identifiers.
 enum BluetoothDefaultManufacturerIdentifiers {
+  /// The manufacturer identifier for Shenzhen NEOECO Technology Co., Ltd.
+  shenzhenNeoecoTechnologyCoLtd("Shenzhen NEOECO Technology Co., Ltd.", 0xECC),
+
+  /// The manufacturer identifier for Zhong Shan City Richsound Electronic Industrial Ltd.
+  zhongShanCityRichsoundElectronicIndustrialLtd(
+      "Zhong Shan City Richsound Electronic Industrial Ltd.", 0xECB),
+
+  /// The manufacturer identifier for NexRev LLC
+  nexrevLlc("NexRev LLC", 0xECA),
+
+  /// The manufacturer identifier for NeuroPace Inc
+  neuropaceInc("NeuroPace Inc", 0xEC9),
+
+  /// The manufacturer identifier for Codie LLC
+  codieLlc("Codie LLC", 0xEC8),
+
+  /// The manufacturer identifier for Canyon Bicycles GmbH
+  canyonBicyclesGmbh("Canyon Bicycles GmbH", 0xEC7),
+
+  /// The manufacturer identifier for AuthGate B.V.
+  authgateBV("AuthGate B.V.", 0xEC6),
+
+  /// The manufacturer identifier for Alibaba (China) Co., Ltd.
+  alibabaChinaCoLtd("Alibaba (China) Co., Ltd.", 0xEC5),
+
+  /// The manufacturer identifier for PACIFIC MARINE BATTERIES PTY. LIMITED
+  pacificMarineBatteriesPtyLimited(
+      "PACIFIC MARINE BATTERIES PTY. LIMITED", 0xEC4),
+
+  /// The manufacturer identifier for Herschel Infrared Ltd
+  herschelInfraredLtd("Herschel Infrared Ltd", 0xEC3),
+
+  /// The manufacturer identifier for High Entropy, LLC
+  highEntropyLlc("High Entropy, LLC", 0xEC2),
+
+  /// The manufacturer identifier for Crossdoor
+  crossdoor("Crossdoor", 0xEC1),
+
+  /// The manufacturer identifier for WEST inx Ltd.
+  westInxLtd("WEST inx Ltd.", 0xEC0),
+
+  /// The manufacturer identifier for Schulte-Schlagbaum AG
+  schulteSchlagbaumAg("Schulte-Schlagbaum AG", 0xEBF),
+
+  /// The manufacturer identifier for Deity Acoustic Technology Co.
+  deityAcousticTechnologyCo("Deity Acoustic Technology Co.", 0xEBE),
+
+  /// The manufacturer identifier for Tongfang Health Technology (Beijing) Co., Ltd.
+  tongfangHealthTechnologyBeijingCoLtd(
+      "Tongfang Health Technology (Beijing) Co., Ltd.", 0xEBD),
+
+  /// The manufacturer identifier for GP Acoustics International Limited
+  gpAcousticsInternationalLimited("GP Acoustics International Limited", 0xEBC),
+
+  /// The manufacturer identifier for Asahi Denso Co.,Ltd.
+  asahiDensoCoLtd("Asahi Denso Co.,Ltd.", 0xEBB),
+
+  /// The manufacturer identifier for THERMY LTD
+  thermyLtd("THERMY LTD", 0xEBA),
+
+  /// The manufacturer identifier for egojin co,.ltd
+  egojinCoLtd("egojin co,.ltd", 0xEB9),
+
+  /// The manufacturer identifier for PARAGON ID
+  paragonId("PARAGON ID", 0xEB8),
+
+  /// The manufacturer identifier for Embedded Solutions LLC
+  embeddedSolutionsLlc("Embedded Solutions LLC", 0xEB7),
+
+  /// The manufacturer identifier for Server Products, Inc.
+  serverProductsInc("Server Products, Inc.", 0xEB6),
+
+  /// The manufacturer identifier for Preseed Japan Corporation
+  preseedJapanCorporation("Preseed Japan Corporation", 0xEB5),
+
+  /// The manufacturer identifier for BLUEFIN DATA, LLC
+  bluefinDataLlc("BLUEFIN DATA, LLC", 0xEB4),
+
+  /// The manufacturer identifier for Zucchetti Axess
+  zucchettiAxess("Zucchetti Axess", 0xEB3),
+
   /// The manufacturer identifier for PRADCO Outdoor Brands
   pradcoOutdoorBrands("PRADCO Outdoor Brands", 0xEB2),
 
@@ -39,8 +120,8 @@ enum BluetoothDefaultManufacturerIdentifiers {
   /// The manufacturer identifier for Hive Soundz inc.
   hiveSoundzInc("Hive Soundz inc.", 0xEAA),
 
-  /// The manufacturer identifier for Makichie Co., ltd.
-  makichieCoLtd("Makichie Co., ltd.", 0xEA9),
+  /// The manufacturer identifier for Makichie Co., Ltd.
+  makichieCoLtd("Makichie Co., Ltd.", 0xEA9),
 
   /// The manufacturer identifier for Dongguan Trangjan Industrial Co., Ltd
   dongguanTrangjanIndustrialCoLtd(
@@ -463,8 +544,11 @@ enum BluetoothDefaultManufacturerIdentifiers {
   hangzhouHikvisionDigitalTechnologyCoLtd(
       "Hangzhou Hikvision Digital Technology Co., Ltd.", 0xE25),
 
+  /// The manufacturer identifier for Avedis Zildjian Co.
+  avedisZildjianCo("Avedis Zildjian Co.", 0xE24),
+
   /// The manufacturer identifier for MS kajak7 UG (limited liability)
-  msKajak7UgLimitedLiability("MS kajak7 UG (limited liability)", 0xE24),
+  msKajak7UgLimitedLiability("MS kajak7 UG (limited liability)", 0xE23),
 
   /// The manufacturer identifier for HITO INC
   hitoInc("HITO INC", 0xE22),
@@ -2918,7 +3002,12 @@ enum BluetoothDefaultManufacturerIdentifiers {
   /// The manufacturer identifier for B.E.A. S.A.
   bEASA("B.E.A. S.A.", 0xB0F),
 
+  /// The manufacturer identifier for Minebea Access Solutions Inc.
+  minebeaAccessSolutionsInc("Minebea Access Solutions Inc.", 0xB0E),
+
   /// The manufacturer identifier for Honda Lock Mfg. Co.,Ltd.
+  @Deprecated(
+      "Identifier has been renamed; use minebeaAccessSolutionsInc instead")
   hondaLockMfgCoLtd("Honda Lock Mfg. Co.,Ltd.", 0xB0E),
 
   /// The manufacturer identifier for SANYO DENKO Co.,Ltd.
@@ -10879,7 +10968,11 @@ enum BluetoothDefaultManufacturerIdentifiers {
   /// The manufacturer identifier for Server Technology Inc.
   serverTechnologyInc("Server Technology Inc.", 0xEB),
 
+  /// The manufacturer identifier for Nielsen-Kellerman
+  nielsenKellerman("Nielsen-Kellerman", 0xEA),
+
   /// The manufacturer identifier for www.vtracksystems.com
+  @Deprecated("Identifier has been renamed; use nielsenKellerman instead")
   wwwVtracksystemsCom("www.vtracksystems.com", 0xEA),
 
   /// The manufacturer identifier for Vtrack Systems
@@ -10951,13 +11044,13 @@ enum BluetoothDefaultManufacturerIdentifiers {
   /// The manufacturer identifier for Taixingbang Technology (HK) Co,. LTD.
   taixingbangTechnologyHkCoLtd("Taixingbang Technology (HK) Co,. LTD.", 0xD3),
 
+  /// The manufacturer identifier for Renesas Design Netherlands B.V.
+  renesasDesignNetherlandsBV("Renesas Design Netherlands B.V.", 0xD2),
+
   /// The manufacturer identifier for Dialog Semiconductor B.V.
   @Deprecated(
       "Identifier has been renamed; use renesasDesignNetherlandsBV instead")
   dialogSemiconductorBV("Dialog Semiconductor B.V.", 0xD2),
-
-  /// The manufacturer identifier for Renesas Design Netherlands B.V.
-  renesasDesignNetherlandsBV("Renesas Design Netherlands B.V.", 0xD2),
 
   /// The manufacturer identifier for Polar Electro Europe B.V.
   polarElectroEuropeBV("Polar Electro Europe B.V.", 0xD1),
@@ -11284,7 +11377,11 @@ enum BluetoothDefaultManufacturerIdentifiers {
   generalMotors("General Motors", 0x68),
 
   /// The manufacturer identifier for GN Audio A/S
+  @Deprecated("Identifier has been renamed; use gnHearing instead")
   gnAudioAS("GN Audio A/S", 0x67),
+
+  /// The manufacturer identifier for GN Hearing
+  gnHearing("GN Hearing", 0x67),
 
   /// The manufacturer identifier for 9Solutions Oy
   nineSolutionsOy("9Solutions Oy", 0x66),
@@ -11617,6 +11714,32 @@ enum BluetoothDefaultManufacturerIdentifiers {
   /// All non-deprecated manufacturer identifiers
   static const List<BluetoothDefaultManufacturerIdentifiers>
       manufacturerIdentifiers = [
+    shenzhenNeoecoTechnologyCoLtd,
+    zhongShanCityRichsoundElectronicIndustrialLtd,
+    nexrevLlc,
+    neuropaceInc,
+    codieLlc,
+    canyonBicyclesGmbh,
+    authgateBV,
+    alibabaChinaCoLtd,
+    pacificMarineBatteriesPtyLimited,
+    herschelInfraredLtd,
+    highEntropyLlc,
+    crossdoor,
+    westInxLtd,
+    schulteSchlagbaumAg,
+    deityAcousticTechnologyCo,
+    tongfangHealthTechnologyBeijingCoLtd,
+    gpAcousticsInternationalLimited,
+    asahiDensoCoLtd,
+    thermyLtd,
+    egojinCoLtd,
+    paragonId,
+    embeddedSolutionsLlc,
+    serverProductsInc,
+    preseedJapanCorporation,
+    bluefinDataLlc,
+    zucchettiAxess,
     pradcoOutdoorBrands,
     wearnexLimited,
     factorysense,
@@ -11759,6 +11882,7 @@ enum BluetoothDefaultManufacturerIdentifiers {
     nextsenseInc,
     lihjoenSpeedMeterCoLtd,
     hangzhouHikvisionDigitalTechnologyCoLtd,
+    avedisZildjianCo,
     msKajak7UgLimitedLiability,
     hitoInc,
     fogo,
@@ -12547,7 +12671,7 @@ enum BluetoothDefaultManufacturerIdentifiers {
     thermoworksInc,
     alfaLavalCorporateAb,
     bEASA,
-    hondaLockMfgCoLtd,
+    minebeaAccessSolutionsInc,
     sanyoDenkoCoLtd,
     blupeak,
     sanistaalAS,
@@ -15141,7 +15265,7 @@ enum BluetoothDefaultManufacturerIdentifiers {
     jollyLogicLlc,
     bioresearchAssociates,
     serverTechnologyInc,
-    wwwVtracksystemsCom,
+    nielsenKellerman,
     vtrackSystems,
     actsTechnologies,
     ksTechnologies,
@@ -15272,7 +15396,7 @@ enum BluetoothDefaultManufacturerIdentifiers {
     ltimindtreeLimited,
     aanddEngineeringInc,
     generalMotors,
-    gnAudioAS,
+    gnHearing,
     nineSolutionsOy,
     hpInc,
     bandXiInternationalLlc,
@@ -15383,8 +15507,11 @@ enum BluetoothDefaultManufacturerIdentifiers {
       "This contains all deprecated manufacturer identifiers and should thus not be relied on")
   static const List<BluetoothDefaultManufacturerIdentifiers>
       deprecatedManufacturerIdentifiers = [
+    hondaLockMfgCoLtd,
     rcpSoftwareOy,
     actionsZhuhaiTechnologyCoLimited,
-    dialogSemiconductorBV
+    wwwVtracksystemsCom,
+    dialogSemiconductorBV,
+    gnAudioAS
   ];
 }
