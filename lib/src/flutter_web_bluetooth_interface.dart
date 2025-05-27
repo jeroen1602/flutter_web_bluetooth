@@ -56,6 +56,21 @@ abstract class FlutterWebBluetoothInterface {
   Stream<Set<BluetoothDevice>> get devices;
 
   ///
+  /// Check if a bluetooth adapter is available for the browser (user agent)
+  /// If no bluetooth adapters are available to the browser it will
+  /// resolve into false. This may return true even if the adapter is disabled
+  /// by the user.
+  ///
+  /// Will check if `bluetooth in navigator` if this is not the case then the
+  /// api is not available in the browser.
+  /// After this it will call `navigator.bluetooth.getAvailability()` to check
+  /// if there is an adapter available.
+  ///
+  /// This will return false if the website is not run in a secure context.
+  ///
+  Future<bool> getAvailability();
+
+  ///
   /// Request a [WebBluetoothDevice] from the browser (user). This will resolve
   /// into a single device even if the filter [options] (and environment) have
   /// multiple devices that fit that could be found.
