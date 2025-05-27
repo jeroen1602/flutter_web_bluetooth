@@ -63,6 +63,10 @@ abstract class FlutterWebBluetoothInterface {
   /// If you want multiple devices you will need to call this method multiple
   /// times, the user however can still click the already connected device twice.
   ///
+  /// To bypass this library's adapter availability check, set [checkAvailability]
+  /// to `false` (default is `true`). Errors from an unavailable adapter will then
+  /// come directly from the underlying native `requestDevice` API call.
+  ///
   /// - May throw [NativeAPINotImplementedError] if the native api is not
   /// implemented for this user agent (browser).
   ///
@@ -79,7 +83,10 @@ abstract class FlutterWebBluetoothInterface {
   ///
   /// See: [RequestOptionsBuilder]
   ///
-  Future<BluetoothDevice> requestDevice(final RequestOptionsBuilder options);
+  Future<BluetoothDevice> requestDevice(
+    final RequestOptionsBuilder options, {
+    final bool checkAvailability = true,
+  });
 
   ///
   /// The [advertisements] stream emits an event with a
