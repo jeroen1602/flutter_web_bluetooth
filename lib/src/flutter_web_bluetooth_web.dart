@@ -130,6 +130,22 @@ class FlutterWebBluetooth extends FlutterWebBluetoothInterface {
   }
 
   ///
+  /// Check if a bluetooth adapter is available for the browser (user agent)
+  /// If no bluetooth adapters are available to the browser it will
+  /// resolve into false. This may return true even if the adapter is disabled
+  /// by the user.
+  ///
+  /// Will check if `bluetooth in navigator` if this is not the case then the
+  /// api is not available in the browser.
+  /// After this it will call `navigator.bluetooth.getAvailability()` to check
+  /// if there is an adapter available.
+  ///
+  /// This will return false if the website is not run in a secure context.
+  ///
+  @override
+  Future<bool> getAvailability() => Bluetooth.getAvailability();
+
+  ///
   /// Get the already known devices from the browser
   ///
   Future<void> _getKnownDevices({final bool shouldCheck = true}) async {

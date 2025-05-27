@@ -71,6 +71,11 @@ class FlutterWebBluetooth extends FlutterWebBluetoothInterface {
 
   @override
   Stream<Set<BluetoothDevice>> get devices => Stream.value(<BluetoothDevice>{});
+  
+  @override
+  Future<bool> getAvailability() {
+    throw NativeAPINotImplementedError("getAvailability");
+  }
 
   @override
   Never requestDevice(
