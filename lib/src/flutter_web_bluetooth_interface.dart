@@ -159,7 +159,7 @@ abstract class FlutterWebBluetoothInterface {
   /// calling [BluetoothLEScan.stop] on the returned object from the [Future].
   /// If this object doesn't get saved then there is no way to stop the scan,
   /// it should be able to start multiple scans with different scan options.
-  /// 
+  ///
   /// Set [checkingAvailability] to `true` (default is `false`). to ensure
   /// bluetooth adapter is available before calling requestDevice api
   ///

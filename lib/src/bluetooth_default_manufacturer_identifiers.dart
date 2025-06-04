@@ -11,6 +11,185 @@ part of flutter_web_bluetooth;
 /// ignore: deprecated_member_use_from_same_package
 /// See: [deprecatedManufacturerIdentifiers] for a list of all old deprecated identifiers.
 enum BluetoothDefaultManufacturerIdentifiers {
+  /// The manufacturer identifier for SHENZHEN POWEROAK NEWENER CO., LTD
+  shenzhenPoweroakNewenerCoLtd("SHENZHEN POWEROAK NEWENER CO., LTD", 0xF06),
+
+  /// The manufacturer identifier for SHENZHEN GWSTAI TECHNOLOGY CO.,LTD
+  shenzhenGwstaiTechnologyCoLtd("SHENZHEN GWSTAI TECHNOLOGY CO.,LTD", 0xF05),
+
+  /// The manufacturer identifier for Lumen Labs (HK) Ltd
+  lumenLabsHkLtd("Lumen Labs (HK) Ltd", 0xF04),
+
+  /// The manufacturer identifier for Olibra LLC
+  olibraLlc("Olibra LLC", 0xF03),
+
+  /// The manufacturer identifier for GE HEALTHCARE TECHNOLOGIES INC.
+  geHealthcareTechnologiesInc("GE HEALTHCARE TECHNOLOGIES INC.", 0xF02),
+
+  /// The manufacturer identifier for HAPPLABS SOFTWARE PRIVATE LIMITED
+  happlabsSoftwarePrivateLimited("HAPPLABS SOFTWARE PRIVATE LIMITED", 0xF01),
+
+  /// The manufacturer identifier for TRACERCO LIMITED
+  tracercoLimited("TRACERCO LIMITED", 0xF00),
+
+  /// The manufacturer identifier for Healthcare Technology Limited
+  healthcareTechnologyLimited("Healthcare Technology Limited", 0xEFF),
+
+  /// The manufacturer identifier for Teledyne Instruments, Inc.
+  teledyneInstrumentsInc("Teledyne Instruments, Inc.", 0xEFE),
+
+  /// The manufacturer identifier for PRIMES GmbH
+  primesGmbh("PRIMES GmbH", 0xEFD),
+
+  /// The manufacturer identifier for Jano Life Inc.
+  janoLifeInc("Jano Life Inc.", 0xEFC),
+
+  /// The manufacturer identifier for BLUEPROVIDERZ LLC
+  blueproviderzLlc("BLUEPROVIDERZ LLC", 0xEFB),
+
+  /// The manufacturer identifier for Sensear Pty Ltd
+  sensearPtyLtd("Sensear Pty Ltd", 0xEFA),
+
+  /// The manufacturer identifier for Aseptico, Inc.
+  asepticoInc("Aseptico, Inc.", 0xEF9),
+
+  /// The manufacturer identifier for IoT Solutions Malta Limited
+  iotSolutionsMaltaLimited("IoT Solutions Malta Limited", 0xEF8),
+
+  /// The manufacturer identifier for Trackonomy Systems, Inc.
+  trackonomySystemsInc("Trackonomy Systems, Inc.", 0xEF7),
+
+  /// The manufacturer identifier for Shenzhen Cyber Innovation Technology Co., Ltd.
+  shenzhenCyberInnovationTechnologyCoLtd(
+      "Shenzhen Cyber Innovation Technology Co., Ltd.", 0xEF6),
+
+  /// The manufacturer identifier for LS ELECTRIC Co., Ltd.
+  lsElectricCoLtd("LS ELECTRIC Co., Ltd.", 0xEF5),
+
+  /// The manufacturer identifier for SEMINOLE ELECTRONICS PRIVATE LIMITED
+  seminoleElectronicsPrivateLimited(
+      "SEMINOLE ELECTRONICS PRIVATE LIMITED", 0xEF4),
+
+  /// The manufacturer identifier for Monil AS
+  monilAs("Monil AS", 0xEF3),
+
+  /// The manufacturer identifier for CAPTAIN BLINK
+  captainBlink("CAPTAIN BLINK", 0xEF2),
+
+  /// The manufacturer identifier for Wuxi Does IOT Co., Ltd
+  wuxiDoesIotCoLtd("Wuxi Does IOT Co., Ltd", 0xEF1),
+
+  /// The manufacturer identifier for Seaward Electronic
+  seawardElectronic("Seaward Electronic", 0xEF0),
+
+  /// The manufacturer identifier for Q42 Internet B.V.
+  q42InternetBV("Q42 Internet B.V.", 0xEEF),
+
+  /// The manufacturer identifier for ELLEA INGEGNERIA SRL UNIPERSONALE
+  elleaIngegneriaSrlUnipersonale("ELLEA INGEGNERIA SRL UNIPERSONALE", 0xEEE),
+
+  /// The manufacturer identifier for BBC Bircher AG
+  bbcBircherAg("BBC Bircher AG", 0xEED),
+
+  /// The manufacturer identifier for Willow Laboratories, Inc.
+  willowLaboratoriesInc("Willow Laboratories, Inc.", 0xEEC),
+
+  /// The manufacturer identifier for Fujita Electric Works, Ltd
+  fujitaElectricWorksLtd("Fujita Electric Works, Ltd", 0xEEB),
+
+  /// The manufacturer identifier for Core Devices LLC
+  coreDevicesLlc("Core Devices LLC", 0xEEA),
+
+  /// The manufacturer identifier for PIXEL TI IND. E COM PROD ELETRONICOS
+  pixelTiIndEComProdEletronicos("PIXEL TI IND. E COM PROD ELETRONICOS", 0xEE9),
+
+  /// The manufacturer identifier for SG Armaturen AS
+  sgArmaturenAs("SG Armaturen AS", 0xEE8),
+
+  /// The manufacturer identifier for RICKARD AIR DIFFUSION (PTY) LTD
+  rickardAirDiffusionPtyLtd("RICKARD AIR DIFFUSION (PTY) LTD", 0xEE7),
+
+  /// The manufacturer identifier for NOCTRIX HEALTH, INC
+  noctrixHealthInc("NOCTRIX HEALTH, INC", 0xEE6),
+
+  /// The manufacturer identifier for Ambient Life Inc.
+  ambientLifeInc("Ambient Life Inc.", 0xEE5),
+
+  /// The manufacturer identifier for CAPTEMP, LDA
+  captempLda("CAPTEMP, LDA", 0xEE4),
+
+  /// The manufacturer identifier for TAMRON Co., Ltd.
+  tamronCoLtd("TAMRON Co., Ltd.", 0xEE3),
+
+  /// The manufacturer identifier for shenzhen hongever technology Co,. Ltd
+  shenzhenHongeverTechnologyCoLtd(
+      "shenzhen hongever technology Co,. Ltd", 0xEE2),
+
+  /// The manufacturer identifier for MA MICRO LIMITED
+  maMicroLimited("MA MICRO LIMITED", 0xEE1),
+
+  /// The manufacturer identifier for MAERSK CONTAINER INDUSTRY A/S
+  maerskContainerIndustryAS("MAERSK CONTAINER INDUSTRY A/S", 0xEE0),
+
+  /// The manufacturer identifier for Dynaudio A/S
+  dynaudioAS("Dynaudio A/S", 0xEDF),
+
+  /// The manufacturer identifier for Sony Honda Mobility Inc.
+  sonyHondaMobilityInc("Sony Honda Mobility Inc.", 0xEDE),
+
+  /// The manufacturer identifier for Ceridwen Limited
+  ceridwenLimited("Ceridwen Limited", 0xEDD),
+
+  /// The manufacturer identifier for Shenzhen Zoqin Technology Co., Ltd.
+  shenzhenZoqinTechnologyCoLtd("Shenzhen Zoqin Technology Co., Ltd.", 0xEDC),
+
+  /// The manufacturer identifier for ShenZhen BoYiChuangXin
+  shenzhenBoyichuangxin("ShenZhen BoYiChuangXin", 0xEDB),
+
+  /// The manufacturer identifier for Kodira GmbH
+  kodiraGmbh("Kodira GmbH", 0xEDA),
+
+  /// The manufacturer identifier for Overhead Door Corporation
+  overheadDoorCorporation("Overhead Door Corporation", 0xED9),
+
+  /// The manufacturer identifier for DORAN MFG. LLC
+  doranMfgLlc("DORAN MFG. LLC", 0xED8),
+
+  /// The manufacturer identifier for CS INSTRUMENTS GmbH & Co.KG
+  csInstrumentsGmbhAndCoKg("CS INSTRUMENTS GmbH & Co.KG", 0xED7),
+
+  /// The manufacturer identifier for Quintessential Design, Inc.
+  quintessentialDesignInc("Quintessential Design, Inc.", 0xED6),
+
+  /// The manufacturer identifier for Relish Technologies Limited
+  relishTechnologiesLimited("Relish Technologies Limited", 0xED5),
+
+  /// The manufacturer identifier for Goerdyna Group Co., Ltd
+  goerdynaGroupCoLtd("Goerdyna Group Co., Ltd", 0xED4),
+
+  /// The manufacturer identifier for Lichens Innovation inc.
+  lichensInnovationInc("Lichens Innovation inc.", 0xED3),
+
+  /// The manufacturer identifier for SHENZHEN BESTWAY ELECTRONICS CO.,LTD
+  shenzhenBestwayElectronicsCoLtd(
+      "SHENZHEN BESTWAY ELECTRONICS CO.,LTD", 0xED2),
+
+  /// The manufacturer identifier for VINYL MATT MEDIA LIMITED
+  vinylMattMediaLimited("VINYL MATT MEDIA LIMITED", 0xED1),
+
+  /// The manufacturer identifier for Gibson, Inc.
+  gibsonInc("Gibson, Inc.", 0xED0),
+
+  /// The manufacturer identifier for GGEC America, Inc.
+  ggecAmericaInc("GGEC America, Inc.", 0xECF),
+
+  /// The manufacturer identifier for Guangzhou Honor Microelectronic Co.,Ltd.
+  guangzhouHonorMicroelectronicCoLtd(
+      "Guangzhou Honor Microelectronic Co.,Ltd.", 0xECE),
+
+  /// The manufacturer identifier for Nature Inc.
+  natureInc("Nature Inc.", 0xECD),
+
   /// The manufacturer identifier for Shenzhen NEOECO Technology Co., Ltd.
   shenzhenNeoecoTechnologyCoLtd("Shenzhen NEOECO Technology Co., Ltd.", 0xECC),
 
@@ -6726,7 +6905,11 @@ enum BluetoothDefaultManufacturerIdentifiers {
   /// The manufacturer identifier for Sesam Solutions BV
   sesamSolutionsBv("Sesam Solutions BV", 0x65B),
 
+  /// The manufacturer identifier for Marshall Group AB
+  marshallGroupAb("Marshall Group AB", 0x65A),
+
   /// The manufacturer identifier for Zound Industries International AB
+  @Deprecated("Identifier has been renamed; use marshallGroupAb instead")
   zoundIndustriesInternationalAb("Zound Industries International AB", 0x65A),
 
   /// The manufacturer identifier for UnSeen Technologies Oy
@@ -11714,6 +11897,64 @@ enum BluetoothDefaultManufacturerIdentifiers {
   /// All non-deprecated manufacturer identifiers
   static const List<BluetoothDefaultManufacturerIdentifiers>
       manufacturerIdentifiers = [
+    shenzhenPoweroakNewenerCoLtd,
+    shenzhenGwstaiTechnologyCoLtd,
+    lumenLabsHkLtd,
+    olibraLlc,
+    geHealthcareTechnologiesInc,
+    happlabsSoftwarePrivateLimited,
+    tracercoLimited,
+    healthcareTechnologyLimited,
+    teledyneInstrumentsInc,
+    primesGmbh,
+    janoLifeInc,
+    blueproviderzLlc,
+    sensearPtyLtd,
+    asepticoInc,
+    iotSolutionsMaltaLimited,
+    trackonomySystemsInc,
+    shenzhenCyberInnovationTechnologyCoLtd,
+    lsElectricCoLtd,
+    seminoleElectronicsPrivateLimited,
+    monilAs,
+    captainBlink,
+    wuxiDoesIotCoLtd,
+    seawardElectronic,
+    q42InternetBV,
+    elleaIngegneriaSrlUnipersonale,
+    bbcBircherAg,
+    willowLaboratoriesInc,
+    fujitaElectricWorksLtd,
+    coreDevicesLlc,
+    pixelTiIndEComProdEletronicos,
+    sgArmaturenAs,
+    rickardAirDiffusionPtyLtd,
+    noctrixHealthInc,
+    ambientLifeInc,
+    captempLda,
+    tamronCoLtd,
+    shenzhenHongeverTechnologyCoLtd,
+    maMicroLimited,
+    maerskContainerIndustryAS,
+    dynaudioAS,
+    sonyHondaMobilityInc,
+    ceridwenLimited,
+    shenzhenZoqinTechnologyCoLtd,
+    shenzhenBoyichuangxin,
+    kodiraGmbh,
+    overheadDoorCorporation,
+    doranMfgLlc,
+    csInstrumentsGmbhAndCoKg,
+    quintessentialDesignInc,
+    relishTechnologiesLimited,
+    goerdynaGroupCoLtd,
+    lichensInnovationInc,
+    shenzhenBestwayElectronicsCoLtd,
+    vinylMattMediaLimited,
+    gibsonInc,
+    ggecAmericaInc,
+    guangzhouHonorMicroelectronicCoLtd,
+    natureInc,
     shenzhenNeoecoTechnologyCoLtd,
     zhongShanCityRichsoundElectronicIndustrialLtd,
     nexrevLlc,
@@ -13874,7 +14115,7 @@ enum BluetoothDefaultManufacturerIdentifiers {
     panduitCorp,
     pixartImagingInc,
     sesamSolutionsBv,
-    zoundIndustriesInternationalAb,
+    marshallGroupAb,
     unseenTechnologiesOy,
     payexNorgeAs,
     meshtronixLimited,
@@ -15508,6 +15749,7 @@ enum BluetoothDefaultManufacturerIdentifiers {
   static const List<BluetoothDefaultManufacturerIdentifiers>
       deprecatedManufacturerIdentifiers = [
     hondaLockMfgCoLtd,
+    zoundIndustriesInternationalAb,
     rcpSoftwareOy,
     actionsZhuhaiTechnologyCoLimited,
     wwwVtracksystemsCom,

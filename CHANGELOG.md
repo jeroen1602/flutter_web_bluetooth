@@ -1,3 +1,14 @@
+## 1.1.0
+
+* **Breaking-ish** Requesting devices or scans now no longer checks if a bluetooth device is available.
+  The browser will return a `DeviceNotFoundError` if the bluetooth adapter was unavailable while a scan was requested.
+    * If you want the old behaviour then set `checkingAvailability` to `true` for `requestDevice`,
+      `requestAdvertisementDevice`, and/ or `requestLEScan`.
+* You can now call `getAvailability` to get a (new) `Future` that will check if there is currently a bluetooth adapter
+  available.
+* Updated list of manufacturer identifiers
+* Updated list of default Bluetooth UUIDs
+
 ## 1.0.0
 
 * Changed from `dart:html` to `dart:js_interop` to support wasm builds.
