@@ -78,14 +78,20 @@ class FlutterWebBluetooth extends FlutterWebBluetoothInterface {
   }
 
   @override
-  Never requestDevice(final RequestOptionsBuilder options) {
+  Never requestDevice(
+    final RequestOptionsBuilder options, {
+    final bool checkingAvailability = false,
+  }) {
     throw NativeAPINotImplementedError("requestDevice");
   }
 
   @override
-  Never requestAdvertisementDevice(final AdvertisementBluetoothDevice device,
-      {final List<String> requiredServices = const [],
-      final List<String> optionalServices = const []}) {
+  Never requestAdvertisementDevice(
+    final AdvertisementBluetoothDevice device, {
+    final List<String> requiredServices = const [],
+    final List<String> optionalServices = const [],
+    final bool checkingAvailability = false,
+  }) {
     throw NativeAPINotImplementedError("requestAdvertisementDevice");
   }
 
@@ -93,7 +99,10 @@ class FlutterWebBluetooth extends FlutterWebBluetoothInterface {
   final bool hasRequestLEScan = false;
 
   @override
-  Never requestLEScan(final LEScanOptionsBuilder options) {
+  Never requestLEScan(
+    final LEScanOptionsBuilder options, {
+    final bool checkingAvailability = false,
+  }) {
     throw NativeAPINotImplementedError("requestLEScan");
   }
 

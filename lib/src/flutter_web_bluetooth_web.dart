@@ -177,6 +177,9 @@ class FlutterWebBluetooth extends FlutterWebBluetoothInterface {
   /// If you want multiple devices you will need to call this method multiple
   /// times, the user however can still click the already connected device twice.
   ///
+  /// Set [checkingAvailability] to `true` (default is `false`). to ensure
+  /// bluetooth adapter is available before calling requestDevice api
+  ///
   /// - May throw [NativeAPINotImplementedError] if the native api is not
   /// implemented for this user agent (browser).
   ///
@@ -195,11 +198,13 @@ class FlutterWebBluetooth extends FlutterWebBluetoothInterface {
   ///
   @override
   Future<BluetoothDevice> requestDevice(
-      final RequestOptionsBuilder options) async {
+    final RequestOptionsBuilder options, {
+    final bool checkingAvailability = false,
+  }) async {
     if (!isBluetoothApiSupported) {
       throw NativeAPINotImplementedError("requestDevice");
     }
-    if (!(await Bluetooth.getAvailability())) {
+    if (checkingAvailability && !(await Bluetooth.getAvailability())) {
       throw BluetoothAdapterNotAvailable("requestDevice");
     }
     final convertedOptions = options.toRequestOptions();
@@ -226,17 +231,22 @@ class FlutterWebBluetooth extends FlutterWebBluetoothInterface {
   ///
   /// May throw the same exceptions as [requestDevice].
   ///
+  /// Set [checkingAvailability] to `true` (default is `false`). to ensure
+  /// bluetooth adapter is available before calling requestDevice api
+  ///
   /// See: [requestDevice]
   ///
   @override
   Future<BluetoothDevice> requestAdvertisementDevice(
-      final AdvertisementBluetoothDevice device,
-      {final List<String> requiredServices = const [],
-      final List<String> optionalServices = const []}) async {
+    final AdvertisementBluetoothDevice device, {
+    final List<String> requiredServices = const [],
+    final List<String> optionalServices = const [],
+    final bool checkingAvailability = false,
+  }) async {
     final RequestOptionsBuilder options =
         _createRequestOptionsFromAdvertisementDevice(
             device, requiredServices, optionalServices);
-    return requestDevice(options);
+    return requestDevice(options, checkingAvailability: checkingAvailability);
   }
 
   ///
@@ -291,6 +301,9 @@ class FlutterWebBluetooth extends FlutterWebBluetoothInterface {
   /// calling [BluetoothLEScan.stop] on the returned object from the [Future].
   /// If this object doesn't get saved then there is no way to stop the scan,
   /// it should be able to start multiple scans with different scan options.
+  /// 
+  /// Set [checkingAvailability] to `true` (default is `false`). to ensure
+  /// bluetooth adapter is available before calling requestDevice api
   ///
   /// - May throw [UserCancelledDialogError] if the user cancelled the dialog.
   ///
@@ -315,11 +328,13 @@ class FlutterWebBluetooth extends FlutterWebBluetoothInterface {
   ///
   @override
   Future<BluetoothLEScan> requestLEScan(
-      final LEScanOptionsBuilder options) async {
+    final LEScanOptionsBuilder options, {
+    final bool checkingAvailability = false,
+  }) async {
     if (!hasRequestLEScan) {
       throw NativeAPINotImplementedError("requestLEScan");
     }
-    if (!(await Bluetooth.getAvailability())) {
+    if (checkingAvailability && !(await Bluetooth.getAvailability())) {
       throw BluetoothAdapterNotAvailable("requestLEScan");
     }
     _startAdvertisementStream();
