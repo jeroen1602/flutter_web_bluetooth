@@ -35,7 +35,7 @@ Logger get webBluetoothLogger {
 ///
 void setWebBluetoothLogger(final Logger logger) {
   _webLogger = logger;
-  Future.sync(() async => await _subscription?.cancel());
+  unawaited(_subscription?.cancel());
   _subscription = null;
 }
 
@@ -46,7 +46,7 @@ void setWebBluetoothLogger(final Logger logger) {
 ///
 void initWebBluetoothLogger() {
   final logger = Logger("flutter_web_bluetooth");
-  Future.sync(() async => await _subscription?.cancel());
+  unawaited(_subscription?.cancel());
   _subscription = logger.onRecord.listen((final event) {
     // ignore: avoid_print
     print("${event.loggerName}: ${event.time}: ${event.message}");
