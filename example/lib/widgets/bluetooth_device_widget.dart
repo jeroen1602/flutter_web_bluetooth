@@ -59,20 +59,24 @@ class BluetoothDeviceState<D extends AdvertisementBluetoothDevice>
                 StreamBuilder(
                   stream: _connectedStream,
                   initialData: false,
-                  builder: (
-                    final BuildContext context,
-                    final AsyncSnapshot<bool> snapshot,
-                  ) {
-                    return Icon(
-                      Icons.circle,
-                      color: snapshot.requireData ? Colors.green : Colors.red,
-                    );
-                  },
+                  builder:
+                      (
+                        final BuildContext context,
+                        final AsyncSnapshot<bool> snapshot,
+                      ) {
+                        return Icon(
+                          Icons.circle,
+                          color: snapshot.requireData
+                              ? Colors.green
+                              : Colors.red,
+                        );
+                      },
                 ),
               SelectableText(
                 widget.bluetoothDevice.device.name ?? "null",
-                style:
-                    widget.bluetoothDevice.device.name == null ? cursive : null,
+                style: widget.bluetoothDevice.device.name == null
+                    ? cursive
+                    : null,
               ),
             ],
           ),

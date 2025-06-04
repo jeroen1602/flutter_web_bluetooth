@@ -7,14 +7,13 @@ import "package:flutter_web_bluetooth_example/widgets/characteristic_actions.dar
 
 class CharacteristicWidget extends StatefulWidget {
   CharacteristicWidget({required this.characteristic, super.key}) {
-    characteristicName =
-        BluetoothDefaultCharacteristicUUIDS.characteristics
-            .cast<BluetoothDefaultCharacteristicUUIDS?>()
-            .firstWhere(
-              (final element) => element?.uuid == characteristic.uuid,
-              orElse: () => null,
-            )
-            ?.name;
+    characteristicName = BluetoothDefaultCharacteristicUUIDS.characteristics
+        .cast<BluetoothDefaultCharacteristicUUIDS?>()
+        .firstWhere(
+          (final element) => element?.uuid == characteristic.uuid,
+          orElse: () => null,
+        )
+        ?.name;
   }
 
   final BluetoothCharacteristic characteristic;
@@ -45,19 +44,20 @@ class CharacteristicWidgetState extends State<CharacteristicWidget> {
         ),
         StreamBuilder<ByteData>(
           stream: widget.characteristic.value,
-          builder: (
-            final BuildContext context,
-            final AsyncSnapshot<ByteData> snapshot,
-          ) {
-            if (snapshot.hasError) {
-              return Text("Error: ${snapshot.error}");
-            }
-            final data = snapshot.data;
-            if (data != null) {
-              return DataWidget(data: data);
-            }
-            return const Text("No data retrieved!");
-          },
+          builder:
+              (
+                final BuildContext context,
+                final AsyncSnapshot<ByteData> snapshot,
+              ) {
+                if (snapshot.hasError) {
+                  return Text("Error: ${snapshot.error}");
+                }
+                final data = snapshot.data;
+                if (data != null) {
+                  return DataWidget(data: data);
+                }
+                return const Text("No data retrieved!");
+              },
         ),
         Padding(
           padding: const EdgeInsets.all(8.0),

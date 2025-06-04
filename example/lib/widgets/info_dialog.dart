@@ -47,44 +47,46 @@ class _InfoDialogState extends State<InfoDialog> {
           children: [
             FutureBuilder<String>(
               future: _appVersion,
-              builder: (
-                final BuildContext context,
-                final AsyncSnapshot<String> snapshot,
-              ) {
-                return Text(
-                  "Example app version: ${snapshot.data ?? "loading"}",
-                );
-              },
+              builder:
+                  (
+                    final BuildContext context,
+                    final AsyncSnapshot<String> snapshot,
+                  ) {
+                    return Text(
+                      "Example app version: ${snapshot.data ?? "loading"}",
+                    );
+                  },
             ),
             FutureBuilder<
               ({String flutterVersion, String dartVersion, String libVersion})
             >(
               future: _pubspecVersions,
-              builder: (
-                final BuildContext context,
-                final AsyncSnapshot<
-                  ({
-                    String flutterVersion,
-                    String dartVersion,
-                    String libVersion,
-                  })
-                >
-                snapshot,
-              ) {
-                return Column(
-                  children: [
-                    Text(
-                      "Using library version: ${snapshot.data?.libVersion ?? "Loading"}",
-                    ),
-                    Text(
-                      "Using Flutter version: ${snapshot.data?.flutterVersion ?? "Loading"}",
-                    ),
-                    Text(
-                      "Using Dart version: ${snapshot.data?.dartVersion ?? "Loading"}",
-                    ),
-                  ],
-                );
-              },
+              builder:
+                  (
+                    final BuildContext context,
+                    final AsyncSnapshot<
+                      ({
+                        String flutterVersion,
+                        String dartVersion,
+                        String libVersion,
+                      })
+                    >
+                    snapshot,
+                  ) {
+                    return Column(
+                      children: [
+                        Text(
+                          "Using library version: ${snapshot.data?.libVersion ?? "Loading"}",
+                        ),
+                        Text(
+                          "Using Flutter version: ${snapshot.data?.flutterVersion ?? "Loading"}",
+                        ),
+                        Text(
+                          "Using Dart version: ${snapshot.data?.dartVersion ?? "Loading"}",
+                        ),
+                      ],
+                    );
+                  },
             ),
           ],
         ),

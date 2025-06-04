@@ -7,7 +7,6 @@
 * You can now call `getAvailability` to get a (new) `Future` that will check if there is currently a bluetooth adapter
   available.
 * Updated list of manufacturer identifiers
-* Updated list of default Bluetooth UUIDs
 
 ## 1.0.0
 

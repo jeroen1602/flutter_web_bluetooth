@@ -230,84 +230,79 @@ class BluetoothAdvertisementsCardState
             expansionCallback: _expansionCallback,
             children: [
               ExpansionPanel(
-                headerBuilder: (
-                  final BuildContext context,
-                  final bool isExpanded,
-                ) {
-                  return ListTile(
-                    title: const Text("UUIDS"),
-                    subtitle: Text("Size: ${widget.event.uuids.length}"),
-                  );
-                },
+                headerBuilder:
+                    (final BuildContext context, final bool isExpanded) {
+                      return ListTile(
+                        title: const Text("UUIDS"),
+                        subtitle: Text("Size: ${widget.event.uuids.length}"),
+                      );
+                    },
                 body: Column(
-                  children:
-                      widget.event.uuids
-                          .map((final e) => ListTile(title: Text(e)))
-                          .toList(),
+                  children: widget.event.uuids
+                      .map((final e) => ListTile(title: Text(e)))
+                      .toList(),
                 ),
                 isExpanded: _openPanels[0],
               ),
               ExpansionPanel(
-                headerBuilder: (
-                  final BuildContext context,
-                  final bool isExpanded,
-                ) {
-                  return ListTile(
-                    title: const Text("Service data"),
-                    subtitle: Text("Size: ${widget.event.serviceData.length}"),
-                  );
-                },
+                headerBuilder:
+                    (final BuildContext context, final bool isExpanded) {
+                      return ListTile(
+                        title: const Text("Service data"),
+                        subtitle: Text(
+                          "Size: ${widget.event.serviceData.length}",
+                        ),
+                      );
+                    },
                 body: Column(
-                  children:
-                      widget.event.serviceData.entries.map((final e) {
-                        final hex = StringBuffer();
-                        for (var i = 0; i < e.value.lengthInBytes; i++) {
-                          hex.write(
-                            e.value
-                                .getUint8(i)
-                                .toRadixString(16)
-                                .toUpperCase()
-                                .padLeft(2, "0"),
-                          );
-                        }
-                        return ListTile(
-                          title: Text(e.key),
-                          subtitle: Text("${e.value.lengthInBytes}: 0x$hex"),
-                        );
-                      }).toList(),
+                  children: widget.event.serviceData.entries.map((final e) {
+                    final hex = StringBuffer();
+                    for (var i = 0; i < e.value.lengthInBytes; i++) {
+                      hex.write(
+                        e.value
+                            .getUint8(i)
+                            .toRadixString(16)
+                            .toUpperCase()
+                            .padLeft(2, "0"),
+                      );
+                    }
+                    return ListTile(
+                      title: Text(e.key),
+                      subtitle: Text("${e.value.lengthInBytes}: 0x$hex"),
+                    );
+                  }).toList(),
                 ),
                 isExpanded: _openPanels[1],
               ),
               ExpansionPanel(
-                headerBuilder: (
-                  final BuildContext context,
-                  final bool isExpanded,
-                ) {
-                  return ListTile(
-                    title: const Text("Manufacturer data"),
-                    subtitle: Text(
-                      "Size: ${widget.event.manufacturerData.length}",
-                    ),
-                  );
-                },
+                headerBuilder:
+                    (final BuildContext context, final bool isExpanded) {
+                      return ListTile(
+                        title: const Text("Manufacturer data"),
+                        subtitle: Text(
+                          "Size: ${widget.event.manufacturerData.length}",
+                        ),
+                      );
+                    },
                 body: Column(
-                  children:
-                      widget.event.manufacturerData.entries.map((final e) {
-                        final hex = StringBuffer();
-                        for (var i = 0; i < e.value.lengthInBytes; i++) {
-                          hex.write(
-                            e.value
-                                .getUint8(i)
-                                .toRadixString(16)
-                                .toUpperCase()
-                                .padLeft(2, "0"),
-                          );
-                        }
-                        return ListTile(
-                          title: Text("0x${e.key.toRadixString(16)}"),
-                          subtitle: Text("${e.value.lengthInBytes}: 0x$hex"),
-                        );
-                      }).toList(),
+                  children: widget.event.manufacturerData.entries.map((
+                    final e,
+                  ) {
+                    final hex = StringBuffer();
+                    for (var i = 0; i < e.value.lengthInBytes; i++) {
+                      hex.write(
+                        e.value
+                            .getUint8(i)
+                            .toRadixString(16)
+                            .toUpperCase()
+                            .padLeft(2, "0"),
+                      );
+                    }
+                    return ListTile(
+                      title: Text("0x${e.key.toRadixString(16)}"),
+                      subtitle: Text("${e.value.lengthInBytes}: 0x$hex"),
+                    );
+                  }).toList(),
                 ),
                 isExpanded: _openPanels[2],
               ),

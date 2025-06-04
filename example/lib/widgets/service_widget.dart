@@ -11,14 +11,13 @@ class _ServiceAndCharacteristic {
 
 class ServiceWidget extends StatefulWidget {
   ServiceWidget({required this.service, super.key}) {
-    serviceName =
-        BluetoothDefaultServiceUUIDS.services
-            .cast<BluetoothDefaultServiceUUIDS?>()
-            .firstWhere(
-              (final element) => element?.uuid == service.uuid,
-              orElse: () => null,
-            )
-            ?.name;
+    serviceName = BluetoothDefaultServiceUUIDS.services
+        .cast<BluetoothDefaultServiceUUIDS?>()
+        .firstWhere(
+          (final element) => element?.uuid == service.uuid,
+          orElse: () => null,
+        )
+        ?.name;
   }
 
   final BluetoothService service;
@@ -73,48 +72,49 @@ class ServiceState extends State<ServiceWidget> {
     return FutureBuilder(
       future: _serviceAndCharacteristics,
       initialData: const _ServiceAndCharacteristic([], []),
-      builder: (
-        final BuildContext context,
-        final AsyncSnapshot<_ServiceAndCharacteristic> snapshot,
-      ) {
-        final data = snapshot.requireData;
+      builder:
+          (
+            final BuildContext context,
+            final AsyncSnapshot<_ServiceAndCharacteristic> snapshot,
+          ) {
+            final data = snapshot.requireData;
 
-        final subServices = <Widget>[];
-        for (final service in data.services) {
-          subServices.addAll([
-            Text("Service with uuid: ${service.uuid}"),
-            const Divider(),
-          ]);
-        }
-        if (subServices.isNotEmpty) {
-          subServices.add(const Divider(thickness: 1.5));
-        }
+            final subServices = <Widget>[];
+            for (final service in data.services) {
+              subServices.addAll([
+                Text("Service with uuid: ${service.uuid}"),
+                const Divider(),
+              ]);
+            }
+            if (subServices.isNotEmpty) {
+              subServices.add(const Divider(thickness: 1.5));
+            }
 
-        final characteristics = <Widget>[];
-        for (final characteristic in data.characteristics) {
-          characteristics.addAll([
-            CharacteristicWidget(characteristic: characteristic),
-            const Divider(),
-          ]);
-        }
+            final characteristics = <Widget>[];
+            for (final characteristic in data.characteristics) {
+              characteristics.addAll([
+                CharacteristicWidget(characteristic: characteristic),
+                const Divider(),
+              ]);
+            }
 
-        return Column(
-          children: [
-            ListTile(
-              title: const Text("Service"),
-              subtitle: SelectableText(
-                widget.serviceName == null
-                    ? widget.service.uuid
-                    : "${widget.service.uuid} (${widget.serviceName})",
-              ),
-            ),
-            const Divider(thickness: 1.5),
-            ...subServices,
-            ...characteristics,
-            const Divider(thickness: 2.0),
-          ],
-        );
-      },
+            return Column(
+              children: [
+                ListTile(
+                  title: const Text("Service"),
+                  subtitle: SelectableText(
+                    widget.serviceName == null
+                        ? widget.service.uuid
+                        : "${widget.service.uuid} (${widget.serviceName})",
+                  ),
+                ),
+                const Divider(thickness: 1.5),
+                ...subServices,
+                ...characteristics,
+                const Divider(thickness: 2.0),
+              ],
+            );
+          },
     );
   }
 }
