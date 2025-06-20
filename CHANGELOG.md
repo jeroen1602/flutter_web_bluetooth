@@ -1,3 +1,7 @@
+## T.B.D
+
+* Updated list of manufacturer identifiers
+
 ## 1.1.0
 
 * **Breaking-ish** Requesting devices or scans now no longer checks if a bluetooth device is available.

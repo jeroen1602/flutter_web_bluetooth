@@ -11,6 +11,49 @@ part of flutter_web_bluetooth;
 /// ignore: deprecated_member_use_from_same_package
 /// See: [deprecatedManufacturerIdentifiers] for a list of all old deprecated identifiers.
 enum BluetoothDefaultManufacturerIdentifiers {
+  /// The manufacturer identifier for Freshape SA
+  freshapeSa("Freshape SA", 0xF13),
+
+  /// The manufacturer identifier for Endur ID, Inc.
+  endurIdInc("Endur ID, Inc.", 0xF12),
+
+  /// The manufacturer identifier for Deep and Steep LLC
+  deepAndSteepLlc("Deep and Steep LLC", 0xF11),
+
+  /// The manufacturer identifier for ShenZhen Doctors of Intelligence & Technology Co.,Ltd
+  shenzhenDoctorsOfIntelligenceAndTechnologyCoLtd(
+      "ShenZhen Doctors of Intelligence & Technology Co.,Ltd", 0xF10),
+
+  /// The manufacturer identifier for caive Inc.
+  caiveInc("caive Inc.", 0xF0F),
+
+  /// The manufacturer identifier for IDEATRONIK Limited Liability Company
+  ideatronikLimitedLiabilityCompany(
+      "IDEATRONIK Limited Liability Company", 0xF0E),
+
+  /// The manufacturer identifier for Maennl Elektronik GmbH
+  maennlElektronikGmbh("Maennl Elektronik GmbH", 0xF0D),
+
+  /// The manufacturer identifier for Hitachi Industrial Equipment Systems Co.,Ltd.
+  hitachiIndustrialEquipmentSystemsCoLtd(
+      "Hitachi Industrial Equipment Systems Co.,Ltd.", 0xF0C),
+
+  /// The manufacturer identifier for Brightway Innovation Intelligent Technology (Suzhou) Co., Ltd.
+  brightwayInnovationIntelligentTechnologySuzhouCoLtd(
+      "Brightway Innovation Intelligent Technology (Suzhou) Co., Ltd.", 0xF0B),
+
+  /// The manufacturer identifier for LION GROUP, INC.
+  lionGroupInc("LION GROUP, INC.", 0xF0A),
+
+  /// The manufacturer identifier for ANC CHINA LIMITED
+  ancChinaLimited("ANC CHINA LIMITED", 0xF09),
+
+  /// The manufacturer identifier for Lezyne USA Inc.
+  lezyneUsaInc("Lezyne USA Inc.", 0xF08),
+
+  /// The manufacturer identifier for Tech OVN Private Limited
+  techOvnPrivateLimited("Tech OVN Private Limited", 0xF07),
+
   /// The manufacturer identifier for SHENZHEN POWEROAK NEWENER CO., LTD
   shenzhenPoweroakNewenerCoLtd("SHENZHEN POWEROAK NEWENER CO., LTD", 0xF06),
 
@@ -6905,12 +6948,12 @@ enum BluetoothDefaultManufacturerIdentifiers {
   /// The manufacturer identifier for Sesam Solutions BV
   sesamSolutionsBv("Sesam Solutions BV", 0x65B),
 
-  /// The manufacturer identifier for Marshall Group AB
-  marshallGroupAb("Marshall Group AB", 0x65A),
-
   /// The manufacturer identifier for Zound Industries International AB
   @Deprecated("Identifier has been renamed; use marshallGroupAb instead")
   zoundIndustriesInternationalAb("Zound Industries International AB", 0x65A),
+
+  /// The manufacturer identifier for Marshall Group AB
+  marshallGroupAb("Marshall Group AB", 0x65A),
 
   /// The manufacturer identifier for UnSeen Technologies Oy
   unseenTechnologiesOy("UnSeen Technologies Oy", 0x659),
@@ -11559,12 +11602,12 @@ enum BluetoothDefaultManufacturerIdentifiers {
   /// The manufacturer identifier for General Motors
   generalMotors("General Motors", 0x68),
 
+  /// The manufacturer identifier for GN Hearing
+  gnHearing("GN Hearing", 0x67),
+
   /// The manufacturer identifier for GN Audio A/S
   @Deprecated("Identifier has been renamed; use gnHearing instead")
   gnAudioAS("GN Audio A/S", 0x67),
-
-  /// The manufacturer identifier for GN Hearing
-  gnHearing("GN Hearing", 0x67),
 
   /// The manufacturer identifier for 9Solutions Oy
   nineSolutionsOy("9Solutions Oy", 0x66),
@@ -11897,6 +11940,19 @@ enum BluetoothDefaultManufacturerIdentifiers {
   /// All non-deprecated manufacturer identifiers
   static const List<BluetoothDefaultManufacturerIdentifiers>
       manufacturerIdentifiers = [
+    freshapeSa,
+    endurIdInc,
+    deepAndSteepLlc,
+    shenzhenDoctorsOfIntelligenceAndTechnologyCoLtd,
+    caiveInc,
+    ideatronikLimitedLiabilityCompany,
+    maennlElektronikGmbh,
+    hitachiIndustrialEquipmentSystemsCoLtd,
+    brightwayInnovationIntelligentTechnologySuzhouCoLtd,
+    lionGroupInc,
+    ancChinaLimited,
+    lezyneUsaInc,
+    techOvnPrivateLimited,
     shenzhenPoweroakNewenerCoLtd,
     shenzhenGwstaiTechnologyCoLtd,
     lumenLabsHkLtd,

@@ -384,18 +384,18 @@ packages:
     dependency: "direct main"
     description:
       name: web_browser_detect
-      sha256: e1155a9e7abb4296e58d7bdf9f955cecbbfe7a5a558f8e1f1aa0a65898121dd5
+      sha256: ff4f09af81211b8e00056e44876b6e4b49edba5222c84e6c65b4b1125038df81
       url: "https://pub.dev"
     source: hosted
-    version: "2.1.0"
+    version: "2.2.0"
   win32:
     dependency: transitive
     description:
       name: win32
-      sha256: "329edf97fdd893e0f1e3b9e88d6a0e627128cc17cc316a8d67fda8f1451178ba"
+      sha256: "66814138c3562338d05613a6e368ed8cfb237ad6d64a9e9334be3f309acfca03"
       url: "https://pub.dev"
     source: hosted
-    version: "5.13.0"
+    version: "5.14.0"
   yaml:
     dependency: "direct main"
     description:
