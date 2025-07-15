@@ -3437,7 +3437,60 @@ enum BluetoothDefaultCharacteristicUUIDS {
       "Ranging Data Overwritten",
       "2c19",
       "00002c19-0000-1000-8000-00805f9b34fb",
-      "org.bluetooth.characteristic.ranging_data_overwritten");
+      "org.bluetooth.characteristic.ranging_data_overwritten"),
+
+  /// The default characteristic for Humidity 8
+  humidity8("Humidity 8", "2c1b", "00002c1b-0000-1000-8000-00805f9b34fb",
+      "org.bluetooth.characteristic.humidity_8"),
+
+  /// The default characteristic for Illuminance 16
+  illuminance16(
+      "Illuminance 16",
+      "2c1c",
+      "00002c1c-0000-1000-8000-00805f9b34fb",
+      "org.bluetooth.characteristic.illuminance_16"),
+
+  /// The default characteristic for Acceleration 3D
+  acceleration3d(
+      "Acceleration 3D",
+      "2c1d",
+      "00002c1d-0000-1000-8000-00805f9b34fb",
+      "org.bluetooth.characteristic.acceleration_3d"),
+
+  /// The default characteristic for Precise Acceleration 3D
+  preciseAcceleration3d(
+      "Precise Acceleration 3D",
+      "2c1e",
+      "00002c1e-0000-1000-8000-00805f9b34fb",
+      "org.bluetooth.characteristic.precise_acceleration_3d"),
+
+  /// The default characteristic for Acceleration Detection Status
+  accelerationDetectionStatus(
+      "Acceleration Detection Status",
+      "2c1f",
+      "00002c1f-0000-1000-8000-00805f9b34fb",
+      "org.bluetooth.characteristic.acceleration_detection_status"),
+
+  /// The default characteristic for Door/Window Status
+  doorWindowStatus(
+      "Door/Window Status",
+      "2c20",
+      "00002c20-0000-1000-8000-00805f9b34fb",
+      "org.bluetooth.characteristic.door_window_status"),
+
+  /// The default characteristic for Pushbutton Status 8
+  pushbuttonStatus8(
+      "Pushbutton Status 8",
+      "2c21",
+      "00002c21-0000-1000-8000-00805f9b34fb",
+      "org.bluetooth.characteristic.pushbutton_status_8"),
+
+  /// The default characteristic for Contact Status 8
+  contactStatus8(
+      "Contact Status 8",
+      "2c22",
+      "00002c22-0000-1000-8000-00805f9b34fb",
+      "org.bluetooth.characteristic.contact_status_8");
 
   ///
   /// A characteristic UUID consists of a human readable name of the characteristic,
@@ -3935,7 +3988,15 @@ enum BluetoothDefaultCharacteristicUUIDS {
     onDemandRangingData,
     rasControlPoint,
     rangingDataReady,
-    rangingDataOverwritten
+    rangingDataOverwritten,
+    humidity8,
+    illuminance16,
+    acceleration3d,
+    preciseAcceleration3d,
+    accelerationDetectionStatus,
+    doorWindowStatus,
+    pushbuttonStatus8,
+    contactStatus8
   ];
 
   /// All deprecated characteristics.

@@ -11,6 +11,86 @@ part of flutter_web_bluetooth;
 /// ignore: deprecated_member_use_from_same_package
 /// See: [deprecatedManufacturerIdentifiers] for a list of all old deprecated identifiers.
 enum BluetoothDefaultManufacturerIdentifiers {
+  /// The manufacturer identifier for Vision Group Inc.
+  visionGroupInc("Vision Group Inc.", 0xF2C),
+
+  /// The manufacturer identifier for ElitEngineering LLC
+  elitengineeringLlc("ElitEngineering LLC", 0xF2B),
+
+  /// The manufacturer identifier for KELLER Druckmesstechnik AG
+  kellerDruckmesstechnikAg("KELLER Druckmesstechnik AG", 0xF2A),
+
+  /// The manufacturer identifier for Trezor Company s.r.o.
+  trezorCompanySRO("Trezor Company s.r.o.", 0xF29),
+
+  /// The manufacturer identifier for Amp Fit Israel LTD
+  ampFitIsraelLtd("Amp Fit Israel LTD", 0xF28),
+
+  /// The manufacturer identifier for Global Link Distribution Corp.
+  globalLinkDistributionCorp("Global Link Distribution Corp.", 0xF27),
+
+  /// The manufacturer identifier for Centromere Holding B.V.
+  centromereHoldingBV("Centromere Holding B.V.", 0xF26),
+
+  /// The manufacturer identifier for Sichuan Changhong Neonet Technologies Co.,Ltd.
+  sichuanChanghongNeonetTechnologiesCoLtd(
+      "Sichuan Changhong Neonet Technologies Co.,Ltd.", 0xF25),
+
+  /// The manufacturer identifier for Easy Measure Co., Ltd.
+  easyMeasureCoLtd("Easy Measure Co., Ltd.", 0xF24),
+
+  /// The manufacturer identifier for Yuquan Semiconductor (Xiamen) Co., Ltd.
+  yuquanSemiconductorXiamenCoLtd(
+      "Yuquan Semiconductor (Xiamen) Co., Ltd.", 0xF23),
+
+  /// The manufacturer identifier for ONESPACE TECHNOLOGIES (PTY) LTD
+  onespaceTechnologiesPtyLtd("ONESPACE TECHNOLOGIES (PTY) LTD", 0xF22),
+
+  /// The manufacturer identifier for Rokk Limited
+  rokkLimited("Rokk Limited", 0xF21),
+
+  /// The manufacturer identifier for Beijing Spring Creation Technology Co., Ltd.
+  beijingSpringCreationTechnologyCoLtd(
+      "Beijing Spring Creation Technology Co., Ltd.", 0xF20),
+
+  /// The manufacturer identifier for Ninebot (Changzhou) Tech Co., Ltd.
+  ninebotChangzhouTechCoLtd("Ninebot (Changzhou) Tech Co., Ltd.", 0xF1F),
+
+  /// The manufacturer identifier for Yolni Inc.
+  yolniInc("Yolni Inc.", 0xF1E),
+
+  /// The manufacturer identifier for ZIMMERMANN PV-Steel Group GmbH & Co. KG
+  zimmermannPvSteelGroupGmbhAndCoKg(
+      "ZIMMERMANN PV-Steel Group GmbH & Co. KG", 0xF1D),
+
+  /// The manufacturer identifier for Edge Semiconductors Inc.
+  edgeSemiconductorsInc("Edge Semiconductors Inc.", 0xF1C),
+
+  /// The manufacturer identifier for PalatiumCare LLC
+  palatiumcareLlc("PalatiumCare LLC", 0xF1B),
+
+  /// The manufacturer identifier for FLO SCIENCES, LLC
+  floSciencesLlc("FLO SCIENCES, LLC", 0xF1A),
+
+  /// The manufacturer identifier for Shenzhen SuperSound Technology Co.,Ltd
+  shenzhenSupersoundTechnologyCoLtd(
+      "Shenzhen SuperSound Technology Co.,Ltd", 0xF19),
+
+  /// The manufacturer identifier for iKeyless, LLC
+  ikeylessLlc("iKeyless, LLC", 0xF18),
+
+  /// The manufacturer identifier for RORENTECH Co., Ltd.
+  rorentechCoLtd("RORENTECH Co., Ltd.", 0xF17),
+
+  /// The manufacturer identifier for ADHD Friendly co.Ltd
+  adhdFriendlyCoLtd("ADHD Friendly co.Ltd", 0xF16),
+
+  /// The manufacturer identifier for Oval Corporation
+  ovalCorporation("Oval Corporation", 0xF15),
+
+  /// The manufacturer identifier for PreEvnt, LLC
+  preevntLlc("PreEvnt, LLC", 0xF14),
+
   /// The manufacturer identifier for Freshape SA
   freshapeSa("Freshape SA", 0xF13),
 
@@ -11940,6 +12020,31 @@ enum BluetoothDefaultManufacturerIdentifiers {
   /// All non-deprecated manufacturer identifiers
   static const List<BluetoothDefaultManufacturerIdentifiers>
       manufacturerIdentifiers = [
+    visionGroupInc,
+    elitengineeringLlc,
+    kellerDruckmesstechnikAg,
+    trezorCompanySRO,
+    ampFitIsraelLtd,
+    globalLinkDistributionCorp,
+    centromereHoldingBV,
+    sichuanChanghongNeonetTechnologiesCoLtd,
+    easyMeasureCoLtd,
+    yuquanSemiconductorXiamenCoLtd,
+    onespaceTechnologiesPtyLtd,
+    rokkLimited,
+    beijingSpringCreationTechnologyCoLtd,
+    ninebotChangzhouTechCoLtd,
+    yolniInc,
+    zimmermannPvSteelGroupGmbhAndCoKg,
+    edgeSemiconductorsInc,
+    palatiumcareLlc,
+    floSciencesLlc,
+    shenzhenSupersoundTechnologyCoLtd,
+    ikeylessLlc,
+    rorentechCoLtd,
+    adhdFriendlyCoLtd,
+    ovalCorporation,
+    preevntLlc,
     freshapeSa,
     endurIdInc,
     deepAndSteepLlc,
