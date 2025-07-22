@@ -1,6 +1,7 @@
 ## T.B.D
 
 * Updated list of manufacturer identifiers
+* Updated list of default uuids
 
 ## 1.1.0
 

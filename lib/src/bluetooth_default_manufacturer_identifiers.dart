@@ -11,6 +11,34 @@ part of flutter_web_bluetooth;
 /// ignore: deprecated_member_use_from_same_package
 /// See: [deprecatedManufacturerIdentifiers] for a list of all old deprecated identifiers.
 enum BluetoothDefaultManufacturerIdentifiers {
+  /// The manufacturer identifier for Audeze LLC
+  audezeLlc("Audeze LLC", 0xF35),
+
+  /// The manufacturer identifier for NINGBO SHARKWARD ELECTRONICS CO.,LTD
+  ningboSharkwardElectronicsCoLtd(
+      "NINGBO SHARKWARD ELECTRONICS CO.,LTD", 0xF34),
+
+  /// The manufacturer identifier for TETNET
+  tetnet("TETNET", 0xF33),
+
+  /// The manufacturer identifier for FLINTEC UK LIMITED
+  flintecUkLimited("FLINTEC UK LIMITED", 0xF32),
+
+  /// The manufacturer identifier for TECHNOLOGIES FOR FREERIDE s.r.o
+  technologiesForFreerideSRO("TECHNOLOGIES FOR FREERIDE s.r.o", 0xF31),
+
+  /// The manufacturer identifier for Opal Camera, Inc.
+  opalCameraInc("Opal Camera, Inc.", 0xF30),
+
+  /// The manufacturer identifier for ThingCo Limited
+  thingcoLimited("ThingCo Limited", 0xF2F),
+
+  /// The manufacturer identifier for BRITZ INTERNATIONAL CO.,LTD
+  britzInternationalCoLtd("BRITZ INTERNATIONAL CO.,LTD", 0xF2E),
+
+  /// The manufacturer identifier for ClipsClips LLC
+  clipsclipsLlc("ClipsClips LLC", 0xF2D),
+
   /// The manufacturer identifier for Vision Group Inc.
   visionGroupInc("Vision Group Inc.", 0xF2C),
 
@@ -12020,6 +12048,15 @@ enum BluetoothDefaultManufacturerIdentifiers {
   /// All non-deprecated manufacturer identifiers
   static const List<BluetoothDefaultManufacturerIdentifiers>
       manufacturerIdentifiers = [
+    audezeLlc,
+    ningboSharkwardElectronicsCoLtd,
+    tetnet,
+    flintecUkLimited,
+    technologiesForFreerideSRO,
+    opalCameraInc,
+    thingcoLimited,
+    britzInternationalCoLtd,
+    clipsclipsLlc,
     visionGroupInc,
     elitengineeringLlc,
     kellerDruckmesstechnikAg,
