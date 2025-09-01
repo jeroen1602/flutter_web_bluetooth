@@ -443,7 +443,11 @@ enum BluetoothDefaultServiceUUIDS {
 
   /// The default service for Ranging
   ranging("Ranging", "185b", "0000185b-0000-1000-8000-00805f9b34fb",
-      "org.bluetooth.service.ranging");
+      "org.bluetooth.service.ranging"),
+
+  /// The default service for HID ISO
+  hidIso("HID ISO", "185c", "0000185c-0000-1000-8000-00805f9b34fb",
+      "org.bluetooth.service.hid_iso");
 
   ///
   /// A service UUID consists of a human readable name of the service,
@@ -541,7 +545,8 @@ enum BluetoothDefaultServiceUUIDS {
     gamingAudio,
     meshProxySolicitation,
     industrialMeasurementDevice,
-    ranging
+    ranging,
+    hidIso
   ];
 
   /// All deprecated characteristics.
@@ -3490,7 +3495,21 @@ enum BluetoothDefaultCharacteristicUUIDS {
       "Contact Status 8",
       "2c22",
       "00002c22-0000-1000-8000-00805f9b34fb",
-      "org.bluetooth.characteristic.contact_status_8");
+      "org.bluetooth.characteristic.contact_status_8"),
+
+  /// The default characteristic for HID ISO Properties
+  hidIsoProperties(
+      "HID ISO Properties",
+      "2c23",
+      "00002c23-0000-1000-8000-00805f9b34fb",
+      "org.bluetooth.characteristic.hid_iso_properties"),
+
+  /// The default characteristic for LE HID Operation Mode
+  leHidOperationMode(
+      "LE HID Operation Mode",
+      "2c24",
+      "00002c24-0000-1000-8000-00805f9b34fb",
+      "org.bluetooth.characteristic.le_hid_operation_mode");
 
   ///
   /// A characteristic UUID consists of a human readable name of the characteristic,
@@ -3996,7 +4015,9 @@ enum BluetoothDefaultCharacteristicUUIDS {
     accelerationDetectionStatus,
     doorWindowStatus,
     pushbuttonStatus8,
-    contactStatus8
+    contactStatus8,
+    hidIsoProperties,
+    leHidOperationMode
   ];
 
   /// All deprecated characteristics.

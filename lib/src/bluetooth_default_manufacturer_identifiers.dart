@@ -11,6 +11,156 @@ part of flutter_web_bluetooth;
 /// ignore: deprecated_member_use_from_same_package
 /// See: [deprecatedManufacturerIdentifiers] for a list of all old deprecated identifiers.
 enum BluetoothDefaultManufacturerIdentifiers {
+  /// The manufacturer identifier for SafeNow GmbH
+  safenowGmbh("SafeNow GmbH", 0xF64),
+
+  /// The manufacturer identifier for WATTER, Inc.
+  watterInc("WATTER, Inc.", 0xF63),
+
+  /// The manufacturer identifier for Kehwin Technologies Co. Ltd.
+  kehwinTechnologiesCoLtd("Kehwin Technologies Co. Ltd.", 0xF62),
+
+  /// The manufacturer identifier for HyolimXE Co., Ltd.
+  hyolimxeCoLtd("HyolimXE Co., Ltd.", 0xF61),
+
+  /// The manufacturer identifier for Quilt Systems, Inc.
+  quiltSystemsInc("Quilt Systems, Inc.", 0xF60),
+
+  /// The manufacturer identifier for ROBSON SRL
+  robsonSrl("ROBSON SRL", 0xF5F),
+
+  /// The manufacturer identifier for WUXI WEIDA INTELLIGENT ELECTRONICS CO.,LTD.
+  wuxiWeidaIntelligentElectronicsCoLtd(
+      "WUXI WEIDA INTELLIGENT ELECTRONICS CO.,LTD.", 0xF5E),
+
+  /// The manufacturer identifier for Leapcraft ApS
+  leapcraftAps("Leapcraft ApS", 0xF5D),
+
+  /// The manufacturer identifier for Micro Technology Services, Inc.
+  microTechnologyServicesInc("Micro Technology Services, Inc.", 0xF5C),
+
+  /// The manufacturer identifier for shanghai fudan electronics group company Co. Ltd
+  shanghaiFudanElectronicsGroupCompanyCoLtd(
+      "shanghai fudan electronics group company Co. Ltd", 0xF5B),
+
+  /// The manufacturer identifier for Vibe Energy B.V.
+  vibeEnergyBV("Vibe Energy B.V.", 0xF5A),
+
+  /// The manufacturer identifier for Silicon Vandals PTY LTD
+  siliconVandalsPtyLtd("Silicon Vandals PTY LTD", 0xF59),
+
+  /// The manufacturer identifier for Shenzhen Guo-link Technology Co.,Ltd.
+  shenzhenGuoLinkTechnologyCoLtd(
+      "Shenzhen Guo-link Technology Co.,Ltd.", 0xF58),
+
+  /// The manufacturer identifier for Silverlake Technologies
+  silverlakeTechnologies("Silverlake Technologies", 0xF57),
+
+  /// The manufacturer identifier for Astute Access Group Limited
+  astuteAccessGroupLimited("Astute Access Group Limited", 0xF56),
+
+  /// The manufacturer identifier for Sensoteq Ltd
+  sensoteqLtd("Sensoteq Ltd", 0xF55),
+
+  /// The manufacturer identifier for ContiTech Deutschland GmbH
+  contitechDeutschlandGmbh("ContiTech Deutschland GmbH", 0xF54),
+
+  /// The manufacturer identifier for Fledt & Meiton Marin AB
+  fledtAndMeitonMarinAb("Fledt & Meiton Marin AB", 0xF53),
+
+  /// The manufacturer identifier for Shenzhen Yunke Intelligent Co.Ltd
+  shenzhenYunkeIntelligentCoLtd("Shenzhen Yunke Intelligent Co.Ltd", 0xF52),
+
+  /// The manufacturer identifier for ebm-papst Mulfingen GmbH & Co. KGaA & Co. KG
+  ebmPapstMulfingenGmbhAndCoKgaaAndCoKg(
+      "ebm-papst Mulfingen GmbH & Co. KGaA & Co. KG", 0xF51),
+
+  /// The manufacturer identifier for Lantern Innovations Incorporated
+  lanternInnovationsIncorporated("Lantern Innovations Incorporated", 0xF50),
+
+  /// The manufacturer identifier for G-Vision GmbH
+  gVisionGmbh("G-Vision GmbH", 0xF4F),
+
+  /// The manufacturer identifier for Ningbo Dooya Mechanic & Electronic Technology Co., Ltd
+  ningboDooyaMechanicAndElectronicTechnologyCoLtd(
+      "Ningbo Dooya Mechanic & Electronic Technology Co., Ltd", 0xF4E),
+
+  /// The manufacturer identifier for Qulinda AB
+  qulindaAb("Qulinda AB", 0xF4D),
+
+  /// The manufacturer identifier for JL WORLD CORPORATION LIMITED
+  jlWorldCorporationLimited("JL WORLD CORPORATION LIMITED", 0xF4C),
+
+  /// The manufacturer identifier for desamisCo.,Ltd.
+  desamiscoLtd("desamisCo.,Ltd.", 0xF4B),
+
+  /// The manufacturer identifier for Mitsubishi Motors Corporation
+  mitsubishiMotorsCorporation("Mitsubishi Motors Corporation", 0xF4A),
+
+  /// The manufacturer identifier for IYO INC.
+  iyoInc("IYO INC.", 0xF49),
+
+  /// The manufacturer identifier for Shenzhen Xinfeiyi Technology Co., Ltd.
+  shenzhenXinfeiyiTechnologyCoLtd(
+      "Shenzhen Xinfeiyi Technology Co., Ltd.", 0xF48),
+
+  /// The manufacturer identifier for Lodestar Technology Inc.
+  lodestarTechnologyInc("Lodestar Technology Inc.", 0xF47),
+
+  /// The manufacturer identifier for Huizhou Meicanxin Electronics Technology Co.,Ltd
+  huizhouMeicanxinElectronicsTechnologyCoLtd(
+      "Huizhou Meicanxin Electronics Technology Co.,Ltd", 0xF46),
+
+  /// The manufacturer identifier for Tactica Defense LLC
+  tacticaDefenseLlc("Tactica Defense LLC", 0xF45),
+
+  /// The manufacturer identifier for MAVERICK ENERGY SOLUTIONS INTERNATIONAL,INC
+  maverickEnergySolutionsInternationalInc(
+      "MAVERICK ENERGY SOLUTIONS INTERNATIONAL,INC", 0xF44),
+
+  /// The manufacturer identifier for 12mm Health Technology (Hainan) Co., Ltd.
+  twelveMmHealthTechnologyHainanCoLtd(
+      "12mm Health Technology (Hainan) Co., Ltd.", 0xF43),
+
+  /// The manufacturer identifier for LINKEDCHIP TECHNOLOGY INC
+  linkedchipTechnologyInc("LINKEDCHIP TECHNOLOGY INC", 0xF42),
+
+  /// The manufacturer identifier for BONX INC.
+  bonxInc("BONX INC.", 0xF41),
+
+  /// The manufacturer identifier for Health Data Insight C.I.C.
+  healthDataInsightCIC("Health Data Insight C.I.C.", 0xF40),
+
+  /// The manufacturer identifier for Landig + Lava GmbH & Co. KG
+  landigLavaGmbhAndCoKg("Landig + Lava GmbH & Co. KG", 0xF3F),
+
+  /// The manufacturer identifier for Salyx Medical Inc.
+  salyxMedicalInc("Salyx Medical Inc.", 0xF3E),
+
+  /// The manufacturer identifier for Vitio Medical S.L.
+  vitioMedicalSL("Vitio Medical S.L.", 0xF3D),
+
+  /// The manufacturer identifier for Mobile Technology Solutions LLC
+  mobileTechnologySolutionsLlc("Mobile Technology Solutions LLC", 0xF3C),
+
+  /// The manufacturer identifier for SANWA NEWTEC CO.,LTD.
+  sanwaNewtecCoLtd("SANWA NEWTEC CO.,LTD.", 0xF3B),
+
+  /// The manufacturer identifier for Southern Audio Services, Inc
+  southernAudioServicesInc("Southern Audio Services, Inc", 0xF3A),
+
+  /// The manufacturer identifier for Seitron Spa
+  seitronSpa("Seitron Spa", 0xF39),
+
+  /// The manufacturer identifier for GILL INSTRUMENTS LIMITED
+  gillInstrumentsLimited("GILL INSTRUMENTS LIMITED", 0xF38),
+
+  /// The manufacturer identifier for Schueco International KG
+  schuecoInternationalKg("Schueco International KG", 0xF37),
+
+  /// The manufacturer identifier for NODER Joint Stock Company
+  noderJointStockCompany("NODER Joint Stock Company", 0xF36),
+
   /// The manufacturer identifier for Audeze LLC
   audezeLlc("Audeze LLC", 0xF35),
 
@@ -1136,7 +1286,11 @@ enum BluetoothDefaultManufacturerIdentifiers {
   globalSatelliteEngineering("Global Satellite Engineering", 0xDD3),
 
   /// The manufacturer identifier for Sitecom Europe B.V.
+  @Deprecated("Identifier has been renamed; use freshNRebelBV instead")
   sitecomEuropeBV("Sitecom Europe B.V.", 0xDD2),
+
+  /// The manufacturer identifier for Fresh n Rebel B.V.
+  freshNRebelBV("Fresh n Rebel B.V.", 0xDD2),
 
   /// The manufacturer identifier for OrangeMicro Limited
   orangemicroLimited("OrangeMicro Limited", 0xDD1),
@@ -3752,7 +3906,11 @@ enum BluetoothDefaultManufacturerIdentifiers {
   hainbuchGmbhSpannendeTechnik("HAINBUCH GMBH SPANNENDE TECHNIK", 0xA8A),
 
   /// The manufacturer identifier for SES-Imagotag
+  @Deprecated("Identifier has been renamed; use vusiongroup instead")
   sesImagotag("SES-Imagotag", 0xA89),
+
+  /// The manufacturer identifier for VusionGroup
+  vusiongroup("VusionGroup", 0xA89),
 
   /// The manufacturer identifier for PSA Peugeot Citroen
   psaPeugeotCitroen("PSA Peugeot Citroen", 0xA88),
@@ -10260,6 +10418,7 @@ enum BluetoothDefaultManufacturerIdentifiers {
   masimoCorp("Masimo Corp", 0x243),
 
   /// The manufacturer identifier for 16Lab Inc
+  @Deprecated("Identifier no longer exists in the Bluetooth spec")
   sixteenLabInc("16Lab Inc", 0x242),
 
   /// The manufacturer identifier for Bragi GmbH
@@ -12048,6 +12207,53 @@ enum BluetoothDefaultManufacturerIdentifiers {
   /// All non-deprecated manufacturer identifiers
   static const List<BluetoothDefaultManufacturerIdentifiers>
       manufacturerIdentifiers = [
+    safenowGmbh,
+    watterInc,
+    kehwinTechnologiesCoLtd,
+    hyolimxeCoLtd,
+    quiltSystemsInc,
+    robsonSrl,
+    wuxiWeidaIntelligentElectronicsCoLtd,
+    leapcraftAps,
+    microTechnologyServicesInc,
+    shanghaiFudanElectronicsGroupCompanyCoLtd,
+    vibeEnergyBV,
+    siliconVandalsPtyLtd,
+    shenzhenGuoLinkTechnologyCoLtd,
+    silverlakeTechnologies,
+    astuteAccessGroupLimited,
+    sensoteqLtd,
+    contitechDeutschlandGmbh,
+    fledtAndMeitonMarinAb,
+    shenzhenYunkeIntelligentCoLtd,
+    ebmPapstMulfingenGmbhAndCoKgaaAndCoKg,
+    lanternInnovationsIncorporated,
+    gVisionGmbh,
+    ningboDooyaMechanicAndElectronicTechnologyCoLtd,
+    qulindaAb,
+    jlWorldCorporationLimited,
+    desamiscoLtd,
+    mitsubishiMotorsCorporation,
+    iyoInc,
+    shenzhenXinfeiyiTechnologyCoLtd,
+    lodestarTechnologyInc,
+    huizhouMeicanxinElectronicsTechnologyCoLtd,
+    tacticaDefenseLlc,
+    maverickEnergySolutionsInternationalInc,
+    twelveMmHealthTechnologyHainanCoLtd,
+    linkedchipTechnologyInc,
+    bonxInc,
+    healthDataInsightCIC,
+    landigLavaGmbhAndCoKg,
+    salyxMedicalInc,
+    vitioMedicalSL,
+    mobileTechnologySolutionsLlc,
+    sanwaNewtecCoLtd,
+    southernAudioServicesInc,
+    seitronSpa,
+    gillInstrumentsLimited,
+    schuecoInternationalKg,
+    noderJointStockCompany,
     audezeLlc,
     ningboSharkwardElectronicsCoLtd,
     tetnet,
@@ -12403,7 +12609,7 @@ enum BluetoothDefaultManufacturerIdentifiers {
     beepings,
     koqoonGmbhAndCoKg,
     globalSatelliteEngineering,
-    sitecomEuropeBV,
+    freshNRebelBV,
     orangemicroLimited,
     esnah,
     kubuSmartLimited,
@@ -13243,7 +13449,7 @@ enum BluetoothDefaultManufacturerIdentifiers {
     delpsysSRO,
     sanlightGmbh,
     hainbuchGmbhSpannendeTechnik,
-    sesImagotag,
+    vusiongroup,
     psaPeugeotCitroen,
     shanghaiSmartSystemTechnologyCoLtd,
     alizentInternational,
@@ -15360,7 +15566,6 @@ enum BluetoothDefaultManufacturerIdentifiers {
     endressHauser,
     ioteraInc,
     masimoCorp,
-    sixteenLabInc,
     bragiGmbh,
     argenoxTechnologies,
     wavewareTechnologiesInc,
@@ -15946,10 +16151,13 @@ enum BluetoothDefaultManufacturerIdentifiers {
       "This contains all deprecated manufacturer identifiers and should thus not be relied on")
   static const List<BluetoothDefaultManufacturerIdentifiers>
       deprecatedManufacturerIdentifiers = [
+    sitecomEuropeBV,
     hondaLockMfgCoLtd,
+    sesImagotag,
     zoundIndustriesInternationalAb,
     rcpSoftwareOy,
     actionsZhuhaiTechnologyCoLimited,
+    sixteenLabInc,
     wwwVtracksystemsCom,
     dialogSemiconductorBV,
     gnAudioAS
