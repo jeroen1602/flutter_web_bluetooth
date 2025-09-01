@@ -16,15 +16,19 @@ import "package:yaml/yaml.dart";
 /// Get the latest Service and Characteristics UUIDs and generate default enums.
 ///
 Future<void> generateDefaultUUIDs() async {
-  final defaultUUIDSFile = normalize(joinAll([
-    dirname(Platform.script.path),
-    "../lib/src/bluetooth_default_uuids.dart"
-  ]));
+  final defaultUUIDSFile = normalize(
+    joinAll([
+      dirname(Platform.script.path),
+      "../lib/src/bluetooth_default_uuids.dart",
+    ]),
+  );
 
   final serviceUUIDSUri = Uri.parse(
-      "https://bitbucket.org/bluetooth-SIG/public/raw/main/assigned_numbers/uuids/service_uuids.yaml");
+    "https://bitbucket.org/bluetooth-SIG/public/raw/main/assigned_numbers/uuids/service_uuids.yaml",
+  );
   final characteristicUUIDSUri = Uri.parse(
-      "https://bitbucket.org/bluetooth-SIG/public/raw/main/assigned_numbers/uuids/characteristic_uuids.yaml");
+    "https://bitbucket.org/bluetooth-SIG/public/raw/main/assigned_numbers/uuids/characteristic_uuids.yaml",
+  );
 
   // final serviceUUIDSFile = File(normalize(
   //     joinAll([dirname(Platform.script.path), "./service_uuids.yaml"])));
@@ -32,8 +36,9 @@ Future<void> generateDefaultUUIDs() async {
   //     joinAll([dirname(Platform.script.path), "./characteristic_uuids.yaml"])));
 
   final services = await _getCurrentBluetoothUUIDS(serviceUUIDSUri);
-  final characteristics =
-      await _getCurrentBluetoothUUIDS(characteristicUUIDSUri);
+  final characteristics = await _getCurrentBluetoothUUIDS(
+    characteristicUUIDSUri,
+  );
   services.sort();
   characteristics.sort();
 
@@ -42,9 +47,10 @@ Future<void> generateDefaultUUIDs() async {
 
   final deprecatedServices = existingServices
       .where((final x) {
-        final found = services
-            .cast<_BluetoothUUID?>()
-            .firstWhere((final y) => y?.uuid16 == x.uuid16, orElse: () => null);
+        final found = services.cast<_BluetoothUUID?>().firstWhere(
+          (final y) => y?.uuid16 == x.uuid16,
+          orElse: () => null,
+        );
         if (found == null) {
           return true;
         }
@@ -56,23 +62,26 @@ Future<void> generateDefaultUUIDs() async {
 
   final deprecatedCharacteristics = existingCharacteristics
       .where((final x) {
-        final found = characteristics
-            .cast<_BluetoothUUID?>()
-            .firstWhere((final y) => y?.uuid16 == x.uuid16, orElse: () => null);
+        final found = characteristics.cast<_BluetoothUUID?>().firstWhere(
+          (final y) => y?.uuid16 == x.uuid16,
+          orElse: () => null,
+        );
         if (found == null) {
           return true;
         }
         return found.variableName != x.variableName;
       })
-      .map((final x) =>
-          _DeprecatedBluetoothUUID.createFromUUID(x, characteristics))
+      .map(
+        (final x) =>
+            _DeprecatedBluetoothUUID.createFromUUID(x, characteristics),
+      )
       .toList(growable: false);
   deprecatedCharacteristics.sort();
 
   final totalServices = [...services, ...deprecatedServices];
   final totalCharacteristics = [
     ...characteristics,
-    ...deprecatedCharacteristics
+    ...deprecatedCharacteristics,
   ];
   totalServices.sort();
   totalCharacteristics.sort();
@@ -87,56 +96,64 @@ Future<void> generateDefaultUUIDs() async {
       "/// ignore: deprecated_member_use_from_same_package",
       "/// See: [deprecatedServices] for a list of all old deprecated services.",
     ])
-    ..values
-        .addAll(totalServices.map((final service) => EnumValue((final builder) {
-              builder
-                ..docs.add("/// The default service for ${service.name}")
-                ..name = service.variableName
-                ..arguments.addAll([
-                  literalStringDouble(service.name),
-                  literalStringDouble(service.uuid16),
-                  literalStringDouble(service.uuid),
-                  literalStringDouble(service.id)
-                ]);
+    ..values.addAll(
+      totalServices.map(
+        (final service) => EnumValue((final builder) {
+          builder
+            ..docs.add("/// The default service for ${service.name}")
+            ..name = service.variableName
+            ..arguments.addAll([
+              literalStringDouble(service.name),
+              literalStringDouble(service.uuid16),
+              literalStringDouble(service.uuid),
+              literalStringDouble(service.id),
+            ]);
 
-              if (service is _DeprecatedBluetoothUUID) {
-                builder.annotations.add(refer("Deprecated")
-                    .call([literalStringDouble(service.deprecationMessage)]));
-              }
-            })))
-    ..constructors.add(Constructor((final builder) {
-      builder
-        ..constant = true
-        ..docs.addAll([
-          "///",
-          "/// A service UUID consists of a human readable name of the service,",
-          "/// its uuid represented as a 16 bit uuid and a full 128 bit uuid,",
-          "/// and the id assigned by the Bluetooth SIG",
-          "///",
-        ])
-        ..requiredParameters.addAll([
-          Parameter((final builder) {
-            builder
-              ..name = "name"
-              ..toThis = true;
-          }),
-          Parameter((final builder) {
-            builder
-              ..name = "uuid16"
-              ..toThis = true;
-          }),
-          Parameter((final builder) {
-            builder
-              ..name = "uuid"
-              ..toThis = true;
-          }),
-          Parameter((final builder) {
-            builder
-              ..name = "id"
-              ..toThis = true;
-          }),
-        ]);
-    }))
+          if (service is _DeprecatedBluetoothUUID) {
+            builder.annotations.add(
+              refer(
+                "Deprecated",
+              ).call([literalStringDouble(service.deprecationMessage)]),
+            );
+          }
+        }),
+      ),
+    )
+    ..constructors.add(
+      Constructor((final builder) {
+        builder
+          ..constant = true
+          ..docs.addAll([
+            "///",
+            "/// A service UUID consists of a human readable name of the service,",
+            "/// its uuid represented as a 16 bit uuid and a full 128 bit uuid,",
+            "/// and the id assigned by the Bluetooth SIG",
+            "///",
+          ])
+          ..requiredParameters.addAll([
+            Parameter((final builder) {
+              builder
+                ..name = "name"
+                ..toThis = true;
+            }),
+            Parameter((final builder) {
+              builder
+                ..name = "uuid16"
+                ..toThis = true;
+            }),
+            Parameter((final builder) {
+              builder
+                ..name = "uuid"
+                ..toThis = true;
+            }),
+            Parameter((final builder) {
+              builder
+                ..name = "id"
+                ..toThis = true;
+            }),
+          ]);
+      }),
+    )
     ..fields.addAll([
       Field((final builder) {
         builder
@@ -174,21 +191,26 @@ Future<void> generateDefaultUUIDs() async {
           ..name = "services"
           ..modifier = FieldModifier.constant
           ..assignment = Code(
-              "[\n${services.map((final x) => x.variableName).join(",\n")}\n]");
+            "[\n${services.map((final x) => x.variableName).join(",\n")}\n]",
+          );
       }),
       Field((final builder) {
         builder
           ..docs.add("/// All deprecated characteristics.")
           ..type = const Reference("List<BluetoothDefaultServiceUUIDS>")
           ..static = true
-          ..annotations.add(refer("Deprecated").call([
-            literalStringDouble(
-                "This contains all deprecated services and should thus not be relied on")
-          ]))
+          ..annotations.add(
+            refer("Deprecated").call([
+              literalStringDouble(
+                "This contains all deprecated services and should thus not be relied on",
+              ),
+            ]),
+          )
           ..name = "deprecatedServices"
           ..modifier = FieldModifier.constant
           ..assignment = Code(
-              "[\n${deprecatedServices.map((final x) => x.variableName).join(",\n")}\n]");
+            "[\n${deprecatedServices.map((final x) => x.variableName).join(",\n")}\n]",
+          );
       }),
     ]);
   final servicesEnum = servicesEnumBuilder.build();
@@ -203,57 +225,66 @@ Future<void> generateDefaultUUIDs() async {
       "/// ignore: deprecated_member_use_from_same_package",
       "/// See: [deprecatedCharacteristics] for a list of all old deprecated characteristics.",
     ])
-    ..values.addAll(totalCharacteristics
-        .map((final characteristic) => EnumValue((final builder) {
-              builder
-                ..docs.add(
-                    "/// The default characteristic for ${characteristic.name}")
-                ..name = characteristic.variableName
-                ..arguments.addAll([
-                  literalStringDouble(characteristic.name),
-                  literalStringDouble(characteristic.uuid16),
-                  literalStringDouble(characteristic.uuid),
-                  literalStringDouble(characteristic.id)
-                ]);
+    ..values.addAll(
+      totalCharacteristics.map(
+        (final characteristic) => EnumValue((final builder) {
+          builder
+            ..docs.add(
+              "/// The default characteristic for ${characteristic.name}",
+            )
+            ..name = characteristic.variableName
+            ..arguments.addAll([
+              literalStringDouble(characteristic.name),
+              literalStringDouble(characteristic.uuid16),
+              literalStringDouble(characteristic.uuid),
+              literalStringDouble(characteristic.id),
+            ]);
 
-              if (characteristic is _DeprecatedBluetoothUUID) {
-                builder.annotations.add(refer("Deprecated").call(
-                    [literalStringDouble(characteristic.deprecationMessage)]));
-              }
-            })))
-    ..constructors.add(Constructor((final builder) {
-      builder
-        ..constant = true
-        ..docs.addAll([
-          "///",
-          "/// A characteristic UUID consists of a human readable name of the characteristic,",
-          "/// its uuid represented as a 16 bit uuid and a full 128 bit uuid,",
-          "/// and the id assigned by the Bluetooth SIG",
-          "///",
-        ])
-        ..requiredParameters.addAll([
-          Parameter((final builder) {
-            builder
-              ..name = "name"
-              ..toThis = true;
-          }),
-          Parameter((final builder) {
-            builder
-              ..name = "uuid16"
-              ..toThis = true;
-          }),
-          Parameter((final builder) {
-            builder
-              ..name = "uuid"
-              ..toThis = true;
-          }),
-          Parameter((final builder) {
-            builder
-              ..name = "id"
-              ..toThis = true;
-          }),
-        ]);
-    }))
+          if (characteristic is _DeprecatedBluetoothUUID) {
+            builder.annotations.add(
+              refer(
+                "Deprecated",
+              ).call([literalStringDouble(characteristic.deprecationMessage)]),
+            );
+          }
+        }),
+      ),
+    )
+    ..constructors.add(
+      Constructor((final builder) {
+        builder
+          ..constant = true
+          ..docs.addAll([
+            "///",
+            "/// A characteristic UUID consists of a human readable name of the characteristic,",
+            "/// its uuid represented as a 16 bit uuid and a full 128 bit uuid,",
+            "/// and the id assigned by the Bluetooth SIG",
+            "///",
+          ])
+          ..requiredParameters.addAll([
+            Parameter((final builder) {
+              builder
+                ..name = "name"
+                ..toThis = true;
+            }),
+            Parameter((final builder) {
+              builder
+                ..name = "uuid16"
+                ..toThis = true;
+            }),
+            Parameter((final builder) {
+              builder
+                ..name = "uuid"
+                ..toThis = true;
+            }),
+            Parameter((final builder) {
+              builder
+                ..name = "id"
+                ..toThis = true;
+            }),
+          ]);
+      }),
+    )
     ..fields.addAll([
       Field((final builder) {
         builder
@@ -291,30 +322,32 @@ Future<void> generateDefaultUUIDs() async {
           ..name = "characteristics"
           ..modifier = FieldModifier.constant
           ..assignment = Code(
-              "[\n${characteristics.map((final x) => x.variableName).join(",\n")}\n]");
+            "[\n${characteristics.map((final x) => x.variableName).join(",\n")}\n]",
+          );
       }),
       Field((final builder) {
         builder
           ..docs.add("/// All deprecated characteristics.")
           ..type = const Reference("List<BluetoothDefaultCharacteristicUUIDS>")
           ..static = true
-          ..annotations.add(refer("Deprecated").call([
-            literalStringDouble(
-                "This contains all deprecated characteristics and should thus not be relied on")
-          ]))
+          ..annotations.add(
+            refer("Deprecated").call([
+              literalStringDouble(
+                "This contains all deprecated characteristics and should thus not be relied on",
+              ),
+            ]),
+          )
           ..name = "deprecatedCharacteristics"
           ..modifier = FieldModifier.constant
           ..assignment = Code(
-              "[\n${deprecatedCharacteristics.map((final x) => x.variableName).join(",\n")}\n]");
+            "[\n${deprecatedCharacteristics.map((final x) => x.variableName).join(",\n")}\n]",
+          );
       }),
     ]);
   final characteristicEnum = characteristicEnumBuilder.build();
 
   final libBuilder = LibraryBuilder();
-  libBuilder.body.addAll([
-    servicesEnum,
-    characteristicEnum,
-  ]);
+  libBuilder.body.addAll([servicesEnum, characteristicEnum]);
   final buildLibrary = libBuilder.build();
 
   final emitter = DartEmitter(useNullSafetySyntax: true);
@@ -333,15 +366,18 @@ ${buildLibrary.accept(emitter)}
   final outFile = File(defaultUUIDSFile);
   await outFile.create();
   await outFile.writeAsString(
-      DartFormatter(languageVersion: await getDartMinVersion())
-          .format(libraryCode));
+    DartFormatter(
+      languageVersion: await getDartMinVersion(),
+    ).format(libraryCode),
+  );
   // await outFile.writeAsString(libraryCode);
   // ignore: avoid_print
   print("Done");
 }
 
 Future<List<_BluetoothUUID>> _getCurrentBluetoothUUIDS(
-    final dynamic input) async {
+  final dynamic input,
+) async {
   final yaml = await loadYamlResource(input);
   final uuids = yaml["uuids"] as YamlList;
 
@@ -357,7 +393,12 @@ Future<List<_BluetoothUUID>> _getCurrentBluetoothUUIDS(
     final id = uuid["id"] as String;
 
     return _BluetoothUUID(
-        variableName, replaceReadableName(name), uuid16, uuid128, id);
+      variableName,
+      replaceReadableName(name),
+      uuid16,
+      uuid128,
+      id,
+    );
   });
 
   return parsedUUIDs;
@@ -365,19 +406,24 @@ Future<List<_BluetoothUUID>> _getCurrentBluetoothUUIDS(
 
 Future<(List<_BluetoothUUID>, List<_BluetoothUUID>)>
 // ignore: non_constant_identifier_names
-    _getCurrentServiceAndCharacteristicUUIDs(final String UUIDsFile) async {
+_getCurrentServiceAndCharacteristicUUIDs(final String UUIDsFile) async {
   final parsed = parseFile(
-      path: UUIDsFile, featureSet: FeatureSet.latestLanguageVersion());
+    path: UUIDsFile,
+    featureSet: FeatureSet.latestLanguageVersion(),
+  );
   final enums = parsed.unit.declarations.whereType<ast.EnumDeclaration>();
 
   final serviceEnum = enums.firstWhere(
-      (final x) => x.name.toString() == "BluetoothDefaultServiceUUIDS");
+    (final x) => x.name.toString() == "BluetoothDefaultServiceUUIDS",
+  );
   final characteristicEnum = enums.firstWhere(
-      (final x) => x.name.toString() == "BluetoothDefaultCharacteristicUUIDS");
+    (final x) => x.name.toString() == "BluetoothDefaultCharacteristicUUIDS",
+  );
 
   final List<_BluetoothUUID> services = _parseExistingAstEnum(serviceEnum);
-  final List<_BluetoothUUID> characteristics =
-      _parseExistingAstEnum(characteristicEnum);
+  final List<_BluetoothUUID> characteristics = _parseExistingAstEnum(
+    characteristicEnum,
+  );
 
   return (services, characteristics);
 }
@@ -392,8 +438,9 @@ List<_BluetoothUUID> _parseExistingAstEnum(final ast.EnumDeclaration astEnum) {
     final stringNameArgument = arguments?[0];
     final stringUUID16Argument = arguments?[1];
     final stringUUID128Argument = arguments?[2];
-    final stringIdArgument =
-        (arguments?.length ?? 0) > 3 ? (arguments?[3]) : null;
+    final stringIdArgument = (arguments?.length ?? 0) > 3
+        ? (arguments?[3])
+        : null;
 
     if (stringNameArgument is! ast.SimpleStringLiteral) {
       throw Error();
@@ -419,8 +466,15 @@ List<_BluetoothUUID> _parseExistingAstEnum(final ast.EnumDeclaration astEnum) {
       throw Error();
     }
 
-    output.add(_BluetoothUUID(
-        enumName, stringName, stringUUID16, stringUUID128, stringId ?? ""));
+    output.add(
+      _BluetoothUUID(
+        enumName,
+        stringName,
+        stringUUID16,
+        stringUUID128,
+        stringId ?? "",
+      ),
+    );
   }
 
   return output;
@@ -446,26 +500,43 @@ class _BluetoothUUID implements Comparable<_BluetoothUUID> {
 class _DeprecatedBluetoothUUID extends _BluetoothUUID {
   final String deprecationMessage;
 
-  _DeprecatedBluetoothUUID(this.deprecationMessage, super.variableName,
-      super.name, super.uuid16, super.uuid, super.id);
+  _DeprecatedBluetoothUUID(
+    this.deprecationMessage,
+    super.variableName,
+    super.name,
+    super.uuid16,
+    super.uuid,
+    super.id,
+  );
 
   factory _DeprecatedBluetoothUUID.createFromUUID(
-      final _BluetoothUUID deprecatedUUID,
-      final List<_BluetoothUUID> existingUUIDs) {
-    final (message, id) =
-        _generateDeprecationMessage(deprecatedUUID, existingUUIDs);
-    return _DeprecatedBluetoothUUID(message, deprecatedUUID.variableName,
-        deprecatedUUID.name, deprecatedUUID.uuid16, deprecatedUUID.uuid, id);
+    final _BluetoothUUID deprecatedUUID,
+    final List<_BluetoothUUID> existingUUIDs,
+  ) {
+    final (message, id) = _generateDeprecationMessage(
+      deprecatedUUID,
+      existingUUIDs,
+    );
+    return _DeprecatedBluetoothUUID(
+      message,
+      deprecatedUUID.variableName,
+      deprecatedUUID.name,
+      deprecatedUUID.uuid16,
+      deprecatedUUID.uuid,
+      id,
+    );
   }
 }
 
 (String, String) _generateDeprecationMessage(
-    final _BluetoothUUID deprecatedUUID,
-    final List<_BluetoothUUID> existingUUIDs) {
+  final _BluetoothUUID deprecatedUUID,
+  final List<_BluetoothUUID> existingUUIDs,
+) {
   var id = deprecatedUUID.id;
   final found = existingUUIDs.cast<_BluetoothUUID?>().firstWhere(
-      (final x) => x?.uuid16 == deprecatedUUID.uuid16,
-      orElse: () => null);
+    (final x) => x?.uuid16 == deprecatedUUID.uuid16,
+    orElse: () => null,
+  );
   if (found != null) {
     if (id == "") {
       id = found.id;

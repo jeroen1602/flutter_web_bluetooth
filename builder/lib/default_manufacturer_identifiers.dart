@@ -16,36 +16,46 @@ import "package:yaml/yaml.dart";
 /// Get the latest company identifiers and generate an enum
 ///
 Future<void> generateDefaultManufacturerIdentifiers() async {
-  final manufacturerIdentifiersFile = normalize(joinAll([
-    dirname(Platform.script.path),
-    "../lib/src/bluetooth_default_manufacturer_identifiers.dart"
-  ]));
+  final manufacturerIdentifiersFile = normalize(
+    joinAll([
+      dirname(Platform.script.path),
+      "../lib/src/bluetooth_default_manufacturer_identifiers.dart",
+    ]),
+  );
 
   final manufacturerIdentifiersUri = Uri.parse(
-      "https://bitbucket.org/bluetooth-SIG/public/raw/main/assigned_numbers/company_identifiers/company_identifiers.yaml");
+    "https://bitbucket.org/bluetooth-SIG/public/raw/main/assigned_numbers/company_identifiers/company_identifiers.yaml",
+  );
 
   // final localManufacturerIdentifiersFile = File(normalize(
   //     joinAll([dirname(Platform.script.path), "./company_identifiers.yaml"])));
 
-  final identifiers =
-      await _getCurrentCompanyIdentifier(manufacturerIdentifiersUri);
+  final identifiers = await _getCurrentCompanyIdentifier(
+    manufacturerIdentifiersUri,
+  );
   identifiers.sort();
 
-  final existingIdentifiers =
-      await _getExistingEnumConstants(manufacturerIdentifiersFile);
+  final existingIdentifiers = await _getExistingEnumConstants(
+    manufacturerIdentifiersFile,
+  );
 
   final deprecatedIdentifiers = existingIdentifiers
       .where((final x) {
         final found = identifiers.cast<_ManufacturerIdentifier?>().firstWhere(
-            (final y) => y?.identifier == x.identifier,
-            orElse: () => null);
+          (final y) => y?.identifier == x.identifier,
+          orElse: () => null,
+        );
         if (found == null) {
           return true;
         }
         return found.variableName != x.variableName;
       })
-      .map((final x) => _DeprecatedManufacturerIdentifier.createFromIdentifier(
-          x, identifiers))
+      .map(
+        (final x) => _DeprecatedManufacturerIdentifier.createFromIdentifier(
+          x,
+          identifiers,
+        ),
+      )
       .toList(growable: false);
   deprecatedIdentifiers.sort();
 
@@ -64,8 +74,9 @@ Future<void> generateDefaultManufacturerIdentifiers() async {
       "/// ignore: deprecated_member_use_from_same_package",
       "/// See: [deprecatedManufacturerIdentifiers] for a list of all old deprecated identifiers.",
     ])
-    ..values.addAll(totalIdentifiers.map((final identifier) =>
-        EnumValue((final builder) {
+    ..values.addAll(
+      totalIdentifiers.map(
+        (final identifier) => EnumValue((final builder) {
           builder
             ..docs.add("/// The manufacturer identifier for ${identifier.name}")
             ..name = identifier.variableName
@@ -75,32 +86,39 @@ Future<void> generateDefaultManufacturerIdentifiers() async {
             ]);
 
           if (identifier is _DeprecatedManufacturerIdentifier) {
-            builder.annotations.add(refer("Deprecated")
-                .call([literalStringDouble(identifier.deprecationMessage)]));
+            builder.annotations.add(
+              refer(
+                "Deprecated",
+              ).call([literalStringDouble(identifier.deprecationMessage)]),
+            );
           }
-        })))
-    ..constructors.add(Constructor((final builder) {
-      builder
-        ..constant = true
-        ..docs.addAll([
-          "///",
-          "/// A manufacturer identifier consists of a human readable name as well as",
-          "/// the manufacturer's identifier",
-          "///"
-        ])
-        ..requiredParameters.addAll([
-          Parameter((final builder) {
-            builder
-              ..name = "name"
-              ..toThis = true;
-          }),
-          Parameter((final builder) {
-            builder
-              ..name = "identifier"
-              ..toThis = true;
-          }),
-        ]);
-    }))
+        }),
+      ),
+    )
+    ..constructors.add(
+      Constructor((final builder) {
+        builder
+          ..constant = true
+          ..docs.addAll([
+            "///",
+            "/// A manufacturer identifier consists of a human readable name as well as",
+            "/// the manufacturer's identifier",
+            "///",
+          ])
+          ..requiredParameters.addAll([
+            Parameter((final builder) {
+              builder
+                ..name = "name"
+                ..toThis = true;
+            }),
+            Parameter((final builder) {
+              builder
+                ..name = "identifier"
+                ..toThis = true;
+            }),
+          ]);
+      }),
+    )
     ..fields.addAll([
       Field((final builder) {
         builder
@@ -119,28 +137,35 @@ Future<void> generateDefaultManufacturerIdentifiers() async {
       Field((final builder) {
         builder
           ..docs.add("/// All non-deprecated manufacturer identifiers")
-          ..type =
-              const Reference("List<BluetoothDefaultManufacturerIdentifiers>")
+          ..type = const Reference(
+            "List<BluetoothDefaultManufacturerIdentifiers>",
+          )
           ..static = true
           ..name = "manufacturerIdentifiers"
           ..modifier = FieldModifier.constant
           ..assignment = Code(
-              "[\n${identifiers.map((final x) => x.variableName).join(",\n")}\n]");
+            "[\n${identifiers.map((final x) => x.variableName).join(",\n")}\n]",
+          );
       }),
       Field((final builder) {
         builder
           ..docs.add("/// All deprecated manufacturer identifiers")
-          ..type =
-              const Reference("List<BluetoothDefaultManufacturerIdentifiers>")
+          ..type = const Reference(
+            "List<BluetoothDefaultManufacturerIdentifiers>",
+          )
           ..static = true
-          ..annotations.add(refer("Deprecated").call([
-            literalStringDouble(
-                "This contains all deprecated manufacturer identifiers and should thus not be relied on")
-          ]))
+          ..annotations.add(
+            refer("Deprecated").call([
+              literalStringDouble(
+                "This contains all deprecated manufacturer identifiers and should thus not be relied on",
+              ),
+            ]),
+          )
           ..name = "deprecatedManufacturerIdentifiers"
           ..modifier = FieldModifier.constant
           ..assignment = Code(
-              "[\n${deprecatedIdentifiers.map((final x) => x.variableName).join(",\n")}\n]");
+            "[\n${deprecatedIdentifiers.map((final x) => x.variableName).join(",\n")}\n]",
+          );
       }),
     ]);
 
@@ -164,14 +189,17 @@ ${buildLibrary.accept(emitter)}
   final outFile = File(manufacturerIdentifiersFile);
   await outFile.create();
   await outFile.writeAsString(
-      DartFormatter(languageVersion: await getDartMinVersion())
-          .format(libraryCode));
+    DartFormatter(
+      languageVersion: await getDartMinVersion(),
+    ).format(libraryCode),
+  );
   // ignore: avoid_print
   print("Done");
 }
 
 Future<List<_ManufacturerIdentifier>> _getCurrentCompanyIdentifier(
-    final dynamic input) async {
+  final dynamic input,
+) async {
   final yaml = await loadYamlResource(input);
 
   final identifiers = yaml["company_identifiers"] as YamlList;
@@ -185,22 +213,26 @@ Future<List<_ManufacturerIdentifier>> _getCurrentCompanyIdentifier(
   });
 
   updateDuplicates<_ManufacturerIdentifier>(
-      parsedIdentifiers,
-      (final identifier) => identifier.variableName,
-      (final identifier, final newName) => identifier.variableName = newName);
+    parsedIdentifiers,
+    (final identifier) => identifier.variableName,
+    (final identifier, final newName) => identifier.variableName = newName,
+  );
 
   return parsedIdentifiers;
 }
 
 Future<List<_ManufacturerIdentifier>> _getExistingEnumConstants(
-    final String manufacturerIdentifiersFile) async {
+  final String manufacturerIdentifiersFile,
+) async {
   final output = <_ManufacturerIdentifier>[];
 
   final parsed = parseFile(
-      path: manufacturerIdentifiersFile,
-      featureSet: FeatureSet.latestLanguageVersion());
-  final manufacturerEnum = parsed.unit.declarations
-      .firstWhere((final x) => x is ast.EnumDeclaration) as ast.EnumDeclaration;
+    path: manufacturerIdentifiersFile,
+    featureSet: FeatureSet.latestLanguageVersion(),
+  );
+  final manufacturerEnum =
+      parsed.unit.declarations.firstWhere((final x) => x is ast.EnumDeclaration)
+          as ast.EnumDeclaration;
 
   if (manufacturerEnum.name.toString() !=
       "BluetoothDefaultManufacturerIdentifiers") {
@@ -233,16 +265,27 @@ Future<List<_ManufacturerIdentifier>> _getExistingEnumConstants(
 class _DeprecatedManufacturerIdentifier extends _ManufacturerIdentifier {
   final String deprecationMessage;
 
-  _DeprecatedManufacturerIdentifier(this.deprecationMessage, super.name,
-      super.variableName, super.identifier);
+  _DeprecatedManufacturerIdentifier(
+    this.deprecationMessage,
+    super.name,
+    super.variableName,
+    super.identifier,
+  );
 
   factory _DeprecatedManufacturerIdentifier.createFromIdentifier(
-      final _ManufacturerIdentifier deprecatedIdentifier,
-      final List<_ManufacturerIdentifier> existingIdentifiers) {
-    final message =
-        _generateDeprecationMessage(deprecatedIdentifier, existingIdentifiers);
-    return _DeprecatedManufacturerIdentifier(message, deprecatedIdentifier.name,
-        deprecatedIdentifier.variableName, deprecatedIdentifier.identifier);
+    final _ManufacturerIdentifier deprecatedIdentifier,
+    final List<_ManufacturerIdentifier> existingIdentifiers,
+  ) {
+    final message = _generateDeprecationMessage(
+      deprecatedIdentifier,
+      existingIdentifiers,
+    );
+    return _DeprecatedManufacturerIdentifier(
+      message,
+      deprecatedIdentifier.name,
+      deprecatedIdentifier.variableName,
+      deprecatedIdentifier.identifier,
+    );
   }
 }
 
@@ -259,11 +302,13 @@ class _ManufacturerIdentifier implements Comparable<_ManufacturerIdentifier> {
 }
 
 String _generateDeprecationMessage(
-    final _ManufacturerIdentifier deprecatedIdentifier,
-    final List<_ManufacturerIdentifier> existingIdentifiers) {
+  final _ManufacturerIdentifier deprecatedIdentifier,
+  final List<_ManufacturerIdentifier> existingIdentifiers,
+) {
   final found = existingIdentifiers.cast<_ManufacturerIdentifier?>().firstWhere(
-      (final x) => x?.identifier == deprecatedIdentifier.identifier,
-      orElse: () => null);
+    (final x) => x?.identifier == deprecatedIdentifier.identifier,
+    orElse: () => null,
+  );
   if (found != null) {
     return "Identifier has been renamed; use ${found.variableName} instead";
   }

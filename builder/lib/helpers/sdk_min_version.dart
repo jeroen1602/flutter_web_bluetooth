@@ -11,7 +11,8 @@ import "package:pub_semver/pub_semver.dart";
 ///
 Future<Version> getDartMinVersion() async {
   final pubSpectYamlFile = File(
-      normalize(joinAll([dirname(Platform.script.path), "../pubspec.yaml"])));
+    normalize(joinAll([dirname(Platform.script.path), "../pubspec.yaml"])),
+  );
 
   final pubSpectYaml = await loadYamlResource(pubSpectYamlFile);
 

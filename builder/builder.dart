@@ -7,10 +7,13 @@ import "package:flutter_web_bluetooth_builder/default_manufacturer_identifiers.d
 import "package:flutter_web_bluetooth_builder/default_uuids.dart";
 
 Future<void> main(final List<String> args) async {
-  final manufacturerIdRunner = CommandRunner(
-      "builder", "Generate enums based on Bluetooth assigned numbers")
-    ..addCommand(_ManufacturerIdentifierCommand())
-    ..addCommand(_DefaultUUIDSCommand());
+  final manufacturerIdRunner =
+      CommandRunner(
+          "builder",
+          "Generate enums based on Bluetooth assigned numbers",
+        )
+        ..addCommand(_ManufacturerIdentifierCommand())
+        ..addCommand(_DefaultUUIDSCommand());
 
   manufacturerIdRunner.run(args);
 }

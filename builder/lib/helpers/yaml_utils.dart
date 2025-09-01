@@ -23,8 +23,11 @@ Future<YamlMap> loadYamlResource(final dynamic input) async {
 ///
 /// Update the name of possible duplicates in a list
 ///
-void updateDuplicates<T>(final List<T> input, final String Function(T) getName,
-    final void Function(T, String) setName) {
+void updateDuplicates<T>(
+  final List<T> input,
+  final String Function(T) getName,
+  final void Function(T, String) setName,
+) {
   for (var i = 0; i < input.length; i++) {
     final foundIndex = [i];
     final name = getName(input[i]);

@@ -7,12 +7,15 @@ import "package:code_builder/code_builder.dart";
 ///
 LiteralExpression literalHex(final int input) {
   final mirror = reflectClass(LiteralExpression);
-  final entry = mirror.declarations.entries.firstWhere((final x) =>
-      x.value is MethodMirror && (x.value as MethodMirror).isConstructor);
+  final entry = mirror.declarations.entries.firstWhere(
+    (final x) =>
+        x.value is MethodMirror && (x.value as MethodMirror).isConstructor,
+  );
   final constructor = entry.value as MethodMirror;
 
-  return mirror.newInstance(constructor.constructorName,
-      ["0x${input.toRadixString(16).toUpperCase()}"]).reflectee;
+  return mirror.newInstance(constructor.constructorName, [
+    "0x${input.toRadixString(16).toUpperCase()}",
+  ]).reflectee;
 }
 
 ///
@@ -21,10 +24,13 @@ LiteralExpression literalHex(final int input) {
 Expression literalStringDouble(final String value) {
   final escaped = value.replaceAll("\"", "\\\"").replaceAll("\n", "\\n");
   final mirror = reflectClass(LiteralExpression);
-  final entry = mirror.declarations.entries.firstWhere((final x) =>
-      x.value is MethodMirror && (x.value as MethodMirror).isConstructor);
+  final entry = mirror.declarations.entries.firstWhere(
+    (final x) =>
+        x.value is MethodMirror && (x.value as MethodMirror).isConstructor,
+  );
   final constructor = entry.value as MethodMirror;
 
-  return mirror
-      .newInstance(constructor.constructorName, ["\"$escaped\""]).reflectee;
+  return mirror.newInstance(constructor.constructorName, [
+    "\"$escaped\"",
+  ]).reflectee;
 }

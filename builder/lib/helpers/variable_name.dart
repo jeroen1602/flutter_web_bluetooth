@@ -38,15 +38,18 @@ String camelCaseName(final String name) {
     final newText = _nonAsciiMap[matchedText];
     if (newText == null) {
       throw UnimplementedError(
-          "Could not convert $matchedText to an ascii string");
+        "Could not convert $matchedText to an ascii string",
+      );
     }
     return newText;
   });
 
   final words = convertedName.split(" ");
   words.retainWhere((final element) => element.isNotEmpty);
-  return words.reduce((final value, final element) =>
-      "$value${element[0].toUpperCase()}${element.substring(1)}");
+  return words.reduce(
+    (final value, final element) =>
+        "$value${element[0].toUpperCase()}${element.substring(1)}",
+  );
 }
 
 /// Remove commands like \\textsubscript{2} for just 2
