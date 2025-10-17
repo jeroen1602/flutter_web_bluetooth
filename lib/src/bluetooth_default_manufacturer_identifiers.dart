@@ -11,6 +11,52 @@ part of flutter_web_bluetooth;
 /// ignore: deprecated_member_use_from_same_package
 /// See: [deprecatedManufacturerIdentifiers] for a list of all old deprecated identifiers.
 enum BluetoothDefaultManufacturerIdentifiers {
+  /// The manufacturer identifier for DEZINE GROUP LLC
+  dezineGroupLlc("DEZINE GROUP LLC", 0xF99),
+
+  /// The manufacturer identifier for Fitnexa Inc
+  fitnexaInc("Fitnexa Inc", 0xF98),
+
+  /// The manufacturer identifier for SPX Aids to Navigation Oy
+  spxAidsToNavigationOy("SPX Aids to Navigation Oy", 0xF97),
+
+  /// The manufacturer identifier for SEIKOIST, INC
+  seikoistInc("SEIKOIST, INC", 0xF96),
+
+  /// The manufacturer identifier for Huasoo Automation Technology Company Limited
+  huasooAutomationTechnologyCompanyLimited(
+      "Huasoo Automation Technology Company Limited", 0xF95),
+
+  /// The manufacturer identifier for IDX Company, Ltd.
+  idxCompanyLtd("IDX Company, Ltd.", 0xF94),
+
+  /// The manufacturer identifier for Aktiebolaget Ebeco
+  aktiebolagetEbeco("Aktiebolaget Ebeco", 0xF93),
+
+  /// The manufacturer identifier for Ethos Group, Inc.
+  ethosGroupInc("Ethos Group, Inc.", 0xF92),
+
+  /// The manufacturer identifier for Valostra Digital Ventures LLP
+  valostraDigitalVenturesLlp("Valostra Digital Ventures LLP", 0xF91),
+
+  /// The manufacturer identifier for MOBI7 TECNOLOGIA EM MOBILIDADE S.A.
+  mobi7TecnologiaEmMobilidadeSA("MOBI7 TECNOLOGIA EM MOBILIDADE S.A.", 0xF90),
+
+  /// The manufacturer identifier for SIGNUM INTELLIGENCE LTD
+  signumIntelligenceLtd("SIGNUM INTELLIGENCE LTD", 0xF8F),
+
+  /// The manufacturer identifier for Biceek Inc
+  biceekInc("Biceek Inc", 0xF8E),
+
+  /// The manufacturer identifier for JUREN CO., LTD.
+  jurenCoLtd("JUREN CO., LTD.", 0xF8D),
+
+  /// The manufacturer identifier for ROYAL PARTS CO.,LTD
+  royalPartsCoLtd("ROYAL PARTS CO.,LTD", 0xF8C),
+
+  /// The manufacturer identifier for A.Y. McDonald Mfg. Co.
+  aYMcdonaldMfgCo("A.Y. McDonald Mfg. Co.", 0xF8B),
+
   /// The manufacturer identifier for Innogando S.L.
   innogandoSL("Innogando S.L.", 0xF8A),
 
@@ -486,6 +532,7 @@ enum BluetoothDefaultManufacturerIdentifiers {
   lsElectricCoLtd("LS ELECTRIC Co., Ltd.", 0xEF5),
 
   /// The manufacturer identifier for SEMINOLE ELECTRONICS PRIVATE LIMITED
+  @Deprecated("Identifier no longer exists in the Bluetooth spec")
   seminoleElectronicsPrivateLimited(
       "SEMINOLE ELECTRONICS PRIVATE LIMITED", 0xEF4),
 
@@ -2480,6 +2527,7 @@ enum BluetoothDefaultManufacturerIdentifiers {
   rochesterSensorsLlc("Rochester Sensors, LLC", 0xC7F),
 
   /// The manufacturer identifier for BOOMING OF THINGS
+  @Deprecated("Identifier no longer exists in the Bluetooth spec")
   boomingOfThings("BOOMING OF THINGS", 0xC7E),
 
   /// The manufacturer identifier for 3ALogics, Inc.
@@ -2555,6 +2603,7 @@ enum BluetoothDefaultManufacturerIdentifiers {
   tracktingSRL("TRACKTING S.R.L.", 0xC67),
 
   /// The manufacturer identifier for DEN Smart Home B.V.
+  @Deprecated("Identifier no longer exists in the Bluetooth spec")
   denSmartHomeBV("DEN Smart Home B.V.", 0xC66),
 
   /// The manufacturer identifier for WAKO CO,.LTD
@@ -2702,6 +2751,7 @@ enum BluetoothDefaultManufacturerIdentifiers {
   signalquestLlc("SignalQuest, LLC", 0xC37),
 
   /// The manufacturer identifier for Cosmicnode BV
+  @Deprecated("Identifier no longer exists in the Bluetooth spec")
   cosmicnodeBv("Cosmicnode BV", 0xC36),
 
   /// The manufacturer identifier for Thermokon-Sensortechnik GmbH
@@ -3078,6 +3128,7 @@ enum BluetoothDefaultManufacturerIdentifiers {
   saabAktiebolag("SAAB Aktiebolag", 0xBBE),
 
   /// The manufacturer identifier for ETHEORY PTY LTD
+  @Deprecated("Identifier no longer exists in the Bluetooth spec")
   etheoryPtyLtd("ETHEORY PTY LTD", 0xBBD),
 
   /// The manufacturer identifier for T2REALITY SOLUTIONS PRIVATE LIMITED
@@ -9221,6 +9272,7 @@ enum BluetoothDefaultManufacturerIdentifiers {
   uberTechnologiesInc("Uber Technologies Inc", 0x415),
 
   /// The manufacturer identifier for Lightning Protection International Pty Ltd
+  @Deprecated("Identifier no longer exists in the Bluetooth spec")
   lightningProtectionInternationalPtyLtd(
       "Lightning Protection International Pty Ltd", 0x414),
 
@@ -12480,6 +12532,21 @@ enum BluetoothDefaultManufacturerIdentifiers {
   /// All non-deprecated manufacturer identifiers
   static const List<BluetoothDefaultManufacturerIdentifiers>
       manufacturerIdentifiers = [
+    dezineGroupLlc,
+    fitnexaInc,
+    spxAidsToNavigationOy,
+    seikoistInc,
+    huasooAutomationTechnologyCompanyLimited,
+    idxCompanyLtd,
+    aktiebolagetEbeco,
+    ethosGroupInc,
+    valostraDigitalVenturesLlp,
+    mobi7TecnologiaEmMobilidadeSA,
+    signumIntelligenceLtd,
+    biceekInc,
+    jurenCoLtd,
+    royalPartsCoLtd,
+    aYMcdonaldMfgCo,
     innogandoSL,
     storeioTechnologiesLtd,
     kohlerVenturesInc,
@@ -12630,7 +12697,6 @@ enum BluetoothDefaultManufacturerIdentifiers {
     trackonomySystemsInc,
     shenzhenCyberInnovationTechnologyCoLtd,
     lsElectricCoLtd,
-    seminoleElectronicsPrivateLimited,
     monilAs,
     captainBlink,
     wuxiDoesIotCoLtd,
@@ -13251,7 +13317,6 @@ enum BluetoothDefaultManufacturerIdentifiers {
     carrierCorporation,
     cardioidTechnologiesLda,
     rochesterSensorsLlc,
-    boomingOfThings,
     threeAlogicsInc,
     mopekaProductsLlc,
     ptSadamayaGrahaTeknologi,
@@ -13274,7 +13339,6 @@ enum BluetoothDefaultManufacturerIdentifiers {
     blitzElectricMotorsLtd,
     emerjaCorporation,
     tracktingSRL,
-    denSmartHomeBV,
     wakoCoLtd,
     dormakabaHoldingAg,
     phgPeterHengstlerGmbhCoKg,
@@ -13321,7 +13385,6 @@ enum BluetoothDefaultManufacturerIdentifiers {
     tigerCorporation,
     noritzCorporation,
     signalquestLlc,
-    cosmicnodeBv,
     thermokonSensortechnikGmbh,
     bydCompanyLimited,
     exegerOperationsAb,
@@ -13438,7 +13501,6 @@ enum BluetoothDefaultManufacturerIdentifiers {
     readyForSkyLlp,
     himsaIiKS,
     saabAktiebolag,
-    etheoryPtyLtd,
     t2realitySolutionsPrivateLimited,
     swissinnoSolutionsAg,
     husoInc,
@@ -15311,7 +15373,6 @@ enum BluetoothDefaultManufacturerIdentifiers {
     novalogyLtd,
     fatigueScience,
     sodaGmbh,
-    lightningProtectionInternationalPtyLtd,
     wirelessCablesInc,
     sefam,
     luidiaInc,
@@ -16311,6 +16372,7 @@ enum BluetoothDefaultManufacturerIdentifiers {
       "This contains all deprecated manufacturer identifiers and should thus not be relied on")
   static const List<BluetoothDefaultManufacturerIdentifiers>
       deprecatedManufacturerIdentifiers = [
+    seminoleElectronicsPrivateLimited,
     granchipIotTechnologyGuangzhouCoLtd,
     sitecomEuropeBV,
     linktop,
@@ -16320,12 +16382,16 @@ enum BluetoothDefaultManufacturerIdentifiers {
     bestsensAg,
     responseTechnologiesLtd,
     shanghaiProxyNetworkTechnologyCoLtd,
+    boomingOfThings,
     shenzhenGwellTimesTechnologyCoLtd,
+    denSmartHomeBV,
     equinosisLlc,
+    cosmicnodeBv,
     alioInc,
     erLabLlc,
     back40Precision,
     elicsBasisLtd,
+    etheoryPtyLtd,
     gisman,
     netwakeGmbh,
     shenzhenMalideTechnologyCoLtd,
@@ -16417,6 +16483,7 @@ enum BluetoothDefaultManufacturerIdentifiers {
     iprotoxiOy,
     delaval,
     uberTechnologiesInc,
+    lightningProtectionInternationalPtyLtd,
     airtago,
     flowscapeAb,
     actionsZhuhaiTechnologyCoLimited,
