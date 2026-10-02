@@ -37,7 +37,7 @@ class BluetoothDeviceState<D extends AdvertisementBluetoothDevice>
   }
 
   @override
-  Widget build(final BuildContext context) {
+  Widget build(BuildContext context) {
     final cursive = Theme.of(
       context,
     ).textTheme.bodyLarge?.copyWith(fontStyle: FontStyle.italic);
@@ -61,8 +61,8 @@ class BluetoothDeviceState<D extends AdvertisementBluetoothDevice>
                   initialData: false,
                   builder:
                       (
-                        final BuildContext context,
-                        final AsyncSnapshot<bool> snapshot,
+                        BuildContext context,
+                        AsyncSnapshot<bool> snapshot,
                       ) {
                         return Icon(
                           Icons.circle,

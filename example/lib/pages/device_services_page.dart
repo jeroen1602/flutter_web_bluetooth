@@ -27,7 +27,7 @@ class DeviceServicesState extends State<DeviceServicesPage> {
   }
 
   @override
-  Widget build(final BuildContext context) {
+  Widget build(BuildContext context) {
     const appbarHeight = 56.0;
     final height = max(
       0.0,

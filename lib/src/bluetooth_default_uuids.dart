@@ -447,7 +447,32 @@ enum BluetoothDefaultServiceUUIDS {
 
   /// The default service for HID ISO
   hidIso("HID ISO", "185c", "0000185c-0000-1000-8000-00805f9b34fb",
-      "org.bluetooth.service.hid_iso");
+      "org.bluetooth.service.hid_iso"),
+
+  /// The default service for Cookware
+  cookware("Cookware", "185d", "0000185d-0000-1000-8000-00805f9b34fb",
+      "org.bluetooth.service.cookware"),
+
+  /// The default service for Voice Assistant
+  voiceAssistant(
+      "Voice Assistant",
+      "185e",
+      "0000185e-0000-1000-8000-00805f9b34fb",
+      "org.bluetooth.service.voice_assistant"),
+
+  /// The default service for Generic Voice Assistant
+  genericVoiceAssistant(
+      "Generic Voice Assistant",
+      "185f",
+      "0000185f-0000-1000-8000-00805f9b34fb",
+      "org.bluetooth.service.generic_voice_assistant"),
+
+  /// The default service for Tire Pressure Monitoring System
+  tirePressureMonitoringSystem(
+      "Tire Pressure Monitoring System",
+      "1860",
+      "00001860-0000-1000-8000-00805f9b34fb",
+      "org.bluetooth.service.tire_pressure_monitoring_system");
 
   ///
   /// A service UUID consists of a human readable name of the service,
@@ -546,7 +571,11 @@ enum BluetoothDefaultServiceUUIDS {
     meshProxySolicitation,
     industrialMeasurementDevice,
     ranging,
-    hidIso
+    hidIso,
+    cookware,
+    voiceAssistant,
+    genericVoiceAssistant,
+    tirePressureMonitoringSystem
   ];
 
   /// All deprecated characteristics.
@@ -766,7 +795,7 @@ enum BluetoothDefaultCharacteristicUUIDS {
       "IEEE 11073-20601 Regulatory Certification Data List",
       "2a2a",
       "00002a2a-0000-1000-8000-00805f9b34fb",
-      "org.bluetooth.characteristic.ieee_11073-20601_regulatory_certification_data_list"),
+      "org.bluetooth.characteristic.ieee_11073_20601_regulatory_certification_data_list"),
 
   /// The default characteristic for Current Time
   currentTime("Current Time", "2a2b", "00002a2b-0000-1000-8000-00805f9b34fb",
@@ -3206,7 +3235,12 @@ enum BluetoothDefaultCharacteristicUUIDS {
       "00002bf1-0000-1000-8000-00805f9b34fb",
       "org.bluetooth.characteristic.observation_schedule_changed"),
 
+  /// The default characteristic for Elapsed Time
+  elapsedTime("Elapsed Time", "2bf2", "00002bf2-0000-1000-8000-00805f9b34fb",
+      "org.bluetooth.characteristic.elapsed_time"),
+
   /// The default characteristic for Current Elapsed Time
+  @Deprecated("UUID has been renamed; use elapsedTime instead")
   currentElapsedTime(
       "Current Elapsed Time",
       "2bf2",
@@ -3299,7 +3333,7 @@ enum BluetoothDefaultCharacteristicUUIDS {
       "UDI for Medical Devices",
       "2bff",
       "00002bff-0000-1000-8000-00805f9b34fb",
-      "org.bluetooth.characteristic.medical_devices"),
+      "org.bluetooth.characteristic.udi_for_medical_devices"),
 
   /// The default characteristic for GMAP Role
   gmapRole("GMAP Role", "2c00", "00002c00-0000-1000-8000-00805f9b34fb",
@@ -3444,6 +3478,13 @@ enum BluetoothDefaultCharacteristicUUIDS {
       "00002c19-0000-1000-8000-00805f9b34fb",
       "org.bluetooth.characteristic.ranging_data_overwritten"),
 
+  /// The default characteristic for Coordinated Set Name
+  coordinatedSetName(
+      "Coordinated Set Name",
+      "2c1a",
+      "00002c1a-0000-1000-8000-00805f9b34fb",
+      "org.bluetooth.characteristic.coordinated_set_name"),
+
   /// The default characteristic for Humidity 8
   humidity8("Humidity 8", "2c1b", "00002c1b-0000-1000-8000-00805f9b34fb",
       "org.bluetooth.characteristic.humidity_8"),
@@ -3455,16 +3496,16 @@ enum BluetoothDefaultCharacteristicUUIDS {
       "00002c1c-0000-1000-8000-00805f9b34fb",
       "org.bluetooth.characteristic.illuminance_16"),
 
-  /// The default characteristic for Acceleration 3D
+  /// The default characteristic for Acceleration - 3D
   acceleration3d(
-      "Acceleration 3D",
+      "Acceleration - 3D",
       "2c1d",
       "00002c1d-0000-1000-8000-00805f9b34fb",
       "org.bluetooth.characteristic.acceleration_3d"),
 
-  /// The default characteristic for Precise Acceleration 3D
+  /// The default characteristic for Precise Acceleration - 3D
   preciseAcceleration3d(
-      "Precise Acceleration 3D",
+      "Precise Acceleration - 3D",
       "2c1e",
       "00002c1e-0000-1000-8000-00805f9b34fb",
       "org.bluetooth.characteristic.precise_acceleration_3d"),
@@ -3509,7 +3550,208 @@ enum BluetoothDefaultCharacteristicUUIDS {
       "LE HID Operation Mode",
       "2c24",
       "00002c24-0000-1000-8000-00805f9b34fb",
-      "org.bluetooth.characteristic.le_hid_operation_mode");
+      "org.bluetooth.characteristic.le_hid_operation_mode"),
+
+  /// The default characteristic for Cookware Description
+  cookwareDescription(
+      "Cookware Description",
+      "2c25",
+      "00002c25-0000-1000-8000-00805f9b34fb",
+      "org.bluetooth.characteristic.cookware_description"),
+
+  /// The default characteristic for Recipe Control
+  recipeControl(
+      "Recipe Control",
+      "2c26",
+      "00002c26-0000-1000-8000-00805f9b34fb",
+      "org.bluetooth.characteristic.recipe_control"),
+
+  /// The default characteristic for Recipe Parameters
+  recipeParameters(
+      "Recipe Parameters",
+      "2c27",
+      "00002c27-0000-1000-8000-00805f9b34fb",
+      "org.bluetooth.characteristic.recipe_parameters"),
+
+  /// The default characteristic for Cooking Step Status
+  cookingStepStatus(
+      "Cooking Step Status",
+      "2c28",
+      "00002c28-0000-1000-8000-00805f9b34fb",
+      "org.bluetooth.characteristic.cooking_step_status"),
+
+  /// The default characteristic for Cooking Zone Capabilities
+  cookingZoneCapabilities(
+      "Cooking Zone Capabilities",
+      "2c29",
+      "00002c29-0000-1000-8000-00805f9b34fb",
+      "org.bluetooth.characteristic.cooking_zone_capabilities"),
+
+  /// The default characteristic for Cooking Zone Desired Cooking Conditions
+  cookingZoneDesiredCookingConditions(
+      "Cooking Zone Desired Cooking Conditions",
+      "2c2a",
+      "00002c2a-0000-1000-8000-00805f9b34fb",
+      "org.bluetooth.characteristic.cooking_zone_desired_cooking_conditions"),
+
+  /// The default characteristic for Cooking Zone Actual Cooking Conditions
+  cookingZoneActualCookingConditions(
+      "Cooking Zone Actual Cooking Conditions",
+      "2c2b",
+      "00002c2b-0000-1000-8000-00805f9b34fb",
+      "org.bluetooth.characteristic.cooking_zone_actual_cooking_conditions"),
+
+  /// The default characteristic for Cookware Sensor Data
+  cookwareSensorData(
+      "Cookware Sensor Data",
+      "2c2c",
+      "00002c2c-0000-1000-8000-00805f9b34fb",
+      "org.bluetooth.characteristic.cookware_sensor_data"),
+
+  /// The default characteristic for Cookware Sensor Aggregate
+  cookwareSensorAggregate(
+      "Cookware Sensor Aggregate",
+      "2c2d",
+      "00002c2d-0000-1000-8000-00805f9b34fb",
+      "org.bluetooth.characteristic.cookware_sensor_aggregate"),
+
+  /// The default characteristic for Cooking Temperature
+  cookingTemperature(
+      "Cooking Temperature",
+      "2c2e",
+      "00002c2e-0000-1000-8000-00805f9b34fb",
+      "org.bluetooth.characteristic.cooking_temperature"),
+
+  /// The default characteristic for Cooking Zone Perceived Power
+  cookingZonePerceivedPower(
+      "Cooking Zone Perceived Power",
+      "2c2f",
+      "00002c2f-0000-1000-8000-00805f9b34fb",
+      "org.bluetooth.characteristic.cooking_zone_preceived_power"),
+
+  /// The default characteristic for Kitchen Appliance Airflow
+  kitchenApplianceAirflow(
+      "Kitchen Appliance Airflow",
+      "2c30",
+      "00002c30-0000-1000-8000-00805f9b34fb",
+      "org.bluetooth.characteristic.kitchen_appliance_airflow"),
+
+  /// The default characteristic for Voice Assistant Name
+  voiceAssistantName(
+      "Voice Assistant Name",
+      "2c31",
+      "00002c31-0000-1000-8000-00805f9b34fb",
+      "org.bluetooth.characteristic.voice_assistant_name"),
+
+  /// The default characteristic for Voice Assistant UUID
+  voiceAssistantUuid(
+      "Voice Assistant UUID",
+      "2c32",
+      "00002c32-0000-1000-8000-00805f9b34fb",
+      "org.bluetooth.characteristic.voice_assistant_uuid"),
+
+  /// The default characteristic for Voice Assistant Service Control Point
+  voiceAssistantServiceControlPoint(
+      "Voice Assistant Service Control Point",
+      "2c33",
+      "00002c33-0000-1000-8000-00805f9b34fb",
+      "org.bluetooth.characteristic.voice_assistant_service_control_point"),
+
+  /// The default characteristic for Installed Location
+  installedLocation(
+      "Installed Location",
+      "2c34",
+      "00002c34-0000-1000-8000-00805f9b34fb",
+      "org.bluetooth.characteristic.installed_location"),
+
+  /// The default characteristic for Voice Assistant Session State
+  voiceAssistantSessionState(
+      "Voice Assistant Session State",
+      "2c35",
+      "00002c35-0000-1000-8000-00805f9b34fb",
+      "org.bluetooth.characteristic.voice_assistant_session_state"),
+
+  /// The default characteristic for Voice Assistant Session Flag
+  voiceAssistantSessionFlag(
+      "Voice Assistant Session Flag",
+      "2c36",
+      "00002c36-0000-1000-8000-00805f9b34fb",
+      "org.bluetooth.characteristic.voice_assistant_session_flag"),
+
+  /// The default characteristic for Voice Assistant Supported Languages
+  voiceAssistantSupportedLanguages(
+      "Voice Assistant Supported Languages",
+      "2c37",
+      "00002c37-0000-1000-8000-00805f9b34fb",
+      "org.bluetooth.characteristic.voice_assistant_supported_languages"),
+
+  /// The default characteristic for Voice Assistant Supported Features
+  voiceAssistantSupportedFeatures(
+      "Voice Assistant Supported Features",
+      "2c38",
+      "00002c38-0000-1000-8000-00805f9b34fb",
+      "org.bluetooth.characteristic.voice_assistant_supported_features"),
+
+  /// The default characteristic for HID SCI Mode
+  hidSciMode("HID SCI Mode", "2c39", "00002c39-0000-1000-8000-00805f9b34fb",
+      "org.bluetooth.characteristic.hid_sci_mode"),
+
+  /// The default characteristic for HID SCI Information
+  hidSciInformation(
+      "HID SCI Information",
+      "2c3a",
+      "00002c3a-0000-1000-8000-00805f9b34fb",
+      "org.bluetooth.characteristic.hid_sci_information"),
+
+  /// The default characteristic for Tire Pressure
+  tirePressure("Tire Pressure", "2c3b", "00002c3b-0000-1000-8000-00805f9b34fb",
+      "org.bluetooth.characteristic.tire_pressure"),
+
+  /// The default characteristic for Tire Temperature
+  tireTemperature(
+      "Tire Temperature",
+      "2c3c",
+      "00002c3c-0000-1000-8000-00805f9b34fb",
+      "org.bluetooth.characteristic.tire_temperature"),
+
+  /// The default characteristic for Tire Acceleration
+  tireAcceleration(
+      "Tire Acceleration",
+      "2c3d",
+      "00002c3d-0000-1000-8000-00805f9b34fb",
+      "org.bluetooth.characteristic.tire_acceleration"),
+
+  /// The default characteristic for TPMS Properties
+  tpmsProperties(
+      "TPMS Properties",
+      "2c3e",
+      "00002c3e-0000-1000-8000-00805f9b34fb",
+      "org.bluetooth.characteristic.tpms_properties"),
+
+  /// The default characteristic for TPMS Duty Cycle
+  tpmsDutyCycle(
+      "TPMS Duty Cycle",
+      "2c3f",
+      "00002c3f-0000-1000-8000-00805f9b34fb",
+      "org.bluetooth.characteristic.tpms_duty_cycle"),
+
+  /// The default characteristic for TPMS Position
+  tpmsPosition("TPMS Position", "2c40", "00002c40-0000-1000-8000-00805f9b34fb",
+      "org.bluetooth.characteristic.tpms_position"),
+
+  /// The default characteristic for TPMS Signing Key
+  tpmsSigningKey(
+      "TPMS Signing Key",
+      "2c41",
+      "00002c41-0000-1000-8000-00805f9b34fb",
+      "org.bluetooth.characteristic.tpms_signing_key"),
+
+  /// The default characteristic for Cookware Device ID
+  cookwareDeviceId(
+      "Cookware Device ID",
+      "2c42",
+      "00002c42-0000-1000-8000-00805f9b34fb",
+      "org.bluetooth.characteristic.cookware_device_id");
 
   ///
   /// A characteristic UUID consists of a human readable name of the characteristic,
@@ -3968,7 +4210,7 @@ enum BluetoothDefaultCharacteristicUUIDS {
     estimatedServiceDate,
     batteryEnergyStatus,
     observationScheduleChanged,
-    currentElapsedTime,
+    elapsedTime,
     healthSensorFeatures,
     ghsControlPoint,
     leGattSecurityLevels,
@@ -4008,6 +4250,7 @@ enum BluetoothDefaultCharacteristicUUIDS {
     rasControlPoint,
     rangingDataReady,
     rangingDataOverwritten,
+    coordinatedSetName,
     humidity8,
     illuminance16,
     acceleration3d,
@@ -4017,12 +4260,42 @@ enum BluetoothDefaultCharacteristicUUIDS {
     pushbuttonStatus8,
     contactStatus8,
     hidIsoProperties,
-    leHidOperationMode
+    leHidOperationMode,
+    cookwareDescription,
+    recipeControl,
+    recipeParameters,
+    cookingStepStatus,
+    cookingZoneCapabilities,
+    cookingZoneDesiredCookingConditions,
+    cookingZoneActualCookingConditions,
+    cookwareSensorData,
+    cookwareSensorAggregate,
+    cookingTemperature,
+    cookingZonePerceivedPower,
+    kitchenApplianceAirflow,
+    voiceAssistantName,
+    voiceAssistantUuid,
+    voiceAssistantServiceControlPoint,
+    installedLocation,
+    voiceAssistantSessionState,
+    voiceAssistantSessionFlag,
+    voiceAssistantSupportedLanguages,
+    voiceAssistantSupportedFeatures,
+    hidSciMode,
+    hidSciInformation,
+    tirePressure,
+    tireTemperature,
+    tireAcceleration,
+    tpmsProperties,
+    tpmsDutyCycle,
+    tpmsPosition,
+    tpmsSigningKey,
+    cookwareDeviceId
   ];
 
   /// All deprecated characteristics.
   @Deprecated(
       "This contains all deprecated characteristics and should thus not be relied on")
   static const List<BluetoothDefaultCharacteristicUUIDS>
-      deprecatedCharacteristics = [];
+      deprecatedCharacteristics = [currentElapsedTime];
 }

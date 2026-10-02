@@ -10,7 +10,7 @@ class CharacteristicWidget extends StatefulWidget {
     characteristicName = BluetoothDefaultCharacteristicUUIDS.characteristics
         .cast<BluetoothDefaultCharacteristicUUIDS?>()
         .firstWhere(
-          (final element) => element?.uuid == characteristic.uuid,
+          (element) => element?.uuid == characteristic.uuid,
           orElse: () => null,
         )
         ?.name;
@@ -27,7 +27,7 @@ class CharacteristicWidget extends StatefulWidget {
 
 class CharacteristicWidgetState extends State<CharacteristicWidget> {
   @override
-  Widget build(final BuildContext context) {
+  Widget build(BuildContext context) {
     return Column(
       children: [
         ListTile(
@@ -46,8 +46,8 @@ class CharacteristicWidgetState extends State<CharacteristicWidget> {
           stream: widget.characteristic.value,
           builder:
               (
-                final BuildContext context,
-                final AsyncSnapshot<ByteData> snapshot,
+                BuildContext context,
+                AsyncSnapshot<ByteData> snapshot,
               ) {
                 if (snapshot.hasError) {
                   return Text("Error: ${snapshot.error}");
@@ -100,7 +100,7 @@ class DataWidget extends StatelessWidget {
   }
 
   @override
-  Widget build(final BuildContext context) {
+  Widget build(BuildContext context) {
     return Padding(
       padding: const EdgeInsets.all(8.0),
       child: Column(

@@ -49,11 +49,11 @@ class BluetoothBusiness {
       final device = await FlutterWebBluetooth.instance.requestDevice(
         RequestOptionsBuilder.acceptAllDevices(
           optionalServices: BluetoothDefaultServiceUUIDS.services
-              .map((final e) => e.uuid)
+              .map((e) => e.uuid)
               .toList(),
           optionalManufacturerData: BluetoothDefaultManufacturerIdentifiers
               .manufacturerIdentifiers
-              .map((final e) => e.identifier)
+              .map((e) => e.identifier)
               .toList(growable: false),
         ),
       );
@@ -72,7 +72,7 @@ class BluetoothBusiness {
   }
 
   static Future<RequestAdvertisementDeviceState> requestAdvertisementDevice(
-    final AdvertisementBluetoothDevice device,
+    AdvertisementBluetoothDevice device,
   ) async {
     if (!FlutterWebBluetooth.instance.isBluetoothApiSupported) {
       return RequestAdvertisementDeviceState(RequestDeviceState.notSupported);
@@ -82,7 +82,7 @@ class BluetoothBusiness {
           .requestAdvertisementDevice(
             device,
             optionalServices: BluetoothDefaultServiceUUIDS.services
-                .map((final e) => e.uuid)
+                .map((e) => e.uuid)
                 .toList(),
           );
       debugPrint("Device got! ${newDevice.name}, ${newDevice.id}");
@@ -155,8 +155,8 @@ class BluetoothBusiness {
     advertisementDevices = [];
 
     int sortMethod(
-      final AdvertisementReceivedEvent<AdvertisementBluetoothDevice> a,
-      final AdvertisementReceivedEvent<AdvertisementBluetoothDevice> b,
+      AdvertisementReceivedEvent<AdvertisementBluetoothDevice> a,
+      AdvertisementReceivedEvent<AdvertisementBluetoothDevice> b,
     ) {
       final nameA = a.name;
       final nameB = b.name;
@@ -171,8 +171,8 @@ class BluetoothBusiness {
     }
 
     final Set<BluetoothDevice> pairedDevice = SplayTreeSet.from({}, (
-      final a,
-      final b,
+      a,
+      b,
     ) {
       final nameA = a.name;
       final nameB = b.name;
@@ -187,14 +187,14 @@ class BluetoothBusiness {
     });
 
     return MergeStream([
-      FlutterWebBluetooth.instance.devices.map((final event) {
+      FlutterWebBluetooth.instance.devices.map((event) {
         pairedDevice.clear();
         pairedDevice.addAll(event);
         return 0;
       }),
-      FlutterWebBluetooth.instance.advertisements.map((final event) {
+      FlutterWebBluetooth.instance.advertisements.map((event) {
         final index = advertisementDevices.indexWhere(
-          (final element) => element.device == event.device,
+          (element) => element.device == event.device,
         );
         if (index > 0) {
           advertisementDevices.removeAt(index);
@@ -204,22 +204,22 @@ class BluetoothBusiness {
         advertisementDevices.sort(sortMethod);
         return 1;
       }),
-    ]).map((final event) {
+    ]).map((event) {
       final Set<MainPageDevice> devices = SplayTreeSet<MainPageDevice>.from(
         pairedDevice.map(
-          (final e) => MainPageDevice(
+          (e) => MainPageDevice(
             device: e,
             event: advertisementDevices
                 .cast<
                   AdvertisementReceivedEvent<AdvertisementBluetoothDevice>?
                 >()
                 .firstWhere(
-                  (final element) => element?.device.id == e.id,
+                  (element) => element?.device.id == e.id,
                   orElse: () => null,
                 ),
           ),
         ),
-        (final a, final b) {
+        (a, b) {
           final nameA = a.device.name;
           final nameB = b.device.name;
           int compare = 0;
@@ -235,7 +235,7 @@ class BluetoothBusiness {
 
       devices.addAll(
         advertisementDevices.map(
-          (final e) => MainPageDevice.fromEvent(event: e),
+          (e) => MainPageDevice.fromEvent(event: e),
         ),
       );
       return devices;

@@ -17,10 +17,10 @@ class BluetoothServicesWidget extends StatefulWidget {
 
 class _BluetoothServicesState extends State<BluetoothServicesWidget> {
   @override
-  Widget build(final BuildContext context) {
+  Widget build(BuildContext context) {
     return StreamBuilder(
       stream: widget.device.connected,
-      builder: (final context, final connectedSnapshot) {
+      builder: (context, connectedSnapshot) {
         final connected = connectedSnapshot.data ?? false;
 
         return Column(
@@ -69,7 +69,7 @@ class BluetoothServiceBody extends StatelessWidget {
   final bool isConnected;
 
   @override
-  Widget build(final BuildContext context) {
+  Widget build(BuildContext context) {
     if (isConnected) {
       return BluetoothServicesOverview(device);
     } else {
@@ -84,10 +84,10 @@ class BluetoothServicesOverview extends StatelessWidget {
   final BluetoothDevice device;
 
   @override
-  Widget build(final BuildContext context) {
+  Widget build(BuildContext context) {
     return StreamBuilder(
       stream: device.services,
-      builder: (final context, final servicesSnapshot) {
+      builder: (context, servicesSnapshot) {
         if (servicesSnapshot.hasError) {
           final error = servicesSnapshot.error.toString();
           debugPrint("Error: $error");
@@ -103,7 +103,7 @@ class BluetoothServicesOverview extends StatelessWidget {
 
         final serviceWidgets = List.generate(
           services.length,
-          (final index) => ServiceWidget(service: services[index]),
+          (index) => ServiceWidget(service: services[index]),
         );
 
         return Column(children: serviceWidgets);

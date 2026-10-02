@@ -6,7 +6,7 @@ import "package:args/command_runner.dart";
 import "package:flutter_web_bluetooth_builder/default_manufacturer_identifiers.dart";
 import "package:flutter_web_bluetooth_builder/default_uuids.dart";
 
-Future<void> main(final List<String> args) async {
+Future<void> main(List<String> args) async {
   final manufacturerIdRunner =
       CommandRunner(
           "builder",

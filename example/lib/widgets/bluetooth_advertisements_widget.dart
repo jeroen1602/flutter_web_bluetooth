@@ -22,7 +22,7 @@ class BluetoothAdvertisementsWidget extends StatefulWidget {
   Stream<bool> _isWatchingAdvertisements() {
     return MergeStream<bool>([
       Stream<bool>.value(device.watchingAdvertisements),
-      Stream.periodic(const Duration(seconds: 2)).map((final event) {
+      Stream.periodic(const Duration(seconds: 2)).map((event) {
         return device.watchingAdvertisements;
       }),
       updateAdvertisingStream.stream,
@@ -63,11 +63,11 @@ class _BluetoothAdvertisementsState
   }
 
   @override
-  Widget build(final BuildContext context) {
+  Widget build(BuildContext context) {
     return StreamBuilder(
       initialData: widget.device.watchingAdvertisements,
       stream: _isWatchingAdvertisements,
-      builder: (final context, final snapshot) {
+      builder: (context, snapshot) {
         final isWatching = snapshot.data ?? false;
 
         return Column(
@@ -129,12 +129,12 @@ class BluetoothAdvertisementsBodySate
   }
 
   @override
-  Widget build(final BuildContext context) {
+  Widget build(BuildContext context) {
     if (widget.device.hasWatchAdvertisements()) {
       return StreamBuilder(
         stream: _advertisements,
         initialData: null,
-        builder: (final context, final snapshot) {
+        builder: (context, snapshot) {
           final event = snapshot.data;
           if (event == null) {
             return const Center(child: Text("First click on start watching!"));
@@ -152,7 +152,7 @@ class BluetoothAdvertisementsNotSupported extends StatelessWidget {
   const BluetoothAdvertisementsNotSupported({super.key});
 
   @override
-  Widget build(final BuildContext context) {
+  Widget build(BuildContext context) {
     return const Expanded(
       child: Center(
         child: Card(
@@ -183,16 +183,16 @@ class BluetoothAdvertisementsCard extends StatefulWidget {
 
 class BluetoothAdvertisementsCardState
     extends State<BluetoothAdvertisementsCard> {
-  final List<bool> _openPanels = List.generate(3, (final index) => false);
+  final List<bool> _openPanels = List.generate(3, (index) => false);
 
-  void _expansionCallback(final int index, final bool isExpanded) {
+  void _expansionCallback(int index, bool isExpanded) {
     setState(() {
       _openPanels[index] = isExpanded;
     });
   }
 
   @override
-  Widget build(final BuildContext context) {
+  Widget build(BuildContext context) {
     return Card(
       child: Column(
         children: [
@@ -231,7 +231,7 @@ class BluetoothAdvertisementsCardState
             children: [
               ExpansionPanel(
                 headerBuilder:
-                    (final BuildContext context, final bool isExpanded) {
+                    (BuildContext context, bool isExpanded) {
                       return ListTile(
                         title: const Text("UUIDS"),
                         subtitle: Text("Size: ${widget.event.uuids.length}"),
@@ -239,14 +239,14 @@ class BluetoothAdvertisementsCardState
                     },
                 body: Column(
                   children: widget.event.uuids
-                      .map((final e) => ListTile(title: Text(e)))
+                      .map((e) => ListTile(title: Text(e)))
                       .toList(),
                 ),
                 isExpanded: _openPanels[0],
               ),
               ExpansionPanel(
                 headerBuilder:
-                    (final BuildContext context, final bool isExpanded) {
+                    (BuildContext context, bool isExpanded) {
                       return ListTile(
                         title: const Text("Service data"),
                         subtitle: Text(
@@ -255,7 +255,7 @@ class BluetoothAdvertisementsCardState
                       );
                     },
                 body: Column(
-                  children: widget.event.serviceData.entries.map((final e) {
+                  children: widget.event.serviceData.entries.map((e) {
                     final hex = StringBuffer();
                     for (var i = 0; i < e.value.lengthInBytes; i++) {
                       hex.write(
@@ -276,7 +276,7 @@ class BluetoothAdvertisementsCardState
               ),
               ExpansionPanel(
                 headerBuilder:
-                    (final BuildContext context, final bool isExpanded) {
+                    (BuildContext context, bool isExpanded) {
                       return ListTile(
                         title: const Text("Manufacturer data"),
                         subtitle: Text(
@@ -286,7 +286,7 @@ class BluetoothAdvertisementsCardState
                     },
                 body: Column(
                   children: widget.event.manufacturerData.entries.map((
-                    final e,
+                    e,
                   ) {
                     final hex = StringBuffer();
                     for (var i = 0; i < e.value.lengthInBytes; i++) {

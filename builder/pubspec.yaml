@@ -2,10 +2,10 @@ name: flutter_web_bluetooth_builder
 description: Code generation for data retrieved from the web
 
 environment:
-  sdk: ">=3.9.0 <4.0.0"
+  sdk: ">=3.13.0 <4.0.0"
 
 dependencies:
-  analyzer: ^8.4.0
+  analyzer: ^14.0.0
   args: ^2.7.0
   build: ^4.0.2
   code_builder: ^4.11.0

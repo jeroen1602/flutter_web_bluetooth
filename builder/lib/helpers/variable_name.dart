@@ -1,5 +1,5 @@
 /// camelCase a name given from an input.
-String camelCaseName(final String name) {
+String camelCaseName(String name) {
   var convertedName = name
       .replaceAll("-", " ")
       .replaceAll(".", " ")
@@ -19,12 +19,12 @@ String camelCaseName(final String name) {
       .replaceAll("¤", " ")
       .toLowerCase();
 
-  convertedName = convertedName.replaceAllMapped(_textSubscript, (final match) {
+  convertedName = convertedName.replaceAllMapped(_textSubscript, (match) {
     final number = match.group(1);
     return "$number";
   });
 
-  convertedName = convertedName.replaceAllMapped(_numberRegex, (final match) {
+  convertedName = convertedName.replaceAllMapped(_numberRegex, (match) {
     final number = int.parse(match.group(0)!, radix: 10);
     final asText = _numberMap[number];
     if (asText == null) {
@@ -33,7 +33,7 @@ String camelCaseName(final String name) {
     return "$asText ";
   });
 
-  convertedName = convertedName.replaceAllMapped(_nonAscii, (final match) {
+  convertedName = convertedName.replaceAllMapped(_nonAscii, (match) {
     final matchedText = match.group(0)!;
     final newText = _nonAsciiMap[matchedText];
     if (newText == null) {
@@ -45,16 +45,16 @@ String camelCaseName(final String name) {
   });
 
   final words = convertedName.split(" ");
-  words.retainWhere((final element) => element.isNotEmpty);
+  words.retainWhere((element) => element.isNotEmpty);
   return words.reduce(
-    (final value, final element) =>
+    (value, element) =>
         "$value${element[0].toUpperCase()}${element.substring(1)}",
   );
 }
 
 /// Remove commands like \\textsubscript{2} for just 2
-String replaceReadableName(final String name) {
-  final convertedName = name.replaceAllMapped(_textSubscript, (final match) {
+String replaceReadableName(String name) {
+  final convertedName = name.replaceAllMapped(_textSubscript, (match) {
     final number = match.group(1);
     return "$number";
   });
@@ -88,6 +88,7 @@ const _numberMap = {
   18: "eighteen",
   19: "nineteen",
   20: "twenty",
+  24: "twenty four",
   70: "seventy",
   701: "seven hundred one",
   9313: "nine thousand three hundred thirteen",

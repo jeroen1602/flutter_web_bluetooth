@@ -9,7 +9,7 @@ class BrowserNotSupportedAlertWidget extends StatelessWidget {
   const BrowserNotSupportedAlertWidget({super.key});
 
   @override
-  Widget build(final BuildContext context) {
+  Widget build(BuildContext context) {
     final browser = Browser.detectOrNull();
     final theme = Theme.of(context);
     final textStyle = theme.textTheme.bodyLarge;
@@ -73,7 +73,7 @@ class BrowserNotSupportedAlertWidget extends StatelessWidget {
                     "Check out https://CanIUse.com for updates for your specific browser.",
                 // style: textStyle,
                 linkStyle: linkStyle,
-                onOpen: (final link) async {
+                onOpen: (link) async {
                   await launchUrl(
                     Uri.parse("https://caniuse.com/web-bluetooth"),
                   );
@@ -94,10 +94,10 @@ class BrowserNotSupportedAlertWidget extends StatelessWidget {
     );
   }
 
-  static Future<void> showCustomDialog(final BuildContext context) {
+  static Future<void> showCustomDialog(BuildContext context) {
     return showDialog(
       context: context,
-      builder: (final BuildContext context) {
+      builder: (BuildContext context) {
         return const BrowserNotSupportedAlertWidget();
       },
     );

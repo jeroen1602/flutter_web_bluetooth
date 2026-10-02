@@ -8,10 +8,10 @@ import "package:flutter_web_bluetooth/flutter_web_bluetooth.dart";
 class MainPageDevice<D extends AdvertisementBluetoothDevice> {
   MainPageDevice({
     required this.device,
-    final AdvertisementReceivedEvent<AdvertisementBluetoothDevice>? event,
-  }) : _event = event;
+    this._event,
+  });
 
-  MainPageDevice.fromEvent({required final AdvertisementReceivedEvent<D> event})
+  MainPageDevice.fromEvent({required AdvertisementReceivedEvent<D> event})
     : device = event.device,
       _event = event;
 
@@ -31,7 +31,7 @@ class MainPageDevice<D extends AdvertisementBluetoothDevice> {
   /// Check to see if two device have the same id.
   ///
   @override
-  bool operator ==(final Object other) {
+  bool operator ==(Object other) {
     if (other is! MainPageDevice) {
       return false;
     }

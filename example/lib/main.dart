@@ -33,12 +33,12 @@ class _MyAppState extends State<MyApp> {
   }
 
   @override
-  Widget build(final BuildContext context) {
+  Widget build(BuildContext context) {
     return StreamBuilder<bool>(
       stream: FlutterWebBluetooth.instance.isAvailable,
       initialData: false,
       builder:
-          (final BuildContext context, final AsyncSnapshot<bool> snapshot) {
+          (BuildContext context, AsyncSnapshot<bool> snapshot) {
             final available = snapshot.requireData;
             return MaterialApp(
               home: Scaffold(
@@ -46,7 +46,7 @@ class _MyAppState extends State<MyApp> {
                   title: const SelectableText("Bluetooth web example app"),
                   actions: [
                     Builder(
-                      builder: (final BuildContext context) {
+                      builder: (BuildContext context) {
                         return IconButton(
                           onPressed: () async {
                             await InfoDialog.showInfoDialog(context);
@@ -97,7 +97,7 @@ class MainPageState extends State<MainPage> {
     _devicesStream = BluetoothBusiness.createDeviceStream();
   }
 
-  Future<void> handleDeviceTap(final MainPageDevice device) async {
+  Future<void> handleDeviceTap(MainPageDevice device) async {
     DeviceServicesPage? page;
     if (device is MainPageDevice<BluetoothDevice>) {
       page = DeviceServicesPage(bluetoothDevice: device.device);
@@ -144,7 +144,7 @@ class MainPageState extends State<MainPage> {
       Navigator.push(
         context,
         MaterialPageRoute(
-          builder: (final BuildContext context) {
+          builder: (BuildContext context) {
             return finalPage;
           },
         ),
@@ -155,7 +155,7 @@ class MainPageState extends State<MainPage> {
   }
 
   @override
-  Widget build(final BuildContext context) {
+  Widget build(BuildContext context) {
     return Column(
       children: [
         MainPageHeader(isBluetoothAvailable: widget.isBluetoothAvailable),
@@ -165,11 +165,11 @@ class MainPageState extends State<MainPage> {
             stream: _devicesStream,
             initialData: const {},
             builder:
-                (final BuildContext context, final AsyncSnapshot snapshot) {
+                (BuildContext context, AsyncSnapshot snapshot) {
                   final devices = snapshot.requireData;
                   return ListView.builder(
                     itemCount: devices.length,
-                    itemBuilder: (final BuildContext context, final int index) {
+                    itemBuilder: (BuildContext context, int index) {
                       final device = devices.toList()[index];
 
                       return BluetoothDeviceWidget(
@@ -194,7 +194,7 @@ class MainPageHeader extends StatelessWidget {
   final bool isBluetoothAvailable;
 
   @override
-  Widget build(final BuildContext context) {
+  Widget build(BuildContext context) {
     final text = isBluetoothAvailable ? "supported" : "unsupported";
 
     final screenWidth = MediaQuery.of(context).size.width;

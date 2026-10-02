@@ -7,7 +7,7 @@ import "package:yaml/yaml.dart";
 ///
 /// Load a yaml resource
 ///
-Future<YamlMap> loadYamlResource(final dynamic input) async {
+Future<YamlMap> loadYamlResource(dynamic input) async {
   final String body;
   if (input is Uri) {
     final response = await http.get(input);
@@ -24,9 +24,9 @@ Future<YamlMap> loadYamlResource(final dynamic input) async {
 /// Update the name of possible duplicates in a list
 ///
 void updateDuplicates<T>(
-  final List<T> input,
-  final String Function(T) getName,
-  final void Function(T, String) setName,
+  List<T> input,
+  String Function(T) getName,
+  void Function(T, String) setName,
 ) {
   for (var i = 0; i < input.length; i++) {
     final foundIndex = [i];

@@ -40,9 +40,9 @@ Future<void> generateDefaultManufacturerIdentifiers() async {
   );
 
   final deprecatedIdentifiers = existingIdentifiers
-      .where((final x) {
+      .where((x) {
         final found = identifiers.cast<_ManufacturerIdentifier?>().firstWhere(
-          (final y) => y?.identifier == x.identifier,
+          (y) => y?.identifier == x.identifier,
           orElse: () => null,
         );
         if (found == null) {
@@ -51,7 +51,7 @@ Future<void> generateDefaultManufacturerIdentifiers() async {
         return found.variableName != x.variableName;
       })
       .map(
-        (final x) => _DeprecatedManufacturerIdentifier.createFromIdentifier(
+        (x) => _DeprecatedManufacturerIdentifier.createFromIdentifier(
           x,
           identifiers,
         ),
@@ -76,7 +76,7 @@ Future<void> generateDefaultManufacturerIdentifiers() async {
     ])
     ..values.addAll(
       totalIdentifiers.map(
-        (final identifier) => EnumValue((final builder) {
+        (identifier) => EnumValue((builder) {
           builder
             ..docs.add("/// The manufacturer identifier for ${identifier.name}")
             ..name = identifier.variableName
@@ -96,7 +96,7 @@ Future<void> generateDefaultManufacturerIdentifiers() async {
       ),
     )
     ..constructors.add(
-      Constructor((final builder) {
+      Constructor((builder) {
         builder
           ..constant = true
           ..docs.addAll([
@@ -106,12 +106,12 @@ Future<void> generateDefaultManufacturerIdentifiers() async {
             "///",
           ])
           ..requiredParameters.addAll([
-            Parameter((final builder) {
+            Parameter((builder) {
               builder
                 ..name = "name"
                 ..toThis = true;
             }),
-            Parameter((final builder) {
+            Parameter((builder) {
               builder
                 ..name = "identifier"
                 ..toThis = true;
@@ -120,21 +120,21 @@ Future<void> generateDefaultManufacturerIdentifiers() async {
       }),
     )
     ..fields.addAll([
-      Field((final builder) {
+      Field((builder) {
         builder
           ..docs.add("/// The name of the manufacturer")
           ..type = const Reference("String")
           ..name = "name"
           ..modifier = FieldModifier.final$;
       }),
-      Field((final builder) {
+      Field((builder) {
         builder
           ..docs.add("/// The 16 bit identifier of the manufacturer")
           ..type = const Reference("int")
           ..name = "identifier"
           ..modifier = FieldModifier.final$;
       }),
-      Field((final builder) {
+      Field((builder) {
         builder
           ..docs.add("/// All non-deprecated manufacturer identifiers")
           ..type = const Reference(
@@ -144,10 +144,10 @@ Future<void> generateDefaultManufacturerIdentifiers() async {
           ..name = "manufacturerIdentifiers"
           ..modifier = FieldModifier.constant
           ..assignment = Code(
-            "[\n${identifiers.map((final x) => x.variableName).join(",\n")}\n]",
+            "[\n${identifiers.map((x) => x.variableName).join(",\n")}\n]",
           );
       }),
-      Field((final builder) {
+      Field((builder) {
         builder
           ..docs.add("/// All deprecated manufacturer identifiers")
           ..type = const Reference(
@@ -164,7 +164,7 @@ Future<void> generateDefaultManufacturerIdentifiers() async {
           ..name = "deprecatedManufacturerIdentifiers"
           ..modifier = FieldModifier.constant
           ..assignment = Code(
-            "[\n${deprecatedIdentifiers.map((final x) => x.variableName).join(",\n")}\n]",
+            "[\n${deprecatedIdentifiers.map((x) => x.variableName).join(",\n")}\n]",
           );
       }),
     ]);
@@ -198,13 +198,13 @@ ${buildLibrary.accept(emitter)}
 }
 
 Future<List<_ManufacturerIdentifier>> _getCurrentCompanyIdentifier(
-  final dynamic input,
+  dynamic input,
 ) async {
   final yaml = await loadYamlResource(input);
 
   final identifiers = yaml["company_identifiers"] as YamlList;
 
-  final parsedIdentifiers = List.generate(identifiers.length, (final index) {
+  final parsedIdentifiers = List.generate(identifiers.length, (index) {
     final identifier = identifiers[index];
     final name = identifier["name"] as String;
     final variableName = camelCaseName(name);
@@ -214,15 +214,15 @@ Future<List<_ManufacturerIdentifier>> _getCurrentCompanyIdentifier(
 
   updateDuplicates<_ManufacturerIdentifier>(
     parsedIdentifiers,
-    (final identifier) => identifier.variableName,
-    (final identifier, final newName) => identifier.variableName = newName,
+    (identifier) => identifier.variableName,
+    (identifier, newName) => identifier.variableName = newName,
   );
 
   return parsedIdentifiers;
 }
 
 Future<List<_ManufacturerIdentifier>> _getExistingEnumConstants(
-  final String manufacturerIdentifiersFile,
+  String manufacturerIdentifiersFile,
 ) async {
   final output = <_ManufacturerIdentifier>[];
 
@@ -231,15 +231,15 @@ Future<List<_ManufacturerIdentifier>> _getExistingEnumConstants(
     featureSet: FeatureSet.latestLanguageVersion(),
   );
   final manufacturerEnum =
-      parsed.unit.declarations.firstWhere((final x) => x is ast.EnumDeclaration)
+      parsed.unit.declarations.firstWhere((x) => x is ast.EnumDeclaration)
           as ast.EnumDeclaration;
 
-  if (manufacturerEnum.name.toString() !=
+  if (manufacturerEnum.namePart.toString() !=
       "BluetoothDefaultManufacturerIdentifiers") {
     throw Error();
   }
 
-  for (final enumValue in manufacturerEnum.constants) {
+  for (final enumValue in manufacturerEnum.body.constants) {
     final enumName = enumValue.name.toString();
     final arguments = enumValue.arguments?.argumentList.arguments;
     final stringNameArgument = arguments?[0];
@@ -273,8 +273,8 @@ class _DeprecatedManufacturerIdentifier extends _ManufacturerIdentifier {
   );
 
   factory _DeprecatedManufacturerIdentifier.createFromIdentifier(
-    final _ManufacturerIdentifier deprecatedIdentifier,
-    final List<_ManufacturerIdentifier> existingIdentifiers,
+    _ManufacturerIdentifier deprecatedIdentifier,
+    List<_ManufacturerIdentifier> existingIdentifiers,
   ) {
     final message = _generateDeprecationMessage(
       deprecatedIdentifier,
@@ -297,16 +297,16 @@ class _ManufacturerIdentifier implements Comparable<_ManufacturerIdentifier> {
   _ManufacturerIdentifier(this.name, this.variableName, this.identifier);
 
   @override
-  int compareTo(final _ManufacturerIdentifier other) =>
+  int compareTo(_ManufacturerIdentifier other) =>
       other.identifier - identifier;
 }
 
 String _generateDeprecationMessage(
-  final _ManufacturerIdentifier deprecatedIdentifier,
-  final List<_ManufacturerIdentifier> existingIdentifiers,
+  _ManufacturerIdentifier deprecatedIdentifier,
+  List<_ManufacturerIdentifier> existingIdentifiers,
 ) {
   final found = existingIdentifiers.cast<_ManufacturerIdentifier?>().firstWhere(
-    (final x) => x?.identifier == deprecatedIdentifier.identifier,
+    (x) => x?.identifier == deprecatedIdentifier.identifier,
     orElse: () => null,
   );
   if (found != null) {

@@ -14,7 +14,7 @@ class ServiceWidget extends StatefulWidget {
     serviceName = BluetoothDefaultServiceUUIDS.services
         .cast<BluetoothDefaultServiceUUIDS?>()
         .firstWhere(
-          (final element) => element?.uuid == service.uuid,
+          (element) => element?.uuid == service.uuid,
           orElse: () => null,
         )
         ?.name;
@@ -68,14 +68,14 @@ class ServiceState extends State<ServiceWidget> {
   }
 
   @override
-  Widget build(final BuildContext context) {
+  Widget build(BuildContext context) {
     return FutureBuilder(
       future: _serviceAndCharacteristics,
       initialData: const _ServiceAndCharacteristic([], []),
       builder:
           (
-            final BuildContext context,
-            final AsyncSnapshot<_ServiceAndCharacteristic> snapshot,
+            BuildContext context,
+            AsyncSnapshot<_ServiceAndCharacteristic> snapshot,
           ) {
             final data = snapshot.requireData;
 

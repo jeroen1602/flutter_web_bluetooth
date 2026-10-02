@@ -13,10 +13,10 @@ class InfoDialog extends StatefulWidget {
     return _InfoDialogState();
   }
 
-  static Future<void> showInfoDialog(final BuildContext context) async {
+  static Future<void> showInfoDialog(BuildContext context) async {
     await showDialog(
       context: context,
-      builder: (final BuildContext dialogContext) {
+      builder: (BuildContext dialogContext) {
         return const InfoDialog();
       },
     );
@@ -39,7 +39,7 @@ class _InfoDialogState extends State<InfoDialog> {
   }
 
   @override
-  Widget build(final BuildContext context) {
+  Widget build(BuildContext context) {
     return AlertDialog(
       title: const Text("Flutter web bluetooth"),
       content: SingleChildScrollView(
@@ -49,8 +49,8 @@ class _InfoDialogState extends State<InfoDialog> {
               future: _appVersion,
               builder:
                   (
-                    final BuildContext context,
-                    final AsyncSnapshot<String> snapshot,
+                    BuildContext context,
+                    AsyncSnapshot<String> snapshot,
                   ) {
                     return Text(
                       "Example app version: ${snapshot.data ?? "loading"}",
@@ -63,8 +63,8 @@ class _InfoDialogState extends State<InfoDialog> {
               future: _pubspecVersions,
               builder:
                   (
-                    final BuildContext context,
-                    final AsyncSnapshot<
+                    BuildContext context,
+                    AsyncSnapshot<
                       ({
                         String flutterVersion,
                         String dartVersion,
@@ -128,7 +128,7 @@ class _InfoDialogState extends State<InfoDialog> {
     }
   }
 
-  String _getPackageVersion(final dynamic packages, final String packageName) {
+  String _getPackageVersion(dynamic packages, String packageName) {
     if (packages == null) {
       return "Could not be loaded";
     }
@@ -160,26 +160,6 @@ class _InfoDialogState extends State<InfoDialog> {
       dartVersion: dartVersion,
       libVersion: libVersion,
     );
-  }
-
-  Future<String> _getLibraryVersion(final dynamic packages) async {
-    final data = await rootBundle.loadString("pubspec.lock");
-
-    try {
-      final library = packages["flutter_web_bluetooth"];
-      if (library == null) {
-        throw ArgumentError();
-      }
-      final version = library["version"];
-      if (version == null) {
-        throw ArgumentError();
-      }
-      return version.toString();
-    } on YamlException {
-      return "Could not be loaded";
-    } on ArgumentError {
-      return "Could not be loaded";
-    }
   }
 
   Future<String> _getExampleAppVersion() async {

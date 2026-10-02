@@ -241,7 +241,7 @@ class BluetoothCharacteristic {
   Future<void> writeValueWithoutResponse(final Uint8List data) async {
     try {
       if (_characteristic.hasWriteValueWithoutResponse()) {
-        return _characteristic.writeValueWithoutResponse(data);
+        return await _characteristic.writeValueWithoutResponse(data);
       }
       webBluetoothLogger.info(
           "WriteValueWithoutResponse not supported in this browser. "
@@ -249,7 +249,7 @@ class BluetoothCharacteristic {
           null,
           StackTrace.current);
       // ignore: deprecated_member_use_from_same_package
-      return _characteristic.writeValue(data);
+      return await _characteristic.writeValue(data);
     } catch (e) {
       final error = e.toString().trim();
       if (error.startsWith("NotSupportedError")) {
@@ -289,7 +289,7 @@ class BluetoothCharacteristic {
   Future<void> writeValueWithResponse(final Uint8List data) async {
     try {
       if (_characteristic.hasWriteValueWithResponse()) {
-        return _characteristic.writeValueWithResponse(data);
+        return await _characteristic.writeValueWithResponse(data);
       }
       webBluetoothLogger.info(
           "WriteValueWithResponse not supported in this browser. "
@@ -297,7 +297,7 @@ class BluetoothCharacteristic {
           null,
           StackTrace.current);
       // ignore: deprecated_member_use_from_same_package
-      return _characteristic.writeValue(data);
+      return await _characteristic.writeValue(data);
     } catch (e) {
       final error = e.toString().trim();
       if (error.startsWith("NotSupportedError")) {

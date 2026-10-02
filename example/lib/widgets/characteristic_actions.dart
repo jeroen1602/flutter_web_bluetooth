@@ -10,11 +10,11 @@ abstract class Actions {
 
   bool get isNotifying;
 
-  Future<void> writeValue(final BuildContext? context);
+  Future<void> writeValue(BuildContext? context);
 }
 
 class CharacteristicActions extends Actions {
-  CharacteristicActions(final BluetoothCharacteristic characteristic)
+  CharacteristicActions(BluetoothCharacteristic characteristic)
     : _characteristic = characteristic;
 
   final BluetoothCharacteristic _characteristic;
@@ -37,7 +37,7 @@ class CharacteristicActions extends Actions {
   }
 
   @override
-  Future<void> writeValue(final BuildContext? context) async {
+  Future<void> writeValue(BuildContext? context) async {
     if (context != null) {
       ScaffoldMessenger.maybeOf(context)?.showSnackBar(
         const SnackBar(
@@ -110,7 +110,7 @@ class ActionsSate extends State<ActionsWidget> {
   }
 
   FutureOr<void> Function() handlePressed(
-    final FutureOr<void> Function() method,
+    FutureOr<void> Function() method,
   ) {
     return () async {
       try {
@@ -133,7 +133,7 @@ class ActionsSate extends State<ActionsWidget> {
   }
 
   FutureOr<void> Function() handlePressedWithContext(
-    final FutureOr<void> Function(BuildContext?) method,
+    FutureOr<void> Function(BuildContext?) method,
   ) {
     return () async {
       try {
@@ -156,7 +156,7 @@ class ActionsSate extends State<ActionsWidget> {
     };
   }
 
-  bool _hasValueSet<T>([final List<T?> args = const []]) {
+  bool _hasValueSet<T>([List<T?> args = const []]) {
     for (final arg in args) {
       if (arg != null) {
         return true;
@@ -166,7 +166,7 @@ class ActionsSate extends State<ActionsWidget> {
   }
 
   @override
-  Widget build(final BuildContext context) {
+  Widget build(BuildContext context) {
     final actionReadValue = getReadValueAction();
     final actionNotify = getNotifyAction();
     final actionWrite = getWriteAction();
@@ -180,9 +180,9 @@ class ActionsSate extends State<ActionsWidget> {
     if (hasAction) {
       return Row(
         children: [
-          if (actionReadValue != null) actionReadValue,
-          if (actionNotify != null) actionNotify,
-          if (actionWrite != null) actionWrite,
+          ?actionReadValue,
+          ?actionNotify,
+          ?actionWrite,
         ],
       );
     } else {
