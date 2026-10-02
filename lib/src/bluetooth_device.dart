@@ -285,7 +285,7 @@ class BluetoothDevice extends AdvertisementBluetoothDevice {
   ///
   /// Watch for advertisements from this device. The advertisements will
   /// be received using the [advertisements] [Stream].
-  /// You can choose to only watch advertisements for a specific amount of times
+  /// You can choose to only watch advertisements for a specific amount of time
   /// in that case use the [timeout] variable. If this is `null` then it will
   /// watch advertisements for as long as the device is in range. Do note that
   /// not every device will keep sending out advertisements.
@@ -313,13 +313,11 @@ class BluetoothDevice extends AdvertisementBluetoothDevice {
         ?.abort("Can only watch the advertisements once".toJS);
 
     _startAdvertisementStream();
-    final controller = timeout != null ? null : AbortController();
-    if (timeout != null) {
-      _advertisementAbortController = controller;
-    }
+    final controller = AbortController();
+    _advertisementAbortController = controller;
     final signal = timeout != null
-        ? AbortSignal.timeout(timeout.inMilliseconds)
-        : controller!.signal;
+        ? AbortSignal.any([AbortSignal.timeout(timeout.inMilliseconds), controller.signal].toJS)
+        : controller.signal;
     try {
       final options = WatchAdvertisementsOptions(signal: signal);
       await _bluetoothDevice.watchAdvertisements(options);
