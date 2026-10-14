@@ -1,5 +1,10 @@
 ## T.B.D
 
+* Updated list of manufacturer identifiers
+* Updated list of default uuids
+
+## 1.2.0
+
 * `watchAdvertisements` now keeps an abort controller for the whole watch so
   `unwatchAdvertisements` can stop a pending start as well as a running watch.
 * Added a `startupTimeout` parameter to `watchAdvertisements` to only bound the
