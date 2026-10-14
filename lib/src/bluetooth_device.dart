@@ -285,10 +285,21 @@ class BluetoothDevice extends AdvertisementBluetoothDevice {
   ///
   /// Watch for advertisements from this device. The advertisements will
   /// be received using the [advertisements] [Stream].
+  ///
   /// You can choose to only watch advertisements for a specific amount of time
   /// in that case use the [timeout] variable. If this is `null` then it will
   /// watch advertisements for as long as the device is in range. Do note that
   /// not every device will keep sending out advertisements.
+  ///
+  /// Use [startupTimeout] to only bound the time it takes to start watching.
+  /// This is useful because watching advertisements and connecting to the GATT
+  /// server at the same time is not allowed, so you may want to give up on a
+  /// hung start before connecting. Unlike [timeout] it does not stop a
+  /// successfully started watch, on expiry it throws a [TimeoutException] and
+  /// stops the watch.
+  ///
+  /// Call [unwatchAdvertisements] to stop watching. This aborts a pending
+  /// startup as well as an already running watch.
   ///
   /// Not every browser supports this API yet. Chrome for Windows, Linux, and
   /// probably also mac os have this hidden behind the
@@ -301,10 +312,13 @@ class BluetoothDevice extends AdvertisementBluetoothDevice {
   /// the case with chrome for linux.
   ///
   /// If the browser is already watching for advertisements and this is called
-  /// again then nothing special will happen and it will request the device
+  /// again then the previous watch is stopped and it will request the device
   /// again to send advertisements.
   ///
-  Future<void> watchAdvertisements([final Duration? timeout]) async {
+  Future<void> watchAdvertisements([
+    final Duration? timeout,
+    final Duration? startupTimeout,
+  ]) async {
     if (!_bluetoothDevice.hasWatchAdvertisements()) {
       // Throw the error
       return await _bluetoothDevice.watchAdvertisements();
@@ -316,13 +330,27 @@ class BluetoothDevice extends AdvertisementBluetoothDevice {
     final controller = AbortController();
     _advertisementAbortController = controller;
     final signal = timeout != null
-        ? AbortSignal.any([AbortSignal.timeout(timeout.inMilliseconds), controller.signal].toJS)
+        ? AbortSignal.any(<AbortSignal>[
+            AbortSignal.timeout(timeout.inMilliseconds),
+            controller.signal,
+          ].toJS)
         : controller.signal;
     try {
       final options = WatchAdvertisementsOptions(signal: signal);
-      await _bluetoothDevice.watchAdvertisements(options);
+      final start = _bluetoothDevice.watchAdvertisements(options);
+      if (startupTimeout == null) {
+        await start;
+      } else {
+        await start.timeout(startupTimeout, onTimeout: () {
+          controller
+              .abort("Timed out while starting to watch advertisements".toJS);
+          throw TimeoutException(
+              "Timed out while starting to watch advertisements",
+              startupTimeout);
+        });
+      }
     } catch (e) {
-      if (e is Error) {
+      if (e is Error || e is TimeoutException) {
         rethrow;
       }
       final asString = e.toString();
