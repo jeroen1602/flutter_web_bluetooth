@@ -11,6 +11,30 @@ part of flutter_web_bluetooth;
 /// ignore: deprecated_member_use_from_same_package
 /// See: [deprecatedManufacturerIdentifiers] for a list of all old deprecated identifiers.
 enum BluetoothDefaultManufacturerIdentifiers {
+  /// The manufacturer identifier for Nicrew Technology Co., Limited
+  nicrewTechnologyCoLimited("Nicrew Technology Co., Limited", 0x1132),
+
+  /// The manufacturer identifier for Chirp Innovation, LLC
+  chirpInnovationLlc("Chirp Innovation, LLC", 0x1131),
+
+  /// The manufacturer identifier for Pi Variables, Inc.
+  piVariablesInc("Pi Variables, Inc.", 0x1130),
+
+  /// The manufacturer identifier for SECANDA Systems AG
+  secandaSystemsAg("SECANDA Systems AG", 0x112F),
+
+  /// The manufacturer identifier for Oticon Medical AB
+  oticonMedicalAb("Oticon Medical AB", 0x112E),
+
+  /// The manufacturer identifier for Aktiia SA
+  aktiiaSa("Aktiia SA", 0x112D),
+
+  /// The manufacturer identifier for mees audio technology., co.ltd.
+  meesAudioTechnologyCoLtd("mees audio technology., co.ltd.", 0x112C),
+
+  /// The manufacturer identifier for IXI Eyewear Oy
+  ixiEyewearOy("IXI Eyewear Oy", 0x112B),
+
   /// The manufacturer identifier for Flowil International Lighting (Holding) B.V.
   flowilInternationalLightingHoldingBV(
       "Flowil International Lighting (Holding) B.V.", 0x112A),
@@ -1653,9 +1677,11 @@ enum BluetoothDefaultManufacturerIdentifiers {
   thermyLtd("THERMY LTD", 0xEBA),
 
   /// The manufacturer identifier for egojin co,.ltd
+  @Deprecated("Identifier no longer exists in the Bluetooth spec")
   egojinCoLtd("egojin co,.ltd", 0xEB9),
 
   /// The manufacturer identifier for PARAGON ID
+  @Deprecated("Identifier no longer exists in the Bluetooth spec")
   paragonId("PARAGON ID", 0xEB8),
 
   /// The manufacturer identifier for Embedded Solutions LLC
@@ -1699,6 +1725,7 @@ enum BluetoothDefaultManufacturerIdentifiers {
   steyrSportGmbh("STEYR Sport GmbH", 0xEAB),
 
   /// The manufacturer identifier for Hive Soundz inc.
+  @Deprecated("Identifier no longer exists in the Bluetooth spec")
   hiveSoundzInc("Hive Soundz inc.", 0xEAA),
 
   /// The manufacturer identifier for Makichie Co., Ltd.
@@ -13612,6 +13639,14 @@ enum BluetoothDefaultManufacturerIdentifiers {
   /// All non-deprecated manufacturer identifiers
   static const List<BluetoothDefaultManufacturerIdentifiers>
       manufacturerIdentifiers = [
+    nicrewTechnologyCoLimited,
+    chirpInnovationLlc,
+    piVariablesInc,
+    secandaSystemsAg,
+    oticonMedicalAb,
+    aktiiaSa,
+    meesAudioTechnologyCoLtd,
+    ixiEyewearOy,
     flowilInternationalLightingHoldingBV,
     iTOVaarwegmarkeringBV,
     nicImpex,

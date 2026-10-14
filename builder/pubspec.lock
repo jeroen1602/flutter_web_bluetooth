@@ -5,18 +5,18 @@ packages:
     dependency: transitive
     description:
       name: _fe_analyzer_shared
-      sha256: fdcd9f70f9eb80df3bc5ed0fa67280df2595fd481948df8a9ab082e6a40ad04b
+      sha256: "48e48f73a431eb269eec66d243a63a07ed90ef9417a74047a3b98d52338626ad"
       url: "https://pub.dev"
     source: hosted
-    version: "108.0.0"
+    version: "109.0.0"
   analyzer:
     dependency: "direct main"
     description:
       name: analyzer
-      sha256: a51c769bff3b6dfbe9d60199b8606d808290702a296bef0c26a4ca391d414e46
+      sha256: "6d377901d198536b648172974d9d4f277910502cad92193466869cac0ff34990"
       url: "https://pub.dev"
     source: hosted
-    version: "14.4.0"
+    version: "14.5.0"
   args:
     dependency: "direct main"
     description:
@@ -45,10 +45,10 @@ packages:
     dependency: "direct main"
     description:
       name: build
-      sha256: "8a5c5761af8e31748bba3c82f68925ace40f3225c3eea25be9beb57eca7cd7a8"
+      sha256: "50df3d1558953a0d936401c1687cc41dbc039f9132f538c7bcb2aac2a580ae7f"
       url: "https://pub.dev"
     source: hosted
-    version: "4.0.11"
+    version: "5.0.0"
   built_collection:
     dependency: transitive
     description:
@@ -69,10 +69,10 @@ packages:
     dependency: "direct main"
     description:
       name: code_builder
-      sha256: aa5932e94c6c39c2f9ec4e5e06dfdd11a9430a61f6c41b6ba75b28ce0c481baf
+      sha256: "811709c1badd02fc054039a13f66e0db1961865f9a314175f68c3eaeebec786f"
       url: "https://pub.dev"
     source: hosted
-    version: "4.12.0"
+    version: "4.13.0"
   collection:
     dependency: transitive
     description:
@@ -245,10 +245,10 @@ packages:
     dependency: transitive
     description:
       name: test_api
-      sha256: "0a10344e901e5b2e63819567951cb6a06673ed6b84f40462188ff5a0c41f371f"
+      sha256: "47481c58bb92d0b1d218f0510ff5647e768f8e1256d07077a151fb520923b51d"
       url: "https://pub.dev"
     source: hosted
-    version: "0.7.14"
+    version: "0.7.15"
   typed_data:
     dependency: transitive
     description:
