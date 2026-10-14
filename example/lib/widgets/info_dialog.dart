@@ -47,15 +47,11 @@ class _InfoDialogState extends State<InfoDialog> {
           children: [
             FutureBuilder<String>(
               future: _appVersion,
-              builder:
-                  (
-                    BuildContext context,
-                    AsyncSnapshot<String> snapshot,
-                  ) {
-                    return Text(
-                      "Example app version: ${snapshot.data ?? "loading"}",
-                    );
-                  },
+              builder: (BuildContext context, AsyncSnapshot<String> snapshot) {
+                return Text(
+                  "Example app version: ${snapshot.data ?? "loading"}",
+                );
+              },
             ),
             FutureBuilder<
               ({String flutterVersion, String dartVersion, String libVersion})

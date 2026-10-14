@@ -8,8 +8,7 @@ import "package:code_builder/code_builder.dart";
 LiteralExpression literalHex(int input) {
   final mirror = reflectClass(LiteralExpression);
   final entry = mirror.declarations.entries.firstWhere(
-    (x) =>
-        x.value is MethodMirror && (x.value as MethodMirror).isConstructor,
+    (x) => x.value is MethodMirror && (x.value as MethodMirror).isConstructor,
   );
   final constructor = entry.value as MethodMirror;
 
@@ -25,8 +24,7 @@ Expression literalStringDouble(String value) {
   final escaped = value.replaceAll("\"", "\\\"").replaceAll("\n", "\\n");
   final mirror = reflectClass(LiteralExpression);
   final entry = mirror.declarations.entries.firstWhere(
-    (x) =>
-        x.value is MethodMirror && (x.value as MethodMirror).isConstructor,
+    (x) => x.value is MethodMirror && (x.value as MethodMirror).isConstructor,
   );
   final constructor = entry.value as MethodMirror;
 

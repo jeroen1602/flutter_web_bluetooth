@@ -170,10 +170,7 @@ class BluetoothBusiness {
       return compare;
     }
 
-    final Set<BluetoothDevice> pairedDevice = SplayTreeSet.from({}, (
-      a,
-      b,
-    ) {
+    final Set<BluetoothDevice> pairedDevice = SplayTreeSet.from({}, (a, b) {
       final nameA = a.name;
       final nameB = b.name;
       int compare = 0;
@@ -234,9 +231,7 @@ class BluetoothBusiness {
       );
 
       devices.addAll(
-        advertisementDevices.map(
-          (e) => MainPageDevice.fromEvent(event: e),
-        ),
+        advertisementDevices.map((e) => MainPageDevice.fromEvent(event: e)),
       );
       return devices;
     });

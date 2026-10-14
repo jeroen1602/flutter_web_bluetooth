@@ -69,8 +69,7 @@ class BrowserNotSupportedAlertWidget extends StatelessWidget {
             ],
             WidgetSpan(
               child: Linkify(
-                text:
-                    "Check out https://CanIUse.com for updates for your specific browser.",
+                text: "Check out https://CanIUse.com for updates for your specific browser.",
                 // style: textStyle,
                 linkStyle: linkStyle,
                 onOpen: (link) async {

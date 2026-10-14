@@ -6,10 +6,7 @@ import "package:flutter_web_bluetooth/flutter_web_bluetooth.dart";
 /// device retrieved through a request.
 ///
 class MainPageDevice<D extends AdvertisementBluetoothDevice> {
-  MainPageDevice({
-    required this.device,
-    this._event,
-  });
+  MainPageDevice({required this.device, this._event});
 
   MainPageDevice.fromEvent({required AdvertisementReceivedEvent<D> event})
     : device = event.device,

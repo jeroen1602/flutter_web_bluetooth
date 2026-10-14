@@ -87,9 +87,8 @@ Future<void> generateDefaultManufacturerIdentifiers() async {
 
           if (identifier is _DeprecatedManufacturerIdentifier) {
             builder.annotations.add(
-              refer(
-                "Deprecated",
-              ).call([literalStringDouble(identifier.deprecationMessage)]),
+              refer("Deprecated")
+                  .call([literalStringDouble(identifier.deprecationMessage)]),
             );
           }
         }),
@@ -189,9 +188,8 @@ ${buildLibrary.accept(emitter)}
   final outFile = File(manufacturerIdentifiersFile);
   await outFile.create();
   await outFile.writeAsString(
-    DartFormatter(
-      languageVersion: await getDartMinVersion(),
-    ).format(libraryCode),
+    DartFormatter(languageVersion: await getDartMinVersion())
+        .format(libraryCode),
   );
   // ignore: avoid_print
   print("Done");
@@ -230,9 +228,9 @@ Future<List<_ManufacturerIdentifier>> _getExistingEnumConstants(
     path: manufacturerIdentifiersFile,
     featureSet: FeatureSet.latestLanguageVersion(),
   );
-  final manufacturerEnum =
-      parsed.unit.declarations.firstWhere((x) => x is ast.EnumDeclaration)
-          as ast.EnumDeclaration;
+  final manufacturerEnum = parsed.unit.declarations.firstWhere(
+    (x) => x is ast.EnumDeclaration,
+  ) as ast.EnumDeclaration;
 
   if (manufacturerEnum.namePart.toString() !=
       "BluetoothDefaultManufacturerIdentifiers") {
@@ -297,8 +295,7 @@ class _ManufacturerIdentifier implements Comparable<_ManufacturerIdentifier> {
   _ManufacturerIdentifier(this.name, this.variableName, this.identifier);
 
   @override
-  int compareTo(_ManufacturerIdentifier other) =>
-      other.identifier - identifier;
+  int compareTo(_ManufacturerIdentifier other) => other.identifier - identifier;
 }
 
 String _generateDeprecationMessage(

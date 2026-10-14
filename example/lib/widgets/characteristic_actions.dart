@@ -109,9 +109,7 @@ class ActionsSate extends State<ActionsWidget> {
     return null;
   }
 
-  FutureOr<void> Function() handlePressed(
-    FutureOr<void> Function() method,
-  ) {
+  FutureOr<void> Function() handlePressed(FutureOr<void> Function() method) {
     return () async {
       try {
         await method.call();
@@ -178,13 +176,7 @@ class ActionsSate extends State<ActionsWidget> {
     ]);
 
     if (hasAction) {
-      return Row(
-        children: [
-          ?actionReadValue,
-          ?actionNotify,
-          ?actionWrite,
-        ],
-      );
+      return Row(children: [?actionReadValue, ?actionNotify, ?actionWrite]);
     } else {
       return const Row(children: [Text("No actions for this characteristic")]);
     }

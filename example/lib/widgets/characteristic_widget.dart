@@ -44,20 +44,16 @@ class CharacteristicWidgetState extends State<CharacteristicWidget> {
         ),
         StreamBuilder<ByteData>(
           stream: widget.characteristic.value,
-          builder:
-              (
-                BuildContext context,
-                AsyncSnapshot<ByteData> snapshot,
-              ) {
-                if (snapshot.hasError) {
-                  return Text("Error: ${snapshot.error}");
-                }
-                final data = snapshot.data;
-                if (data != null) {
-                  return DataWidget(data: data);
-                }
-                return const Text("No data retrieved!");
-              },
+          builder: (BuildContext context, AsyncSnapshot<ByteData> snapshot) {
+            if (snapshot.hasError) {
+              return Text("Error: ${snapshot.error}");
+            }
+            final data = snapshot.data;
+            if (data != null) {
+              return DataWidget(data: data);
+            }
+            return const Text("No data retrieved!");
+          },
         ),
         Padding(
           padding: const EdgeInsets.all(8.0),

@@ -38,9 +38,8 @@ class BluetoothDeviceState<D extends AdvertisementBluetoothDevice>
 
   @override
   Widget build(BuildContext context) {
-    final cursive = Theme.of(
-      context,
-    ).textTheme.bodyLarge?.copyWith(fontStyle: FontStyle.italic);
+    final cursive = Theme.of(context).textTheme.bodyLarge
+        ?.copyWith(fontStyle: FontStyle.italic);
 
     final IconData actionIcon;
     if (widget._canConnect) {
@@ -60,10 +59,7 @@ class BluetoothDeviceState<D extends AdvertisementBluetoothDevice>
                   stream: _connectedStream,
                   initialData: false,
                   builder:
-                      (
-                        BuildContext context,
-                        AsyncSnapshot<bool> snapshot,
-                      ) {
+                      (BuildContext context, AsyncSnapshot<bool> snapshot) {
                         return Icon(
                           Icons.circle,
                           color: snapshot.requireData

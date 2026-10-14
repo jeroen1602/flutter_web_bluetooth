@@ -230,13 +230,12 @@ class BluetoothAdvertisementsCardState
             expansionCallback: _expansionCallback,
             children: [
               ExpansionPanel(
-                headerBuilder:
-                    (BuildContext context, bool isExpanded) {
-                      return ListTile(
-                        title: const Text("UUIDS"),
-                        subtitle: Text("Size: ${widget.event.uuids.length}"),
-                      );
-                    },
+                headerBuilder: (BuildContext context, bool isExpanded) {
+                  return ListTile(
+                    title: const Text("UUIDS"),
+                    subtitle: Text("Size: ${widget.event.uuids.length}"),
+                  );
+                },
                 body: Column(
                   children: widget.event.uuids
                       .map((e) => ListTile(title: Text(e)))
@@ -245,15 +244,12 @@ class BluetoothAdvertisementsCardState
                 isExpanded: _openPanels[0],
               ),
               ExpansionPanel(
-                headerBuilder:
-                    (BuildContext context, bool isExpanded) {
-                      return ListTile(
-                        title: const Text("Service data"),
-                        subtitle: Text(
-                          "Size: ${widget.event.serviceData.length}",
-                        ),
-                      );
-                    },
+                headerBuilder: (BuildContext context, bool isExpanded) {
+                  return ListTile(
+                    title: const Text("Service data"),
+                    subtitle: Text("Size: ${widget.event.serviceData.length}"),
+                  );
+                },
                 body: Column(
                   children: widget.event.serviceData.entries.map((e) {
                     final hex = StringBuffer();
@@ -275,19 +271,16 @@ class BluetoothAdvertisementsCardState
                 isExpanded: _openPanels[1],
               ),
               ExpansionPanel(
-                headerBuilder:
-                    (BuildContext context, bool isExpanded) {
-                      return ListTile(
-                        title: const Text("Manufacturer data"),
-                        subtitle: Text(
-                          "Size: ${widget.event.manufacturerData.length}",
-                        ),
-                      );
-                    },
+                headerBuilder: (BuildContext context, bool isExpanded) {
+                  return ListTile(
+                    title: const Text("Manufacturer data"),
+                    subtitle: Text(
+                      "Size: ${widget.event.manufacturerData.length}",
+                    ),
+                  );
+                },
                 body: Column(
-                  children: widget.event.manufacturerData.entries.map((
-                    e,
-                  ) {
+                  children: widget.event.manufacturerData.entries.map((e) {
                     final hex = StringBuffer();
                     for (var i = 0; i < e.value.lengthInBytes; i++) {
                       hex.write(

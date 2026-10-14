@@ -37,33 +37,32 @@ class _MyAppState extends State<MyApp> {
     return StreamBuilder<bool>(
       stream: FlutterWebBluetooth.instance.isAvailable,
       initialData: false,
-      builder:
-          (BuildContext context, AsyncSnapshot<bool> snapshot) {
-            final available = snapshot.requireData;
-            return MaterialApp(
-              home: Scaffold(
-                appBar: AppBar(
-                  title: const SelectableText("Bluetooth web example app"),
-                  actions: [
-                    Builder(
-                      builder: (BuildContext context) {
-                        return IconButton(
-                          onPressed: () async {
-                            await InfoDialog.showInfoDialog(context);
-                          },
-                          icon: const Icon(Icons.info),
-                        );
+      builder: (BuildContext context, AsyncSnapshot<bool> snapshot) {
+        final available = snapshot.requireData;
+        return MaterialApp(
+          home: Scaffold(
+            appBar: AppBar(
+              title: const SelectableText("Bluetooth web example app"),
+              actions: [
+                Builder(
+                  builder: (BuildContext context) {
+                    return IconButton(
+                      onPressed: () async {
+                        await InfoDialog.showInfoDialog(context);
                       },
-                    ),
-                  ],
+                      icon: const Icon(Icons.info),
+                    );
+                  },
                 ),
-                body: MainPage(isBluetoothAvailable: available),
-                floatingActionButtonLocation:
-                    FloatingActionButtonLocation.endDocked,
-                floatingActionButton: const FABS(),
-              ),
-            );
-          },
+              ],
+            ),
+            body: MainPage(isBluetoothAvailable: available),
+            floatingActionButtonLocation:
+                FloatingActionButtonLocation.endDocked,
+            floatingActionButton: const FABS(),
+          ),
+        );
+      },
     );
   }
 }
@@ -164,23 +163,22 @@ class MainPageState extends State<MainPage> {
           child: StreamBuilder(
             stream: _devicesStream,
             initialData: const {},
-            builder:
-                (BuildContext context, AsyncSnapshot snapshot) {
-                  final devices = snapshot.requireData;
-                  return ListView.builder(
-                    itemCount: devices.length,
-                    itemBuilder: (BuildContext context, int index) {
-                      final device = devices.toList()[index];
+            builder: (BuildContext context, AsyncSnapshot snapshot) {
+              final devices = snapshot.requireData;
+              return ListView.builder(
+                itemCount: devices.length,
+                itemBuilder: (BuildContext context, int index) {
+                  final device = devices.toList()[index];
 
-                      return BluetoothDeviceWidget(
-                        bluetoothDevice: device,
-                        onTap: () async {
-                          await handleDeviceTap(device);
-                        },
-                      );
+                  return BluetoothDeviceWidget(
+                    bluetoothDevice: device,
+                    onTap: () async {
+                      await handleDeviceTap(device);
                     },
                   );
                 },
+              );
+            },
           ),
         ),
       ],

@@ -71,10 +71,7 @@ Future<void> generateDefaultUUIDs() async {
         }
         return found.variableName != x.variableName;
       })
-      .map(
-        (x) =>
-            _DeprecatedBluetoothUUID.createFromUUID(x, characteristics),
-      )
+      .map((x) => _DeprecatedBluetoothUUID.createFromUUID(x, characteristics))
       .toList(growable: false);
   deprecatedCharacteristics.sort();
 
@@ -111,9 +108,8 @@ Future<void> generateDefaultUUIDs() async {
 
           if (service is _DeprecatedBluetoothUUID) {
             builder.annotations.add(
-              refer(
-                "Deprecated",
-              ).call([literalStringDouble(service.deprecationMessage)]),
+              refer("Deprecated")
+                  .call([literalStringDouble(service.deprecationMessage)]),
             );
           }
         }),
@@ -366,18 +362,15 @@ ${buildLibrary.accept(emitter)}
   final outFile = File(defaultUUIDSFile);
   await outFile.create();
   await outFile.writeAsString(
-    DartFormatter(
-      languageVersion: await getDartMinVersion(),
-    ).format(libraryCode),
+    DartFormatter(languageVersion: await getDartMinVersion())
+        .format(libraryCode),
   );
   // await outFile.writeAsString(libraryCode);
   // ignore: avoid_print
   print("Done");
 }
 
-Future<List<_BluetoothUUID>> _getCurrentBluetoothUUIDS(
-  dynamic input,
-) async {
+Future<List<_BluetoothUUID>> _getCurrentBluetoothUUIDS(dynamic input) async {
   final yaml = await loadYamlResource(input);
   final uuids = yaml["uuids"] as YamlList;
 

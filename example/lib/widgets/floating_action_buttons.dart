@@ -92,8 +92,7 @@ class FABSState extends State<FABS> {
         message = "Permission denied";
         break;
       case RequestLEState.timeoutException:
-        message =
-            "Scan did not start within the timeout; it may not be fully supported on this platform.";
+        message = "Scan did not start within the timeout; it may not be fully supported on this platform.";
         break;
       case RequestLEState.stopped:
       case RequestLEState.ok:
