@@ -6,7 +6,7 @@ Flutter web bluetooth is a ~~Flutter~~ [Dart](https://dart.dev/) plugin to add s
 [web bluetooth api](https://developer.mozilla.org/en-US/docs/Web/API/Web_Bluetooth_API).
 
 The library doesn't require Flutter at all giving you the option to use it with projects like 
-[AngularDart](https://angulardart.xyz/).
+[AngularDart](https://angulardartreborn.com).
 
 It is also written in such a way that it will play nicely with Dart native projects. 
 So if you have a cross-platform app and want to add web support you don't have to use conditional exports to exclude 
