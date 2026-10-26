@@ -384,10 +384,10 @@ packages:
     dependency: "direct main"
     description:
       name: web_browser_detect
-      sha256: "2edadeec0e86a754f7bc335d30dddd6511169d07fd308d2d1db6586a20698327"
+      sha256: "484e0fd616bde0efd472b3f7f74bd8e5ff6e49841d95229900744d00c19bcb6f"
       url: "https://pub.dev"
     source: hosted
-    version: "2.3.0"
+    version: "2.3.1"
   win32:
     dependency: transitive
     description:
