@@ -11,6 +11,39 @@ part of flutter_web_bluetooth;
 /// ignore: deprecated_member_use_from_same_package
 /// See: [deprecatedManufacturerIdentifiers] for a list of all old deprecated identifiers.
 enum BluetoothDefaultManufacturerIdentifiers {
+  /// The manufacturer identifier for Venndelta Pty Ltd
+  venndeltaPtyLtd("Venndelta Pty Ltd", 0x113D),
+
+  /// The manufacturer identifier for SOTI INC.
+  sotiInc("SOTI INC.", 0x113C),
+
+  /// The manufacturer identifier for ONiO AS
+  onioAs("ONiO AS", 0x113B),
+
+  /// The manufacturer identifier for Celadon, Inc.
+  celadonInc("Celadon, Inc.", 0x113A),
+
+  /// The manufacturer identifier for NaturalCycles Nordic AB
+  naturalcyclesNordicAb("NaturalCycles Nordic AB", 0x1139),
+
+  /// The manufacturer identifier for Crane Aerospace & Electronics
+  craneAerospaceAndElectronics("Crane Aerospace & Electronics", 0x1138),
+
+  /// The manufacturer identifier for Eberlein Innovations EOOD
+  eberleinInnovationsEood("Eberlein Innovations EOOD", 0x1137),
+
+  /// The manufacturer identifier for Loop
+  loop("Loop", 0x1136),
+
+  /// The manufacturer identifier for Shenzhen GetD Technology Co.,Ltd.
+  shenzhenGetdTechnologyCoLtd("Shenzhen GetD Technology Co.,Ltd.", 0x1135),
+
+  /// The manufacturer identifier for Barksdale, Inc.
+  barksdaleInc("Barksdale, Inc.", 0x1134),
+
+  /// The manufacturer identifier for THE KEEON Co., Ltd.
+  theKeeonCoLtd("THE KEEON Co., Ltd.", 0x1133),
+
   /// The manufacturer identifier for Nicrew Technology Co., Limited
   nicrewTechnologyCoLimited("Nicrew Technology Co., Limited", 0x1132),
 
@@ -2421,12 +2454,12 @@ enum BluetoothDefaultManufacturerIdentifiers {
   /// The manufacturer identifier for Global Satellite Engineering
   globalSatelliteEngineering("Global Satellite Engineering", 0xDD3),
 
+  /// The manufacturer identifier for Fresh n Rebel B.V.
+  freshNRebelBV("Fresh n Rebel B.V.", 0xDD2),
+
   /// The manufacturer identifier for Sitecom Europe B.V.
   @Deprecated("Identifier has been renamed; use freshNRebelBV instead")
   sitecomEuropeBV("Sitecom Europe B.V.", 0xDD2),
-
-  /// The manufacturer identifier for Fresh n Rebel B.V.
-  freshNRebelBV("Fresh n Rebel B.V.", 0xDD2),
 
   /// The manufacturer identifier for OrangeMicro Limited
   orangemicroLimited("OrangeMicro Limited", 0xDD1),
@@ -3175,12 +3208,12 @@ enum BluetoothDefaultManufacturerIdentifiers {
   /// The manufacturer identifier for TAG HEUER SA
   tagHeuerSa("TAG HEUER SA", 0xCE7),
 
+  /// The manufacturer identifier for mwConnect
+  mwconnect("mwConnect", 0xCE6),
+
   /// The manufacturer identifier for McWong International, Inc.
   @Deprecated("Identifier has been renamed; use mwconnect instead")
   mcwongInternationalInc("McWong International, Inc.", 0xCE6),
-
-  /// The manufacturer identifier for mwConnect
-  mwconnect("mwConnect", 0xCE6),
 
   /// The manufacturer identifier for Amina Distribution AS
   aminaDistributionAs("Amina Distribution AS", 0xCE5),
@@ -4018,12 +4051,12 @@ enum BluetoothDefaultManufacturerIdentifiers {
   /// The manufacturer identifier for Coroflo Limited
   corofloLimited("Coroflo Limited", 0xBDD),
 
+  /// The manufacturer identifier for TWINKLY SRL
+  twinklySrl("TWINKLY SRL", 0xBDC),
+
   /// The manufacturer identifier for Ledworks S.r.l.
   @Deprecated("Identifier has been renamed; use twinklySrl instead")
   ledworksSRL("Ledworks S.r.l.", 0xBDC),
-
-  /// The manufacturer identifier for TWINKLY SRL
-  twinklySrl("TWINKLY SRL", 0xBDC),
 
   /// The manufacturer identifier for CHAR-BROIL, LLC
   charBroilLlc("CHAR-BROIL, LLC", 0xBDB),
@@ -5105,12 +5138,12 @@ enum BluetoothDefaultManufacturerIdentifiers {
   /// The manufacturer identifier for HAINBUCH GMBH SPANNENDE TECHNIK
   hainbuchGmbhSpannendeTechnik("HAINBUCH GMBH SPANNENDE TECHNIK", 0xA8A),
 
+  /// The manufacturer identifier for VusionGroup
+  vusiongroup("VusionGroup", 0xA89),
+
   /// The manufacturer identifier for SES-Imagotag
   @Deprecated("Identifier has been renamed; use vusiongroup instead")
   sesImagotag("SES-Imagotag", 0xA89),
-
-  /// The manufacturer identifier for VusionGroup
-  vusiongroup("VusionGroup", 0xA89),
 
   /// The manufacturer identifier for PSA Peugeot Citroen
   psaPeugeotCitroen("PSA Peugeot Citroen", 0xA88),
@@ -5455,12 +5488,12 @@ enum BluetoothDefaultManufacturerIdentifiers {
   /// The manufacturer identifier for API-K
   apiK("API-K", 0xA1D),
 
+  /// The manufacturer identifier for INPEAK sp. z o.o.
+  inpeakSpZOO("INPEAK sp. z o.o.", 0xA1C),
+
   /// The manufacturer identifier for INPEAK S.C.
   @Deprecated("Identifier has been renamed; use inpeakSpZOO instead")
   inpeakSC("INPEAK S.C.", 0xA1C),
-
-  /// The manufacturer identifier for INPEAK sp. z o.o.
-  inpeakSpZOO("INPEAK sp. z o.o.", 0xA1C),
 
   /// The manufacturer identifier for Embrava Pty Ltd
   embravaPtyLtd("Embrava Pty Ltd", 0xA1B),
@@ -6786,12 +6819,12 @@ enum BluetoothDefaultManufacturerIdentifiers {
   /// The manufacturer identifier for The Chamberlain Group, Inc.
   theChamberlainGroupInc("The Chamberlain Group, Inc.", 0x878),
 
+  /// The manufacturer identifier for Valtech
+  valtech("Valtech", 0x877),
+
   /// The manufacturer identifier for Tome, Inc.
   @Deprecated("Identifier has been renamed; use valtech instead")
   tomeInc("Tome, Inc.", 0x877),
-
-  /// The manufacturer identifier for Valtech
-  valtech("Valtech", 0x877),
 
   /// The manufacturer identifier for SmartResQ ApS
   smartresqAps("SmartResQ ApS", 0x876),
@@ -8496,12 +8529,12 @@ enum BluetoothDefaultManufacturerIdentifiers {
   /// The manufacturer identifier for Sesam Solutions BV
   sesamSolutionsBv("Sesam Solutions BV", 0x65B),
 
+  /// The manufacturer identifier for Marshall Group AB
+  marshallGroupAb("Marshall Group AB", 0x65A),
+
   /// The manufacturer identifier for Zound Industries International AB
   @Deprecated("Identifier has been renamed; use marshallGroupAb instead")
   zoundIndustriesInternationalAb("Zound Industries International AB", 0x65A),
-
-  /// The manufacturer identifier for Marshall Group AB
-  marshallGroupAb("Marshall Group AB", 0x65A),
 
   /// The manufacturer identifier for UnSeen Technologies Oy
   unseenTechnologiesOy("UnSeen Technologies Oy", 0x659),
@@ -9268,12 +9301,12 @@ enum BluetoothDefaultManufacturerIdentifiers {
   /// The manufacturer identifier for Beghelli Spa
   beghelliSpa("Beghelli Spa", 0x564),
 
+  /// The manufacturer identifier for Steinel GmbH
+  steinelGmbh("Steinel GmbH", 0x563),
+
   /// The manufacturer identifier for Steinel Vertrieb GmbH
   @Deprecated("Identifier has been renamed; use steinelGmbh instead")
   steinelVertriebGmbh("Steinel Vertrieb GmbH", 0x563),
-
-  /// The manufacturer identifier for Steinel GmbH
-  steinelGmbh("Steinel GmbH", 0x563),
 
   /// The manufacturer identifier for Thalmic Labs Inc.
   thalmicLabsInc("Thalmic Labs Inc.", 0x562),
@@ -11417,12 +11450,12 @@ enum BluetoothDefaultManufacturerIdentifiers {
   /// The manufacturer identifier for Genevac Ltd
   genevacLtd("Genevac Ltd", 0x2BC),
 
+  /// The manufacturer identifier for YOKOWO CO., LTD.
+  yokowoCoLtd("YOKOWO CO., LTD.", 0x2BB),
+
   /// The manufacturer identifier for Koha.,Co.Ltd
   @Deprecated("Identifier has been renamed; use yokowoCoLtd instead")
   kohaCoLtd("Koha.,Co.Ltd", 0x2BB),
-
-  /// The manufacturer identifier for YOKOWO CO., LTD.
-  yokowoCoLtd("YOKOWO CO., LTD.", 0x2BB),
 
   /// The manufacturer identifier for Swissprime Technologies AG
   swissprimeTechnologiesAg("Swissprime Technologies AG", 0x2BA),
@@ -11744,12 +11777,12 @@ enum BluetoothDefaultManufacturerIdentifiers {
   /// The manufacturer identifier for Xicato Inc.
   xicatoInc("Xicato Inc.", 0x253),
 
+  /// The manufacturer identifier for Restar Corporation
+  restarCorporation("Restar Corporation", 0x252),
+
   /// The manufacturer identifier for UKC Technosolution
   @Deprecated("Identifier has been renamed; use restarCorporation instead")
   ukcTechnosolution("UKC Technosolution", 0x252),
-
-  /// The manufacturer identifier for Restar Corporation
-  restarCorporation("Restar Corporation", 0x252),
 
   /// The manufacturer identifier for Lumo Bodytech Inc.
   lumoBodytechInc("Lumo Bodytech Inc.", 0x251),
@@ -12110,12 +12143,12 @@ enum BluetoothDefaultManufacturerIdentifiers {
   /// The manufacturer identifier for Jolla Ltd
   jollaLtd("Jolla Ltd", 0x1E1),
 
+  /// The manufacturer identifier for WS Audiology Denmark A/S
+  wsAudiologyDenmarkAS("WS Audiology Denmark A/S", 0x1E0),
+
   /// The manufacturer identifier for Widex A/S
   @Deprecated("Identifier has been renamed; use wsAudiologyDenmarkAS instead")
   widexAS("Widex A/S", 0x1E0),
-
-  /// The manufacturer identifier for WS Audiology Denmark A/S
-  wsAudiologyDenmarkAS("WS Audiology Denmark A/S", 0x1E0),
 
   /// The manufacturer identifier for Bison Group Ltd.
   bisonGroupLtd("Bison Group Ltd.", 0x1DF),
@@ -12233,12 +12266,12 @@ enum BluetoothDefaultManufacturerIdentifiers {
   /// The manufacturer identifier for Cochlear Bone Anchored Solutions AB
   cochlearBoneAnchoredSolutionsAb("Cochlear Bone Anchored Solutions AB", 0x1BB),
 
+  /// The manufacturer identifier for SPIA Cycling Inc.
+  spiaCyclingInc("SPIA Cycling Inc.", 0x1BA),
+
   /// The manufacturer identifier for Stages Cycling LLC
   @Deprecated("Identifier has been renamed; use spiaCyclingInc instead")
   stagesCyclingLlc("Stages Cycling LLC", 0x1BA),
-
-  /// The manufacturer identifier for SPIA Cycling Inc.
-  spiaCyclingInc("SPIA Cycling Inc.", 0x1BA),
 
   /// The manufacturer identifier for HANA Micron
   hanaMicron("HANA Micron", 0x1B9),
@@ -13385,12 +13418,12 @@ enum BluetoothDefaultManufacturerIdentifiers {
   /// The manufacturer identifier for Apple, Inc.
   appleInc("Apple, Inc.", 0x4C),
 
+  /// The manufacturer identifier for AUMOVIO Systems, Inc.
+  aumovioSystemsInc("AUMOVIO Systems, Inc.", 0x4B),
+
   /// The manufacturer identifier for Continental Automotive Systems
   @Deprecated("Identifier has been renamed; use aumovioSystemsInc instead")
   continentalAutomotiveSystems("Continental Automotive Systems", 0x4B),
-
-  /// The manufacturer identifier for AUMOVIO Systems, Inc.
-  aumovioSystemsInc("AUMOVIO Systems, Inc.", 0x4B),
 
   /// The manufacturer identifier for Accel Semiconductor Ltd.
   accelSemiconductorLtd("Accel Semiconductor Ltd.", 0x4A),
@@ -13639,6 +13672,17 @@ enum BluetoothDefaultManufacturerIdentifiers {
   /// All non-deprecated manufacturer identifiers
   static const List<BluetoothDefaultManufacturerIdentifiers>
       manufacturerIdentifiers = [
+    venndeltaPtyLtd,
+    sotiInc,
+    onioAs,
+    celadonInc,
+    naturalcyclesNordicAb,
+    craneAerospaceAndElectronics,
+    eberleinInnovationsEood,
+    loop,
+    shenzhenGetdTechnologyCoLtd,
+    barksdaleInc,
+    theKeeonCoLtd,
     nicrewTechnologyCoLimited,
     chirpInnovationLlc,
     piVariablesInc,

@@ -486,7 +486,23 @@ class _BluetoothUUID implements Comparable<_BluetoothUUID> {
   int compareTo(_BluetoothUUID other) {
     final thisUUID16 = int.parse(uuid16, radix: 16);
     final otherUUID16 = int.parse(other.uuid16, radix: 16);
-    return thisUUID16 - otherUUID16;
+    final compare = thisUUID16 - otherUUID16;
+    if (compare != 0) {
+      return compare;
+    }
+
+    final thisDeprecated = this is _DeprecatedBluetoothUUID;
+    final otherDeprecated = other is _DeprecatedBluetoothUUID;
+
+    if (thisDeprecated == otherDeprecated) {
+      return name.compareTo(other.name);
+    }
+
+    if (thisDeprecated) {
+      return 1;
+    }
+
+    return -1;
   }
 }
 

@@ -295,7 +295,25 @@ class _ManufacturerIdentifier implements Comparable<_ManufacturerIdentifier> {
   _ManufacturerIdentifier(this.name, this.variableName, this.identifier);
 
   @override
-  int compareTo(_ManufacturerIdentifier other) => other.identifier - identifier;
+  int compareTo(_ManufacturerIdentifier other) {
+    final compare = other.identifier - identifier;
+    if (compare != 0) {
+      return compare;
+    }
+
+    final thisDeprecated = this is _DeprecatedManufacturerIdentifier;
+    final otherDeprecated = other is _DeprecatedManufacturerIdentifier;
+
+    if (thisDeprecated == otherDeprecated) {
+      return name.compareTo(other.name);
+    }
+
+    if (thisDeprecated) {
+      return 1;
+    }
+
+    return -1;
+  }
 }
 
 String _generateDeprecationMessage(
